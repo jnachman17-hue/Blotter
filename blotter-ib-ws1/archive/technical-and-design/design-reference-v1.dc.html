@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Space+Grotesk:wght@700&family=Archivo:wght@600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body { margin: 0; background: #F5F7FA; font-family: 'Schibsted Grotesk', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: #2F5FB3; } a:hover { color: #24437A; }
+</style>
+</helmet>
+
+<div style="max-width: 880px; margin: 0 auto; padding: 56px 28px 96px;" data-screen-label="design-reference v1.0">
+
+  <span style="display: inline-flex; align-items: flex-end; gap: 1px;"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em; color: #1B3866; line-height: 1;">Blotter</span><span style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.02em; color: #7C8AA6; line-height: 1;">IB</span></span>
+  <h1 style="font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin: 18px 0 6px; color: #131C2E;">design-reference — v1.0</h1>
+  <p style="color: #5A6472; margin: 0; max-width: 62ch; font-size: 15px; line-height: 1.55;">The ratified token spec, session 9. Every value below was ruled by eye against rendered variants; this file replaces the v0.1 seed and is the paint for Stage 2. Ratified-not-frozen.</p>
+  <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A93A3; margin: 14px 0 0;">v1.0 · s9 rulings: temperature · states · two-red · wordmark · single voice · caption trail · wash chips · section card · width-queue</p>
+
+  <div style="margin-top: 56px;">
+    <div style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A93A3; padding-bottom: 8px; border-bottom: 1px solid #E7EBF0; margin-bottom: 20px;">Character statement (ratified s9 — heads every generation prompt)</div>
+    <p style="font-size: 16px; line-height: 1.65; color: #131C2E; max-width: 66ch; margin: 0; font-style: italic;">Blotter IB looks like a clean instrument, not a dashboard costume: a navy-anchored, cool-neutral surface where a person's name is always the heaviest thing on screen and every computed fact speaks in a quiet caption voice – small, even-numbered, unmistakably the machine's. One contained card, hairlines not grids, air not furniture. Nothing shouts, nothing gamifies, nothing decorates – color appears only where it carries state, and red is information, never blame. Calm, credible, finance-literate without cosplay.</p>
+  </div>
+
+  <div style="margin-top: 56px;">
+    <div style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A93A3; padding-bottom: 8px; border-bottom: 1px solid #E7EBF0; margin-bottom: 20px;">The token spec — CSS variables (propagates as-is into Tailwind)</div>
+    <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; padding: 18px 22px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.75; color: #3A4657; white-space: pre; overflow-x: auto;">:root {
+  /* neutrals — cool, ruled s9 */
+  --bg:             #F5F7FA;
+  --surface:        #FFFFFF;
+  --ink:            #131C2E;
+  --text-secondary: #5A6472;
+  --text-muted:     #8A93A3;
+  --hairline:       #E7EBF0;
+  --hairline-soft:  #EEF1F5;
+
+  /* chrome — navy, restraint-guarded (1c lightened) */
+  --navy:           #1B3866;   /* chrome + primary action */
+  --nav-text:       #D4DCE9;   /* uniform across surfaces */
+  --accent:         #2F5FB3;   /* links / interactive only */
+
+  /* five computed states — re-tuned set (2b) */
+  --state-gray:     #8B97AB;   /* Not yet contacted */
+  --state-blue:     #5581DC;   /* Awaiting their reply */
+  --state-amber:    #B8863B;   /* You owe a reply */
+  --state-green:    #4E8D79;   /* Concluded */
+  --state-red:      #B96B60;   /* No response — soft */
+
+  /* one red family, two intensities (8b) */
+  --alarm-red:      #B4483B;   /* deadline escalation, bounces */
+
+  /* tags — wash chips (9c), always below state's weight */
+  --chip-bg:        rgba(27, 56, 102, 0.05);
+  --chip-text:      #5A6472;
+
+  /* type — single voice (7c ruling; two-voice killed) */
+  --font-ui:        'Schibsted Grotesk', system-ui, sans-serif;
+  /* wordmark only, never workspace: Space Grotesk 700 + Archivo 600 */
+
+  /* geometry */
+  --r-card:         10px;
+  --r-chip:         6px;
+  --width-queue:    720px;     /* max-width cap; column stays fluid */
+}</div>
+    <p style="font-size: 13px; color: #5A6472; margin-top: 10px; line-height: 1.5;">The mono in this document is annotation furniture only — the product ships one typeface. Computed values in the UI use <span style="font-variant-numeric: tabular-nums; color: #131C2E;">tabular figures</span>, not a second font.</p>
+  </div>
+
+  <div style="margin-top: 56px;">
+    <div style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A93A3; padding-bottom: 8px; border-bottom: 1px solid #E7EBF0; margin-bottom: 20px;">Color — neutrals &amp; chrome</div>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;">
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #F5F7FA;"></div><div style="padding: 8px 10px;"><div style="font-size: 13px; font-weight: 500; color: #131C2E;">bg</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#F5F7FA</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #FFFFFF; border-bottom: 1px solid #E7EBF0;"></div><div style="padding: 8px 10px;"><div style="font-size: 13px; font-weight: 500; color: #131C2E;">surface</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#FFFFFF</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #131C2E;"></div><div style="padding: 8px 10px;"><div style="font-size: 13px; font-weight: 500; color: #131C2E;">ink</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#131C2E</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #5A6472;"></div><div style="padding: 8px 10px;"><div style="font-size: 13px; font-weight: 500; color: #131C2E;">secondary</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#5A6472</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #8A93A3;"></div><div style="padding: 8px 10px;"><div style="font-size: 13px; font-weight: 500; color: #131C2E;">muted</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#8A93A3</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #E7EBF0;"></div><div style="padding: 8px 10px;"><div style="font-size: 13px; font-weight: 500; color: #131C2E;">hairline</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#E7EBF0</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #1B3866;"></div><div style="padding: 8px 10px;"><div style="font-size: 13px; font-weight: 500; color: #131C2E;">navy</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#1B3866</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #D4DCE9;"></div><div style="padding: 8px 10px;"><div style="font-size: 13px; font-weight: 500; color: #131C2E;">nav-text</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#D4DCE9</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #2F5FB3;"></div><div style="padding: 8px 10px;"><div style="font-size: 13px; font-weight: 500; color: #131C2E;">accent</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#2F5FB3</div></div></div>
+    </div>
+  </div>
+
+  <div style="margin-top: 56px;">
+    <div style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A93A3; padding-bottom: 8px; border-bottom: 1px solid #E7EBF0; margin-bottom: 20px;">Color — five states + the alarm intensity (one red family)</div>
+    <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;">
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #8B97AB;"></div><div style="padding: 8px 10px;"><div style="font-size: 12.5px; font-weight: 500; color: #131C2E;">Not yet contacted</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#8B97AB</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #5581DC;"></div><div style="padding: 8px 10px;"><div style="font-size: 12.5px; font-weight: 500; color: #131C2E;">Awaiting their reply</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#5581DC</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #B8863B;"></div><div style="padding: 8px 10px;"><div style="font-size: 12.5px; font-weight: 500; color: #131C2E;">You owe a reply</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#B8863B</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #4E8D79;"></div><div style="padding: 8px 10px;"><div style="font-size: 12.5px; font-weight: 500; color: #131C2E;">Concluded</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#4E8D79</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #B96B60;"></div><div style="padding: 8px 10px;"><div style="font-size: 12.5px; font-weight: 500; color: #131C2E;">No response (soft)</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#B96B60</div></div></div>
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; overflow: hidden;"><div style="height: 56px; background: #B4483B;"></div><div style="padding: 8px 10px;"><div style="font-size: 12.5px; font-weight: 500; color: #131C2E;">Alarm (escalation)</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A93A3;">#B4483B</div></div></div>
+    </div>
+    <p style="font-size: 13px; color: #5A6472; margin-top: 12px; line-height: 1.5;">Ruled 8b: alarm is the state-red's own hue deepened and saturated — one family, two intensities. Alarm's legitimate homes: calendar deadline escalation and bounced email. State-blue vs. navy collision resolved: the re-tuned blue sits clear of the lightened chrome.</p>
+  </div>
+
+  <div style="margin-top: 56px;">
+    <div style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A93A3; padding-bottom: 8px; border-bottom: 1px solid #E7EBF0; margin-bottom: 20px;">Type ladder — one voice: Schibsted Grotesk (ruled 10b · two-voice killed 7c)</div>
+    <div style="padding: 14px 0; border-bottom: 1px solid #EEF1F5;"><span style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A93A3; display: block; margin-bottom: 4px;">anchor · 600 / 17</span><div style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: #131C2E;">Sarah Chen</div></div>
+    <div style="padding: 14px 0; border-bottom: 1px solid #EEF1F5;"><span style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A93A3; display: block; margin-bottom: 4px;">firm-forward second line · firm 600, title 400, one color</span><div style="font-size: 13px;"><span style="color: #5A6472; font-weight: 600;">Goldman Sachs</span><span style="color: #5A6472;"> · Associate · New York</span></div></div>
+    <div style="padding: 14px 0; border-bottom: 1px solid #EEF1F5;"><span style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A93A3; display: block; margin-bottom: 4px;">body · 400 / 15</span><div style="font-size: 15px; color: #131C2E;">Goldman Sachs · Technology, Media &amp; Telecom</div></div>
+    <div style="padding: 14px 0; border-bottom: 1px solid #EEF1F5;"><span style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A93A3; display: block; margin-bottom: 4px;">why-sentence · 400 / 14 secondary — calm, no guilt, never truncated</span><div style="font-size: 14px; color: #5A6472; line-height: 1.5;">You said you'd follow up with Sarah after her superday. It's been six days.</div></div>
+    <div style="padding: 14px 0;"><span style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A93A3; display: block; margin-bottom: 4px;">caption / audit trail · 11 caps, tracked, tabular figures — every computed fact (ruled 7c)</span><div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A93A3; font-variant-numeric: tabular-nums;">Last emailed Jan 12 · silent 6 days</div></div>
+  </div>
+
+  <div style="margin-top: 56px;">
+    <div style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A93A3; padding-bottom: 8px; border-bottom: 1px solid #E7EBF0; margin-bottom: 20px;">Species — state (dot + word) vs. tags (wash chips, ruled 9c)</div>
+    <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 12px; padding: 18px; max-width: 460px;">
+      <div style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: #131C2E;">Sarah Chen</div>
+      <div style="font-size: 13px; margin-top: 3px;"><span style="color: #5A6472; font-weight: 600;">Goldman Sachs</span><span style="color: #5A6472;"> · Associate · New York</span></div>
+      <div style="display: flex; align-items: center; gap: 8px; margin-top: 12px;"><span style="width: 9px; height: 9px; border-radius: 999px; background: #B8863B; flex: none;"></span><span style="font-size: 13.5px; color: #131C2E;">You owe a reply</span></div>
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A93A3; margin-top: 5px; font-variant-numeric: tabular-nums;">Last emailed Jan 12 · silent 6 days</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;">
+        <span style="background: rgba(27, 56, 102, 0.05); color: #5A6472; font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: 6px;">alumni</span>
+        <span style="background: rgba(27, 56, 102, 0.05); color: #5A6472; font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: 6px;">warm intro</span>
+        <span style="background: rgba(27, 56, 102, 0.05); color: #5A6472; font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: 6px;">priority</span>
+      </div>
+    </div>
+    <p style="font-size: 13px; color: #5A6472; margin-top: 12px; line-height: 1.5;">Computed truth and user vocabulary are distinct species: state is a dot + plain word; tags are 5%-navy wash chips, always at or below state's visual weight.</p>
+  </div>
+
+  <div style="margin-top: 56px;">
+    <div style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A93A3; padding-bottom: 8px; border-bottom: 1px solid #E7EBF0; margin-bottom: 20px;">Component — section-container card · --width-queue: 720px (ruled 11b)</div>
+    <div style="width: 720px; display: flex; flex-direction: column; gap: 14px;">
+      <div style="background: #FFFFFF; border: 1px solid #E7EBF0; border-radius: 10px; padding: 14px 20px 6px;">
+        <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A93A3; padding-bottom: 8px;">Follow-ups owed</div>
+        <div style="padding: 12px 0; border-top: 1px solid #EEF1F5;">
+          <div style="font-size: 15px; font-weight: 600; color: #131C2E;">Sarah Chen</div>
+          <div style="font-size: 14px; color: #5A6472; margin-top: 3px; line-height: 1.5;">You said you'd follow up after her superday. It's been six days.</div>
+          <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A93A3; margin-top: 5px; font-variant-numeric: tabular-nums;">Last emailed Jan 12</div>
+        </div>
+        <div style="padding: 12px 0 14px; border-top: 1px solid #EEF1F5;">
+          <div style="font-size: 15px; font-weight: 600; color: #131C2E;">Andrew Nachman</div>
+          <div style="font-size: 14px; color: #5A6472; margin-top: 3px; line-height: 1.5;">He asked for your resume on the call and you haven't sent it yet.</div>
+          <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A93A3; margin-top: 5px; font-variant-numeric: tabular-nums;">Call logged Jan 16</div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size: 13px; color: #5A6472; margin-top: 12px; line-height: 1.5;">One card grammar product-wide: queue sections AND the Applications tab's bank groups. Surface step + hairline + 10px radius, label inside small and muted, rows separated by soft hairlines, no counts, no per-item state dots. 720px is a max-width cap — the column stays fluid below it. Row affordances (snooze, overflow menu) are deliberately unrendered — Stage 2 designs them.</p>
+  </div>
+
+  <div style="margin-top: 56px;">
+    <div style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A93A3; padding-bottom: 8px; border-bottom: 1px solid #E7EBF0; margin-bottom: 20px;">Signature — chrome + wordmark (ruled 5b) + primary action</div>
+    <div style="background: #1B3866; border-radius: 10px; padding: 14px 20px; display: flex; align-items: center; gap: 26px;">
+      <span style="display: inline-flex; align-items: flex-end; gap: 1px;"><span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.02em; color: #FFFFFF; line-height: 1;">Blotter</span><span style="font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.02em; color: #8FA6CC; line-height: 1;">IB</span></span>
+      <span style="color: #D4DCE9; font-size: 13px; white-space: nowrap;">Daily Queue</span>
+      <span style="color: #D4DCE9; font-size: 13px; white-space: nowrap;">CRM</span>
+      <span style="color: #D4DCE9; font-size: 13px; white-space: nowrap;">Calendar</span>
+    </div>
+    <div style="margin-top: 14px; display: flex; align-items: center; gap: 14px;">
+      <span style="display: inline-block; background: #1B3866; color: #fff; font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 6px;">Add contact</span>
+      <span style="font-size: 12px; color: #8A93A3;">primary action — navy, lives in the workspace, never the chrome</span>
+    </div>
+    <p style="font-size: 13px; color: #5A6472; margin-top: 14px; line-height: 1.5;">Navy anchors chrome and primary actions only; the workspace stays cool-neutral. Surface names uniform; the active-page treatment is an open Stage 2 question. The wordmark's typefaces never appear in the workspace.</p>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
