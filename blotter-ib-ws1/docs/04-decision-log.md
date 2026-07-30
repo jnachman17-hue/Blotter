@@ -74,7 +74,23 @@ Status: Confirmed
 
 Status: Confirmed
 
-**The page should frame the consequences as stale status and lost operational trust, not merely visual messiness.** The student can no longer confidently tell who needs a response, which conversations require follow-up, or what the correct next action is. They must reconstruct reality from Gmail, Calendar, and memory.
+**Tracker decay is caused by cumulative volume and inconsistent upkeep, not by excessive column count or the need to update after every individual event.** Across many concurrent threads, students delay updates, assume they will remember, miss some activity in a crowded inbox, stop maintaining formatting consistently, and add ad hoc rows or fields as the process evolves. The sheet gradually becomes stale, inconsistent, and no longer reflects reality.
+
+Status: Confirmed
+
+**The page should frame the consequences as stale status and lost operational trust, not merely visual messiness.** The student can no longer confidently tell who needs a response, which conversations require follow-up, or what the correct next action is. They must reconstruct reality from Gmail, Calendar, and memory, and items begin slipping through the cracks.
+
+Status: Confirmed
+
+**The spreadsheet-native mechanism divides the tracker into a student-maintained contact layer and a Blotter-maintained activity layer.** The student chooses and enters the contacts they want to track and any static information they care about, such as name, email, firm, group, LinkedIn profile, and notes. Blotter uses relevant recruiting email and calendar activity to maintain the changing side of the tracker, including current status, recent activity, follow-up state, call state, timing, and next action.
+
+Status: Confirmed
+
+**The product does not discover contacts, scrape LinkedIn, enrich profiles, or automate outreach.** The student remains responsible for finding the right people and adding them to the tracker. Blotter removes the repetitive logistics upkeep after those contacts are entered.
+
+Status: Confirmed
+
+**Color-coded relationship state is a resonant spreadsheet behavior and should be preserved as a marketing and design consideration.** Students commonly describe tracking relationship state through color coding. The landing page may use automatic color coding to make the mechanism familiar and visually legible, but exact colors, statuses, and columns remain page-design decisions rather than settled product specifications.
 
 Status: Confirmed
 
@@ -122,6 +138,7 @@ This includes, without limitation:
 - Motion decisions
 - Feature card structure
 - Copy structure
+- Exact automated columns, including status, next move, last activity, timing, and call state
 - Any low-level layout rule not separately confirmed by Jon
 
 ## Provisional decisions and open items moved to `06-assumptions-and-open-questions.md`
@@ -146,7 +163,7 @@ This includes, without limitation:
 
 Status: Rejected
 
-The replacement proposition language is not yet written. “Your networking keeps moving. Your tracker does not.” is a promising headline direction, but is not yet final.
+The replacement proposition language is not yet written. “Your networking keeps moving. Your tracker does not.” is a promising headline direction, but is not yet final. “You add the people. Blotter keeps every relationship current.” is an accurate mechanism direction, but “keeps every relationship current” may not be immediately clear enough for final public copy.
 
 ## Not actually decisions
 
