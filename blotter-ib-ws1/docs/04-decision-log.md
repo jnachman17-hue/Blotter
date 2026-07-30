@@ -40,11 +40,11 @@ Status: Confirmed
 
 ## Test design
 
-**Round one compares spreadsheet-native versus standalone platform surfaces. It is not primarily a feature, headline, plan, or price test.**
+**Round one compares spreadsheet-native versus standalone platform surfaces. It is not primarily a feature, headline, plan, audience-positioning, or price test.**
 
 Status: Confirmed
 
-**Both pages use the same canonical funnel, $9.99 monthly price, analytics event set, and measurement rules.**
+**Both pages use the same canonical funnel, $9.99 monthly price, analytics event set, measurement rules, and displayed brand.**
 
 Status: Confirmed
 
@@ -115,13 +115,31 @@ Key confirmed rulings:
 
 Status: Confirmed
 
-## Workstream 4 transition
+## Workstream 4 content and experience design
 
-**Workstream 4 is the active workstream and will produce the build-ready spreadsheet landing-page content and experience specification before Lovable implementation.**
+The full durable specification is `docs/workstreams/WS4-SPEC.md`.
+
+**Displayed brand is `Blotter`, while the owned domain remains `blotterib.com`. Both matched variants use the same displayed brand.**
 
 Status: Confirmed
 
-**Workstream 4 begins with the high-level page narrative and section sequence, using WS2 proposition constraints and WS3 funnel constraints as fixed inputs.**
+**The positioning hierarchy is a smart recruiting tracker for investment banking and high-finance networking, supported by the high-volume outreach, coffee-chat, follow-up, and interview workflow behind competitive finance recruiting. Recruiting track is captured inside the existing onboarding funnel.**
+
+Status: Confirmed
+
+**The spreadsheet landing page uses a seven-section narrative: hero, recruiting scale, how it works, action view, existing-sheet preservation, privacy and permissions, and concise closing CTA.**
+
+Status: Confirmed
+
+**The hero is static first and communicates that real recruiting activity automatically keeps a Google Sheets-style tracker current. It uses a muted ordinary tracker behind a dominant Blotter tracker, plus Gmail and Calendar event chips connected to updated cells. Motion is optional later.**
+
+Status: Confirmed
+
+**Three CTA placements are used: hero, after product and action proof, and final section. All enter the same canonical funnel.**
+
+Status: Confirmed
+
+**A truthful former-Goldman credential and a quantified time-savings claim based on Jon's model will appear. Exact wording and placement remain Workstream 4 decisions.**
 
 Status: Confirmed
 
@@ -147,18 +165,19 @@ Status: Confirmed
 - Separate `cta_clicked` analytics event. Rejected.
 - Permanent or bounded project kill condition. Rejected.
 - Tally as the settled form solution. Not a decision.
+- Separate event-to-row narrative section duplicating the hero mechanism. Rejected in favor of integrating the explanation into the broader How It Works section.
 
 ## Working baselines, not settled specifications
 
 Unless separately confirmed, these remain Workstream 4 or later decisions:
 
-- exact page narrative and copy;
-- hero composition;
-- table visual treatment;
-- motion;
-- feature-card structure;
+- exact page copy;
+- exact spreadsheet mock data and visual treatment;
+- exact motion, if any;
 - exact automated columns and statuses;
 - action-focused-view implementation;
-- final CTA wording and placement;
+- final CTA wording;
 - exact funnel demo frames;
-- final checkout and terminal copy.
+- privacy and FAQ wording;
+- final checkout and terminal copy;
+- domain routing and Lovable deployment configuration.
