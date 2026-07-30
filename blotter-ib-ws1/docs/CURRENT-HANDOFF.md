@@ -4,49 +4,98 @@ Date: July 30, 2026
 
 ## 1. Current objective
 
-Complete Workstream 3 by deciding whether a hard project-level kill condition is required, resolving exact monthly price treatment, and preparing the durable handoff to Workstream 4.
+Begin Workstream 4: spreadsheet landing-page content and experience design.
 
-Workstreams 1 and 2 are complete. Workstream 3 is in progress.
+Workstreams 1, 2, and 3 are complete. Workstream 4 is active.
 
-## 2. Source-of-truth and maintenance rules
+The exact next action is to define the high-level page narrative and section sequence before writing isolated copy, selecting detailed visuals, or beginning Lovable implementation.
+
+## 2. Source-of-truth rules
 
 - Jon's explicit instructions in the active chat are highest authority.
 - GitHub canonical files and workstream specifications are the durable source of truth.
-- `docs/workstreams/WS3-SPEC.md` is the permanent cumulative Workstream 3 record.
+- `docs/workstreams/WS4-SPEC.md` is the active cumulative specification.
+- `docs/workstreams/WS2-SPEC.md` and `docs/workstreams/WS3-SPEC.md` are completed durable inputs.
 - `CURRENT-HANDOFF.md` is temporary immediate context only.
-- Whenever Jon ratifies, rejects, supersedes, or materially revises a Workstream 3 decision, update `WS3-SPEC.md` and this handoff before moving to the next substantive decision.
-- Reconcile open-question and decision-log files when a ruling changes them.
-- Follow `docs/05-working-agreement.md`.
+- Confirmed decisions should be consolidated into the active workstream specification in related batches rather than interrupting every micro-decision with a separate GitHub pass.
+- Update this handoff after a meaningful decision batch, before ending a substantial session, or when immediate resumption context materially changes.
+- Follow `docs/05-working-agreement.md`, while preserving speed and avoiding unnecessary documentation churn.
 
-## 3. Confirmed Workstream 3 architecture
+## 3. Workstream 3 completion
 
-The complete durable record is in `docs/workstreams/WS3-SPEC.md`.
+Workstream 3 is complete and permanently recorded in:
 
-Confirmed funnel:
+`docs/workstreams/WS3-SPEC.md`
+
+The completed specification includes:
+
+- canonical CTA and lead-capture funnel;
+- recruiting segmentation questions;
+- product-experience constraints;
+- transparent email capture without simulated OAuth;
+- $9.99 monthly price treatment;
+- checkout and cohort-confirmation mechanics;
+- identical analytics events and properties;
+- primary, secondary, commercial-demand, and diagnostic metrics;
+- comparative and absolute-demand read rules;
+- practical and statistical thresholds;
+- external SaaS benchmark derivation and conservative adjustment rationale;
+- low-sample treatment;
+- no permanent or bounded project kill condition;
+- frozen measurement-period rules;
+- test-reporting requirements;
+- downstream constraints for Workstream 4.
+
+Do not reopen these decisions unless they genuinely break the Workstream 4 design or Jon explicitly supersedes them.
+
+## 4. Core Workstream 3 constraints inherited by Workstream 4
+
+### Funnel
 
 1. CTA entry.
 2. Two-question recruiting configuration.
 3. One concise surface-specific product experience.
 4. Recruiting-email capture.
-5. One monthly price inside the funnel.
+5. One $9.99 monthly price inside the funnel.
 6. `Continue to payment` or equivalent.
 7. Separate checkout screen with payment-choice buttons.
 8. Fall 2026 limited first-cohort confirmation.
 
-Confirmed principles:
+### Product experience
 
-- all primary CTAs enter one canonical funnel;
-- CTA origin is stored through `cta_location`;
-- one 15-to-20-second maximum product experience occurs before email capture;
-- click-to-progress is the working model and animation is not required;
-- actual or simulated OAuth is excluded from the mandatory round-one funnel;
-- Gmail, Sheets, and Calendar must still be shown as the product engine;
-- price appears only inside the funnel and is not the tested variable;
-- payment-method choice is the strongest commercial-demand signal;
-- no card-entry form, credentials, or money are collected;
-- the approximately 300-person beta-cohort commitment is real;
-- both surfaces use the identical event set and properties;
-- both surfaces are compared at every matched funnel stage.
+- one experience before email capture;
+- approximately 15 to 20 seconds maximum;
+- click-to-progress working model;
+- animation not required;
+- Gmail, Sheets, and Calendar shown as the product engine;
+- spreadsheet and platform versions ultimately remain comparable in duration and interaction burden.
+
+### Email and trust
+
+- no actual or simulated OAuth in the mandatory round-one funnel;
+- no password request or imitation of Google authentication;
+- email capture must be transparent;
+- the page must explain relevant Gmail and Calendar activity without implying unrestricted inbox access.
+
+### Price and checkout
+
+- $9.99 per month;
+- monthly billing;
+- cancel anytime;
+- no annual plan or introductory discount;
+- price appears only inside the funnel after email capture;
+- no plan-selection step or price test;
+- checkout includes `Pay with card` and device-supported options where available;
+- no card-entry form, payment credentials, or money collection;
+- payment-choice click is the strongest commercial-demand action.
+
+### Terminal state
+
+- confirms a real place in an approximately 300-person Fall 2026 beta cohort;
+- Jon will maintain and honor the list;
+- exact public copy belongs to Workstream 4.
+
+### Analytics preservation
 
 Canonical events:
 
@@ -60,158 +109,96 @@ Canonical events:
 8. `payment_option_clicked`
 9. `beta_spot_confirmed`
 
-## 4. Ratified metric hierarchy
+All primary CTAs enter one funnel. CTA origin is stored through `cta_location`. There is no separate `cta_clicked` event.
 
-### Primary comparative metric
+## 5. Core Workstream 2 proposition inherited by Workstream 4
 
-`checkout_started` divided by `page_viewed`, using unique eligible visitors and calculated separately by surface.
+- July audience is pre-decay and the page sells prevention.
+- The failure is live recruiting activity outpacing manual spreadsheet upkeep.
+- The tracker becomes stale and loses operational trust.
+- The student maintains contacts and static information.
+- Blotter maintains changing activity from relevant Gmail and Calendar signals.
+- The core outcome is one accurate, current source of truth.
+- Benefits are accuracy, time saved, everything in one place, and prevention of slippage.
+- The visible offer includes automatic activity capture, legible relationship state, next-action visibility, an action-focused view, and one spreadsheet workflow.
+- The spreadsheet proposition must emphasize preservation of the existing tracker and minimal switching cost.
+- Blotter is not contact discovery, LinkedIn scraping, mass outreach, AI writing, technical preparation, learning content, or a jobs board.
 
-### Secondary comparative metrics
+Read `docs/workstreams/WS2-SPEC.md` for the full durable proposition.
 
-- `funnel_started` divided by `page_viewed`;
-- `email_submitted` divided by `page_viewed`;
-- `checkout_started` divided by `price_viewed`.
+## 6. Workstream 4 objective and scope
 
-### Commercial-demand metrics
+Produce a coherent, build-ready content and experience specification for the spreadsheet-native landing page before Lovable implementation.
 
-- Primary: `payment_option_clicked` divided by `page_viewed`.
-- Supporting: `payment_option_clicked` divided by `checkout_started`.
+Workstream 4 owns:
 
-### Diagnostic metrics
+- page narrative and section sequence;
+- headline, subhead, CTA, and supporting copy;
+- recruiting-volume statistics and proof devices;
+- before-versus-after hero composition;
+- spreadsheet product demonstration;
+- exact funnel product-experience frames and clicks;
+- relationship between the hero and funnel experience;
+- action-focused-view representation;
+- Gmail, Sheets, and Calendar mechanism visualization;
+- privacy, trust, permissions, and FAQ content;
+- CTA wording and placement;
+- $9.99 price, checkout, and terminal-state copy;
+- responsive content priorities and Workstream 5 implementation constraints.
 
-- `recruiting_profile_completed` divided by `funnel_started`;
-- `product_experience_completed` divided by `recruiting_profile_completed`;
-- `email_submitted` divided by `product_experience_completed`;
-- `price_viewed` divided by `email_submitted`;
-- `checkout_started` divided by `price_viewed`;
-- `beta_spot_confirmed` divided by `payment_option_clicked`.
+Workstream 4 does not begin Lovable implementation, design the platform page, define backend logic, or design real OAuth architecture.
 
-Diagnostics explain abandonment and instrumentation issues. They do not independently determine the winning surface or continued investment.
+## 7. Working baselines, not final decisions
 
-## 5. Ratified read rules
+- `docs/03-page-spec.md` is a working baseline only.
+- Existing before-versus-after hero direction may be useful but is not final.
+- Hero comprehension should target approximately two seconds.
+- Visual proof should carry more weight than abstract feature claims.
+- Owner-supplied recruiting-cycle figures may be used as illustrative prototype copy if not falsely attributed to external research.
+- Color-coded relationship state is promising, but exact statuses and colors are open.
+- Banks, applications, feature-card structure, table details, and action-focused treatment remain open Workstream 4 decisions.
 
-### Comparative preference versus absolute demand
+## 8. Exact next action
 
-- Absolute commercial demand determines whether either proposition deserves continued investment.
-- Relative surface preference determines which surface to pursue only after at least one proposition demonstrates credible absolute demand.
-- A relative winner among two weak surfaces is not a validated surface.
-- If both surfaces show weak commercial demand, report `no validated surface` even if one wins the comparative metric.
-- If both show credible commercial demand, use `checkout_started / page_viewed` to select the preferred surface.
-- If adequately sampled payment-choice behavior conflicts with the comparative metric, the commercial-demand result takes priority.
-- If payment-choice volume is too low, it cannot overturn the comparative result; classify the result as provisional or ambiguous under low-sample rules.
+Define the high-level page narrative and section sequence.
 
-Governing principle: commercial demand decides whether to continue. Comparative performance decides what to continue with.
+The first discussion should answer:
 
-### Early-funnel versus late-funnel disagreement
+- What is the page's argument from first impression through final CTA?
+- What job does each section perform?
+- Which proof or product visual supports each section?
+- Where does the canonical funnel enter the page experience?
 
-- Late-funnel behavior outranks early-funnel behavior.
-- Strong early interest with weak late intent means attention was generated but demand was not validated.
-- Weak early interest with adequately sampled strong late intent may indicate a valuable but poorly communicated or narrowly targeted offer.
-- Early-funnel performance cannot rescue weak commercial demand.
-- Strong late-funnel evidence can justify another positioning or acquisition test despite weak early conversion.
-- Diagnostics explain disagreement but do not override the hierarchy.
+Present the full recommended section sequence at a useful but not overly granular level. Resolve the narrative architecture before drafting final copy or detailed interface states.
 
-Governing principle: early metrics show whether people explore. Late metrics show whether interest survives exposure to the product and price.
-
-## 6. Ratified interpretation thresholds
-
-### Primary comparative threshold
-
-A surface is declared the winner on `checkout_started / page_viewed` only when all three requirements are met:
-
-1. At least 25 percent higher on a relative basis than the other surface.
-2. At least 2 percentage points higher on an absolute basis.
-3. At least 90 percent statistical confidence in the estimated difference.
-
-Directionally better results that miss one or more requirements are ambiguous. Weak commercial demand for both means no validated surface regardless of relative difference.
-
-### Absolute commercial-demand thresholds
-
-For `payment_option_clicked / page_viewed`:
-
-- 2.0 percent or higher: strong commercial signal.
-- 1.0 percent to below 2.0 percent: credible commercial signal.
-- 0.5 percent to below 1.0 percent: ambiguous commercial signal.
-- Below 0.5 percent: weak commercial signal.
-
-These are Blotter-specific decision rules rather than claimed universal SaaS standards. Their full benchmark derivation and conservative-adjustment rationale are recorded in `docs/workstreams/WS3-SPEC.md`.
-
-## 7. Ratified low-sample treatment
-
-### Comparative result
-
-A comparative winner cannot be declared until:
-
-- each surface has at least 300 eligible visitors;
-- the 25 percent relative difference requirement is met;
-- the 2-percentage-point absolute difference requirement is met;
-- the result reaches at least 90 percent statistical confidence.
-
-Below 300 visitors per surface, the comparative result is directional only.
-
-### Positive commercial-demand result
-
-A surface cannot receive a final credible or strong classification until:
-
-- it has at least 500 eligible visitors; and
-- at least 10 unique visitors trigger `payment_option_clicked`.
-
-Until both are met, an observed credible or strong rate is labeled `promising but insufficiently sampled`.
-
-### Weak-demand result
-
-A final weak classification requires:
-
-- at least 600 eligible visitors on the surface; and
-- statistical support that the true rate is unlikely to reach the 1 percent credible-demand threshold.
-
-A zero-click result from an early sample is insufficient evidence, not failure.
-
-### Underpowered outcomes
-
-When the relevant evidence requirement is not met, classify the result as `insufficient sample, no decision`.
-
-Do not force an underpowered test into success, failure, or a surface-selection decision.
-
-## 8. Remaining Workstream 3 scope
-
-1. Decide whether a hard project-level kill condition is required before launch.
-2. Select the exact monthly price or deliberately defer it to Workstream 4 or 5.
-3. Complete and mark `WS3-SPEC.md` final before handing off to Workstream 4.
-
-Do not expand into detailed page design, product-interface design, backend architecture, integration implementation, technical feature specifications, or Lovable implementation.
-
-## 9. Exact next action
-
-Decide whether a hard project-level kill condition is required before launch or should remain deferred.
-
-Do not yet select the exact monthly price or begin Workstream 4. Present one decision area only.
-
-After Jon ratifies the ruling, update `docs/workstreams/WS3-SPEC.md` and this handoff before continuing.
-
-## 10. Required reading for resumption
+## 9. Required reading for the new chat
 
 Read in this order:
 
 1. `docs/00-START-HERE.md`
 2. `docs/CURRENT-HANDOFF.md`
-3. `docs/workstreams/WS3-SPEC.md`
-4. `docs/05-working-agreement.md`
-5. `docs/02-strategy-and-test.md`
-6. `docs/04-decision-log.md`
-7. `docs/06-assumptions-and-open-questions.md`
+3. `docs/workstreams/WS4-SPEC.md`
+4. `docs/workstreams/WS2-SPEC.md`
+5. `docs/workstreams/WS3-SPEC.md`
+6. `docs/05-working-agreement.md`
+7. `docs/03-page-spec.md` only as a working baseline after the durable specifications
+8. `docs/06-assumptions-and-open-questions.md`
 
-Read `docs/workstreams/WS2-SPEC.md` when Workstream 2 proposition constraints are relevant. Read `docs/03-page-spec.md` only when a Workstream 3 decision materially intersects later page structure.
+Then execute the exact next action. Do not reopen confirmed WS2 or WS3 decisions and do not begin Lovable implementation.
 
-## 11. Files changed in the latest decision pass
+## 10. Files updated for this handoff
 
 - `docs/workstreams/WS3-SPEC.md`
+- `docs/workstreams/WS4-SPEC.md`
+- `docs/00-START-HERE.md`
+- `docs/04-decision-log.md`
+- `docs/06-assumptions-and-open-questions.md`
 - `docs/CURRENT-HANDOFF.md`
 
-## 12. Build and deployment state
+## 11. Build and deployment state
 
 - No Lovable project exists yet.
 - No reusable production code exists.
 - No final logo exists.
 - No completed landing-page assets exist.
-- No public traffic should launch before both matched pages are ready, analytics are verified by hand, and read rules are written.
+- No public traffic should launch before both matched pages are ready, analytics are verified by hand, and the frozen measurement period is defined.
