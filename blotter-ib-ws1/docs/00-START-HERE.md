@@ -1,6 +1,6 @@
 # Blotter IB — Start Here
 
-Date last updated: 2026-07-30
+Date last updated: July 30, 2026
 
 ## Project objective
 
@@ -35,18 +35,38 @@ Status: In progress, approximately 65 to 70 percent complete.
 
 Workstreams 1 and 2 are complete.
 
+## Durable workstream specifications
+
+Every substantive workstream now has a permanent specification file under:
+
+`docs/workstreams/`
+
+These files are the detailed, cumulative record of what each workstream produced. They must survive future handoff rewrites and must be used during later design and build work.
+
+Current workstream specifications:
+
+- `docs/workstreams/WS2-SPEC.md`: complete spreadsheet-native proposition specification.
+- `docs/workstreams/WS3-SPEC.md`: active conversion and measurement specification.
+
+Future chats must update the active workstream specification whenever Jon ratifies, rejects, supersedes, or materially revises a decision. `CURRENT-HANDOFF.md` is temporary resumption context and must never be the only record of a confirmed decision.
+
+The full maintenance rules are in `05-working-agreement.md`.
+
 ## Workstream 2 outcome
 
-Workstream 2 established a coherent spreadsheet-native proposition at landing-page-test resolution:
+Workstream 2 established the spreadsheet-native proposition at landing-page-test resolution:
 
 - The July audience is pre-decay because of the recruiting calendar. The page sells prevention now and may sell rescue later in peak season.
 - The structural failure is the widening gap between live recruiting activity and a manually maintained spreadsheet.
 - Tracker decay is caused by cumulative volume and inconsistent upkeep. The sheet becomes stale, inconsistent, and no longer reflects reality.
 - The student chooses and enters contacts and static information. Blotter uses relevant Gmail and Calendar activity to maintain the changing side of the tracker.
-- The core outcome is operational control through one accurate, current source of truth, emphasizing accuracy, time saved, everything in one place, and preventing important actions from slipping through the cracks.
+- The core outcome is operational control through one accurate, current source of truth, emphasizing accuracy, time saved, everything in one place, and prevention of slippage.
 - The minimum offer includes automatic activity capture, visually legible contact state, next-action visibility, an action-focused view, and one spreadsheet workflow.
+- The spreadsheet-native proposition must emphasize low switching cost and preservation of the student's existing tracker.
 - Blotter is an orchestration layer, not contact discovery, LinkedIn scraping, AI outreach, technical preparation, or an AI slop platform.
-- Exact columns, statuses, sorting or grouping mechanics, page copy, and visual design remain unresolved design decisions rather than product specifications.
+- Exact columns, statuses, sorting or grouping mechanics, page copy, and visual design remain later design decisions rather than product specifications.
+
+Read `docs/workstreams/WS2-SPEC.md` for the full durable record.
 
 ## Workstream 3 objective
 
@@ -70,60 +90,52 @@ Workstream 3 should not write the full landing page, settle final visual design,
 
 The following are confirmed:
 
-- Round one uses an identical multi-stage demand funnel across spreadsheet and platform pages.
-- Multiple CTA placements may exist, but all enter the same canonical funnel. CTA origin is stored as a property.
-- The canonical funnel is: CTA entry, two-question recruiting configuration, concise product experience, recruiting-email capture, one monthly price inside the funnel, checkout progression, payment-choice click, and Fall 2026 first-cohort confirmation.
-- The product experience occurs once before email capture, should take approximately 15 to 20 seconds at most, and uses simple click-to-progress rather than requiring animation.
-- Exact demo visuals and the relationship between the funnel demo and landing-page hero are deferred to Workstream 4.
-- Segmentation asks only what the visitor is recruiting for and which recruiting window they target.
-- Approved recruiting tracks are Investment Banking, Management Consulting, Private Equity / Growth Equity, Sales & Trading, Asset Management / Equity Research, Venture Capital, and Other.
-- Approved recruiting windows are Summer 2028, Full-time, and Other.
+- Round one uses an identical multi-stage funnel across spreadsheet and platform pages.
+- All primary CTAs enter the same canonical funnel and CTA origin is stored through `cta_location`.
+- The funnel is: CTA entry, two-question recruiting configuration, concise product experience, recruiting-email capture, one monthly price inside the funnel, checkout progression, payment-choice click, and Fall 2026 first-cohort confirmation.
+- The product experience occurs once before email capture, lasts approximately 15 to 20 seconds maximum, and uses simple click-to-progress rather than requiring animation.
+- Exact demo visuals and the relationship between the funnel experience and landing-page hero are deferred to Workstream 4.
+- Recruiting-track and recruiting-window segmentation options are settled.
 - Email capture is transparent and does not use actual or simulated OAuth.
-- Gmail, Google Sheets, and Calendar must still be shown as the engine driving the product, but willingness to grant permissions is deferred to a later validation iteration.
-- The exact price appears only inside the funnel after product experience and email capture. Price is not a round-one test variable.
-- A separate short checkout screen shows the product, monthly price, billing cadence, amount due, and payment choices.
-- `Pay with card` is always available. Apple Pay may appear where supported.
-- The strongest commercial-demand signal is clicking a payment-choice button after seeing the price and checkout total.
+- Gmail, Sheets, and Calendar must still be shown as the engine driving the product.
+- Price appears only inside the funnel and is not the round-one test variable.
+- Checkout culminates in a payment-choice click, which is the strongest commercial-demand signal.
 - No card-entry form, payment credentials, or money are collected.
-- The terminal state confirms a place in the approximately 300-person Fall 2026 first beta cohort, which Jon will maintain and honor.
-- Both pages are compared at every matched funnel stage, not only at the final payment-choice event.
-- The identical analytics event set is confirmed as: `page_viewed`, `funnel_started`, `recruiting_profile_completed`, `product_experience_completed`, `email_submitted`, `price_viewed`, `checkout_started`, `payment_option_clicked`, and `beta_spot_confirmed`.
-- `funnel_started` carries `cta_location`; there is no separate redundant `cta_clicked` event.
-- `payment_option_clicked` is the strongest commercial event. `beta_spot_confirmed` is an instrumentation and completion check.
+- The terminal state confirms a real place in the approximately 300-person Fall 2026 first beta cohort.
+- The identical analytics event set and minimum event properties are confirmed.
+- Both surfaces are compared at every matched funnel stage.
+
+Read `docs/workstreams/WS3-SPEC.md` for the full funnel, event definitions, properties, rationale, and remaining items.
+
+## Immediate next milestone
+
+Complete Workstream 3 by defining:
+
+- primary, secondary, commercial-demand, and diagnostic metrics;
+- precommitted read rules;
+- success, failure, ambiguity, and low-sample treatment;
+- treatment of conflicting comparative and absolute demand signals;
+- whether a project-level kill condition is required now;
+- the exact monthly price or its deliberate deferral.
+
+The exact next action is recorded in `CURRENT-HANDOFF.md` and `docs/workstreams/WS3-SPEC.md`.
 
 ## Current confirmed constraints
 
 - Jon's explicit instructions in the active chat are highest authority.
-- GitHub canonical docs are the durable source of truth.
+- GitHub canonical documents and workstream specifications are the durable source of truth.
 - GPT project memory is a convenience layer, not final authority.
-- Only confirmed items in `04-decision-log.md` are binding project truth.
+- Workstream specifications preserve detailed workstream outputs.
+- `CURRENT-HANDOFF.md` is temporary immediate context only.
 - Build market evidence before meaningful product or backend buildout.
-- Round one compares spreadsheet-native versus platform-version product surfaces.
-- The spreadsheet-native landing page is designed and built first.
+- Round one compares spreadsheet-native versus platform-version surfaces.
+- The spreadsheet-native page is designed and built first.
 - Spreadsheet and platform pages launch at roughly the same time.
 - Both pages must fire an identical analytics event set.
 - Analytics and read rules must be defined before traffic launches.
-- Analytics must be verified by hand before any paid traffic.
+- Analytics must be verified by hand before paid traffic.
 - `03-page-spec.md` is a working baseline, not final build-ready truth.
-- The project stays focused on recruiting logistics, not interview preparation, learning content, AI outreach, contact discovery, or job boards.
 - Do not begin Lovable implementation during Workstream 3 or before Workstream 4 produces a coherent content and experience brief.
-
-## Immediate next milestone
-
-Complete Workstream 3 by defining the metric hierarchy, read rules, interpretation thresholds, low-sample treatment, and the rules for conflicting comparative and absolute demand signals.
-
-The exact next action is recorded in `CURRENT-HANDOFF.md` and should be followed without reopening confirmed conversion or analytics decisions.
-
-## Remaining Workstream 3 items
-
-- Define primary, secondary, commercial-demand, and diagnostic metrics.
-- Write precommitted read rules.
-- Set success, failure, ambiguous-result, and low-sample treatment.
-- Define how to interpret disagreement between early-funnel and payment-intent results.
-- Define how to interpret a surface winner when absolute demand is weak for both pages.
-- Decide whether a project-level kill condition is required now.
-- Resolve or deliberately defer the exact monthly price.
-- Consolidate the final Workstream 3 decisions and hand off to Workstream 4.
 
 ## Deferred to Workstream 4
 
@@ -149,6 +161,18 @@ The exact next action is recorded in `CURRENT-HANDOFF.md` and should be followed
 - Real OAuth and permissions-willingness testing.
 - Meaningful backend functionality.
 
+## Required reading for a new chat
+
+Read in this order:
+
+1. `docs/00-START-HERE.md`
+2. `docs/CURRENT-HANDOFF.md`
+3. The active workstream specification, currently `docs/workstreams/WS3-SPEC.md`
+4. `docs/05-working-agreement.md`
+5. Only the additional canonical files named in the handoff or needed for the exact task
+
+Do not rely on the handoff alone for durable workstream decisions.
+
 ## Repository and archive rules
 
 Repository:
@@ -159,19 +183,25 @@ Canonical docs path:
 
 `blotter-ib-ws1/docs/`
 
+Workstream specifications path:
+
+`blotter-ib-ws1/docs/workstreams/`
+
 Historical archive path:
 
 `blotter-ib-ws1/archive/`
 
 The archive contains stale or superseded strategy, design, technical, and session-history material. Do not treat it as current truth or read it wholesale. Consult relevant archived files only when they can materially inform a current question, recover prior reasoning, or prevent duplicated work. Any recovered idea must be identified as historical context and re-evaluated against current confirmed decisions.
 
-## Canonical file list
+## Canonical file map
 
-- `00-START-HERE.md` — current-state index
-- `01-project-and-product.md` — project and product context
-- `02-strategy-and-test.md` — validation strategy, corrected workstream sequence, and test design
-- `03-page-spec.md` — spreadsheet-page working baseline
-- `04-decision-log.md` — confirmed decisions and statused rulings
-- `05-working-agreement.md` — operating rules and continuity process
-- `06-assumptions-and-open-questions.md` — unsettled assumptions and open questions
-- `CURRENT-HANDOFF.md` — immediate resumption context and exact next action
+- `00-START-HERE.md`: current-state index and reading order.
+- `01-project-and-product.md`: durable project and product context.
+- `02-strategy-and-test.md`: validation strategy and test structure.
+- `03-page-spec.md`: spreadsheet-page working baseline.
+- `04-decision-log.md`: concise confirmed, rejected, and cross-project rulings.
+- `05-working-agreement.md`: operating rules and documentation maintenance system.
+- `06-assumptions-and-open-questions.md`: unsettled items only.
+- `workstreams/WS2-SPEC.md`: complete Workstream 2 proposition specification.
+- `workstreams/WS3-SPEC.md`: active Workstream 3 conversion and measurement specification.
+- `CURRENT-HANDOFF.md`: temporary immediate resumption context and exact next action.
