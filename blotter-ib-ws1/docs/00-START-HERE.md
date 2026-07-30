@@ -1,67 +1,81 @@
-# Start here
+# Blotter IB — Start Here
 
-Date last updated: July 29, 2026
+Date last updated: 2026-07-29
 
 ## Project objective
 
-Blotter is being developed through a Build-Measure-Learn validation process. The current objective is to test whether meaningful demand exists for an investment banking recruiting logistics product, which product surface students prefer, what features they value, and whether the project should continue.
+Blotter is being developed through a Build-Measure-Learn validation process for investment banking recruiting logistics.
 
-The project should not build meaningful backend functionality until market evidence justifies it.
+The immediate objective is to test whether meaningful demand exists before building meaningful backend functionality. The project should produce market evidence about demand, preferred product surface, valued features, and willingness to pay before further product buildout.
 
 ## Current phase
 
-Minimum validation phase. The project is preparing landing-page experiments before building real product functionality.
+Validation setup.
+
+The broader sequence is:
+
+1. Build the spreadsheet-native landing page.
+2. Define and implement analytics.
+3. Test and privately deploy it.
+4. Research and prepare paid acquisition.
+5. Build the matched platform-version landing page.
+6. Launch both versions simultaneously.
+7. Use analytics and market evidence to determine whether to continue, revise, or kill the project.
+8. Do not build meaningful backend functionality until market evidence guides it.
 
 ## Current workstream
 
-Workstream 1: minimum viable project maintenance and continuity setup.
+Workstream 1: Minimum viable project maintenance and continuity setup.
 
-This workstream is maintenance only. It exists to make the project coherent across chats and ready to store in a private GitHub repository.
+Status: Complete once `CURRENT-HANDOFF.md` is updated and committed.
 
 ## Current confirmed constraints
 
-- Market signal comes before meaningful product build.
-- The current phase is about market and economic evidence, not a polished product.
-- Round one tests the macro surface: spreadsheet-native page versus platform-version page.
-- The spreadsheet page is built first, but it is not launched publicly until the matched platform page is also complete.
-- Both pages must use the same analytics event set.
-- Analytics must be verified by hand before any money is spent.
-- Research precedes spend, except social account seeding.
-- Blotter is a logistics layer only, not learning content, interview prep, AI outreach, or a jobs board.
-- Blotter's founding product principle is auto-capture from Gmail and Calendar activity.
-- Blotter must not imply that it broadly reads personal email.
-- If backend validation justifies Gmail access later, access should go through an intermediary such as Nylas or Unipile.
-- Lovable is the current build tool.
-- Prior design tokens and prior platform pixels are scrapped.
+- User instructions in the active chat are highest authority.
+- GitHub canonical docs are the durable source of truth.
+- GPT project memory is a convenience layer, not final authority.
+- Claude-generated or AI-generated project documents are working context unless confirmed by Jon or recorded as confirmed in the decision log.
+- Build market evidence before meaningful product/backend buildout.
+- Spreadsheet-native landing page is built first.
+- Spreadsheet and platform pages should launch at roughly the same time for a valid surface comparison.
+- Analytics/read rules must be defined before traffic is launched.
+- Analytics must be verified by hand before paid traffic.
+- `03-page-spec.md` is a working baseline, not final build-ready truth.
+- The project should stay focused on recruiting logistics, not interview prep, learning content, AI outreach, or job boards.
 
 ## Immediate next milestone
 
-Finish Workstream 1 by creating the private GitHub repository, uploading the current project documents, and recording the repository location.
+Begin Workstream 2:
 
-After Workstream 1, the next substantive workflow is: define the spreadsheet-native product proposition and landing-page content before beginning the Lovable build.
+Define the spreadsheet-native product proposition and landing-page content before beginning the Lovable build.
 
-Analytics architecture is parked temporarily, but it must be addressed before implementation begins.
+Analytics architecture is necessary but temporarily parked. It must be addressed before implementation begins.
 
 ## Current blockers
 
-- Private GitHub repository has not been created yet.
-- Repository URL has not been recorded.
-- Read rules are still unwritten.
-- The exact project kill condition is unresolved.
-- The exact CTA and lead-capture flow are not decided.
-- Several page-specification details remain a working baseline, not final build decisions.
-- The platform page argument and capability inventory are unresolved.
-- The choice between the permanent Blotter identity and a neutral testing domain for disposable experiments is unresolved.
+- Spreadsheet-native product proposition and landing-page content are not yet defined.
+- Analytics/read rules are not yet written.
+- Hard kill criteria are not yet decided.
+- Platform-page argument and feature inventory remain unresolved.
+- Assistant direct GitHub access has not been verified in the current chat, although GitHub indexing has been confirmed.
 
 ## Canonical file list
 
-| File | Purpose |
-|---|---|
-| `00-START-HERE.md` | Short current-state index and resumption guide. |
-| `01-project-and-product.md` | Product definition, scope, privacy story, evidence base, and discarded work. |
-| `02-strategy-and-test.md` | Validation strategy, test logic, constraints, and launch gates. |
-| `03-page-spec.md` | Working baseline for the spreadsheet-native landing-page surface. Not all content is final. |
-| `04-decision-log.md` | Confirmed decisions and historical rulings. Only items marked confirmed are settled. |
-| `05-working-agreement.md` | Collaboration rules and continuity process. |
-| `06-assumptions-and-open-questions.md` | Provisional decisions, assumptions, open questions, and validation-dependent claims. |
-| `CURRENT-HANDOFF.md` | Immediate resumption context from the latest substantial workflow. |
+Repository:
+
+`https://github.com/jnachman17-hue/Blotter-GPT/tree/main/blotter-ib-ws1`
+
+Canonical docs path:
+
+`blotter-ib-ws1/docs/`
+
+Files:
+
+- `00-START-HERE.md` — current-state index
+- `01-project-and-product.md` — project/product context
+- `02-strategy-and-test.md` — validation strategy and test design
+- `03-page-spec.md` — working page specification baseline
+- `04-decision-log.md` — confirmed decisions and statused rulings
+- `05-working-agreement.md` — operating rules and continuity process
+- `06-assumptions-and-open-questions.md` — unsettled assumptions and open questions
+- `CURRENT-HANDOFF.md` — immediate resumption context for the next chat
