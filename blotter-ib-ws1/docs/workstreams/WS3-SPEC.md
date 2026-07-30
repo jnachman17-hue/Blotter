@@ -6,13 +6,13 @@ Workstream: Conversion and measurement design
 
 ## Purpose
 
-This file is the durable, cumulative specification for Workstream 3. It records ratified conversion, funnel, analytics, metric, and interpretation decisions for the matched spreadsheet-versus-platform landing-page test.
+This file is the durable, cumulative specification for Workstream 3. It records ratified conversion, funnel, analytics, metric, read-rule, and interpretation decisions for the matched spreadsheet-versus-platform landing-page test.
 
 Update this file whenever Jon ratifies, rejects, supersedes, or materially revises a Workstream 3 decision. `CURRENT-HANDOFF.md` is temporary resumption context and must not be the only record.
 
-## Workstream objective
+## Workstream objective and boundary
 
-Define:
+Workstream 3 defines:
 
 - the complete matched visitor funnel;
 - lead capture and segmentation;
@@ -22,7 +22,7 @@ Define:
 - the metric hierarchy;
 - precommitted read rules and interpretation thresholds before traffic launches.
 
-Workstream 3 does not design the full page, specify detailed product behavior, or begin Lovable implementation.
+Workstream 3 does not design the full page, specify detailed product behavior, define backend or integration architecture, or begin Lovable implementation.
 
 ## Round-one test boundary
 
@@ -101,9 +101,7 @@ Approved options:
 
 ## Product experience
 
-The funnel contains one product experience before email capture.
-
-The earlier concept of a teaser before email followed by a second experience after email is rejected.
+The funnel contains one product experience before email capture. The earlier concept of a teaser before email followed by a second experience after email is rejected.
 
 Confirmed constraints:
 
@@ -183,7 +181,7 @@ After the payment-choice click, the visitor is told:
 - the cohort is approximately 300 people;
 - confirmation and future access will use the recruiting email already provided.
 
-Jon will maintain and honor the cohort list. Exact terminal copy is deferred to Workstream 4.
+Jon will maintain and honor the cohort list. Exact terminal copy is deferred to Workstream 4. Because the visitor never enters card details and no charge attempt occurs, the terminal screen does not need unnecessary language stating that no payment was processed or no card details were collected.
 
 ## Canonical analytics events
 
@@ -349,7 +347,7 @@ These thresholds are Blotter-specific decision rules, not a claimed universal Sa
 The thresholds were triangulated from the closest available external comparables:
 
 1. **SaaS landing-page conversion:** Unbounce's 2024 Conversion Benchmark Report analyzed more than 464 million unique visitors, 57 million conversions, and more than 41,000 landing pages. It reports a median SaaS landing-page conversion rate of **3.8 percent**. This is an upper-context benchmark only because the underlying conversion can include lower-commitment actions such as lead submissions, registrations, downloads, or demo requests rather than purchase intent.
-2. **Website visitor to paying SaaS customer:** ChartMogul and ProductLed's 2026 survey of 200 B2B software products reports representative funnels per 1,000 visitors: approximately 5 paying customers for freemium, 4 for a free trial, 6 for an ungated freemium experience, and 11 for a credit-card-required trial. These imply approximate visitor-to-paid rates of **0.5 percent, 0.4 percent, 0.6 percent, and 1.1 percent**, respectively. This range is the closest economic comparable because it ends in real payment, although the product categories, traffic mixes, and time-to-conversion differ from Blotter.
+2. **Website visitor to paying SaaS customer:** ChartMogul and ProductLed's 2026 survey of 200 B2B software products reports representative funnels per 1,000 visitors: approximately 5 paying customers for freemium, 4 for a free trial, 6 for an ungated freemium experience, and 11 for a credit-card-required trial. These imply approximate visitor-to-paid rates of **0.5 percent, 0.4 percent, 0.6 percent, and 1.1 percent**, respectively. This is the closest economic comparable because it ends in real payment, although the product categories, traffic mixes, and time-to-conversion differ from Blotter.
 3. **Checkout attrition context:** Baymard reports an average ecommerce cart-abandonment rate near **70 percent** across aggregated studies. This confirms that meaningful attrition typically remains after purchase interest is expressed, but ecommerce checkout is not directly comparable to Blotter and was not used to set the exact bands.
 
 #### Why the Blotter thresholds are conservative
@@ -377,6 +375,56 @@ External reference basis, verified July 30, 2026:
 - ChartMogul and ProductLed, `The SaaS Conversion Report: A new look at free-to-paid conversion`, 2026 survey of 200 B2B software products.
 - Baymard Institute, cart and checkout abandonment benchmark research.
 
+### 3. Low-sample treatment and minimum evidence requirements
+
+A fixed visitor minimum alone is insufficient because comparative conversion and payment-choice behavior occur at different rates. Final classifications therefore combine visitor exposure, event count, and statistical evidence.
+
+#### Comparative surface result
+
+A comparative winner cannot be declared until:
+
+- each surface has at least **300 eligible visitors**;
+- the winning surface is at least 25 percent higher on a relative basis;
+- the absolute difference is at least 2 percentage points;
+- the difference reaches at least 90 percent statistical confidence.
+
+Below 300 eligible visitors per surface, comparative results are labeled **directional only**, even when the observed difference appears large. The 300-visitor floor is a safeguard rather than a substitute for the confidence requirement.
+
+#### Positive commercial-demand classification
+
+A surface cannot receive a final **credible** or **strong** commercial-demand classification until both conditions are met:
+
+- at least **500 eligible visitors** have viewed that surface;
+- at least **10 unique visitors** have triggered `payment_option_clicked`.
+
+At a 2 percent rate, 500 visitors produce 10 payment clicks. At a 1 percent rate, approximately 1,000 visitors are needed to produce 10 clicks. Fewer than 10 events leaves the rate excessively sensitive to one or two visitors.
+
+Until both conditions are met, an observed rate in the credible or strong band is labeled **promising but insufficiently sampled**.
+
+#### Weak-demand classification
+
+Weak demand cannot be declared merely because an early sample produces zero or one payment click.
+
+A final weak-demand classification requires:
+
+- at least **600 eligible visitors** on that surface; and
+- statistical support that the true payment-option-click rate is unlikely to reach the **1 percent credible-demand threshold**.
+
+A zero-click result after 50 or 100 visitors is therefore insufficient evidence, not failure.
+
+#### Underpowered outcomes
+
+When an observed rate falls into a threshold band but the corresponding evidence requirement is not met, classify the result as **insufficient sample, no decision**.
+
+An underpowered result must not:
+
+- be promoted to credible demand;
+- be classified as weak demand;
+- determine the winning surface;
+- be rescued by strong early-funnel metrics.
+
+Traffic may continue until the planned budget or acquisition window is exhausted. If the evidence requirements remain unmet, report the test honestly as underpowered rather than forcing a success or failure classification.
+
 ## Matched-comparison requirement
 
 The spreadsheet and platform pages must be compared at every matched funnel stage, not only at `payment_option_clicked`.
@@ -403,29 +451,12 @@ Exact copy and visual treatment belong to Workstream 4.
 
 ## Remaining Workstream 3 decisions
 
-1. Define low-sample treatment and minimum evidence requirements.
-2. Decide whether a project-level kill condition is required before launch or remains deferred.
-3. Select the exact monthly price before implementation or explicitly defer selection to Workstream 4 or 5.
-4. Complete this specification and hand off durable constraints to Workstream 4.
-
-## Workstream boundary
-
-Do not use Workstream 3 to define:
-
-- full page narrative;
-- final copy;
-- exact hero composition;
-- exact demo visuals;
-- detailed interface design;
-- backend product logic;
-- OAuth implementation;
-- integration architecture;
-- platform information architecture;
-- technical feature specifications;
-- Lovable implementation.
+1. Decide whether a project-level kill condition is required before launch or remains deferred.
+2. Select the exact monthly price before implementation or explicitly defer selection to Workstream 4 or 5.
+3. Complete this specification and hand off durable constraints to Workstream 4.
 
 ## Exact next action
 
-Define low-sample treatment and minimum evidence requirements.
+Decide whether a hard project-level kill condition is required before launch or should remain deferred.
 
-The next discussion should determine when the comparative and commercial-demand thresholds are sufficiently sampled to support a decision, and how results must be classified when they are not. Do not yet decide the project-level kill condition or exact monthly price.
+Do not yet select the exact monthly price or begin Workstream 4.
