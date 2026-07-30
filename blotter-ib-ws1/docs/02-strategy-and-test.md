@@ -2,155 +2,119 @@
 
 Date last updated: July 30, 2026
 
-This file governs the validation strategy. It should not be used to settle unresolved page-copy, page-design, CTA, pricing, or platform-positioning details. Those belong in `06-assumptions-and-open-questions.md` until Jon confirms them.
+This file governs validation strategy and test structure. Detailed workstream outputs live in `docs/workstreams/`. Page-copy and page-design questions remain outside this file unless they materially affect test validity.
 
-## The reversal
+## Strategic reversal
 
-The project's first several months ran this sequence: idea, then discovery interviews, then feature specification, then design system, then build. Zero market contact at any point. Months of work produced a deployed product and no evidence that anyone wanted it.
-
-That sequence is backwards. The project now runs market signal first, then builds only what the data calls for.
+The project now runs market signal first, then builds only what the data calls for.
 
 Confirmed consequences:
 
 - The terminal artifact of this phase is an economics story, not a product.
-- Read rules get written before data exists.
-- Analytics must be in place and verified by hand before any money moves.
+- Read rules are written before data exists.
+- Analytics is implemented and verified by hand before traffic or spend.
 - Research precedes spend, except social account seeding.
-- Landing-page content and experience design must be resolved before Lovable implementation. Lovable is for execution and visual iteration, not for inventing the proposition or page narrative during the build.
+- Landing-page content and experience design precede Lovable implementation.
+- Features shown in the test are hypotheses, not commitments to build.
 
-Open consequence:
+## Round-one question
 
-- The exact project-level kill condition is unresolved. Jon feels less strongly about setting this before launch than about setting read rules before launch.
+Round one tests one macro variable:
 
-## The question being tested
+- spreadsheet-native product surface;
+- standalone platform product surface.
 
-Round one asks one thing: which macro surface do students want, a spreadsheet-native product or a platform-version product.
+It is not primarily a feature, price, plan, or headline test.
 
-This is not primarily a feature test, price test, or headline test. Features and possibly price may appear only if explicitly approved, but they are not the round-one A/B variable.
+## Matched test mechanism
 
-## Test mechanism
+Two landing pages use:
 
-Two landing pages. Same skeleton where practical, same measurement, same event set. Different product-surface proposition.
+- the same canonical funnel;
+- the same event set;
+- the same event definitions and properties;
+- the same price at the same stage;
+- comparable interaction burden;
+- roughly simultaneous launch timing.
 
-One page presents Blotter as a second tab in the Google Sheet the student already owns. The other presents it as a standalone platform.
+The spreadsheet page is designed and built first, but it does not launch publicly before the matched platform page is ready.
 
-The exact CTA and lead-capture flow are not decided. Earlier language about Connect Gmail and a two-step flow is a candidate, not a settled decision.
+Detailed confirmed funnel and analytics architecture are in:
+
+`docs/workstreams/WS3-SPEC.md`
 
 ## Confirmed workstream sequence
 
-The validation program is organized as follows:
+1. **Workstream 1: Continuity and source-of-truth setup.** Establish GitHub canonical documents, archive rules, handoff discipline, and workstream specifications.
+2. **Workstream 2: Spreadsheet-native proposition.** Define the target moment, failure mode, mechanism, user outcome, minimum offer, and boundaries at landing-page-test resolution.
+3. **Workstream 3: Conversion and measurement design.** Define the matched funnel, lead capture, price treatment, checkout mechanics, analytics architecture, metric hierarchy, read rules, and interpretation thresholds.
+4. **Workstream 4: Spreadsheet landing-page content and experience design.** Resolve page narrative, section architecture, near-final copy, proof devices, product visuals, integration explanation, privacy treatment, FAQ, CTA placement, demo data, and visual requirements.
+5. **Workstream 5: Spreadsheet-page Lovable implementation and private deployment.** Build the defined page, implement interactions and analytics, test responsiveness, privately deploy, and verify events by hand.
+6. **Workstream 6: Acquisition preparation and research.** Prepare paid and organic channels, audience targeting, account seeding, traffic plan, and testing identity.
+7. **Workstream 7: Platform-page proposition, design, and matched build.** Define the platform argument, preserve the matched structure and event set, build the platform page, and privately verify it.
+8. **Workstream 8: Final verification and simultaneous launch.** Confirm comparability, verify analytics again, launch both versions at roughly the same time, and interpret results under the prewritten read rules.
 
-1. **Workstream 1: Continuity and source-of-truth setup.** Establish GitHub canonical documents, archive rules, and handoff discipline.
-2. **Workstream 2: Spreadsheet-native proposition.** Define the target moment, failure mode, mechanism, user outcome, and minimum offer boundaries at landing-page-test resolution.
-3. **Workstream 3: Conversion and measurement design.** Define the CTA, conversion goal, lead-capture flow, price treatment if any, analytics event set, event parity, read rules, and interpretation thresholds.
-4. **Workstream 4: Spreadsheet landing-page content and experience design.** Resolve the page narrative, section architecture, near-final copy, proof devices, recruiting-volume statistics, product visuals, Gmail and Calendar explanation, privacy treatment, FAQ content, CTA placement, demo data, and visual requirements.
-5. **Workstream 5: Spreadsheet-page Lovable implementation and private deployment.** Build the defined page, iterate on rendered design, implement interactions and analytics, test responsiveness, privately deploy, and verify events by hand.
-6. **Workstream 6: Acquisition preparation and research.** Prepare paid and organic channels, audience targeting, account seeding, traffic plan, and testing identity as needed.
-7. **Workstream 7: Platform-page proposition, design, and matched build.** Define the platform argument and capability presentation, preserve the matched test skeleton and identical event set, build the platform page, and privately verify it.
-8. **Workstream 8: Final verification and simultaneous launch.** Confirm page comparability, verify analytics again, launch both versions at roughly the same time, and interpret results under the prewritten read rules.
+## Workstream documentation requirement
 
-This sequence may be refined as the work develops, but two boundaries are confirmed:
+Every substantive workstream has a cumulative specification at:
 
-- Do not begin Lovable implementation before the spreadsheet landing-page content and experience design are coherent enough to serve as an execution brief.
-- Do not publicly launch the spreadsheet page before the matched platform page is ready.
+`docs/workstreams/WS#-SPEC.md`
+
+The active workstream specification must be updated after ratifications. `CURRENT-HANDOFF.md` is temporary context and cannot substitute for the specification.
 
 ## What must be decided before Lovable
 
-Before the first implementation pass, resolve at minimum:
+Before implementation begins, resolve at minimum:
 
-- The page's narrative and content hierarchy.
-- The headline direction and core supporting copy.
-- Required sections and section order.
-- The problem dramatization and proof devices.
-- The spreadsheet product visual and demo-state requirements.
-- The visible product capabilities and boundaries.
-- Gmail and Calendar connection explanation.
-- Privacy, permissions, and safety treatment.
-- CTA placement, behavior, and lead-capture logic.
-- Analytics requirements and event names.
+- page narrative and hierarchy;
+- headline direction and supporting copy;
+- required sections and order;
+- problem dramatization and proof devices;
+- product visual and demo-state requirements;
+- visible capabilities and boundaries;
+- Gmail, Sheets, and Calendar explanation;
+- privacy and permissions treatment;
+- CTA placement and behavior;
+- analytics implementation requirements.
 
-These do not require pixel-perfect design before implementation. They require enough specificity that Lovable is executing a defined argument rather than inventing strategy.
+Lovable may refine spacing, proportions, typography, responsiveness, polish, and rendered layout treatments. It must not redefine the product mechanism, page argument, funnel, or analytics architecture.
 
-## What may be refined inside Lovable
-
-The live build is the appropriate place to refine:
-
-- Spacing and exact proportions.
-- Typography and responsive behavior.
-- Visual polish and hierarchy adjustments.
-- Motion and animation, if useful.
-- Alternative layout treatments that require rendered comparison.
-- Final asset positioning and implementation details.
-
-Lovable must not independently redefine the product mechanism, page narrative, CTA logic, or analytics architecture.
-
-## Constraints on the test
+## Confirmed test constraints
 
 | Constraint | Status | Reason |
 |---|---|---|
-| Both pages fire the identical event set. | Confirmed | A page tracking different events than its comparator cannot be compared to it. |
-| Status vocabulary does not need to be identical across pages. | Confirmed | Default to identical unless a real reason to diverge appears. This does not relax identical event tracking. |
-| Spreadsheet page is built first, but both pages launch at roughly the same time. | Confirmed | Sequential building de-risks page two. Simultaneous launch avoids confounding surface preference with recruiting-cycle timing. |
-| Banks and applications are off on both pages. | Provisional | Likely true for the spreadsheet page. Platform page content is not settled. |
-| Connect Gmail is the primary CTA. | Not settled | The CTA and lead-capture process have not been decided. |
-| Any auth-adjacent flow must not resemble a Google login. | Confirmed if used | No Google marks, no lookalike layout, and no phishing-adjacent design. |
-| No card step and no price in round one. | Provisional | Earlier logic was that price confounds the surface question. Jon later noted that price may still appear. |
-| Feature cards carry pictures, not bullets. | Open | Design is not yet settled. |
-| Card count is not fixed. | Open | This must be reconciled with identical event tracking before card copy is written. |
+| Both pages fire the identical canonical event set. | Confirmed | Different measurement would invalidate comparison. |
+| Both pages use the same canonical funnel. | Confirmed | Alternative conversion paths would confound the surface test. |
+| Multiple CTAs may exist, but all enter the same funnel. | Confirmed | Placement can be diagnosed through `cta_location` without creating different offers. |
+| Price appears only inside the funnel after product experience and email capture. | Confirmed | Round one does not test price and should not let price dominate first impressions. |
+| One product and one monthly price are shown. | Confirmed | No plan selection or price A/B test in round one. |
+| Payment-choice click is the strongest commercial-demand signal. | Confirmed | It follows informed price and checkout exposure. |
+| No card-entry form, payment credentials, or money are collected. | Confirmed | The test stops at payment-method choice. |
+| Spreadsheet page is built first, but both pages launch at roughly the same time. | Confirmed | Different launch weeks would confound results with recruiting-cycle timing. |
+| Status vocabulary may differ only if genuinely necessary. | Confirmed | This does not relax event parity. |
 | No em dashes or en dashes in visible page copy. | Confirmed | Owner style rule. |
 
-## Card-count tension
+## Traffic gates
 
-Card count is still unresolved. If pages contain different card counts, the two pages may emit different card-level events, which could damage comparability. The likely solution may be equal corresponding card slots, but this has not been ruled.
+Before public traffic:
 
-Resolve before feature-card words are drafted.
-
-## Build and launch sequence
-
-Confirmed: design and build sequentially, spreadsheet page first. Do not launch the spreadsheet page publicly until the matched platform page is also complete.
-
-Reason: if one page runs in one part of the recruiting cycle and the other page runs later, any difference in conversion may reflect timing rather than preference.
+- both matched pages are ready;
+- read rules are written;
+- analytics is implemented and verified by hand;
+- the exact monthly price is selected or deliberately resolved through the approved implementation sequence;
+- page and funnel comparability are checked;
+- any required project-level kill condition is settled.
 
 ## Channels
 
-Non-paid channels are provisionally important, but the exact channel strategy needs more research.
+Non-paid channels are provisionally important, but the exact acquisition plan requires later research.
 
-| Channel | Current working position |
-|---|---|
-| Reddit, primarily r/FinancialCareers | Likely central, needs hand verification. |
-| Wall Street Oasis | Candidate organic channel. |
-| Targeted student email list | Candidate direct channel. |
-| TikTok | Low priority unless evidence changes. |
-| Paid acquisition | Useful for detection, not optimization, at current budget. |
+Social account seeding remains exempt from the research-before-spend rule because account age and history may be mechanically necessary before promotional posting.
 
-Account seeding is exempt from the research-before-spend rule. The reason is mechanical: social accounts need age and comment history before they can post promotional content without getting removed. Seeding gates the organic broadcast arm only, not the launch.
+## Later product work
 
-## What gates traffic
+If validation justifies backend development, Gmail capture is expected to use an intermediary such as Nylas or Unipile. Real OAuth implementation and permission-willingness testing are not part of the mandatory round-one funnel.
 
-Before traffic launches:
+## Open strategic item
 
-- Read rules must be written.
-- Analytics must be implemented and verified by hand.
-- The CTA and lead-capture flow must be decided.
-- The exact page pair must be ready enough to compare.
-
-Open before traffic or result interpretation:
-
-- Whether a hard project-level kill condition must be written before launch.
-- The content of that kill condition if Jon chooses to set one.
-
-## Later rounds, for context only
-
-Fake purchase-door mechanics and willingness-to-pay testing are later-round concepts. They are not settled for round one.
-
-The payer hypothesis is that the student pays, not the recruiter or firm. This should be revisited when price enters the test.
-
-If validation gates an MVP, Gmail capture via Nylas or Unipile is targeted only after validation justifies backend build.
-
-## Open item: platform page argument
-
-The platform page argument is unresolved.
-
-A prior position said the platform argument was capability: it can hold things a spreadsheet structurally cannot. Jon challenged this. If utility is roughly comparable, the market might prefer the platform simply because the interface is cleaner or more desirable to work in.
-
-Before platform-page copy, do an honest capability inventory and decide what the platform page is actually arguing.
+The standalone platform page argument remains unresolved. It may be based on additional capability, cleaner interface preference, or another proposition. Resolve this honestly in Workstream 7 rather than assuming the platform must win through capability breadth.
