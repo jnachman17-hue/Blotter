@@ -2,215 +2,271 @@
 
 Date last updated: July 30, 2026
 
-This file records settled decisions and historical rulings. Only items marked **Confirmed** should be treated as binding project truth. Provisional, unclear, or validation-dependent items belong in `06-assumptions-and-open-questions.md` and should not be treated as settled.
+This file is a concise index of settled, rejected, and superseded project-level rulings. Detailed workstream decisions live in `docs/workstreams/WS#-SPEC.md`.
 
-Jon's explicit instructions override project files. If a project file conflicts with Jon's current instruction, flag the conflict and ask for the final verdict.
+Only items marked **Confirmed** are binding. Unsettled items belong in `06-assumptions-and-open-questions.md`.
 
-## Confirmed decisions
+Jon's explicit instructions override project files. If files conflict with Jon's current instruction, flag the conflict and obtain the final verdict.
 
-### Strategy
+## Documentation governance
 
-**The build sequence is reversed. Market signal first, build only what the data calls for.** The original sequence produced a deployed product with zero market contact and no evidence of demand.
-
-Status: Confirmed
-
-**The terminal artifact of this phase is an economics story, not a product.** Dollars in versus intent out. A nicer product with no economics is a failed phase. For the current phase, build only a presentable landing-page prototype for market testing. No real backend build.
+**Every substantive workstream has a cumulative specification in `docs/workstreams/WS#-SPEC.md`.** The active specification is updated after ratifications. `CURRENT-HANDOFF.md` is temporary resumption context and must not be the only durable record.
 
 Status: Confirmed
 
-**Workstream 2 stops at sufficient proposition coherence for a credible landing-page test.** It is not a product-requirements exercise. Do not over-specify workflows, technical feasibility, implementation logic, or backend behavior. Define only enough mechanism, outcome, and offer continuity to support a coherent spreadsheet page and matched platform page, then move to market testing.
+**Workstream specifications preserve detailed decisions. This decision log remains a concise cross-project index.**
 
 Status: Confirmed
 
-**Move with speed: build, learn, iterate.** The current product concept does not need to be technically proven or fully specified before the market test. Features shown on the landing pages are hypotheses to test, not commitments to build.
+## Strategy
+
+**Market signal comes before meaningful product build. Build only what evidence calls for.**
 
 Status: Confirmed
 
-**Read rules get written before data exists.** Otherwise the numbers get interpreted to taste after the fact. The rules themselves are still unwritten and are a hard gate on traffic.
+**The terminal artifact of the current phase is an economics story, not a backend product.**
 
 Status: Confirmed
 
-**Analytics is verified by hand before any money moves.** Broken instrumentation is worse than no test, because it produces confident wrong conclusions.
+**Move with speed through build, measure, and learn. Features shown in landing-page prototypes are hypotheses, not commitments to build.**
 
 Status: Confirmed
 
-**Research precedes all spend, with one carve-out.** Social account seeding is exempt because accounts need age and comment history before they can post promotional content at all. Seeding gates the organic broadcast arm only, not the launch.
+**Read rules are written before data exists.**
 
 Status: Confirmed
 
-### Test design
-
-**Round one tests macro surface only: spreadsheet versus platform.** It is not primarily a feature, price, or headline test. Features and possibly price may still appear if explicitly approved, but they are not the variable being A/B tested in round one.
+**Analytics is verified by hand before public traffic or spend.**
 
 Status: Confirmed
 
-**Both pages fire the identical event set. Content varies, measurement never does.** A page tracking different events than its comparator cannot be compared to it.
+**Landing-page content and experience design precede Lovable implementation.**
 
 Status: Confirmed
 
-**Status vocabulary is not required to be identical across pages.** The working position is to default to identical unless a real reason to diverge appears. This relaxation does not extend to the event set.
+**Research precedes spend, except for social account seeding needed to establish account age and history.**
 
 Status: Confirmed
 
-**Build sequentially, spreadsheet page first, launch both at roughly the same time.** Sequential building de-risks page two. Simultaneous launch is required because a comparison run across different weeks of the recruiting cycle would confound surface preference with timing.
+## Test design
+
+**Round one compares spreadsheet-native versus standalone platform surfaces. It is not primarily a feature, headline, plan, or price test.**
 
 Status: Confirmed
 
-### Workstream 2 proposition
-
-**The July spreadsheet-native landing page targets students before tracker decay is fully felt.** This is not a strategic choice between early-stage and overwhelmed users so much as a consequence of the recruiting calendar. The current audience is entering active networking before peak-season overload.
+**Both pages use the same canonical funnel and identical analytics event set.**
 
 Status: Confirmed
 
-**The page should demonstrate the future failure concretely without claiming that the visitor has already failed.** The proposition sells prevention of predictable tracker decay now. A rescue proposition for students who have already lost control may be used later in peak recruiting season.
+**Multiple CTA placements may exist, but every primary CTA enters the same funnel. CTA origin is stored through `cta_location`.**
 
 Status: Confirmed
 
-**The primary user framing is a serious candidate entering active networking, at the point when they are adopting or beginning to use a tracker.** Do not over-segment this audience further because students in the process broadly operate on the same recruiting timeline.
+**The spreadsheet page is designed and built first, but both pages launch at roughly the same time.**
 
 Status: Confirmed
 
-**The structural failure is the widening gap between live recruiting activity and a manually maintained spreadsheet.** Students conduct recruiting through email and calendar, while the tracker changes only when they update it manually. Every reply, bounce, scheduled call, completed call, follow-up window, and unanswered thread changes what must happen next. As activity rises, the spreadsheet falls behind and becomes operationally unreliable.
+**Status vocabulary may differ only if a real surface-specific reason appears. Event parity remains mandatory.**
 
 Status: Confirmed
 
-**Tracker decay is caused by cumulative volume and inconsistent upkeep, not by excessive column count or the need to update after every individual event.** Across many concurrent threads, students delay updates, assume they will remember, miss some activity in a crowded inbox, stop maintaining formatting consistently, and add ad hoc rows or fields as the process evolves. The sheet gradually becomes stale, inconsistent, and no longer reflects reality.
+## Workstream 2 proposition
+
+The full durable specification is:
+
+`docs/workstreams/WS2-SPEC.md`
+
+Key confirmed rulings:
+
+**The July audience is pre-decay because of the recruiting calendar. The current page sells prevention of predictable tracker failure.**
 
 Status: Confirmed
 
-**The page should frame the consequences as stale status and lost operational trust, not merely visual messiness.** The student can no longer confidently tell who needs a response, which conversations require follow-up, or what the correct next action is. They must reconstruct reality from Gmail, Calendar, and memory, and items begin slipping through the cracks.
+**The structural failure is live recruiting activity outpacing manual spreadsheet upkeep.**
 
 Status: Confirmed
 
-**The spreadsheet-native mechanism divides the tracker into a student-maintained contact layer and a Blotter-maintained activity layer.** The student chooses and enters the contacts they want to track and any static information they care about, such as name, email, firm, group, LinkedIn profile, and notes. Blotter uses relevant recruiting email and calendar activity to maintain the changing side of the tracker, including current status, recent activity, follow-up state, call state, timing, and next action.
+**Tracker decay is caused by cumulative volume and inconsistent upkeep, not merely by too many columns or one missed update.**
 
 Status: Confirmed
 
-**The product does not discover contacts, scrape LinkedIn, enrich profiles, or automate outreach.** The student remains responsible for finding the right people and adding them to the tracker. Blotter removes the repetitive logistics upkeep after those contacts are entered.
+**The consequence is stale status and loss of operational trust, not merely visual messiness.**
 
 Status: Confirmed
 
-**Color-coded relationship state is a resonant spreadsheet behavior and should be preserved as a marketing and design consideration.** Students commonly describe tracking relationship state through color coding. The landing page may use automatic color coding to make the mechanism familiar and visually legible, but exact colors, statuses, and columns remain page-design decisions rather than settled product specifications.
+**The spreadsheet-native product divides the tracker into a student-maintained contact layer and a Blotter-maintained activity layer.**
 
 Status: Confirmed
 
-**The core user outcome is operational control through one accurate, current source of truth.** The student can open one spreadsheet and immediately understand the current state of their recruiting activity, what requires attention, and what action should happen next, without reconstructing the process from email, calendar, memory, or scattered notes.
+**The student finds and enters contacts. Blotter maintains changing recruiting state from relevant Gmail and Calendar activity.**
 
 Status: Confirmed
 
-**The outcome should be communicated through four linked benefits: accuracy, time saved, everything in one place, and prevention of slippage.** Blotter keeps the tracker aligned with actual recruiting activity, reduces time spent checking and reconciling multiple tools, centralizes the operating view, and helps prevent replies, follow-ups, and other important actions from slipping through the cracks.
+**The core outcome is operational control through one accurate, current source of truth.**
 
 Status: Confirmed
 
-**The minimum spreadsheet-native offer has five visible capabilities.** It automatically captures relevant recruiting activity from connected Gmail and Calendar accounts, maintains a current and visually legible state for each tracked contact, shows the next actions that require attention, provides an action-focused view that gathers or prioritizes contacts by what is owed, and keeps the student's contact information and live recruiting activity within one spreadsheet workflow.
+**The proposition communicates accuracy, time saved, everything in one place, and prevention of slippage.**
 
 Status: Confirmed
 
-**The landing page must explain the auto-capture mechanism in plain language.** The student connects Gmail and Calendar, and Blotter reads the relevant recruiting activity in the background to keep the tracker current. The page does not need to explain OAuth or implementation details. Privacy, access boundaries, and data safety require explicit treatment later in the landing-page design, likely through an FAQ and potentially a dedicated trust section.
+**The minimum visible offer includes auto-capture, legible relationship state, next-action visibility, an action-focused view, and one spreadsheet workflow.**
 
 Status: Confirmed
 
-**An action-focused view is part of the minimum offer, but its interface is not settled.** The demo must make it easy to identify contacts requiring attention. This may be delivered through sorting, grouping, filtered action areas, or a separate section such as follow-ups owed. The choice is a landing-page visual and product-hypothesis decision, not a Workstream 2 technical specification.
+**The spreadsheet-native proposition must communicate very low switching cost and preservation of the student's existing tracker.**
 
 Status: Confirmed
 
-**Blotter is explicitly not an AI slop platform.** It does not mass-generate generic outreach, write or send messages on the student's behalf, take over the student's judgment, or find contacts for them. It is an orchestration layer for recruiting logistics, not an AI outreach engine and not a technical interview-preparation product. “No AI Slop” is approved as banked marketing language to revisit during landing-page design.
+**Color-coded relationship state is a resonant design and marketing consideration, but exact colors and statuses are deferred.**
 
 Status: Confirmed
 
-### Product
-
-**Blotter is a logistics layer only.** Not learning content, not interview prep, not AI-assisted outreach, not a jobs board.
+**Blotter is a recruiting-logistics orchestration layer, not contact discovery, LinkedIn scraping, AI outreach, technical preparation, learning content, or a jobs board.**
 
 Status: Confirmed
 
-**Auto-capture is the founding principle.** Gmail and Calendar activity drive state. The user enters a contact once and everything downstream computes.
+**The landing page must explain auto-capture in plain language and must not imply unrestricted personal-inbox access.**
 
 Status: Confirmed
 
-**Blotter never reads personal email.** It checks who mail is from and only reads recruiting mail from banks and from people the user tracks. Copy implying broader access is wrong and damaging.
+**Workstream 2 stops at proposition coherence for a credible test and does not become a product-requirements exercise.**
 
 Status: Confirmed
 
-**Gmail access goes through an intermediary, Nylas or Unipile, if validation justifies backend build.** Direct restricted-scope access requires a CASA security assessment a solo founder cannot clear on this timeline. CASA is deferred.
+## Workstream 3 conversion and measurement
+
+The active durable specification is:
+
+`docs/workstreams/WS3-SPEC.md`
+
+Key confirmed rulings:
+
+**Round one uses a matched multi-stage funnel rather than one binary conversion.**
 
 Status: Confirmed
 
-### Tooling
-
-**Lovable is the build tool.** Lovable replaced Framer and plain HTML with GSAP on Vercel.
+**The canonical sequence is CTA entry, two-question recruiting configuration, concise product experience, recruiting-email capture, one monthly price inside the funnel, checkout progression, payment-choice click, and Fall 2026 cohort confirmation.**
 
 Status: Confirmed
 
-**Design tokens and the prior design system are scrapped, not deprecated.** Do not treat old token files as authoritative.
+**The recruiting questions are `What are you recruiting for?` and recruiting window. Approved option sets are recorded in `WS3-SPEC.md`.**
 
 Status: Confirmed
 
-**The platform product's built pixels are scrapped.** Milestones one through five were deployed to a Vercel preview. The interface was assessed as unusable.
+**One concise product experience occurs before email capture, lasts approximately 15 to 20 seconds maximum, and uses click-to-progress as the working model. Animation is not required.**
 
 Status: Confirmed
 
-## Working baseline, not settled decisions
+**Actual or simulated OAuth is excluded from the mandatory round-one funnel. Email capture is transparent and permission willingness is tested later.**
 
-The page-specification and hero items from prior sessions are a working baseline only. They are useful starting points, but they are not final merely because they were written in a specification file.
+Status: Confirmed
 
-This includes, without limitation:
+**Gmail, Sheets, and Calendar must still be shown as the product engine.**
 
-- Status vocabulary details
-- Hero composition details
-- Table visual details
-- Motion decisions
-- Feature card structure
-- Copy structure
-- Exact automated columns, including status, next move, last activity, timing, and call state
-- The implementation of the action-focused view, including sorting, grouping, filters, or a separate action section
-- Any low-level layout rule not separately confirmed by Jon
+Status: Confirmed
 
-## Provisional decisions and open items moved to `06-assumptions-and-open-questions.md`
+**Exact price appears only inside the funnel after product experience and email capture. Round one shows one product at one monthly price with no plan selection or price A/B test.**
 
-- Non-paid channels are central, not supplementary.
-- Corey reviews the test design before spend.
-- No card step and no price in round one.
-- Banks and applications off on both pages.
-- Feature cards carry pictures rather than bullets.
-- Card count set by what each page needs to argue.
-- Platform page argument.
-- Platform capability inventory.
-- Testing domain identity.
-- Analytics event list.
-- CTA and lead-capture flow.
-- Project-level kill condition.
+Status: Confirmed
 
-## Rejected proposition language
+**A separate short checkout screen precedes the strongest commercial action.**
 
-**“You keep your record. Blotter keeps the state alive.”** Rejected because a new recruiting student cannot clearly distinguish “record” from “state,” and the line does not explain the product mechanism in plain language. Do not reuse it as working copy.
+Status: Confirmed
 
-Status: Rejected
+**`payment_option_clicked` is the strongest commercial-demand signal. No card-entry form, payment credentials, or money are collected.**
 
-The replacement proposition language is not yet written. “Your networking keeps moving. Your tracker does not.” is a promising headline direction, but is not yet final. “You add the people. Blotter keeps every relationship current.” is an accurate mechanism direction, but “keeps every relationship current” may not be immediately clear enough for final public copy.
+Status: Confirmed
 
-## Not actually decisions
+**The terminal state confirms a real place in an approximately 300-person Fall 2026 first beta cohort, which Jon will maintain and honor.**
 
-These items should not be treated as settled decisions.
+Status: Confirmed
 
-**Connect Gmail is the primary call to action, two steps, email captured on the screen behind the click.** This may still be a candidate, but Jon has not decided what this process will look like.
+**The identical canonical event set is `page_viewed`, `funnel_started`, `recruiting_profile_completed`, `product_experience_completed`, `email_submitted`, `price_viewed`, `checkout_started`, `payment_option_clicked`, and `beta_spot_confirmed`.**
 
-Status: Not actually a decision
+Status: Confirmed
 
-**A booked call suppresses follow-up prompts for that contact.** This may matter later in product logic, but it is too granular for the current economics and validation stage.
+**There is no separate `cta_clicked` event. `funnel_started` carries `cta_location`.**
 
-Status: Not actually a decision
+Status: Confirmed
 
-**Tally handles forms if forms are needed.** Tally may be useful later, but form handling is not yet decided.
+**Both surfaces are compared at every matched funnel stage, not only at the final commercial event.**
 
-Status: Not actually a decision
+Status: Confirmed
+
+## Product and technical context
+
+**Blotter is a logistics layer only.**
+
+Status: Confirmed
+
+**Auto-capture is the founding principle. Gmail and Calendar activity drive changing state.**
+
+Status: Confirmed
+
+**Blotter must not be described as reading unrestricted personal email.**
+
+Status: Confirmed
+
+**If validation justifies backend build, Gmail access should use an intermediary such as Nylas or Unipile. Direct restricted-scope access and CASA are deferred.**
+
+Status: Confirmed
+
+## Tooling
+
+**Lovable is the implementation tool.**
+
+Status: Confirmed
+
+**The old design-token system and prior platform pixels are scrapped and not authoritative.**
+
+Status: Confirmed
 
 ## Method
 
-**Owner-supplied recruiting-cycle figures may be used as illustrative test copy.** The current phase is concept validation, not publication of an audited market study. These figures may support dramatization of the recruiting workload, but should not be falsely attributed to an external study or represented as independently verified market averages.
+**Owner-supplied recruiting-cycle figures may be used as illustrative prototype copy if they are not falsely attributed to an external study or represented as independently verified averages.**
 
 Status: Confirmed
 
-**Do not let evidence research become a blocker to launching the market test.** Research is optional where it improves the test, not a prerequisite for using Jon's first-hand process estimates in prototype copy.
+**Do not let external evidence research become a blocker to launching the validation test.**
 
 Status: Confirmed
+
+## Rejected and superseded items
+
+**`You keep your record. Blotter keeps the state alive.`** Rejected because the distinction is unclear to a new student.
+
+Status: Rejected
+
+**Connect Gmail as the mandatory primary CTA or early OAuth step.** Superseded by transparent recruiting-email capture and later permission testing.
+
+Status: Superseded
+
+**No price or card-adjacent step in round one.** Superseded. Price appears inside the funnel and the test stops at payment-method choice without collecting credentials or money.
+
+Status: Superseded
+
+**A booked call suppresses follow-up prompts.** Too granular for the current validation phase and not a settled decision.
+
+Status: Not a decision
+
+**Tally is the form solution.** Candidate only, not settled.
+
+Status: Not a decision
+
+## Working baselines, not settled specifications
+
+Unless separately confirmed, these remain Workstream 4 or later decisions:
+
+- exact status vocabulary;
+- hero composition;
+- table visual treatment;
+- motion;
+- feature-card structure;
+- final copy structure;
+- exact automated columns;
+- exact action-focused-view implementation;
+- low-level layout rules;
+- final CTA wording and placement;
+- exact funnel demo frames;
+- final checkout and terminal copy.
