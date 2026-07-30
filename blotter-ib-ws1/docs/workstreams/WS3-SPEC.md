@@ -1,83 +1,56 @@
 # Workstream 3 Specification
 
 Date last updated: July 30, 2026
-Status: In progress
+Status: Complete
 Workstream: Conversion and measurement design
 
 ## Purpose
 
-This file is the durable, cumulative specification for Workstream 3. It records ratified conversion, funnel, analytics, metric, read-rule, and interpretation decisions for the matched spreadsheet-versus-platform landing-page test.
+This is the permanent cumulative record of Workstream 3. It defines the matched CTA funnel, lead capture, price treatment, analytics architecture, metric hierarchy, read rules, thresholds, sample requirements, reporting rules, and downstream constraints for the spreadsheet-versus-platform validation test.
 
-Update this file whenever Jon ratifies, rejects, supersedes, or materially revises a Workstream 3 decision. `CURRENT-HANDOFF.md` is temporary resumption context and must not be the only record.
+`CURRENT-HANDOFF.md` is temporary resumption context. This specification remains authoritative after future handoffs are overwritten.
 
-## Workstream objective and boundary
-
-Workstream 3 defines:
-
-- the complete matched visitor funnel;
-- lead capture and segmentation;
-- product-experience constraints;
-- price and checkout treatment;
-- the identical analytics event set and event properties;
-- the metric hierarchy;
-- precommitted read rules and interpretation thresholds before traffic launches.
-
-Workstream 3 does not design the full page, specify detailed product behavior, define backend or integration architecture, or begin Lovable implementation.
-
-## Round-one test boundary
+## Scope and boundary
 
 Round one compares one macro variable:
 
 - spreadsheet-native surface;
 - standalone platform surface.
 
-It is not primarily a test of price, individual features, headlines, or plans.
+It is not primarily a price, feature, headline, plan, or copy test. Both pages must use the same canonical funnel, event set, price, measurement rules, and materially comparable interaction burden.
 
-Both pages must:
-
-- use the same canonical funnel;
-- use the same analytics event set;
-- expose the same monthly price at the same stage;
-- remain comparable in interaction burden;
-- launch at roughly the same time.
+Workstream 3 does not define final page narrative, final copy, detailed interface design, backend logic, OAuth architecture, or Lovable implementation.
 
 ## Signal hierarchy
 
-The funnel uses graded intent signals rather than one binary conversion.
+The funnel uses graded intent rather than one binary conversion.
 
-- Landing-page and CTA behavior measure attention and proposition-level interest.
-- Recruiting-profile and product-experience completion measure sustained exploration.
-- Email submission measures identified adoption intent and creates a contactable lead.
-- Price exposure establishes economic qualification.
-- `checkout_started` measures price-qualified checkout intent.
-- `payment_option_clicked` is the strongest commercial-demand signal.
-- Reaching pricing or checkout without choosing a payment method is not equivalent to willingness to pay.
-- `beta_spot_confirmed` is an instrumentation and terminal-completion check, not a stronger demand signal.
+1. Landing-page and CTA behavior measure proposition-level interest.
+2. Recruiting-profile and product-experience completion measure sustained exploration.
+3. Email submission measures identified adoption intent.
+4. Price exposure establishes economic qualification.
+5. `checkout_started` measures price-qualified checkout intent.
+6. `payment_option_clicked` is the strongest commercial-demand signal.
+7. `beta_spot_confirmed` is an instrumentation and terminal-flow check, not a stronger intent event.
 
 ## Canonical funnel
 
-Every primary CTA, regardless of placement, enters the same funnel.
-
-Confirmed sequence:
+Every primary CTA enters the same funnel. CTA origin is stored through `cta_location`.
 
 1. CTA entry.
 2. Two-question recruiting configuration.
 3. One concise surface-specific product experience.
 4. Recruiting-email capture.
-5. Exposure to one product at one monthly price inside the funnel.
-6. `Continue to payment` or equivalent checkout progression.
-7. Separate short checkout screen with `Pay with card`, Apple Pay where supported, or equivalent payment-choice actions.
+5. One product at one monthly price inside the funnel.
+6. `Continue to payment` or equivalent.
+7. Separate short checkout screen with payment-choice buttons.
 8. Fall 2026 limited first-cohort confirmation.
 
-Multiple CTA placements are permitted. CTA origin is measured through `cta_location` rather than separate conversion paths.
+## Recruiting configuration
 
-## Recruiting segmentation
+### Question 1
 
-The funnel asks only two high-value questions.
-
-### Recruiting track
-
-Question: `What are you recruiting for?`
+`What are you recruiting for?`
 
 Approved options, in order:
 
@@ -89,99 +62,93 @@ Approved options, in order:
 6. Venture Capital
 7. Other
 
-School and current year are excluded.
+### Question 2
 
-### Recruiting window
-
-Approved options:
+Recruiting window options:
 
 1. Summer 2028
 2. Full-time
 3. Other
 
+School and current year are excluded.
+
 ## Product experience
 
-The funnel contains one product experience before email capture. The earlier concept of a teaser before email followed by a second experience after email is rejected.
+One product experience occurs before email capture.
 
 Confirmed constraints:
 
 - approximately 15 to 20 seconds maximum;
-- click-to-progress is the working interaction model;
+- click-to-progress is the working model;
 - animation is not required;
 - no unnecessary tutorial burden;
-- shows the surface clearly enough to support an informed continuation decision;
-- makes Gmail, Google Sheets, and Calendar understandable as the engine driving live state;
-- spreadsheet and platform versions remain comparable in duration and interaction burden.
+- the surface must be shown clearly enough to support an informed continuation decision;
+- Gmail, Google Sheets, and Calendar must be understandable as the engine maintaining live recruiting state;
+- spreadsheet and platform experiences must remain comparable in duration and interaction burden.
 
-Deferred to Workstream 4:
+The earlier concept of a teaser before email and a second experience after email is rejected.
 
-- exact frames and clicks;
-- demo states and visual sequence;
-- relationship between the funnel experience and the main landing-page hero.
+Exact frames, clicks, demo states, motion, and the relationship to the landing-page hero are deferred to Workstream 4.
 
 ## Email capture
 
-The mandatory round-one funnel does not require actual or simulated Gmail, Calendar, or Sheets OAuth.
+The mandatory round-one funnel does not use actual or simulated OAuth.
 
-Approved direction:
+Approved conceptual direction:
 
 `Continue to your recruiting workspace`
 
 `Enter the email address where you conduct recruiting.`
 
-The step must not:
+The step must not request a password, imitate Google authentication, use phishing-adjacent design, or imply that inbox access has already been granted.
 
-- request a password;
-- imitate Google authentication;
-- use phishing-adjacent design;
-- imply that inbox access has been granted.
-
-The product experience must still explain Gmail, Sheets, and Calendar as the mechanism that keeps recruiting state current.
-
-The visitor's email belongs in the lead record and should not be copied into general analytics properties.
+The visitor email belongs in the lead record and should not be copied into general analytics properties.
 
 ## Price treatment
 
-- Exact price appears only inside the funnel.
-- Price does not appear on the main landing page in round one.
-- Price first appears after the product experience and email capture.
-- Both variants reveal the same price at the same matched stage.
-- Round one shows one product at one monthly price.
-- There is no plan-selection step.
-- There is no price A/B test.
-- The exact dollar amount remains unresolved.
-- Price is not the round-one test variable.
+Round one uses one product at **$9.99 per month**.
+
+Confirmed rules:
+
+- price appears only inside the funnel;
+- price first appears after the product experience and email capture;
+- both variants show the same price at the same stage;
+- monthly billing only;
+- cancel anytime;
+- no annual plan;
+- no introductory discount;
+- no plan-selection step;
+- no price A/B test;
+- price is not the round-one test variable.
 
 ## Checkout mechanics
 
-After price exposure, the visitor clicks `Continue to payment` or equivalent and reaches a separate short checkout screen.
+After price exposure, the visitor selects `Continue to payment` or equivalent and reaches a separate short checkout screen.
 
 The checkout should show:
 
 - Blotter;
-- exact monthly price;
+- $9.99 monthly price;
 - monthly billing cadence;
 - amount due;
 - concise product descriptor;
 - `Pay with card`;
 - Apple Pay where supported.
 
-`Pay with card` is always available. Device-dependent payment options may appear only where supported.
+`Pay with card` is always available. Device-dependent options appear only where supported. Either payment-choice click triggers the same canonical event, with payment method stored separately.
 
-Either payment-choice click counts as `payment_option_clicked`. Payment method is stored separately where available.
-
-No card-entry form is shown. No payment credentials or money are collected.
+No card-entry form is shown. No credentials or money are collected.
 
 ## Terminal state
 
-After the payment-choice click, the visitor is told:
+After a payment-choice click, the visitor is told:
 
 - Blotter is planned for Fall 2026;
 - they secured a place in the limited first beta cohort;
 - the cohort is approximately 300 people;
 - confirmation and future access will use the recruiting email already provided.
 
-Jon will maintain and honor the cohort list. Exact terminal copy is deferred to Workstream 4. Because the visitor never enters card details and no charge attempt occurs, the terminal screen does not need unnecessary language stating that no payment was processed or no card details were collected.
+Jon will maintain and honor the cohort list. Exact terminal copy is deferred to Workstream 4.
 
 ## Canonical analytics events
 
@@ -197,19 +164,19 @@ Both variants use this identical event set:
 8. `payment_option_clicked`
 9. `beta_spot_confirmed`
 
-There is no separate `cta_clicked` event. `funnel_started` carries CTA origin through `cta_location`.
+There is no separate `cta_clicked` event. `funnel_started` carries `cta_location`.
 
 ## Event meanings
 
-- `page_viewed`: visitor viewed one landing-page variant.
-- `funnel_started`: visitor entered the canonical funnel through a primary CTA.
-- `recruiting_profile_completed`: visitor completed both segmentation questions.
-- `product_experience_completed`: visitor completed the concise surface-specific product experience.
-- `email_submitted`: visitor supplied the recruiting email address.
-- `price_viewed`: exact monthly price rendered to the visitor.
-- `checkout_started`: visitor clicked `Continue to payment` or equivalent.
-- `payment_option_clicked`: visitor clicked a payment method after seeing the price and checkout total.
-- `beta_spot_confirmed`: terminal cohort confirmation rendered successfully.
+- `page_viewed`: an eligible visitor viewed one landing-page variant.
+- `funnel_started`: the visitor entered the canonical funnel.
+- `recruiting_profile_completed`: both segmentation questions were completed.
+- `product_experience_completed`: the concise surface-specific experience was completed.
+- `email_submitted`: the recruiting email was supplied.
+- `price_viewed`: the exact monthly price rendered.
+- `checkout_started`: the visitor chose to continue toward payment.
+- `payment_option_clicked`: the visitor clicked a payment method after seeing price and checkout total.
+- `beta_spot_confirmed`: the terminal cohort confirmation rendered successfully.
 
 ## Required event properties
 
@@ -231,232 +198,212 @@ Later-stage properties where applicable:
 - `billing_period`
 - `payment_method`
 
-The event set and property definitions must remain identical across spreadsheet and platform variants.
+The event definitions and properties must remain identical across variants.
 
 ## Ratified metric hierarchy
 
-All conversion rates use unique eligible visitors rather than raw event counts. A visitor counts no more than once per surface for each metric.
+All rates use unique eligible visitors rather than raw event counts. A visitor counts no more than once per surface for each metric.
 
 ### Primary comparative metric
 
-**Checkout-start rate across all eligible landing-page visitors**
+**Checkout-start rate across all eligible visitors**
 
 - Numerator: unique visitors reaching `checkout_started`.
 - Denominator: unique eligible visitors reaching `page_viewed`.
-- Calculated separately for spreadsheet and platform surfaces.
-- This is the primary metric for determining relative surface preference.
-- Analysis follows the assigned surface from `page_viewed` regardless of later funnel completion.
+- Calculated separately by surface.
+- Determines relative surface preference.
 
 ### Secondary comparative metrics
 
-1. `funnel_started` divided by `page_viewed`.
-2. `email_submitted` divided by `page_viewed`.
-3. `checkout_started` divided by `price_viewed`.
+1. `funnel_started / page_viewed`
+2. `email_submitted / page_viewed`
+3. `checkout_started / price_viewed`
 
-These explain the primary comparative result but do not replace it.
+These explain the primary result but do not replace it.
 
 ### Commercial-demand metrics
 
-1. **Primary commercial-demand metric**
-   - `payment_option_clicked` divided by `page_viewed`.
-   - Plain meaning: of everyone who visited, what percentage clicked a payment option after seeing the product and price?
+Primary:
 
-2. **Supporting commercial-demand metric**
-   - `payment_option_clicked` divided by `checkout_started`.
-   - Plain meaning: of everyone who reached checkout, what percentage clicked a payment option?
+`payment_option_clicked / page_viewed`
 
-`beta_spot_confirmed` remains an instrumentation and completion check, not a commercial-demand metric.
+Plain meaning: of all eligible page visitors, what percentage clicked a payment option after seeing the product and price?
+
+Supporting:
+
+`payment_option_clicked / checkout_started`
+
+Plain meaning: of visitors who reached checkout, what percentage clicked a payment option?
 
 ### Diagnostic metrics
 
-The following are diagnostics only:
+- `recruiting_profile_completed / funnel_started`
+- `product_experience_completed / recruiting_profile_completed`
+- `email_submitted / product_experience_completed`
+- `price_viewed / email_submitted`
+- `checkout_started / price_viewed`
+- `beta_spot_confirmed / payment_option_clicked`
 
-- `recruiting_profile_completed` divided by `funnel_started`;
-- `product_experience_completed` divided by `recruiting_profile_completed`;
-- `email_submitted` divided by `product_experience_completed`;
-- `price_viewed` divided by `email_submitted`;
-- `checkout_started` divided by `price_viewed`;
-- `beta_spot_confirmed` divided by `payment_option_clicked`.
-
-Diagnostics identify abandonment or implementation problems. They must not independently determine the winning surface or whether the project deserves continued investment.
-
-Diagnostic interactions may be tracked sparingly, including product-experience step views, privacy-detail opens, or integration-explanation opens. Do not track every hover, scroll, tab, card, or decorative interaction.
+Diagnostics explain abandonment and instrumentation issues. They do not independently determine surface selection or continued investment.
 
 ## Ratified read rules
 
-### 1. Comparative preference versus absolute demand
+### Comparative preference versus absolute demand
 
-1. Absolute commercial demand determines whether either proposition deserves further investment.
-2. Relative surface preference determines which surface to pursue only after at least one proposition demonstrates credible absolute demand.
-3. A surface does not become viable merely because it performs better than another weak surface.
-4. If both surfaces show weak commercial demand, report `no validated surface`, even if one wins the primary comparative metric.
-5. If both surfaces show credible commercial demand, use `checkout_started` divided by `page_viewed` to select the preferred surface.
-6. If the primary comparative metric favors one surface but adequately sampled payment-choice behavior favors the other, commercial-demand behavior takes priority because it is closer to actual willingness to pay.
-7. If payment-choice volume is too low to interpret reliably, it cannot overturn the primary comparative metric. The result remains provisional or ambiguous until low-sample rules are applied.
+- Absolute commercial demand determines whether either proposition deserves further investment.
+- Relative surface preference determines what to pursue only after at least one proposition demonstrates credible absolute demand.
+- A relative winner among two weak surfaces is not a validated surface.
+- If both surfaces show weak commercial demand, report `no validated surface` even if one wins the comparative metric.
+- If both show credible commercial demand, use the primary comparative metric to select the preferred surface.
+- If adequately sampled payment-choice behavior conflicts with the primary comparative metric, commercial-demand behavior takes priority.
+- If payment-choice volume is insufficient, it cannot overturn the comparative result.
 
 Governing principle: commercial demand decides whether to continue. Comparative performance decides what to continue with.
 
-### 2. Early-funnel interest versus late-funnel commercial intent
+### Early-funnel versus late-funnel disagreement
 
-1. Late-funnel behavior outranks early-funnel behavior. `checkout_started` and `payment_option_clicked` carry more decision weight than `funnel_started` or `email_submitted`.
-2. Strong early interest with weak late intent means the proposition attracts attention but has not validated demand.
-3. Possible explanations include weak sustained product value, price resistance, low trust, or checkout friction. Diagnostics may identify the likely cause but do not convert the result into commercial validation.
-4. Weak early interest with strong late intent among an adequately sampled smaller group means the offer may be valuable but poorly communicated or narrowly targeted.
-5. Early-funnel metrics cannot rescue weak commercial-demand metrics. High CTA clicks, email submissions, or demo completion do not justify meaningful backend investment when payment-choice behavior remains weak.
-6. Adequately sampled late-funnel strength can justify another test despite weak early conversion, focused on acquisition, positioning, or top-of-funnel communication.
-7. Diagnostic metrics explain disagreement but do not override this hierarchy.
+- Late-funnel behavior outranks early-funnel behavior.
+- Strong early interest with weak late intent means attention was generated but demand was not validated.
+- Weak early interest with adequately sampled strong late intent may indicate a valuable but poorly communicated or narrowly targeted offer.
+- Early-funnel performance cannot rescue weak commercial demand.
+- Strong late-funnel evidence may justify another positioning or acquisition test despite weak early conversion.
+- Diagnostics explain disagreement but do not override the hierarchy.
 
-Governing principle: early metrics show whether people explore. Late metrics show whether interest survives exposure to the product and price.
+## Interpretation thresholds
 
-## Ratified interpretation thresholds
+### Meaningful comparative difference
 
-### 1. Primary comparative metric: meaningful surface difference
+A surface is declared the comparative winner only when all three conditions are met:
 
-A surface is declared the comparative winner on `checkout_started` divided by `page_viewed` only when all three requirements are met:
+1. At least 25 percent higher on a relative basis.
+2. At least 2 percentage points higher on an absolute basis.
+3. At least 90 percent statistical confidence in the estimated difference.
 
-1. The winning surface's rate is at least **25 percent higher on a relative basis** than the other surface.
-2. The absolute difference is at least **2 percentage points**.
-3. The estimated difference reaches at least **90 percent statistical confidence**.
+Directionally better results that miss any requirement are ambiguous. Weak commercial demand for both means no validated surface regardless of comparative difference.
 
-Interpretation:
+### Absolute commercial-demand bands
 
-- All three conditions met: meaningful comparative winner.
-- Directionally better but one or more conditions missed: ambiguous surface preference.
-- Rates effectively equal: no comparative winner.
-- Commercial demand weak for both: no validated surface, regardless of comparative difference, under the ratified decision hierarchy.
+For `payment_option_clicked / page_viewed`:
 
-Rationale: statistical confidence alone can elevate a commercially trivial difference when traffic is large, while effect size alone can overread noise from a small sample. Both practical magnitude and statistical support are required.
+- **2.0 percent or higher:** strong commercial signal.
+- **1.0 percent to below 2.0 percent:** credible commercial signal.
+- **0.5 percent to below 1.0 percent:** ambiguous commercial signal.
+- **Below 0.5 percent:** weak commercial signal.
 
-### 2. Absolute commercial-demand thresholds
+These are Blotter-specific decision rules, not a universal SaaS standard.
 
-The governing metric is `payment_option_clicked` divided by `page_viewed`, using unique eligible visitors.
+## Benchmark derivation
 
-Ratified bands:
+No credible published dataset was found for Blotter's exact fake-door funnel. The thresholds were triangulated from adjacent evidence:
 
-- **Strong commercial signal: 2.0 percent or higher.** Continue validation and treat the qualifying surface as a serious build candidate, subject to low-sample rules.
-- **Credible commercial signal: 1.0 percent to below 2.0 percent.** Continue validation. The result is sufficiently strong to justify further investment in testing and may support a build decision when considered with sample quality and the full funnel.
-- **Ambiguous commercial signal: 0.5 percent to below 1.0 percent.** Diagnose the funnel and run a bounded retest. Do not begin meaningful backend build solely from this result.
-- **Weak commercial signal: below 0.5 percent.** No commercial validation, subject to low-sample rules. Strong early-funnel behavior cannot rescue this classification.
+1. Unbounce's 2024 Conversion Benchmark Report analyzed more than 464 million visitors, 57 million conversions, and more than 41,000 landing pages. It reports a 3.8 percent median SaaS landing-page conversion rate. This is broader and often lower-commitment than Blotter's payment-choice event.
+2. ChartMogul and ProductLed's 2026 survey of 200 B2B software products implies approximate visitor-to-paid rates of 0.4 to 1.1 percent across representative freemium and trial models. This is the closest economic comparable because it ends in real payment.
+3. Baymard's approximately 70 percent ecommerce cart-abandonment benchmark provides checkout-attrition context but was not used to set the exact bands.
 
-Zero payment-option clicks classify as weak demand unless the low-sample rules establish that qualified exposure was insufficient for judgment.
+The thresholds intentionally err conservatively because `payment_option_clicked` requires no card entry, charge, financial risk, trial commitment, or immediately usable product. Matching the lower end of real visitor-to-paid conversion is therefore not enough to validate demand.
 
-#### Benchmark derivation and limitations
+Traffic source, audience warmth, device, campaign, and recruiting window may affect rates. Report overall results and inspect these segments diagnostically without allowing warm traffic to stand in for cold-market demand.
 
-These thresholds are Blotter-specific decision rules, not a claimed universal SaaS or fake-door industry standard. No credible published dataset was found for Blotter's exact funnel: landing-page visitor, concise product experience, email submission, price exposure, checkout progression, and payment-option click without card entry or payment.
+## Low-sample treatment
 
-The thresholds were triangulated from the closest available external comparables:
-
-1. **SaaS landing-page conversion:** Unbounce's 2024 Conversion Benchmark Report analyzed more than 464 million unique visitors, 57 million conversions, and more than 41,000 landing pages. It reports a median SaaS landing-page conversion rate of **3.8 percent**. This is an upper-context benchmark only because the underlying conversion can include lower-commitment actions such as lead submissions, registrations, downloads, or demo requests rather than purchase intent.
-2. **Website visitor to paying SaaS customer:** ChartMogul and ProductLed's 2026 survey of 200 B2B software products reports representative funnels per 1,000 visitors: approximately 5 paying customers for freemium, 4 for a free trial, 6 for an ungated freemium experience, and 11 for a credit-card-required trial. These imply approximate visitor-to-paid rates of **0.5 percent, 0.4 percent, 0.6 percent, and 1.1 percent**, respectively. This is the closest economic comparable because it ends in real payment, although the product categories, traffic mixes, and time-to-conversion differ from Blotter.
-3. **Checkout attrition context:** Baymard reports an average ecommerce cart-abandonment rate near **70 percent** across aggregated studies. This confirms that meaningful attrition typically remains after purchase interest is expressed, but ecommerce checkout is not directly comparable to Blotter and was not used to set the exact bands.
-
-#### Why the Blotter thresholds are conservative
-
-Blotter's `payment_option_clicked` event is materially easier than becoming a real paying customer:
-
-- no card number is entered;
-- no money is charged or put at risk;
-- no trial commitment begins;
-- the visitor does not receive an immediately usable product;
-- the event records a click on a simulated purchase door rather than a completed transaction.
-
-Because the action has less friction and lower commitment than the real visitor-to-paid outcomes in the ChartMogul data, merely matching approximately 0.4 to 0.6 percent should not be treated as validation. The benchmark therefore applies an intentional credibility discount:
-
-- below 0.5 percent remains weak even though it overlaps the lower end of real visitor-to-paid SaaS performance;
-- 0.5 to below 1.0 percent remains ambiguous because the Blotter action is easier than payment;
-- 1.0 to below 2.0 percent is treated as credible because it reaches or exceeds the upper end of most adjacent real-payment funnels;
-- 2.0 percent or higher is treated as strong because it is roughly twice the upper end of the adjacent visitor-to-paid range while still remaining below the broader 3.8 percent median SaaS landing-page conversion benchmark.
-
-Traffic source, audience warmth, device, campaign, and recruiting window may materially affect observed rates. Results must therefore be reported overall and segmented diagnostically by traffic source, without allowing a warm channel to stand in for general cold-market demand.
-
-External reference basis, verified July 30, 2026:
-
-- Unbounce, `Average SaaS conversion rate benchmark report` and its Conversion Benchmark Report methodology.
-- ChartMogul and ProductLed, `The SaaS Conversion Report: A new look at free-to-paid conversion`, 2026 survey of 200 B2B software products.
-- Baymard Institute, cart and checkout abandonment benchmark research.
-
-### 3. Low-sample treatment and minimum evidence requirements
-
-A fixed visitor minimum alone is insufficient because comparative conversion and payment-choice behavior occur at different rates. Final classifications therefore combine visitor exposure, event count, and statistical evidence.
-
-#### Comparative surface result
+### Comparative result
 
 A comparative winner cannot be declared until:
 
-- each surface has at least **300 eligible visitors**;
-- the winning surface is at least 25 percent higher on a relative basis;
-- the absolute difference is at least 2 percentage points;
-- the difference reaches at least 90 percent statistical confidence.
+- each surface has at least 300 eligible visitors;
+- the 25 percent relative difference requirement is met;
+- the 2-percentage-point absolute difference requirement is met;
+- the result reaches at least 90 percent statistical confidence.
 
-Below 300 eligible visitors per surface, comparative results are labeled **directional only**, even when the observed difference appears large. The 300-visitor floor is a safeguard rather than a substitute for the confidence requirement.
+Below 300 visitors per surface, results are directional only.
 
-#### Positive commercial-demand classification
+### Positive commercial-demand result
 
-A surface cannot receive a final **credible** or **strong** commercial-demand classification until both conditions are met:
+A surface cannot receive a final credible or strong classification until:
 
-- at least **500 eligible visitors** have viewed that surface;
-- at least **10 unique visitors** have triggered `payment_option_clicked`.
+- it has at least 500 eligible visitors; and
+- at least 10 unique visitors trigger `payment_option_clicked`.
 
-At a 2 percent rate, 500 visitors produce 10 payment clicks. At a 1 percent rate, approximately 1,000 visitors are needed to produce 10 clicks. Fewer than 10 events leaves the rate excessively sensitive to one or two visitors.
+Until both are met, a credible or strong observed rate is `promising but insufficiently sampled`.
 
-Until both conditions are met, an observed rate in the credible or strong band is labeled **promising but insufficiently sampled**.
+### Weak-demand result
 
-#### Weak-demand classification
+A final weak classification requires:
 
-Weak demand cannot be declared merely because an early sample produces zero or one payment click.
+- at least 600 eligible visitors on the surface; and
+- statistical support that the true rate is unlikely to reach the 1 percent credible-demand threshold.
 
-A final weak-demand classification requires:
+An early zero-click result is insufficient evidence, not failure.
 
-- at least **600 eligible visitors** on that surface; and
-- statistical support that the true payment-option-click rate is unlikely to reach the **1 percent credible-demand threshold**.
+### Underpowered outcomes
 
-A zero-click result after 50 or 100 visitors is therefore insufficient evidence, not failure.
+When the evidence requirement is unmet, classify the result as `insufficient sample, no decision`. Do not force an underpowered test into success, failure, or surface selection.
 
-#### Underpowered outcomes
+## No project-level kill condition
 
-When an observed rate falls into a threshold band but the corresponding evidence requirement is not met, classify the result as **insufficient sample, no decision**.
+Workstream 3 sets no permanent or bounded project kill condition.
 
-An underpowered result must not:
+Weak commercial demand means the current tested proposition is not validated for meaningful backend investment. Blotter may iterate and test again. Each retest should still have a specific hypothesis, precommitted measurement rules, and a defined traffic or spend boundary.
 
-- be promoted to credible demand;
-- be classified as weak demand;
-- determine the winning surface;
-- be rescued by strong early-funnel metrics.
+## Test-integrity rule
 
-Traffic may continue until the planned budget or acquisition window is exhausted. If the evidence requirements remain unmet, report the test honestly as underpowered rather than forcing a success or failure classification.
+During a measurement period, freeze:
 
-## Matched-comparison requirement
+- price;
+- funnel sequence;
+- core page proposition;
+- payment-choice mechanics;
+- event definitions;
+- traffic-allocation methodology.
 
-The spreadsheet and platform pages must be compared at every matched funnel stage, not only at `payment_option_clicked`.
+Instrumentation failures may be repaired. A material page, funnel, price, or proposition change creates a new labeled test iteration and its data must not be blended indiscriminately with the prior period.
 
-The test must distinguish:
+## Reporting requirements
 
-- proposition-level interest;
-- sustained product exploration;
-- identified adoption intent;
-- price-qualified checkout intent;
-- strongest commercial demand.
+Every test readout must include:
 
-## Low-switching-cost constraint carried from Workstream 2
+- overall results by surface;
+- visitor counts and event counts, not percentages alone;
+- results by traffic source as diagnostics;
+- confidence intervals or an equivalent uncertainty measure;
+- exact test dates;
+- exact tested price;
+- instrumentation incidents;
+- material traffic-quality concerns.
 
-The spreadsheet-native page must communicate that:
+Traffic-source segments explain the result but do not replace the overall precommitted analysis unless a channel is demonstrably invalid or materially mismatched.
 
-- Blotter works with the student's current spreadsheet;
-- the student does not rebuild or migrate the tracker from scratch;
-- existing contacts, notes, and structure are preserved;
-- Blotter can be adopted at any stage of recruiting;
-- the student continues adding contacts while Blotter maintains changing activity.
+## Downstream requirements for Workstream 4
 
-Exact copy and visual treatment belong to Workstream 4.
+Workstream 4 must preserve:
 
-## Remaining Workstream 3 decisions
+- the canonical funnel sequence;
+- one product experience before email capture;
+- the 15 to 20 second maximum experience burden;
+- comparable spreadsheet and platform interaction burden;
+- transparent email capture without simulated OAuth;
+- Gmail, Sheets, and Calendar as the visible product engine;
+- price only inside the funnel;
+- $9.99 per month on both surfaces;
+- payment-choice click as the strongest commercial action;
+- no card-entry or payment collection;
+- the real Fall 2026 cohort commitment;
+- identical canonical analytics events and properties;
+- exact CTA origin tracking through `cta_location`.
 
-1. Decide whether a project-level kill condition is required before launch or remains deferred.
-2. Select the exact monthly price before implementation or explicitly defer selection to Workstream 4 or 5.
-3. Complete this specification and hand off durable constraints to Workstream 4.
+Workstream 4 owns final page narrative, copy, section order, hero and demo composition, exact product-experience frames, CTA wording and placement, trust and privacy content, checkout copy, and terminal-state copy.
 
-## Exact next action
+## Rejected or superseded directions
 
-Decide whether a hard project-level kill condition is required before launch or should remain deferred.
+- Mandatory early Gmail OAuth: rejected.
+- Simulated Google authentication: rejected.
+- Teaser before email followed by a second demo after email: rejected.
+- Price on the main landing page: rejected for round one.
+- Multiple plans or price A/B testing: rejected for round one.
+- Card-entry form or payment collection: rejected.
+- Separate `cta_clicked` analytics event: rejected.
+- Permanent or bounded project kill condition: rejected.
 
-Do not yet select the exact monthly price or begin Workstream 4.
+## Workstream completion
+
+Workstream 3 is complete. The next active workstream is Workstream 4: spreadsheet landing-page content and experience design.
