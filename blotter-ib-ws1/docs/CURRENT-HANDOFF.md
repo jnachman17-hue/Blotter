@@ -4,9 +4,9 @@ Date: July 30, 2026
 
 ## 1. Current objective
 
-Complete Workstream 3 by defining the metric hierarchy, read rules, interpretation thresholds, low-sample treatment, and treatment of conflicting comparative and absolute demand signals.
+Complete Workstream 3 by writing the precommitted read rules, interpretation thresholds, low-sample treatment, and treatment of conflicting comparative and absolute demand signals.
 
-Workstreams 1 and 2 are complete. Workstream 3 is approximately 65 to 70 percent complete.
+Workstreams 1 and 2 are complete. Workstream 3 is in progress. The metric hierarchy is now fully ratified.
 
 ## 2. Source-of-truth and maintenance rules
 
@@ -15,49 +15,26 @@ Workstreams 1 and 2 are complete. Workstream 3 is approximately 65 to 70 percent
 - GPT project memory and old chat context are convenience layers only.
 - `CURRENT-HANDOFF.md` is temporary immediate context and must not be the only record of a confirmed decision.
 - The active detailed specification is `docs/workstreams/WS3-SPEC.md`.
-- The completed Workstream 2 specification is `docs/workstreams/WS2-SPEC.md`.
 - Whenever Jon ratifies, rejects, supersedes, or materially revises a Workstream 3 decision, update `WS3-SPEC.md` and this handoff before moving to the next substantive decision.
 - Reconcile `06-assumptions-and-open-questions.md` when an open item is resolved or narrowed.
 - Follow the full maintenance system in `docs/05-working-agreement.md`.
 
-## 3. Documentation repair completed
+## 3. Durable documentation state
 
-A durable workstream-specification system now exists.
+The active Workstream 3 specification now preserves:
 
-Created:
+- the complete matched funnel;
+- recruiting segmentation;
+- product-experience boundary;
+- email-capture treatment;
+- price and checkout mechanics;
+- terminal cohort state;
+- canonical analytics events and properties;
+- the complete ratified metric hierarchy.
 
-- `docs/workstreams/WS2-SPEC.md`
-- `docs/workstreams/WS3-SPEC.md`
+Do not rely on this handoff alone. Read `docs/workstreams/WS3-SPEC.md` for the cumulative durable record.
 
-Updated:
-
-- `docs/00-START-HERE.md`
-- `docs/02-strategy-and-test.md`
-- `docs/04-decision-log.md`
-- `docs/05-working-agreement.md`
-- `docs/06-assumptions-and-open-questions.md`
-- `docs/CURRENT-HANDOFF.md`
-
-The WS2 proposition and all confirmed WS3 funnel and analytics decisions are no longer dependent on this handoff file.
-
-## 4. Workstream 2 durable outcome
-
-Read `docs/workstreams/WS2-SPEC.md` for the complete proposition specification.
-
-Key preserved constraints:
-
-- July audience is pre-decay and the page sells prevention.
-- The failure is live recruiting activity outpacing manual spreadsheet upkeep.
-- The tracker divides into a student-maintained contact layer and Blotter-maintained activity layer.
-- The core outcome is operational control through one accurate, current source of truth.
-- Benefits are accuracy, time saved, everything in one place, and prevention of slippage.
-- The minimum visible offer is auto-capture, legible relationship state, next-action visibility, an action-focused view, and one spreadsheet workflow.
-- The spreadsheet-native proposition must emphasize low switching cost and preservation of the existing tracker.
-- Blotter is not contact discovery, LinkedIn scraping, AI outreach, technical preparation, learning content, or a jobs board.
-
-## 5. Workstream 3 durable confirmed architecture
-
-Read `docs/workstreams/WS3-SPEC.md` for the complete detailed record.
+## 4. Confirmed Workstream 3 conversion architecture
 
 Confirmed funnel:
 
@@ -70,9 +47,9 @@ Confirmed funnel:
 7. Separate checkout screen with payment-choice buttons.
 8. Fall 2026 limited first-cohort confirmation.
 
-Confirmed conversion and analytics principles:
+Confirmed principles:
 
-- all primary CTAs enter one funnel;
+- all primary CTAs enter one canonical funnel;
 - CTA origin is stored through `cta_location`;
 - one product experience occurs before email capture;
 - experience is approximately 15 to 20 seconds maximum;
@@ -86,7 +63,7 @@ Confirmed conversion and analytics principles:
 - both surfaces use the identical canonical event set and properties;
 - both surfaces are compared at every matched funnel stage.
 
-Canonical events:
+## 5. Canonical analytics events
 
 1. `page_viewed`
 2. `funnel_started`
@@ -98,37 +75,63 @@ Canonical events:
 8. `payment_option_clicked`
 9. `beta_spot_confirmed`
 
-## 6. Remaining Workstream 3 scope
+## 6. Ratified metric hierarchy
 
-1. Define the primary comparative metric.
-2. Define secondary funnel metrics.
-3. Define absolute commercial-demand metrics.
-4. Define diagnostic metrics that do not determine the decision.
-5. Write precommitted read rules.
-6. Define success, failure, ambiguity, and low-sample treatment.
-7. Define treatment of disagreement between early-funnel and late-funnel results.
-8. Define treatment of a relative surface winner when absolute demand is weak for both.
-9. Decide whether a hard project-level kill condition is required before launch.
-10. Select the exact monthly price or deliberately defer it to Workstream 4 or 5.
-11. Complete and mark `WS3-SPEC.md` final before handing off to Workstream 4.
+All rates use unique eligible visitors, not raw event counts. A visitor counts no more than once per surface for each metric.
+
+### Primary comparative metric
+
+- `checkout_started` divided by `page_viewed`.
+- Plain-language meaning: of all eligible landing-page visitors, what percentage proceeded to checkout after experiencing the surface, submitting an email, and seeing the price?
+- This is the primary metric for comparing spreadsheet versus platform.
+
+### Secondary comparative metrics
+
+- `funnel_started` divided by `page_viewed`.
+- `email_submitted` divided by `page_viewed`.
+- `checkout_started` divided by `price_viewed`.
+
+These explain the primary comparative result but do not replace it.
+
+### Commercial-demand metrics
+
+- Primary: `payment_option_clicked` divided by `page_viewed`.
+- Supporting: `payment_option_clicked` divided by `checkout_started`.
+
+The first measures absolute commercial demand across all visitors. The second measures checkout conversion among visitors who already chose to proceed.
+
+### Diagnostic metrics
+
+- `recruiting_profile_completed` divided by `funnel_started`.
+- `product_experience_completed` divided by `recruiting_profile_completed`.
+- `email_submitted` divided by `product_experience_completed`.
+- `price_viewed` divided by `email_submitted`.
+- `checkout_started` divided by `price_viewed`.
+- `beta_spot_confirmed` divided by `payment_option_clicked`.
+
+Diagnostics explain abandonment or instrumentation problems. They must not independently determine the winning surface or whether the project deserves continued investment.
+
+`beta_spot_confirmed` remains an instrumentation and completion check, not a commercial-demand metric.
+
+## 7. Remaining Workstream 3 scope
+
+1. Write precommitted read rules.
+2. Define success, failure, ambiguity, and low-sample treatment.
+3. Define treatment of disagreement between early-funnel and late-funnel results.
+4. Define treatment of a relative surface winner when absolute demand is weak for both.
+5. Decide whether a hard project-level kill condition is required before launch.
+6. Select the exact monthly price or deliberately defer it to Workstream 4 or 5.
+7. Complete and mark `WS3-SPEC.md` final before handing off to Workstream 4.
 
 Do not expand into detailed page design, product-interface design, backend architecture, integration implementation, technical feature specifications, or Lovable implementation.
 
-## 7. Exact next action
+## 8. Exact next action
 
-Define the metric hierarchy.
+Write the precommitted read rules one decision area at a time.
 
-The next discussion should distinguish:
+The next discussion must define the decision hierarchy when relative surface preference and absolute commercial demand disagree. Do not set numerical thresholds yet.
 
-- primary metric for comparing spreadsheet versus platform;
-- secondary metrics that explain funnel movement;
-- absolute commercial-demand metrics that determine whether either proposition deserves continued investment;
-- diagnostic metrics that should not control decisions;
-- how surface preference and absolute demand interact.
-
-Present one decision area at a time. After Jon ratifies a ruling, update `docs/workstreams/WS3-SPEC.md`, this handoff, and any affected open-question or decision-log entry before continuing.
-
-## 8. Required reading for resumption
+## 9. Required reading for resumption
 
 Read in this order:
 
@@ -142,7 +145,12 @@ Read in this order:
 
 Read `docs/workstreams/WS2-SPEC.md` when Workstream 2 proposition constraints are relevant. Read `docs/03-page-spec.md` only when a Workstream 3 decision materially intersects later page structure.
 
-## 9. Build and deployment state
+## 10. Files changed in the latest decision pass
+
+- `docs/workstreams/WS3-SPEC.md`
+- `docs/CURRENT-HANDOFF.md`
+
+## 11. Build and deployment state
 
 - No Lovable project exists yet.
 - No reusable production code exists.
