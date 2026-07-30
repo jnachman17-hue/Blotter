@@ -6,7 +6,7 @@ Workstream: Conversion and measurement design
 
 ## Purpose
 
-This file is the durable, cumulative specification for Workstream 3. It records ratified conversion, funnel, analytics, metric, and interpretation decisions for the matched spreadsheet-versus-platform landing-page test.
+This is the durable, cumulative specification for Workstream 3. It records ratified conversion, funnel, analytics, metric, read-rule, and threshold decisions for the matched spreadsheet-versus-platform landing-page test.
 
 Update this file whenever Jon ratifies, rejects, supersedes, or materially revises a Workstream 3 decision. `CURRENT-HANDOFF.md` is temporary resumption context and must not be the only record.
 
@@ -18,7 +18,7 @@ Define:
 - lead capture and segmentation;
 - product-experience constraints;
 - price and checkout treatment;
-- the identical analytics event set and event properties;
+- the identical analytics event set and properties;
 - the metric hierarchy;
 - precommitted read rules and interpretation thresholds before traffic launches.
 
@@ -57,8 +57,6 @@ The funnel uses graded intent signals rather than one binary conversion.
 ## Canonical funnel
 
 Every primary CTA, regardless of placement, enters the same funnel.
-
-Confirmed sequence:
 
 1. CTA entry.
 2. Two-question recruiting configuration.
@@ -101,9 +99,7 @@ Approved options:
 
 ## Product experience
 
-The funnel contains one product experience before email capture.
-
-The earlier concept of a teaser before email followed by a second experience after email is rejected.
+The funnel contains one product experience before email capture. The earlier concept of a teaser before email followed by a second experience after email is rejected.
 
 Confirmed constraints:
 
@@ -310,6 +306,25 @@ Governing principle: commercial demand decides whether to continue. Comparative 
 
 Governing principle: early metrics show whether people explore. Late metrics show whether interest survives exposure to the product and price.
 
+## Ratified interpretation thresholds
+
+### 1. Primary comparative metric: meaningful surface difference
+
+A surface is declared the comparative winner on `checkout_started` divided by `page_viewed` only when all three requirements are met:
+
+1. The winning surface's rate is at least **25 percent higher on a relative basis** than the other surface.
+2. The absolute difference is at least **2 percentage points**.
+3. The estimated difference reaches at least **90 percent statistical confidence**.
+
+Interpretation:
+
+- All three conditions met: meaningful comparative winner.
+- Directionally better but one or more conditions missed: ambiguous surface preference.
+- Rates effectively equal: no comparative winner.
+- Commercial demand weak for both: no validated surface, regardless of comparative difference, under the ratified decision hierarchy.
+
+Rationale: statistical confidence alone can elevate a commercially trivial difference when traffic is large, while effect size alone can overread noise from a small sample. Both practical magnitude and statistical support are required.
+
 ## Matched-comparison requirement
 
 The spreadsheet and platform pages must be compared at every matched funnel stage, not only at `payment_option_clicked`.
@@ -336,7 +351,7 @@ Exact copy and visual treatment belong to Workstream 4.
 
 ## Remaining Workstream 3 decisions
 
-1. Define numerical success, failure, and ambiguous-result thresholds.
+1. Define absolute commercial-demand success, failure, and ambiguity thresholds.
 2. Define low-sample treatment and minimum evidence requirements.
 3. Decide whether a project-level kill condition is required before launch or remains deferred.
 4. Select the exact monthly price before implementation or explicitly defer selection to Workstream 4 or 5.
@@ -360,6 +375,6 @@ Do not use Workstream 3 to define:
 
 ## Exact next action
 
-Define numerical interpretation thresholds one decision area at a time.
+Define the absolute commercial-demand threshold framework one decision area at a time.
 
-The next discussion should define the threshold framework for the primary comparative metric: what constitutes a meaningful surface difference versus an ambiguous result. Do not yet set absolute commercial-demand or low-sample thresholds.
+The next discussion should define what payment-option-click rate across all eligible page visitors constitutes credible commercial demand, weak demand, or an ambiguous result. Do not yet define low-sample treatment or the project-level kill condition.
