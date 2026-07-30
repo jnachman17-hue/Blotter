@@ -1,6 +1,6 @@
 # Decision log
 
-Date last updated: July 29, 2026
+Date last updated: July 30, 2026
 
 This file records settled decisions and historical rulings. Only items marked **Confirmed** should be treated as binding project truth. Provisional, unclear, or validation-dependent items belong in `06-assumptions-and-open-questions.md` and should not be treated as settled.
 
@@ -45,6 +45,20 @@ Status: Confirmed
 Status: Confirmed
 
 **Build sequentially, spreadsheet page first, launch both at roughly the same time.** Sequential building de-risks page two. Simultaneous launch is required because a comparison run across different weeks of the recruiting cycle would confound surface preference with timing.
+
+Status: Confirmed
+
+### Workstream 2 proposition
+
+**The July spreadsheet-native landing page targets students before tracker decay is fully felt.** This is not a strategic choice between early-stage and overwhelmed users so much as a consequence of the recruiting calendar. The current audience is entering active networking before peak-season overload.
+
+Status: Confirmed
+
+**The page should demonstrate the future failure concretely without claiming that the visitor has already failed.** The proposition sells prevention of predictable tracker decay now. A rescue proposition for students who have already lost control may be used later in peak recruiting season.
+
+Status: Confirmed
+
+**The primary user framing is a serious candidate entering active networking, at the point when they are adopting or beginning to use a tracker.** Do not over-segment this audience further because students in the process broadly operate on the same recruiting timeline.
 
 Status: Confirmed
 
@@ -109,6 +123,14 @@ This includes, without limitation:
 - Analytics event list.
 - CTA and lead-capture flow.
 - Project-level kill condition.
+
+## Rejected proposition language
+
+**“You keep your record. Blotter keeps the state alive.”** Rejected because a new recruiting student cannot clearly distinguish “record” from “state,” and the line does not explain the product mechanism in plain language. Do not reuse it as working copy.
+
+Status: Rejected
+
+The replacement proposition language is not yet written. The intended meaning is that the student continues networking and outreach normally while Blotter coordinates the associated logistics, including replies, follow-ups, bounces, calls, thank-you notes, and other changing relationship states during high volume.
 
 ## Not actually decisions
 
