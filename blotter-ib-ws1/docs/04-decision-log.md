@@ -126,9 +126,12 @@ Status: Not actually a decision
 
 Status: Not actually a decision
 
-## Items needing one remaining Jon verdict
+## Method
 
-The Method section in the updated decision log did not receive explicit statuses. Current recommended treatment is to confirm both as guardrails, but they should not be marked confirmed until Jon says so:
+**Jon's recruiting tracker is evidence of a failure mode, not a source of statistics.** Its value is the decay curve: state columns maintained early, abandoned as the season loaded up. Do not extract percentages from it and present them as market data.
 
-- Jon's recruiting tracker is evidence of a failure mode, not a source of statistics.
-- Volume language uses qualitative shape and range, never computed averages or loss fractions.
+- Status: Confirmed
+
+**Volume language uses qualitative shape and range.** Never computed averages or loss fractions.
+
+- Status: Confirmed
