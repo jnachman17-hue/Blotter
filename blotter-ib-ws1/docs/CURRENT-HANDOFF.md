@@ -51,9 +51,14 @@ Both pages may contain multiple CTA placements, but every primary CTA enters the
 
 - Round one shows one product at one monthly price.
 - There is no plan-selection step and no price A/B test.
-- No payment information or money is collected.
-- After the visitor clicks a payment-choice button, the next screen explains that Blotter is planned for Fall 2026, confirms that no charge occurred, and tells the visitor that they have secured a place in the limited first beta cohort or priority-access window and will be emailed when it opens.
-- The beta cohort is currently framed as approximately 300 people. Exact terminal copy remains later copy work.
+- No payment credentials or money are collected.
+- The visitor sees a separate, short checkout screen after `Continue to payment`.
+- The checkout shows Blotter, the exact monthly price, monthly billing cadence, amount due, a concise product descriptor, and payment-choice buttons.
+- `Pay with card` is always available. Apple Pay may appear where supported. Either payment-choice click is the strongest commercial-demand signal, with payment method stored separately if available.
+- No card-entry form is shown.
+- After the visitor clicks a payment-choice button, the next screen states that Blotter is planned for Fall 2026 and that the visitor has secured a place in the limited first beta cohort. The cohort is currently framed as approximately 300 people, and Jon will maintain and honor the list.
+- Because no card details are entered and no charge is attempted, the terminal screen does not need unnecessary language stating that no payment was processed or no card details were collected.
+- Exact terminal copy remains later copy work.
 
 ### Minimal segmentation
 
@@ -159,33 +164,33 @@ The current confirmed sequence is:
 4. Recruiting-email capture.
 5. Exposure to one product at one monthly price inside the funnel.
 6. `Continue to payment` or equivalent checkout progression.
-7. `Pay with card`, `Apple Pay`, or equivalent payment-choice action.
-8. Fall 2026 limited-cohort confirmation with no payment collected.
+7. Separate short checkout screen with `Pay with card`, Apple Pay where supported, or equivalent payment-choice actions.
+8. Fall 2026 limited first-cohort confirmation with no payment credentials or money collected.
 
 The email step follows the product experience because the visitor should understand enough of Blotter to make continuation meaningful. This is not being framed as a tradeoff against a hidden post-email demo; from the visitor's perspective, no later demo has been promised or revealed.
 
 ## 6. Still unresolved
 
-- Exact payment-choice presentation and terminal disclosure.
 - Exact monthly price.
 - Analytics event names and definitions.
 - Read rules and interpretation thresholds.
 - Final CTA wording and visual placement, which partly belong to Workstream 4.
 - Exact product-experience content and relationship to the landing-page hero, deferred to Workstream 4.
+- Final checkout and terminal-state copy, deferred to Workstream 4.
 
 ## 7. Exact next action
 
-Resolve the checkout and terminal-state mechanics at a conceptual level.
+Define the identical analytics event set and event properties for the matched spreadsheet and platform funnels.
 
 The next discussion should determine:
 
-1. whether the visitor sees a separate checkout screen after `Continue to payment`;
-2. what payment-choice buttons are shown and how device-dependent options such as Apple Pay are handled;
-3. what information is shown before the payment-choice click so the strongest signal reflects an informed purchase attempt;
-4. what the immediate Fall 2026 limited-cohort disclosure must communicate;
-5. how to preserve credibility without collecting payment information or falsely implying that a charge occurred.
+1. which funnel stages require canonical events;
+2. which diagnostic page and demo interactions are worth tracking;
+3. which event properties must identify page variant, CTA origin, recruiting segment, recruiting window, device context, and payment method;
+4. how events should be named and defined so spreadsheet and platform measurement remain identical;
+5. which metrics are primary, secondary, and diagnostic before read rules are written.
 
-Do not yet write final checkout copy, select the exact monthly price, name analytics events, write read rules, design the full page, or begin Lovable implementation.
+Do not yet write read-rule thresholds, select the exact monthly price, design the full page, write final copy, or begin Lovable implementation.
 
 ## 8. Required reading for resumption
 
