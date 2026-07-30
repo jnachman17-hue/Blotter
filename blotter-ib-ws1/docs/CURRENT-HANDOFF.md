@@ -4,9 +4,9 @@ Date: July 30, 2026
 
 ## 1. Current objective
 
-Complete Workstream 3 by writing the precommitted read rules, interpretation thresholds, low-sample treatment, and treatment of conflicting comparative and absolute demand signals.
+Complete Workstream 3 by finishing the precommitted read rules, numerical interpretation thresholds, low-sample treatment, project-level kill-condition decision, and exact-price decision or deliberate deferral.
 
-Workstreams 1 and 2 are complete. Workstream 3 is in progress. The metric hierarchy is now fully ratified.
+Workstreams 1 and 2 are complete. Workstream 3 is in progress.
 
 ## 2. Source-of-truth and maintenance rules
 
@@ -19,22 +19,13 @@ Workstreams 1 and 2 are complete. Workstream 3 is in progress. The metric hierar
 - Reconcile `06-assumptions-and-open-questions.md` when an open item is resolved or narrowed.
 - Follow the full maintenance system in `docs/05-working-agreement.md`.
 
-## 3. Durable documentation state
+## 3. Recent documentation repair
 
-The active Workstream 3 specification now preserves:
+A prior replacement write accidentally left only edited tails in `WS3-SPEC.md` and this handoff. Both files were repaired to full cumulative form before continuing. The durable WS3 specification again contains the complete funnel, event architecture, metric hierarchy, and ratified read-rule hierarchy.
 
-- the complete matched funnel;
-- recruiting segmentation;
-- product-experience boundary;
-- email-capture treatment;
-- price and checkout mechanics;
-- terminal cohort state;
-- canonical analytics events and properties;
-- the complete ratified metric hierarchy.
+## 4. Workstream 3 durable confirmed architecture
 
-Do not rely on this handoff alone. Read `docs/workstreams/WS3-SPEC.md` for the cumulative durable record.
-
-## 4. Confirmed Workstream 3 conversion architecture
+Read `docs/workstreams/WS3-SPEC.md` for the complete detailed record.
 
 Confirmed funnel:
 
@@ -53,17 +44,15 @@ Confirmed principles:
 - CTA origin is stored through `cta_location`;
 - one product experience occurs before email capture;
 - experience is approximately 15 to 20 seconds maximum;
-- click-to-progress is the working model and animation is not required;
 - actual or simulated OAuth is excluded from the mandatory round-one funnel;
-- Gmail, Sheets, and Calendar must still be shown as the product engine;
+- Gmail, Sheets, and Calendar remain visible as the product engine;
 - price appears only inside the funnel and is not the tested variable;
 - payment-method choice is the strongest commercial-demand signal;
 - no card-entry form, payment credentials, or money are collected;
-- the approximately 300-person cohort commitment is real and will be maintained;
 - both surfaces use the identical canonical event set and properties;
 - both surfaces are compared at every matched funnel stage.
 
-## 5. Canonical analytics events
+Canonical events:
 
 1. `page_viewed`
 2. `funnel_started`
@@ -75,9 +64,7 @@ Confirmed principles:
 8. `payment_option_clicked`
 9. `beta_spot_confirmed`
 
-## 6. Ratified metric hierarchy
-
-All rates use unique eligible visitors, not raw event counts. A visitor counts no more than once per surface for each metric.
+## 5. Ratified metric hierarchy
 
 ### Primary comparative metric
 
@@ -111,25 +98,33 @@ The first measures absolute commercial demand across all visitors. The second me
 
 Diagnostics explain abandonment or instrumentation problems. They must not independently determine the winning surface or whether the project deserves continued investment.
 
-`beta_spot_confirmed` remains an instrumentation and completion check, not a commercial-demand metric.
+## 6. Ratified read-rule hierarchy
+
+- Absolute commercial demand determines whether either proposition deserves further investment.
+- Relative surface preference determines which surface to pursue only after at least one proposition demonstrates credible absolute demand.
+- A relative winner among two weak surfaces is not a validated surface.
+- If both surfaces show weak commercial demand, report `no validated surface` even if one wins the primary comparative metric.
+- If both surfaces show credible commercial demand, use `checkout_started / page_viewed` to select the preferred surface.
+- If that primary comparative metric favors one surface but adequately sampled payment-choice behavior favors the other, commercial-demand behavior takes priority.
+- If payment-choice volume is too low to interpret reliably, it cannot overturn the primary comparative metric and the result remains provisional or ambiguous.
+
+Governing principle: commercial demand decides whether to continue. Comparative performance decides what to continue with.
 
 ## 7. Remaining Workstream 3 scope
 
-1. Write precommitted read rules.
+1. Define the read rule for disagreement between early-funnel interest and late-funnel commercial intent.
 2. Define success, failure, ambiguity, and low-sample treatment.
-3. Define treatment of disagreement between early-funnel and late-funnel results.
-4. Define treatment of a relative surface winner when absolute demand is weak for both.
-5. Decide whether a hard project-level kill condition is required before launch.
-6. Select the exact monthly price or deliberately defer it to Workstream 4 or 5.
-7. Complete and mark `WS3-SPEC.md` final before handing off to Workstream 4.
+3. Decide whether a hard project-level kill condition is required before launch.
+4. Select the exact monthly price or deliberately defer it to Workstream 4 or 5.
+5. Complete and mark `WS3-SPEC.md` final before handing off to Workstream 4.
 
 Do not expand into detailed page design, product-interface design, backend architecture, integration implementation, technical feature specifications, or Lovable implementation.
 
 ## 8. Exact next action
 
-Write the precommitted read rules one decision area at a time.
+Define the read rule for disagreement between early-funnel interest and late-funnel commercial intent. Do not set numerical thresholds yet. Present one decision area only.
 
-The next discussion must define the decision hierarchy when relative surface preference and absolute commercial demand disagree. Do not set numerical thresholds yet.
+After Jon ratifies the ruling, update `docs/workstreams/WS3-SPEC.md` and this handoff before continuing.
 
 ## 9. Required reading for resumption
 
