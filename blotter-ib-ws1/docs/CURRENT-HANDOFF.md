@@ -4,7 +4,7 @@ Date: July 30, 2026
 
 ## 1. Current objective
 
-Complete Workstream 3 by defining absolute commercial-demand thresholds, low-sample treatment, the project-level kill-condition decision, and exact monthly price treatment before handing off to Workstream 4.
+Complete Workstream 3 by defining low-sample treatment, the project-level kill-condition decision, and exact monthly price treatment before handing off to Workstream 4.
 
 Workstreams 1 and 2 are complete. Workstream 3 is in progress.
 
@@ -113,7 +113,9 @@ Governing principle: commercial demand decides whether to continue. Comparative 
 
 Governing principle: early metrics show whether people explore. Late metrics show whether interest survives exposure to the product and price.
 
-## 6. Ratified comparative threshold
+## 6. Ratified interpretation thresholds
+
+### Primary comparative threshold
 
 A surface is declared the winner on `checkout_started / page_viewed` only when all three requirements are met:
 
@@ -121,28 +123,41 @@ A surface is declared the winner on `checkout_started / page_viewed` only when a
 2. At least 2 percentage points higher on an absolute basis.
 3. At least 90 percent statistical confidence in the estimated difference.
 
-Interpretation:
+Directionally better results that miss one or more requirements are ambiguous. Weak commercial demand for both means no validated surface regardless of relative difference.
 
-- all three met: meaningful comparative winner;
-- directionally better but one or more missed: ambiguous surface preference;
-- rates effectively equal: no comparative winner;
-- weak commercial demand for both: no validated surface regardless of relative difference.
+### Absolute commercial-demand thresholds
+
+For `payment_option_clicked / page_viewed`:
+
+- 2.0 percent or higher: strong commercial signal.
+- 1.0 percent to below 2.0 percent: credible commercial signal.
+- 0.5 percent to below 1.0 percent: ambiguous commercial signal.
+- Below 0.5 percent: weak commercial signal.
+
+These are Blotter-specific decision rules rather than claimed universal SaaS standards. Their derivation and limitations are recorded in full in `docs/workstreams/WS3-SPEC.md`.
+
+Benchmark basis:
+
+- Unbounce reports a 3.8 percent median SaaS landing-page conversion rate from more than 464 million visitors, 57 million conversions, and more than 41,000 landing pages. This is broader and usually lower-commitment than Blotter's payment click.
+- ChartMogul and ProductLed's 2026 survey of 200 B2B software products implies approximate visitor-to-paid rates of 0.4 to 1.1 percent across representative freemium and trial funnels.
+- Baymard's approximately 70 percent ecommerce cart-abandonment benchmark provides checkout-attrition context but is not directly comparable and did not set the bands.
+
+The Blotter thresholds intentionally err conservatively because `payment_option_clicked` requires no card entry, financial risk, charge, or actual product commitment. Matching the lower end of real visitor-to-paid SaaS conversion therefore does not qualify as validation.
 
 ## 7. Remaining Workstream 3 scope
 
-1. Define absolute commercial-demand success, failure, and ambiguity thresholds.
-2. Define low-sample treatment and minimum evidence requirements.
-3. Decide whether a hard project-level kill condition is required before launch.
-4. Select the exact monthly price or deliberately defer it to Workstream 4 or 5.
-5. Complete and mark `WS3-SPEC.md` final before handing off to Workstream 4.
+1. Define low-sample treatment and minimum evidence requirements.
+2. Decide whether a hard project-level kill condition is required before launch.
+3. Select the exact monthly price or deliberately defer it to Workstream 4 or 5.
+4. Complete and mark `WS3-SPEC.md` final before handing off to Workstream 4.
 
 Do not expand into detailed page design, product-interface design, backend architecture, integration implementation, technical feature specifications, or Lovable implementation.
 
 ## 8. Exact next action
 
-Define the absolute commercial-demand threshold framework for `payment_option_clicked / page_viewed`.
+Define low-sample treatment and minimum evidence requirements.
 
-The next discussion should decide what rate constitutes credible commercial demand, weak demand, or an ambiguous result. Do not yet define low-sample treatment or the project-level kill condition. Present one decision area only.
+The next discussion should determine when the comparative and commercial-demand thresholds are sufficiently sampled to support a decision, and how results must be classified when they are not. Do not yet decide the project-level kill condition or exact monthly price. Present one decision area only.
 
 After Jon ratifies the ruling, update `docs/workstreams/WS3-SPEC.md` and this handoff before continuing.
 
