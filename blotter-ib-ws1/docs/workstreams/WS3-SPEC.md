@@ -6,7 +6,7 @@ Workstream: Conversion and measurement design
 
 ## Purpose
 
-This file is the durable specification for Workstream 3. It records all ratified conversion, funnel, analytics, and interpretation decisions for the matched spreadsheet-versus-platform landing-page test.
+This file is the durable specification for Workstream 3. It records all ratified conversion, funnel, analytics, metric, and interpretation decisions for the matched spreadsheet-versus-platform landing-page test.
 
 This file must be updated live whenever Jon ratifies, rejects, supersedes, or materially revises a Workstream 3 decision. `CURRENT-HANDOFF.md` is temporary resumption context and must not be the only record of these decisions.
 
@@ -266,22 +266,66 @@ Later-stage properties where applicable:
 
 The event set and property definitions must remain identical across spreadsheet and platform variants.
 
-## Diagnostic measurement
+## Ratified metric hierarchy
 
-Diagnostic interactions may be tracked sparingly, including:
+All conversion rates use unique eligible visitors rather than raw event counts. A visitor counts no more than once per surface for each metric.
 
-- product-experience step views;
-- privacy-details opens;
-- integration-explanation opens.
+### Primary comparative metric
 
-Diagnostic events:
+**Checkout-start rate across all eligible landing-page visitors**
 
-- do not define conversion;
-- do not replace canonical funnel events;
-- should not create an unnecessarily complex instrumentation plan;
-- should be used only to explain primary funnel behavior.
+- Numerator: unique visitors reaching `checkout_started`.
+- Denominator: unique eligible visitors reaching `page_viewed`.
+- Calculated separately for spreadsheet and platform surfaces.
+- This is the primary metric for determining relative surface preference.
+- The analysis follows the visitor's assigned surface from `page_viewed`, regardless of later funnel completion.
 
-Do not track every hover, scroll, tab, card, or decorative interaction merely because it is technically measurable.
+Rationale: the visitor has experienced the surface, submitted an email, seen the actual monthly price, and still chosen to proceed toward payment. It is therefore a stronger and more balanced comparative measure than early curiosity events, while remaining less sparse than the final payment-choice event.
+
+### Secondary comparative metrics
+
+1. **Funnel-start rate**
+   - `funnel_started` divided by `page_viewed`.
+   - Measures initial proposition-level interest.
+
+2. **Email-submission rate**
+   - `email_submitted` divided by `page_viewed`.
+   - Measures identified adoption intent before price-qualified progression.
+
+3. **Post-price progression rate**
+   - `checkout_started` divided by `price_viewed`.
+   - Measures whether visitors who saw the exact price still chose to advance.
+
+These metrics explain the primary comparative result. They do not replace it.
+
+### Commercial-demand metrics
+
+1. **Primary commercial-demand metric**
+   - Unique visitors reaching `payment_option_clicked` divided by all unique eligible visitors reaching `page_viewed`.
+   - Plain-language meaning: of everyone who visited the landing page, what percentage clicked a payment option after seeing the product and price?
+   - This judges absolute commercial demand across the full audience.
+
+2. **Supporting commercial-demand metric**
+   - Unique visitors reaching `payment_option_clicked` divided by unique visitors reaching `checkout_started`.
+   - Plain-language meaning: of everyone who reached checkout, what percentage clicked a payment option?
+   - This isolates checkout conversion among already qualified visitors.
+
+`beta_spot_confirmed` remains an instrumentation and terminal-flow completion check. It is not a commercial-demand metric.
+
+### Diagnostic metrics
+
+The following are ratified as diagnostics only:
+
+- `recruiting_profile_completed` divided by `funnel_started`;
+- `product_experience_completed` divided by `recruiting_profile_completed`;
+- `email_submitted` divided by `product_experience_completed`;
+- `price_viewed` divided by `email_submitted`;
+- `checkout_started` divided by `price_viewed`;
+- `beta_spot_confirmed` divided by `payment_option_clicked`.
+
+Diagnostic metrics identify where visitors abandon the funnel and whether an implementation step is malfunctioning. They may explain a result, but they must not independently determine which surface wins or whether the project deserves continued investment.
+
+Diagnostic interactions may also be tracked sparingly, including product-experience step views, privacy-detail opens, or integration-explanation opens. Do not track every hover, scroll, tab, card, or decorative interaction merely because it is technically measurable.
 
 ## Matched-comparison requirement
 
@@ -289,7 +333,7 @@ The spreadsheet and platform pages must be compared at every matched funnel stag
 
 This permits diagnosis of where each surface gains or loses visitors while preserving the payment-choice click as the strongest commercial signal.
 
-The test must be able to distinguish:
+The test must distinguish:
 
 - proposition-level interest;
 - sustained product exploration;
@@ -311,9 +355,9 @@ Exact copy and visual treatment belong to Workstream 4.
 
 ## Remaining Workstream 3 decisions
 
-1. Define primary, secondary, commercial-demand, and diagnostic metrics from the confirmed event set.
-2. Write read rules before data exists.
-3. Define success, failure, ambiguity, low-sample treatment, and conflicting-signal treatment.
+1. Write precommitted read rules.
+2. Define success, failure, ambiguity, and low-sample treatment.
+3. Define treatment of disagreement between early-funnel and late-funnel results.
 4. Define how to interpret a relative surface winner when absolute commercial demand is weak for both pages.
 5. Decide whether a project-level kill condition is required before launch or remains deferred.
 6. Select the exact monthly price before implementation or explicitly defer selection to Workstream 4 or 5.
@@ -339,12 +383,6 @@ Those belong to later workstreams.
 
 ## Exact next action
 
-Define the metric hierarchy, then write the precommitted read rules.
+Write the precommitted read rules one decision area at a time.
 
-The next discussion must distinguish:
-
-- the primary comparative metric;
-- secondary funnel metrics;
-- absolute commercial-demand metrics;
-- diagnostic metrics;
-- treatment of disagreement between surface preference and absolute demand.
+The next discussion should define the decision hierarchy when relative surface preference and absolute commercial demand disagree, before setting numerical success, failure, ambiguity, or low-sample thresholds.
