@@ -1,6 +1,6 @@
 # Assumptions and open questions
 
-Date last updated: July 29, 2026
+Date last updated: July 30, 2026
 
 This file contains unsettled items only. Items here are not settled decisions. Move an item out only after Jon explicitly confirms it or supersedes it.
 
@@ -11,8 +11,9 @@ This file contains unsettled items only. Items here are not settled decisions. M
 | Read rules | Open question | Read rules should be written before data exists | The rules themselves are still unwritten | Before traffic launches |
 | Project kill condition | Open question | A kill condition may be useful before launch, but Jon feels less strongly about it than read rules | The exact threshold and whether it must be pre-written are unresolved | Before traffic launches or before results are interpreted |
 | Analytics event list | Open question | Both pages must fire the identical event set | The event set has not been written or implemented | Before Lovable implementation or private deployment |
-| CTA and lead-capture flow | Open question | Earlier idea was Connect Gmail with a two-step flow and email capture | Jon has not decided what this process will look like | Before page wireframe, analytics list, or build |
-| Price in round one | Provisional decision | Earlier position was no price and no card step in round one | Jon noted features and maybe price could appear, though not as the variable under test | Before page copy or conversion flow is finalized |
+| Exact canonical funnel stages and order | Open question | Both pages will use the same multi-stage demand funnel, with multiple CTA placements entering one canonical flow | The exact stage sequence, field placement, integration simulation, price screen, and terminal disclosure are not yet settled | Next Workstream 3 decision |
+| Exact CTA wording | Open question | Multiple CTAs may appear, and all primary CTAs must enter the same canonical funnel | Final wording belongs partly to Workstream 4, but the conceptual action must remain consistent with the funnel | Before page copy and wireframe |
+| Exact monthly price | Open question | Round one will show one product at one monthly price and measure willingness to proceed to payment | The price itself has not been selected and is not being A/B tested | Before pricing screen and page copy are finalized |
 | Banks and applications shown or excluded | Provisional decision | For the spreadsheet page, banks and applications appear off for now | Platform page content has not been thought through enough to confirm parity | Before platform page proposition and page spec |
 | Feature cards use pictures rather than bullets | Open design question | Pictures may argue better than bullet lists | Design has not been thought through enough | Before feature-card copy and visual brief |
 | Card count | Open test-design question | Card count should be set by what each page needs to argue | Potential conflict with identical event tracking if pages have different card structures | Before feature-card words are drafted |
