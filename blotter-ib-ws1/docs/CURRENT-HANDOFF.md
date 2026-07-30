@@ -1,110 +1,92 @@
 # Blotter IB — Current Handoff
 
-Date: 2026-07-30
+Date: July 30, 2026
 
 ## 1. Current objective
 
-Complete Workstream 3 by defining the conversion and measurement system for the matched spreadsheet-versus-platform landing-page test before either page is built.
+Complete Workstream 3 by defining the metric hierarchy, read rules, interpretation thresholds, low-sample treatment, and treatment of conflicting comparative and absolute demand signals.
 
-Workstreams 1 and 2 are complete. Workstream 3 is in progress.
+Workstreams 1 and 2 are complete. Workstream 3 is approximately 65 to 70 percent complete.
 
-## 2. Source-of-truth and operating rules
+## 2. Source-of-truth and maintenance rules
 
 - Jon's explicit instructions in the active chat are highest authority.
-- GitHub canonical documents are the durable source of truth.
-- GPT project memory is a convenience layer, not final authority.
-- Only confirmed items in `04-decision-log.md` are binding project truth.
-- `03-page-spec.md` is a working baseline, not a final specification.
-- Do not begin Lovable implementation during Workstream 3.
-- Both product-surface pages must use identical measurement and launch at roughly the same time.
+- GitHub canonical files and workstream specifications are the durable source of truth.
+- GPT project memory and old chat context are convenience layers only.
+- `CURRENT-HANDOFF.md` is temporary immediate context and must not be the only record of a confirmed decision.
+- The active detailed specification is `docs/workstreams/WS3-SPEC.md`.
+- The completed Workstream 2 specification is `docs/workstreams/WS2-SPEC.md`.
+- Whenever Jon ratifies, rejects, supersedes, or materially revises a Workstream 3 decision, update `WS3-SPEC.md` and this handoff before moving to the next substantive decision.
+- Reconcile `06-assumptions-and-open-questions.md` when an open item is resolved or narrowed.
+- Follow the full maintenance system in `docs/05-working-agreement.md`.
 
-## 3. Workstream 2 proposition carried forward
+## 3. Documentation repair completed
 
-- The current page sells prevention of predictable tracker decay.
-- The failure is the widening gap between live recruiting activity and a manually maintained spreadsheet.
-- The student enters contacts and static information. Blotter uses relevant Gmail and Calendar activity to maintain changing recruiting state.
+A durable workstream-specification system now exists.
+
+Created:
+
+- `docs/workstreams/WS2-SPEC.md`
+- `docs/workstreams/WS3-SPEC.md`
+
+Updated:
+
+- `docs/00-START-HERE.md`
+- `docs/02-strategy-and-test.md`
+- `docs/04-decision-log.md`
+- `docs/05-working-agreement.md`
+- `docs/06-assumptions-and-open-questions.md`
+- `docs/CURRENT-HANDOFF.md`
+
+The WS2 proposition and all confirmed WS3 funnel and analytics decisions are no longer dependent on this handoff file.
+
+## 4. Workstream 2 durable outcome
+
+Read `docs/workstreams/WS2-SPEC.md` for the complete proposition specification.
+
+Key preserved constraints:
+
+- July audience is pre-decay and the page sells prevention.
+- The failure is live recruiting activity outpacing manual spreadsheet upkeep.
+- The tracker divides into a student-maintained contact layer and Blotter-maintained activity layer.
 - The core outcome is operational control through one accurate, current source of truth.
-- Blotter is a recruiting-logistics orchestration layer, not contact discovery, LinkedIn scraping, AI outreach, technical preparation, or a jobs board.
-- The spreadsheet-native proposition must emphasize low switching cost: it works with the student's current spreadsheet, preserves existing contacts and notes, can be adopted at any stage, and requires no rebuild.
+- Benefits are accuracy, time saved, everything in one place, and prevention of slippage.
+- The minimum visible offer is auto-capture, legible relationship state, next-action visibility, an action-focused view, and one spreadsheet workflow.
+- The spreadsheet-native proposition must emphasize low switching cost and preservation of the existing tracker.
+- Blotter is not contact discovery, LinkedIn scraping, AI outreach, technical preparation, learning content, or a jobs board.
 
-## 4. Confirmed Workstream 3 conversion architecture
+## 5. Workstream 3 durable confirmed architecture
 
-### Matched funnel
+Read `docs/workstreams/WS3-SPEC.md` for the complete detailed record.
 
-Round one uses an identical multi-stage funnel across the spreadsheet and platform pages. Multiple CTA placements may exist, but every primary CTA enters the same canonical funnel. CTA origin is recorded as a property.
-
-Confirmed sequence:
+Confirmed funnel:
 
 1. CTA entry.
 2. Two-question recruiting configuration.
 3. One concise surface-specific product experience.
 4. Recruiting-email capture.
-5. Exposure to one product at one monthly price inside the funnel.
-6. `Continue to payment` or equivalent checkout progression.
-7. Separate short checkout screen with `Pay with card`, Apple Pay where supported, or equivalent payment-choice actions.
+5. One monthly price inside the funnel.
+6. `Continue to payment` or equivalent.
+7. Separate checkout screen with payment-choice buttons.
 8. Fall 2026 limited first-cohort confirmation.
 
-### Segmentation
+Confirmed conversion and analytics principles:
 
-Question 1: `What are you recruiting for?`
+- all primary CTAs enter one funnel;
+- CTA origin is stored through `cta_location`;
+- one product experience occurs before email capture;
+- experience is approximately 15 to 20 seconds maximum;
+- click-to-progress is the working model and animation is not required;
+- actual or simulated OAuth is excluded from the mandatory round-one funnel;
+- Gmail, Sheets, and Calendar must still be shown as the product engine;
+- price appears only inside the funnel and is not the tested variable;
+- payment-method choice is the strongest commercial-demand signal;
+- no card-entry form, payment credentials, or money are collected;
+- the approximately 300-person cohort commitment is real and will be maintained;
+- both surfaces use the identical canonical event set and properties;
+- both surfaces are compared at every matched funnel stage.
 
-Approved options:
-
-1. Investment Banking
-2. Management Consulting
-3. Private Equity / Growth Equity
-4. Sales & Trading
-5. Asset Management / Equity Research
-6. Venture Capital
-7. Other
-
-Question 2 options:
-
-1. Summer 2028
-2. Full-time
-3. Other
-
-School and current year are excluded.
-
-### Product experience boundary
-
-- One concise product experience occurs before email capture.
-- It should take approximately 15 to 20 seconds at most.
-- Click-to-progress is the working model. Animation is not required.
-- It must make the Gmail, Google Sheets, and Calendar engine understandable.
-- Exact frames, demo states, and relationship to the landing-page hero are deferred to Workstream 4.
-- Spreadsheet and platform variants must remain comparable in duration and interaction burden.
-
-### Email capture
-
-The mandatory funnel does not require actual or simulated OAuth.
-
-Approved direction:
-
-`Continue to your recruiting workspace`
-
-`Enter the email address where you conduct recruiting.`
-
-Willingness to grant Gmail, Calendar, or Sheets permissions is deferred to a later validation iteration.
-
-### Price and checkout
-
-- Exact price appears only inside the funnel after product experience and email capture.
-- Price is not shown on the main landing page.
-- Round one uses one product at one monthly price. There is no plan selection or price A/B test.
-- The exact dollar amount remains unresolved and is not itself the round-one test variable.
-- `Continue to payment` measures price-qualified checkout intent.
-- The strongest commercial-demand signal is clicking `Pay with card`, Apple Pay, or equivalent after seeing the proposed monthly price and checkout total.
-- No card-entry form, payment credentials, or money are collected.
-- After the payment-choice click, the visitor is told Blotter is planned for Fall 2026 and that they secured a place in the approximately 300-person first beta cohort.
-- Jon will maintain and honor the cohort list.
-- The terminal screen does not need unnecessary language stating that no payment was processed or no card details were collected.
-
-## 5. Confirmed analytics architecture
-
-Both product variants use the identical canonical event set.
-
-### Canonical funnel events
+Canonical events:
 
 1. `page_viewed`
 2. `funnel_started`
@@ -116,101 +98,49 @@ Both product variants use the identical canonical event set.
 8. `payment_option_clicked`
 9. `beta_spot_confirmed`
 
-`funnel_started` replaces a separate `cta_clicked` event. CTA origin is stored through the `cta_location` property.
+## 6. Remaining Workstream 3 scope
 
-### Signal interpretation
+1. Define the primary comparative metric.
+2. Define secondary funnel metrics.
+3. Define absolute commercial-demand metrics.
+4. Define diagnostic metrics that do not determine the decision.
+5. Write precommitted read rules.
+6. Define success, failure, ambiguity, and low-sample treatment.
+7. Define treatment of disagreement between early-funnel and late-funnel results.
+8. Define treatment of a relative surface winner when absolute demand is weak for both.
+9. Decide whether a hard project-level kill condition is required before launch.
+10. Select the exact monthly price or deliberately defer it to Workstream 4 or 5.
+11. Complete and mark `WS3-SPEC.md` final before handing off to Workstream 4.
 
-- `page_viewed` establishes exposure.
-- `funnel_started` measures proposition-level interest.
-- `recruiting_profile_completed` and `product_experience_completed` measure sustained exploration.
-- `email_submitted` measures identified adoption intent and creates a contactable lead.
-- `price_viewed` establishes economic exposure.
-- `checkout_started` measures price-qualified checkout intent.
-- `payment_option_clicked` is the strongest commercial-demand event.
-- `beta_spot_confirmed` is an instrumentation and successful-terminal-state check, not a stronger demand signal.
-
-### Required event properties
-
-Core properties where applicable:
-
-- `surface_variant`
-- `session_id`
-- `visitor_id`
-- `traffic_source`
-- `campaign`
-- `device_type`
-- `cta_location`
-- `recruiting_track`
-- `recruiting_window`
-
-Later-stage properties where applicable:
-
-- `price`
-- `billing_period`
-- `payment_method`
-
-The visitor's email belongs in the lead record and should not be duplicated as a general analytics event property.
-
-### Diagnostic events
-
-Diagnostic interactions may be tracked sparingly, such as product-experience steps, privacy-detail opens, or integration-explanation opens. They are not conversion outcomes and must not complicate the primary funnel analysis.
-
-The spreadsheet and platform pages must be compared at every matched funnel stage, not only at `payment_option_clicked`.
-
-## 6. Workstream 3 progress and remaining scope
-
-Workstream 3 is approximately 65 to 70 percent complete.
-
-Completed:
-
-- primary conversion objective and graded signal hierarchy;
-- canonical funnel stages and order;
-- segmentation fields and options;
-- email-capture treatment;
-- product-experience boundary;
-- price placement;
-- checkout and terminal-state mechanics;
-- identical analytics event set and minimum event properties.
-
-Remaining:
-
-1. Define primary, secondary, and diagnostic metrics from the event set.
-2. Write read rules before data exists.
-3. Define success, failure, and ambiguous-result thresholds, including low-sample treatment and disagreement between early- and late-funnel results.
-4. Decide whether an exact project-level kill condition is required now or remains deferred.
-5. Select an exact monthly price before implementation, unless explicitly deferred into Workstream 4 or 5.
-6. Consolidate confirmed rulings into canonical documents and prepare the Workstream 4 handoff.
-
-Do not expand into product architecture, backend logic, OAuth implementation, detailed feature design, platform information architecture, final page copy, exact demo visuals, or Lovable implementation.
+Do not expand into detailed page design, product-interface design, backend architecture, integration implementation, technical feature specifications, or Lovable implementation.
 
 ## 7. Exact next action
 
-Define metric hierarchy and then write the read rules.
+Define the metric hierarchy.
 
 The next discussion should distinguish:
 
-- the primary metric for comparing spreadsheet versus platform;
-- secondary funnel metrics used to explain the primary result;
-- commercial-demand metrics used to judge whether either proposition deserves continued investment;
-- diagnostic metrics that should not determine the decision;
-- how to interpret disagreement between surface preference and absolute demand.
+- primary metric for comparing spreadsheet versus platform;
+- secondary metrics that explain funnel movement;
+- absolute commercial-demand metrics that determine whether either proposition deserves continued investment;
+- diagnostic metrics that should not control decisions;
+- how surface preference and absolute demand interact.
 
-Do not yet design the full page, write final copy, specify technical product behavior, or begin Lovable implementation.
+Present one decision area at a time. After Jon ratifies a ruling, update `docs/workstreams/WS3-SPEC.md`, this handoff, and any affected open-question or decision-log entry before continuing.
 
 ## 8. Required reading for resumption
 
-Read first:
+Read in this order:
 
-- `docs/00-START-HERE.md`
-- `docs/CURRENT-HANDOFF.md`
+1. `docs/00-START-HERE.md`
+2. `docs/CURRENT-HANDOFF.md`
+3. `docs/workstreams/WS3-SPEC.md`
+4. `docs/05-working-agreement.md`
+5. `docs/02-strategy-and-test.md`
+6. `docs/04-decision-log.md`
+7. `docs/06-assumptions-and-open-questions.md`
 
-Then read:
-
-- `docs/02-strategy-and-test.md`
-- `docs/04-decision-log.md`
-- `docs/06-assumptions-and-open-questions.md`
-
-Read `docs/01-project-and-product.md` for product context if needed. Read `docs/03-page-spec.md` only when a conversion decision materially intersects later page structure.
+Read `docs/workstreams/WS2-SPEC.md` when Workstream 2 proposition constraints are relevant. Read `docs/03-page-spec.md` only when a Workstream 3 decision materially intersects later page structure.
 
 ## 9. Build and deployment state
 
