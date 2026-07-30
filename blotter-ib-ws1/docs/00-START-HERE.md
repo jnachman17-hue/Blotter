@@ -25,13 +25,13 @@ The confirmed workstream sequence is:
 9. Use market evidence to continue, revise, retest, or kill the project.
 10. Do not build meaningful backend functionality until market evidence guides it.
 
-The critical sequencing correction is that landing-page content and experience design must occur before Lovable implementation. Lovable is the implementation and visual-iteration environment, not the place where the project first decides what the page is trying to communicate.
+Landing-page content and experience design must occur before Lovable implementation. Lovable is the implementation and visual-iteration environment, not the place where the project first decides what the page is trying to communicate.
 
 ## Current workstream
 
 Workstream 3: Conversion and measurement design.
 
-Status: Ready to begin in the next substantive chat.
+Status: In progress, approximately 65 to 70 percent complete.
 
 Workstreams 1 and 2 are complete.
 
@@ -50,28 +50,53 @@ Workstream 2 established a coherent spreadsheet-native proposition at landing-pa
 
 ## Workstream 3 objective
 
-Define what visitor behavior the market test is trying to produce, how that behavior will be captured, and how the resulting data will be interpreted before any page is built.
+Define what visitor behavior the matched landing-page test is trying to produce, how that behavior will be captured, and how the resulting data will be interpreted before either page is built.
 
 Workstream 3 should resolve:
 
 1. Primary conversion goal and graded intent signals.
-2. CTA wording, placement assumptions, and click behavior at a conceptual level.
-3. Lead-capture flow and what information is collected at each step.
-4. Whether price or purchase-intent mechanics appear in round one.
-5. Identical analytics event set for the spreadsheet and platform pages.
+2. CTA behavior at a conceptual level.
+3. Lead-capture flow and information collected at each step.
+4. Price and purchase-intent treatment in round one.
+5. Identical analytics event set for spreadsheet and platform pages.
 6. Event definitions, naming, and measurement architecture.
 7. Read rules written before data exists.
 8. Success, failure, and ambiguous-result thresholds.
-9. Any required relationship between conversion design and later page structure.
+9. Any conversion-design constraints Workstream 4 must preserve.
 
-Workstream 3 should not write the full landing page, settle final visual design, or begin Lovable implementation. Those follow in Workstreams 4 and 5.
+Workstream 3 should not write the full landing page, settle final visual design, specify detailed product logic, or begin Lovable implementation.
+
+## Workstream 3 confirmed progress
+
+The following are confirmed:
+
+- Round one uses an identical multi-stage demand funnel across spreadsheet and platform pages.
+- Multiple CTA placements may exist, but all enter the same canonical funnel. CTA origin is stored as a property.
+- The canonical funnel is: CTA entry, two-question recruiting configuration, concise product experience, recruiting-email capture, one monthly price inside the funnel, checkout progression, payment-choice click, and Fall 2026 first-cohort confirmation.
+- The product experience occurs once before email capture, should take approximately 15 to 20 seconds at most, and uses simple click-to-progress rather than requiring animation.
+- Exact demo visuals and the relationship between the funnel demo and landing-page hero are deferred to Workstream 4.
+- Segmentation asks only what the visitor is recruiting for and which recruiting window they target.
+- Approved recruiting tracks are Investment Banking, Management Consulting, Private Equity / Growth Equity, Sales & Trading, Asset Management / Equity Research, Venture Capital, and Other.
+- Approved recruiting windows are Summer 2028, Full-time, and Other.
+- Email capture is transparent and does not use actual or simulated OAuth.
+- Gmail, Google Sheets, and Calendar must still be shown as the engine driving the product, but willingness to grant permissions is deferred to a later validation iteration.
+- The exact price appears only inside the funnel after product experience and email capture. Price is not a round-one test variable.
+- A separate short checkout screen shows the product, monthly price, billing cadence, amount due, and payment choices.
+- `Pay with card` is always available. Apple Pay may appear where supported.
+- The strongest commercial-demand signal is clicking a payment-choice button after seeing the price and checkout total.
+- No card-entry form, payment credentials, or money are collected.
+- The terminal state confirms a place in the approximately 300-person Fall 2026 first beta cohort, which Jon will maintain and honor.
+- Both pages are compared at every matched funnel stage, not only at the final payment-choice event.
+- The identical analytics event set is confirmed as: `page_viewed`, `funnel_started`, `recruiting_profile_completed`, `product_experience_completed`, `email_submitted`, `price_viewed`, `checkout_started`, `payment_option_clicked`, and `beta_spot_confirmed`.
+- `funnel_started` carries `cta_location`; there is no separate redundant `cta_clicked` event.
+- `payment_option_clicked` is the strongest commercial event. `beta_spot_confirmed` is an instrumentation and completion check.
 
 ## Current confirmed constraints
 
 - Jon's explicit instructions in the active chat are highest authority.
 - GitHub canonical docs are the durable source of truth.
 - GPT project memory is a convenience layer, not final authority.
-- AI-generated project documents are working context unless confirmed by Jon or recorded as confirmed in the decision log.
+- Only confirmed items in `04-decision-log.md` are binding project truth.
 - Build market evidence before meaningful product or backend buildout.
 - Round one compares spreadsheet-native versus platform-version product surfaces.
 - The spreadsheet-native landing page is designed and built first.
@@ -85,38 +110,44 @@ Workstream 3 should not write the full landing page, settle final visual design,
 
 ## Immediate next milestone
 
-Complete Workstream 3 by agreeing on a coherent conversion and measurement system for the matched landing-page test.
+Complete Workstream 3 by defining the metric hierarchy, read rules, interpretation thresholds, low-sample treatment, and the rules for conflicting comparative and absolute demand signals.
 
-The first decision is the conversion objective: what visitor action should count as the strongest meaningful demand signal in round one, and whether the test should use one binary conversion or a graded sequence of intent signals.
+The exact next action is recorded in `CURRENT-HANDOFF.md` and should be followed without reopening confirmed conversion or analytics decisions.
 
-## Current blockers and deferred items
+## Remaining Workstream 3 items
 
-Blocks the spreadsheet-page design and build:
+- Define primary, secondary, commercial-demand, and diagnostic metrics.
+- Write precommitted read rules.
+- Set success, failure, ambiguous-result, and low-sample treatment.
+- Define how to interpret disagreement between early-funnel and payment-intent results.
+- Define how to interpret a surface winner when absolute demand is weak for both pages.
+- Decide whether a project-level kill condition is required now.
+- Resolve or deliberately defer the exact monthly price.
+- Consolidate the final Workstream 3 decisions and hand off to Workstream 4.
 
-- CTA and lead-capture flow are not yet defined.
-- Analytics event set and event parity are not yet written.
-- Read rules and interpretation thresholds are not yet written.
-- Price treatment and any purchase-intent mechanic remain unresolved.
-
-Deferred to Workstream 4:
+## Deferred to Workstream 4
 
 - Final page narrative and section order.
 - Headline, subhead, and supporting copy.
 - Recruiting-volume statistics and proof devices.
 - Spreadsheet hero and product-demo visuals.
+- Exact funnel product-experience frames and clicks.
+- Relationship between the funnel demo and main landing-page hero.
 - Action-focused view implementation in the demo.
-- Gmail and Calendar explanation.
+- Gmail, Sheets, and Calendar mechanism visualization.
 - Privacy, permissions, trust, and FAQ content.
-- Exact CTA placement within the page.
+- Exact CTA wording and placement.
+- Final checkout and terminal-state copy.
 
-Deferred to later workflows:
+## Deferred to later workflows
 
 - Lovable implementation and private deployment.
 - Platform-page argument and capability inventory.
 - Paid and organic acquisition plan.
 - Testing-domain identity.
 - Final logo.
-- Project-level kill condition, unless Workstream 3 determines it is required for the read rules.
+- Real OAuth and permissions-willingness testing.
+- Meaningful backend functionality.
 
 ## Repository and archive rules
 
@@ -143,4 +174,4 @@ The archive contains stale or superseded strategy, design, technical, and sessio
 - `04-decision-log.md` — confirmed decisions and statused rulings
 - `05-working-agreement.md` — operating rules and continuity process
 - `06-assumptions-and-open-questions.md` — unsettled assumptions and open questions
-- `CURRENT-HANDOFF.md` — immediate resumption context for the next chat
+- `CURRENT-HANDOFF.md` — immediate resumption context and exact next action
