@@ -1,65 +1,83 @@
-# Blotter IB — Start Here
+# Blotter IB — Current Handoff
 
-Date last updated: 2026-07-29
+Date: 2026-07-29
 
-## Project objective
+## 1. Session objective
 
-Blotter is being developed through a Build-Measure-Learn validation process for investment banking recruiting logistics.
+Complete Workstream 1: minimum viable project maintenance and continuity setup.
 
-The immediate objective is to test whether meaningful demand exists before building meaningful backend functionality. The project should produce market evidence about demand, preferred product surface, valued features, and willingness to pay before further product buildout.
+This workstream was maintenance only. It did not include landing-page strategy, analytics architecture, paid-ad research, product design, or Lovable implementation.
 
-## Current phase
+## 2. Work completed
 
-Validation setup.
+- Created a private GitHub repository for the project.
+- Uploaded the current project document bundle.
+- Preserved the chosen repository structure with `blotter-ib-ws1/` as the project root inside the repo.
+- Confirmed the canonical docs path:
+  - `blotter-ib-ws1/docs/`
+- Audited the decision log at a practical level by adding status labels to decisions.
+- Accepted that only confirmed items should be treated as settled project truth.
+- Created/confirmed the role of `06-assumptions-and-open-questions.md`.
+- Simplified `00-START-HERE.md` into a short current-state index.
+- Added the lightweight continuity process to `05-working-agreement.md`.
+- Clarified that `03-page-spec.md` is a working baseline, not final build-ready truth.
+- Confirmed GitHub search indexing works for the repository.
 
-The broader sequence is:
+## 3. Decisions made
 
-1. Build the spreadsheet-native landing page.
-2. Define and implement analytics.
-3. Test and privately deploy it.
-4. Research and prepare paid acquisition.
-5. Build the matched platform-version landing page.
-6. Launch both versions simultaneously.
-7. Use analytics and market evidence to determine whether to continue, revise, or kill the project.
-8. Do not build meaningful backend functionality until market evidence guides it.
+- Keep the current nested repo structure:
+  - `Blotter-GPT/blotter-ib-ws1/`
+- Treat GitHub canonical docs as the durable project record.
+- Treat GPT project memory as a convenience layer, not the source of truth.
+- Treat AI-generated or Claude-generated project files as working context unless confirmed by Jon or recorded as confirmed in the decision log.
+- Use `CURRENT-HANDOFF.md` only for immediate resumption context, not full project history.
+- Begin each new substantial chat by reading:
+  - `00-START-HERE.md`
+  - `CURRENT-HANDOFF.md`
+  - any workflow-specific docs named in the handoff
+- Confirm the two Method decisions:
+  - Jon's recruiting tracker is evidence of a failure mode, not a source of statistics.
+  - Volume language should use qualitative shape/range, not computed averages or loss fractions.
 
-## Current workstream
+## 4. Files changed
 
-Workstream 1: Minimum viable project maintenance and continuity setup.
+Expected changed files:
 
-Status: Complete once `CURRENT-HANDOFF.md` is updated and committed.
+- `blotter-ib-ws1/docs/00-START-HERE.md`
+- `blotter-ib-ws1/docs/04-decision-log.md`
+- `blotter-ib-ws1/docs/05-working-agreement.md`
+- `blotter-ib-ws1/docs/06-assumptions-and-open-questions.md`
+- `blotter-ib-ws1/docs/CURRENT-HANDOFF.md`
 
-## Current confirmed constraints
+Repository structure:
 
-- User instructions in the active chat are highest authority.
-- GitHub canonical docs are the durable source of truth.
-- GPT project memory is a convenience layer, not final authority.
-- Claude-generated or AI-generated project documents are working context unless confirmed by Jon or recorded as confirmed in the decision log.
-- Build market evidence before meaningful product/backend buildout.
-- Spreadsheet-native landing page is built first.
-- Spreadsheet and platform pages should launch at roughly the same time for a valid surface comparison.
-- Analytics/read rules must be defined before traffic is launched.
-- Analytics must be verified by hand before paid traffic.
-- `03-page-spec.md` is a working baseline, not final build-ready truth.
-- The project should stay focused on recruiting logistics, not interview prep, learning content, AI outreach, or job boards.
+- `blotter-ib-ws1/assets/`
+- `blotter-ib-ws1/docs/`
+- `blotter-ib-ws1/experiments/`
+- `blotter-ib-ws1/research/`
+- `blotter-ib-ws1/README.md`
 
-## Immediate next milestone
+## 5. Unresolved issues
 
-Begin Workstream 2:
+- Assistant direct GitHub access was attempted but not verified in the current chat because the GitHub tool became unavailable.
+- GitHub indexing is confirmed from GitHub search results.
+- Hard kill criteria are not yet defined.
+- Analytics/read rules are not yet written.
+- Spreadsheet-native product proposition and landing-page content are not yet defined.
+- Platform-page argument and feature inventory remain unresolved.
+- Some project documents may still contain Claude-generated framing that should be treated as working context, not authority, unless confirmed elsewhere.
+
+## 6. Exact next action
+
+Start Workstream 2:
 
 Define the spreadsheet-native product proposition and landing-page content before beginning the Lovable build.
 
+Do not begin Lovable implementation yet.
+
 Analytics architecture is necessary but temporarily parked. It must be addressed before implementation begins.
 
-## Current blockers
-
-- Spreadsheet-native product proposition and landing-page content are not yet defined.
-- Analytics/read rules are not yet written.
-- Hard kill criteria are not yet decided.
-- Platform-page argument and feature inventory remain unresolved.
-- Assistant direct GitHub access has not been verified in the current chat, although GitHub indexing has been confirmed.
-
-## Canonical file list
+## 7. Relevant links, file names, deployment state, and repository state
 
 Repository:
 
@@ -69,13 +87,18 @@ Canonical docs path:
 
 `blotter-ib-ws1/docs/`
 
-Files:
+GitHub status:
 
-- `00-START-HERE.md` — current-state index
-- `01-project-and-product.md` — project/product context
-- `02-strategy-and-test.md` — validation strategy and test design
-- `03-page-spec.md` — working page specification baseline
-- `04-decision-log.md` — confirmed decisions and statused rulings
-- `05-working-agreement.md` — operating rules and continuity process
-- `06-assumptions-and-open-questions.md` — unsettled assumptions and open questions
-- `CURRENT-HANDOFF.md` — immediate resumption context for the next chat
+- Private repository created.
+- Project documents uploaded.
+- Folder structure created.
+- GitHub indexing confirmed.
+- Assistant direct repo access not verified in this chat.
+
+Deployment state:
+
+- No Lovable project exists yet.
+- No reusable production code exists yet.
+- No final logo exists yet.
+- No completed landing-page assets exist yet.
+- A GoDaddy domain has been purchased, but domain-use strategy for disposable experiments versus permanent Blotter identity remains unresolved.
