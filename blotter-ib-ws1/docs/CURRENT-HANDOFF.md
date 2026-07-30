@@ -121,6 +121,16 @@ The only Workstream 3 requirements are that the experience:
 - uses no unnecessary interaction burden; and
 - remains comparable in duration and interaction burden across the spreadsheet and platform variants.
 
+### Price appears only inside the funnel
+
+The exact monthly price will not appear on the main landing page in round one. It will first appear inside the canonical funnel after the concise product experience and recruiting-email capture.
+
+Both product-surface variants will reveal the same price at the same matched stage and use the same pricing and checkout presentation.
+
+Reason: round one tests macro surface preference, not price. The price is currently unresolved and largely arbitrary. Showing it on the main landing page would allow price to dominate the first impression and confound the surface comparison before visitors understand the product.
+
+Price exposure, checkout progression, and payment-choice clicks will be measured separately. The exact monthly price remains a later decision and is not itself a round-one test variable.
+
 ### Interpretation constraint
 
 The spreadsheet and platform pages must be compared at every matched funnel stage, not only at the final payment-choice event. This allows diagnosis of where each surface gains or loses visitors while preserving the final payment-choice click as the strongest commercial signal.
@@ -147,7 +157,7 @@ The current confirmed sequence is:
 2. Two-question recruiting configuration.
 3. One concise surface-specific product experience.
 4. Recruiting-email capture.
-5. Exposure to one product at one monthly price.
+5. Exposure to one product at one monthly price inside the funnel.
 6. `Continue to payment` or equivalent checkout progression.
 7. `Pay with card`, `Apple Pay`, or equivalent payment-choice action.
 8. Fall 2026 limited-cohort confirmation with no payment collected.
@@ -156,7 +166,6 @@ The email step follows the product experience because the visitor should underst
 
 ## 6. Still unresolved
 
-- Where the monthly price first appears.
 - Exact payment-choice presentation and terminal disclosure.
 - Exact monthly price.
 - Analytics event names and definitions.
@@ -166,18 +175,17 @@ The email step follows the product experience because the visitor should underst
 
 ## 7. Exact next action
 
-Resolve where the single monthly price first appears in the visitor journey and how pricing should relate to the landing page versus the onboarding funnel.
+Resolve the checkout and terminal-state mechanics at a conceptual level.
 
-The next discussion should determine whether price is:
+The next discussion should determine:
 
-1. visible on the landing page before the visitor enters the funnel;
-2. revealed only after the product experience and email capture;
-3. shown in both places; or
-4. handled through another matched structure.
+1. whether the visitor sees a separate checkout screen after `Continue to payment`;
+2. what payment-choice buttons are shown and how device-dependent options such as Apple Pay are handled;
+3. what information is shown before the payment-choice click so the strongest signal reflects an informed purchase attempt;
+4. what the immediate Fall 2026 limited-cohort disclosure must communicate;
+5. how to preserve credibility without collecting payment information or falsely implying that a charge occurred.
 
-The decision must preserve the round-one macro-surface test, avoid unintentionally turning the experiment into a price test, and ensure the final payment-choice click remains interpretable as willingness to pay after real price exposure.
-
-Do not move yet to exact monthly-price selection, analytics event naming, read rules, full page narrative, or Lovable implementation.
+Do not yet write final checkout copy, select the exact monthly price, name analytics events, write read rules, design the full page, or begin Lovable implementation.
 
 ## 8. Required reading for resumption
 
