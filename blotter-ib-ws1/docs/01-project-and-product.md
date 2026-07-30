@@ -1,6 +1,6 @@
 # Project and product
 
-Date last updated: July 29, 2026
+Date last updated: July 30, 2026
 
 ## The owner
 
@@ -20,9 +20,11 @@ Blotter is a logistics and orchestration layer for IB recruiting. Its founding p
 
 The user enters a contact once. Everything downstream computes itself.
 
-The one-line argument in the spreadsheet framing:
+Working proposition meaning, not final copy:
 
-**You keep your record. Blotter keeps the state alive.**
+The student continues networking and outreach normally. Blotter coordinates the logistics created by that activity, including who replied, who went quiet, what bounced, what requires a response, what follow-up is due, what call is scheduled, and what thank-you note remains outstanding.
+
+The prior line, “You keep your record. Blotter keeps the state alive,” is rejected and should not be reused. It does not explain the distinction between record and state clearly enough for a new recruiting student.
 
 ## What Blotter is explicitly not
 
@@ -93,6 +95,8 @@ Corey reviewing the test design before spend is provisional, not yet a confirmed
 The recruiting calendar matters for interpreting results. Trackers circulate socially before the problem is fully felt, and get seriously compiled later in the recruiting cycle.
 
 The current test subject is a student in the SA '28 recruiting class.
+
+For the July test, the proposition sells prevention of future tracker decay because the audience has not yet reached peak recruiting overload. This is a consequence of the recruiting calendar, not a permanent choice to exclude students who are already overwhelmed. A rescue proposition can be used later when the market reaches that moment.
 
 ## Discarded work
 
