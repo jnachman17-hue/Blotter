@@ -2,154 +2,119 @@
 
 Date: 2026-07-30
 
-## 1. Session objective
+## 1. Current objective
 
-Complete Workstream 2 by defining a coherent spreadsheet-native proposition, correct the project roadmap so landing-page design precedes Lovable implementation, and prepare a clean handoff into Workstream 3.
+Complete Workstream 3 by defining the conversion and measurement system for the matched spreadsheet-versus-platform landing-page test before either page is built.
 
-## 2. Work completed
+Workstreams 1 and 2 are complete. Workstream 3 is in progress.
 
-- Completed all five Workstream 2 proposition decisions.
-- Defined the current July audience and recruiting moment.
-- Defined the structural failure and tracker-decay mechanism.
-- Defined the spreadsheet-native product mechanism.
-- Defined the core user outcome and benefit hierarchy.
-- Defined the minimum offer and explicit feature boundaries.
-- Rejected unclear proposition language and preserved promising headline directions for later copy work.
-- Confirmed that Workstream 2 stops at landing-page-test coherence rather than product requirements or technical feasibility.
-- Corrected the future sequence so spreadsheet landing-page content and experience design occur before Lovable implementation.
-- Updated `00-START-HERE.md` and `02-strategy-and-test.md` with the corrected sequence.
+## 2. Source-of-truth and operating rules
 
-## 3. Workstream 2 decisions made
+- Jon's explicit instructions in the active chat are highest authority.
+- GitHub canonical documents are the durable source of truth.
+- GPT project memory is a convenience layer, not final authority.
+- Only confirmed items in `04-decision-log.md` are binding project truth.
+- `03-page-spec.md` is a working baseline, not a final specification.
+- Do not begin Lovable implementation during Workstream 3.
+- Both product-surface pages must use identical measurement and launch at roughly the same time.
 
-### Audience and timing
+## 3. Prior completed proposition
 
-- The July landing page reaches students before tracker decay is fully felt because of the recruiting calendar.
-- The current page sells prevention of predictable tracker decay.
-- A rescue proposition may be used later in peak recruiting season when students are actually overwhelmed.
-- The page should demonstrate the future failure concretely without claiming the current visitor has already failed.
-- Do not over-segment the audience. Serious candidates broadly operate on a similar recruiting timeline.
+Workstream 2 established the spreadsheet-native proposition at landing-page-test resolution:
 
-### Failure mode
-
-- Recruiting activity changes continuously through email and calendar, while a spreadsheet changes only when the student manually maintains it.
-- Tracker decay is caused by cumulative volume and inconsistent upkeep, not excessive column count.
-- Students delay updates, assume they will remember, miss activity in a crowded inbox, stop maintaining formatting consistently, and add ad hoc rows or fields.
-- The sheet gradually becomes stale, inconsistent, and no longer reflects reality.
-- The meaningful consequence is lost operational trust. The student must reconstruct reality from Gmail, Calendar, memory, and scattered notes, and important actions begin slipping through the cracks.
-
-### Spreadsheet-native mechanism
-
-- The student chooses and enters contacts and whatever static information they care about, such as name, email, firm, group, LinkedIn profile, and notes.
-- Blotter uses relevant Gmail and Calendar activity to maintain the changing side of the tracker.
-- The landing page must explain in plain language that the student connects Gmail and Calendar and Blotter reads relevant recruiting activity in the background to keep the tracker current.
-- The product does not discover contacts, scrape LinkedIn, enrich profiles, or automate outreach.
-- Exact automated columns, statuses, and interface logic remain later design decisions.
-
-### Core outcome
-
+- The July audience is entering active networking before tracker decay is fully felt.
+- The page sells prevention of predictable tracker decay now and may sell rescue later in peak season.
+- The structural failure is the widening gap between live recruiting activity and a manually maintained spreadsheet.
+- The student enters contacts and static information. Blotter uses relevant Gmail and Calendar activity to maintain changing recruiting state.
 - The core outcome is operational control through one accurate, current source of truth.
-- The student can open one spreadsheet and immediately understand what is happening, what requires attention, and what should happen next.
-- The benefit hierarchy is accuracy, time saved, everything in one place, and preventing important replies, follow-ups, and other actions from slipping through the cracks.
+- The minimum offer includes automatic activity capture, visually legible contact state, next-action visibility, an action-focused view, and one spreadsheet workflow.
+- Blotter is a recruiting-logistics orchestration layer, not contact discovery, LinkedIn scraping, AI outreach, technical preparation, or a jobs board.
 
-### Minimum offer and boundaries
+## 4. Workstream 3 confirmed ruling: conversion architecture
 
-The minimum spreadsheet-native offer visibly promises:
+Jon ratified the following conversion and demand-measurement architecture.
 
-1. Automatic capture of relevant recruiting activity from connected Gmail and Calendar accounts.
-2. A current and visually legible state for each tracked contact.
-3. Visibility into the next actions requiring attention.
-4. An action-focused view that gathers or prioritizes contacts by what is owed.
-5. One spreadsheet workflow containing the student's contacts and live recruiting activity.
+### Matched multi-stage demand funnel
 
-The implementation of the action-focused view is not settled. It may use sorting, grouping, filters, dedicated action areas, or another visually effective treatment.
+Round one will use an identical multi-stage demand funnel across the spreadsheet and platform pages.
 
-Blotter is explicitly not an AI slop platform. It does not mass-generate generic outreach, write or send messages on the student's behalf, replace student judgment, find contacts, or provide technical interview preparation. “No AI Slop” is banked marketing language for Workstream 4.
+Both pages may contain multiple CTA placements, but every primary CTA enters the same canonical funnel. CTA placement is recorded so the test can identify where interest originated without creating separate low-friction and high-friction conversion paths.
 
-Color-coded relationship state is a resonant behavior to preserve as a marketing and design consideration, but exact colors and statuses are not settled.
+The funnel may include:
 
-Privacy, permissions, access boundaries, and data safety require explicit treatment during landing-page design, likely through an FAQ and potentially a dedicated trust section.
+- product onboarding or interaction;
+- only the highest-value segmentation questions;
+- email or account capture;
+- simulated product or integration progression;
+- exposure to one product at one monthly price;
+- a final payment-choice action;
+- a terminal Fall 2026 availability and early-access message.
 
-## 4. Roadmap correction ratified
+### Signal hierarchy
 
-Do not move directly from conversion and analytics work into Lovable.
+- CTA clicks and onboarding behavior measure attention, curiosity, and product exploration.
+- Email submission and simulated integration progression measure identified adoption intent.
+- Price exposure qualifies the visitor economically but is not itself the strongest signal.
+- The strongest commercial-demand signal is clicking a real payment-choice button after seeing the proposed monthly price, such as `Pay with card` or `Apple Pay`.
+- Reaching the pricing screen alone is not willingness-to-pay evidence.
 
-The corrected sequence is:
+### Payment and terminal state
 
-1. Workstream 1: continuity and source-of-truth setup. Complete.
-2. Workstream 2: spreadsheet-native proposition. Complete.
-3. Workstream 3: CTA, conversion goal, lead-capture flow, analytics architecture, event parity, and read rules.
-4. Workstream 4: spreadsheet landing-page content and experience design.
-5. Workstream 5: spreadsheet-page Lovable implementation, instrumentation, and private deployment.
-6. Workstream 6: acquisition preparation and research.
-7. Workstream 7: platform-page proposition, design, and matched build.
-8. Workstream 8: final analytics verification and simultaneous launch.
+- Round one shows one product at one monthly price.
+- There is no plan-selection step and no price A/B test.
+- No payment is collected.
+- After the visitor clicks a payment-choice button, the next screen explains that Blotter is planned for Fall 2026, confirms that no charge occurred, and tells the visitor that they have secured or requested a place in the early beta or priority-access window and will be emailed when it opens.
+- Exact terminal copy remains later copy work.
 
-Workstream 4 must define the page narrative, content hierarchy, near-final copy, proof devices, spreadsheet visual, demo data, Gmail and Calendar explanation, trust treatment, FAQ content, CTA placement, and visual requirements before implementation begins.
+### Segmentation constraint
 
-Workstream 5 uses Lovable to execute and visually refine that brief. Spacing, typography, proportions, responsiveness, motion, and rendered layout alternatives may be refined inside Lovable. Product logic, page narrative, CTA mechanics, and analytics architecture should not be invented during the build.
+Segmentation should be minimal and limited to the highest-value questions. Current approved direction:
 
-## 5. Files changed
+1. Which high-finance recruiting track the visitor is pursuing, such as investment banking, consulting, private equity, or sales and trading.
+2. Which internship or summer-analyst class the visitor is targeting.
 
-- `blotter-ib-ws1/docs/00-START-HERE.md`
-- `blotter-ib-ws1/docs/01-project-and-product.md`
-- `blotter-ib-ws1/docs/02-strategy-and-test.md`
-- `blotter-ib-ws1/docs/04-decision-log.md`
-- `blotter-ib-ws1/docs/CURRENT-HANDOFF.md`
+School is removed. Current year is removed because it can be inferred sufficiently from the target internship class for this test.
 
-## 6. Current workstream
+### Interpretation constraint
 
-Workstream 3: Conversion and measurement design.
+The spreadsheet and platform pages must be compared at every matched funnel stage, not only at the final payment-choice event. This allows diagnosis of where each surface gains or loses visitors while preserving the final payment-choice click as the strongest commercial signal.
 
-Workstream 3 objective:
+Additional page and demo interactions may be measured diagnostically, but they do not create alternative conversion paths.
 
-Define what visitor behavior the matched landing-page test is trying to produce, how that behavior will be captured, and how the resulting data will be interpreted before either page is built.
+## 5. Important unresolved points
 
-Workstream 3 should resolve:
+- Exact canonical funnel stages and order.
+- Exact placement of the two segmentation questions.
+- Whether email capture occurs before or after the primary product interaction.
+- What the simulated Gmail or account-setup interaction should require.
+- Where the monthly price first appears.
+- Exact payment-choice presentation and terminal disclosure.
+- Exact monthly price.
+- Analytics event names and definitions.
+- Read rules and interpretation thresholds.
+- Final CTA wording and visual placement, which partly belong to Workstream 4.
 
-- Primary conversion goal and graded intent signals.
-- CTA wording and click behavior at a conceptual level.
-- Lead-capture flow and information collected at each step.
-- Whether price or purchase-intent mechanics appear in round one.
-- Identical analytics event set across both pages.
-- Event definitions, naming, and measurement architecture.
-- Read rules written before data exists.
-- Success, failure, and ambiguous-result thresholds.
-- Any conversion-design constraints Workstream 4 must preserve.
+## 6. Exact next action
 
-Do not write the full page, settle final visual design, or begin Lovable implementation during Workstream 3.
+Resolve the exact canonical funnel stages and order.
 
-## 7. Exact next action
+The next discussion should determine the shortest credible path that:
 
-Begin Workstream 3 by resolving the conversion objective:
+1. lets the visitor experience enough of the spreadsheet or platform proposition to make an informed decision;
+2. captures recruiting track and target internship class without feeling like a survey;
+3. identifies the visitor through email or account capture;
+4. creates a credible simulated setup or Gmail-integration progression;
+5. exposes one monthly price;
+6. culminates in `Pay with card` and `Apple Pay` or equivalent payment-choice buttons;
+7. terminates with a clear Fall 2026 early-access disclosure without collecting payment.
 
-**What visitor action should count as the strongest meaningful demand signal in round one, and should the test use one binary conversion or a graded sequence of intent signals?**
+The core design tension is information value versus funnel fatigue. Do not add a stage merely because it produces another data point. Every stage must either improve the validity of the purchase-intent signal, enable essential segmentation, or make the simulated product experience credible.
 
-Start by distinguishing possible levels of intent, for example:
+Do not move yet to analytics event naming, final CTA copy, read rules, page narrative, or Lovable implementation.
 
-- CTA click.
-- Email or lead submission.
-- Completion of a second step that signals stronger intent.
-- Price acceptance or another purchase-intent action, if included.
+## 7. Required reading for resumption
 
-Do not assume that Connect Gmail, a two-step flow, a card step, or price has already been approved. Those are unresolved candidates.
-
-The first discussion should establish what behavior the experiment needs to elicit before deciding the screen sequence or analytics event names.
-
-## 8. Relevant links, files, and project state
-
-Repository:
-
-`https://github.com/jnachman17-hue/Blotter-GPT/tree/main/blotter-ib-ws1`
-
-Canonical docs path:
-
-`blotter-ib-ws1/docs/`
-
-Archive path:
-
-`blotter-ib-ws1/archive/`
-
-Read first in the next chat:
+Read first:
 
 - `docs/00-START-HERE.md`
 - `docs/CURRENT-HANDOFF.md`
@@ -160,13 +125,13 @@ Then read the Workstream 3 canonical files:
 - `docs/04-decision-log.md`
 - `docs/06-assumptions-and-open-questions.md`
 
-Read `docs/01-project-and-product.md` for product context if needed. Read `docs/03-page-spec.md` only as a working baseline when a conversion decision materially intersects later page structure. Do not treat it as final.
+Read `docs/01-project-and-product.md` for product context if needed. Read `docs/03-page-spec.md` only when a conversion decision materially intersects later page structure.
 
-Deployment and build state:
+## 8. Build and deployment state
 
 - No Lovable project exists yet.
 - No reusable production code exists.
 - No final logo exists.
 - No completed landing-page assets exist.
 - A GoDaddy domain exists, but testing-domain identity remains unresolved.
-- No public traffic should launch before both matched pages are ready and analytics are verified by hand.
+- No public traffic should launch before both matched pages are ready, analytics are verified by hand, and read rules are written.
