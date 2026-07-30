@@ -1,6 +1,6 @@
 # Strategy and test design
 
-Date last updated: July 29, 2026
+Date last updated: July 30, 2026
 
 This file governs the validation strategy. It should not be used to settle unresolved page-copy, page-design, CTA, pricing, or platform-positioning details. Those belong in `06-assumptions-and-open-questions.md` until Jon confirms them.
 
@@ -16,6 +16,7 @@ Confirmed consequences:
 - Read rules get written before data exists.
 - Analytics must be in place and verified by hand before any money moves.
 - Research precedes spend, except social account seeding.
+- Landing-page content and experience design must be resolved before Lovable implementation. Lovable is for execution and visual iteration, not for inventing the proposition or page narrative during the build.
 
 Open consequence:
 
@@ -35,13 +36,61 @@ One page presents Blotter as a second tab in the Google Sheet the student alread
 
 The exact CTA and lead-capture flow are not decided. Earlier language about Connect Gmail and a two-step flow is a candidate, not a settled decision.
 
+## Confirmed workstream sequence
+
+The validation program is organized as follows:
+
+1. **Workstream 1: Continuity and source-of-truth setup.** Establish GitHub canonical documents, archive rules, and handoff discipline.
+2. **Workstream 2: Spreadsheet-native proposition.** Define the target moment, failure mode, mechanism, user outcome, and minimum offer boundaries at landing-page-test resolution.
+3. **Workstream 3: Conversion and measurement design.** Define the CTA, conversion goal, lead-capture flow, price treatment if any, analytics event set, event parity, read rules, and interpretation thresholds.
+4. **Workstream 4: Spreadsheet landing-page content and experience design.** Resolve the page narrative, section architecture, near-final copy, proof devices, recruiting-volume statistics, product visuals, Gmail and Calendar explanation, privacy treatment, FAQ content, CTA placement, demo data, and visual requirements.
+5. **Workstream 5: Spreadsheet-page Lovable implementation and private deployment.** Build the defined page, iterate on rendered design, implement interactions and analytics, test responsiveness, privately deploy, and verify events by hand.
+6. **Workstream 6: Acquisition preparation and research.** Prepare paid and organic channels, audience targeting, account seeding, traffic plan, and testing identity as needed.
+7. **Workstream 7: Platform-page proposition, design, and matched build.** Define the platform argument and capability presentation, preserve the matched test skeleton and identical event set, build the platform page, and privately verify it.
+8. **Workstream 8: Final verification and simultaneous launch.** Confirm page comparability, verify analytics again, launch both versions at roughly the same time, and interpret results under the prewritten read rules.
+
+This sequence may be refined as the work develops, but two boundaries are confirmed:
+
+- Do not begin Lovable implementation before the spreadsheet landing-page content and experience design are coherent enough to serve as an execution brief.
+- Do not publicly launch the spreadsheet page before the matched platform page is ready.
+
+## What must be decided before Lovable
+
+Before the first implementation pass, resolve at minimum:
+
+- The page's narrative and content hierarchy.
+- The headline direction and core supporting copy.
+- Required sections and section order.
+- The problem dramatization and proof devices.
+- The spreadsheet product visual and demo-state requirements.
+- The visible product capabilities and boundaries.
+- Gmail and Calendar connection explanation.
+- Privacy, permissions, and safety treatment.
+- CTA placement, behavior, and lead-capture logic.
+- Analytics requirements and event names.
+
+These do not require pixel-perfect design before implementation. They require enough specificity that Lovable is executing a defined argument rather than inventing strategy.
+
+## What may be refined inside Lovable
+
+The live build is the appropriate place to refine:
+
+- Spacing and exact proportions.
+- Typography and responsive behavior.
+- Visual polish and hierarchy adjustments.
+- Motion and animation, if useful.
+- Alternative layout treatments that require rendered comparison.
+- Final asset positioning and implementation details.
+
+Lovable must not independently redefine the product mechanism, page narrative, CTA logic, or analytics architecture.
+
 ## Constraints on the test
 
 | Constraint | Status | Reason |
 |---|---|---|
 | Both pages fire the identical event set. | Confirmed | A page tracking different events than its comparator cannot be compared to it. |
 | Status vocabulary does not need to be identical across pages. | Confirmed | Default to identical unless a real reason to diverge appears. This does not relax identical event tracking. |
-| Spreadsheet page is built first, but both pages launch at roughly the same time. | Confirmed | Sequential build de-risks execution. Simultaneous launch avoids confounding surface preference with recruiting-cycle timing. |
+| Spreadsheet page is built first, but both pages launch at roughly the same time. | Confirmed | Sequential building de-risks page two. Simultaneous launch avoids confounding surface preference with recruiting-cycle timing. |
 | Banks and applications are off on both pages. | Provisional | Likely true for the spreadsheet page. Platform page content is not settled. |
 | Connect Gmail is the primary CTA. | Not settled | The CTA and lead-capture process have not been decided. |
 | Any auth-adjacent flow must not resemble a Google login. | Confirmed if used | No Google marks, no lookalike layout, and no phishing-adjacent design. |
@@ -58,7 +107,7 @@ Resolve before feature-card words are drafted.
 
 ## Build and launch sequence
 
-Confirmed: build sequentially, spreadsheet page first. Do not launch the spreadsheet page publicly until the matched platform page is also complete.
+Confirmed: design and build sequentially, spreadsheet page first. Do not launch the spreadsheet page publicly until the matched platform page is also complete.
 
 Reason: if one page runs in one part of the recruiting cycle and the other page runs later, any difference in conversion may reflect timing rather than preference.
 
