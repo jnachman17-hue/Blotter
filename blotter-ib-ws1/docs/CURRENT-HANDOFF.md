@@ -95,7 +95,7 @@ The step must not request a password, imitate Google authentication, or imply th
 
 Reason: early OAuth would create a severe and analytically ambiguous trust gate. Abandonment could reflect discomfort granting sensitive permissions to an unfamiliar product rather than weak product demand or unwillingness to pay.
 
-The landing page still must clearly demonstrate that Gmail, Google Sheets, and Calendar are the engine that keeps recruiting state current. The mechanism should be explained and shown through page content, product visuals, or the simulated product experience, not through mandatory OAuth in this round.
+The landing page still must clearly demonstrate that Gmail, Google Sheets, and Calendar are the engine that keeps recruiting state current. The mechanism should be explained and shown through page content, product visuals, or the funnel product experience, not through mandatory OAuth in this round.
 
 Willingness to grant permissions and connect real integrations is deferred to a later validation iteration, after the product value, privacy boundaries, and permission requirements are understood.
 
@@ -107,7 +107,19 @@ The visitor has no knowledge that a second, more robust demonstration would foll
 
 The funnel instead uses one concise, surface-specific product experience before email capture. It must show enough value to make continuation and later payment intent meaningful, but it must remain fast and engaging. The word `full` must not be interpreted as a long tutorial, multi-screen product tour, or exhaustive feature demonstration.
 
-Exact duration, interactions, and content remain the next decision.
+The experience should complete in approximately 15 to 20 seconds at most.
+
+Animation is not required and should not be treated as the default. The current working interaction model is simple click-to-progress because it is faster and materially easier to build.
+
+Workstream 3 does not define the exact visual sequence, number of frames, demo states, or whether the funnel experience reuses, extends, or differs from the main landing-page hero visual. Those are Workstream 4 content-and-experience-design decisions.
+
+The only Workstream 3 requirements are that the experience:
+
+- remains concise;
+- shows the product surface clearly enough to support continuation;
+- makes the Gmail, Google Sheets, and Calendar engine understandable;
+- uses no unnecessary interaction burden; and
+- remains comparable in duration and interaction burden across the spreadsheet and platform variants.
 
 ### Interpretation constraint
 
@@ -144,29 +156,28 @@ The email step follows the product experience because the visitor should underst
 
 ## 6. Still unresolved
 
-- Exact content, duration, and interaction model of the concise surface-specific product experience.
 - Where the monthly price first appears.
 - Exact payment-choice presentation and terminal disclosure.
 - Exact monthly price.
 - Analytics event names and definitions.
 - Read rules and interpretation thresholds.
 - Final CTA wording and visual placement, which partly belong to Workstream 4.
+- Exact product-experience content and relationship to the landing-page hero, deferred to Workstream 4.
 
 ## 7. Exact next action
 
-Define the minimum credible surface-specific product experience inside the funnel.
+Resolve where the single monthly price first appears in the visitor journey and how pricing should relate to the landing page versus the onboarding funnel.
 
-The next discussion should determine:
+The next discussion should determine whether price is:
 
-1. what the visitor must see or do to understand the spreadsheet-native proposition well enough to continue;
-2. how quickly the experience should complete;
-3. whether it is interactive, animated, or a guided visual state change;
-4. which parts must remain identical across the spreadsheet and platform variants for test validity;
-5. which parts may differ because the surface itself is the variable under test.
+1. visible on the landing page before the visitor enters the funnel;
+2. revealed only after the product experience and email capture;
+3. shown in both places; or
+4. handled through another matched structure.
 
-The governing constraint is speed. The experience must be long enough to support a meaningful purchase decision but short enough that it does not become a tutorial or materially increase funnel fatigue.
+The decision must preserve the round-one macro-surface test, avoid unintentionally turning the experiment into a price test, and ensure the final payment-choice click remains interpretable as willingness to pay after real price exposure.
 
-Do not move yet to analytics event naming, final CTA copy, read rules, full page narrative, or Lovable implementation.
+Do not move yet to exact monthly-price selection, analytics event naming, read rules, full page narrative, or Lovable implementation.
 
 ## 8. Required reading for resumption
 
