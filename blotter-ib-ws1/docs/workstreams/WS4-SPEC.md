@@ -84,38 +84,216 @@ The page and funnel must preserve:
 
 Read `docs/workstreams/WS3-SPEC.md` for the complete conversion and measurement record.
 
+## Confirmed audience and positioning hierarchy
+
+The landing page will intentionally cast a wider acquisition net than investment banking alone while retaining investment banking as the product's clearest wedge and source workflow.
+
+Confirmed hierarchy:
+
+### Brand and category level
+
+- Displayed product name: `Blotter`.
+- Positioning direction: `The smart recruiting tracker for investment banking and high-finance networking.`
+- Investment banking remains explicit in the category line rather than being removed entirely.
+- The page may market broadly across competitive finance recruiting because the core networking, outreach, follow-up, coffee-chat, interview, and tracker-maintenance workflow is materially similar across the targeted paths.
+
+### Workflow clarification
+
+Supporting language should establish that Blotter is built around the high-volume outreach, coffee chats, follow-ups, and interviews behind competitive finance recruiting.
+
+The exact final sentence remains open copy work, but this workflow clarification is required.
+
+### Funnel segmentation
+
+The broad audience is segmented inside the existing Workstream 3 onboarding sequence through the ratified recruiting-track question. The page does not need separate audience-specific funnels.
+
+Test readouts should preserve the ability to inspect performance by recruiting track, including the investment-banking cohort, while the round-one macro test remains spreadsheet versus platform rather than an audience-positioning test.
+
+## Confirmed brand and domain direction
+
+- The landing page and both variants will display the same brand name: `Blotter`.
+- The owned domain `blotterib.com` will be used rather than introducing a disposable test identity.
+- The URL may retain `IB` even though the displayed brand is broader.
+- Spreadsheet and platform variants must not use different displayed names.
+- The preferred routing direction is one parent domain with distinct paths or subdomains for the matched variants, subject to Workstream 5 implementation feasibility.
+- Candidate structures include `blotterib.com/sheet` and `blotterib.com/platform`, or equivalent subdomains under the same parent domain.
+- Exact routing, deployment, and Lovable custom-domain configuration are Workstream 5 implementation decisions.
+
+## Confirmed narrative architecture
+
+The page should show the product first, then explain why it matters and how it works. It should not require the visitor to study a long problem exposition before seeing the solution.
+
+The confirmed seven-section sequence is:
+
+### 1. Hero: the smart tracker that updates itself
+
+Job:
+
+- establish that this is a recruiting spreadsheet that stays current from real recruiting activity;
+- show the spreadsheet-native product immediately;
+- distinguish the product from cosmetic spreadsheet cleanup;
+- provide the primary CTA into the canonical funnel.
+
+### 2. Scale: why manual recruiting trackers fall behind
+
+Job:
+
+- establish the volume and concurrency of competitive finance recruiting;
+- explain that live Gmail and Calendar activity changes continuously while a manual sheet changes only when the student updates it;
+- use recruiting-cycle figures and visual proof to make the logistics burden concrete.
+
+Exact numbers and final phrasing remain open.
+
+### 3. How it works: you maintain contacts; Blotter maintains changing activity
+
+Job:
+
+- explain the division of labor between student-maintained static information and Blotter-maintained live recruiting state;
+- show Gmail, Calendar, Blotter, and Google Sheets as one causal system;
+- absorb the previously separate event-to-row demonstration so the mechanism is not repeated in two major sections.
+
+### 4. Action view: know what needs to happen today
+
+Job:
+
+- show that the maintained state becomes a usable daily action system;
+- demonstrate grouping, sorting, filtering, or another action-focused treatment for replies, follow-ups, thank-you notes, calls, and other time-sensitive obligations.
+
+Exact action-view implementation remains open.
+
+### 5. Preservation: keep the spreadsheet and structure already in use
+
+Job:
+
+- communicate low switching cost;
+- show that contacts, notes, and preferred fields are preserved;
+- make clear that Blotter adds and maintains the live activity layer rather than forcing a rebuild.
+
+### 6. Privacy and permissions
+
+Job:
+
+- explain restricted Gmail and Calendar use in simple human terms;
+- clarify that Blotter does not read unrestricted personal email;
+- explain that Calendar access exists to identify relevant recruiting meetings;
+- resolve trust objections through concise explanation and FAQ content.
+
+Exact public wording and any third-party verification language remain open and must match actual implementation truth.
+
+### 7. Closing summary and CTA
+
+Job:
+
+- restate the outcome as one current source of truth, less manual upkeep, and clear next actions;
+- remain concise rather than adding another major visual;
+- provide the final CTA into the same canonical funnel.
+
+## Confirmed CTA placement architecture
+
+Three primary CTA placements are approved:
+
+1. Hero CTA.
+2. CTA after the product and action proof.
+3. Final CTA after trust and objections are resolved.
+
+All three enter the same Workstream 3 funnel. Their origin is recorded through `cta_location`. Exact visible CTA wording remains open.
+
+## Confirmed hero communication hierarchy
+
+The hero has one dominant communication job:
+
+`This is a recruiting spreadsheet that updates itself from actual recruiting activity.`
+
+The comprehension hierarchy is:
+
+1. First impression: a smart recruiting spreadsheet that stays current.
+2. Next layer: Gmail and Calendar activity update the spreadsheet automatically.
+3. Deeper layer: the student keeps contacts and static information while Blotter handles changing logistics.
+
+The hero should not attempt to communicate every page benefit with equal weight.
+
+## Confirmed static-first hero composition
+
+The hero will be designed statically first. Motion may be added later only if it materially improves comprehension.
+
+### Background layer
+
+- partially visible ordinary Google Sheets-style recruiting tracker;
+- muted, lower opacity, visually subordinate, and bleeding off an edge;
+- recognizable as a real student tracker before or during decay;
+- imperfect or stale without becoming implausibly chaotic;
+- used for recognition and contrast, not as a full equal before-and-after panel.
+
+### Foreground layer
+
+- dominant Google Sheets-style Blotter tracker;
+- convincingly recreates Google Sheets chrome and spreadsheet behavior because the product lives in Sheets;
+- student-maintained columns appear on the left;
+- Blotter-maintained activity and action columns appear on the right;
+- representative rows show current relationship state and next actions.
+
+### Activity layer
+
+- small static notification chips use Gmail or Calendar symbols and plain-language recruiting events;
+- examples may include a reply received, a coffee chat scheduled, or a follow-up window reached;
+- directional connectors link each event to the relevant updated cells;
+- a concise annotation explains that recruiting activity updates the tracker automatically;
+- a recreated Gmail inbox or Calendar interface is not required.
+
+### Motion rule
+
+- static clarity is the acceptance standard;
+- lightweight motion may later animate event-to-cell causality;
+- animation is not required for initial implementation and must not delay the build.
+
+## Confirmed authority and quantitative proof inputs
+
+- Jon has confirmed that he is a former Goldman Sachs banker.
+- The landing page will include a truthful former-Goldman credential.
+- Jon has a calculated model supporting a time-savings claim.
+- The landing page will include a quantified time-savings claim based on that model.
+- Exact wording, figure, placement, and any methodological qualifier remain Workstream 4 copy decisions.
+- These two claim categories are not to be reopened as yes-or-no questions.
+
 ## Working page direction inherited from prior work
 
-These are useful starting points, not automatically final design decisions:
+The following remain useful constraints unless superseded by a confirmed decision above:
 
-- hero comprehension target is approximately two seconds;
-- before-versus-after should make the spreadsheet-native improvement immediately legible;
-- the before state should resemble a recognizable student recruiting tracker before or during decay;
-- the after state should show a cleaner, current, action-oriented spreadsheet workflow;
-- recruiting-volume statistics may help establish the scale of the logistics burden;
+- hero comprehension should be layered rather than requiring total understanding in two seconds;
 - visual proof should do more work than abstract feature claims;
 - color-coded relationship state is promising, but exact statuses and colors remain open;
 - owner-supplied recruiting-cycle figures may be used as illustrative prototype copy if not falsely attributed to external research.
 
-`docs/03-page-spec.md` is a working baseline only. Re-evaluate it against WS2 and WS3 rather than treating it as final truth.
+`docs/03-page-spec.md` is a working baseline only. Re-evaluate it against WS2, WS3, and the confirmed WS4 decisions rather than treating it as final truth.
 
-## Initial unresolved decisions
+## Remaining unresolved decisions
 
-1. Final page argument and section order.
-2. Hero headline, subhead, CTA, and supporting proof.
-3. Which recruiting-volume statistics appear and how they are framed.
-4. Exact before-versus-after hero composition.
-5. Exact spreadsheet columns, states, and action-focused treatment needed for the demo.
-6. Exact funnel product-experience frames and click sequence.
-7. Whether the funnel experience reuses, extends, or differs from the main hero visual.
-8. Exact explanation of Gmail, Sheets, and Calendar without creating privacy confusion.
-9. Trust, privacy, permissions, and FAQ content.
-10. Exact CTA wording and placement across the page.
-11. Exact $9.99 price presentation, checkout copy, and terminal-state copy.
-12. Mobile and responsive content priorities for implementation.
+1. Exact hero headline, subhead, CTA, and authority treatment.
+2. Exact recruiting-volume statistics and their framing.
+3. Exact foreground and background spreadsheet rows, columns, states, colors, and mock data.
+4. Exact Gmail and Calendar event chips and connector treatment.
+5. Exact action-focused grouping, sorting, filtering, or summary view.
+6. Exact section copy and supporting proof for all seven sections.
+7. Exact funnel product-experience frames and click sequence.
+8. Whether the funnel experience reuses or extends the hero visual.
+9. Exact privacy, permissions, provider, verification, and FAQ wording.
+10. Exact $9.99 price presentation, checkout copy, and terminal-state copy.
+11. Mobile and responsive priorities.
+12. Exact domain routing and Lovable custom-domain implementation.
 
-## Exact first action
+## Exact next action
 
-Define the high-level page narrative before writing isolated copy or selecting detailed visuals.
+Define the hero specification at build-brief resolution before drafting the rest of the page.
 
-The first discussion should establish the page's section sequence and the job each section performs, using the WS2 proposition and WS3 funnel as fixed inputs. Do not begin Lovable implementation or jump immediately into granular interface decisions.
+The next discussion should settle:
+
+- headline argument and copy direction;
+- subhead job and level of mechanism detail;
+- CTA wording direction;
+- authority placement;
+- exact foreground spreadsheet content architecture;
+- exact background tracker role;
+- exact activity-chip examples and static connector logic;
+- desktop composition and mobile simplification.
+
+Do not begin Lovable implementation until the hero and remaining section specifications form a coherent build-ready packet.
