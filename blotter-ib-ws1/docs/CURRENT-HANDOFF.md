@@ -8,9 +8,9 @@ Continue Workstream 4: spreadsheet landing-page content and experience design.
 
 Workstreams 1, 2, and 3 are complete. Workstream 4 is active.
 
-The high-level positioning, brand direction, page narrative, section sequence, CTA placement architecture, and static-first hero direction are now confirmed.
+The audience positioning, brand direction, seven-section narrative, CTA architecture, and hero specification are now confirmed and recorded in `docs/workstreams/WS4-SPEC.md`.
 
-Exact next action: define the hero specification at build-brief resolution.
+Exact next action: specify Section 2, Scale: why manual recruiting trackers fall behind.
 
 ## 2. Source-of-truth rules
 
@@ -19,28 +19,21 @@ Exact next action: define the hero specification at build-brief resolution.
 - `docs/workstreams/WS4-SPEC.md` is the active cumulative specification.
 - `docs/workstreams/WS2-SPEC.md` and `docs/workstreams/WS3-SPEC.md` are completed durable inputs.
 - `CURRENT-HANDOFF.md` is temporary immediate context only.
-- Confirmed decisions should be consolidated into the active workstream specification in related batches.
-- Follow `docs/05-working-agreement.md`, while preserving speed and avoiding unnecessary documentation churn.
+- Follow `docs/05-working-agreement.md` while preserving speed and avoiding unnecessary documentation churn.
+- Do not reopen the confirmed hero unless a later implementation constraint genuinely breaks it.
+- Avoid backend-level edge-case analysis. Demo details need only be coherent, attractive, and credible at market-test resolution.
 
-## 3. Confirmed Workstream 4 decisions
-
-### Audience and positioning
+## 3. Confirmed Workstream 4 positioning and brand
 
 - Displayed product name: `Blotter`.
-- Positioning direction: `The smart recruiting tracker for investment banking and high-finance networking.`
-- Supporting workflow language must establish high-volume outreach, coffee chats, follow-ups, and interviews behind competitive finance recruiting.
-- Marketing may cast a broad high-finance net.
+- Category line: `The smart recruiting tracker for investment banking and high-finance networking.`
+- Marketing may cast a broad competitive-finance net.
 - Recruiting track is captured through the existing Workstream 3 onboarding question.
-- Round one remains a spreadsheet-versus-platform test, not an audience-positioning test.
-
-### Brand and domain
-
-- Both variants display the same `Blotter` brand.
+- Both surface variants display the same Blotter brand.
 - The owned domain `blotterib.com` will be used.
-- Variant routing should use paths or subdomains under the same parent domain where feasible.
-- Exact Lovable custom-domain and routing implementation belongs to Workstream 5.
+- Exact path or subdomain routing belongs to Workstream 5.
 
-### Confirmed seven-section page sequence
+## 4. Confirmed seven-section page sequence
 
 1. Hero: the smart tracker that updates itself.
 2. Scale: why manual recruiting trackers fall behind.
@@ -50,54 +43,105 @@ Exact next action: define the hero specification at build-brief resolution.
 6. Privacy and permissions, plus FAQ.
 7. Concise closing summary and CTA.
 
-### CTA architecture
+Three primary CTA placements are confirmed: hero, after product and action proof, and final section. All enter the same canonical Workstream 3 funnel and store origin through `cta_location`.
 
-Three primary CTA placements are confirmed:
+## 5. Confirmed hero copy
 
-1. Hero.
-2. After product and action proof.
-3. Final section.
+- Eyebrow: `The smart recruiting tracker for investment banking and high-finance networking`
+- Headline: `Your networking keeps moving. Your tracker does not.`
+- Subhead: `Blotter updates the Google Sheet you already use by reading relevant recruiting activity from Gmail and Calendar, so you do not miss follow-ups, coffee chats, or next steps.`
+- CTA: `See how Blotter works`
+- Authority line: `Built by a former Goldman Sachs banker for recruitment.`
+- Preserve `Your recruiting tracker, always current.` for the closing section.
 
-All enter the same canonical Workstream 3 funnel and use `cta_location` for origin tracking. Exact visible wording remains open.
+## 6. Confirmed hero visual and table
 
-### Hero direction
+### Composition
 
-- Hero job: communicate that this is a recruiting spreadsheet that updates itself from actual recruiting activity.
-- Static design comes first. Motion is optional later and must not delay implementation.
-- Background: muted, partially visible ordinary Google Sheets-style tracker bleeding off an edge.
-- Foreground: dominant, convincingly Google Sheets-style Blotter tracker.
-- Student-maintained columns appear on the left; Blotter-maintained live state and action columns appear on the right.
-- Gmail and Calendar notification chips connect recruiting events to updated spreadsheet cells.
-- A recreated Gmail inbox or Calendar interface is not required.
-- The previously separate event-to-row section is merged into the broader How It Works section to avoid repetition.
+- Static-first design.
+- Muted, partially visible stale Google Sheets-style tracker in the background.
+- Dominant Google Sheets-style Blotter tracker in the foreground.
+- Small Gmail, Calendar, or Blotter timing chips connect activity to updated cells.
+- Motion is optional later and must not delay implementation.
+- No bottom status legend.
 
-### Authority and claims
+### Zone labels
 
-- Jon confirmed he is a former Goldman Sachs banker.
-- A truthful former-Goldman credential will appear.
-- A quantified time-savings claim based on Jon's calculated model will appear.
-- Exact wording, figure, placement, and qualifier remain open.
+- `YOU ADD THE CONTACTS`
+- `BLOTTER KEEPS IT CURRENT`
 
-## 4. Exact next action
+### Columns
 
-Define the hero specification at build-brief resolution.
+Student-maintained:
 
-Settle:
+1. Name
+2. Title
+3. Firm
 
-1. Headline argument and copy direction.
-2. Subhead job and mechanism detail.
-3. CTA wording direction.
-4. Goldman credential placement.
-5. Time-savings proof placement, if used in the hero.
-6. Foreground spreadsheet content architecture.
-7. Background tracker treatment.
-8. Gmail and Calendar event-chip examples and connector logic.
-9. Desktop composition.
-10. Mobile simplification.
+Blotter-maintained:
 
-Then proceed through the remaining six section specifications, the funnel screens, trust and FAQ copy, responsive constraints, and the final Lovable implementation packet.
+1. Status
+2. Next move
+3. Last contact
+4. Days
+5. Call
 
-## 5. Workstream 3 constraints that remain fixed
+### Styling and colors
+
+- Google Sheets-style dropdown chips for Status only.
+- Gray: Not contacted, Sent, and other calm or inactive states.
+- Green: Replied.
+- Red: No reply when a bump is due.
+- Blue: Call scheduled.
+- Amber: Call completed when a thank-you is owed.
+- Days turns red only when elapsed time creates an action.
+
+### Eight-row pattern
+
+1. Not contacted → Email Sarah
+2. Sent → blank
+3. Sent → blank
+4. No reply → Bump thread
+5. No reply → Bump thread
+6. Replied → Reply to Marcus
+7. Call scheduled → blank
+8. Call completed → Thank Priya or equivalent
+
+`Gone dead` and `Concluded` are excluded from the hero. Exact names, dates, firms, event-chip wording, and connector positions are minor implementation details.
+
+## 7. Confirmed product-boundary language
+
+Primary statement:
+
+`Blotter is a recruiting-logistics layer that keeps your process organized. It does not teach technicals or write your outreach.`
+
+Compact strip direction:
+
+- No technical-prep content
+- No generic mass AI outreach
+- No AI slop
+
+Supporting line:
+
+`You choose the people and write the messages. Blotter keeps the logistics current.`
+
+This content should appear after the product has been explained positively, likely near the How It Works section rather than in the hero.
+
+## 8. Exact next action
+
+Specify Section 2, Scale: why manual recruiting trackers fall behind.
+
+Resolve efficiently:
+
+1. Which owner-supported recruiting-cycle figures appear.
+2. The quantified time-savings figure and any necessary qualifier.
+3. The section headline and concise explanatory argument.
+4. The visual hierarchy of big numbers, supporting copy, and proof.
+5. Whether one compact visual is needed to show Gmail and Calendar activity outpacing manual sheet upkeep.
+
+Then proceed through the remaining sections, funnel screens, trust and FAQ copy, responsive constraints, and final Lovable implementation packet.
+
+## 9. Workstream 3 constraints that remain fixed
 
 - Every primary CTA enters the same funnel.
 - Two recruiting-configuration questions precede the product experience.
@@ -111,21 +155,14 @@ Then proceed through the remaining six section specifications, the funnel screen
 - The terminal state confirms a real place in the approximately 300-person Fall 2026 beta cohort.
 - Both surfaces ultimately use the same funnel, price, event set, and measurement rules.
 
-## 6. Build and deployment state
+## 10. Build and deployment state
 
 - No Lovable project exists yet.
 - No reusable production code exists.
 - No completed landing-page assets exist.
 - No public traffic should launch before both matched pages are ready, analytics are verified by hand, and the measurement period is frozen.
 
-## 7. Files updated in the latest decision batch
-
-- `docs/workstreams/WS4-SPEC.md`
-- `docs/06-assumptions-and-open-questions.md`
-- `docs/04-decision-log.md`
-- `docs/CURRENT-HANDOFF.md`
-
-## 8. Required reading for a new chat
+## 11. Required reading for a new chat
 
 Read in this order:
 
@@ -138,4 +175,4 @@ Read in this order:
 7. `docs/03-page-spec.md` only as a working baseline after the durable specifications
 8. `docs/06-assumptions-and-open-questions.md`
 
-Then execute the exact next action. Do not reopen confirmed WS2, WS3, or the confirmed WS4 narrative decisions and do not begin Lovable implementation before the build-ready specification is complete.
+Then execute the exact next action. Do not reopen confirmed WS2, WS3, the WS4 narrative architecture, or the confirmed hero.
