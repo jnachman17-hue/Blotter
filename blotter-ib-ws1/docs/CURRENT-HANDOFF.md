@@ -8,9 +8,9 @@ Continue Workstream 4: spreadsheet landing-page content and experience design.
 
 Workstreams 1, 2, and 3 are complete. Workstream 4 is active.
 
-The audience positioning, brand direction, seven-section narrative, CTA architecture, and hero specification are now confirmed and recorded in `docs/workstreams/WS4-SPEC.md`.
+The audience positioning, brand direction, seven-section narrative, CTA architecture, hero specification, and Section 2 Scale argument and visual treatment are confirmed and recorded in `docs/workstreams/WS4-SPEC.md`.
 
-Exact next action: specify Section 2, Scale: why manual recruiting trackers fall behind.
+Exact next action: settle the reduced time-savings figure and any final case-study count corrections, then specify Section 3, How It Works.
 
 ## 2. Source-of-truth rules
 
@@ -19,21 +19,18 @@ Exact next action: specify Section 2, Scale: why manual recruiting trackers fall
 - `docs/workstreams/WS4-SPEC.md` is the active cumulative specification.
 - `docs/workstreams/WS2-SPEC.md` and `docs/workstreams/WS3-SPEC.md` are completed durable inputs.
 - `CURRENT-HANDOFF.md` is temporary immediate context only.
-- Follow `docs/05-working-agreement.md` while preserving speed and avoiding unnecessary documentation churn.
-- Do not reopen the confirmed hero unless a later implementation constraint genuinely breaks it.
+- Do not reopen the confirmed hero or Section 2 unless an implementation constraint genuinely breaks them.
 - Avoid backend-level edge-case analysis. Demo details need only be coherent, attractive, and credible at market-test resolution.
 
-## 3. Confirmed Workstream 4 positioning and brand
+## 3. Confirmed Workstream 4 positioning and sequence
 
 - Displayed product name: `Blotter`.
 - Category line: `The smart recruiting tracker for investment banking and high-finance networking.`
 - Marketing may cast a broad competitive-finance net.
-- Recruiting track is captured through the existing Workstream 3 onboarding question.
-- Both surface variants display the same Blotter brand.
+- Both surface variants use the same Blotter brand.
 - The owned domain `blotterib.com` will be used.
-- Exact path or subdomain routing belongs to Workstream 5.
 
-## 4. Confirmed seven-section page sequence
+Confirmed seven-section sequence:
 
 1. Hero: the smart tracker that updates itself.
 2. Scale: why manual recruiting trackers fall behind.
@@ -43,9 +40,9 @@ Exact next action: specify Section 2, Scale: why manual recruiting trackers fall
 6. Privacy and permissions, plus FAQ.
 7. Concise closing summary and CTA.
 
-Three primary CTA placements are confirmed: hero, after product and action proof, and final section. All enter the same canonical Workstream 3 funnel and store origin through `cta_location`.
+Three primary CTA placements remain confirmed: hero, after product and action proof, and final section.
 
-## 5. Confirmed hero copy
+## 4. Confirmed hero
 
 - Eyebrow: `The smart recruiting tracker for investment banking and high-finance networking`
 - Headline: `Your networking keeps moving. Your tracker does not.`
@@ -54,68 +51,81 @@ Three primary CTA placements are confirmed: hero, after product and action proof
 - Authority line: `Built by a former Goldman Sachs banker for recruitment.`
 - Preserve `Your recruiting tracker, always current.` for the closing section.
 
-## 6. Confirmed hero visual and table
+Visual direction remains static-first: muted stale tracker behind, dominant Blotter-maintained Google Sheet in front, and small Gmail or Calendar event chips connected to updated cells.
 
-### Composition
+Student-maintained columns: Name, Title, Firm.
 
-- Static-first design.
-- Muted, partially visible stale Google Sheets-style tracker in the background.
-- Dominant Google Sheets-style Blotter tracker in the foreground.
-- Small Gmail, Calendar, or Blotter timing chips connect activity to updated cells.
-- Motion is optional later and must not delay implementation.
-- No bottom status legend.
+Blotter-maintained columns: Status, Next move, Last contact, Days, Call.
 
-### Zone labels
+## 5. Confirmed Section 2: Scale
 
-- `YOU ADD THE CONTACTS`
-- `BLOTTER KEEPS IT CURRENT`
+### Copy
 
-### Columns
+Eyebrow:
 
-Student-maintained:
+`The scale of a recruiting cycle`
 
-1. Name
-2. Title
-3. Firm
+Headline:
 
-Blotter-maintained:
+`Your manual tracker was never built to keep up with this.`
 
-1. Status
-2. Next move
-3. Last contact
-4. Days
-5. Call
+Supporting argument:
 
-### Styling and colors
+`A serious recruiting cycle can generate hundreds of emails, dozens of coffee chats, applications, and overlapping interview rounds. Every reply, scheduled call, follow-up window, and completed conversation changes what needs to happen next.`
 
-- Google Sheets-style dropdown chips for Status only.
-- Gray: Not contacted, Sent, and other calm or inactive states.
-- Green: Replied.
-- Red: No reply when a bump is due.
-- Blue: Call scheduled.
-- Amber: Call completed when a thank-you is owed.
-- Days turns red only when elapsed time creates an action.
+`But Gmail and Calendar record those changes continuously while your spreadsheet changes only when you stop and update it. As the process accelerates, updates get delayed, details are forgotten, and the tracker gradually falls out of sync with reality.`
 
-### Eight-row pattern
+Closing line:
 
-1. Not contacted → Email Sarah
-2. Sent → blank
-3. Sent → blank
-4. No reply → Bump thread
-5. No reply → Bump thread
-6. Replied → Reply to Marcus
-7. Call scheduled → blank
-8. Call completed → Thank Priya or equivalent
+`Once you stop trusting the tracker, you are back to reconstructing your process from Gmail, Calendar, memory, and scattered notes. That is when follow-ups, thank-you notes, and next steps begin falling through the cracks.`
 
-`Gone dead` and `Concluded` are excluded from the hero. Exact names, dates, firms, event-chip wording, and connector positions are minor implementation details.
+The implementation may shorten this copy while preserving the argument.
 
-## 7. Confirmed product-boundary language
+### Case-study proof
+
+The figures come from a real high-intensity Summer Analyst 2028 recruiting cycle that resulted in a JPMorgan offer. They are not presented as an industry average.
+
+Qualification direction:
+
+`Representative workload from a high-intensity Summer Analyst 2028 recruiting cycle that resulted in a JPMorgan offer.`
+
+Current working exact figures:
+
+- 628 recruiting emails
+- 55 coffee chats
+- 19 applications
+- 30 interview rounds
+
+Final count verification and minor label wording may occur before implementation.
+
+### Time-savings claim
+
+A quantified time-savings claim remains required, but 85 hours was rejected as too high.
+
+The estimate applies specifically to the same JPMorgan-offer case. It covers transferring relevant Gmail activity into the tracker, maintaining relationship state and next actions, reconciling calls from Calendar, and auditing the sheet against both systems. It excludes writing emails, preparing for calls, conducting calls, and interviewing.
+
+Exact reduced figure remains open. Current recommended center point: approximately 60 hours, within a conservative 50 to 65 hour range.
+
+### Visual treatment
+
+Use four large case-study figures followed by one compact divergence visual.
+
+Divergence titles:
+
+- `WHAT ACTUALLY HAPPENED`
+- `WHAT MADE IT INTO THE MANUAL TRACKER`
+
+The left side shows continuous Gmail and Calendar events. The right side shows sparse, delayed, incomplete tracker updates. The time-savings claim appears as a subordinate proof block with a small methodology qualifier.
+
+No CTA appears in Section 2.
+
+## 6. Confirmed product-boundary language
 
 Primary statement:
 
 `Blotter is a recruiting-logistics layer that keeps your process organized. It does not teach technicals or write your outreach.`
 
-Compact strip direction:
+Compact strip:
 
 - No technical-prep content
 - No generic mass AI outreach
@@ -125,23 +135,16 @@ Supporting line:
 
 `You choose the people and write the messages. Blotter keeps the logistics current.`
 
-This content should appear after the product has been explained positively, likely near the How It Works section rather than in the hero.
+Likely placement is near Section 3 after the product has been explained positively.
 
-## 8. Exact next action
+## 7. Exact next action
 
-Specify Section 2, Scale: why manual recruiting trackers fall behind.
+1. Settle the reduced time-savings figure, with approximately 60 hours as the recommendation.
+2. Correct any case-study counts if needed.
+3. Specify Section 3, How It Works, efficiently as one ratification package.
+4. Continue through Action View, Preservation, Privacy and FAQ, closing section, funnel screens, responsive constraints, and the final Lovable-ready implementation brief.
 
-Resolve efficiently:
-
-1. Which owner-supported recruiting-cycle figures appear.
-2. The quantified time-savings figure and any necessary qualifier.
-3. The section headline and concise explanatory argument.
-4. The visual hierarchy of big numbers, supporting copy, and proof.
-5. Whether one compact visual is needed to show Gmail and Calendar activity outpacing manual sheet upkeep.
-
-Then proceed through the remaining sections, funnel screens, trust and FAQ copy, responsive constraints, and final Lovable implementation packet.
-
-## 9. Workstream 3 constraints that remain fixed
+## 8. Workstream 3 constraints that remain fixed
 
 - Every primary CTA enters the same funnel.
 - Two recruiting-configuration questions precede the product experience.
@@ -155,14 +158,14 @@ Then proceed through the remaining sections, funnel screens, trust and FAQ copy,
 - The terminal state confirms a real place in the approximately 300-person Fall 2026 beta cohort.
 - Both surfaces ultimately use the same funnel, price, event set, and measurement rules.
 
-## 10. Build and deployment state
+## 9. Build state
 
 - No Lovable project exists yet.
 - No reusable production code exists.
 - No completed landing-page assets exist.
 - No public traffic should launch before both matched pages are ready, analytics are verified by hand, and the measurement period is frozen.
 
-## 11. Required reading for a new chat
+## 10. Required reading for a new chat
 
 Read in this order:
 
@@ -172,7 +175,5 @@ Read in this order:
 4. `docs/workstreams/WS2-SPEC.md`
 5. `docs/workstreams/WS3-SPEC.md`
 6. `docs/05-working-agreement.md`
-7. `docs/03-page-spec.md` only as a working baseline after the durable specifications
-8. `docs/06-assumptions-and-open-questions.md`
 
-Then execute the exact next action. Do not reopen confirmed WS2, WS3, the WS4 narrative architecture, or the confirmed hero.
+Then execute the exact next action. Do not reopen completed WS2, WS3, the hero, or the ratified Section 2 argument and visual treatment.
