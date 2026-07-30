@@ -30,9 +30,7 @@ Workstream 2 established the spreadsheet-native proposition at landing-page-test
 - The minimum offer includes automatic activity capture, visually legible contact state, next-action visibility, an action-focused view, and one spreadsheet workflow.
 - Blotter is a recruiting-logistics orchestration layer, not contact discovery, LinkedIn scraping, AI outreach, technical preparation, or a jobs board.
 
-## 4. Workstream 3 confirmed ruling: conversion architecture
-
-Jon ratified the following conversion and demand-measurement architecture.
+## 4. Workstream 3 confirmed rulings
 
 ### Matched multi-stage demand funnel
 
@@ -40,40 +38,43 @@ Round one will use an identical multi-stage demand funnel across the spreadsheet
 
 Both pages may contain multiple CTA placements, but every primary CTA enters the same canonical funnel. CTA placement is recorded so the test can identify where interest originated without creating separate low-friction and high-friction conversion paths.
 
-The funnel may include:
-
-- product onboarding or interaction;
-- only the highest-value segmentation questions;
-- email or account capture;
-- simulated product or integration progression;
-- exposure to one product at one monthly price;
-- a final payment-choice action;
-- a terminal Fall 2026 availability and early-access message.
-
 ### Signal hierarchy
 
 - CTA clicks and onboarding behavior measure attention, curiosity, and product exploration.
-- Email submission and simulated integration progression measure identified adoption intent.
+- Email submission measures identified adoption intent and creates a contactable lead.
 - Price exposure qualifies the visitor economically but is not itself the strongest signal.
-- The strongest commercial-demand signal is clicking a real payment-choice button after seeing the proposed monthly price, such as `Pay with card` or `Apple Pay`.
-- Reaching the pricing screen alone is not willingness-to-pay evidence.
+- Clicking `Continue to payment` or equivalent measures price-qualified checkout intent.
+- The strongest commercial-demand signal is clicking a real payment-choice button after seeing the proposed monthly price and checkout total, such as `Pay with card` or `Apple Pay`.
+- Reaching the pricing or checkout screen alone is not willingness-to-pay evidence.
 
 ### Payment and terminal state
 
 - Round one shows one product at one monthly price.
 - There is no plan-selection step and no price A/B test.
-- No payment is collected.
-- After the visitor clicks a payment-choice button, the next screen explains that Blotter is planned for Fall 2026, confirms that no charge occurred, and tells the visitor that they have secured or requested a place in the early beta or priority-access window and will be emailed when it opens.
-- Exact terminal copy remains later copy work.
+- No payment information or money is collected.
+- After the visitor clicks a payment-choice button, the next screen explains that Blotter is planned for Fall 2026, confirms that no charge occurred, and tells the visitor that they have secured a place in the limited first beta cohort or priority-access window and will be emailed when it opens.
+- The beta cohort is currently framed as approximately 300 people. Exact terminal copy remains later copy work.
 
-### Segmentation constraint
+### Minimal segmentation
 
-Segmentation should be minimal and limited to the highest-value questions. Current approved direction:
+The funnel should ask only two high-value segmentation questions:
 
-1. Which high-finance recruiting track the visitor is pursuing, such as investment banking, consulting, private equity, or sales and trading.
-2. Which internship or summer-analyst class the visitor is targeting.
+1. Which recruiting track the visitor is pursuing. Investment banking, consulting, and private equity should appear first. The remaining list is not yet finalized.
+2. Which recruiting window the visitor is targeting. Current approved options are `Summer 2028`, `Full-time`, and `Other`.
 
-School is removed. Current year is removed because it can be inferred sufficiently from the target internship class for this test.
+School is removed. Current year is removed because it is either unnecessary or sufficiently inferred from recruiting timing.
+
+### Stage 3 is simple email capture, not OAuth
+
+The mandatory round-one funnel will not require actual or simulated Gmail, Google Calendar, or Google Sheets OAuth.
+
+Stage 3 is a transparent email-capture step framed around the address the visitor uses for recruiting or where their recruiting workspace and early-access confirmation should be sent. It must not request a password, imitate Google authentication, or imply that inbox access has been granted.
+
+Reason: early OAuth would create a severe and analytically ambiguous trust gate. Abandonment could reflect discomfort granting sensitive permissions to an unfamiliar product rather than weak product demand or unwillingness to pay. The product has not yet earned enough trust or demonstrated enough value to interpret that abandonment cleanly.
+
+The landing page still must clearly demonstrate that Gmail, Google Sheets, and Calendar are the engine that keeps recruiting state current. The mechanism should be explained and shown through page content, product visuals, or the simulated product experience, not through mandatory OAuth in this round.
+
+Willingness to grant permissions and connect the real integrations is deferred to a later validation iteration, when it can be tested after the product value, privacy boundaries, and permission requirements are understood.
 
 ### Interpretation constraint
 
@@ -81,12 +82,35 @@ The spreadsheet and platform pages must be compared at every matched funnel stag
 
 Additional page and demo interactions may be measured diagnostically, but they do not create alternative conversion paths.
 
-## 5. Important unresolved points
+### Low-switching-cost proposition constraint
 
-- Exact canonical funnel stages and order.
-- Exact placement of the two segmentation questions.
-- Whether email capture occurs before or after the primary product interaction.
-- What the simulated Gmail or account-setup interaction should require.
+The spreadsheet-native proposition must make clear that Blotter can be adopted with very low switching cost:
+
+- it works with the student's current spreadsheet;
+- it does not require rebuilding the tracker or starting over;
+- it can be adopted at any stage of recruiting;
+- existing contacts, notes, and structure are preserved;
+- the student only continues adding contacts as outreach expands, while Blotter maintains the changing recruiting activity around them.
+
+The exact visual and copy treatment belongs to Workstream 4.
+
+## 5. Canonical funnel status
+
+Ratified components:
+
+1. Multiple CTA placements may exist, but all enter the same canonical funnel.
+2. Minimal recruiting-track and recruiting-window segmentation is included.
+3. Stage 3 is simple recruiting-email capture, not OAuth.
+4. The visitor receives a concise surface-specific product experience before the purchase decision.
+5. One product and one monthly price are shown.
+6. Checkout progression culminates in `Pay with card`, `Apple Pay`, or equivalent payment-choice actions, followed by the Fall 2026 limited-cohort disclosure.
+
+Still unresolved:
+
+- Exact remaining recruiting-track options after investment banking, consulting, and private equity.
+- Exact placement and presentation of the segmentation questions.
+- Whether email capture occurs immediately before or immediately after the primary product interaction.
+- Exact content and duration of the surface-specific product experience.
 - Where the monthly price first appears.
 - Exact payment-choice presentation and terminal disclosure.
 - Exact monthly price.
@@ -96,19 +120,14 @@ Additional page and demo interactions may be measured diagnostically, but they d
 
 ## 6. Exact next action
 
-Resolve the exact canonical funnel stages and order.
+Finalize the recruiting-track option list, then resolve whether the simple email-capture step should occur before or after the primary product interaction.
 
-The next discussion should determine the shortest credible path that:
+The decision should preserve the shortest credible path while ensuring that:
 
-1. lets the visitor experience enough of the spreadsheet or platform proposition to make an informed decision;
-2. captures recruiting track and target internship class without feeling like a survey;
-3. identifies the visitor through email or account capture;
-4. creates a credible simulated setup or Gmail-integration progression;
-5. exposes one monthly price;
-6. culminates in `Pay with card` and `Apple Pay` or equivalent payment-choice buttons;
-7. terminates with a clear Fall 2026 early-access disclosure without collecting payment.
-
-The core design tension is information value versus funnel fatigue. Do not add a stage merely because it produces another data point. Every stage must either improve the validity of the purchase-intent signal, enable essential segmentation, or make the simulated product experience credible.
+- email capture feels transparent and product-relevant rather than like a generic waitlist gate;
+- the visitor sees enough value before being asked for materially sensitive or identifying information;
+- useful leads are captured before avoidable downstream abandonment;
+- both product-surface variants use the identical sequence.
 
 Do not move yet to analytics event naming, final CTA copy, read rules, page narrative, or Lovable implementation.
 
