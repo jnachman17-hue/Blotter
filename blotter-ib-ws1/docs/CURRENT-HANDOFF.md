@@ -4,7 +4,7 @@ Date: July 30, 2026
 
 ## 1. Current objective
 
-Complete Workstream 3 by defining numerical interpretation thresholds, low-sample treatment, the project-level kill-condition decision, and exact monthly price treatment before handing off to Workstream 4.
+Complete Workstream 3 by defining absolute commercial-demand thresholds, low-sample treatment, the project-level kill-condition decision, and exact monthly price treatment before handing off to Workstream 4.
 
 Workstreams 1 and 2 are complete. Workstream 3 is in progress.
 
@@ -113,26 +113,40 @@ Governing principle: commercial demand decides whether to continue. Comparative 
 
 Governing principle: early metrics show whether people explore. Late metrics show whether interest survives exposure to the product and price.
 
-## 6. Remaining Workstream 3 scope
+## 6. Ratified comparative threshold
 
-1. Define numerical success, failure, and ambiguity thresholds for the primary comparative metric.
-2. Define absolute commercial-demand thresholds.
-3. Define low-sample treatment and minimum evidence requirements.
-4. Decide whether a hard project-level kill condition is required before launch.
-5. Select the exact monthly price or deliberately defer it to Workstream 4 or 5.
-6. Complete and mark `WS3-SPEC.md` final before handing off to Workstream 4.
+A surface is declared the winner on `checkout_started / page_viewed` only when all three requirements are met:
+
+1. At least 25 percent higher on a relative basis than the other surface.
+2. At least 2 percentage points higher on an absolute basis.
+3. At least 90 percent statistical confidence in the estimated difference.
+
+Interpretation:
+
+- all three met: meaningful comparative winner;
+- directionally better but one or more missed: ambiguous surface preference;
+- rates effectively equal: no comparative winner;
+- weak commercial demand for both: no validated surface regardless of relative difference.
+
+## 7. Remaining Workstream 3 scope
+
+1. Define absolute commercial-demand success, failure, and ambiguity thresholds.
+2. Define low-sample treatment and minimum evidence requirements.
+3. Decide whether a hard project-level kill condition is required before launch.
+4. Select the exact monthly price or deliberately defer it to Workstream 4 or 5.
+5. Complete and mark `WS3-SPEC.md` final before handing off to Workstream 4.
 
 Do not expand into detailed page design, product-interface design, backend architecture, integration implementation, technical feature specifications, or Lovable implementation.
 
-## 7. Exact next action
+## 8. Exact next action
 
-Define the threshold framework for the primary comparative metric, `checkout_started / page_viewed`.
+Define the absolute commercial-demand threshold framework for `payment_option_clicked / page_viewed`.
 
-The next discussion should decide what constitutes a meaningful surface difference versus an ambiguous comparative result. Do not yet set absolute commercial-demand or low-sample thresholds. Present one decision area only.
+The next discussion should decide what rate constitutes credible commercial demand, weak demand, or an ambiguous result. Do not yet define low-sample treatment or the project-level kill condition. Present one decision area only.
 
 After Jon ratifies the ruling, update `docs/workstreams/WS3-SPEC.md` and this handoff before continuing.
 
-## 8. Required reading for resumption
+## 9. Required reading for resumption
 
 Read in this order:
 
@@ -146,12 +160,12 @@ Read in this order:
 
 Read `docs/workstreams/WS2-SPEC.md` when Workstream 2 proposition constraints are relevant. Read `docs/03-page-spec.md` only when a Workstream 3 decision materially intersects later page structure.
 
-## 9. Files changed in the latest decision pass
+## 10. Files changed in the latest decision pass
 
 - `docs/workstreams/WS3-SPEC.md`
 - `docs/CURRENT-HANDOFF.md`
 
-## 10. Build and deployment state
+## 11. Build and deployment state
 
 - No Lovable project exists yet.
 - No reusable production code exists.
