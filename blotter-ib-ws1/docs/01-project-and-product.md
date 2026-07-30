@@ -112,7 +112,6 @@ Do not resurrect this work unless Jon explicitly says to.
 
 - Domain: GoDaddy domain purchased. Whether initial disposable experiments use the permanent Blotter identity or a neutral testing domain is unresolved.
 - No Lovable project currently exists.
-- No GitHub repository currently exists until Jon creates it.
 - No reusable production code currently exists.
 - No final logo currently exists.
 - No completed landing-page assets currently exist.
