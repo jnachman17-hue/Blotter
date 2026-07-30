@@ -102,6 +102,22 @@ Status: Confirmed
 
 Status: Confirmed
 
+**The minimum spreadsheet-native offer has five visible capabilities.** It automatically captures relevant recruiting activity from connected Gmail and Calendar accounts, maintains a current and visually legible state for each tracked contact, shows the next actions that require attention, provides an action-focused view that gathers or prioritizes contacts by what is owed, and keeps the student's contact information and live recruiting activity within one spreadsheet workflow.
+
+Status: Confirmed
+
+**The landing page must explain the auto-capture mechanism in plain language.** The student connects Gmail and Calendar, and Blotter reads the relevant recruiting activity in the background to keep the tracker current. The page does not need to explain OAuth or implementation details. Privacy, access boundaries, and data safety require explicit treatment later in the landing-page design, likely through an FAQ and potentially a dedicated trust section.
+
+Status: Confirmed
+
+**An action-focused view is part of the minimum offer, but its interface is not settled.** The demo must make it easy to identify contacts requiring attention. This may be delivered through sorting, grouping, filtered action areas, or a separate section such as follow-ups owed. The choice is a landing-page visual and product-hypothesis decision, not a Workstream 2 technical specification.
+
+Status: Confirmed
+
+**Blotter is explicitly not an AI slop platform.** It does not mass-generate generic outreach, write or send messages on the student's behalf, take over the student's judgment, or find contacts for them. It is an orchestration layer for recruiting logistics, not an AI outreach engine and not a technical interview-preparation product. “No AI Slop” is approved as banked marketing language to revisit during landing-page design.
+
+Status: Confirmed
+
 ### Product
 
 **Blotter is a logistics layer only.** Not learning content, not interview prep, not AI-assisted outreach, not a jobs board.
@@ -147,6 +163,7 @@ This includes, without limitation:
 - Feature card structure
 - Copy structure
 - Exact automated columns, including status, next move, last activity, timing, and call state
+- The implementation of the action-focused view, including sorting, grouping, filters, or a separate action section
 - Any low-level layout rule not separately confirmed by Jon
 
 ## Provisional decisions and open items moved to `06-assumptions-and-open-questions.md`
@@ -157,7 +174,6 @@ This includes, without limitation:
 - Banks and applications off on both pages.
 - Feature cards carry pictures rather than bullets.
 - Card count set by what each page needs to argue.
-- Spreadsheet grouped action areas.
 - Platform page argument.
 - Platform capability inventory.
 - Testing domain identity.
