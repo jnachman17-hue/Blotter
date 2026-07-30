@@ -18,6 +18,14 @@ Status: Confirmed
 
 Status: Confirmed
 
+**Workstream 2 stops at sufficient proposition coherence for a credible landing-page test.** It is not a product-requirements exercise. Do not over-specify workflows, technical feasibility, implementation logic, or backend behavior. Define only enough mechanism, outcome, and offer continuity to support a coherent spreadsheet page and matched platform page, then move to market testing.
+
+Status: Confirmed
+
+**Move with speed: build, learn, iterate.** The current product concept does not need to be technically proven or fully specified before the market test. Features shown on the landing pages are hypotheses to test, not commitments to build.
+
+Status: Confirmed
+
 **Read rules get written before data exists.** Otherwise the numbers get interpreted to taste after the fact. The rules themselves are still unwritten and are a hard gate on traffic.
 
 Status: Confirmed
@@ -59,6 +67,14 @@ Status: Confirmed
 Status: Confirmed
 
 **The primary user framing is a serious candidate entering active networking, at the point when they are adopting or beginning to use a tracker.** Do not over-segment this audience further because students in the process broadly operate on the same recruiting timeline.
+
+Status: Confirmed
+
+**The structural failure is the widening gap between live recruiting activity and a manually maintained spreadsheet.** Students conduct recruiting through email and calendar, while the tracker changes only when they update it manually. Every reply, bounce, scheduled call, completed call, follow-up window, and unanswered thread changes what must happen next. As activity rises, the spreadsheet falls behind and becomes operationally unreliable.
+
+Status: Confirmed
+
+**The page should frame the consequences as stale status and lost operational trust, not merely visual messiness.** The student can no longer confidently tell who needs a response, which conversations require follow-up, or what the correct next action is. They must reconstruct reality from Gmail, Calendar, and memory.
 
 Status: Confirmed
 
@@ -130,7 +146,7 @@ This includes, without limitation:
 
 Status: Rejected
 
-The replacement proposition language is not yet written. The intended meaning is that the student continues networking and outreach normally while Blotter coordinates the associated logistics, including replies, follow-ups, bounces, calls, thank-you notes, and other changing relationship states during high volume.
+The replacement proposition language is not yet written. “Your networking keeps moving. Your tracker does not.” is a promising headline direction, but is not yet final.
 
 ## Not actually decisions
 
@@ -150,10 +166,10 @@ Status: Not actually a decision
 
 ## Method
 
-**Jon's recruiting tracker is evidence of a failure mode, not a source of statistics.** Its value is the decay curve: state columns maintained early, abandoned as the season loaded up. Do not extract percentages from it and present them as market data.
+**Owner-supplied recruiting-cycle figures may be used as illustrative test copy.** The current phase is concept validation, not publication of an audited market study. These figures may support dramatization of the recruiting workload, but should not be falsely attributed to an external study or represented as independently verified market averages.
 
-- Status: Confirmed
+Status: Confirmed
 
-**Volume language uses qualitative shape and range.** Never computed averages or loss fractions.
+**Do not let evidence research become a blocker to launching the market test.** Research is optional where it improves the test, not a prerequisite for using Jon's first-hand process estimates in prototype copy.
 
-- Status: Confirmed
+Status: Confirmed
