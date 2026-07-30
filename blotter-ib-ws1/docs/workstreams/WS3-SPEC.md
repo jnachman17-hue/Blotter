@@ -327,6 +327,20 @@ Diagnostic metrics identify where visitors abandon the funnel and whether an imp
 
 Diagnostic interactions may also be tracked sparingly, including product-experience step views, privacy-detail opens, or integration-explanation opens. Do not track every hover, scroll, tab, card, or decorative interaction merely because it is technically measurable.
 
+## Ratified read rules
+
+### Decision hierarchy when comparative preference and absolute demand disagree
+
+1. Absolute commercial demand determines whether either proposition deserves further investment.
+2. Relative surface preference determines which surface to pursue only after at least one proposition demonstrates credible absolute demand.
+3. A surface does not become viable merely because it performs better than another weak surface.
+4. If both surfaces show weak commercial demand, the result is `no validated surface`, even if one wins the primary comparative metric.
+5. If both surfaces show credible commercial demand, use the primary comparative metric, `checkout_started` divided by `page_viewed`, to select the preferred surface.
+6. If the primary comparative metric favors one surface but adequately sampled payment-choice behavior favors the other, the stronger commercial-demand result takes priority because it is closer to actual willingness to pay.
+7. If payment-choice volume is too low to interpret reliably, it cannot overturn the primary comparative metric. The result remains provisional or ambiguous until the low-sample rules are applied.
+
+Governing principle: commercial demand decides whether to continue. Comparative performance decides what to continue with.
+
 ## Matched-comparison requirement
 
 The spreadsheet and platform pages must be compared at every matched funnel stage, not only at `payment_option_clicked`.
@@ -355,13 +369,12 @@ Exact copy and visual treatment belong to Workstream 4.
 
 ## Remaining Workstream 3 decisions
 
-1. Write precommitted read rules.
+1. Continue writing precommitted read rules.
 2. Define success, failure, ambiguity, and low-sample treatment.
 3. Define treatment of disagreement between early-funnel and late-funnel results.
-4. Define how to interpret a relative surface winner when absolute commercial demand is weak for both pages.
-5. Decide whether a project-level kill condition is required before launch or remains deferred.
-6. Select the exact monthly price before implementation or explicitly defer selection to Workstream 4 or 5.
-7. Complete this specification and hand off durable constraints to Workstream 4.
+4. Decide whether a project-level kill condition is required before launch or remains deferred.
+5. Select the exact monthly price before implementation or explicitly defer selection to Workstream 4 or 5.
+6. Complete this specification and hand off durable constraints to Workstream 4.
 
 ## Workstream boundary
 
@@ -383,6 +396,4 @@ Those belong to later workstreams.
 
 ## Exact next action
 
-Write the precommitted read rules one decision area at a time.
-
-The next discussion should define the decision hierarchy when relative surface preference and absolute commercial demand disagree, before setting numerical success, failure, ambiguity, or low-sample thresholds.
+Define the next precommitted read rule: how to interpret disagreement between early-funnel interest and late-funnel commercial intent before setting numerical success, failure, ambiguity, or low-sample thresholds.
