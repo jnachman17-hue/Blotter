@@ -4,7 +4,7 @@ Date: July 30, 2026
 
 ## 1. Current objective
 
-Complete Workstream 3 by defining low-sample treatment, the project-level kill-condition decision, and exact monthly price treatment before handing off to Workstream 4.
+Complete Workstream 3 by deciding whether a hard project-level kill condition is required, resolving exact monthly price treatment, and preparing the durable handoff to Workstream 4.
 
 Workstreams 1 and 2 are complete. Workstream 3 is in progress.
 
@@ -134,34 +134,62 @@ For `payment_option_clicked / page_viewed`:
 - 0.5 percent to below 1.0 percent: ambiguous commercial signal.
 - Below 0.5 percent: weak commercial signal.
 
-These are Blotter-specific decision rules rather than claimed universal SaaS standards. Their derivation and limitations are recorded in full in `docs/workstreams/WS3-SPEC.md`.
+These are Blotter-specific decision rules rather than claimed universal SaaS standards. Their full benchmark derivation and conservative-adjustment rationale are recorded in `docs/workstreams/WS3-SPEC.md`.
 
-Benchmark basis:
+## 7. Ratified low-sample treatment
 
-- Unbounce reports a 3.8 percent median SaaS landing-page conversion rate from more than 464 million visitors, 57 million conversions, and more than 41,000 landing pages. This is broader and usually lower-commitment than Blotter's payment click.
-- ChartMogul and ProductLed's 2026 survey of 200 B2B software products implies approximate visitor-to-paid rates of 0.4 to 1.1 percent across representative freemium and trial funnels.
-- Baymard's approximately 70 percent ecommerce cart-abandonment benchmark provides checkout-attrition context but is not directly comparable and did not set the bands.
+### Comparative result
 
-The Blotter thresholds intentionally err conservatively because `payment_option_clicked` requires no card entry, financial risk, charge, or actual product commitment. Matching the lower end of real visitor-to-paid SaaS conversion therefore does not qualify as validation.
+A comparative winner cannot be declared until:
 
-## 7. Remaining Workstream 3 scope
+- each surface has at least 300 eligible visitors;
+- the 25 percent relative difference requirement is met;
+- the 2-percentage-point absolute difference requirement is met;
+- the result reaches at least 90 percent statistical confidence.
 
-1. Define low-sample treatment and minimum evidence requirements.
-2. Decide whether a hard project-level kill condition is required before launch.
-3. Select the exact monthly price or deliberately defer it to Workstream 4 or 5.
-4. Complete and mark `WS3-SPEC.md` final before handing off to Workstream 4.
+Below 300 visitors per surface, the comparative result is directional only.
+
+### Positive commercial-demand result
+
+A surface cannot receive a final credible or strong classification until:
+
+- it has at least 500 eligible visitors; and
+- at least 10 unique visitors trigger `payment_option_clicked`.
+
+Until both are met, an observed credible or strong rate is labeled `promising but insufficiently sampled`.
+
+### Weak-demand result
+
+A final weak classification requires:
+
+- at least 600 eligible visitors on the surface; and
+- statistical support that the true rate is unlikely to reach the 1 percent credible-demand threshold.
+
+A zero-click result from an early sample is insufficient evidence, not failure.
+
+### Underpowered outcomes
+
+When the relevant evidence requirement is not met, classify the result as `insufficient sample, no decision`.
+
+Do not force an underpowered test into success, failure, or a surface-selection decision.
+
+## 8. Remaining Workstream 3 scope
+
+1. Decide whether a hard project-level kill condition is required before launch.
+2. Select the exact monthly price or deliberately defer it to Workstream 4 or 5.
+3. Complete and mark `WS3-SPEC.md` final before handing off to Workstream 4.
 
 Do not expand into detailed page design, product-interface design, backend architecture, integration implementation, technical feature specifications, or Lovable implementation.
 
-## 8. Exact next action
+## 9. Exact next action
 
-Define low-sample treatment and minimum evidence requirements.
+Decide whether a hard project-level kill condition is required before launch or should remain deferred.
 
-The next discussion should determine when the comparative and commercial-demand thresholds are sufficiently sampled to support a decision, and how results must be classified when they are not. Do not yet decide the project-level kill condition or exact monthly price. Present one decision area only.
+Do not yet select the exact monthly price or begin Workstream 4. Present one decision area only.
 
 After Jon ratifies the ruling, update `docs/workstreams/WS3-SPEC.md` and this handoff before continuing.
 
-## 9. Required reading for resumption
+## 10. Required reading for resumption
 
 Read in this order:
 
@@ -175,12 +203,12 @@ Read in this order:
 
 Read `docs/workstreams/WS2-SPEC.md` when Workstream 2 proposition constraints are relevant. Read `docs/03-page-spec.md` only when a Workstream 3 decision materially intersects later page structure.
 
-## 10. Files changed in the latest decision pass
+## 11. Files changed in the latest decision pass
 
 - `docs/workstreams/WS3-SPEC.md`
 - `docs/CURRENT-HANDOFF.md`
 
-## 11. Build and deployment state
+## 12. Build and deployment state
 
 - No Lovable project exists yet.
 - No reusable production code exists.
