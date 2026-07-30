@@ -6,7 +6,7 @@ Workstream: Conversion and measurement design
 
 ## Purpose
 
-This is the durable, cumulative specification for Workstream 3. It records ratified conversion, funnel, analytics, metric, read-rule, and threshold decisions for the matched spreadsheet-versus-platform landing-page test.
+This file is the durable, cumulative specification for Workstream 3. It records ratified conversion, funnel, analytics, metric, and interpretation decisions for the matched spreadsheet-versus-platform landing-page test.
 
 Update this file whenever Jon ratifies, rejects, supersedes, or materially revises a Workstream 3 decision. `CURRENT-HANDOFF.md` is temporary resumption context and must not be the only record.
 
@@ -18,7 +18,7 @@ Define:
 - lead capture and segmentation;
 - product-experience constraints;
 - price and checkout treatment;
-- the identical analytics event set and properties;
+- the identical analytics event set and event properties;
 - the metric hierarchy;
 - precommitted read rules and interpretation thresholds before traffic launches.
 
@@ -57,6 +57,8 @@ The funnel uses graded intent signals rather than one binary conversion.
 ## Canonical funnel
 
 Every primary CTA, regardless of placement, enters the same funnel.
+
+Confirmed sequence:
 
 1. CTA entry.
 2. Two-question recruiting configuration.
@@ -99,7 +101,9 @@ Approved options:
 
 ## Product experience
 
-The funnel contains one product experience before email capture. The earlier concept of a teaser before email followed by a second experience after email is rejected.
+The funnel contains one product experience before email capture.
+
+The earlier concept of a teaser before email followed by a second experience after email is rejected.
 
 Confirmed constraints:
 
@@ -325,6 +329,54 @@ Interpretation:
 
 Rationale: statistical confidence alone can elevate a commercially trivial difference when traffic is large, while effect size alone can overread noise from a small sample. Both practical magnitude and statistical support are required.
 
+### 2. Absolute commercial-demand thresholds
+
+The governing metric is `payment_option_clicked` divided by `page_viewed`, using unique eligible visitors.
+
+Ratified bands:
+
+- **Strong commercial signal: 2.0 percent or higher.** Continue validation and treat the qualifying surface as a serious build candidate, subject to low-sample rules.
+- **Credible commercial signal: 1.0 percent to below 2.0 percent.** Continue validation. The result is sufficiently strong to justify further investment in testing and may support a build decision when considered with sample quality and the full funnel.
+- **Ambiguous commercial signal: 0.5 percent to below 1.0 percent.** Diagnose the funnel and run a bounded retest. Do not begin meaningful backend build solely from this result.
+- **Weak commercial signal: below 0.5 percent.** No commercial validation, subject to low-sample rules. Strong early-funnel behavior cannot rescue this classification.
+
+Zero payment-option clicks classify as weak demand unless the low-sample rules establish that qualified exposure was insufficient for judgment.
+
+#### Benchmark derivation and limitations
+
+These thresholds are Blotter-specific decision rules, not a claimed universal SaaS or fake-door industry standard. No credible published dataset was found for Blotter's exact funnel: landing-page visitor, concise product experience, email submission, price exposure, checkout progression, and payment-option click without card entry or payment.
+
+The thresholds were triangulated from the closest available external comparables:
+
+1. **SaaS landing-page conversion:** Unbounce's 2024 Conversion Benchmark Report analyzed more than 464 million unique visitors, 57 million conversions, and more than 41,000 landing pages. It reports a median SaaS landing-page conversion rate of **3.8 percent**. This is an upper-context benchmark only because the underlying conversion can include lower-commitment actions such as lead submissions, registrations, downloads, or demo requests rather than purchase intent.
+2. **Website visitor to paying SaaS customer:** ChartMogul and ProductLed's 2026 survey of 200 B2B software products reports representative funnels per 1,000 visitors: approximately 5 paying customers for freemium, 4 for a free trial, 6 for an ungated freemium experience, and 11 for a credit-card-required trial. These imply approximate visitor-to-paid rates of **0.5 percent, 0.4 percent, 0.6 percent, and 1.1 percent**, respectively. This range is the closest economic comparable because it ends in real payment, although the product categories, traffic mixes, and time-to-conversion differ from Blotter.
+3. **Checkout attrition context:** Baymard reports an average ecommerce cart-abandonment rate near **70 percent** across aggregated studies. This confirms that meaningful attrition typically remains after purchase interest is expressed, but ecommerce checkout is not directly comparable to Blotter and was not used to set the exact bands.
+
+#### Why the Blotter thresholds are conservative
+
+Blotter's `payment_option_clicked` event is materially easier than becoming a real paying customer:
+
+- no card number is entered;
+- no money is charged or put at risk;
+- no trial commitment begins;
+- the visitor does not receive an immediately usable product;
+- the event records a click on a simulated purchase door rather than a completed transaction.
+
+Because the action has less friction and lower commitment than the real visitor-to-paid outcomes in the ChartMogul data, merely matching approximately 0.4 to 0.6 percent should not be treated as validation. The benchmark therefore applies an intentional credibility discount:
+
+- below 0.5 percent remains weak even though it overlaps the lower end of real visitor-to-paid SaaS performance;
+- 0.5 to below 1.0 percent remains ambiguous because the Blotter action is easier than payment;
+- 1.0 to below 2.0 percent is treated as credible because it reaches or exceeds the upper end of most adjacent real-payment funnels;
+- 2.0 percent or higher is treated as strong because it is roughly twice the upper end of the adjacent visitor-to-paid range while still remaining below the broader 3.8 percent median SaaS landing-page conversion benchmark.
+
+Traffic source, audience warmth, device, campaign, and recruiting window may materially affect observed rates. Results must therefore be reported overall and segmented diagnostically by traffic source, without allowing a warm channel to stand in for general cold-market demand.
+
+External reference basis, verified July 30, 2026:
+
+- Unbounce, `Average SaaS conversion rate benchmark report` and its Conversion Benchmark Report methodology.
+- ChartMogul and ProductLed, `The SaaS Conversion Report: A new look at free-to-paid conversion`, 2026 survey of 200 B2B software products.
+- Baymard Institute, cart and checkout abandonment benchmark research.
+
 ## Matched-comparison requirement
 
 The spreadsheet and platform pages must be compared at every matched funnel stage, not only at `payment_option_clicked`.
@@ -351,11 +403,10 @@ Exact copy and visual treatment belong to Workstream 4.
 
 ## Remaining Workstream 3 decisions
 
-1. Define absolute commercial-demand success, failure, and ambiguity thresholds.
-2. Define low-sample treatment and minimum evidence requirements.
-3. Decide whether a project-level kill condition is required before launch or remains deferred.
-4. Select the exact monthly price before implementation or explicitly defer selection to Workstream 4 or 5.
-5. Complete this specification and hand off durable constraints to Workstream 4.
+1. Define low-sample treatment and minimum evidence requirements.
+2. Decide whether a project-level kill condition is required before launch or remains deferred.
+3. Select the exact monthly price before implementation or explicitly defer selection to Workstream 4 or 5.
+4. Complete this specification and hand off durable constraints to Workstream 4.
 
 ## Workstream boundary
 
@@ -375,6 +426,6 @@ Do not use Workstream 3 to define:
 
 ## Exact next action
 
-Define the absolute commercial-demand threshold framework one decision area at a time.
+Define low-sample treatment and minimum evidence requirements.
 
-The next discussion should define what payment-option-click rate across all eligible page visitors constitutes credible commercial demand, weak demand, or an ambiguous result. Do not yet define low-sample treatment or the project-level kill condition.
+The next discussion should determine when the comparative and commercial-demand thresholds are sufficiently sampled to support a decision, and how results must be classified when they are not. Do not yet decide the project-level kill condition or exact monthly price.
