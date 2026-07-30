@@ -1,81 +1,83 @@
 # Blotter IB — Current Handoff
 
-Date: 2026-07-29
+Date: 2026-07-30
 
 ## 1. Session objective
 
-Complete Workstream 1: minimum viable project maintenance and continuity setup.
-
-This workstream was maintenance only. It did not include landing-page strategy, analytics architecture, paid-ad research, product design, or Lovable implementation.
+Close the Workstream 1 continuity setup, verify direct GitHub access, create the legacy archive shell, and prepare a clean handoff into Workstream 2.
 
 ## 2. Work completed
 
-- Created a private GitHub repository for the project.
-- Uploaded the current project document bundle.
-- Preserved the chosen repository structure with `blotter-ib-ws1/` as the project root inside the repo.
-- Confirmed the canonical docs path:
-  - `blotter-ib-ws1/docs/`
-- Audited the decision log at a practical level by adding status labels to decisions.
-- Accepted that only confirmed items should be treated as settled project truth.
-- Created/confirmed the role of `06-assumptions-and-open-questions.md`.
-- Simplified `00-START-HERE.md` into a short current-state index.
-- Added the lightweight continuity process to `05-working-agreement.md`.
-- Clarified that `03-page-spec.md` is a working baseline, not final build-ready truth.
-- Confirmed GitHub search indexing works for the repository.
+- Verified that ChatGPT can directly read and write the GitHub repository.
+- Confirmed GitHub canonical documents are the durable project source of truth.
+- Confirmed Workstream 1 is complete.
+- Corrected continuity defects in `00-START-HERE.md` and this handoff.
+- Confirmed the repository is private after Jon updated its visibility.
+- Created the historical archive structure under `blotter-ib-ws1/archive/`.
+- Added archive authority rules, category folders, and a starter index.
+- Jon uploaded relevant stale and historical materials into the corresponding archive folders.
+- Established that archive material should be consulted selectively when it can inform a current question, recover prior reasoning, or prevent duplicated work.
 
 ## 3. Decisions made
 
-- Keep the current nested repo structure:
-  - `Blotter-GPT/blotter-ib-ws1/`
-- Treat GitHub canonical docs as the durable project record.
-- Treat GPT project memory as a convenience layer, not the source of truth.
-- Treat AI-generated or Claude-generated project files as working context unless confirmed by Jon or recorded as confirmed in the decision log.
-- Use `CURRENT-HANDOFF.md` only for immediate resumption context, not full project history.
-- Begin each new substantial chat by reading:
-  - `00-START-HERE.md`
-  - `CURRENT-HANDOFF.md`
-  - any workflow-specific docs named in the handoff
-- Confirm the two Method decisions:
-  - Jon's recruiting tracker is evidence of a failure mode, not a source of statistics.
-  - Volume language should use qualitative shape/range, not computed averages or loss fractions.
+- Workstream 1 is complete and should not be reopened as a separate maintenance exercise.
+- Workstream 2 is the next sequential workstream.
+- Workstream 2 is limited to defining the spreadsheet-native product proposition.
+- Do not begin Lovable implementation, analytics architecture, platform-page work, paid-ad research, or detailed visual execution during the opening proposition discussion.
+- Canonical `docs/` govern current work.
+- The `archive/` directory is historical context only and never overrides canonical docs or Jon's current instruction.
+- The assistant should proactively consult a relevant archived file when the current question materially benefits from prior work, but should not read the archive wholesale.
+- Any archived idea reused in current work must be identified as historical context and re-evaluated against the validation-first strategy.
 
 ## 4. Files changed
 
-Expected changed files:
-
 - `blotter-ib-ws1/docs/00-START-HERE.md`
-- `blotter-ib-ws1/docs/04-decision-log.md`
-- `blotter-ib-ws1/docs/05-working-agreement.md`
-- `blotter-ib-ws1/docs/06-assumptions-and-open-questions.md`
 - `blotter-ib-ws1/docs/CURRENT-HANDOFF.md`
+- `blotter-ib-ws1/archive/README.md`
+- `blotter-ib-ws1/archive/INDEX.md`
+- Category README files under:
+  - `archive/product-and-strategy/`
+  - `archive/landing-page/`
+  - `archive/technical-and-design/`
+  - `archive/session-history/`
 
-Repository structure:
-
-- `blotter-ib-ws1/assets/`
-- `blotter-ib-ws1/docs/`
-- `blotter-ib-ws1/experiments/`
-- `blotter-ib-ws1/research/`
-- `blotter-ib-ws1/README.md`
+Jon separately added historical files to the archive folders.
 
 ## 5. Unresolved issues
 
-- Hard kill criteria are not yet defined.
-- Analytics/read rules are not yet written.
-- Spreadsheet-native product proposition and landing-page content are not yet defined.
-- Platform-page argument and feature inventory remain unresolved.
-- Some project documents may still contain Claude-generated framing that should be treated as working context, not authority, unless confirmed elsewhere.
+Workstream 2 must resolve:
+
+- Target user and recruiting moment
+- Current behavior and failure mode
+- Spreadsheet-native product mechanism
+- Core user outcome
+- Offer and feature boundaries
+
+Later unresolved items, not for the opening Workstream 2 discussion:
+
+- CTA and lead-capture flow
+- Analytics event set and measurement architecture
+- Read rules and statistical methodology
+- Testing-domain identity
+- Platform-page proposition and capability inventory
+- Acquisition strategy
+- Project-level kill condition
 
 ## 6. Exact next action
 
-Start Workstream 2:
+Begin Workstream 2 by resolving the first proposition decision:
 
-Define the spreadsheet-native product proposition and landing-page content before beginning the Lovable build.
+**Who is the primary spreadsheet-native landing-page user, and at what point in the recruiting process do they encounter the offer?**
 
-Do not begin Lovable implementation yet.
+The starting alternatives are:
 
-Analytics architecture is necessary but temporarily parked. It must be addressed before implementation begins.
+1. A student entering active networking who already has or is about to create a tracker but has not yet experienced serious tracker decay.
+2. A student already several weeks into networking who is beginning to lose control of live relationships and spreadsheet state.
+3. A broader proposition intentionally written to cover both moments without becoming vague.
 
-## 7. Relevant links, file names, deployment state, and repository state
+Discuss and agree on this first. Do not present the entire workstream at once.
+
+## 7. Relevant links, files, and project state
 
 Repository:
 
@@ -85,18 +87,28 @@ Canonical docs path:
 
 `blotter-ib-ws1/docs/`
 
-GitHub status:
+Archive path:
 
-- Private repository created.
-- Project documents uploaded.
-- Folder structure created.
-- GitHub indexing confirmed.
-- Assistant direct repo access not verified in this chat.
+`blotter-ib-ws1/archive/`
 
-Deployment state:
+Read first in the next chat:
+
+- `docs/00-START-HERE.md`
+- `docs/CURRENT-HANDOFF.md`
+
+Then read the Workstream 2 canonical files:
+
+- `docs/01-project-and-product.md`
+- `docs/02-strategy-and-test.md`
+- `docs/03-page-spec.md`
+- `docs/04-decision-log.md`
+- `docs/06-assumptions-and-open-questions.md`
+
+Deployment and build state:
 
 - No Lovable project exists yet.
-- No reusable production code exists yet.
-- No final logo exists yet.
-- No completed landing-page assets exist yet.
-- A GoDaddy domain has been purchased, but domain-use strategy for disposable experiments versus permanent Blotter identity remains unresolved.
+- No reusable production code exists.
+- No final logo exists.
+- No completed landing-page assets exist.
+- A GoDaddy domain exists, but testing-domain identity remains unresolved.
+- Spreadsheet page will be built first but will not launch publicly before the matched platform page is ready.
