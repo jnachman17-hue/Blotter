@@ -94,6 +94,14 @@ Status: Confirmed
 
 Status: Confirmed
 
+**The core user outcome is operational control through one accurate, current source of truth.** The student can open one spreadsheet and immediately understand the current state of their recruiting activity, what requires attention, and what action should happen next, without reconstructing the process from email, calendar, memory, or scattered notes.
+
+Status: Confirmed
+
+**The outcome should be communicated through four linked benefits: accuracy, time saved, everything in one place, and prevention of slippage.** Blotter keeps the tracker aligned with actual recruiting activity, reduces time spent checking and reconciling multiple tools, centralizes the operating view, and helps prevent replies, follow-ups, and other important actions from slipping through the cracks.
+
+Status: Confirmed
+
 ### Product
 
 **Blotter is a logistics layer only.** Not learning content, not interview prep, not AI-assisted outreach, not a jobs board.
