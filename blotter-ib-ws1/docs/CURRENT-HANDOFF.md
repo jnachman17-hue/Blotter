@@ -59,8 +59,6 @@ Repository structure:
 
 ## 5. Unresolved issues
 
-- Assistant direct GitHub access was attempted but not verified in the current chat because the GitHub tool became unavailable.
-- GitHub indexing is confirmed from GitHub search results.
 - Hard kill criteria are not yet defined.
 - Analytics/read rules are not yet written.
 - Spreadsheet-native product proposition and landing-page content are not yet defined.
