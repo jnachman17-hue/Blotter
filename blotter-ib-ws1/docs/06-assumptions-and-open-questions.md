@@ -6,7 +6,6 @@ This file contains unsettled items only. Confirmed decisions belong in the relev
 
 | Item | Type | Current working position | Why unresolved | Revisit trigger |
 |---|---|---|---|---|
-| Proposed WS4 completion package | Pending Jon ratification | Retain the drafted three-frame demo, exact funnel copy, and substantive responsive rules as proposals only | They were created and canonicalized without Jon review | Immediate WS4 ratification round |
 | Provider, Google scopes, and consent-screen identity | WS5 implementation dependency | Use only provisional third-party-provider wording until the selected provider and exact Google presentation are verified | Provider and implementation are not selected | Before privacy copy is approved in the private build |
 | Data retention, deletion, subprocessors, and privacy policy | WS5 implementation dependency | Public claims must match actual prototype and provider behavior | Implementation truth is not yet established | Before private-build approval |
 | Form and lead-storage implementation | WS5 implementation decision | Use the simplest reliable system that stores the required lead record and supports export | No tool has been selected | During funnel implementation |
