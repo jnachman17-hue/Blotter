@@ -6,12 +6,13 @@ This file contains unsettled items only. Confirmed decisions belong in the relev
 
 | Item | Type | Current working position | Why unresolved | Revisit trigger |
 |---|---|---|---|---|
+| Proposed WS4 completion package | Pending Jon ratification | Retain the drafted three-frame demo, exact funnel copy, and substantive responsive rules as proposals only | They were created and canonicalized without Jon review | Immediate WS4 ratification round |
 | Provider, Google scopes, and consent-screen identity | WS5 implementation dependency | Use only provisional third-party-provider wording until the selected provider and exact Google presentation are verified | Provider and implementation are not selected | Before privacy copy is approved in the private build |
 | Data retention, deletion, subprocessors, and privacy policy | WS5 implementation dependency | Public claims must match actual prototype and provider behavior | Implementation truth is not yet established | Before private-build approval |
 | Form and lead-storage implementation | WS5 implementation decision | Use the simplest reliable system that stores the required lead record and supports export | No tool has been selected | During funnel implementation |
 | Analytics vendor and session behavior | WS5 implementation decision | Preserve the exact WS3 event names, meanings, and properties regardless of vendor | Vendor, duplicate suppression, refresh, and persistence behavior are not selected | During instrumentation setup |
 | Domain routing | WS5 implementation decision | Displayed brand is Blotter on `blotterib.com`; use a private deployment before public routing | Exact Lovable routing and final path or subdomain require implementation validation | Private deployment setup |
-| Authority and case-study evidence verification | WS5 claim gate | Preserve the ratified lines only if source records support the exact wording | Final factual documentation has not been checked in implementation | Before private-build approval |
+| Authority and case-study evidence verification | WS5 claim gate | Preserve ratified lines only if source records support the exact wording | Final factual documentation has not been checked in implementation | Before private-build approval |
 | Permission willingness | Later validation question | Actual or simulated OAuth is excluded from the mandatory round-one funnel | Permission willingness should be tested after value and privacy are understood | Later validation iteration |
 | Non-paid channels are central, not supplementary | Provisional strategy item | Organic reach may materially affect test economics | More channel research is needed | Before traffic plan is finalized |
 | Corey reviews the test design before spend | Provisional process item | Potentially high leverage and low cost | Timing and hard-gate status are not reconfirmed | Before paid spend |
