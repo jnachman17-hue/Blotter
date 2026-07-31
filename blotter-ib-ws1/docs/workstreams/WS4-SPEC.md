@@ -35,10 +35,10 @@ Workstream 4 defines the page narrative, copy, proof devices, product demonstrat
 3. How it works.
 4. Outstanding actions.
 5. Preservation.
-6. Privacy, permissions, and FAQ.
-7. Closing summary and CTA.
+6. Privacy, permissions, and dedicated privacy FAQ.
+7. General product FAQ followed by the final closing summary and CTA.
 
-Primary CTA placements: hero, after Section 4, and final section.
+Primary CTA placements: hero, after Section 4, and final closing block.
 
 ## Confirmed page-rhythm rule
 
@@ -281,7 +281,7 @@ Supporting explanation:
 
 This copy remains provisional until the provider, exact scopes, retention practices, subprocessors, consent-screen identity, and disclosure requirements are verified. The landing page must not hide the provider’s role.
 
-### FAQ
+### Dedicated privacy FAQ
 
 1. **Why does Google ask for broad Gmail access?**  
    `Google does not offer a Gmail permission limited only to the contacts in your tracker. Blotter applies that narrower boundary in its own processing system. Unmatched messages are never routed for content analysis.`
@@ -313,7 +313,7 @@ Recommended order:
 4. Exact permissions table.
 5. Broad Google permission disclosure.
 6. Plain commitments.
-7. FAQ accordion.
+7. Dedicated privacy FAQ accordion.
 8. Link to the full privacy policy.
 
 Do not use:
@@ -327,20 +327,89 @@ Do not use:
 
 No CTA appears in Section 6. Section 6 is fully ratified and closed.
 
+## Confirmed Section 7: General FAQ and Final CTA
+
+### Order and communication job
+
+Section 7 contains a short general product FAQ followed by the final closing block and CTA. The FAQ resolves the last practical adoption objections. The closing block then restores the core promise and gives the page a decisive ending.
+
+Do not end the page on an accordion. Do not merge the Section 6 privacy FAQ with this general product FAQ.
+
+### General product FAQ
+
+Title:
+`Frequently asked questions`
+
+No eyebrow or supporting paragraph is required.
+
+Use five accordion questions:
+
+1. **Do I need to start with a new tracker?**  
+   `No. Keep the Google Sheet and contacts you already built. Blotter creates a standardized recruiting view in a new tab, so you do not have to rebuild your contact record or re-enter every relationship.`
+
+2. **Can I use Blotter after recruiting has already started?**  
+   `Yes. Blotter is designed to work with an existing tracker and contact record, whether you are beginning recruiting or already managing an active process.`
+
+3. **Does Blotter write emails or help with technical preparation?**  
+   `No. You choose who to contact and write every message yourself. Blotter does not generate outreach, teach technicals, or provide recruiting content. It maintains the logistics surrounding your process.`
+
+4. **What happens when I add a new contact?**  
+   `Add the contact and their email address to your tracker. Blotter can then use relevant Gmail and Calendar activity associated with that contact to maintain their status, timing, scheduled calls, and next actions.`
+
+5. **Does Blotter work only for investment banking?**  
+   `Blotter is designed first for investment banking and other high-finance recruiting processes built around intensive networking, follow-ups, coffee chats, applications, and interviews.`
+
+### Price and availability disclosure rule
+
+Do not include FAQ questions about price or availability on the landing page.
+
+Specifically omit:
+- `How much does Blotter cost?`
+- `When will access be available?`
+
+Do not provide evasive accordion answers. Price and availability remain disclosed at their ratified stages inside the canonical funnel:
+
+- Price appears only after email capture.
+- Price is `$9.99 per month`, monthly, cancel anytime.
+- Fall 2026 beta timing appears in the terminal state after the user completes the funnel.
+
+This preserves the measurement architecture and ensures the CTA sequence remains the only path that reveals those details.
+
+### Final closing block
+
+Use a visually distinct, concise, centered closing block after the FAQ.
+
+Headline:
+`Your recruiting tracker, always current.`
+
+Supporting line:
+`Keep your relationships moving without spending every day rebuilding the state of your process.`
+
+CTA button:
+`See how Blotter works`
+
+Small reassurance line:
+`Keep your existing Google Sheet. No mass outreach. No technical-prep content.`
+
+Do not mention price, beta access, Fall 2026, or cohort size in the closing block.
+
+The final CTA enters the canonical WS3 funnel and stores `cta_location = final`.
+
+Section 7 is fully ratified and closed.
+
 ## Remaining unresolved decisions
 
 1. Final verification of precise Section 2 case-study counts and minor labels.
-2. Exact Section 7 closing copy and visual treatment.
-3. Exact funnel product-experience frames and click sequence.
-4. Whether the funnel experience reuses or extends the hero visual.
-5. Final provider selection and verification of privacy scopes and disclosures.
-6. Exact $9.99 price presentation, checkout copy, and terminal-state copy.
-7. Final responsive priorities across the whole page.
-8. Exact domain routing and Lovable custom-domain implementation.
-9. Minor implementation details for confirmed sections.
+2. Exact funnel product-experience frames and click sequence.
+3. Whether the funnel experience reuses or extends the hero visual.
+4. Final provider selection and verification of privacy scopes and disclosures.
+5. Exact $9.99 price presentation, checkout copy, and terminal-state copy.
+6. Final responsive priorities across the whole page.
+7. Exact domain routing and Lovable custom-domain implementation.
+8. Minor implementation details for confirmed sections.
 
 ## Exact next action
 
-Specify Section 7, the concise closing summary and final CTA. Settle the final headline, supporting line, CTA wording, any short reassurance or beta-cohort line, and the visual treatment. Preserve `Your recruiting tracker, always current.` as a candidate or required closing line.
+The seven landing-page sections are now ratified. Proceed to the canonical funnel experience: define the exact product-experience frames and click sequence while preserving all completed WS3 constraints, including configuration questions, transparent email capture, delayed price disclosure, checkout choices without payment collection, and the Fall 2026 beta terminal state.
 
-Do not reopen completed WS2, WS3, the hero, or confirmed Sections 2 through 6 unless an implementation constraint genuinely breaks them.
+Do not reopen completed WS2, WS3, the hero, or confirmed Sections 2 through 7 unless an implementation constraint genuinely breaks them.
