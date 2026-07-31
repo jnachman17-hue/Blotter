@@ -8,9 +8,9 @@ Continue Workstream 4: spreadsheet landing-page content and experience design.
 
 Workstreams 1, 2, and 3 are complete. Workstream 4 is active.
 
-The audience positioning, brand direction, seven-section narrative, CTA architecture, hero, Section 2 Scale package, Section 3 How It Works package, Section 4 Outstanding Actions package, and Section 5 Preservation copy package are confirmed in `docs/workstreams/WS4-SPEC.md`.
+The audience positioning, brand direction, seven-section narrative, CTA architecture, hero, Section 2 Scale package, Section 3 How It Works package, Section 4 Outstanding Actions package, and Section 5 Preservation package are confirmed in `docs/workstreams/WS4-SPEC.md`.
 
-Exact next action: finish Section 5 by ratifying one simple preservation visual, then proceed to Section 6, Privacy and Permissions plus FAQ.
+Exact next action: specify Section 6, Privacy and Permissions plus FAQ.
 
 ## 2. Source-of-truth rules
 
@@ -18,7 +18,7 @@ Exact next action: finish Section 5 by ratifying one simple preservation visual,
 - GitHub canonical files and workstream specifications are durable truth.
 - `docs/workstreams/WS4-SPEC.md` is the active cumulative specification.
 - `CURRENT-HANDOFF.md` is temporary immediate context only.
-- Do not reopen confirmed WS2, WS3, hero, or Sections 2 through 4 unless an implementation constraint genuinely breaks them.
+- Do not reopen confirmed WS2, WS3, hero, or Sections 2 through 5 unless an implementation constraint genuinely breaks them.
 - Work at landing-page-test resolution and avoid backend-level edge-case analysis.
 
 ## 3. Confirmed page sequence
@@ -35,14 +35,6 @@ Primary CTA placements: hero, after Section 4 product and action proof, and fina
 
 ## 4. Confirmed Section 5: Preservation
 
-### Accurate product promise
-
-- The user keeps the existing Google Sheets workbook and underlying contact record.
-- The user does not have to re-enter every contact.
-- Blotter creates a standardized recruiting view within the same Google Sheets workflow.
-- Blotter does not promise to preserve or append directly onto every user's exact custom column layout.
-- Detailed field mapping, hidden columns, and setup mechanics should not dominate the landing page.
-
 ### Copy
 
 - No eyebrow.
@@ -55,23 +47,47 @@ Primary CTA placements: hero, after Section 4 product and action proof, and fina
 - `No re-entering every contact`
 - `No switching out of Google Sheets`
 
-### Labels and CTA
+### Visual
 
-- `YOUR EXISTING TRACKER`
-- `BLOTTER ADDS THE LIVE LAYER`
-- No CTA in Section 5.
+Use one simple Google Sheets-native crop with a left-right division of responsibility.
 
-### Visual direction
+`YOUR EXISTING TRACKER`
 
-The previously proposed detailed two-tab mapping diagram was rejected as too complex and too focused on migration mechanics.
+Visible columns:
 
-The final visual should remain simple, Google Sheets-native, and conceptually show that the user's contact information remains theirs while Blotter supplies the standardized live recruiting layer. Prefer a simple left-right responsibility treatment over a literal technical diagram, but do not imply that Blotter can append cleanly to every arbitrary custom tracker layout.
+1. Name
+2. Title
+3. Firm
+4. Email
+5. LinkedIn
+
+Do not show Group or Notes.
+
+`BLOTTER ADDS THE LIVE LAYER`
+
+Visible columns:
+
+1. Status
+2. Next move
+3. Last contact
+4. Days
+5. Call
+
+Use a clear divider. The visual is conceptual and should not imply that Blotter literally appends to every arbitrary custom layout. The supporting copy carries the accurate new-tab implementation model.
+
+No CTA appears in Section 5. Section 5 is closed.
 
 ## 5. Exact next action
 
-1. Ratify one simple Section 5 visual treatment.
-2. Proceed immediately to Section 6, Privacy and Permissions plus FAQ.
-3. Continue through the closing section, funnel screens, responsive constraints, and final Lovable-ready implementation brief.
+Specify Section 6 as one compact ratification package. Settle:
+
+1. The main privacy and trust statement.
+2. How Gmail and Calendar access is described.
+3. What Blotter explicitly does not do with user data.
+4. The FAQ questions and concise answers.
+5. The section's visual hierarchy and whether any trust marks or permission diagrams are needed.
+
+Then continue through the closing section, funnel screens, responsive constraints, and final Lovable-ready implementation brief.
 
 ## 6. Fixed WS3 constraints
 
