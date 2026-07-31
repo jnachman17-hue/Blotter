@@ -10,131 +10,106 @@ The immediate objective is to test whether meaningful demand exists before build
 
 ## Current phase
 
-Landing-page proposition and experience design.
+Spreadsheet-page implementation and private verification.
 
 Confirmed sequence:
 
 1. Workstream 1: continuity and source-of-truth setup. Complete.
 2. Workstream 2: spreadsheet-native proposition. Complete.
 3. Workstream 3: conversion and measurement design. Complete.
-4. Workstream 4: spreadsheet landing-page content and experience design. Active.
-5. Workstream 5: spreadsheet-page Lovable implementation, instrumentation, and private deployment.
+4. Workstream 4: spreadsheet landing-page content and experience design. Complete.
+5. Workstream 5: spreadsheet-page Lovable implementation, instrumentation, and private deployment. Active.
 6. Workstream 6: acquisition preparation and research.
 7. Workstream 7: platform-page proposition, design, and matched build.
 8. Workstream 8: final analytics verification and simultaneous launch.
 9. Use market evidence to continue, revise, retest, or stop investment.
 10. Do not build meaningful backend functionality until market evidence guides it.
 
-Landing-page content and experience design must occur before Lovable implementation. Lovable is the implementation and visual-iteration environment, not the place where the project first decides what the page is trying to communicate.
-
 ## Current workstream
 
-Workstream 4: Spreadsheet landing-page content and experience design.
+Workstream 5: Spreadsheet-page Lovable implementation and private verification.
 
-Status: In progress.
+Status: Active.
 
-Exact next action: define the high-level page narrative and section sequence before writing isolated copy or selecting detailed visuals.
+Exact next action: create the Lovable project and implement the global shell, section sequence, typography hierarchy, and reusable spreadsheet-window component.
 
-Read `docs/workstreams/WS4-SPEC.md` for the active durable specification.
+Read `docs/workstreams/WS5-SPEC.md` for the active implementation specification.
 
 ## Durable workstream specifications
 
-Permanent cumulative workstream records live under:
+Permanent cumulative records live under `docs/workstreams/`:
 
-`docs/workstreams/`
+- `WS2-SPEC.md`: complete spreadsheet-native proposition
+- `WS3-SPEC.md`: complete conversion and measurement system
+- `WS4-SPEC.md`: complete spreadsheet landing-page content and experience system
+- `WS5-SPEC.md`: active Lovable implementation and verification specification
 
-Current files:
-
-- `docs/workstreams/WS2-SPEC.md`: complete spreadsheet-native proposition specification.
-- `docs/workstreams/WS3-SPEC.md`: complete conversion and measurement specification.
-- `docs/workstreams/WS4-SPEC.md`: active spreadsheet landing-page content and experience specification.
-
-These files survive handoff rewrites and must be used during later design and build work. `CURRENT-HANDOFF.md` contains temporary resumption context only.
+`CURRENT-HANDOFF.md` contains temporary resumption context only.
 
 ## Workstream 2 outcome
 
-Workstream 2 established:
-
-- the July audience is pre-decay and the page sells prevention;
-- live recruiting activity outpaces manual spreadsheet upkeep;
-- cumulative volume and inconsistent upkeep make the tracker stale and unreliable;
-- the student maintains contacts and static information;
-- Blotter maintains changing recruiting activity from relevant Gmail and Calendar signals;
-- the core outcome is one accurate, current source of truth;
-- benefits are accuracy, time saved, everything in one place, and prevention of slippage;
-- the minimum visible offer includes auto-capture, legible relationship state, next-action visibility, an action-focused view, and one spreadsheet workflow;
-- the spreadsheet proposition must emphasize preservation of the existing tracker and low switching cost;
-- Blotter is an orchestration layer, not contact discovery, LinkedIn scraping, AI outreach, technical preparation, learning content, or a jobs board.
-
-Read `docs/workstreams/WS2-SPEC.md` for the complete record.
+WS2 established the pre-decay prevention proposition, manual-tracker failure mode, split between student-maintained contacts and Blotter-maintained activity, operational-control outcome, minimum visible offer, low-switching-cost requirement, and product boundaries.
 
 ## Workstream 3 outcome
 
-Workstream 3 established the complete matched conversion and measurement system:
+WS3 established the matched funnel, two recruiting questions, one pre-email product experience, transparent email capture, delayed $9.99 monthly price, checkout mechanics, beta terminal state, nine-event analytics architecture, metric hierarchy, read rules, thresholds, sample requirements, and reporting rules.
 
-- identical multi-stage funnel across spreadsheet and platform surfaces;
-- CTA origin tracked through `cta_location`;
-- two-question recruiting configuration;
-- one 15 to 20 second maximum product experience before email capture;
-- transparent recruiting-email capture without actual or simulated OAuth;
-- Gmail, Sheets, and Calendar shown as the product engine;
-- one $9.99 monthly price inside the funnel after email capture;
-- separate checkout screen and payment-choice click without card entry or payment collection;
-- real Fall 2026 approximately 300-person beta-cohort confirmation;
-- identical nine-event analytics architecture;
-- ratified metric hierarchy, read rules, commercial-demand bands, low-sample requirements, and reporting rules;
-- no permanent or bounded project kill condition;
-- a frozen measurement period, with material changes creating a new labeled iteration.
+## Workstream 4 outcome
 
-Read `docs/workstreams/WS3-SPEC.md` for the complete funnel, event definitions, benchmark derivation, thresholds, and downstream constraints.
+WS4 established:
 
-## Workstream 4 objective
+- The complete seven-section spreadsheet-page narrative and exact copy
+- Hero, scale, mechanism, outstanding-actions, preservation, privacy, FAQ, and closing compositions
+- Three CTA placements and wording
+- A three-frame, three-click, 15 to 20 second spreadsheet product experience
+- Exact email, price, checkout, and terminal-state copy
+- Responsive priorities for all sections and the funnel
+- Full-page coherence and claim-support rules
+- Lovable-ready implementation constraints
 
-Produce a coherent, build-ready content and experience specification for the spreadsheet-native landing page before Lovable implementation.
+Read `docs/workstreams/WS4-SPEC.md` for the complete record.
 
-Workstream 4 should resolve:
+## Workstream 5 objective
 
-1. Page narrative and section order.
-2. Headline, subhead, CTA, and supporting copy.
-3. Recruiting-volume statistics and proof devices.
-4. Hero and before-versus-after composition.
-5. Spreadsheet product demonstration and action-focused view.
-6. Exact funnel product-experience frames and clicks.
-7. Gmail, Sheets, and Calendar mechanism visualization.
-8. Privacy, permissions, trust, and FAQ content.
-9. Exact CTA wording and placement.
-10. $9.99 price, checkout, and terminal-state copy.
-11. Responsive content priorities and Workstream 5 implementation constraints.
+Implement and privately verify the spreadsheet-native page without changing the validated content architecture.
 
-Workstream 4 does not begin Lovable implementation, design the platform page, specify backend logic, or design real OAuth architecture.
+WS5 includes:
+
+1. Lovable project and reusable component system
+2. Seven-section page implementation
+3. Canonical funnel implementation
+4. Lead capture and export
+5. Exact analytics event wiring
+6. Claim and privacy verification
+7. Responsive and accessibility QA
+8. Private deployment
+9. Manual analytics verification
+
+WS5 does not launch traffic, build the platform page, implement real integrations, or collect payment.
 
 ## Current confirmed constraints
 
-- Jon's explicit instructions in the active chat are highest authority.
-- GitHub canonical documents and workstream specifications are the durable source of truth.
-- GPT project memory is a convenience layer, not final authority.
+- Jon's explicit instructions are highest authority.
+- GitHub canonical documents are the durable source of truth.
 - Build market evidence before meaningful backend buildout.
-- Round one compares spreadsheet-native versus platform surfaces.
 - The spreadsheet page is designed and built first.
-- Both pages ultimately launch at roughly the same time.
-- Both pages must use the identical funnel, price, event set, and read rules.
+- Both variants ultimately launch at roughly the same time.
+- Both variants use the identical funnel, price, event set, and read rules.
 - Analytics must be verified by hand before public traffic.
 - `03-page-spec.md` is a working baseline, not final truth.
-- Do not begin Lovable implementation before Workstream 4 produces a coherent build-ready brief.
+- Old design-token files and prior platform pixels are not authoritative.
+- No public traffic during WS5.
 
 ## Required reading for a new chat
 
-Read in this order:
-
 1. `docs/00-START-HERE.md`
 2. `docs/CURRENT-HANDOFF.md`
-3. `docs/workstreams/WS4-SPEC.md`
-4. `docs/workstreams/WS2-SPEC.md`
+3. `docs/workstreams/WS5-SPEC.md`
+4. `docs/workstreams/WS4-SPEC.md`
 5. `docs/workstreams/WS3-SPEC.md`
-6. `docs/05-working-agreement.md`
-7. Only the additional canonical files named in the handoff or needed for the exact task
-
-Do not rely on the handoff alone for durable workstream decisions.
+6. `docs/workstreams/WS2-SPEC.md`
+7. `docs/05-working-agreement.md`
+8. Only additional canonical files needed for the exact task
 
 ## Repository and archive rules
 
@@ -154,18 +129,19 @@ Historical archive path:
 
 `blotter-ib-ws1/archive/`
 
-Archived material is historical context only. Re-evaluate it against current confirmed decisions before reuse.
+Archived material is historical context only.
 
 ## Canonical file map
 
-- `00-START-HERE.md`: current-state index and reading order.
-- `01-project-and-product.md`: durable project and product context.
-- `02-strategy-and-test.md`: validation strategy and test structure.
-- `03-page-spec.md`: spreadsheet-page working baseline.
-- `04-decision-log.md`: concise confirmed, rejected, and cross-project rulings.
-- `05-working-agreement.md`: operating and documentation-maintenance rules.
-- `06-assumptions-and-open-questions.md`: unsettled items only.
-- `workstreams/WS2-SPEC.md`: complete spreadsheet proposition specification.
-- `workstreams/WS3-SPEC.md`: complete conversion and measurement specification.
-- `workstreams/WS4-SPEC.md`: active spreadsheet landing-page design specification.
-- `CURRENT-HANDOFF.md`: temporary immediate resumption context and exact next action.
+- `00-START-HERE.md`: current-state index and reading order
+- `01-project-and-product.md`: durable project and product context
+- `02-strategy-and-test.md`: validation strategy and test structure
+- `03-page-spec.md`: working page baseline, not automatically final truth
+- `04-decision-log.md`: concise cross-project rulings
+- `05-working-agreement.md`: operating and documentation rules
+- `06-assumptions-and-open-questions.md`: unsettled items only
+- `workstreams/WS2-SPEC.md`: complete proposition specification
+- `workstreams/WS3-SPEC.md`: complete conversion and measurement specification
+- `workstreams/WS4-SPEC.md`: complete content and experience specification
+- `workstreams/WS5-SPEC.md`: active implementation and verification specification
+- `CURRENT-HANDOFF.md`: temporary immediate resumption context
