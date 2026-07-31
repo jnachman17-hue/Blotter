@@ -20,6 +20,10 @@ Source:
 
 `hero-spreadsheet-reference-v1.dc.html`
 
+Source note:
+
+The repository file is a normalized, self-contained archival version of the uploaded Claude Design HTML. It preserves the visual structure, data, dimensions, cues, ownership treatment, and known defects needed for implementation guidance. The uploaded raw source had SHA-256 `2530069778e8bea29888b2d04bc89a01f0cf5aff542458d02076e9d26be13135` and depended on Claude Design-local support and image paths.
+
 Status:
 
 Directionally complete and sufficient to guide Lovable. It is not approved as a literal pixel target and must not be copied without correcting the known defects below.
@@ -47,7 +51,7 @@ Known defects to correct in Lovable rather than reproduce:
 3. The bottom U-shaped ownership brackets are visually messy, under-resolved, and not the final treatment for the responsibility split.
 4. There is unnecessary white space below row 6 inside the spreadsheet window. The production implementation should crop the grid cleanly.
 5. The intermediate vertical `blotter` engine treatment is directional only. Lovable should clarify the causal sequence without turning the hero into a technical architecture diagram.
-6. The HTML source references Claude Design-local Gmail and Calendar image paths. Replace those references with stable local assets or inline SVGs when implementing.
+6. The normalized repository file uses simple stable placeholder marks for Gmail and Calendar. Lovable should use appropriate stable local assets or inline SVGs in the production implementation.
 
 Use rule:
 
