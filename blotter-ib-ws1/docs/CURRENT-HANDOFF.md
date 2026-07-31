@@ -4,11 +4,9 @@ Date: July 30, 2026
 
 ## 1. Current objective
 
-Begin Workstream 5: spreadsheet-page Lovable implementation, instrumentation, private deployment, and manual verification.
+Continue Workstream 5 at the first build gate: correct and obtain approval for the global Lovable shell before beginning the Google Sheets reference package and reusable spreadsheet-window prototype.
 
-Workstreams 1 through 4 are complete. The WS4 hero, Sections 2 through 7, spreadsheet-specific product experience, exact funnel presentation copy, responsive priorities, and coherence safeguards are ratified and closed.
-
-WS5 is active.
+Workstreams 1 through 4 are complete. WS5 is active.
 
 ## 2. Required reading
 
@@ -31,51 +29,68 @@ WS5 is active.
 - Do not reveal demand testing, beta status, Fall 2026 timing, future availability, or no-charge status before the payment-choice click.
 - No real OAuth, Gmail integration, payment collection, or production backend is part of WS5.
 
-## 4. Ratified spreadsheet product experience
-
-Use one stable Google Sheets window across three frames with required `1 of 3`, `2 of 3`, and `3 of 3` indicators.
-
-1. Recruiting activity arrives while the tracker is stale.
-2. The signposted cells update to current state.
-3. The sheet transitions to the ratified Outstanding Actions view.
-
-Two internal progression clicks lead to one final `Continue` click. Back navigation is allowed and must not refire completion events. The experience must remain within the WS3 15 to 20 second ceiling.
-
-Read `WS4-SPEC.md` for exact frame copy, mock data, cell states, queue rows, button wording, and responsive behavior.
-
-## 5. Ratified funnel presentation
-
-- Question 1 remains `What are you recruiting for?`; button `Continue`.
-- Question 2 is `Which recruiting window best fits you?`; button `Continue`.
-- Email capture uses `Continue with your recruiting email.` and `Enter the email address where you conduct recruiting.`
-- No school-email restriction, fixed placeholder, static privacy note, or beta language appears on email capture.
-- Price screen presents Blotter at `$9.99 / month`, billed monthly, cancel anytime.
-- Purchase summary uses `Complete your purchase`, shows `$9.99` due today, and offers `Pay with card` and Apple Pay where supported.
-- No card-entry form appears.
-- Terminal state is the first availability disclosure and confirms the limited Fall 2026 cohort plus `You have not been charged.`
-
-## 6. First WS5 build gate
+## 4. First WS5 build gate
 
 Do not begin by building the full page.
 
 1. Create the Lovable project.
-2. Implement only the global shell and typography hierarchy.
+2. Implement and approve the global shell and typography hierarchy.
 3. Build one reusable high-fidelity Google Sheets-style spreadsheet-window component.
 4. Compare it against real Google Sheets visual references.
 5. Present it to Jon for review.
 6. Correct and freeze the approved primitive.
 7. Only then build the hero, Section 3, Section 4, Section 5, and funnel spreadsheet scenes.
 
-The spreadsheet component must consistently control toolbar depth, column letters, row numbers, gridlines, cell padding and height, headers, frozen panes, tabs, selection states, status controls, typography, activity chips, and responsive crops.
+## 5. Lovable project state
 
-## 7. Build state
+Project: `Blotter Foundation`
 
-- No approved Lovable implementation exists yet.
-- No public traffic should be sent.
-- Provider verification, domain routing, lead-storage tooling, and analytics vendor selection remain WS5 implementation decisions.
-- Analytics must be manually verified before public traffic.
-- The spreadsheet page remains private until WS5 completion gates pass.
+Project ID: `ec94e794-190a-4c92-b337-67ecfb8f1b10`
 
-## 8. Exact next action
+Status:
 
-Create the Lovable project and implement only the global page shell, typography hierarchy, and reusable spreadsheet-window fidelity prototype. Present that prototype to Jon for visual approval before adding detailed page scenes or funnel logic.
+- Private and not published.
+- Initial scratch shell exists.
+- No spreadsheet component, funnel, forms, analytics vendor, database, integrations, or public deployment exists.
+- The scratch shell's Newsreader serif, IBM Plex pairing, warm-paper treatment, placeholder navigation, and placeholder copy are not approved.
+- Reusable structural code may remain only where it supports the ratified shell direction.
+
+## 6. Ratified shell foundation
+
+Ratified July 30, 2026.
+
+- Public brand name is `blotter`, not `Blotter IB`.
+- Use archived technical-and-design material only to recover the established logo treatment. Do not inherit archived page style.
+- Prior wordmark reference: Space Grotesk 700 plus Archivo 600.
+- White and light-cream page foundation.
+- Navy blue as the Blotter anchor color.
+- Use blue selectively. Do not make the page uniformly blue or excessively cold.
+- Page should be warm, inviting, professional, readable, credible, cool, and visually interesting.
+- Restrained gradients are allowed when purposeful.
+- Use a modern sans-serif marketing typography system. Do not use the current editorial-serif direction.
+- Use exact ratified WS4 copy to test actual wrapping, hierarchy, and spacing.
+- Header: `blotter`, `How it works`, `Privacy`, `FAQ`, and `See how Blotter works`.
+- Preserve responsive gutters, disciplined width and spacing rules, 16px minimum body text, 44px minimum touch targets, visible keyboard focus, and no page-level horizontal scrolling.
+
+## 7. Analytics-aware implementation rule
+
+Do not wire or select an analytics vendor during the shell checkpoint, but structure later page and funnel components for the WS3 measurement system from the beginning.
+
+Required future-ready contracts include:
+
+- reusable CTA component with `cta_location` support;
+- stable hero, post-Section-4, and final-closing CTA origins;
+- shared funnel state model;
+- explicit milestone boundaries for the nine WS3 events;
+- CTA-origin persistence through the funnel;
+- recruiting email excluded from general analytics properties;
+- deduplication support for back navigation and refresh;
+- funnel-shell reuse for the later platform variant.
+
+## 8. Immediate action and stop point
+
+Correct the existing Lovable scratch shell using the ratified shell foundation and representative exact WS4 copy.
+
+Present the corrected desktop and mobile shell to Jon for approval.
+
+Stop after the shell review. Do not begin the Google Sheets reference package, spreadsheet-window prototype, detailed seven-section page, funnel, lead handling, analytics vendor wiring, or deployment until Jon approves the corrected shell.
