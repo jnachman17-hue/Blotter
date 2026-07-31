@@ -1,11 +1,15 @@
 # Assumptions and open questions
 
-Date last updated: July 30, 2026
+Date last updated: July 31, 2026
 
 This file contains unsettled items only. Confirmed decisions belong in the relevant workstream specifications.
 
 | Item | Type | Current working position | Why unresolved | Revisit trigger |
 |---|---|---|---|---|
+| Minimal remaining visual-reference set | WS5 production decision | Recommended set is one Outstanding Actions spreadsheet reference plus one three-frame funnel storyboard; Section 2 divergence reference remains optional | Jon has not yet ratified the final reference set | Before producing another external visual reference |
+| Final hero composition | WS5 presentation decision | Use the current one-sheet hero reference as the working direction; stale rear sheet is parked, not rejected | Final page context may show that the stale fragment improves comprehension or only adds clutter | During Lovable hero implementation review |
+| Hero cue-to-sheet and ownership treatment | WS5 implementation problem | Lovable should improve the cue-to-Blotter-to-sheet flow, cue-to-row mapping, ownership treatment, and grid crop rather than copying the reference defects | The Claude Design reference established direction but did not solve these details cleanly | First Lovable hero implementation checkpoint |
+| Section 2 manual-tracker divergence reference | WS5 optional reference | A cropped messy or decayed tracker may carry stale-manual-state proof in the problem section | It may be unnecessary if Lovable can execute the written divergence concept directly | After the minimal required references or after Lovable's first Section 2 pass |
 | Provider, Google scopes, and consent-screen identity | WS5 implementation dependency | Use only provisional third-party-provider wording until the selected provider and exact Google presentation are verified | Provider and implementation are not selected | Before privacy copy is approved in the private build |
 | Data retention, deletion, subprocessors, and privacy policy | WS5 implementation dependency | Public claims must match actual prototype and provider behavior | Implementation truth is not yet established | Before private-build approval |
 | Form and lead-storage implementation | WS5 implementation decision | Use the simplest reliable system that stores the required lead record and supports export | No tool has been selected | During funnel implementation |
