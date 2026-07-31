@@ -4,9 +4,9 @@ Date: July 31, 2026
 
 ## 1. Current objective
 
-Continue Workstream 5 at the active spreadsheet-visual checkpoint.
+Continue Workstream 5 from the completed directional hero-reference checkpoint.
 
-The immediate task is to build and refine the **current front-facing hero spreadsheet window** in Claude Design as editable HTML/CSS.
+The current task is no longer to keep polishing the hero in Claude Design. The immediate decision is to ratify the minimal remaining set of complex visual references needed before Lovable implementation resumes.
 
 Workstreams 1 through 4 are complete. WS5 is active.
 
@@ -17,114 +17,120 @@ Read in this order before acting:
 1. `docs/00-START-HERE.md`
 2. `docs/CURRENT-HANDOFF.md`
 3. `docs/workstreams/WS5-SPEC.md`
-4. `docs/workstreams/WS4-SPEC.md`
-5. `docs/workstreams/WS3-SPEC.md`
-6. `docs/workstreams/WS2-SPEC.md`
-7. `docs/05-working-agreement.md`
-
-The updated `WS5-SPEC.md` is the complete canonical source for:
-
-- current WS5 state;
-- the visual asset map;
-- the Claude Design production method;
-- the exact hero dataset;
-- stale/current state mapping;
-- Gmail and Calendar cue copy;
-- the sequential hero checkpoints;
-- the later Lovable build sequence;
-- analytics, privacy, QA, and completion gates.
+4. `docs/workstreams/ws5-assets/README.md`
+5. `docs/workstreams/WS4-SPEC.md`
+6. `docs/workstreams/WS3-SPEC.md`
+7. `docs/workstreams/WS2-SPEC.md`
+8. `docs/05-working-agreement.md`
 
 ## 3. Source-of-truth rules
 
 - Jon's explicit instructions are highest authority.
-- `WS5-SPEC.md` controls current implementation state and asset-production sequence.
-- `WS4-SPEC.md` controls page narrative, exact copy, responsive priorities, and claim boundaries.
-- `WS3-SPEC.md` controls funnel architecture, price, analytics events, measurement, and read rules.
-- Do not use `03-page-spec.md`, old handoffs, archived files, failed workbooks, prior renders, or plausible defaults to override the workstream specifications.
-- Do not silently invent copy, contacts, data, states, dates, actions, product behavior, or implementation sequencing.
+- `WS5-SPEC.md` controls the active implementation state, visual-reference scope, Lovable sequence, analytics integration sequence, and WS5 gates.
+- `WS4-SPEC.md` controls exact page copy, section order, funnel presentation, responsive priorities, and claim boundaries.
+- `WS3-SPEC.md` controls event names, properties, price, measurement, and read rules.
+- The visual-reference README records what is directional, what is authoritative, and which reference defects must not be copied.
+- Do not use old handoffs, failed workbooks, abandoned renders, or Lovable defaults to override these files.
 
-## 4. Correct current state
+## 4. Work completed in the latest session
 
-- Claude Design is the active environment for the hero spreadsheet reference.
-- The reference is being created as editable HTML/CSS.
-- Real Google Sheets screenshots and measurements should guide interface fidelity.
-- A real Google Sheet may be used as a supporting reference, but it is not required as the final layered asset.
-- The prior one-shot hero image is unapproved and is useful only as a high-level critique reference.
-- The prior workbook attempt is discarded.
-- No spreadsheet visual asset is approved yet.
-- The Lovable project is private and paused.
-- The existing Lovable shell is unapproved scratch scaffolding.
-- No funnel, forms, analytics vendor, database, integrations, or public deployment is complete.
+- Jon built a full directional hero spreadsheet reference in Claude Design.
+- The reference is archived in GitHub at:
+  - `docs/workstreams/ws5-assets/hero-spreadsheet-reference-v1.dc.html`
+- The reference inventory and known-defect record is archived at:
+  - `docs/workstreams/ws5-assets/README.md`
+- `WS5-SPEC.md` now distinguishes external visual-reference work from ordinary Lovable implementation.
+- The existing private Lovable project was checked and remains available:
+  - Project: `Blotter Foundation`
+  - Project ID: `ec94e794-190a-4c92-b337-67ecfb8f1b10`
+  - Private and not published.
 
-## 5. Active hero sequence
+## 5. Hero reference status
 
-Do not one-shot the whole hero.
+The hero reference is directionally sufficient to guide Lovable. It is not a literal final pixel target.
 
-1. **Current front spreadsheet window — active now**
-2. Stale rear-sheet variant using the same component and contacts
-3. Gmail and Calendar activity-cue components
-4. Full desktop hero composition
-5. Deliberate mobile hero treatment
-6. Freeze the approved spreadsheet primitive
+Preserve:
 
-Stop for Jon's review after each checkpoint.
+- Google Sheets-native visual language.
+- Current-state recruiting tracker.
+- Student-maintained left side and Blotter-maintained right side.
+- Three cue cards:
+  - Sarah Chen replied.
+  - Coffee chat with Marcus Lee.
+  - Email sent to Alex Morgan.
+- `YOU add the contacts` and `BLOTTER keeps them current`.
+- The exact phrase `keeps them current`.
 
-## 6. Active checkpoint requirements
+Known defects that Lovable must improve rather than copy:
 
-Build only the current front-facing `IB Recruiting Tracker` spreadsheet window.
+1. Cue-to-Blotter-to-sheet flow is unclear.
+2. Cue-to-row or cue-to-field mapping is unclear.
+3. Bottom U-shaped responsibility brackets are messy and not final.
+4. Extra white space below row 6 must be removed.
+5. The vertical Blotter engine is directional only.
 
-Required outputs:
+The stale rear sheet is parked, not rejected. If restored later, add only a cropped, muted upper portion behind the current sheet.
 
-- editable HTML/CSS source;
-- desktop render;
-- mobile crop or render;
-- fidelity audit;
-- list of real Google Sheets references used;
-- implemented dimensions and deliberate departures.
+## 6. Visual-reference scope correction
 
-Review:
+Do not build visual references for every page element.
 
-- toolbar and formula-bar fidelity;
-- column letters and row numbers;
-- gridline consistency;
-- typography;
-- row and header density;
-- column widths;
-- status chips;
-- selected cell;
-- frozen divider;
-- sheet tabs;
-- alignment and readability;
-- mobile crop viability.
+External references are only for complex assets that are hard for Lovable to infer from text. Text, statistics, privacy disclosures, tables, FAQ, CTA blocks, and conventional layouts should be built directly in Lovable from the canonical specifications.
 
-Use the exact document title, tabs, columns, five contacts, current values, blank-cell rule, status-chip rules, selection state, and alignment rules in `WS5-SPEC.md`.
+## 7. Proposed remaining reference set
 
-## 7. Mandatory stop point
+This set is recommended and still needs Jon ratification before production:
 
-Present the active checkpoint to Jon for approval.
+### Candidate 1: Outstanding Actions spreadsheet reference
 
-Do not yet create:
+Recommended as required because it is a nonstandard grouped Google Sheets queue and is reused in Section 4 and Funnel Frame 3.
 
-- the stale rear sheet;
-- Gmail or Calendar cues;
-- the full hero composition;
-- other page visuals;
-- additional Lovable implementation;
-- the funnel;
-- analytics wiring;
-- deployment.
+### Candidate 2: Three-frame funnel spreadsheet storyboard
 
-## 8. What follows after hero approval
+Recommended as required because it must preserve one stable sheet while clearly showing stale activity, updated cells, and the Outstanding Actions transition.
 
-After the hero and spreadsheet primitive are approved:
+### Candidate 3: Section 2 messy-manual-tracker divergence reference
 
-1. Build Section 2 scale and divergence visual.
-2. Build Section 3 mechanism using the approved spreadsheet system.
-3. Build Section 4 Outstanding Actions.
-4. Build Section 5 preservation.
-5. Build Section 6 privacy and permissions treatment.
-6. Build Section 7 FAQ and closing CTA.
-7. Build the three-frame funnel spreadsheet experience.
-8. Implement all seven sections and the funnel in Lovable.
-9. Add lead storage and exact WS3 analytics.
-10. Complete claim verification, responsive/accessibility QA, private deployment, and manual verification.
+Optional. The four recruiting figures are text and do not require a reference. Build this only if Jon ratifies the concept or Lovable cannot execute it directly from the written brief.
+
+No separate prebuilt references are currently recommended for Sections 3, 5, 6, or 7 outside the shared spreadsheet and activity-cue components.
+
+## 8. Exact next action
+
+Present the proposed minimal reference set to Jon for ratification.
+
+If ratified:
+
+1. Build the Outstanding Actions spreadsheet reference.
+2. Stop for one review and freeze it.
+3. Build the three-frame funnel spreadsheet storyboard.
+4. Decide whether the optional Section 2 divergence reference is necessary.
+5. Freeze the implementation packet.
+6. Resume the existing Lovable project in plan mode.
+
+Do not resume broad Lovable coding before the reference-scope decision.
+
+## 9. Lovable sequence after reference freeze
+
+1. Upload the approved HTML references and screenshots directly to the existing Lovable project.
+2. Send the governing WS4, WS3, and WS5 instructions in a plan-mode message.
+3. Approve the proposed component, responsive, funnel-state, lead-write, and event-boundary plan before code changes.
+4. Build the reusable page, CTA, spreadsheet, activity-cue, funnel-shell, and analytics-adapter components.
+5. Implement and approve the hero first.
+6. Implement Sections 2 through 7 in bounded checkpoints.
+7. Implement the canonical funnel and shared state model.
+8. Make an explicit lead-storage decision and implement exportable lead records.
+9. Make an explicit analytics-vendor decision and wire the fixed nine-event contract.
+10. Complete claim, privacy, responsive, accessibility, and private-preview QA.
+11. Manually verify every CTA origin, event, lead record, funnel branch, device class, and payment-choice path before traffic.
+
+## 10. Current exclusions
+
+Do not build or imply:
+
+- real Gmail, Calendar, or Sheets integrations;
+- OAuth;
+- card entry or payment collection;
+- public deployment or acquisition traffic;
+- standalone platform page;
+- production backend behavior beyond minimum validation infrastructure.
