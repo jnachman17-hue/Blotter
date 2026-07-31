@@ -1,31 +1,31 @@
 # Workstream 5 Specification
 
 Date created: July 30, 2026
-Status: Active
+Status: Draft — not active until WS4 is explicitly ratified and closed
 Workstream: Spreadsheet-page Lovable implementation and private verification
 
 ## Objective
 
-Implement the complete spreadsheet-native landing page and matched canonical funnel in Lovable, instrument the WS3 analytics system, deploy privately, and verify responsive behavior, claims, events, and spreadsheet-interface fidelity before acquisition work or platform-page implementation.
+After WS4 closes, implement the complete spreadsheet-native landing page and matched canonical funnel in Lovable, instrument the WS3 analytics system, deploy privately, and verify responsive behavior, claims, events, and spreadsheet-interface fidelity before acquisition work or platform-page implementation.
 
 ## Source hierarchy
 
 1. Jon's explicit instructions in the active chat
-2. `docs/workstreams/WS4-SPEC.md` for page narrative, copy, visuals, demo, responsive rules, and claim boundaries
+2. `docs/workstreams/WS4-SPEC.md` for ratified page narrative, copy, visuals, demo, responsive rules, and claim boundaries
 3. `docs/workstreams/WS3-SPEC.md` for funnel architecture, analytics, price, measurement, and read rules
 4. `docs/workstreams/WS2-SPEC.md` for proposition boundaries
 5. `docs/05-working-agreement.md` for operating and documentation rules
 
-Do not use `03-page-spec.md` or archived design files to override the workstream specifications.
+Do not use `03-page-spec.md` or archived design files to override the workstream specifications. Do not begin implementation while WS4 remains active.
 
 ## Scope
 
-Build:
+Build after WS4 closure:
 
 - Seven-section spreadsheet landing page
 - Three CTA placements
 - Two-question recruiting configuration
-- Three-frame spreadsheet product experience
+- Ratified spreadsheet-specific product experience
 - Recruiting-email capture
 - $9.99 monthly price screen
 - Separate checkout screen with payment-choice buttons
@@ -150,18 +150,18 @@ The spreadsheet primitive is approved only when:
 
 ## Funnel implementation
 
-The canonical path is:
+The canonical path remains controlled by WS3:
 
 1. `funnel_started`
 2. Two recruiting questions
-3. Three-frame spreadsheet experience
+3. One ratified spreadsheet-specific product experience
 4. Email capture
 5. Price screen
 6. Checkout screen
 7. Payment-choice click
 8. Terminal confirmation
 
-Use the exact copy and interaction rules in WS4. Do not add onboarding questions, social login, OAuth, extra demos, plan selection, annual billing, coupons, or card fields.
+Use only the exact copy and interaction rules ratified at WS4 closure. Do not add onboarding questions, social login, OAuth, extra demos, plan selection, annual billing, coupons, card fields, early availability disclosure, or language that reveals the demand test before the payment-choice action.
 
 ## Lead handling
 
@@ -234,7 +234,7 @@ Where implementation truth is not yet available, use the provisional provider wo
 
 ## Responsive requirements
 
-Implement the breakpoint priorities in WS4. Required checks:
+Implement the ratified breakpoint priorities in WS4. Required checks:
 
 - Desktop, tablet, and mobile navigation
 - Readable spreadsheet crops
@@ -266,10 +266,10 @@ QA checklist:
 1. All seven sections appear in order.
 2. Exact CTA locations enter the same funnel.
 3. Funnel question options and order match WS3.
-4. Product experience completes in three clicks and remains under 20 seconds for normal use.
-5. Email screen explicitly states that no inbox access is granted.
+4. The product experience matches the final WS4 ratification and remains within the 15 to 20 second ceiling for normal use.
+5. Email capture does not imitate OAuth or imply that inbox access has been granted.
 6. Price first appears after email submission.
-7. Checkout has no card fields and includes the demand-test disclosure.
+7. Checkout has no card fields and preserves the intended purchase-like sequence until the terminal reveal.
 8. Payment choices reach the terminal screen.
 9. All nine events fire with correct properties.
 10. Events do not double-fire on back navigation or refresh.
@@ -329,4 +329,4 @@ Workstream 5 is complete only when:
 
 ## Exact next action
 
-After WS4 is formally re-ratified and closed, create the Lovable project and implement only the global page shell, typography hierarchy, and one reusable spreadsheet-window fidelity prototype. Present that prototype to Jon for review before adding detailed section visuals or funnel logic.
+After WS4 is explicitly ratified and closed, create the Lovable project and implement only the global page shell, typography hierarchy, and one reusable spreadsheet-window fidelity prototype. Present that prototype to Jon for review before adding detailed section visuals or funnel logic.
