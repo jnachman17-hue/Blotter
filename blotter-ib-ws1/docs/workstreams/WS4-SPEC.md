@@ -1,7 +1,7 @@
 # Workstream 4 Specification
 
 Date last updated: July 30, 2026
-Status: In progress
+Status: Complete
 Workstream: Spreadsheet landing-page content and experience design
 
 ## Purpose
@@ -51,7 +51,6 @@ Do not repeat one identical eyebrow, headline, supporting paragraph, and closer 
 - Subhead: `Blotter updates the Google Sheet you already use by reading relevant recruiting activity from Gmail and Calendar, so you do not miss follow-ups, coffee chats, or next steps.`
 - CTA: `See how Blotter works`
 - Authority line: `Built by a former Goldman Sachs banker for recruitment.`
-- Preserve `Your recruiting tracker, always current.` for Section 7.
 
 Visual: static-first Google Sheets composition with stale tracker behind, Blotter-maintained tracker in front, Gmail/Calendar activity chips, and zone labels `YOU ADD THE CONTACTS` and `BLOTTER KEEPS IT CURRENT`.
 
@@ -135,6 +134,23 @@ Google Sheets-native visual:
 - Two visible rows per group
 - Muted overflow rows: `+4 more replies owed`, `+9 more follow-ups due`, `+2 more thank-you notes`
 - Columns: Contact, Next action, Why it is here
+
+Exact visible rows:
+
+`Replies owed — 6`
+- Marcus Lee | Reply to Marcus | Marcus replied 2 hours ago
+- Daniel Kim | Reply to Daniel | Daniel replied yesterday
+- `+4 more replies owed`
+
+`Follow-ups due — 11`
+- Sarah Chen | Bump thread | No reply for 6 days
+- Alex Morgan | Bump thread | No reply for 8 days
+- `+9 more follow-ups due`
+
+`Thank-you notes — 4`
+- Priya Shah | Send thank-you | Coffee chat completed yesterday
+- James Wu | Send thank-you | Call completed 3 hours ago
+- `+2 more thank-you notes`
 
 The visible rows explain the product; counts and overflow communicate scale.
 
@@ -371,9 +387,7 @@ Do not provide evasive accordion answers. Price and availability remain disclose
 
 - Price appears only after email capture.
 - Price is `$9.99 per month`, monthly, cancel anytime.
-- Fall 2026 beta timing appears in the terminal state after the user completes the funnel.
-
-This preserves the measurement architecture and ensures the CTA sequence remains the only path that reveals those details.
+- Fall 2026 beta timing appears in the terminal state after the visitor selects a payment option.
 
 ### Final closing block
 
@@ -395,21 +409,236 @@ Do not mention price, beta access, Fall 2026, or cohort size in the closing bloc
 
 The final CTA enters the canonical WS3 funnel and stores `cta_location = final`.
 
-Section 7 is fully ratified and closed.
+## Confirmed canonical funnel presentation
 
-## Remaining unresolved decisions
+WS3 remains authoritative for funnel architecture, event semantics, price, and measurement. WS4 defines the spreadsheet-specific presentation and exact visible copy below.
 
-1. Final verification of precise Section 2 case-study counts and minor labels.
-2. Exact funnel product-experience frames and click sequence.
-3. Whether the funnel experience reuses or extends the hero visual.
-4. Final provider selection and verification of privacy scopes and disclosures.
-5. Exact $9.99 price presentation, checkout copy, and terminal-state copy.
-6. Final responsive priorities across the whole page.
-7. Exact domain routing and Lovable custom-domain implementation.
-8. Minor implementation details for confirmed sections.
+### Recruiting questions
 
-## Exact next action
+Question 1 remains exactly:
+`What are you recruiting for?`
 
-The seven landing-page sections are now ratified. Proceed to the canonical funnel experience: define the exact product-experience frames and click sequence while preserving all completed WS3 constraints, including configuration questions, transparent email capture, delayed price disclosure, checkout choices without payment collection, and the Fall 2026 beta terminal state.
+Options remain in WS3 order. Button: `Continue`.
 
-Do not reopen completed WS2, WS3, the hero, or confirmed Sections 2 through 7 unless an implementation constraint genuinely breaks them.
+Question 2 title:
+`Which recruiting window best fits you?`
+
+Options remain:
+- Summer 2028
+- Full-time
+- Other
+
+Button: `Continue`.
+
+### Spreadsheet product experience
+
+Use one stable Google Sheets window across three click-to-progress frames. The hero shows the outcome; the funnel demonstrates the mechanism and operational payoff. Reuse the same visual grammar, columns, mock-data style, and restrained color logic without replaying the hero composition.
+
+A required progress indicator displays `1 of 3`, `2 of 3`, and `3 of 3`.
+
+No timer, autoplay gate, typing simulation, or mandatory animation. Back navigation is allowed and must not refire completion events. Two internal progression clicks lead to one final `Continue` click. Leaving Frame 3 triggers `product_experience_completed`.
+
+#### Frame 1: Recruiting activity arrives
+
+Header:
+`Recruiting keeps moving outside your tracker.`
+
+Supporting line:
+`A reply lands in Gmail and a coffee chat appears on Calendar.`
+
+Visual:
+- Sarah Chen’s spreadsheet row is visible but stale.
+- Gmail chip: `Sarah Chen replied · Today, 10:42 AM`.
+- Calendar chip: `Coffee chat with Daniel Park · Friday, 2:00 PM`.
+- The cells that will change in Frame 2 must be clearly signposted with a restrained outline, border, background treatment, or connector so the visitor knows where to look.
+
+Button:
+`See what Blotter updates`
+
+#### Frame 2: Blotter updates the live state
+
+Header:
+`Blotter turns activity into current recruiting state.`
+
+Supporting line:
+`Status, timing, scheduled calls, and next moves update inside the sheet.`
+
+Sarah Chen:
+- Status: Replied
+- Next move: Reply today
+- Last contact: Today
+- Days: 0
+- Call: —
+
+Daniel Park:
+- Status: Call scheduled
+- Next move: Prepare for call
+- Last contact: 2 days ago
+- Days: 2
+- Call: Fri 2:00 PM
+
+The same signposted cells receive a restrained but unmistakable update highlight or pulse. The demonstration must not become a spot-the-difference exercise.
+
+Button:
+`Show me what needs attention`
+
+#### Frame 3: Outstanding actions
+
+Header:
+`Know exactly what needs your attention.`
+
+Supporting line:
+`Blotter gathers every reply, follow-up, and thank-you note you owe into one current view.`
+
+The same spreadsheet transitions to the `Outstanding actions` view and uses the exact Section 4 queue structure and wording:
+
+- Summary: `21 outstanding actions`
+- Replies owed — 6
+  - Marcus Lee | Reply to Marcus | Marcus replied 2 hours ago
+  - Daniel Kim | Reply to Daniel | Daniel replied yesterday
+  - `+4 more replies owed`
+- Follow-ups due — 11
+  - Sarah Chen | Bump thread | No reply for 6 days
+  - Alex Morgan | Bump thread | No reply for 8 days
+  - `+9 more follow-ups due`
+- Thank-you notes — 4
+  - Priya Shah | Send thank-you | Coffee chat completed yesterday
+  - James Wu | Send thank-you | Call completed 3 hours ago
+  - `+2 more thank-you notes`
+
+Button:
+`Continue`
+
+### Email capture
+
+Eyebrow:
+`Your recruiting workspace`
+
+Title:
+`Continue with your recruiting email.`
+
+Supporting copy:
+`Enter the email address where you conduct recruiting.`
+
+Field label:
+`Recruiting email`
+
+No fixed placeholder. Do not imply that the user must use a school email. Do not add a static privacy note or beta-confirmation reference. Standard invalid-email feedback may appear only after an invalid submission as implementation behavior.
+
+Button:
+`Continue`
+
+### Price screen
+
+This must look like a current product-selection step and must not signal early access, future availability, beta status, or market research.
+
+Title:
+`Blotter`
+
+Price:
+`$9.99 / month`
+
+Billing line:
+`Billed monthly. Cancel anytime.`
+
+Product description:
+`A recruiting tracker that stays current from Gmail, Calendar, and Google Sheets.`
+
+Included:
+- `Keep your existing Google Sheet`
+- `Automatic recruiting-activity updates`
+- `Current relationship status and next actions`
+
+Primary button:
+`Continue to payment`
+
+Optional secondary action:
+`Back`
+
+Do not use `Early access`, `Blotter will cost`, `At launch`, `Beta`, or `Not now`.
+
+### Checkout screen
+
+Title:
+`Complete your purchase`
+
+Order summary:
+- Product: `Blotter`
+- Description: `Recruiting tracker with Gmail, Calendar, and Google Sheets synchronization`
+- Billing: `Monthly`
+- Due today: `$9.99`
+
+Payment choices:
+- `Pay with card`
+- `Apple Pay` where supported
+
+Do not display before the payment-choice click:
+- `This is a demand test`
+- `You will not be charged`
+- `Beta reservation`
+- `Fall 2026`
+- `At launch`
+- Any other wording indicating the product is unavailable or the flow is a test
+
+No card-entry form appears. Selecting a payment option triggers `payment_option_clicked` and advances immediately to the terminal state.
+
+### Terminal state
+
+This is the first point where availability is disclosed.
+
+Eyebrow:
+`Your spot is confirmed`
+
+Title:
+`You are in the first Blotter cohort.`
+
+Supporting copy:
+`Blotter is opening to a limited first cohort of approximately 300 people in Fall 2026. Your place is tied to the recruiting email you provided.`
+
+Charge clarification:
+`You have not been charged.`
+
+Confirmation line:
+`We will email you with access details and next steps.`
+
+Button:
+`Return to Blotter`
+
+## Confirmed responsive priorities
+
+- Mobile hero retains headline, subhead, CTA, authority line, one Gmail chip, one Calendar chip, and a readable crop emphasizing Status, Next move, and Call. The stale background sheet may reduce to a partial edge.
+- Scale retains all four figures in a 2-by-2 mobile grid. Keep the 60-hour methodology directly associated with the claim.
+- How It Works stacks Gmail and Calendar, Blotter, and Google Sheets vertically.
+- Outstanding Actions preserves all three queue counts and at least one readable explanatory row from each queue.
+- Preservation stacks the existing-tracker zone above the Blotter-live-layer zone.
+- Privacy keeps the core personal-email claim and broad Google-permission disclosure visible outside accordions.
+- The funnel uses a centered contained experience on desktop and a full-screen experience on mobile.
+- Spreadsheet visuals use deliberate readable crops and stable column widths rather than shrinking complete sheets into illegibility or depending on pinch-to-zoom.
+
+## Full-page coherence and claim-support audit
+
+The ratified page forms one causal narrative:
+
+1. The tracker stalls while recruiting continues.
+2. Recruiting scale makes manual upkeep unreliable.
+3. Blotter converts relevant Gmail and Calendar activity into current spreadsheet state.
+4. Outstanding actions become clear.
+5. The existing Google Sheets workflow is preserved.
+6. Permissions and data handling are disclosed candidly.
+7. General objections are resolved and the visitor receives a final CTA.
+
+No audit finding requires reopening the hero or Sections 2 through 7.
+
+Implementation safeguards:
+- Treat the figures and 60-hour estimate as Jon-authored case-study evidence, not market averages, benchmarks, or guarantees.
+- Prototype visuals represent the product proposition being tested; they must not be described as a functioning production integration.
+- Provider identity, scopes, retention, deletion, privacy policy, authority line, case-study figures, and methodology require factual verification before private-build approval.
+- Do not add claims, badges, security language, product capabilities, or conversion disclosures not authorized by this specification.
+
+## Workstream completion
+
+Workstream 4 is complete.
+
+Workstream 5 is now active: spreadsheet-page Lovable implementation, instrumentation, and private verification.
+
+The first WS5 build gate is not the full page. Create the global shell, typography hierarchy, and one reusable high-fidelity Google Sheets-style spreadsheet-window component. Compare it with real Google Sheets references, present it to Jon for review, correct it, and freeze the approved primitive before building the hero, mechanism, action view, preservation view, or funnel scenes.
