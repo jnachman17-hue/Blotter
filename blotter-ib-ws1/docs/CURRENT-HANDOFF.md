@@ -8,9 +8,9 @@ Continue Workstream 4: spreadsheet landing-page content and experience design.
 
 Workstreams 1, 2, and 3 are complete. Workstream 4 is active.
 
-The audience positioning, brand direction, seven-section narrative, CTA architecture, hero, and Sections 2 through 6 are confirmed in `docs/workstreams/WS4-SPEC.md`.
+The audience positioning, brand direction, CTA architecture, hero, and Sections 2 through 6 are confirmed in `docs/workstreams/WS4-SPEC.md`.
 
-Exact next action: specify Section 7, the concise closing summary and final CTA.
+Exact next action: specify Section 7 as a general product FAQ followed by the concise closing summary and final CTA.
 
 ## 2. Source-of-truth rules
 
@@ -28,14 +28,23 @@ Exact next action: specify Section 7, the concise closing summary and final CTA.
 3. How it works
 4. Outstanding actions
 5. Preservation
-6. Privacy, permissions, and FAQ
-7. Concise closing summary and CTA
+6. Privacy and permissions, including a dedicated privacy-and-data FAQ
+7. General product FAQ, followed by the concise closing summary and final CTA
 
-Primary CTA placements: hero, after Section 4, and final section.
+Primary CTA placements: hero, after Section 4, and final closing block.
 
-## 4. Confirmed Section 6: How Blotter Uses Your Data
+## 4. Confirmed FAQ distinction
 
-### Tone
+Section 6 retains the full privacy-and-data FAQ because those questions are central to the trust argument and should remain adjacent to the candid permissions disclosure.
+
+Section 7 contains a separate general product FAQ addressing broader product, fit, setup, workflow, and commercial questions. Do not merge privacy questions into the general FAQ or remove them from Section 6.
+
+The two FAQ groups should be visually related but clearly labeled and separated by purpose:
+
+- Section 6: how data access and processing work
+- Section 7: how the product works for the user more generally
+
+## 5. Confirmed Section 6: How Blotter Uses Your Data
 
 Section 6 is a serious, candid, plain-English disclosure rather than a standard marketing block.
 
@@ -48,55 +57,16 @@ Opening statement:
 Main claim:
 `Blotter never reads your personal email. It checks who a message is from and only reads messages from contacts stored in your recruiting tracker. Everything else is excluded before message content is processed.`
 
-### Four-step explanation
+The section includes:
 
-1. Blotter compares the sender’s email address with contacts stored in the tracker.
-2. If the sender does not match, the message body is never routed into content processing.
-3. If the sender matches, Blotter identifies the recruiting facts needed to maintain status, timing, and next actions.
-4. Blotter stores structured recruiting facts and does not retain full email bodies.
+- the four-step sender-match and processing explanation;
+- the Gmail, Calendar, and Sheets permissions table;
+- the broad Google-scope disclosure;
+- the plain commitments and deletion language;
+- provisional third-party provider disclosure pending provider verification;
+- the dedicated privacy FAQ.
 
-### Permissions
-
-Gmail:
-- Checks sender and timing information.
-- Reads content only for matched contacts.
-- Cannot send or edit email.
-- Does not process unmatched message bodies.
-
-Calendar:
-- Reads events associated with tracked contacts.
-- Cannot create, edit, cancel, or respond to events.
-
-Sheets:
-- Creates and maintains the standardized Blotter view.
-- Does not access unrelated Drive files.
-
-Broad Google scope disclosure:
-`Google may describe the Gmail permission broadly because it does not offer a permission limited only to contacts in your recruiting tracker. Blotter enforces the narrower boundary in its processing system: unmatched messages are never routed for content analysis.`
-
-### Commitments
-
-- No email sending
-- No calendar writing
-- No Google Contacts access
-- No unrelated Drive access
-- No data selling
-- No full email-body retention
-- No content processing for unmatched personal email
-- Disconnect accounts at any time
-- Account deletion permanently deletes Blotter data
-
-Deletion language:
-`You can disconnect your Google accounts at any time. When you delete your Blotter account, the connection is revoked and your Blotter data is permanently deleted.`
-
-### Third-party provider
-
-Do not use `accredited provider`. Provisional framing only:
-`Blotter uses a third-party connection provider whose Google application has completed Google’s verification process.`
-
-The provider’s role, exact scopes, retention practices, subprocessors, and consent-screen identity remain to be verified and disclosed candidly.
-
-### FAQ
+Privacy FAQ questions:
 
 1. Why does Google ask for broad Gmail access?
 2. Does Blotter read personal emails?
@@ -108,20 +78,22 @@ The provider’s role, exact scopes, retention practices, subprocessors, and con
 
 No CTA appears in Section 6.
 
-## 5. Exact next action
+## 6. Exact next action
 
 Specify Section 7 as one compact ratification package. Settle:
 
-1. Final headline.
-2. Supporting line.
-3. Final CTA wording.
-4. Whether to include a short beta-cohort or reassurance line.
-5. Final visual treatment.
-6. How to use `Your recruiting tracker, always current.`
+1. The general product FAQ questions and concise answers.
+2. The transition from general FAQ into the final closing block.
+3. Final closing headline.
+4. Supporting line.
+5. Final CTA wording.
+6. Whether to include a short beta-cohort or reassurance line.
+7. Final visual treatment.
+8. How to use `Your recruiting tracker, always current.`
 
 Then continue to funnel screens, responsive constraints, and the final Lovable-ready implementation brief.
 
-## 6. Fixed WS3 constraints
+## 7. Fixed WS3 constraints
 
 - Every primary CTA enters the same funnel.
 - Two recruiting-configuration questions precede one 15 to 20 second product experience.
@@ -133,7 +105,7 @@ Then continue to funnel screens, responsive constraints, and the final Lovable-r
 - Terminal state confirms a real place in the approximately 300-person Fall 2026 beta cohort.
 - Both surfaces use the same funnel, price, event set, and measurement rules.
 
-## 7. Build state
+## 8. Build state
 
 - No Lovable project exists yet.
 - No reusable production code or completed landing-page assets exist.
