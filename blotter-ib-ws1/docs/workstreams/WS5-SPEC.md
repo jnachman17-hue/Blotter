@@ -1,37 +1,38 @@
 # Workstream 5 Specification
 
 Date created: July 30, 2026
-Status: Draft — not active until WS4 is explicitly ratified and closed
+Status: Active
 Workstream: Spreadsheet-page Lovable implementation and private verification
 
 ## Objective
 
-After WS4 closes, implement the complete spreadsheet-native landing page and matched canonical funnel in Lovable, instrument the WS3 analytics system, deploy privately, and verify responsive behavior, claims, events, and spreadsheet-interface fidelity before acquisition work or platform-page implementation.
+Implement the complete spreadsheet-native landing page and matched canonical funnel in Lovable, instrument the WS3 analytics system, deploy privately, and verify responsive behavior, claims, events, lead handling, and spreadsheet-interface fidelity before acquisition work or platform-page implementation.
 
 ## Source hierarchy
 
 1. Jon's explicit instructions in the active chat
-2. `docs/workstreams/WS4-SPEC.md` for ratified page narrative, copy, visuals, demo, responsive rules, and claim boundaries
+2. `docs/workstreams/WS4-SPEC.md` for page narrative, exact copy, visuals, product experience, responsive rules, and claim boundaries
 3. `docs/workstreams/WS3-SPEC.md` for funnel architecture, analytics, price, measurement, and read rules
 4. `docs/workstreams/WS2-SPEC.md` for proposition boundaries
 5. `docs/05-working-agreement.md` for operating and documentation rules
 
-Do not use `03-page-spec.md` or archived design files to override the workstream specifications. Do not begin implementation while WS4 remains active.
+Do not use `03-page-spec.md` or archived design files to override the workstream specifications.
 
 ## Scope
 
-Build after WS4 closure:
+Build:
 
 - Seven-section spreadsheet landing page
 - Three CTA placements
 - Two-question recruiting configuration
-- Ratified spreadsheet-specific product experience
+- Ratified three-frame spreadsheet product experience
 - Recruiting-email capture
 - $9.99 monthly price screen
-- Separate checkout screen with payment-choice buttons
-- Fall 2026 beta terminal state
+- Separate purchase-summary screen with payment-choice buttons
+- Fall 2026 first-cohort terminal state
 - Responsive desktop, tablet, and mobile layouts
 - Exact WS3 event instrumentation
+- Lead storage and export path
 - Private deployment for review
 
 Do not build:
@@ -75,14 +76,14 @@ Recommended component groups:
 - Product-experience frame
 - Email form
 - Price screen
-- Checkout screen
+- Purchase-summary screen
 - Terminal screen
 
 Keep copy and mock data in structured configuration objects where practical so the later platform variant can reuse the funnel shell without reimplementing event semantics.
 
 ## Spreadsheet visual-fidelity gate
 
-The spreadsheet visuals are a core product proof, not generic decorative tables. Do not rely on text prompts alone and do not build all page scenes before the spreadsheet primitive is reviewed.
+The spreadsheet visuals are core product proof, not generic decorative tables. Do not rely on text prompts alone and do not build all page scenes before the spreadsheet primitive is reviewed.
 
 ### Required reusable component
 
@@ -150,18 +151,20 @@ The spreadsheet primitive is approved only when:
 
 ## Funnel implementation
 
-The canonical path remains controlled by WS3:
+The canonical path is:
 
 1. `funnel_started`
 2. Two recruiting questions
-3. One ratified spreadsheet-specific product experience
+3. Three-frame spreadsheet experience
 4. Email capture
 5. Price screen
-6. Checkout screen
+6. Purchase-summary screen
 7. Payment-choice click
 8. Terminal confirmation
 
-Use only the exact copy and interaction rules ratified at WS4 closure. Do not add onboarding questions, social login, OAuth, extra demos, plan selection, annual billing, coupons, card fields, early availability disclosure, or language that reveals the demand test before the payment-choice action.
+Use the exact copy and interaction rules in WS4. Do not add onboarding questions, social login, OAuth, extra demos, plan selection, annual billing, coupons, card fields, early beta disclosure, early availability disclosure, or pre-terminal demand-test language.
+
+The flow must remain transaction-like through the payment-choice click. The terminal state is the first place that discloses Fall 2026 timing and confirms no charge occurred.
 
 ## Lead handling
 
@@ -230,11 +233,11 @@ Before private approval, verify or revise:
 - Retention, deletion, and privacy-policy claims
 - Third-party subprocessors and disclosures
 
-Where implementation truth is not yet available, use the provisional provider wording in WS4 and do not publish stronger claims.
+Where implementation truth is not yet available, use only the provisional provider wording in WS4 and do not publish stronger claims.
 
 ## Responsive requirements
 
-Implement the ratified breakpoint priorities in WS4. Required checks:
+Implement the exact responsive priorities in WS4. Required checks:
 
 - Desktop, tablet, and mobile navigation
 - Readable spreadsheet crops
@@ -266,20 +269,21 @@ QA checklist:
 1. All seven sections appear in order.
 2. Exact CTA locations enter the same funnel.
 3. Funnel question options and order match WS3.
-4. The product experience matches the final WS4 ratification and remains within the 15 to 20 second ceiling for normal use.
-5. Email capture does not imitate OAuth or imply that inbox access has been granted.
-6. Price first appears after email submission.
-7. Checkout has no card fields and preserves the intended purchase-like sequence until the terminal reveal.
-8. Payment choices reach the terminal screen.
-9. All nine events fire with correct properties.
-10. Events do not double-fire on back navigation or refresh.
-11. Lead records store correctly and can be exported.
-12. Mobile and desktop layouts preserve content priority.
-13. Claims and privacy language pass the verification gate.
-14. No production integration is implied by interactive behavior.
-15. All spreadsheet scenes use the approved reusable spreadsheet-window component.
-16. Spreadsheet chrome, grids, cell states, tabs, typography, and responsive crops remain consistent across the page and funnel.
-17. Jon approved the spreadsheet fidelity prototype before broad scene production.
+4. Product experience uses the ratified three frames, required progress indicator, clear cell-change signposting, and normal completion under 20 seconds.
+5. Email screen uses the exact WS4 copy and does not imply OAuth, beta timing, or school-email restriction.
+6. Price first appears after email submission and uses the exact current-product wording.
+7. Purchase summary has no card fields and contains no pre-terminal demand-test, beta, future-availability, or no-charge disclosure.
+8. Payment choices trigger the canonical event and reach the terminal screen.
+9. Terminal state is the first availability disclosure and includes `You have not been charged.`
+10. All nine events fire with correct properties.
+11. Events do not double-fire on back navigation or refresh.
+12. Lead records store correctly and can be exported.
+13. Mobile and desktop layouts preserve content priority.
+14. Claims and privacy language pass the verification gate.
+15. No production integration is implied by interactive behavior.
+16. All spreadsheet scenes use the approved reusable spreadsheet-window component.
+17. Spreadsheet chrome, grids, cell states, tabs, typography, and responsive crops remain consistent across the page and funnel.
+18. Jon approved the spreadsheet fidelity prototype before broad scene production.
 
 ## Manual analytics verification
 
@@ -295,7 +299,7 @@ Before approval:
 
 ## Test parity constraint
 
-Build the funnel shell so WS7 can reuse the same question screens, email capture, price screen, checkout screen, terminal state, event names, and interaction burden. Only the surface-specific product experience should require material replacement.
+Build the funnel shell so WS7 can reuse the same question screens, email capture, price screen, purchase-summary screen, terminal state, event names, and interaction burden. Only the surface-specific product experience should require material replacement.
 
 Do not introduce spreadsheet-only friction reductions that cannot be matched on the platform page.
 
@@ -329,4 +333,4 @@ Workstream 5 is complete only when:
 
 ## Exact next action
 
-After WS4 is explicitly ratified and closed, create the Lovable project and implement only the global page shell, typography hierarchy, and one reusable spreadsheet-window fidelity prototype. Present that prototype to Jon for review before adding detailed section visuals or funnel logic.
+Create the Lovable project and implement only the global page shell, typography hierarchy, and one reusable spreadsheet-window fidelity prototype. Present that prototype to Jon for review before adding detailed section visuals or funnel logic.
