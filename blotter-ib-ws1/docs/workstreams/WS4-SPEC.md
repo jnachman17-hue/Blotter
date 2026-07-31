@@ -6,29 +6,23 @@ Workstream: Spreadsheet landing-page content and experience design
 
 ## Purpose
 
-This file is the permanent cumulative record for Workstream 4. Update it in consolidated batches whenever Jon ratifies, rejects, supersedes, or materially revises a Workstream 4 decision.
+This is the permanent cumulative record for Workstream 4. `CURRENT-HANDOFF.md` is temporary resumption context and must not become the only record of confirmed decisions.
 
-`CURRENT-HANDOFF.md` is temporary resumption context and must not become the only record of confirmed design decisions.
-
-## Objective
+## Objective and boundary
 
 Produce a coherent, build-ready content and experience specification for the spreadsheet-native landing page before Lovable implementation.
 
-The output should define what the page says, what it shows, how the story progresses, and how the confirmed Workstream 3 funnel is represented visually and verbally.
-
-## Workstream boundary
-
 Workstream 4 defines page narrative, copy, proof devices, hero and product demonstrations, funnel experience frames, action-focused view, Gmail and Calendar mechanism visualization, privacy and FAQ content, CTA placement, price and terminal-state copy, and responsive implementation constraints.
 
-Workstream 4 does not begin Lovable implementation, design the standalone platform page, specify backend logic, design real OAuth architecture, create acquisition plans, or treat prototype features as commitments to build.
+It does not begin Lovable implementation, design the standalone platform page, specify backend logic, design real OAuth architecture, create acquisition plans, or treat prototype features as commitments to build.
 
 ## Inherited constraints
 
-The spreadsheet-native page must preserve the completed WS2 and WS3 decisions:
+The page must preserve completed WS2 and WS3 decisions:
 
 - the July audience is pre-decay and the page sells prevention;
 - live recruiting activity outpaces manual spreadsheet upkeep;
-- stale state produces loss of operational trust and missed actions;
+- stale state produces lost operational trust and missed actions;
 - the student maintains contacts and static information;
 - Blotter maintains changing activity from relevant Gmail and Calendar signals;
 - the core outcome is one accurate, current source of truth;
@@ -80,7 +74,7 @@ Three primary CTA placements are confirmed: hero, after product and action proof
 
 ### Communication hierarchy
 
-The hero's dominant job is to communicate: `This is a recruiting spreadsheet that updates itself from actual recruiting activity.`
+The dominant message is: `This is a recruiting spreadsheet that updates itself from actual recruiting activity.`
 
 The visitor should understand, in order:
 
@@ -161,7 +155,7 @@ The causal chain is:
 
 `high recruiting volume → delayed or inconsistent manual upkeep → stale tracker → lost operational trust → missed actions`
 
-The section should make clear that students eventually delay updates, forget details, become inconsistent, or stop maintaining the sheet as recruiting accelerates. The tracker then ceases to reflect reality. Once it is no longer a trustworthy system of record, the student must reconstruct the process from Gmail, Calendar, memory, and scattered notes, and follow-ups, thank-you notes, and next steps fall through the cracks.
+The section must make clear that students delay updates, forget details, become inconsistent, or stop maintaining the sheet as recruiting accelerates. The tracker then ceases to reflect reality. Once it is no longer trustworthy, the student must reconstruct the process from Gmail, Calendar, memory, and scattered notes, and follow-ups, thank-you notes, and next steps fall through the cracks.
 
 ### Ratified copy
 
@@ -185,15 +179,15 @@ Closing line:
 
 The page implementation may shorten this copy for visual economy while preserving the full argument and causal chain.
 
-### Case-study proof framing
+### Case-study proof
 
-The figures are drawn from a real, high-intensity recruiting case involving a successful Summer Analyst 2028 candidate who received a JPMorgan offer. They are not presented as an industry average.
+The figures come from a real, high-intensity recruiting case involving a successful Summer Analyst 2028 candidate who received a JPMorgan offer. They are not presented as an industry average.
 
-Qualification direction:
+Ratified qualification:
 
 `Representative workload from a high-intensity Summer Analyst 2028 recruiting cycle that resulted in a JPMorgan offer.`
 
-Use precise case-study counts rather than rounded averages. Current working figures are:
+Use precise case-study counts:
 
 - `628` recruiting emails
 - `55` coffee chats
@@ -202,19 +196,21 @@ Use precise case-study counts rather than rounded averages. Current working figu
 
 All four may be shown because applications broaden the section beyond networking alone. Final number verification and minor label wording may occur before implementation without reopening the section argument.
 
-### Time-savings claim
+### Ratified time-savings claim
 
-A quantified time-savings claim remains confirmed, but the earlier 85-hour figure is rejected as too high for the page.
+Primary claim:
 
-The claim must be applied specifically to the same JPMorgan-offer case study, not generalized as an industry average or guarantee. The methodology should remain visually minor and need not show the arithmetic on the website.
+`Save approximately 60 hours of manual tracker administration over one recruiting cycle.`
 
-Methodology direction:
+The estimate applies specifically to the same JPMorgan-offer case study, not as an industry average or guarantee.
 
-`Estimated from the manual work required in this recruiting cycle to transfer relevant Gmail activity into the tracker, maintain relationship status and next actions, reconcile scheduled and completed calls from Calendar, and periodically audit the sheet against both systems.`
+Ratified small methodology line:
 
-The estimate excludes time spent writing emails, preparing for conversations, conducting calls, and interviewing.
+`Estimated from manual Gmail and Calendar logging, tracker updates, and recurring reconciliation across the case-study recruiting cycle.`
 
-Exact reduced hour figure remains to be settled. A conservative working range is approximately 50 to 65 hours, with approximately 60 hours the current recommended center point.
+The methodology remains visually minor and the arithmetic is not shown on the website. The estimate excludes time spent writing emails, preparing for conversations, conducting calls, and interviewing.
+
+The earlier 85-hour figure and the 50 to 65 hour working range are superseded by the ratified 60-hour claim.
 
 ### Ratified visual treatment
 
@@ -232,16 +228,16 @@ The left side shows a continuous sequence of Gmail and Calendar events. The righ
 
 The final state may show Gmail and Calendar as current while the manual tracker is incomplete and several days behind.
 
-The time-savings statement appears as a subordinate proof block beneath or beside the divergence visual, with a small methodology qualifier. It is not treated as an equal fifth volume statistic.
+The 60-hour statement appears as a subordinate proof block beneath or beside the divergence visual, with the small ratified methodology line. It is not treated as an equal fifth volume statistic.
 
 No CTA appears in Section 2. The section flows directly into How It Works.
 
 ## Remaining unresolved decisions
 
-1. Exact reduced time-savings figure within the conservative range.
-2. Final verification of the precise case-study counts and minor labels.
+1. Final verification of precise case-study counts and minor labels.
+2. Exact Section 3 copy, causal-system visual, and placement of product-boundary language.
 3. Exact action-focused grouping, sorting, filtering, or summary view.
-4. Exact copy and proof for Sections 3 through 7.
+4. Exact copy and proof for Sections 4 through 7.
 5. Exact funnel product-experience frames and click sequence.
 6. Whether the funnel experience reuses or extends the hero visual.
 7. Exact privacy, permissions, provider, verification, and FAQ wording.
@@ -252,6 +248,12 @@ No CTA appears in Section 2. The section flows directly into How It Works.
 
 ## Exact next action
 
-Settle the reduced time-savings figure and any final case-study number corrections, then proceed immediately to Section 3, How It Works.
+Specify Section 3, How It Works, efficiently as one ratification package. Settle:
 
-Do not reopen the confirmed hero, completed WS2 or WS3 decisions, or the ratified Section 2 argument and visual treatment unless an implementation constraint genuinely breaks them. Avoid backend-level product granularity. The page is a market-validation prototype and needs coherent, attractive, credible test-resolution details.
+- the section headline and concise explanatory copy;
+- the division of labor between the student and Blotter;
+- the Gmail → Blotter → Google Sheets and Calendar → Blotter → Google Sheets visual system;
+- the exact visible activity examples;
+- placement and treatment of the confirmed product-boundary language.
+
+Do not reopen the confirmed hero, completed WS2 or WS3 decisions, or ratified Section 2 unless an implementation constraint genuinely breaks them. Avoid backend-level product granularity. The page is a market-validation prototype and needs coherent, attractive, credible test-resolution details.
