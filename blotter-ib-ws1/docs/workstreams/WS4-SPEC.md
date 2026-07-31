@@ -57,11 +57,11 @@ The page must preserve completed WS2 and WS3 decisions:
 6. Privacy and permissions, plus FAQ.
 7. Concise closing summary and CTA.
 
-Three primary CTA placements are confirmed: hero, after product and action proof, and final section. All enter the same WS3 funnel.
+Primary CTA placements are the hero, after Section 4 product and action proof, and the final section. All enter the same WS3 funnel.
 
 ## Confirmed page-rhythm rule
 
-The seven sections should not repeat one identical eyebrow, headline, supporting paragraph, and closing-line template. Copy hierarchy and visual density should vary by section while preserving a coherent design system. Some sections may use a headline plus diagram, some may use proof figures, comparison blocks, FAQ rows, or a concise closing statement. Repetition should be controlled during Lovable implementation.
+The seven sections should not repeat one identical eyebrow, headline, supporting paragraph, and closing-line template. Copy hierarchy and visual density should vary by section while preserving a coherent design system.
 
 ## Confirmed hero
 
@@ -160,13 +160,7 @@ The left side shows continuous Gmail and Calendar events. The right side shows s
 
 ## Confirmed Section 3: How It Works
 
-### Purpose
-
-Section 3 explains the operating model after Section 2 establishes the manual-update problem. It should answer: `What does Blotter actually do after I connect it?`
-
-The section should explain the causal system at landing-page-test resolution without backend architecture, provider details, detailed status rules, follow-up thresholds, or setup edge cases.
-
-### Ratified copy
+### Copy
 
 Eyebrow:
 
@@ -184,17 +178,9 @@ Closing line:
 
 `You stay responsible for the judgment and communication. Blotter keeps the logistics synchronized.`
 
-Use `uses relevant activity from Gmail and Calendar` rather than broader language implying unrestricted inbox access.
-
-### Ratified causal visual
+### Causal visual
 
 Use one three-stage system:
-
-1. Gmail and Calendar as the live sources of recruiting activity.
-2. Blotter as the orchestration layer that maintains changing relationship state.
-3. The user's existing Google Sheet as the current operating record.
-
-Core visual sequence:
 
 `Gmail + Calendar → Blotter → Your Google Sheet`
 
@@ -204,18 +190,9 @@ Stage labels:
 - `BLOTTER KEEPS IT CURRENT`
 - `YOUR TRACKER STAYS CURRENT`
 
-Representative activity examples may include:
+Representative activity examples may include reply received, call scheduled, coffee chat completed, and follow-up window reached. Use a smaller maintained-fields crop rather than repeat the complete hero spreadsheet. Desktop may use a horizontal system. Mobile stacks the three stages vertically.
 
-- reply received;
-- call scheduled;
-- coffee chat completed;
-- follow-up window reached.
-
-The visual should use a smaller crop of maintained fields rather than repeat the complete hero spreadsheet. Desktop may use a horizontal system. Mobile stacks the three stages vertically with directional continuity.
-
-### Ratified division of labor
-
-Use one compact two-column comparison below or beside the causal visual.
+### Division of labor
 
 `YOU CONTROL`
 
@@ -229,41 +206,139 @@ Use one compact two-column comparison below or beside the causal visual.
 - `Last contact and timing`
 - `Scheduled calls and next actions`
 
-The wording should make clear that the student retains judgment, targeting, and communication while Blotter handles repetitive logistics upkeep.
-
 ### Product-boundary treatment
 
-Place the already confirmed product-boundary strip at the bottom of Section 3, after the positive mechanism explanation.
+Place the confirmed product-boundary treatment at the bottom of Section 3 after the positive mechanism explanation.
 
-Recommended hierarchy:
+Main line:
 
-1. Main supporting line: `You choose the people and write the messages. Blotter keeps the logistics current.`
-2. Small badges: `No technical-prep content`, `No generic mass AI outreach`, `No AI slop`.
-3. Use the longer primary boundary statement only if the section has sufficient room or move it to FAQ.
+`You choose the people and write the messages. Blotter keeps the logistics current.`
 
-No CTA appears in Section 3. The next CTA remains after the product and action proof, following Section 4.
+Small badges:
+
+- `No technical-prep content`
+- `No generic mass AI outreach`
+- `No AI slop`
+
+No CTA appears in Section 3.
+
+## Confirmed Section 4: Outstanding Actions
+
+### Communication job
+
+Section 4 proves the daily operational outcome of the maintained tracker. It should communicate that the user no longer has to reconstruct current obligations from Gmail, Calendar, memory, and a stale spreadsheet. Blotter provides one current action view.
+
+The visual must communicate a high-volume workload without forcing the visitor to process a high volume of rows. Workload size is communicated through counts and muted overflow; product comprehension is communicated through a small number of readable examples.
+
+### Ratified copy
+
+No eyebrow.
+
+Headline:
+
+`Know exactly what needs your attention.`
+
+Supporting line:
+
+`Stop reconstructing your next moves from Gmail, Calendar, and memory. Blotter gives you one current view of every action you owe.`
+
+CTA block line:
+
+`Open your tracker and know what to do next.`
+
+CTA button:
+
+`See how Blotter works`
+
+The CTA appears after Section 4, not in Section 3, and enters the canonical WS3 funnel with its own `cta_location`.
+
+### Ratified Google Sheets-native visual
+
+The action area must look and behave visually like infrastructure native to Google Sheets. It must not resemble a separate SaaS dashboard or a generic marketing card grid.
+
+Do not call it a `Today` tab. Use one persistent action area titled:
+
+`Outstanding actions`
+
+Show a prominent but spreadsheet-native total:
+
+`21 outstanding actions`
+
+The exact treatment can be a merged summary cell, compact header band, or another native-looking sheet element. It should not look like a floating web-dashboard metric card.
+
+Use three grouped queues:
+
+1. `Replies owed` with count `6`
+2. `Follow-ups due` with count `11`
+3. `Thank-you notes` with count `4`
+
+Each queue shows two representative rows and a muted overflow line:
+
+- `+4 more replies owed`
+- `+9 more follow-ups due`
+- `+2 more thank-you notes`
+
+The count labels and overflow lines must be represented using Google Sheets-native conventions such as merged section-header cells, subtle filled rows, grouped ranges, or muted summary rows. Exact implementation styling belongs to Lovable iteration, but the surface must remain recognizably a spreadsheet.
+
+### Ratified row structure
+
+Use three columns:
+
+1. `Contact`
+2. `Next action`
+3. `Why it is here`
+
+Representative rows:
+
+#### Replies owed
+
+- Marcus Lee | Reply to Marcus | Marcus replied 2 hours ago
+- Daniel Kim | Reply to Daniel | Daniel replied yesterday
+
+#### Follow-ups due
+
+- Sarah Chen | Bump thread | No reply for 6 days
+- Alex Morgan | Bump thread | No reply for 8 days
+
+#### Thank-you notes
+
+- Priya Shah | Send thank-you | Coffee chat completed yesterday
+- James Wu | Send thank-you | Call completed 3 hours ago
+
+The `Why it is here` column functions as a concise audit trail. Use subject-specific language such as `Marcus replied 2 hours ago` rather than the more ambiguous `Replied 2 hours ago`.
+
+### Ratified visual hierarchy
+
+1. `Outstanding actions` title and `21 outstanding actions` summary.
+2. Three grouped queues with uneven counts.
+3. Two visible rows per queue.
+4. Muted `+N more` line beneath each queue.
+5. Consistent Contact, Next action, and Why it is here columns.
+
+The six visible rows explain the product. The counts and overflow rows communicate the larger workload. Do not render dozens of full records merely to prove scale.
+
+Waiting, completed, and otherwise calm relationships remain outside this action view unless they create an outstanding action.
 
 ## Remaining unresolved decisions
 
 1. Final verification of precise Section 2 case-study counts and minor labels.
-2. Exact Section 4 action-focused view, copy, and visual treatment.
-3. Exact copy and proof for Sections 5 through 7.
-4. Exact funnel product-experience frames and click sequence.
-5. Whether the funnel experience reuses or extends the hero visual.
-6. Exact privacy, permissions, provider, verification, and FAQ wording.
-7. Exact $9.99 price presentation, checkout copy, and terminal-state copy.
-8. Final responsive priorities across the whole page.
-9. Exact domain routing and Lovable custom-domain implementation.
-10. Minor hero and Section 3 implementation details.
+2. Exact copy and visual treatment for Sections 5 through 7.
+3. Exact funnel product-experience frames and click sequence.
+4. Whether the funnel experience reuses or extends the hero visual.
+5. Exact privacy, permissions, provider, verification, and FAQ wording.
+6. Exact $9.99 price presentation, checkout copy, and terminal-state copy.
+7. Final responsive priorities across the whole page.
+8. Exact domain routing and Lovable custom-domain implementation.
+9. Minor implementation details for the hero and confirmed sections.
 
 ## Exact next action
 
-Specify Section 4, Action View: know what needs to happen today. Settle efficiently:
+Specify Section 5, Preservation: keep the spreadsheet and structure already in use. Settle efficiently:
 
 - the section's communication job and copy;
-- the exact action-focused view shown;
-- whether the view uses grouped queues, filters, sorting, a separate sheet tab, or another simple treatment;
-- the representative actions and visual hierarchy;
-- the placement and wording of the second primary CTA after the product and action proof.
+- how the page proves that Blotter works with the user's existing Google Sheet rather than requiring a rebuild;
+- the visual treatment for preserving contacts, notes, custom columns, and familiar workflow;
+- whether any reassurance or setup language is needed;
+- whether Section 5 includes or leads into trust and permissions.
 
-Do not reopen completed WS2, WS3, the hero, Section 2, or the confirmed Section 3 system unless an implementation constraint genuinely breaks them. Avoid backend-level product granularity.
+Do not reopen completed WS2, WS3, the hero, or confirmed Sections 2 through 4 unless an implementation constraint genuinely breaks them. Avoid backend-level product granularity.
