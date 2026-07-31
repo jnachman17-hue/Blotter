@@ -8,9 +8,9 @@ Continue Workstream 4: spreadsheet landing-page content and experience design.
 
 Workstreams 1, 2, and 3 are complete. Workstream 4 is active.
 
-The audience positioning, brand direction, seven-section narrative, CTA architecture, hero specification, and Section 2 Scale argument and visual treatment are confirmed and recorded in `docs/workstreams/WS4-SPEC.md`.
+The audience positioning, brand direction, seven-section narrative, CTA architecture, hero specification, and complete Section 2 Scale package are confirmed and recorded in `docs/workstreams/WS4-SPEC.md`.
 
-Exact next action: settle the reduced time-savings figure and any final case-study count corrections, then specify Section 3, How It Works.
+Exact next action: specify Section 3, How It Works, efficiently as one ratification package.
 
 ## 2. Source-of-truth rules
 
@@ -83,28 +83,30 @@ The implementation may shorten this copy while preserving the argument.
 
 ### Case-study proof
 
-The figures come from a real high-intensity Summer Analyst 2028 recruiting cycle that resulted in a JPMorgan offer. They are not presented as an industry average.
-
-Qualification direction:
+Ratified qualification:
 
 `Representative workload from a high-intensity Summer Analyst 2028 recruiting cycle that resulted in a JPMorgan offer.`
 
-Current working exact figures:
+Current exact figures:
 
 - 628 recruiting emails
 - 55 coffee chats
 - 19 applications
 - 30 interview rounds
 
-Final count verification and minor label wording may occur before implementation.
+The figures are presented as one real case study, not an industry average.
 
 ### Time-savings claim
 
-A quantified time-savings claim remains required, but 85 hours was rejected as too high.
+Ratified primary claim:
 
-The estimate applies specifically to the same JPMorgan-offer case. It covers transferring relevant Gmail activity into the tracker, maintaining relationship state and next actions, reconciling calls from Calendar, and auditing the sheet against both systems. It excludes writing emails, preparing for calls, conducting calls, and interviewing.
+`Save approximately 60 hours of manual tracker administration over one recruiting cycle.`
 
-Exact reduced figure remains open. Current recommended center point: approximately 60 hours, within a conservative 50 to 65 hour range.
+Ratified small methodology line:
+
+`Estimated from manual Gmail and Calendar logging, tracker updates, and recurring reconciliation across the case-study recruiting cycle.`
+
+The claim applies specifically to the same JPMorgan-offer case. The methodology remains visually minor and no arithmetic is shown on the website.
 
 ### Visual treatment
 
@@ -115,7 +117,7 @@ Divergence titles:
 - `WHAT ACTUALLY HAPPENED`
 - `WHAT MADE IT INTO THE MANUAL TRACKER`
 
-The left side shows continuous Gmail and Calendar events. The right side shows sparse, delayed, incomplete tracker updates. The time-savings claim appears as a subordinate proof block with a small methodology qualifier.
+The left side shows continuous Gmail and Calendar events. The right side shows sparse, delayed, incomplete tracker updates. The 60-hour claim appears as a subordinate proof block with its small methodology line.
 
 No CTA appears in Section 2.
 
@@ -139,10 +141,15 @@ Likely placement is near Section 3 after the product has been explained positive
 
 ## 7. Exact next action
 
-1. Settle the reduced time-savings figure, with approximately 60 hours as the recommendation.
-2. Correct any case-study counts if needed.
-3. Specify Section 3, How It Works, efficiently as one ratification package.
-4. Continue through Action View, Preservation, Privacy and FAQ, closing section, funnel screens, responsive constraints, and the final Lovable-ready implementation brief.
+Specify Section 3, How It Works, as one compact ratification package. Settle:
+
+1. Section headline and concise explanatory copy.
+2. Division of labor between the student and Blotter.
+3. Gmail → Blotter → Google Sheets and Calendar → Blotter → Google Sheets visual system.
+4. Exact visible activity examples.
+5. Placement and visual treatment of the confirmed product-boundary language.
+
+Then continue through Action View, Preservation, Privacy and FAQ, closing section, funnel screens, responsive constraints, and the final Lovable-ready implementation brief.
 
 ## 8. Workstream 3 constraints that remain fixed
 
@@ -176,4 +183,4 @@ Read in this order:
 5. `docs/workstreams/WS3-SPEC.md`
 6. `docs/05-working-agreement.md`
 
-Then execute the exact next action. Do not reopen completed WS2, WS3, the hero, or the ratified Section 2 argument and visual treatment.
+Then execute the exact next action. Do not reopen completed WS2, WS3, the hero, or the ratified Section 2 package.
