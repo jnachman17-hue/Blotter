@@ -3,193 +3,96 @@
 Date: July 30, 2026
 Status: Proposed, pending Jon ratification
 
-## Administrative status
+## Purpose
 
-Workstream 4 is active. The attempted closure is reversed. Workstream 5 is not active.
+This file isolates the few substantive WS4 decisions that still require Jon review. It does not reopen completed work.
 
-The full attempted-closure work remains retained in `WS4-SPEC.md` and the draft `WS5-SPEC.md`. Nothing is discarded. This file defines the authority boundary until Jon ratifies, revises, or rejects the proposals below.
+## Authority boundary
 
-## Not reopened
+Already ratified and not reopened:
 
-- WS2 proposition.
-- WS3 funnel architecture, recruiting questions and option order, sequence, 15 to 20 second maximum product experience, email-before-price order, $9.99 monthly price, checkout mechanics, payment-choice signal, Fall 2026 approximately 300-person cohort commitment, analytics, and measurement rules.
-- WS4 hero and Sections 2 through 7.
+- WS2 proposition and product boundaries
+- WS3 funnel architecture, question order and options, email-before-price sequence, $9.99 monthly price, checkout mechanics, payment-choice signal, Fall 2026 approximately 300-person terminal commitment, analytics, and measurement rules
+- WS4 hero and Sections 2 through 7
+- Three CTA locations and `See how Blotter works` wording
+- Landing-page rule that price and availability are not disclosed in the FAQ or closing block
+- Funnel intent to preserve a credible purchase-like sequence until the terminal reveal
 
-## Proposed product experience
+The following remain for final WS4 ratification only.
 
-### Frame 1: Recruiting activity arrives
+## 1. Spreadsheet-specific product experience
 
-Header: `Recruiting keeps moving outside your tracker.`
+Review and settle:
 
-Supporting line: `A reply lands in Gmail and a coffee chat appears on Calendar.`
+- Number of frames and progress clicks within the 15 to 20 second ceiling
+- Exact sheet states shown before and after Blotter updates
+- Whether the experience ends on the main maintained tracker, Outstanding Actions, or both
+- Relationship to the hero visual: reuse the same component and visual grammar without replaying the hero
+- Exact frame headers, supporting lines, and button labels
 
-Visual:
+Working direction retained for discussion:
 
-- Sarah Chen row is visible but stale.
-- Gmail chip: `Sarah Chen replied · Today, 10:42 AM`.
-- Calendar chip: `Coffee chat with Daniel Park · Friday, 2:00 PM`.
-- Relevant cells are outlined but not updated.
+1. Show recruiting activity arriving while the tracker is stale.
+2. Show Blotter updating status, timing, scheduled calls, and next moves in the same sheet.
+3. Show the resulting action view or operational payoff.
 
-Button: `See what Blotter updates`
+This is a proposal, not a ratified three-frame or three-click requirement.
 
-### Frame 2: Blotter updates the live state
+## 2. Funnel presentation copy
 
-Header: `Blotter turns activity into current recruiting state.`
+WS3 already fixes the structure and sequencing. Review only the exact wording that remains unspecified:
 
-Supporting line: `Status, timing, scheduled calls, and next moves update inside the sheet.`
+- Optional framing around the two recruiting questions
+- Email-capture title, supporting line, field label, validation, and non-OAuth clarification
+- Price-screen title, supporting line, included summary, and button wording
+- Checkout order-summary wording and payment-choice labels
+- Terminal-state title, supporting copy, and return action
 
-Visual:
+Non-negotiable strategy constraints:
 
-- Sarah Chen: Status `Replied`; Next move `Reply today`; Last contact `Today`; Days `0`; Call `—`.
-- Daniel Park: Status `Call scheduled`; Next move `Prepare for call`; Last contact `2 days ago`; Days `2`; Call `Fri 2:00 PM`.
-- Updated cells may receive a restrained pulse or highlight.
+- Do not disclose Fall 2026 availability before the terminal state.
+- Do not label the flow a demand test before the payment-choice action.
+- Do not call checkout a beta reservation before the terminal reveal.
+- Do not use future-tense price language that signals the product is not available.
+- Do not show card-entry fields, collect money, or imply that email submission grants Google access.
+- Preserve the credible purchase-like sequence required to produce a meaningful commercial-intent signal.
 
-Button: `Show me what needs attention`
+## 3. Material responsive priorities
 
-### Frame 3: Blotter gathers outstanding actions
+Review only content-affecting choices:
 
-Header: `Open one current view and know what to do next.`
+- Which spreadsheet columns remain visible in each mobile crop
+- Minimum visible examples in the Outstanding Actions view
+- How the Section 3 mechanism stacks on mobile
+- How the preservation visual stacks without implying literal field mapping
+- Which privacy statements remain visible outside accordions
+- Whether desktop funnel presentation is modal or route-based; mobile should be full-screen or equivalently readable
 
-Supporting line: `Replies, follow-ups, and thank-you notes are grouped by the action you owe.`
+Implementation principles that do not require further product ratification:
 
-Visual:
+- Use readable crops rather than shrinking full desktop spreadsheets.
+- Preserve meaning before decoration.
+- Avoid page-level horizontal scrolling and hover-only information.
 
-- Same spreadsheet switches to `Outstanding actions`.
-- Summary: `21 outstanding actions`.
-- One or two rows under Replies owed, Follow-ups due, and Thank-you notes.
-- Sarah Chen appears under Replies owed with `Reply today` and `Reply received today`.
-- Daniel Park is omitted from overdue actions because a call is scheduled. This is demo presentation, not settled production logic.
+## 4. Audit conclusions
 
-Button: `Continue`
+The coherence and claim-support audit may be completed autonomously unless it proposes changing ratified language.
 
-### Proposed progression behavior
+Required safeguards:
 
-- One stable Google Sheets window across all three frames.
-- Exactly two internal progress clicks plus the final Continue click.
-- Optional `1 of 3`, `2 of 3`, `3 of 3` indicator.
-- Back is allowed and does not refire completion events.
-- No timer, autoplay gate, typing simulation, or mandatory animation.
-- Frame 3 completion triggers `product_experience_completed`.
+- Jon's figures and 60-hour estimate remain qualified case-study evidence, not averages or guarantees.
+- Prototype visuals must not be represented as functioning production integrations.
+- Provider, scope, retention, deletion, authority, and case-study claims must be verified before private deployment approval.
 
-### Proposed hero relationship
+## 5. Preserved WS5 fidelity requirement
 
-The funnel reuses the hero's visual grammar, sample contacts, columns, and color logic but does not replay the hero. The hero shows the outcome. The funnel isolates the mechanism and operational payoff.
+Before broad page implementation, WS5 must create one reusable high-fidelity Google Sheets-style spreadsheet-window component, compare it against real Google Sheets references, present it to Jon for visual review, correct it, freeze the approved primitive, and reuse it across every spreadsheet scene.
 
-## Proposed funnel-screen framing and copy
+## Completion rule
 
-### Question 1
+After Jon ratifies or edits the three substantive groups above:
 
-WS3-fixed title and options: `What are you recruiting for?`
-
-Proposed button: `Continue`
-
-### Question 2
-
-WS3 fixes the three options: Summer 2028, Full-time, Other.
-
-Proposed title: `Which recruiting window best fits you?`
-
-Proposed button: `See the spreadsheet experience`
-
-### Email capture
-
-Eyebrow: `Your recruiting workspace`
-
-Title: `Continue with your recruiting email.`
-
-Supporting copy: `Enter the email address where you conduct recruiting. This saves your place and lets us send your beta confirmation if you continue.`
-
-Field label: `Recruiting email`
-
-Placeholder: `you@school.edu`
-
-Button: `Continue`
-
-Privacy note: `This does not connect your inbox or grant Google access.`
-
-Validation: `Enter a valid email address.`
-
-### Price screen
-
-Eyebrow: `Early access`
-
-Title: `Blotter will cost $9.99 per month.`
-
-Supporting copy: `One recruiting tracker that stays current from Gmail, Calendar, and Google Sheets.`
-
-Price: `$9.99 / month`
-
-Billing note: `Monthly. Cancel anytime.`
-
-Included summary:
-
-- Keep your existing Google Sheet.
-- Automatic recruiting-activity updates.
-- Current relationship state and next actions.
-
-Primary action: `Continue to payment`
-
-Secondary action: `Not now`
-
-### Checkout
-
-Title: `Complete your Blotter beta reservation`
-
-Order summary:
-
-- Product: `Blotter`
-- Descriptor: `Recruiting tracker with Gmail, Calendar, and Google Sheets synchronization`
-- Billing: `Monthly`
-- Due today: `$9.99`
-
-Disclosure: `This is a demand test. You will not be asked for card details and you will not be charged today.`
-
-### Payment choices
-
-- `Pay with card`
-- `Apple Pay` where supported
-
-A payment-choice click advances immediately to the terminal state. No card-entry form appears.
-
-### Terminal state
-
-Eyebrow: `Beta spot confirmed`
-
-Title: `You are on the list for Blotter's Fall 2026 beta.`
-
-Supporting copy: `We are opening the first cohort to approximately 300 people. Your place is tied to the recruiting email you provided.`
-
-Confirmation line: `We will email you with access details and next steps.`
-
-Button: `Return to Blotter`
-
-## Proposed responsive decisions requiring substantive approval
-
-- Mobile hero keeps the copy, CTA, authority line, a cropped tracker focused on Status, Next move, and Call, and one Gmail plus one Calendar chip. The stale background sheet may be reduced to a partial edge.
-- All four scale figures remain on mobile in a 2 by 2 grid. Methodology stays adjacent to the 60-hour claim.
-- How It Works stacks Gmail and Calendar, Blotter, and Google Sheets vertically.
-- Outstanding Actions preserves all three group counts and at least one explanatory row per group.
-- Preservation stacks the existing tracker above the Blotter live layer.
-- The privacy section keeps the main candid claim and broad Google-permission disclosure visible outside accordions.
-- Desktop funnel may use a centered modal or route overlay. Mobile uses a full-screen route or sheet.
-- Spreadsheet scenes use deliberate readable crops rather than shrinking full desktop tables or relying on pinch-to-zoom.
-
-## Audit findings
-
-No audit finding requires changing previously ratified hero or Section 2 through 7 language.
-
-The audit does propose three implementation safeguards:
-
-1. Jon's figures and 60-hour estimate must remain qualified case-study evidence, not market averages or guarantees.
-2. Prototype behavior must not be represented as a functioning production integration.
-3. Provider, permission, retention, deletion, authority, and case-study wording require factual verification before deployment.
-
-These safeguards do not reopen the ratified page copy unless verification later reveals a factual conflict.
-
-## Preserved draft WS5 requirement
-
-Before broad page implementation, create one reusable high-fidelity Google Sheets-style spreadsheet-window component. Compare it against real Google Sheets references, present it to Jon for review, correct it, freeze the approved primitive, and only then build the hero, mechanism, action view, preservation view, and funnel scenes.
-
-## Ratification choices
-
-Jon may ratify the package as written, ratify with specified edits, or reject individual proposed items. WS4 remains active until explicit ratification.
+1. Incorporate the approved decisions into `WS4-SPEC.md`.
+2. Mark WS4 complete.
+3. Activate the already prepared `WS5-SPEC.md`.
+4. Update `00-START-HERE.md`, `CURRENT-HANDOFF.md`, `04-decision-log.md`, and `06-assumptions-and-open-questions.md` without broad rewrites.
