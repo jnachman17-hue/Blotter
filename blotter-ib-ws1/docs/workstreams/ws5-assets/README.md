@@ -1,7 +1,8 @@
 # WS5 visual reference index
 
-Date created: July 31, 2026
-Status: Active supporting record
+Date created: July 31, 2026  
+Date last updated: July 31, 2026  
+Status: Active supporting record  
 Governing specification: `../WS5-SPEC.md`
 
 ## Purpose
@@ -12,113 +13,110 @@ These references are implementation guidance, not separate product deliverables 
 
 Do not create a bespoke visual reference for every page section. Text, statistics, accordions, disclosure tables, CTA blocks, and other conventional layouts should be implemented directly in Lovable from the canonical specifications.
 
-## Current reference inventory
+## Current handoff packet
 
-### 1. Hero spreadsheet reference v1
+### Editable source
 
-Source:
+`source/blotter-sheets-reference-v1.html`
 
-`hero-spreadsheet-reference-v1.dc.html`
+This is a self-contained, implementation-oriented HTML reference containing both final spreadsheet scenes:
 
-Source note:
+- the hero recruiting tracker;
+- the Outstanding Actions view.
 
-The repository file is a normalized, self-contained archival version of the uploaded Claude Design HTML. It preserves the visual structure, data, dimensions, cues, ownership treatment, and known defects needed for implementation guidance. The uploaded raw source had SHA-256 `2530069778e8bea29888b2d04bc89a01f0cf5aff542458d02076e9d26be13135` and depended on Claude Design-local support and image paths.
+It is a normalized compact source derived from the final Claude Design work. It preserves the governing structure, copy, data, dimensions, hierarchy, spreadsheet grammar, status treatments, cues, and grouped-action presentation. It does not preserve Claude Design's bundler/runtime wrapper byte-for-byte.
 
-Status:
+### Review previews
 
-Directionally complete and sufficient to guide Lovable. It is not approved as a literal pixel target and must not be copied without correcting the known defects below.
+- `hero/hero-reference-v1.png`
+- `outstanding-actions/outstanding-actions-reference-v1.png`
+
+The repository PNGs are web-optimized review previews. The HTML source and the reference-specific notes are the implementation handoff; the PNGs provide immediate visual confirmation in GitHub and Lovable.
+
+## 1. Hero spreadsheet reference v1
+
+Directory: `hero/`
+
+Status: Directionally complete and sufficient to guide Lovable. It is not a literal final pixel target.
 
 Established direction:
 
-- Outer desktop canvas: approximately 1360 × 520.
-- Main spreadsheet window: approximately 1000 × 400.
-- Recognizable Google Sheets chrome and density.
-- Current-state `IB Recruiting Tracker` on the active `Blotter` tab.
-- Student-maintained fields on the left: Name, Title, Firm.
-- Blotter-maintained fields on the right: Status, Next move, Last contact, Days, Call.
-- Three external activity cues only:
-  - Gmail: `Sarah Chen replied`.
-  - Calendar: `Coffee chat with Marcus Lee`.
-  - Gmail: `Email sent to Alex Morgan`.
-- The Priya Shah completed-call cue is intentionally omitted from the hero composition.
-- Responsibility copy remains `YOU add the contacts` and `BLOTTER keeps them current`. Preserve `keeps them current`; do not silently change it to `keeps it current`.
-- The current working hero direction uses one clean current-state sheet. The stale rear sheet is parked, not discarded. If the original layered direction is restored, add only a cropped, muted upper portion of the stale sheet behind the current sheet rather than rebuilding the entire hero.
+- approximately `1360 × 520` outer canvas;
+- approximately `1000 × 400` spreadsheet window;
+- recognizable Google Sheets chrome and compact density;
+- current-state `IB Recruiting Tracker` on the active `Blotter` tab;
+- student-maintained fields on the left: Name, Title, Firm;
+- Blotter-maintained fields on the right: Status, Next move, Last contact, Days, Call;
+- three activity cues:
+  - Gmail: `Sarah Chen replied`;
+  - Calendar: `Coffee chat with Marcus Lee`;
+  - Gmail: `Email sent to Alex Morgan`;
+- responsibility copy remains `YOU add the contacts` and `BLOTTER keeps them current`;
+- preserve `keeps them current`; do not silently change it to `keeps it current`.
 
-Known defects to correct in Lovable rather than reproduce:
+Known defects Lovable must improve rather than reproduce:
 
-1. The visual flow from Gmail and Calendar cues into the Blotter processing element and from Blotter into the spreadsheet is not sufficiently clear.
-2. The reference does not clearly map each external cue to the row or fields it affected.
-3. The bottom U-shaped ownership brackets are visually messy, under-resolved, and not the final treatment for the responsibility split.
-4. There is unnecessary white space below row 6 inside the spreadsheet window. The production implementation should crop the grid cleanly.
-5. The intermediate vertical `blotter` engine treatment is directional only. Lovable should clarify the causal sequence without turning the hero into a technical architecture diagram.
-6. The normalized repository file uses simple stable placeholder marks for Gmail and Calendar. Lovable should use appropriate stable local assets or inline SVGs in the production implementation.
+1. Cue-to-Blotter-to-sheet causality is not sufficiently clear.
+2. Cue-to-row or cue-to-field mapping is not sufficiently clear.
+3. The vertical Blotter engine is directional, not a settled product diagram.
+4. The ownership treatment is not final.
+5. Responsive composition must be designed in page context.
 
-Use rule:
+The stale rear sheet remains parked, not rejected. If restored during page-context review, add only a cropped, muted upper portion behind the current sheet.
 
-Preserve the spreadsheet fidelity, hierarchy, exact data, activity-card tone, overall scale, and core communication job. Improve the connector logic, ownership treatment, grid crop, and responsive composition during implementation.
+The earlier root-level `hero-spreadsheet-reference-v1.dc.html` is retained as a superseded archival version and should not be used as the primary implementation handoff.
 
-## Proposed minimal remaining reference set
+## 2. Outstanding Actions reference v1
 
-This is the recommended scope to ratify before broad Lovable implementation.
+Directory: `outstanding-actions/`
 
-### Required candidate: One unified three-frame spreadsheet storyboard
+Status: Directionally complete and sufficient to guide Lovable.
 
-Build one additional HTML reference containing the complete spreadsheet product experience:
+Established direction:
 
-1. Recruiting activity arrives while the tracker is stale.
-2. Signposted cells update to current state.
-3. The same sheet transitions to `Outstanding actions`.
+- Google Sheets-native visual language shared with the hero;
+- one global column header: Contact, Next action, Why it is here;
+- `Outstanding actions` title and `21 outstanding actions` count;
+- three grouped action categories with distinct restrained accents;
+- exact visible rows, reasons, group counts, and overflow rows;
+- full-width spreadsheet rows rather than dashboard cards;
+- this state serves landing-page Section 4 and funnel Frame 3.
 
-Why one file is sufficient:
+Lovable should reuse the shared spreadsheet component rather than independently rebuilding this view.
 
-- The storyboard preserves one stable spreadsheet across all three states.
-- It solves the difficult Frame 1 to Frame 2 signposting and update choreography.
-- Frame 3 is the exact grouped `Outstanding actions` scene required for Section 4.
-- A clean standalone crop or state capture of Frame 3 can serve as the Section 4 visual reference.
-- Building a separate Outstanding Actions reference before the storyboard would duplicate the same composition and create unnecessary iteration.
+## Remaining external-reference decision
 
-Frame 3 must show:
+The prior recommendation to build one polished unified three-frame storyboard is no longer the preferred production method and was never ratified as a product requirement.
 
-- `Outstanding actions`;
-- `21 outstanding actions`;
-- Replies owed, Follow-ups due, and Thank-you notes groups;
-- two visible rows per group;
-- the exact overflow rows and wording in WS4;
-- columns Contact, Next action, Why it is here;
-- the approved spreadsheet grammar.
+Current working recommendation, pending canonical WS5 consolidation:
 
-The storyboard should demonstrate the spreadsheet states and transition logic only. It should not redesign the surrounding recruiting questions, email capture, price, purchase summary, payment choices, or terminal screens.
+- use the completed hero reference for the shared spreadsheet and activity-cue grammar;
+- use the completed Outstanding Actions reference for Section 4 and funnel Frame 3;
+- create only a compact stale-to-updated cell-treatment reference for funnel Frames 1–2 if Lovable cannot execute the exact WS4 transition brief directly;
+- keep the Section 2 messy-manual-tracker reference optional and build it only if page implementation demonstrates a need.
 
-### Optional candidate: Section 2 manual-tracker divergence reference
-
-Working idea:
-
-Use a visibly messy or decayed manual spreadsheet fragment in the problem section, potentially paired with `WHAT ACTUALLY HAPPENED` versus `WHAT MADE IT INTO THE MANUAL TRACKER`.
-
-This is not a gate. The four figures are text and must not be treated as a separate visual asset. Build this reference only if Jon ratifies the concept or Lovable cannot execute the written divergence concept directly.
+Do not build another complete hero-sized storyboard outside Lovable by default.
 
 ## Page elements that do not require separate prebuilt references
 
-Unless Lovable fails on a first implementation pass, do not separately design these outside Lovable:
+Unless Lovable fails materially on a first implementation pass, do not separately design these outside Lovable:
 
-- Section 2's four large figures.
-- Section 3's basic Gmail + Calendar to Blotter to Google Sheet mechanism. Reuse the hero spreadsheet and activity-cue components.
-- Section 4's Outstanding Actions scene as a separate file. Reuse Frame 3 of the unified storyboard.
-- Section 5's preservation comparison. Reuse the spreadsheet grammar and implement the two conceptual zones from text.
-- Section 6 privacy process, permissions table, commitments, and privacy FAQ.
-- Section 7 general FAQ and closing CTA.
-- Recruiting questions, email capture, price, purchase summary, payment choices, and terminal copy outside the three-frame spreadsheet experience.
+- Section 2's four large figures;
+- Section 3's mechanism, which should reuse the hero spreadsheet and cue primitives;
+- Section 5's preservation comparison;
+- Section 6 privacy process, permissions table, commitments, and privacy FAQ;
+- Section 7 general FAQ and closing CTA;
+- recruiting questions, email capture, price, purchase summary, payment choices, and terminal copy outside the three spreadsheet frames.
 
 ## Lovable handoff protocol
 
 For each approved visual reference:
 
-1. Store the editable source and a review screenshot in this directory where possible.
-2. Attach the source and screenshot directly to the relevant Lovable message.
-3. In the same message, identify what is authoritative, what is directional, and which defects must not be copied.
-4. Reference the controlling WS4 or WS3 section for exact copy and behavior.
-5. Ask Lovable to respond in plan mode first for any multi-section or interactive implementation.
-6. Approve the plan before allowing code changes.
-7. Build and review one bounded checkpoint at a time.
+1. Attach the relevant PNG preview and the shared HTML source directly to the Lovable message.
+2. Identify what is authoritative, what is directional, and which defects must not be copied.
+3. Reference the controlling WS4 or WS3 section for exact copy and behavior.
+4. Ask Lovable to respond in plan mode first for multi-section or interactive implementation.
+5. Approve the plan before allowing code changes.
+6. Build and review one bounded checkpoint at a time.
 
 GitHub remains the durable source of truth. Lovable chat history and generated code do not replace the canonical specifications or this reference index.
