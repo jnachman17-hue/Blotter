@@ -6,7 +6,7 @@ Workstream: Spreadsheet-page Lovable implementation and private verification
 
 ## Objective
 
-Implement the complete spreadsheet-native landing page and matched canonical funnel in Lovable, instrument the WS3 analytics system, deploy privately, and verify responsive behavior, claims, and events before acquisition work or platform-page implementation.
+Implement the complete spreadsheet-native landing page and matched canonical funnel in Lovable, instrument the WS3 analytics system, deploy privately, and verify responsive behavior, claims, events, and spreadsheet-interface fidelity before acquisition work or platform-page implementation.
 
 ## Source hierarchy
 
@@ -79,6 +79,74 @@ Recommended component groups:
 - Terminal screen
 
 Keep copy and mock data in structured configuration objects where practical so the later platform variant can reuse the funnel shell without reimplementing event semantics.
+
+## Spreadsheet visual-fidelity gate
+
+The spreadsheet visuals are a core product proof, not generic decorative tables. Do not rely on text prompts alone and do not build all page scenes before the spreadsheet primitive is reviewed.
+
+### Required reusable component
+
+Create one reusable, high-fidelity spreadsheet-window component before implementing the hero, Section 3 mechanism, Section 4 outstanding actions, Section 5 preservation visual, or funnel product experience.
+
+That component must define and consistently control:
+
+- Browser or application-window crop
+- Google Sheets-style toolbar depth and hierarchy
+- Column letters and row numbers
+- Gridline weight
+- Cell padding and row height
+- Header styling
+- Frozen-column or frozen-pane treatment where used
+- Sheet tabs
+- Selected-cell state
+- Dropdown and status-chip treatment
+- Font size, alignment, and truncation behavior
+- Placement of Gmail and Calendar activity chips outside or over the sheet
+- Desktop, tablet, and mobile crops
+
+Every spreadsheet scene must use the same underlying component, spacing rules, typography, chrome, grid treatment, and interaction grammar. Do not allow each section to invent a different spreadsheet approximation.
+
+### Fidelity risks to prevent
+
+Reject implementations where:
+
+- The product surface looks like a generic SaaS data table rather than a familiar spreadsheet
+- Toolbar, tabs, row numbers, column letters, gridlines, selection states, or status controls are inconsistent
+- The hero, mechanism, actions view, preservation view, and funnel demo appear to come from different products
+- Desktop mockups are simply scaled down until unreadable on mobile
+- Decorative effects overpower spreadsheet legibility
+
+### Required review workflow
+
+1. Build the global shell and one spreadsheet-window fidelity prototype.
+2. Compare it against real Google Sheets visual references.
+3. Present the component to Jon for visual review before building all spreadsheet scenes.
+4. Correct the component until it convincingly resembles a Google Sheets-native workflow while remaining clearly a Blotter marketing prototype.
+5. Freeze the approved component as the reusable visual primitive.
+6. Build the hero, Section 3, Section 4, Section 5, and funnel demo from that primitive.
+
+Do not treat the first Lovable output as automatically approved.
+
+### Reference assets
+
+WS5 may use:
+
+- Screenshots of actual Google Sheets interface elements as private design references
+- Annotated layout references
+- Simple static mockups of each core product scene
+- Exact mock data, cell states, column widths, and status values
+
+Reference assets guide fidelity and consistency. They must not imply Google sponsorship, endorsement, or affiliation, and the public page must not reproduce Google branding in a misleading way.
+
+### Spreadsheet fidelity completion test
+
+The spreadsheet primitive is approved only when:
+
+- It is immediately recognizable as a Google Sheets-style workflow rather than a generic table
+- All major spreadsheet scenes visibly belong to one system
+- Product-relevant text remains readable at the intended viewport
+- Responsive crops preserve meaning without page-level horizontal scrolling
+- Jon has reviewed and approved the component before broad scene production
 
 ## Funnel implementation
 
@@ -209,6 +277,9 @@ QA checklist:
 12. Mobile and desktop layouts preserve content priority.
 13. Claims and privacy language pass the verification gate.
 14. No production integration is implied by interactive behavior.
+15. All spreadsheet scenes use the approved reusable spreadsheet-window component.
+16. Spreadsheet chrome, grids, cell states, tabs, typography, and responsive crops remain consistent across the page and funnel.
+17. Jon approved the spreadsheet fidelity prototype before broad scene production.
 
 ## Manual analytics verification
 
@@ -233,6 +304,8 @@ Do not introduce spreadsheet-only friction reductions that cannot be matched on 
 - Lovable project
 - Private deployment URL
 - Responsive page implementation
+- Approved reusable spreadsheet-window component
+- Spreadsheet visual-reference package or annotated reference set
 - Functional prototype funnel
 - Lead storage and export path
 - Analytics event map
@@ -246,6 +319,7 @@ Do not introduce spreadsheet-only friction reductions that cannot be matched on 
 Workstream 5 is complete only when:
 
 - The private spreadsheet page is visually and functionally approved.
+- The spreadsheet-window component and all spreadsheet scenes pass the fidelity gate.
 - All claim and privacy language is supportable for the prototype.
 - All nine events are manually verified.
 - Lead capture is verified.
@@ -255,4 +329,4 @@ Workstream 5 is complete only when:
 
 ## Exact next action
 
-Create the Lovable project and implement the global page shell, section sequence, typography hierarchy, and reusable spreadsheet-window component before adding detailed section visuals or funnel logic.
+After WS4 is formally re-ratified and closed, create the Lovable project and implement only the global page shell, typography hierarchy, and one reusable spreadsheet-window fidelity prototype. Present that prototype to Jon for review before adding detailed section visuals or funnel logic.
