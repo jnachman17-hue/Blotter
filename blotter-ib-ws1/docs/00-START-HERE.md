@@ -1,4 +1,4 @@
-# Blotter IB — Start Here
+# Blotter IB - Start Here
 
 Date last updated: July 31, 2026
 
@@ -10,7 +10,7 @@ The immediate objective is to test whether meaningful demand exists before build
 
 ## Current phase
 
-Spreadsheet-page visual-reference completion, Lovable implementation, instrumentation, and private verification.
+Spreadsheet-page visual-reference review, Lovable implementation, instrumentation, and private verification.
 
 Confirmed sequence:
 
@@ -31,21 +31,18 @@ Workstream 5 is active.
 
 Current state:
 
-- A directional hero spreadsheet reference has been completed in Claude Design and archived in GitHub.
-- The hero reference is sufficient to guide Lovable but contains known defects that must be corrected during implementation rather than copied.
-- The existing Lovable project is private and paused.
-- Broad Lovable implementation should resume only after the reduced remaining visual-reference set is ratified and completed.
+- The repository was reconciled on July 31, 2026 so the active WS5 records, asset inventory, and file paths describe the current project state.
+- Directional hero and Outstanding Actions visual references have been completed in Claude Design and stored in GitHub.
+- These references guide Lovable but are not final designs and must not be copied pixel for pixel.
+- The former proposal for one full unified three-frame storyboard was never ratified and is not an active requirement.
+- Whether any additional storyboard, compact Frame 1-to-Frame 2 treatment, Section 2 divergence reference, or other visual reference is needed remains unresolved.
+- The existing Lovable project is private, unpublished, and paused. No planning or implementation should begin until the current asset packet and any remaining reference need are reviewed with Jon.
 
 Exact next action:
 
-Review and ratify the proposed remaining reference set in `docs/workstreams/WS5-SPEC.md` and `docs/workstreams/ws5-assets/README.md`.
+Review the completed visual-reference packet with Jon and decide whether any additional storyboard or visual reference is needed before freezing the implementation packet and entering Lovable plan mode.
 
-Current recommendation:
-
-1. Build one unified three-frame spreadsheet storyboard.
-2. Use its third frame as the Section 4 Outstanding Actions reference rather than building a separate duplicate asset.
-3. Build a Section 2 messy-manual-tracker divergence reference only if Jon ratifies it or Lovable cannot execute it directly.
-4. Freeze the reference packet and resume the existing private Lovable project in plan mode.
+Do not treat any prior storyboard recommendation as settled during that review.
 
 ## Durable workstream specifications
 
@@ -56,7 +53,7 @@ Permanent cumulative records live under `docs/workstreams/`:
 - `WS4-SPEC.md`: complete spreadsheet landing-page content and experience specification.
 - `WS4-RATIFICATION-PACKAGE.md`: completed administrative ratification record.
 - `WS5-SPEC.md`: active visual-reference, implementation, analytics, and verification specification.
-- `ws5-assets/README.md`: active visual-reference inventory, status, known defects, and handoff rules.
+- `ws5-assets/README.md`: active visual-reference inventory, status, defects, and handoff rules.
 
 `CURRENT-HANDOFF.md` contains temporary resumption context only.
 
@@ -105,8 +102,9 @@ WS5 does not launch traffic, build the platform page, implement real integration
 - Jon's explicit instructions are highest authority.
 - GitHub canonical documents are the durable source of truth.
 - New substantive product, copy, or presentation decisions require Jon ratification before becoming canonical.
-- External visual references are limited to complex assets that Lovable cannot reliably infer from text.
-- Text, statistics, privacy disclosures, FAQ, CTA blocks, and conventional layouts do not require separate prebuilt visual references.
+- External visual references are limited to complex assets that materially reduce implementation ambiguity.
+- Directional references supplement the written specifications and are not literal final pixel targets.
+- Text, statistics, privacy disclosures, FAQ, CTA blocks, and conventional layouts do not automatically require separate prebuilt visual references.
 - The spreadsheet page is designed and built first.
 - Both variants ultimately launch at roughly the same time.
 - Both variants use the identical funnel, price, event set, and read rules.
@@ -165,6 +163,8 @@ Archived material is historical context only.
 - `workstreams/WS4-SPEC.md`: complete content and experience specification.
 - `workstreams/WS4-RATIFICATION-PACKAGE.md`: completed ratification record.
 - `workstreams/WS5-SPEC.md`: active visual-reference, Lovable implementation, analytics, and verification specification.
-- `workstreams/ws5-assets/README.md`: visual-reference inventory and defects.
-- `workstreams/ws5-assets/hero-spreadsheet-reference-v1.dc.html`: archived hero reference.
+- `workstreams/ws5-assets/README.md`: visual-reference inventory and reference rules.
+- `workstreams/ws5-assets/source/blotter-sheets-reference-v1.html`: editable directional source containing the hero and Outstanding Actions scenes.
+- `workstreams/ws5-assets/hero/hero-reference-v1.png`: hero review preview.
+- `workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`: Outstanding Actions review preview.
 - `CURRENT-HANDOFF.md`: temporary immediate resumption context.

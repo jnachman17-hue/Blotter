@@ -1,6 +1,6 @@
 # Project and product
 
-Date last updated: July 30, 2026
+Date last updated: July 31, 2026
 
 ## The owner
 
@@ -24,7 +24,7 @@ Working proposition meaning, not final copy:
 
 The student continues networking and outreach normally. Blotter coordinates the logistics created by that activity, including who replied, who went quiet, what bounced, what requires a response, what follow-up is due, what call is scheduled, and what thank-you note remains outstanding.
 
-The prior line, “You keep your record. Blotter keeps the state alive,” is rejected and should not be reused. It does not explain the distinction between record and state clearly enough for a new recruiting student.
+The prior line, `You keep your record. Blotter keeps the state alive.`, is rejected and should not be reused. It does not explain the distinction between record and state clearly enough for a new recruiting student.
 
 ## What Blotter is explicitly not
 
@@ -56,15 +56,18 @@ Confirmed product principle:
 - The sheet has a manual zone for information the student fills once.
 - The sheet has an automated zone for status, next move, and timing logic.
 
-Provisional product assumption:
+Current directional implementation assets show:
 
-- The sheet may need grouped action areas or strong sorting, because a large tracker cannot be scanned efficiently. Exact layout is not settled.
+- a Google Sheets-native hero tracker with student-maintained fields and Blotter-maintained fields;
+- a grouped Outstanding Actions view for replies owed, follow-ups due, and thank-you notes.
+
+These assets are validation-page references, not settled backend product requirements or final pixel designs.
 
 ## Privacy story
 
 Load-bearing, and must be stated accurately in any public copy.
 
-Blotter does not read personal email. It checks who mail is from and only reads recruiting mail from banks and from the specific people the user tracks. Any copy implying broader inbox access is wrong and damaging.
+Blotter does not read personal email. It checks who mail is from and only reads recruiting mail from the specific people the user tracks. Any copy implying broader inbox access is wrong and damaging.
 
 ## Gmail capture, technically
 
@@ -78,13 +81,13 @@ This is not part of the current landing-page build. The pages must not imply tha
 
 Corey Brundage is a methodology adviser connected through Jon's father.
 
-His relevant method, as Jon received it: buy high-intent clicks for a product that does not exist, read behavioural data in tight cycles, and build only what the data calls for.
+His relevant method, as Jon received it: buy high-intent clicks for a product that does not exist, read behavioral data in tight cycles, and build only what the data calls for.
 
 Corey reviewing the test design before spend is provisional, not yet a confirmed hard gate. Timing is unscheduled.
 
 ## Evidence base
 
-**Discovery calls.** Three interviews with students who won Pool 1 IB offers. The problem appears real and common, but stated interest is no longer treated as meaningful demand signal. Only observed behaviour under a real offer counts.
+**Discovery calls.** Three interviews with students who won Pool 1 IB offers. The problem appears real and common, but stated interest is no longer treated as meaningful demand signal. Only observed behavior under a real offer counts.
 
 **Jon's own recruiting tracker.** Evidence of the failure mode, not a source of public statistics. Its value is the decay curve: state columns maintained early, then abandoned as the season got busy. Do not extract percentages from it and present them as market data unless Jon separately decides to use owner-supplied figures.
 
@@ -92,11 +95,24 @@ Corey reviewing the test design before spend is provisional, not yet a confirmed
 
 ## Seasonality
 
-The recruiting calendar matters for interpreting results. Trackers circulate socially before the problem is fully felt, and get seriously compiled later in the recruiting cycle.
+The recruiting calendar matters for interpreting results. Trackers circulate socially before the problem is fully felt and get seriously compiled later in the recruiting cycle.
 
 The current test subject is a student in the SA '28 recruiting class.
 
 For the July test, the proposition sells prevention of future tracker decay because the audience has not yet reached peak recruiting overload. This is a consequence of the recruiting calendar, not a permanent choice to exclude students who are already overwhelmed. A rescue proposition can be used later when the market reaches that moment.
+
+## Current validation implementation state
+
+- Workstreams 1 through 4 are complete.
+- Workstream 5 is active.
+- The private Lovable project exists:
+  - Project: `Blotter Foundation`
+  - Project ID: `ec94e794-190a-4c92-b337-67ecfb8f1b10`
+  - Published: No
+  - Current state: Paused
+- Directional hero and Outstanding Actions references exist in `docs/workstreams/ws5-assets/`.
+- The current asset packet must be reviewed and any remaining reference need settled before Lovable plan mode begins.
+- No funnel, lead database, analytics vendor, real integration, payment collection, or public deployment is complete.
 
 ## Discarded work
 
@@ -111,12 +127,17 @@ Do not resurrect this work unless Jon explicitly says to.
 | Prior platform product pixels | Scrapped. |
 | Feature inventory, roadmap, design brief, strategy reset documents | Superseded where not represented in current docs. |
 | Three-stage direct Google OAuth rollout | Dead. Replaced by intermediary-first assumption if validation justifies build. |
+| Full unified three-frame WS5 storyboard proposal | Never ratified and not an active requirement. Reconsider any additional reference need from the current asset packet. |
 
 ## Assets and current state
 
-- Domain: GoDaddy domain purchased. Whether initial disposable experiments use the permanent Blotter identity or a neutral testing domain is unresolved.
-- No Lovable project currently exists.
-- No reusable production code currently exists.
-- No final logo currently exists.
-- No completed landing-page assets currently exist.
-- Form handling is not decided. Tally is only a candidate if forms are needed.
+- Domain: `blotterib.com` is owned. Exact private deployment routing remains an implementation decision.
+- Lovable project: private and paused.
+- Reusable production code: not approved or complete.
+- Final logo: not settled.
+- Completed directional visual references:
+  - `docs/workstreams/ws5-assets/source/blotter-sheets-reference-v1.html`
+  - `docs/workstreams/ws5-assets/hero/hero-reference-v1.png`
+  - `docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`
+- Lead-storage solution: not selected.
+- Analytics vendor: not selected.

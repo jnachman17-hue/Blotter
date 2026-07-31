@@ -10,9 +10,10 @@ Workstream: Spreadsheet-page visual references, Lovable implementation, instrume
 This is the cumulative canonical record for Workstream 5. It must remain sufficient for a new chat to understand:
 
 - the current implementation state;
-- which visual references exist and which still may be needed;
+- which visual references exist;
 - what is authoritative versus directional;
-- the exact Lovable build sequence;
+- which reference questions remain unresolved;
+- the exact Lovable implementation sequence;
 - how lead storage and analytics connect to the build;
 - the private-verification and completion gates.
 
@@ -20,31 +21,32 @@ This is the cumulative canonical record for Workstream 5. It must remain suffici
 
 ## Objective
 
-Create only the visual references that materially reduce implementation ambiguity, use them to build the complete seven-section spreadsheet landing page and canonical funnel in Lovable, store leads, wire the exact WS3 analytics contract, deploy privately, and verify responsive behavior, accessibility, claims, privacy language, event behavior, lead handling, and spreadsheet-interface fidelity before acquisition work or platform-page implementation.
+Create only the visual references that materially reduce implementation ambiguity, use the approved packet to build the complete seven-section spreadsheet landing page and canonical funnel in Lovable, store leads, wire the exact WS3 analytics contract, deploy privately, and verify responsive behavior, accessibility, claims, privacy language, event behavior, lead handling, and spreadsheet-interface fidelity before acquisition work or platform-page implementation.
 
 ## Source hierarchy
 
 1. Jon's explicit instructions in the active chat.
-2. This `WS5-SPEC.md` for current implementation state, visual-reference scope, Lovable sequence, and WS5 gates.
-3. `docs/workstreams/WS4-SPEC.md` for exact landing-page copy, section order, visual communication jobs, funnel presentation, responsive priorities, and claim boundaries.
+2. This `WS5-SPEC.md` for current implementation state, visual-reference status, Lovable sequence, and WS5 gates.
+3. `docs/workstreams/WS4-SPEC.md` for exact landing-page copy, section order, visual communication jobs, funnel presentation, responsive priorities, and claim boundaries, except where a later explicit Jon ruling is recorded here.
 4. `docs/workstreams/WS3-SPEC.md` for funnel architecture, price, events, properties, measurement, read rules, and reporting.
 5. `docs/workstreams/WS2-SPEC.md` for the spreadsheet proposition and product boundaries.
 6. `docs/05-working-agreement.md` for operating and documentation rules.
-7. `docs/workstreams/ws5-assets/README.md` for the visual-reference inventory and reference-specific defects.
+7. `docs/workstreams/ws5-assets/README.md` for the visual-reference inventory and reference-specific notes.
 
-Do not use `03-page-spec.md`, archived files, old handoffs, prior failed workbooks, abandoned design outputs, or plausible defaults to override the workstream specifications.
+Do not use `03-page-spec.md`, archived files, old handoffs, failed workbooks, deleted asset paths, abandoned design outputs, or plausible defaults to override the workstream specifications.
 
 ## Current state as of July 31, 2026
 
 - Workstreams 1 through 4 are complete.
 - WS5 is active.
-- A hero spreadsheet reference has been produced in Claude Design and archived in GitHub.
-- The hero reference is directionally sufficient to guide Lovable. It is not a literal final pixel target and contains documented defects that must not be copied.
-- The current working hero direction shows one clean current-state spreadsheet, three Gmail or Calendar cues, a Blotter processing element, and responsibility language.
-- The original stale-sheet-behind-current-sheet direction is parked, not rejected. It can be restored later by adding only a cropped, muted upper portion of the stale sheet behind the current composition.
-- Jon has explicitly retained the phrase `keeps them current`. Do not silently replace it with `keeps it current`.
-- The Lovable project exists and remains private and paused.
-- Existing Lovable shell choices are unapproved scratch scaffolding unless independently supported by the canonical record.
+- The repository has been reconciled to the current WS5 state.
+- Directional hero and Outstanding Actions visual references have been completed in Claude Design and stored under canonical GitHub paths.
+- These references are not final designs and must not be copied pixel for pixel.
+- The references establish visual direction, exact data, and implementation constraints while deliberately leaving some treatments unresolved for text-led instruction and page-context design.
+- The former proposal for one full unified three-frame storyboard was never ratified and is not an active requirement.
+- Whether any additional storyboard, compact Frame 1-to-Frame 2 treatment, Section 2 divergence reference, or other external visual reference is needed remains unresolved.
+- The Lovable project exists and remains private, unpublished, and paused.
+- Existing Lovable shell choices are unapproved scaffolding unless independently supported by the canonical record.
 - No funnel, lead database, analytics vendor, production integration, payment collection, or public deployment is complete.
 
 ## Lovable project state
@@ -52,9 +54,12 @@ Do not use `03-page-spec.md`, archived files, old handoffs, prior failed workboo
 Project: `Blotter Foundation`  
 Project ID: `ec94e794-190a-4c92-b337-67ecfb8f1b10`  
 Visibility: Private  
-Published: No
+Published: No  
+Current state: Paused
 
-The project contains a preliminary global shell and reserved product region. Existing code may be reused only where it survives comparison with the canonical requirements.
+The project contains preliminary scaffolding. Existing code may be reused only where it survives comparison with the canonical requirements and later Jon approval.
+
+Do not send a planning message or authorize code changes until the current asset packet and any remaining visual-reference need have been reviewed with Jon.
 
 ## Governing build scope
 
@@ -85,33 +90,57 @@ The project contains a preliminary global shell and reserved product region. Exi
 
 ## Confirmed visual-reference production rule
 
-External visual-reference production is limited to complex, implementation-sensitive assets that Lovable is unlikely to execute reliably from text alone.
+External visual-reference production is limited to complex, implementation-sensitive assets where a visual guide materially reduces ambiguity.
 
-Do not create separate visual references merely because a section contains visual hierarchy. In particular:
+A visual reference:
+
+- supplements the written canonical specification;
+- may establish structure, hierarchy, exact data, and visual grammar;
+- does not automatically settle every pixel, connector, responsive behavior, or surrounding layout;
+- must include a clear distinction between authoritative and directional elements;
+- exists to reduce ambiguity, not to create a second complete design process outside Lovable.
+
+Do not create a separate visual reference merely because a section contains visual hierarchy. In particular:
 
 - text is not a visual asset;
 - the four Section 2 recruiting figures are text;
 - privacy copy and permission tables are conventional page implementation;
 - FAQ and CTA treatments are conventional page implementation;
-- simple section layouts should be built directly in Lovable from the canonical specification.
+- simple section layouts should normally be built directly in Lovable from the canonical specification.
 
-A reference exists to reduce ambiguity, not to create a second complete design process outside Lovable.
+Any additional external-reference work requires a specific reason and Jon approval. No old reference proposal is automatically active.
 
-## Visual reference inventory
+## Current visual-reference inventory
 
 Detailed inventory:
 
 `docs/workstreams/ws5-assets/README.md`
 
-### Hero spreadsheet reference v1: complete enough to proceed
+### Editable source
 
-Source:
+`docs/workstreams/ws5-assets/source/blotter-sheets-reference-v1.html`
 
-`docs/workstreams/ws5-assets/hero-spreadsheet-reference-v1.dc.html`
+This source contains both current directional spreadsheet scenes:
 
-Status:
+- the hero recruiting tracker;
+- the Outstanding Actions view.
 
-Directional implementation reference. Stop iterating on it outside Lovable unless a later implementation failure exposes a specific blocking issue.
+### Review previews
+
+- `docs/workstreams/ws5-assets/hero/hero-reference-v1.png`
+- `docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`
+
+### Reference notes
+
+- `docs/workstreams/ws5-assets/README.md`
+- `docs/workstreams/ws5-assets/hero/README.md`
+- `docs/workstreams/ws5-assets/outstanding-actions/README.md`
+
+These are the only current WS5 external visual-reference files. Do not use deleted or superseded path names.
+
+## Hero spreadsheet reference v1
+
+Status: Directionally complete and sufficient for the current asset review. It is not a literal final pixel target.
 
 Established direction:
 
@@ -122,34 +151,35 @@ Established direction:
 - left-side student-maintained contact fields;
 - right-side Blotter-maintained changing state;
 - three external activity cues;
-- `YOU add the contacts` and `BLOTTER keeps them current` responsibility language.
-
-Known defects Lovable must correct rather than reproduce:
-
-1. Gmail and Calendar cue flow into Blotter and from Blotter into the sheet is unclear.
-2. Cue-to-row or cue-to-field mapping is unclear.
-3. Bottom U-shaped ownership brackets are messy and not final.
-4. Unnecessary white space remains below row 6.
-5. The vertical Blotter engine is directional, not a settled product diagram.
-6. Stable local icons or inline SVGs must replace Claude Design-local image dependencies.
-
-Authoritative aspects:
-
-- Google Sheets-native visual language;
-- overall scale and hierarchy;
-- exact contact and state data;
-- three cue-card concept and copy;
-- division between student-maintained and Blotter-maintained information;
-- phrase `keeps them current`;
+- `YOU add the contacts` and `BLOTTER keeps them current` responsibility language;
 - spreadsheet remains the dominant object.
 
-Directional only:
+Authoritative for the current asset review:
 
-- connector geometry;
-- engine shape;
-- U-bracket treatment;
+- Google Sheets-native visual language;
+- overall hierarchy and spreadsheet dominance;
+- exact contact and state data;
+- exact column order;
+- three cue-card concept and copy;
+- division between student-maintained and Blotter-maintained information;
+- phrase `keeps them current` unless Jon explicitly revises it.
+
+Directional only or unresolved:
+
+- cue-to-Blotter-to-sheet connector geometry;
+- cue-to-row or cue-to-field mapping;
+- vertical Blotter engine treatment;
+- final ownership treatment;
+- exact desktop composition;
 - exact mobile composition;
-- extra grid whitespace.
+- whether a stale rear sheet appears;
+- final surrounding landing-page composition.
+
+Known implementation problem:
+
+The three activity cue cards are directionally acceptable. The right-side causal sequence is not clear enough. Future instructions must explain more clearly how Gmail and Calendar activity flows through Blotter and updates the appropriate spreadsheet state. Lovable must improve this rather than copy it.
+
+The stale rear sheet is parked, not rejected. Whether it returns remains unresolved and must be decided in page context.
 
 ## Hero data package
 
@@ -189,7 +219,7 @@ Blotter maintained:
 - Days
 - Call
 
-Use a clear boundary between Firm and Status. The production treatment does not need to use the current U brackets.
+Use a clear boundary between Firm and Status. The production treatment does not need to use the current reference's ownership geometry.
 
 Exact contacts:
 
@@ -211,9 +241,9 @@ Current state:
 | Daniel Kim | No reply | Bump thread | Jan 11 | 5 | blank |
 | Alex Morgan | Sent | blank | Jan 16 | 0 | blank |
 
-Blank cells must be genuinely blank. Do not use a dash, em dash, `N/A`, `None`, or placeholder text.
+Blank cells must be genuinely blank. Do not use a dash, em dash, `N/A`, `None`, or placeholder text in the hero reference.
 
-Parked stale state, used only if the layered hero is restored:
+Parked stale state, used only if a layered stale fragment is later approved:
 
 | Name | Status | Next move | Last contact | Days | Call |
 |---|---|---|---|---:|---|
@@ -231,7 +261,7 @@ Current hero cues:
 2. Calendar: `Coffee chat with Marcus Lee` | `Jan 17 · 2:00 PM`
 3. Gmail: `Email sent to Alex Morgan` | `Jan 16 · 8:18 AM`
 
-The Priya Shah completed-call cue is omitted from the hero to reduce crowding. Do not add previews, subject lines, message bodies, avatars, bank logos, or extra metadata.
+The Priya Shah completed-call cue is omitted from the hero to reduce crowding. Do not add previews, subject lines, message bodies, avatars, bank logos, or extra metadata without Jon approval.
 
 Spreadsheet fidelity:
 
@@ -241,108 +271,122 @@ Spreadsheet fidelity:
 - Avoid generic SaaS-table, CRM, Airtable, Excel-dashboard, finance-terminal, glassmorphism, and decorative-browser-card treatments.
 - Crop the production grid cleanly after the visible rows.
 
-## Proposed minimal remaining visual-reference set
+## Outstanding Actions reference v1
 
-This set is recommended but must be reviewed and ratified before more external design work begins.
+Status: Directionally complete and sufficient for the current asset review.
 
-### Required candidate: one unified three-frame spreadsheet storyboard
+Authoritative for the current asset review:
 
-Build one additional HTML reference containing the full spreadsheet product experience:
+- Google Sheets-native visual language shared with the hero;
+- one global column header: Contact, Next action, Why it is here;
+- `Outstanding actions` title;
+- `21 outstanding actions` count;
+- exact groups, counts, visible rows, reasons, and overflow rows;
+- full-width spreadsheet rows rather than dashboard cards.
 
-1. Recruiting activity arrives while the tracker is stale.
-2. Signposted cells update to current state.
-3. The same sheet transitions to `Outstanding actions`.
+Directional only:
 
-Why one file is sufficient:
+- exact pixel dimensions;
+- mobile crop;
+- row heights;
+- tint strength;
+- final surrounding page composition.
 
-- it preserves one stable spreadsheet across all three states;
-- it solves the difficult Frame 1 to Frame 2 signposting and update choreography;
-- Frame 3 is the exact grouped Outstanding Actions scene required for Section 4;
-- a standalone crop or state capture of Frame 3 can serve as the Section 4 visual reference;
-- building a separate Outstanding Actions reference would duplicate the same composition and create unnecessary iteration.
+Intended reuse:
 
-Frame 3 must show:
+The current direction is designed to serve landing-page Section 4 and funnel Frame 3 through one shared spreadsheet component. That intended reuse remains part of the asset packet, but it may be discussed during the post-reconciliation asset review.
 
-- `Outstanding actions`;
-- `21 outstanding actions`;
-- Replies owed, Follow-ups due, and Thank-you notes groups;
-- two visible rows per group;
-- exact overflow rows and wording from WS4;
-- columns Contact, Next action, Why it is here;
-- approved spreadsheet grammar.
+Exact structure:
 
-The storyboard demonstrates only spreadsheet states and transition logic. It does not redesign the surrounding recruiting questions, email capture, price, purchase summary, payment choices, or terminal screens.
+`Replies owed - 6`
 
-### Optional candidate: Section 2 manual-tracker divergence reference
+- Marcus Lee | Reply to Marcus | Marcus replied 2 hours ago
+- Daniel Kim | Reply to Daniel | Daniel replied yesterday
+- `+4 more replies owed`
 
-Working idea:
+`Follow-ups due - 11`
 
-- cropped, visibly messy or decayed manual spreadsheet fragment;
-- paired with `WHAT ACTUALLY HAPPENED` versus `WHAT MADE IT INTO THE MANUAL TRACKER`;
-- problem section carries more stale-manual-tracker proof instead of forcing it into the hero.
+- Sarah Chen | Bump thread | No reply for 6 days
+- Alex Morgan | Bump thread | No reply for 8 days
+- `+9 more follow-ups due`
 
-The four figures remain text. This is not a gate. Build it only if Jon ratifies the concept or Lovable cannot execute the written divergence directly.
+`Thank-you notes - 4`
 
-## Elements that do not require separate external references
+- Priya Shah | Send thank-you | Coffee chat completed yesterday
+- James Wu | Send thank-you | Call completed 3 hours ago
+- `+2 more thank-you notes`
 
-Unless Lovable's first implementation fails materially, build these directly in Lovable:
+The visible rows explain the product. Counts and overflow communicate scale.
+
+## Ratified storyboard and additional-reference status
+
+The former recommendation to create one full unified three-frame spreadsheet storyboard was never ratified and is not an active requirement.
+
+It must not appear in the active sequence as required, recommended, preferred, or default work.
+
+The following remain unresolved:
+
+- whether any revised storyboard is needed;
+- whether a compact Frame 1-to-Frame 2 cell-treatment reference is needed;
+- whether a Section 2 manual-tracker divergence reference is needed;
+- whether the current hero and Outstanding Actions packet is sufficient without further external visual work.
+
+Do not default to the old full storyboard. Do not default to the later compact-reference suggestion. Review the current assets with Jon, identify actual ambiguity, and decide the minimum additional work, if any, before Lovable planning.
+
+## Elements that do not automatically require separate external references
+
+Unless Jon decides otherwise during the asset review or a bounded Lovable attempt exposes a specific failure, do not assume separate prebuilt references are required for:
 
 - Section 2 figures and methodology copy.
-- Section 3 mechanism, reusing hero spreadsheet and activity-cue primitives.
-- Section 4 Outstanding Actions as a separate file; reuse Frame 3 of the unified storyboard.
+- Section 3 mechanism.
 - Section 5 preservation comparison.
 - Section 6 privacy process, permissions table, commitments, and privacy FAQ.
 - Section 7 general FAQ and closing CTA.
-- Recruiting questions, email capture, price, purchase summary, payment choices, and terminal screens outside the three-frame spreadsheet experience.
+- Recruiting questions, email capture, price, purchase summary, payment choices, and terminal screens outside the spreadsheet frames.
 
-## Immediate reference sequence
+## Pre-Lovable sequence
 
-1. Review and ratify the reduced remaining reference set.
-2. If ratified, build the unified three-frame spreadsheet storyboard.
-3. Review it once and freeze it as a directional reference.
-4. Decide whether the optional Section 2 divergence reference is actually needed.
-5. Freeze the reference packet and begin Lovable implementation.
+### Phase A: Review the reconciled asset packet
 
-Do not reopen endless hero polishing. The existing reference is sufficient to move forward.
+Review with Jon:
 
-## Lovable reference handoff method
+- what the hero reference establishes;
+- what the hero reference leaves unresolved;
+- what the Outstanding Actions reference establishes;
+- whether the two assets compose coherently with the WS4 landing-page and funnel requirements;
+- whether any additional storyboard or visual reference materially reduces implementation ambiguity.
 
-GitHub remains the archive and source of truth. Lovable receives relevant files directly in bounded messages.
+No prior storyboard proposal controls this discussion.
 
-For each checkpoint:
+### Phase B: Settle remaining reference scope
 
-1. Upload editable HTML and a review screenshot to Lovable as message attachments.
-2. Include the controlling WS4 or WS3 excerpt or a precise brief derived from it.
-3. State what is authoritative and what is directional.
-4. List known defects that must not be copied.
-5. Identify explicit exclusions and a mandatory stop point.
-6. Use Lovable plan mode first for multi-section or interactive work.
-7. Approve the plan before authorizing code changes.
-8. Review desktop and mobile previews before advancing.
+Jon must explicitly decide one of the following or another clearly stated outcome:
 
-The Lovable file-upload path is available through the project API: obtain upload URLs for local files, upload the bytes, and attach the returned file IDs to the project message. Do not rely on Lovable chat history alone as the archive.
+- no additional external visual reference is needed;
+- one specifically defined additional reference is needed;
+- a broader revised storyboard is needed for a specific implementation reason.
 
-## Lovable implementation sequence
+Record the ruling in this file, `CURRENT-HANDOFF.md`, `06-assumptions-and-open-questions.md`, and the asset README before proceeding.
 
-### Phase 0: Freeze the implementation packet
+### Phase C: Freeze the implementation packet
 
-Assemble:
+Assemble only the approved materials:
 
 - `WS4-SPEC.md` for exact page and funnel presentation;
 - `WS3-SPEC.md` for event and measurement contracts;
 - this WS5 specification;
 - visual-reference README;
-- hero HTML and screenshot;
-- unified storyboard, if ratified;
-- concise known-defects and deviations list.
+- approved editable source and PNG previews;
+- any additional reference explicitly ratified after the asset review;
+- concise authoritative, directional, known-defect, and exclusion notes.
 
-No page copy, product capability, funnel step, or claim may be invented during implementation.
+No page copy, product capability, funnel step, claim, or reference scope may be invented during packet assembly.
 
-### Phase 1: Lovable plan-only intake
+### Phase D: Lovable plan-only intake
 
 Send one plan-mode message to the existing private project requiring Lovable to:
 
-- inspect the packet;
+- inspect the approved packet;
 - identify reusable components;
 - map all seven sections and funnel screens;
 - propose responsive behavior;
@@ -353,7 +397,27 @@ Send one plan-mode message to the existing private project requiring Lovable to:
 
 Approve or revise the plan before implementation.
 
-### Phase 2: Foundation and reusable components
+## Lovable reference handoff method
+
+GitHub remains the archive and source of truth. Lovable receives relevant files directly in bounded messages.
+
+For each checkpoint:
+
+1. Upload the approved editable source and relevant review preview.
+2. Include the controlling WS4 or WS3 excerpt or a precise brief derived from it.
+3. State what is authoritative.
+4. State what is directional.
+5. List known defects that must not be copied.
+6. Identify explicit exclusions and a mandatory stop point.
+7. Use Lovable plan mode first for multi-section or interactive work.
+8. Approve the plan before authorizing code changes.
+9. Review desktop and mobile previews before advancing.
+
+Do not rely on Lovable chat history alone as the archive.
+
+## Lovable implementation sequence after packet freeze
+
+### Phase 1: Foundation and reusable components
 
 Build only:
 
@@ -369,41 +433,43 @@ Build only:
 - funnel shell and shared state model;
 - analytics adapter interface with no vendor dependency yet.
 
+The first visual build gate is the reusable high-fidelity Google Sheets-style spreadsheet-window primitive. Compare it with real Google Sheets references, obtain Jon approval, and reuse it across every spreadsheet scene.
+
 Stop and review before broad section production.
 
-### Phase 3: Hero implementation
+### Phase 2: Hero implementation
 
 Requirements:
 
 - spreadsheet remains dominant;
 - improve cue-to-Blotter-to-sheet causality;
 - clarify cue-to-row or cue-to-field relationships without a line spiderweb;
-- replace messy ownership brackets;
-- crop grid cleanly;
-- retain `keeps them current`;
+- use an approved ownership treatment;
+- crop the grid cleanly;
+- retain `keeps them current` unless Jon explicitly revises it;
 - create a deliberate mobile treatment;
-- keep stale rear fragment optional until page-context review.
+- treat the stale rear fragment as unresolved until page-context review.
 
 Stop for desktop and mobile approval.
 
-### Phase 4: Landing-page sections
+### Phase 3: Landing-page sections
 
 Implement sequentially:
 
 1. Section 2 Scale and divergence.
-2. Section 3 How Blotter works, reusing hero primitives.
-3. Section 4 Outstanding Actions, reusing Frame 3 of the storyboard.
+2. Section 3 How Blotter works, reusing approved primitives.
+3. Section 4 Outstanding Actions, reusing the approved spreadsheet component and current reference if retained.
 4. Section 5 Preservation, reusing spreadsheet grammar.
 5. Section 6 Privacy and permissions directly from WS4.
 6. Section 7 General FAQ and final CTA directly from WS4.
 
-Maintain exact section order and page-rhythm rules. Conventional text sections do not require external mockups.
+Maintain exact section order and page-rhythm rules. Conventional text sections do not automatically require external mockups.
 
-### Phase 5: Canonical funnel UI and state model
+### Phase 4: Canonical funnel UI and state model
 
 Implement:
 
-1. `funnel_started`
+1. `funnel_started`.
 2. Two recruiting questions.
 3. Three-frame spreadsheet experience.
 4. Recruiting-email capture.
@@ -416,7 +482,7 @@ Use one stable funnel shell and shared state model. Retain CTA origin, recruitin
 
 Do not add OAuth, social login, extra demos, plan selection, annual billing, coupons, card fields, payment collection, or pre-terminal beta, test, future-availability, or no-charge language.
 
-### Phase 6: Lead storage decision and implementation
+### Phase 5: Lead storage decision and implementation
 
 Before enabling a database or form service, make one explicit decision.
 
@@ -433,7 +499,7 @@ Minimum lead record:
 
 Requirements:
 
-- email stored only in lead system;
+- email stored only in the lead system;
 - email never included in general analytics properties;
 - records support export;
 - writes are idempotent or update the same visitor safely;
@@ -441,7 +507,7 @@ Requirements:
 
 Lovable can provision a project database if selected, but database activation is a decision gate, not an automatic step.
 
-### Phase 7: Analytics vendor decision and wiring
+### Phase 6: Analytics vendor decision and wiring
 
 Use one reusable analytics adapter. Select the vendor only after UI and milestone boundaries are stable.
 
@@ -482,7 +548,7 @@ Rules:
 - calls occur at explicit state transitions, not arbitrary renders or mounts;
 - adapter and funnel burden remain reusable for the later platform variant.
 
-### Phase 8: Claims, privacy, responsive, and accessibility QA
+### Phase 7: Claims, privacy, responsive, and accessibility QA
 
 Verify or revise:
 
@@ -509,7 +575,7 @@ Check:
 - sufficient contrast;
 - logical reading order.
 
-### Phase 9: Private preview and manual verification
+### Phase 8: Private preview and manual verification
 
 Keep the project private. Do not launch traffic.
 
@@ -524,7 +590,7 @@ Verify:
 - no double firing on back or refresh;
 - all incidents repaired before traffic.
 
-### Phase 10: WS5 completion and WS6 handoff
+### Phase 9: WS5 completion and WS6 handoff
 
 WS5 is complete only when:
 
@@ -540,10 +606,9 @@ WS5 is complete only when:
 
 ## Deliverables
 
-- Visual-reference index.
-- Hero spreadsheet HTML reference and review notes.
-- Unified three-frame storyboard if ratified, with Frame 3 serving Section 4.
-- Optional Section 2 divergence reference only if needed.
+- Reconciled visual-reference index.
+- Approved visual-reference packet.
+- Any additional reference explicitly ratified after asset review.
 - Lovable implementation plan.
 - Reusable page and spreadsheet component system.
 - Responsive seven-section page.
@@ -556,14 +621,16 @@ WS5 is complete only when:
 - Deviations and unresolved-conflicts list.
 - Updated canonical documentation.
 
+## Rejected, superseded, or inactive directions
+
+- Treating the Claude Design assets as pixel-perfect final designs: rejected.
+- Requiring a separate visual reference for every page section: rejected.
+- Full unified three-frame storyboard as an active or preferred WS5 requirement: never ratified and inactive.
+- Compact Frame 1-to-Frame 2 reference as an automatic default: not ratified.
+- Section 2 divergence reference as an automatic prerequisite: not ratified.
+- Broad Lovable coding before packet freeze and plan approval: prohibited.
+- Real integrations, OAuth, card entry, payment collection, platform page, or public traffic during WS5: excluded.
+
 ## Exact next action
 
-Do not spend more time polishing the current hero reference outside Lovable.
-
-Next:
-
-1. Review and ratify the reduced remaining visual-reference set.
-2. If ratified, build one unified three-frame spreadsheet storyboard.
-3. Decide whether the optional Section 2 messy-manual-tracker reference is needed.
-4. Freeze the reference packet.
-5. Resume the existing private Lovable project in plan mode.
+Review the completed hero and Outstanding Actions assets with Jon. Determine whether any revised storyboard or additional external visual reference is needed. Record that ruling and freeze the implementation packet before entering Lovable plan mode.

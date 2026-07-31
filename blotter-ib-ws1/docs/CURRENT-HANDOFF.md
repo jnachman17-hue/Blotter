@@ -1,14 +1,14 @@
-# Blotter IB — Current Handoff
+# Blotter IB - Current Handoff
 
 Date: July 31, 2026
 
 ## 1. Current objective
 
-Continue Workstream 5 from the completed hero and Outstanding Actions visual-reference checkpoint.
+Continue Workstream 5 from the completed repository-reconciliation checkpoint.
 
-Workstreams 1 through 4 are complete. WS5 is active. The current task is to decide whether one compact stale-to-updated cell-treatment reference is still needed for funnel Frames 1–2, then freeze the implementation packet and resume the existing private Lovable project in plan mode.
+Workstreams 1 through 4 are complete. WS5 is active. Directional hero and Outstanding Actions references exist. The next task is to review the current asset packet with Jon and decide whether any additional storyboard or visual reference is actually needed before freezing the implementation packet.
 
-Do not reopen broad hero or Outstanding Actions polishing outside Lovable.
+Do not begin Lovable planning or implementation before that review.
 
 ## 2. Required reading
 
@@ -26,14 +26,25 @@ Read in this order before acting:
 ## 3. Source-of-truth rules
 
 - Jon's explicit instructions are highest authority.
-- `WS5-SPEC.md` controls the durable WS5 implementation system and gates.
-- `WS4-SPEC.md` controls exact page copy, section order, funnel presentation, responsive priorities, and claim boundaries.
+- `WS5-SPEC.md` controls the durable WS5 implementation system, visual-reference status, sequence, and gates.
+- `WS4-SPEC.md` controls exact page copy, section order, funnel presentation, responsive priorities, and claim boundaries except where a later explicit Jon ruling is recorded in WS5.
 - `WS3-SPEC.md` controls event names, properties, price, measurement, and read rules.
-- `docs/workstreams/ws5-assets/README.md` is the current reference inventory and records what is authoritative, directional, complete, or defective.
-- The prior unified-storyboard recommendation was an unratified production proposal, not a product requirement.
-- Do not use old handoffs, failed workbooks, abandoned renders, or Lovable defaults to override these files.
+- `docs/workstreams/ws5-assets/README.md` is the current visual-reference inventory and records what is authoritative, directional, complete, defective, or unresolved.
+- Do not use old handoffs, failed workbooks, abandoned renders, deleted asset paths, or Lovable defaults to override these files.
 
-## 4. Completed visual-reference packet
+## 4. Repository reconciliation completed
+
+The July 31 reconciliation:
+
+- aligned the canonical records to the completed hero and Outstanding Actions references;
+- renamed the current files to canonical paths;
+- removed references to deleted or superseded asset paths;
+- removed the former unified-storyboard proposal from the active implementation sequence;
+- recorded that the former unified three-frame storyboard was never ratified and is not an active requirement;
+- kept all additional storyboard or visual-reference scope unresolved for the next discussion with Jon;
+- updated the project and Lovable state to reflect reality.
+
+## 5. Current visual-reference packet
 
 Editable source:
 
@@ -46,17 +57,17 @@ Review previews:
 
 Reference notes:
 
+- `docs/workstreams/ws5-assets/README.md`
 - `docs/workstreams/ws5-assets/hero/README.md`
 - `docs/workstreams/ws5-assets/outstanding-actions/README.md`
-- `docs/workstreams/ws5-assets/README.md`
 
-The root-level `docs/workstreams/ws5-assets/hero-spreadsheet-reference-v1.dc.html` is retained only as a superseded archival version.
+These assets are directional implementation references. They are not final designs and must not be copied pixel for pixel.
 
-## 5. Hero reference status
+## 6. Hero reference status
 
-The hero is directionally complete and sufficient to guide Lovable. It is not a literal final pixel target.
+The hero reference is directionally complete and sufficient for review.
 
-Preserve:
+Preserve unless Jon later revises the asset brief:
 
 - Google Sheets-native visual language.
 - Current-state recruiting tracker and exact data.
@@ -67,70 +78,64 @@ Preserve:
   - Email sent to Alex Morgan.
 - `YOU add the contacts` and `BLOTTER keeps them current`.
 - Exact phrase `keeps them current`.
+- Spreadsheet remains the dominant object.
 
-Lovable must improve rather than copy:
+Current defects or unresolved implementation treatments:
 
-1. Cue-to-Blotter-to-sheet causality.
-2. Cue-to-row or cue-to-field mapping.
-3. The vertical Blotter engine.
-4. The ownership treatment.
-5. Desktop-to-mobile composition.
+1. Cue-to-Blotter-to-sheet causality is not sufficiently clear.
+2. Cue-to-row or cue-to-field mapping is not sufficiently clear.
+3. The vertical Blotter engine is directional, not settled.
+4. The final ownership treatment is not settled.
+5. Desktop-to-mobile composition must be designed in page context.
 
-The stale rear sheet is parked, not rejected. If restored later, add only a cropped, muted upper portion behind the current sheet.
+The stale rear sheet is parked, not rejected. Whether it appears in the final hero remains a later page-context decision.
 
-## 6. Outstanding Actions status
+## 7. Outstanding Actions reference status
 
-The Outstanding Actions reference is directionally complete.
+The Outstanding Actions reference is directionally complete and sufficient for review.
 
-Preserve:
+Preserve unless Jon later revises the asset brief:
 
 - one global column header: Contact, Next action, Why it is here;
 - `Outstanding actions` and `21 outstanding actions`;
-- Replies owed — 6;
-- Follow-ups due — 11;
-- Thank-you notes — 4;
+- Replies owed: 6;
+- Follow-ups due: 11;
+- Thank-you notes: 4;
 - exact visible rows, reasons, and overflow rows;
 - spreadsheet-native grouped rows rather than dashboard cards.
 
-This one state serves both landing-page Section 4 and funnel Frame 3.
+This state is intended to serve landing-page Section 4 and funnel Frame 3 if retained after the asset review.
 
-## 7. Remaining visual-reference decision
+## 8. Ratified storyboard status
 
-Do not build a full unified three-frame storyboard outside Lovable by default.
+The former unified three-frame storyboard recommendation was never ratified and is not an active requirement.
 
-The only possible remaining complex reference is a compact Frame 1-to-Frame 2 treatment showing:
+Whether any additional storyboard, compact Frame 1-to-Frame 2 cell-treatment reference, Section 2 divergence reference, or other external visual reference is needed remains unresolved.
 
-- a stable Blotter spreadsheet in a stale data state;
-- exact cells signposted before update;
-- the same cells clearly updated after progression;
-- exact Sarah Chen and Daniel Park funnel data from WS4.
+Do not treat either the old full-storyboard proposal or the later compact-reference suggestion as the default. Reconsider the need from first principles after reviewing the current asset packet and before Lovable planning.
 
-Build this only if Jon decides it materially reduces ambiguity or Lovable cannot execute the written WS4 transition specification during plan review.
+## 9. Lovable project state
 
-The Section 2 messy-manual-tracker reference remains optional and should be produced only if the first Lovable Section 2 implementation fails to communicate the divergence concept.
+Project: `Blotter Foundation`  
+Project ID: `ec94e794-190a-4c92-b337-67ecfb8f1b10`  
+Visibility: Private  
+Published: No  
+Current state: Paused
 
-## 8. Exact next action
+Existing code is unapproved scaffolding unless independently supported by the canonical specifications.
 
-1. Decide whether to build the compact stale-to-updated cell-treatment reference now or defer it to Lovable plan review.
-2. Consolidate the active WS5 specification so it no longer treats the unratified full storyboard as the preferred method.
-3. Freeze the implementation packet.
-4. Upload the relevant HTML source, PNG previews, and governing specifications to the existing private Lovable project.
-5. Send one plan-only intake message and require no code changes until the plan is approved.
+## 10. Exact next action
 
-## 9. Lovable sequence after reference freeze
+Review with Jon:
 
-1. Lovable plan-only intake.
-2. Approve reusable component, responsive, funnel-state, lead-write, and event-boundary plan.
-3. Build reusable page, CTA, spreadsheet, activity-cue, funnel-shell, and analytics-adapter components.
-4. Implement and approve the hero first.
-5. Implement Sections 2 through 7 in bounded checkpoints.
-6. Implement the canonical funnel and shared state model.
-7. Make an explicit lead-storage decision and implement exportable lead records.
-8. Make an explicit analytics-vendor decision and wire the fixed nine-event contract.
-9. Complete claim, privacy, responsive, accessibility, and private-preview QA.
-10. Manually verify every CTA origin, event, lead record, funnel branch, device class, and payment-choice path before traffic.
+1. what the current hero and Outstanding Actions assets establish;
+2. what they leave unresolved;
+3. whether a revised storyboard or any additional reference is needed;
+4. what the final frozen implementation packet should contain.
 
-## 10. Current exclusions
+Only after those questions are settled should the project enter Lovable plan mode.
+
+## 11. Current exclusions
 
 Do not build or imply:
 
