@@ -4,59 +4,78 @@ Date: July 30, 2026
 
 ## 1. Current objective
 
-Finish Workstream 4 through a short, explicit ratification of the few remaining presentation decisions.
+Begin Workstream 5: spreadsheet-page Lovable implementation, instrumentation, private deployment, and manual verification.
 
-Workstreams 1 through 3 are complete. The WS4 hero and Sections 2 through 7 are ratified and closed. WS4 remains active only for the spreadsheet-specific product experience, genuinely missing funnel presentation copy, material responsive priorities, and final audit consolidation.
+Workstreams 1 through 4 are complete. The WS4 hero, Sections 2 through 7, spreadsheet-specific product experience, exact funnel presentation copy, responsive priorities, and coherence safeguards are ratified and closed.
 
-WS5 is drafted but not active.
+WS5 is active.
 
 ## 2. Required reading
 
 1. `docs/00-START-HERE.md`
 2. `docs/CURRENT-HANDOFF.md`
-3. `docs/workstreams/WS4-SPEC.md`
-4. `docs/workstreams/WS4-RATIFICATION-PACKAGE.md`
+3. `docs/workstreams/WS5-SPEC.md`
+4. `docs/workstreams/WS4-SPEC.md`
 5. `docs/workstreams/WS3-SPEC.md`
 6. `docs/workstreams/WS2-SPEC.md`
 7. `docs/05-working-agreement.md`
-8. `docs/workstreams/WS5-SPEC.md` only as a draft implementation brief
+8. Only additional canonical files needed for the exact task
 
 ## 3. Source-of-truth rules
 
 - Jon's explicit instructions are highest authority.
-- Do not reopen WS2, WS3, the hero, or Sections 2 through 7.
-- WS3 controls the funnel architecture, question options and order, price timing and amount, checkout mechanics, terminal commitment, analytics, and measurement rules.
-- WS4 review is limited to exact spreadsheet demo presentation, genuinely missing screen copy, responsive content choices, and any audit finding that would alter ratified language.
-- Do not reveal Fall 2026 timing before the terminal state.
-- Do not label the funnel a demand test or beta reservation before the payment-choice action.
-- Do not use future-tense price wording that signals the product is not available.
-- Do not begin Lovable implementation or activate WS5 until Jon explicitly ratifies and closes WS4.
+- WS4 controls page copy, visuals, demo sequence, responsive priorities, and claim boundaries.
+- WS3 controls funnel architecture, price, events, measurement, and read rules.
+- Do not reopen WS2, WS3, the hero, Sections 2 through 7, or the ratified funnel presentation unless implementation reveals a genuine conflict.
+- Do not silently revise ratified copy or sequencing in Lovable.
+- Do not reveal demand testing, beta status, Fall 2026 timing, future availability, or no-charge status before the payment-choice click.
+- No real OAuth, Gmail integration, payment collection, or production backend is part of WS5.
 
-## 4. Pending review groups
+## 4. Ratified spreadsheet product experience
 
-### A. Product experience
+Use one stable Google Sheets window across three frames with required `1 of 3`, `2 of 3`, and `3 of 3` indicators.
 
-Settle the exact frame sequence, click behavior, sheet states, copy, and relationship to the hero within the WS3 15 to 20 second ceiling.
+1. Recruiting activity arrives while the tracker is stale.
+2. The signposted cells update to current state.
+3. The sheet transitions to the ratified Outstanding Actions view.
 
-### B. Funnel presentation copy
+Two internal progression clicks lead to one final `Continue` click. Back navigation is allowed and must not refire completion events. The experience must remain within the WS3 15 to 20 second ceiling.
 
-Finalize only wording not already fixed by WS3: question framing, email capture, price presentation, checkout summary, payment labels, and terminal copy.
+Read `WS4-SPEC.md` for exact frame copy, mock data, cell states, queue rows, button wording, and responsive behavior.
 
-### C. Responsive priorities and audit
+## 5. Ratified funnel presentation
 
-Settle only content-affecting responsive choices. Complete the coherence and claim-support audit without reopening ratified copy unless a genuine conflict exists.
+- Question 1 remains `What are you recruiting for?`; button `Continue`.
+- Question 2 is `Which recruiting window best fits you?`; button `Continue`.
+- Email capture uses `Continue with your recruiting email.` and `Enter the email address where you conduct recruiting.`
+- No school-email restriction, fixed placeholder, static privacy note, or beta language appears on email capture.
+- Price screen presents Blotter at `$9.99 / month`, billed monthly, cancel anytime.
+- Purchase summary uses `Complete your purchase`, shows `$9.99` due today, and offers `Pay with card` and Apple Pay where supported.
+- No card-entry form appears.
+- Terminal state is the first availability disclosure and confirms the limited Fall 2026 cohort plus `You have not been charged.`
 
-## 5. Preserved WS5 requirement
+## 6. First WS5 build gate
 
-Before broad page implementation, WS5 must create one reusable high-fidelity Google Sheets-style spreadsheet-window component, compare it against real Google Sheets references, present it to Jon for visual review, correct it, freeze the approved primitive, and reuse it across all spreadsheet scenes.
+Do not begin by building the full page.
 
-## 6. Build state
+1. Create the Lovable project.
+2. Implement only the global shell and typography hierarchy.
+3. Build one reusable high-fidelity Google Sheets-style spreadsheet-window component.
+4. Compare it against real Google Sheets visual references.
+5. Present it to Jon for review.
+6. Correct and freeze the approved primitive.
+7. Only then build the hero, Section 3, Section 4, Section 5, and funnel spreadsheet scenes.
 
-- No approved Lovable implementation exists.
+The spreadsheet component must consistently control toolbar depth, column letters, row numbers, gridlines, cell padding and height, headers, frozen panes, tabs, selection states, status controls, typography, activity chips, and responsive crops.
+
+## 7. Build state
+
+- No approved Lovable implementation exists yet.
 - No public traffic should be sent.
-- `WS5-SPEC.md` is a draft, not an active workstream.
-- Provider verification, domain routing, lead-storage tooling, analytics vendor selection, and production OAuth remain implementation or later-stage dependencies.
+- Provider verification, domain routing, lead-storage tooling, and analytics vendor selection remain WS5 implementation decisions.
+- Analytics must be manually verified before public traffic.
+- The spreadsheet page remains private until WS5 completion gates pass.
 
-## 7. Exact next action
+## 8. Exact next action
 
-Present the three pending WS4 groups to Jon in one concise ratification sequence. After explicit approval, update the canonical files with only the final decisions, mark WS4 complete, and activate WS5.
+Create the Lovable project and implement only the global page shell, typography hierarchy, and reusable spreadsheet-window fidelity prototype. Present that prototype to Jon for visual approval before adding detailed page scenes or funnel logic.
