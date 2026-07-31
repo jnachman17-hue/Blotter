@@ -8,9 +8,9 @@ Continue Workstream 4: spreadsheet landing-page content and experience design.
 
 Workstreams 1, 2, and 3 are complete. Workstream 4 is active.
 
-The audience positioning, brand direction, seven-section narrative, CTA architecture, hero, Section 2 Scale package, Section 3 How It Works package, and Section 4 Outstanding Actions package are confirmed in `docs/workstreams/WS4-SPEC.md`.
+The audience positioning, brand direction, seven-section narrative, CTA architecture, hero, Section 2 Scale package, Section 3 How It Works package, Section 4 Outstanding Actions package, and Section 5 Preservation copy package are confirmed in `docs/workstreams/WS4-SPEC.md`.
 
-Exact next action: specify Section 5, Preservation: keep the spreadsheet and structure already in use.
+Exact next action: finish Section 5 by ratifying one simple preservation visual, then proceed to Section 6, Privacy and Permissions plus FAQ.
 
 ## 2. Source-of-truth rules
 
@@ -27,69 +27,51 @@ Exact next action: specify Section 5, Preservation: keep the spreadsheet and str
 2. Scale: why manual recruiting trackers fall behind.
 3. How it works: the student maintains contacts; Blotter maintains changing activity.
 4. Action view: know what needs to happen today.
-5. Preservation: keep the spreadsheet and structure already in use.
+5. Preservation: keep the existing Google Sheets workbook and contact record while Blotter creates a standardized live recruiting view.
 6. Privacy and permissions, plus FAQ.
 7. Concise closing summary and CTA.
 
 Primary CTA placements: hero, after Section 4 product and action proof, and final section.
 
-## 4. Confirmed Section 4: Outstanding Actions
+## 4. Confirmed Section 5: Preservation
+
+### Accurate product promise
+
+- The user keeps the existing Google Sheets workbook and underlying contact record.
+- The user does not have to re-enter every contact.
+- Blotter creates a standardized recruiting view within the same Google Sheets workflow.
+- Blotter does not promise to preserve or append directly onto every user's exact custom column layout.
+- Detailed field mapping, hidden columns, and setup mechanics should not dominate the landing page.
 
 ### Copy
 
 - No eyebrow.
-- Headline: `Know exactly what needs your attention.`
-- Supporting line: `Stop reconstructing your next moves from Gmail, Calendar, and memory. Blotter gives you one current view of every action you owe.`
-- CTA block line: `Open your tracker and know what to do next.`
-- CTA button: `See how Blotter works`
+- Headline: `Keep the tracker you already built.`
+- Supporting copy: `Keep the Google Sheet and contacts you already built. Blotter creates a standardized recruiting view in a new tab and keeps the changing activity current from Gmail and Calendar.`
 
-### Google Sheets-native visual
+### Reassurance strip
 
-- Use one persistent area titled `Outstanding actions`, not a `Today` tab.
-- Show `21 outstanding actions` using a merged summary cell, compact header band, or another Google Sheets-native treatment rather than a floating dashboard card.
-- Group the workload into:
-  - Replies owed: 6
-  - Follow-ups due: 11
-  - Thank-you notes: 4
-- Show two readable rows per group.
-- Beneath each group show muted overflow:
-  - `+4 more replies owed`
-  - `+9 more follow-ups due`
-  - `+2 more thank-you notes`
-- Counts and overflow should use native-looking sheet conventions such as section-header rows, subtle fills, grouped ranges, or muted summary rows.
+- `Keep your existing tracker`
+- `No re-entering every contact`
+- `No switching out of Google Sheets`
 
-### Row structure
+### Labels and CTA
 
-Columns:
+- `YOUR EXISTING TRACKER`
+- `BLOTTER ADDS THE LIVE LAYER`
+- No CTA in Section 5.
 
-1. Contact
-2. Next action
-3. Why it is here
+### Visual direction
 
-Representative rows:
+The previously proposed detailed two-tab mapping diagram was rejected as too complex and too focused on migration mechanics.
 
-- Marcus Lee | Reply to Marcus | Marcus replied 2 hours ago
-- Daniel Kim | Reply to Daniel | Daniel replied yesterday
-- Sarah Chen | Bump thread | No reply for 6 days
-- Alex Morgan | Bump thread | No reply for 8 days
-- Priya Shah | Send thank-you | Coffee chat completed yesterday
-- James Wu | Send thank-you | Call completed 3 hours ago
-
-The six visible rows explain the product. Counts and muted overflow communicate high volume. Do not render dozens of rows merely to prove scale.
-
-The CTA remains after Section 4 and enters the canonical WS3 funnel with its own `cta_location`.
+The final visual should remain simple, Google Sheets-native, and conceptually show that the user's contact information remains theirs while Blotter supplies the standardized live recruiting layer. Prefer a simple left-right responsibility treatment over a literal technical diagram, but do not imply that Blotter can append cleanly to every arbitrary custom tracker layout.
 
 ## 5. Exact next action
 
-Specify Section 5, Preservation, as one compact ratification package. Settle:
-
-1. The communication job and copy.
-2. How the page proves that Blotter works with the user's existing Google Sheet rather than requiring a rebuild.
-3. The visual treatment for preserving contacts, notes, custom columns, and familiar workflow.
-4. Whether setup reassurance is needed.
-5. How Section 5 transitions into privacy and permissions.
-
-Then continue through Privacy and FAQ, closing section, funnel screens, responsive constraints, and the final Lovable-ready implementation brief.
+1. Ratify one simple Section 5 visual treatment.
+2. Proceed immediately to Section 6, Privacy and Permissions plus FAQ.
+3. Continue through the closing section, funnel screens, responsive constraints, and final Lovable-ready implementation brief.
 
 ## 6. Fixed WS3 constraints
 
