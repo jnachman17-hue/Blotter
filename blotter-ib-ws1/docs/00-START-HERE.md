@@ -34,18 +34,18 @@ Current state:
 - A directional hero spreadsheet reference has been completed in Claude Design and archived in GitHub.
 - The hero reference is sufficient to guide Lovable but contains known defects that must be corrected during implementation rather than copied.
 - The existing Lovable project is private and paused.
-- Broad Lovable implementation should resume only after the minimal remaining visual-reference set is ratified and completed.
+- Broad Lovable implementation should resume only after the reduced remaining visual-reference set is ratified and completed.
 
 Exact next action:
 
 Review and ratify the proposed remaining reference set in `docs/workstreams/WS5-SPEC.md` and `docs/workstreams/ws5-assets/README.md`.
 
-The current recommendation is:
+Current recommendation:
 
-1. Build one Outstanding Actions spreadsheet reference.
-2. Build one three-frame funnel spreadsheet storyboard.
+1. Build one unified three-frame spreadsheet storyboard.
+2. Use its third frame as the Section 4 Outstanding Actions reference rather than building a separate duplicate asset.
 3. Build a Section 2 messy-manual-tracker divergence reference only if Jon ratifies it or Lovable cannot execute it directly.
-4. Then freeze the reference packet and resume the existing private Lovable project in plan mode.
+4. Freeze the reference packet and resume the existing private Lovable project in plan mode.
 
 ## Durable workstream specifications
 
