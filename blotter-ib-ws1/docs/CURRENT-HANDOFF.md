@@ -8,17 +8,16 @@ Continue Workstream 4: spreadsheet landing-page content and experience design.
 
 Workstreams 1, 2, and 3 are complete. Workstream 4 is active.
 
-The audience positioning, brand direction, CTA architecture, hero, and Sections 2 through 6 are confirmed in `docs/workstreams/WS4-SPEC.md`.
+All seven landing-page sections are confirmed in `docs/workstreams/WS4-SPEC.md`.
 
-Exact next action: specify Section 7 as a general product FAQ followed by the concise closing summary and final CTA.
+Exact next action: define the canonical CTA funnel product experience and click sequence.
 
 ## 2. Source-of-truth rules
 
 - Jon's explicit instructions in the active chat are highest authority.
-- GitHub canonical files and workstream specifications are durable truth.
 - `docs/workstreams/WS4-SPEC.md` is the active cumulative specification.
 - `CURRENT-HANDOFF.md` is temporary immediate context only.
-- Do not reopen confirmed WS2, WS3, hero, or Sections 2 through 6 unless an implementation constraint genuinely breaks them.
+- Do not reopen confirmed WS2, WS3, hero, or Sections 2 through 7 unless an implementation constraint genuinely breaks them.
 - Work at landing-page-test resolution and avoid backend-level edge-case analysis.
 
 ## 3. Confirmed page sequence
@@ -29,83 +28,61 @@ Exact next action: specify Section 7 as a general product FAQ followed by the co
 4. Outstanding actions
 5. Preservation
 6. Privacy and permissions, including a dedicated privacy-and-data FAQ
-7. General product FAQ, followed by the concise closing summary and final CTA
+7. General product FAQ, followed by the final closing summary and CTA
 
 Primary CTA placements: hero, after Section 4, and final closing block.
 
-## 4. Confirmed FAQ distinction
+## 4. Confirmed Section 7
 
-Section 6 retains the full privacy-and-data FAQ because those questions are central to the trust argument and should remain adjacent to the candid permissions disclosure.
+General FAQ title:
+`Frequently asked questions`
 
-Section 7 contains a separate general product FAQ addressing broader product, fit, setup, workflow, and commercial questions. Do not merge privacy questions into the general FAQ or remove them from Section 6.
+Questions:
+1. Do I need to start with a new tracker?
+2. Can I use Blotter after recruiting has already started?
+3. Does Blotter write emails or help with technical preparation?
+4. What happens when I add a new contact?
+5. Does Blotter work only for investment banking?
 
-The two FAQ groups should be visually related but clearly labeled and separated by purpose:
+Price and availability are intentionally omitted from the FAQ and remain disclosed inside the canonical funnel.
 
-- Section 6: how data access and processing work
-- Section 7: how the product works for the user more generally
+Final closing block:
 
-## 5. Confirmed Section 6: How Blotter Uses Your Data
+- Headline: `Your recruiting tracker, always current.`
+- Supporting line: `Keep your relationships moving without spending every day rebuilding the state of your process.`
+- CTA: `See how Blotter works`
+- Reassurance: `Keep your existing Google Sheet. No mass outreach. No technical-prep content.`
+- Final CTA stores `cta_location = final`.
 
-Section 6 is a serious, candid, plain-English disclosure rather than a standard marketing block.
+Section 7 is fully ratified and closed.
 
-Section title:
-`How Blotter uses your data`
+## 5. Exact next action
 
-Opening statement:
-`Connecting Gmail and Calendar is a meaningful permission. Here is exactly what Blotter checks, what it reads, what it keeps, and what it never does.`
+Define the canonical funnel experience:
 
-Main claim:
-`Blotter never reads your personal email. It checks who a message is from and only reads messages from contacts stored in your recruiting tracker. Everything else is excluded before message content is processed.`
+1. Two recruiting-configuration questions.
+2. The 15–20 second product-experience sequence.
+3. Transparent email capture.
+4. Delayed `$9.99/month` price presentation.
+5. Checkout choices without payment entry or collection.
+6. Fall 2026 beta terminal state.
+7. Exact click path and event instrumentation across all CTA locations.
 
-The section includes:
+Then settle responsive priorities and produce the Lovable-ready implementation brief.
 
-- the four-step sender-match and processing explanation;
-- the Gmail, Calendar, and Sheets permissions table;
-- the broad Google-scope disclosure;
-- the plain commitments and deletion language;
-- provisional third-party provider disclosure pending provider verification;
-- the dedicated privacy FAQ.
-
-Privacy FAQ questions:
-
-1. Why does Google ask for broad Gmail access?
-2. Does Blotter read personal emails?
-3. Does Blotter store my emails?
-4. Can Blotter send emails or change my calendar?
-5. Does Blotter sell my data?
-6. What happens when I delete my account?
-7. Does a third party process my data? — provisional until provider selection.
-
-No CTA appears in Section 6.
-
-## 6. Exact next action
-
-Specify Section 7 as one compact ratification package. Settle:
-
-1. The general product FAQ questions and concise answers.
-2. The transition from general FAQ into the final closing block.
-3. Final closing headline.
-4. Supporting line.
-5. Final CTA wording.
-6. Whether to include a short beta-cohort or reassurance line.
-7. Final visual treatment.
-8. How to use `Your recruiting tracker, always current.`
-
-Then continue to funnel screens, responsive constraints, and the final Lovable-ready implementation brief.
-
-## 7. Fixed WS3 constraints
+## 6. Fixed WS3 constraints
 
 - Every primary CTA enters the same funnel.
 - Two recruiting-configuration questions precede one 15 to 20 second product experience.
 - Email capture is transparent and does not imitate OAuth.
 - Gmail, Sheets, and Calendar remain visible as the product engine.
-- Price appears only inside the funnel after email capture.
+- Price appears only after email capture.
 - Price is $9.99 per month, monthly, cancel anytime.
 - Checkout shows payment choices without card entry or payment collection.
 - Terminal state confirms a real place in the approximately 300-person Fall 2026 beta cohort.
 - Both surfaces use the same funnel, price, event set, and measurement rules.
 
-## 8. Build state
+## 7. Build state
 
 - No Lovable project exists yet.
 - No reusable production code or completed landing-page assets exist.
