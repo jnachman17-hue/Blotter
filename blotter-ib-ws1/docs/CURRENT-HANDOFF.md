@@ -8,9 +8,9 @@ Continue Workstream 4: spreadsheet landing-page content and experience design.
 
 Workstreams 1, 2, and 3 are complete. Workstream 4 is active.
 
-The audience positioning, brand direction, seven-section narrative, CTA architecture, hero, Section 2 Scale package, and Section 3 How It Works package are confirmed in `docs/workstreams/WS4-SPEC.md`.
+The audience positioning, brand direction, seven-section narrative, CTA architecture, hero, Section 2 Scale package, Section 3 How It Works package, and Section 4 Outstanding Actions package are confirmed in `docs/workstreams/WS4-SPEC.md`.
 
-Exact next action: specify Section 4, Action View: know what needs to happen today.
+Exact next action: specify Section 5, Preservation: keep the spreadsheet and structure already in use.
 
 ## 2. Source-of-truth rules
 
@@ -18,7 +18,7 @@ Exact next action: specify Section 4, Action View: know what needs to happen tod
 - GitHub canonical files and workstream specifications are durable truth.
 - `docs/workstreams/WS4-SPEC.md` is the active cumulative specification.
 - `CURRENT-HANDOFF.md` is temporary immediate context only.
-- Do not reopen confirmed WS2, WS3, hero, Section 2, or Section 3 decisions unless an implementation constraint genuinely breaks them.
+- Do not reopen confirmed WS2, WS3, hero, or Sections 2 through 4 unless an implementation constraint genuinely breaks them.
 - Work at landing-page-test resolution and avoid backend-level edge-case analysis.
 
 ## 3. Confirmed page sequence
@@ -33,88 +33,65 @@ Exact next action: specify Section 4, Action View: know what needs to happen tod
 
 Primary CTA placements: hero, after Section 4 product and action proof, and final section.
 
-## 4. Confirmed page-rhythm rule
-
-Do not force every section into an identical eyebrow, headline, supporting paragraph, and closing-line template. Vary copy hierarchy and visual density by communication job while maintaining one coherent design system.
-
-## 5. Confirmed Section 2: Scale
-
-- Eyebrow: `The scale of a recruiting cycle`
-- Headline: `Your manual tracker was never built to keep up with this.`
-- Argument: continuous Gmail and Calendar activity outpaces intermittent manual tracker upkeep, causing stale state, lost trust, and missed actions.
-- Case-study qualification: `Representative workload from a high-intensity Summer Analyst 2028 recruiting cycle that resulted in a JPMorgan offer.`
-- Figures: 628 recruiting emails, 55 coffee chats, 19 applications, 30 interview rounds.
-- Time claim: `Save approximately 60 hours of manual tracker administration over one recruiting cycle.`
-- Methodology: `Estimated from manual Gmail and Calendar logging, tracker updates, and recurring reconciliation across the case-study recruiting cycle.`
-- Divergence titles: `WHAT ACTUALLY HAPPENED` and `WHAT MADE IT INTO THE MANUAL TRACKER`.
-- No CTA.
-
-## 6. Confirmed Section 3: How It Works
+## 4. Confirmed Section 4: Outstanding Actions
 
 ### Copy
 
-- Eyebrow: `How Blotter works`
-- Headline: `You manage the relationships. Blotter maintains the moving parts.`
-- Supporting copy: `Add the contacts you are networking with and keep the context that matters to you. Blotter uses relevant activity from Gmail and Calendar to keep each relationship’s status, last contact, scheduled calls, and next move current inside your Google Sheet.`
-- Closing line: `You stay responsible for the judgment and communication. Blotter keeps the logistics synchronized.`
+- No eyebrow.
+- Headline: `Know exactly what needs your attention.`
+- Supporting line: `Stop reconstructing your next moves from Gmail, Calendar, and memory. Blotter gives you one current view of every action you owe.`
+- CTA block line: `Open your tracker and know what to do next.`
+- CTA button: `See how Blotter works`
 
-### Causal visual
+### Google Sheets-native visual
 
-`Gmail + Calendar → Blotter → Your Google Sheet`
+- Use one persistent area titled `Outstanding actions`, not a `Today` tab.
+- Show `21 outstanding actions` using a merged summary cell, compact header band, or another Google Sheets-native treatment rather than a floating dashboard card.
+- Group the workload into:
+  - Replies owed: 6
+  - Follow-ups due: 11
+  - Thank-you notes: 4
+- Show two readable rows per group.
+- Beneath each group show muted overflow:
+  - `+4 more replies owed`
+  - `+9 more follow-ups due`
+  - `+2 more thank-you notes`
+- Counts and overflow should use native-looking sheet conventions such as section-header rows, subtle fills, grouped ranges, or muted summary rows.
 
-Stage labels:
+### Row structure
 
-- `RECRUITING HAPPENS HERE`
-- `BLOTTER KEEPS IT CURRENT`
-- `YOUR TRACKER STAYS CURRENT`
+Columns:
 
-Representative events: reply received, call scheduled, coffee chat completed, and follow-up window reached.
+1. Contact
+2. Next action
+3. Why it is here
 
-Use a smaller maintained-fields crop rather than repeat the full hero. Desktop may be horizontal; mobile stacks vertically.
+Representative rows:
 
-### Division of labor
+- Marcus Lee | Reply to Marcus | Marcus replied 2 hours ago
+- Daniel Kim | Reply to Daniel | Daniel replied yesterday
+- Sarah Chen | Bump thread | No reply for 6 days
+- Alex Morgan | Bump thread | No reply for 8 days
+- Priya Shah | Send thank-you | Coffee chat completed yesterday
+- James Wu | Send thank-you | Call completed 3 hours ago
 
-`YOU CONTROL`
+The six visible rows explain the product. Counts and muted overflow communicate high volume. Do not render dozens of rows merely to prove scale.
 
-- Who you network with and contact
-- The outreach and replies you write
-- Your notes and relationship context
+The CTA remains after Section 4 and enters the canonical WS3 funnel with its own `cta_location`.
 
-`BLOTTER MAINTAINS`
+## 5. Exact next action
 
-- Contact status
-- Last contact and timing
-- Scheduled calls and next actions
-
-### Product boundary
-
-Place the product-boundary treatment at the bottom of Section 3 after the positive explanation.
-
-Main line:
-
-`You choose the people and write the messages. Blotter keeps the logistics current.`
-
-Small badges:
-
-- No technical-prep content
-- No generic mass AI outreach
-- No AI slop
-
-The longer logistics-layer statement may move to FAQ if the section is crowded. No CTA appears in Section 3.
-
-## 7. Exact next action
-
-Specify Section 4 efficiently as one ratification package. Settle:
+Specify Section 5, Preservation, as one compact ratification package. Settle:
 
 1. The communication job and copy.
-2. The exact action-focused view shown.
-3. Whether it uses grouped queues, filters, sorting, a separate tab, or another simple treatment.
-4. Representative actions and visual hierarchy.
-5. The placement and wording of the second primary CTA after the product and action proof.
+2. How the page proves that Blotter works with the user's existing Google Sheet rather than requiring a rebuild.
+3. The visual treatment for preserving contacts, notes, custom columns, and familiar workflow.
+4. Whether setup reassurance is needed.
+5. How Section 5 transitions into privacy and permissions.
 
-Then continue through Preservation, Privacy and FAQ, closing section, funnel screens, responsive constraints, and the final Lovable-ready implementation brief.
+Then continue through Privacy and FAQ, closing section, funnel screens, responsive constraints, and the final Lovable-ready implementation brief.
 
-## 8. Fixed WS3 constraints
+## 6. Fixed WS3 constraints
 
 - Every primary CTA enters the same funnel.
 - Two recruiting-configuration questions precede one 15 to 20 second product experience.
@@ -126,7 +103,7 @@ Then continue through Preservation, Privacy and FAQ, closing section, funnel scr
 - The terminal state confirms a real place in the approximately 300-person Fall 2026 beta cohort.
 - Both surfaces use the same funnel, price, event set, and measurement rules.
 
-## 9. Build state
+## 7. Build state
 
 - No Lovable project exists yet.
 - No reusable production code or completed landing-page assets exist.
