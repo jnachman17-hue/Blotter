@@ -37,8 +37,6 @@ The page must preserve completed WS2 and WS3 decisions:
 - the terminal state confirms a real place in the approximately 300-person Fall 2026 beta cohort;
 - both surfaces ultimately use the same funnel, price, event set, and measurement rules.
 
-Read `docs/workstreams/WS2-SPEC.md` and `docs/workstreams/WS3-SPEC.md` for the complete durable records.
-
 ## Confirmed audience, brand, and domain
 
 - Displayed product name: `Blotter`.
@@ -61,6 +59,10 @@ Read `docs/workstreams/WS2-SPEC.md` and `docs/workstreams/WS3-SPEC.md` for the c
 
 Three primary CTA placements are confirmed: hero, after product and action proof, and final section. All enter the same WS3 funnel.
 
+## Confirmed page-rhythm rule
+
+The seven sections should not repeat one identical eyebrow, headline, supporting paragraph, and closing-line template. Copy hierarchy and visual density should vary by section while preserving a coherent design system. Some sections may use a headline plus diagram, some may use proof figures, comparison blocks, FAQ rows, or a concise closing statement. Repetition should be controlled during Lovable implementation.
+
 ## Confirmed hero
 
 ### Copy
@@ -72,60 +74,15 @@ Three primary CTA placements are confirmed: hero, after product and action proof
 - Authority line: `Built by a former Goldman Sachs banker for recruitment.`
 - Preserve `Your recruiting tracker, always current.` for the closing section.
 
-### Communication hierarchy
-
-The dominant message is: `This is a recruiting spreadsheet that updates itself from actual recruiting activity.`
-
-The visitor should understand, in order:
-
-1. A smart recruiting spreadsheet stays current.
-2. Gmail and Calendar activity update it automatically.
-3. The student keeps contacts and static information while Blotter handles changing logistics.
-
 ### Composition
 
 - Static-first design.
-- Muted, partially visible stale Google Sheets-style tracker in the background, bleeding off an edge.
-- Dominant Google Sheets-style Blotter tracker in the foreground.
-- Small Gmail, Calendar, or Blotter timing chips connect activity to updated cells.
+- Muted stale Google Sheets-style tracker behind a dominant Blotter-maintained sheet.
+- Gmail, Calendar, or Blotter activity chips connect to updated cells.
+- Student-maintained columns: Name, Title, Firm.
+- Blotter-maintained columns: Status, Next move, Last contact, Days, Call.
 - Motion is optional and must not delay implementation.
-- No bottom status legend.
-
-Zone labels outside the sheet chrome:
-
-- `YOU ADD THE CONTACTS`
-- `BLOTTER KEEPS IT CURRENT`
-
-Student-maintained columns:
-
-1. Name
-2. Title
-3. Firm
-
-Blotter-maintained columns:
-
-1. Status
-2. Next move
-3. Last contact
-4. Days
-5. Call
-
-Use Google Sheets-style dropdown chips for Status only. Gray denotes calm or inactive states, green denotes Replied, red denotes an action due, blue denotes a calendar event, and amber denotes a completed event with follow-through owed. Days turns red only when elapsed time creates an action.
-
-Eight-row pattern:
-
-1. Not contacted → Email Sarah
-2. Sent → blank
-3. Sent → blank
-4. No reply → Bump thread
-5. No reply → Bump thread
-6. Replied → Reply to Marcus
-7. Call scheduled → blank
-8. Call completed → Thank Priya or equivalent
-
-`Gone dead` and `Concluded` are excluded from the hero. Exact names, dates, firms, chip wording, and connector positions are implementation details.
-
-Desktop uses copy and CTA beside the dominant spreadsheet composition. Mobile uses a cropped or simplified sheet rather than shrinking the full desktop table into illegibility.
+- Mobile uses a cropped or simplified sheet rather than shrinking the full desktop table.
 
 ## Confirmed product-boundary language
 
@@ -143,21 +100,11 @@ Supporting line:
 
 `You choose the people and write the messages. Blotter keeps the logistics current.`
 
-This should appear after the product has been explained positively, likely near How It Works rather than in the hero.
+The compact strip is placed in Section 3 after the product mechanism has been explained positively. The supporting line carries the main emphasis. The longer primary statement may be used as secondary copy or later FAQ language if the section becomes crowded.
 
 ## Confirmed Section 2: Scale
 
-### Purpose and argument
-
-Section 2 establishes the structural mismatch between continuous recruiting activity and intermittent manual tracker upkeep.
-
-The causal chain is:
-
-`high recruiting volume → delayed or inconsistent manual upkeep → stale tracker → lost operational trust → missed actions`
-
-The section must make clear that students delay updates, forget details, become inconsistent, or stop maintaining the sheet as recruiting accelerates. The tracker then ceases to reflect reality. Once it is no longer trustworthy, the student must reconstruct the process from Gmail, Calendar, memory, and scattered notes, and follow-ups, thank-you notes, and next steps fall through the cracks.
-
-### Ratified copy
+### Copy
 
 Eyebrow:
 
@@ -177,83 +124,146 @@ Closing line:
 
 `Once you stop trusting the tracker, you are back to reconstructing your process from Gmail, Calendar, memory, and scattered notes. That is when follow-ups, thank-you notes, and next steps begin falling through the cracks.`
 
-The page implementation may shorten this copy for visual economy while preserving the full argument and causal chain.
+The page implementation may shorten this copy while preserving the full argument.
 
 ### Case-study proof
 
-The figures come from a real, high-intensity recruiting case involving a successful Summer Analyst 2028 candidate who received a JPMorgan offer. They are not presented as an industry average.
-
-Ratified qualification:
+Qualification:
 
 `Representative workload from a high-intensity Summer Analyst 2028 recruiting cycle that resulted in a JPMorgan offer.`
 
-Use precise case-study counts:
+Figures:
 
 - `628` recruiting emails
 - `55` coffee chats
 - `19` applications
 - `30` interview rounds
 
-All four may be shown because applications broaden the section beyond networking alone. Final number verification and minor label wording may occur before implementation without reopening the section argument.
-
-### Ratified time-savings claim
-
-Primary claim:
+Time-savings claim:
 
 `Save approximately 60 hours of manual tracker administration over one recruiting cycle.`
 
-The estimate applies specifically to the same JPMorgan-offer case study, not as an industry average or guarantee.
-
-Ratified small methodology line:
+Methodology line:
 
 `Estimated from manual Gmail and Calendar logging, tracker updates, and recurring reconciliation across the case-study recruiting cycle.`
 
-The methodology remains visually minor and the arithmetic is not shown on the website. The estimate excludes time spent writing emails, preparing for conversations, conducting calls, and interviewing.
+### Visual treatment
 
-The earlier 85-hour figure and the 50 to 65 hour working range are superseded by the ratified 60-hour claim.
+Use four large case-study figures followed by one compact divergence visual.
 
-### Ratified visual treatment
+Titles:
 
-Use a clean two-level composition:
+- `WHAT ACTUALLY HAPPENED`
+- `WHAT MADE IT INTO THE MANUAL TRACKER`
 
-1. Four large case-study figures in one row or compact grid.
-2. One compact divergence visual beneath them.
+The left side shows continuous Gmail and Calendar events. The right side shows sparse, delayed, and incomplete manual updates. The 60-hour claim is subordinate. No CTA appears in Section 2.
 
-The divergence visual uses:
+## Confirmed Section 3: How It Works
 
-- Left title: `WHAT ACTUALLY HAPPENED`
-- Right title: `WHAT MADE IT INTO THE MANUAL TRACKER`
+### Purpose
 
-The left side shows a continuous sequence of Gmail and Calendar events. The right side shows sparse, delayed, and incomplete manual update markers. The widening space represents the manual-update gap.
+Section 3 explains the operating model after Section 2 establishes the manual-update problem. It should answer: `What does Blotter actually do after I connect it?`
 
-The final state may show Gmail and Calendar as current while the manual tracker is incomplete and several days behind.
+The section should explain the causal system at landing-page-test resolution without backend architecture, provider details, detailed status rules, follow-up thresholds, or setup edge cases.
 
-The 60-hour statement appears as a subordinate proof block beneath or beside the divergence visual, with the small ratified methodology line. It is not treated as an equal fifth volume statistic.
+### Ratified copy
 
-No CTA appears in Section 2. The section flows directly into How It Works.
+Eyebrow:
+
+`How Blotter works`
+
+Headline:
+
+`You manage the relationships. Blotter maintains the moving parts.`
+
+Supporting copy:
+
+`Add the contacts you are networking with and keep the context that matters to you. Blotter uses relevant activity from Gmail and Calendar to keep each relationship’s status, last contact, scheduled calls, and next move current inside your Google Sheet.`
+
+Closing line:
+
+`You stay responsible for the judgment and communication. Blotter keeps the logistics synchronized.`
+
+Use `uses relevant activity from Gmail and Calendar` rather than broader language implying unrestricted inbox access.
+
+### Ratified causal visual
+
+Use one three-stage system:
+
+1. Gmail and Calendar as the live sources of recruiting activity.
+2. Blotter as the orchestration layer that maintains changing relationship state.
+3. The user's existing Google Sheet as the current operating record.
+
+Core visual sequence:
+
+`Gmail + Calendar → Blotter → Your Google Sheet`
+
+Stage labels:
+
+- `RECRUITING HAPPENS HERE`
+- `BLOTTER KEEPS IT CURRENT`
+- `YOUR TRACKER STAYS CURRENT`
+
+Representative activity examples may include:
+
+- reply received;
+- call scheduled;
+- coffee chat completed;
+- follow-up window reached.
+
+The visual should use a smaller crop of maintained fields rather than repeat the complete hero spreadsheet. Desktop may use a horizontal system. Mobile stacks the three stages vertically with directional continuity.
+
+### Ratified division of labor
+
+Use one compact two-column comparison below or beside the causal visual.
+
+`YOU CONTROL`
+
+- `Who you network with and contact`
+- `The outreach and replies you write`
+- `Your notes and relationship context`
+
+`BLOTTER MAINTAINS`
+
+- `Contact status`
+- `Last contact and timing`
+- `Scheduled calls and next actions`
+
+The wording should make clear that the student retains judgment, targeting, and communication while Blotter handles repetitive logistics upkeep.
+
+### Product-boundary treatment
+
+Place the already confirmed product-boundary strip at the bottom of Section 3, after the positive mechanism explanation.
+
+Recommended hierarchy:
+
+1. Main supporting line: `You choose the people and write the messages. Blotter keeps the logistics current.`
+2. Small badges: `No technical-prep content`, `No generic mass AI outreach`, `No AI slop`.
+3. Use the longer primary boundary statement only if the section has sufficient room or move it to FAQ.
+
+No CTA appears in Section 3. The next CTA remains after the product and action proof, following Section 4.
 
 ## Remaining unresolved decisions
 
-1. Final verification of precise case-study counts and minor labels.
-2. Exact Section 3 copy, causal-system visual, and placement of product-boundary language.
-3. Exact action-focused grouping, sorting, filtering, or summary view.
-4. Exact copy and proof for Sections 4 through 7.
-5. Exact funnel product-experience frames and click sequence.
-6. Whether the funnel experience reuses or extends the hero visual.
-7. Exact privacy, permissions, provider, verification, and FAQ wording.
-8. Exact $9.99 price presentation, checkout copy, and terminal-state copy.
-9. Final responsive priorities across the whole page.
-10. Exact domain routing and Lovable custom-domain implementation.
-11. Minor hero implementation details.
+1. Final verification of precise Section 2 case-study counts and minor labels.
+2. Exact Section 4 action-focused view, copy, and visual treatment.
+3. Exact copy and proof for Sections 5 through 7.
+4. Exact funnel product-experience frames and click sequence.
+5. Whether the funnel experience reuses or extends the hero visual.
+6. Exact privacy, permissions, provider, verification, and FAQ wording.
+7. Exact $9.99 price presentation, checkout copy, and terminal-state copy.
+8. Final responsive priorities across the whole page.
+9. Exact domain routing and Lovable custom-domain implementation.
+10. Minor hero and Section 3 implementation details.
 
 ## Exact next action
 
-Specify Section 3, How It Works, efficiently as one ratification package. Settle:
+Specify Section 4, Action View: know what needs to happen today. Settle efficiently:
 
-- the section headline and concise explanatory copy;
-- the division of labor between the student and Blotter;
-- the Gmail → Blotter → Google Sheets and Calendar → Blotter → Google Sheets visual system;
-- the exact visible activity examples;
-- placement and treatment of the confirmed product-boundary language.
+- the section's communication job and copy;
+- the exact action-focused view shown;
+- whether the view uses grouped queues, filters, sorting, a separate sheet tab, or another simple treatment;
+- the representative actions and visual hierarchy;
+- the placement and wording of the second primary CTA after the product and action proof.
 
-Do not reopen the confirmed hero, completed WS2 or WS3 decisions, or ratified Section 2 unless an implementation constraint genuinely breaks them. Avoid backend-level product granularity. The page is a market-validation prototype and needs coherent, attractive, credible test-resolution details.
+Do not reopen completed WS2, WS3, the hero, Section 2, or the confirmed Section 3 system unless an implementation constraint genuinely breaks them. Avoid backend-level product granularity.
