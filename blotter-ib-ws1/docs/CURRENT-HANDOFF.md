@@ -4,11 +4,11 @@ Date: July 31, 2026
 
 ## 1. Current objective
 
-Continue Workstream 5 from the completed directional hero-reference checkpoint.
+Continue Workstream 5 from the completed hero and Outstanding Actions visual-reference checkpoint.
 
-The current task is no longer to keep polishing the hero in Claude Design. The immediate decision is to ratify the reduced remaining complex-reference set before Lovable implementation resumes.
+Workstreams 1 through 4 are complete. WS5 is active. The current task is to decide whether one compact stale-to-updated cell-treatment reference is still needed for funnel Frames 1–2, then freeze the implementation packet and resume the existing private Lovable project in plan mode.
 
-Workstreams 1 through 4 are complete. WS5 is active.
+Do not reopen broad hero or Outstanding Actions polishing outside Lovable.
 
 ## 2. Required reading
 
@@ -26,33 +26,40 @@ Read in this order before acting:
 ## 3. Source-of-truth rules
 
 - Jon's explicit instructions are highest authority.
-- `WS5-SPEC.md` controls active implementation state, visual-reference scope, Lovable sequence, analytics integration, and WS5 gates.
+- `WS5-SPEC.md` controls the durable WS5 implementation system and gates.
 - `WS4-SPEC.md` controls exact page copy, section order, funnel presentation, responsive priorities, and claim boundaries.
 - `WS3-SPEC.md` controls event names, properties, price, measurement, and read rules.
-- The visual-reference README records what is directional, authoritative, and defective.
+- `docs/workstreams/ws5-assets/README.md` is the current reference inventory and records what is authoritative, directional, complete, or defective.
+- The prior unified-storyboard recommendation was an unratified production proposal, not a product requirement.
 - Do not use old handoffs, failed workbooks, abandoned renders, or Lovable defaults to override these files.
 
-## 4. Work completed in the latest session
+## 4. Completed visual-reference packet
 
-- Jon built a full directional hero spreadsheet reference in Claude Design.
-- The normalized self-contained archival reference is in GitHub at:
-  - `docs/workstreams/ws5-assets/hero-spreadsheet-reference-v1.dc.html`
-- The reference inventory and known-defect record is at:
-  - `docs/workstreams/ws5-assets/README.md`
-- `WS5-SPEC.md` now distinguishes external visual-reference work from ordinary Lovable implementation.
-- The existing private Lovable project remains available:
-  - Project: `Blotter Foundation`
-  - Project ID: `ec94e794-190a-4c92-b337-67ecfb8f1b10`
-  - Private and not published.
+Editable source:
+
+- `docs/workstreams/ws5-assets/source/blotter-sheets-reference-v1.html`
+
+Review previews:
+
+- `docs/workstreams/ws5-assets/hero/hero-reference-v1.png`
+- `docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`
+
+Reference notes:
+
+- `docs/workstreams/ws5-assets/hero/README.md`
+- `docs/workstreams/ws5-assets/outstanding-actions/README.md`
+- `docs/workstreams/ws5-assets/README.md`
+
+The root-level `docs/workstreams/ws5-assets/hero-spreadsheet-reference-v1.dc.html` is retained only as a superseded archival version.
 
 ## 5. Hero reference status
 
-The hero reference is directionally sufficient to guide Lovable. It is not a literal final pixel target.
+The hero is directionally complete and sufficient to guide Lovable. It is not a literal final pixel target.
 
 Preserve:
 
 - Google Sheets-native visual language.
-- Current-state recruiting tracker.
+- Current-state recruiting tracker and exact data.
 - Student-maintained left side and Blotter-maintained right side.
 - Three cue cards:
   - Sarah Chen replied.
@@ -61,69 +68,67 @@ Preserve:
 - `YOU add the contacts` and `BLOTTER keeps them current`.
 - Exact phrase `keeps them current`.
 
-Known defects Lovable must improve rather than copy:
+Lovable must improve rather than copy:
 
-1. Cue-to-Blotter-to-sheet flow is unclear.
-2. Cue-to-row or cue-to-field mapping is unclear.
-3. Bottom U-shaped responsibility brackets are messy and not final.
-4. Extra white space below row 6 must be removed.
-5. The vertical Blotter engine is directional only.
+1. Cue-to-Blotter-to-sheet causality.
+2. Cue-to-row or cue-to-field mapping.
+3. The vertical Blotter engine.
+4. The ownership treatment.
+5. Desktop-to-mobile composition.
 
 The stale rear sheet is parked, not rejected. If restored later, add only a cropped, muted upper portion behind the current sheet.
 
-## 6. Visual-reference scope rule
+## 6. Outstanding Actions status
 
-Do not build visual references for every page element.
+The Outstanding Actions reference is directionally complete.
 
-External references are only for complex assets that are hard for Lovable to infer from text. Text, statistics, privacy disclosures, tables, FAQ, CTA blocks, and conventional layouts should be built directly in Lovable from the canonical specifications.
+Preserve:
 
-## 7. Proposed remaining reference set
+- one global column header: Contact, Next action, Why it is here;
+- `Outstanding actions` and `21 outstanding actions`;
+- Replies owed — 6;
+- Follow-ups due — 11;
+- Thank-you notes — 4;
+- exact visible rows, reasons, and overflow rows;
+- spreadsheet-native grouped rows rather than dashboard cards.
 
-This set is recommended and still needs Jon ratification:
+This one state serves both landing-page Section 4 and funnel Frame 3.
 
-### Required candidate: one unified three-frame spreadsheet storyboard
+## 7. Remaining visual-reference decision
 
-The one file should show:
+Do not build a full unified three-frame storyboard outside Lovable by default.
 
-1. Recruiting activity arriving while the tracker is stale.
-2. Signposted cells updating to current state.
-3. The same sheet transitioning to `Outstanding actions`.
+The only possible remaining complex reference is a compact Frame 1-to-Frame 2 treatment showing:
 
-Frame 3 also serves as the Section 4 Outstanding Actions reference. Do not build a separate Outstanding Actions file because that would duplicate the same composition.
+- a stable Blotter spreadsheet in a stale data state;
+- exact cells signposted before update;
+- the same cells clearly updated after progression;
+- exact Sarah Chen and Daniel Park funnel data from WS4.
 
-### Optional candidate: Section 2 messy-manual-tracker divergence reference
+Build this only if Jon decides it materially reduces ambiguity or Lovable cannot execute the written WS4 transition specification during plan review.
 
-Optional. The four recruiting figures are text and do not require a reference. Build this only if Jon ratifies the concept or Lovable cannot execute the written brief directly.
-
-No separate prebuilt references are recommended for Sections 3, 5, 6, or 7 outside shared spreadsheet and activity-cue components.
+The Section 2 messy-manual-tracker reference remains optional and should be produced only if the first Lovable Section 2 implementation fails to communicate the divergence concept.
 
 ## 8. Exact next action
 
-Present the reduced reference set to Jon for ratification.
-
-If ratified:
-
-1. Build one unified three-frame spreadsheet storyboard.
-2. Review it once and freeze it.
-3. Decide whether the optional Section 2 divergence reference is necessary.
-4. Freeze the implementation packet.
-5. Resume the existing Lovable project in plan mode.
-
-Do not resume broad Lovable coding before the reference-scope decision.
+1. Decide whether to build the compact stale-to-updated cell-treatment reference now or defer it to Lovable plan review.
+2. Consolidate the active WS5 specification so it no longer treats the unratified full storyboard as the preferred method.
+3. Freeze the implementation packet.
+4. Upload the relevant HTML source, PNG previews, and governing specifications to the existing private Lovable project.
+5. Send one plan-only intake message and require no code changes until the plan is approved.
 
 ## 9. Lovable sequence after reference freeze
 
-1. Upload approved HTML references and screenshots directly to the existing Lovable project.
-2. Send governing WS4, WS3, and WS5 instructions in a plan-mode message.
-3. Approve the proposed component, responsive, funnel-state, lead-write, and event-boundary plan before code changes.
-4. Build reusable page, CTA, spreadsheet, activity-cue, funnel-shell, and analytics-adapter components.
-5. Implement and approve the hero first.
-6. Implement Sections 2 through 7 in bounded checkpoints.
-7. Implement the canonical funnel and shared state model.
-8. Make an explicit lead-storage decision and implement exportable lead records.
-9. Make an explicit analytics-vendor decision and wire the fixed nine-event contract.
-10. Complete claim, privacy, responsive, accessibility, and private-preview QA.
-11. Manually verify every CTA origin, event, lead record, funnel branch, device class, and payment-choice path before traffic.
+1. Lovable plan-only intake.
+2. Approve reusable component, responsive, funnel-state, lead-write, and event-boundary plan.
+3. Build reusable page, CTA, spreadsheet, activity-cue, funnel-shell, and analytics-adapter components.
+4. Implement and approve the hero first.
+5. Implement Sections 2 through 7 in bounded checkpoints.
+6. Implement the canonical funnel and shared state model.
+7. Make an explicit lead-storage decision and implement exportable lead records.
+8. Make an explicit analytics-vendor decision and wire the fixed nine-event contract.
+9. Complete claim, privacy, responsive, accessibility, and private-preview QA.
+10. Manually verify every CTA origin, event, lead record, funnel branch, device class, and payment-choice path before traffic.
 
 ## 10. Current exclusions
 
