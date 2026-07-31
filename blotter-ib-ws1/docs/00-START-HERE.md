@@ -10,15 +10,15 @@ The immediate objective is to test whether meaningful demand exists before build
 
 ## Current phase
 
-Spreadsheet landing-page content and experience design.
+Spreadsheet-page Lovable implementation and private verification.
 
 Confirmed sequence:
 
 1. Workstream 1: continuity and source-of-truth setup. Complete.
 2. Workstream 2: spreadsheet-native proposition. Complete.
 3. Workstream 3: conversion and measurement design. Complete.
-4. Workstream 4: spreadsheet landing-page content and experience design. Active; final presentation and copy items remain pending Jon ratification.
-5. Workstream 5: spreadsheet-page Lovable implementation, instrumentation, and private deployment. Draft only until WS4 closes.
+4. Workstream 4: spreadsheet landing-page content and experience design. Complete.
+5. Workstream 5: spreadsheet-page Lovable implementation, instrumentation, and private deployment. Active.
 6. Workstream 6: acquisition preparation and research.
 7. Workstream 7: platform-page proposition, design, and matched build.
 8. Workstream 8: final analytics verification and simultaneous launch.
@@ -27,13 +27,13 @@ Confirmed sequence:
 
 ## Current workstream
 
-Workstream 4: Spreadsheet landing-page content and experience design.
+Workstream 5: Spreadsheet-page Lovable implementation and private verification.
 
-Status: In progress.
+Status: Active.
 
-Exact next action: review and ratify only the remaining spreadsheet product-experience presentation, genuinely missing funnel-screen copy, and material responsive priorities. Do not reopen the completed WS2 proposition, WS3 funnel architecture, hero, or Sections 2 through 7.
+Exact next action: create the Lovable project and implement only the global page shell, typography hierarchy, and one reusable spreadsheet-window fidelity prototype. Compare it against real Google Sheets references and present it to Jon for review before building detailed section visuals or funnel logic.
 
-Read `docs/workstreams/WS4-SPEC.md` for the active durable specification and `docs/workstreams/WS4-RATIFICATION-PACKAGE.md` for the narrow pending review package.
+Read `docs/workstreams/WS5-SPEC.md` for the active durable specification.
 
 ## Durable workstream specifications
 
@@ -41,9 +41,9 @@ Permanent cumulative records live under `docs/workstreams/`:
 
 - `WS2-SPEC.md`: complete spreadsheet-native proposition
 - `WS3-SPEC.md`: complete conversion and measurement system
-- `WS4-SPEC.md`: active spreadsheet landing-page content and experience specification
-- `WS4-RATIFICATION-PACKAGE.md`: narrow proposed completion items pending Jon review
-- `WS5-SPEC.md`: draft Lovable implementation and verification specification; not active
+- `WS4-SPEC.md`: complete spreadsheet landing-page content and experience specification
+- `WS4-RATIFICATION-PACKAGE.md`: completed administrative ratification record
+- `WS5-SPEC.md`: active Lovable implementation and verification specification
 
 `CURRENT-HANDOFF.md` contains temporary resumption context only.
 
@@ -53,28 +53,27 @@ WS2 established the pre-decay prevention proposition, manual-tracker failure mod
 
 ## Workstream 3 outcome
 
-WS3 established the matched funnel, two recruiting questions, one pre-email product experience, transparent email capture, delayed $9.99 monthly price, checkout mechanics, beta terminal state, nine-event analytics architecture, metric hierarchy, read rules, thresholds, sample requirements, and reporting rules.
+WS3 established the matched funnel, two recruiting questions, one pre-email product experience, transparent recruiting-email capture, delayed $9.99 monthly price, purchase progression, payment-choice signal, Fall 2026 terminal state, nine-event analytics architecture, metric hierarchy, read rules, thresholds, sample requirements, and reporting rules.
 
-## Workstream 4 current state
+## Workstream 4 outcome
 
-Ratified and closed within WS4:
+WS4 established:
 
-- Complete seven-section spreadsheet-page narrative and copy
+- Complete seven-section spreadsheet-page narrative and exact copy
 - Hero, scale, mechanism, outstanding-actions, preservation, privacy, FAQ, and closing compositions
 - Three CTA placements and wording
-- Privacy-specific and general-product FAQ separation
-- Price and availability excluded from the landing-page FAQ and disclosed only at their ratified funnel stages
+- Three-frame, three-click spreadsheet product experience with clear cell-change signposting and progress indicator
+- Exact recruiting-question, email, price, purchase-summary, payment-choice, and terminal copy
+- Purchase-like sequencing through the payment-choice click, with Fall 2026 and no-charge disclosure only in the terminal state
+- Responsive priorities for all sections and the funnel
+- Full-page coherence and claim-support safeguards
+- Lovable-ready implementation constraints
 
-Still pending final ratification:
+Read `docs/workstreams/WS4-SPEC.md` for the complete record.
 
-- Exact spreadsheet-specific 15 to 20 second product-experience frames and click behavior
-- Exact presentation copy only where WS3 did not already settle it
-- Material responsive content priorities
-- Final coherence and claim-support audit conclusions
+## Workstream 5 objective
 
-## Draft Workstream 5 objective
-
-After WS4 closes, implement and privately verify the spreadsheet-native page without changing the validated content architecture.
+Implement and privately verify the spreadsheet-native page without changing the validated content architecture.
 
 WS5 includes:
 
@@ -109,13 +108,12 @@ WS5 does not launch traffic, build the platform page, implement real integration
 
 1. `docs/00-START-HERE.md`
 2. `docs/CURRENT-HANDOFF.md`
-3. `docs/workstreams/WS4-SPEC.md`
-4. `docs/workstreams/WS4-RATIFICATION-PACKAGE.md`
+3. `docs/workstreams/WS5-SPEC.md`
+4. `docs/workstreams/WS4-SPEC.md`
 5. `docs/workstreams/WS3-SPEC.md`
 6. `docs/workstreams/WS2-SPEC.md`
 7. `docs/05-working-agreement.md`
-8. `docs/workstreams/WS5-SPEC.md` only as a draft until WS4 is explicitly closed
-9. Only additional canonical files needed for the exact task
+8. Only additional canonical files needed for the exact task
 
 ## Repository and archive rules
 
@@ -148,7 +146,7 @@ Archived material is historical context only.
 - `06-assumptions-and-open-questions.md`: unsettled items only
 - `workstreams/WS2-SPEC.md`: complete proposition specification
 - `workstreams/WS3-SPEC.md`: complete conversion and measurement specification
-- `workstreams/WS4-SPEC.md`: active content and experience specification
-- `workstreams/WS4-RATIFICATION-PACKAGE.md`: narrow pending ratification package
-- `workstreams/WS5-SPEC.md`: draft implementation and verification specification
+- `workstreams/WS4-SPEC.md`: complete content and experience specification
+- `workstreams/WS4-RATIFICATION-PACKAGE.md`: completed ratification record
+- `workstreams/WS5-SPEC.md`: active implementation and verification specification
 - `CURRENT-HANDOFF.md`: temporary immediate resumption context
