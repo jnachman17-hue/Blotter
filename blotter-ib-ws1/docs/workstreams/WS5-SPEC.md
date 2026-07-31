@@ -81,6 +81,74 @@ Recommended component groups:
 
 Keep copy and mock data in structured configuration objects where practical so the later platform variant can reuse the funnel shell without reimplementing event semantics.
 
+## Ratified shell foundation
+
+Ratified July 30, 2026.
+
+### Brand naming and logo reference
+
+- The public-facing brand name is `blotter`, not `Blotter IB`.
+- Use the archived technical-and-design material only to recover the established logo treatment. It has no authority over the page layout, palette, typography system, section design, or broader visual direction.
+- The archived logo reference identifies Space Grotesk 700 plus Archivo 600 as the prior wordmark typography. This may guide faithful reconstruction of the wordmark only.
+- Do not inherit the archived page formatting or style.
+
+### Page character and palette
+
+- Use a white and light-cream foundation.
+- Navy blue is the Blotter anchor color.
+- Blue should be used selectively rather than dominating the page.
+- The overall page should feel warmer and more inviting while remaining professional, highly readable, credible, and visually interesting.
+- Restrained gradients are permitted when they serve hierarchy or atmosphere. They are not required and must not reduce legibility or compete with the spreadsheet product proof.
+- Avoid excessive navy fills or a cold, uniformly blue page.
+
+### Typography and shell structure
+
+- Use a modern sans-serif marketing typography system. Do not use the unapproved editorial-serif direction generated in the first Lovable scratch shell.
+- Use exact ratified WS4 copy where needed to test real headline wrapping, line length, hierarchy, and spacing. Do not use generic placeholder copy for approval of the shell.
+- Header structure: `blotter` wordmark, `How it works`, `Privacy`, `FAQ`, and the exact CTA `See how Blotter works`.
+- Navigation labels must map to ratified sections. Do not invent additional navigation architecture.
+- Preserve a clear width system, responsive gutters, disciplined vertical rhythm, 16px minimum body text, 44px minimum touch targets, visible keyboard focus, and no page-level horizontal scrolling.
+
+### Status of the first Lovable output
+
+- The initial Lovable project is valid implementation scaffolding only.
+- Its Newsreader serif, IBM Plex pairing, warm-paper treatment, placeholder navigation, and placeholder copy are not approved visual decisions.
+- Reusable structural code may remain only where it supports the ratified shell direction.
+- The corrected shell must be presented to Jon and approved before it is treated as the visual foundation.
+
+## Instrumentation-ready build rule
+
+Analytics vendor wiring occurs later in WS5, but the page and funnel must be structured for the exact WS3 measurement system from the beginning.
+
+During component and interaction design:
+
+- Use one reusable CTA component with required `cta_location` support.
+- Preserve stable CTA origins for hero, post-Section-4, and final-closing entry.
+- Use one shared funnel state model.
+- Define explicit milestone boundaries corresponding to the nine canonical WS3 events.
+- Persist CTA origin through every funnel screen.
+- Keep recruiting email out of general analytics properties.
+- Design for event deduplication on back navigation and refresh.
+- Keep the funnel shell reusable for the later platform variant.
+
+Do not select or silently install an analytics vendor during the shell or spreadsheet-fidelity checkpoint. Vendor selection, event wiring, and manual payload verification occur after the page and funnel interactions exist. The canonical event names and meanings are already fixed and are not Lovable design choices.
+
+## Lovable instruction standard
+
+Every substantive Lovable instruction must be derived from the canonical record and scoped to the active checkpoint. Each implementation brief should include, as applicable:
+
+1. Authority and current checkpoint
+2. Exact governing decisions and copy
+3. Required components and data
+4. Responsive behavior
+5. Accessibility behavior
+6. Instrumentation contracts
+7. Explicit exclusions
+8. Acceptance criteria
+9. Mandatory stop point
+
+Do not give Lovable broad authority to redesign settled content or complete later WS5 stages. Do not treat a natural-language summary as a substitute for the detailed canonical specification relevant to the active task.
+
 ## Spreadsheet visual-fidelity gate
 
 The spreadsheet visuals are core product proof, not generic decorative tables. Do not rely on text prompts alone and do not build all page scenes before the spreadsheet primitive is reviewed.
@@ -333,4 +401,4 @@ Workstream 5 is complete only when:
 
 ## Exact next action
 
-Create the Lovable project and implement only the global page shell, typography hierarchy, and one reusable spreadsheet-window fidelity prototype. Present that prototype to Jon for review before adding detailed section visuals or funnel logic.
+Correct the existing Lovable scratch shell to the ratified shell foundation. Use exact representative WS4 copy, the `blotter` wordmark, white and light-cream surfaces, selective navy anchoring, restrained optional gradients, modern sans-serif typography, and the approved navigation labels. Preserve instrumentation-ready component contracts but do not wire an analytics vendor. Present the corrected shell to Jon for approval and stop before beginning the Google Sheets reference and spreadsheet-window prototype.
