@@ -61,35 +61,41 @@ Preserve the spreadsheet fidelity, hierarchy, exact data, activity-card tone, ov
 
 This is the recommended scope to ratify before broad Lovable implementation.
 
-### Required candidate A: Outstanding Actions spreadsheet reference
+### Required candidate: One unified three-frame spreadsheet storyboard
 
-Why it merits a reference:
+Build one additional HTML reference containing the complete spreadsheet product experience:
 
-- It is a nonstandard Google Sheets-native grouped queue.
-- It must preserve spreadsheet grammar while showing three action groups, visible rows, counts, and muted overflow rows.
-- It is reused in Section 4 and Funnel Frame 3.
+1. Recruiting activity arrives while the tracker is stale.
+2. Signposted cells update to current state.
+3. The same sheet transitions to `Outstanding actions`.
 
-One desktop reference should be sufficient. Lovable can derive responsive crops from the WS4 responsive rules.
+Why one file is sufficient:
 
-### Required candidate B: Three-frame funnel spreadsheet storyboard
+- The storyboard preserves one stable spreadsheet across all three states.
+- It solves the difficult Frame 1 to Frame 2 signposting and update choreography.
+- Frame 3 is the exact grouped `Outstanding actions` scene required for Section 4.
+- A clean standalone crop or state capture of Frame 3 can serve as the Section 4 visual reference.
+- Building a separate Outstanding Actions reference before the storyboard would duplicate the same composition and create unnecessary iteration.
 
-Why it merits a reference:
+Frame 3 must show:
 
-- The same spreadsheet must remain stable across three states.
-- Frame 1 must signpost cells before they change.
-- Frame 2 must make the update unmistakable without becoming a spot-the-difference exercise.
-- Frame 3 transitions to Outstanding Actions.
-- The reference must show the state relationship and interaction sequence, not every surrounding funnel screen.
+- `Outstanding actions`;
+- `21 outstanding actions`;
+- Replies owed, Follow-ups due, and Thank-you notes groups;
+- two visible rows per group;
+- the exact overflow rows and wording in WS4;
+- columns Contact, Next action, Why it is here;
+- the approved spreadsheet grammar.
 
-A single HTML file or storyboard containing all three frames is preferable to three unrelated assets.
+The storyboard should demonstrate the spreadsheet states and transition logic only. It should not redesign the surrounding recruiting questions, email capture, price, purchase summary, payment choices, or terminal screens.
 
-### Optional candidate C: Section 2 manual-tracker divergence reference
+### Optional candidate: Section 2 manual-tracker divergence reference
 
 Working idea:
 
 Use a visibly messy or decayed manual spreadsheet fragment in the problem section, potentially paired with `WHAT ACTUALLY HAPPENED` versus `WHAT MADE IT INTO THE MANUAL TRACKER`.
 
-This is not yet a required reference. The four figures are text and must not be treated as a separate visual asset. Decide whether to build this only after reviewing whether Lovable can execute the divergence concept directly from the written specification.
+This is not a gate. The four figures are text and must not be treated as a separate visual asset. Build this reference only if Jon ratifies the concept or Lovable cannot execute the written divergence concept directly.
 
 ## Page elements that do not require separate prebuilt references
 
@@ -97,6 +103,7 @@ Unless Lovable fails on a first implementation pass, do not separately design th
 
 - Section 2's four large figures.
 - Section 3's basic Gmail + Calendar to Blotter to Google Sheet mechanism. Reuse the hero spreadsheet and activity-cue components.
+- Section 4's Outstanding Actions scene as a separate file. Reuse Frame 3 of the unified storyboard.
 - Section 5's preservation comparison. Reuse the spreadsheet grammar and implement the two conceptual zones from text.
 - Section 6 privacy process, permissions table, commitments, and privacy FAQ.
 - Section 7 general FAQ and closing CTA.
