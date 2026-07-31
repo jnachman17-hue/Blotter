@@ -86,13 +86,13 @@ The full durable specification is `docs/workstreams/WS3-SPEC.md`. Workstream 3 i
 
 Key rulings:
 
-- Canonical funnel: CTA entry, two recruiting questions, one concise product experience, recruiting-email capture, $9.99 monthly price, checkout progression, payment-choice click, and Fall 2026 cohort confirmation.
+- Canonical funnel: CTA entry, two recruiting questions, one concise product experience, recruiting-email capture, $9.99 monthly price, purchase progression, payment-choice click, and Fall 2026 cohort confirmation.
 - One 15 to 20 second maximum click-to-progress product experience occurs before email capture.
 - Actual or simulated OAuth is excluded.
 - Price appears only after email capture.
 - No card-entry form, credentials, or money are collected.
 - `payment_option_clicked` is the strongest commercial-demand signal.
-- The approximately 300-person Fall 2026 beta commitment is real.
+- The approximately 300-person Fall 2026 cohort commitment is real.
 - The canonical event set has nine events and no separate `cta_clicked` event.
 - The primary comparative metric is `checkout_started / page_viewed`.
 - The primary commercial-demand metric is `payment_option_clicked / page_viewed`.
@@ -102,38 +102,42 @@ Status: Confirmed
 
 ## Workstream 4 content and experience design
 
-The full durable specification is `docs/workstreams/WS4-SPEC.md`. Workstream 4 is active and near completion.
+The full durable specification is `docs/workstreams/WS4-SPEC.md`. Workstream 4 is complete.
 
-Confirmed and not reopened:
+Key rulings:
 
 - Displayed brand is `Blotter`; the owned domain remains `blotterib.com`.
 - The spreadsheet page uses seven sections: hero, scale, how it works, outstanding actions, preservation, privacy and permissions, and general FAQ plus final CTA.
 - Three CTAs use `See how Blotter works` and store `hero`, `actions`, or `final` as `cta_location`.
 - The hero and Sections 2 through 7 are ratified.
-- Price and availability are omitted from the landing-page FAQ and revealed only at their WS3-defined funnel stages.
-
-Pending final ratification:
-
-- Exact spreadsheet product-experience frames and click behavior.
-- Exact funnel presentation copy only where WS3 did not already settle it.
-- Material responsive content priorities.
-- Final coherence and claim-support conclusions.
-
-Status: Active, pending final ratification
-
-## Administrative correction
-
-WS4 was prematurely marked complete and WS5 was prematurely activated by an autonomous documentation pass. That closure and activation are not binding. The useful draft work is retained for review, while WS2, WS3, the hero, and Sections 2 through 7 remain closed.
+- Price and availability are omitted from the landing-page FAQ and revealed only at their funnel stages.
+- The spreadsheet product experience uses one stable sheet across three frames and three total clicks, with a required frame indicator and clear signposting of changing cells.
+- Frame 3 reuses the exact ratified Outstanding Actions queues and wording.
+- Question 2 is `Which recruiting window best fits you?`; both question screens use `Continue`.
+- Email capture uses `Continue with your recruiting email.` and `Enter the email address where you conduct recruiting.` without school-email restriction, static privacy copy, or beta language.
+- The price screen presents Blotter as a current product at `$9.99 / month`, billed monthly, cancel anytime.
+- The purchase summary uses `Complete your purchase`, shows `$9.99` due today, and preserves recognizable card and Apple Pay choices without card entry.
+- Fall 2026 timing, cohort status, and no-charge clarification appear only after the payment-choice click.
+- Responsive priorities preserve content meaning and readable spreadsheet crops.
+- A full-page coherence and claim-support audit found no need to reopen ratified Sections 1 through 7.
 
 Status: Confirmed
 
 ## Workstream 5 implementation
 
-`docs/workstreams/WS5-SPEC.md` is a draft implementation specification and is not active until Jon explicitly ratifies and closes WS4.
+The active specification is `docs/workstreams/WS5-SPEC.md`.
 
-The draft requires WS5 to create one reusable high-fidelity Google Sheets-style spreadsheet-window component, compare it against real Google Sheets references, obtain Jon's visual approval, and reuse the approved primitive across all spreadsheet scenes before broad implementation.
+**WS5 builds the spreadsheet page in Lovable, implements the canonical funnel, stores leads, wires the exact WS3 events, deploys privately, and verifies claims, responsive behavior, accessibility, analytics, and spreadsheet-interface fidelity before public traffic.**
 
-Status: Draft, not active
+Status: Confirmed
+
+**Before broad page-scene implementation, WS5 must create one reusable high-fidelity Google Sheets-style spreadsheet-window component, compare it against real Google Sheets references, obtain Jon's visual approval, and reuse the approved primitive across every spreadsheet scene.**
+
+Status: Confirmed
+
+**The purchase-like funnel must not disclose demand testing, beta status, Fall 2026 timing, future availability, or no-charge status before the payment-choice click. The terminal state is the first availability disclosure.**
+
+Status: Confirmed
 
 ## Product and technical context
 
@@ -159,3 +163,6 @@ Status: Confirmed
 - Tally as the settled form solution. Not a decision.
 - Separate event-to-row narrative section duplicating the hero mechanism. Rejected.
 - Treating provider selection, domain routing, or production OAuth as WS4 design blockers. Rejected; these are implementation or later-product dependencies.
+- `See the spreadsheet experience` as the Question 2 button. Rejected.
+- School-email-only placeholder or implication. Rejected.
+- Pre-terminal `demand test`, `beta reservation`, future-price, future-availability, or no-charge disclosure. Rejected.
