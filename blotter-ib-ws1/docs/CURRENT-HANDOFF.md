@@ -8,29 +8,20 @@ Continue Workstream 4: spreadsheet landing-page content and experience design.
 
 Workstreams 1, 2, and 3 are complete. Workstream 4 is active.
 
-The audience positioning, brand direction, seven-section narrative, CTA architecture, hero specification, and complete Section 2 Scale package are confirmed and recorded in `docs/workstreams/WS4-SPEC.md`.
+The audience positioning, brand direction, seven-section narrative, CTA architecture, hero, Section 2 Scale package, and Section 3 How It Works package are confirmed in `docs/workstreams/WS4-SPEC.md`.
 
-Exact next action: specify Section 3, How It Works, efficiently as one ratification package.
+Exact next action: specify Section 4, Action View: know what needs to happen today.
 
 ## 2. Source-of-truth rules
 
 - Jon's explicit instructions in the active chat are highest authority.
-- GitHub canonical files and workstream specifications are the durable source of truth.
+- GitHub canonical files and workstream specifications are durable truth.
 - `docs/workstreams/WS4-SPEC.md` is the active cumulative specification.
-- `docs/workstreams/WS2-SPEC.md` and `docs/workstreams/WS3-SPEC.md` are completed durable inputs.
 - `CURRENT-HANDOFF.md` is temporary immediate context only.
-- Do not reopen the confirmed hero or Section 2 unless an implementation constraint genuinely breaks them.
-- Avoid backend-level edge-case analysis. Demo details need only be coherent, attractive, and credible at market-test resolution.
+- Do not reopen confirmed WS2, WS3, hero, Section 2, or Section 3 decisions unless an implementation constraint genuinely breaks them.
+- Work at landing-page-test resolution and avoid backend-level edge-case analysis.
 
-## 3. Confirmed Workstream 4 positioning and sequence
-
-- Displayed product name: `Blotter`.
-- Category line: `The smart recruiting tracker for investment banking and high-finance networking.`
-- Marketing may cast a broad competitive-finance net.
-- Both surface variants use the same Blotter brand.
-- The owned domain `blotterib.com` will be used.
-
-Confirmed seven-section sequence:
+## 3. Confirmed page sequence
 
 1. Hero: the smart tracker that updates itself.
 2. Scale: why manual recruiting trackers fall behind.
@@ -40,147 +31,103 @@ Confirmed seven-section sequence:
 6. Privacy and permissions, plus FAQ.
 7. Concise closing summary and CTA.
 
-Three primary CTA placements remain confirmed: hero, after product and action proof, and final section.
+Primary CTA placements: hero, after Section 4 product and action proof, and final section.
 
-## 4. Confirmed hero
+## 4. Confirmed page-rhythm rule
 
-- Eyebrow: `The smart recruiting tracker for investment banking and high-finance networking`
-- Headline: `Your networking keeps moving. Your tracker does not.`
-- Subhead: `Blotter updates the Google Sheet you already use by reading relevant recruiting activity from Gmail and Calendar, so you do not miss follow-ups, coffee chats, or next steps.`
-- CTA: `See how Blotter works`
-- Authority line: `Built by a former Goldman Sachs banker for recruitment.`
-- Preserve `Your recruiting tracker, always current.` for the closing section.
-
-Visual direction remains static-first: muted stale tracker behind, dominant Blotter-maintained Google Sheet in front, and small Gmail or Calendar event chips connected to updated cells.
-
-Student-maintained columns: Name, Title, Firm.
-
-Blotter-maintained columns: Status, Next move, Last contact, Days, Call.
+Do not force every section into an identical eyebrow, headline, supporting paragraph, and closing-line template. Vary copy hierarchy and visual density by communication job while maintaining one coherent design system.
 
 ## 5. Confirmed Section 2: Scale
 
+- Eyebrow: `The scale of a recruiting cycle`
+- Headline: `Your manual tracker was never built to keep up with this.`
+- Argument: continuous Gmail and Calendar activity outpaces intermittent manual tracker upkeep, causing stale state, lost trust, and missed actions.
+- Case-study qualification: `Representative workload from a high-intensity Summer Analyst 2028 recruiting cycle that resulted in a JPMorgan offer.`
+- Figures: 628 recruiting emails, 55 coffee chats, 19 applications, 30 interview rounds.
+- Time claim: `Save approximately 60 hours of manual tracker administration over one recruiting cycle.`
+- Methodology: `Estimated from manual Gmail and Calendar logging, tracker updates, and recurring reconciliation across the case-study recruiting cycle.`
+- Divergence titles: `WHAT ACTUALLY HAPPENED` and `WHAT MADE IT INTO THE MANUAL TRACKER`.
+- No CTA.
+
+## 6. Confirmed Section 3: How It Works
+
 ### Copy
 
-Eyebrow:
+- Eyebrow: `How Blotter works`
+- Headline: `You manage the relationships. Blotter maintains the moving parts.`
+- Supporting copy: `Add the contacts you are networking with and keep the context that matters to you. Blotter uses relevant activity from Gmail and Calendar to keep each relationship’s status, last contact, scheduled calls, and next move current inside your Google Sheet.`
+- Closing line: `You stay responsible for the judgment and communication. Blotter keeps the logistics synchronized.`
 
-`The scale of a recruiting cycle`
+### Causal visual
 
-Headline:
+`Gmail + Calendar → Blotter → Your Google Sheet`
 
-`Your manual tracker was never built to keep up with this.`
+Stage labels:
 
-Supporting argument:
+- `RECRUITING HAPPENS HERE`
+- `BLOTTER KEEPS IT CURRENT`
+- `YOUR TRACKER STAYS CURRENT`
 
-`A serious recruiting cycle can generate hundreds of emails, dozens of coffee chats, applications, and overlapping interview rounds. Every reply, scheduled call, follow-up window, and completed conversation changes what needs to happen next.`
+Representative events: reply received, call scheduled, coffee chat completed, and follow-up window reached.
 
-`But Gmail and Calendar record those changes continuously while your spreadsheet changes only when you stop and update it. As the process accelerates, updates get delayed, details are forgotten, and the tracker gradually falls out of sync with reality.`
+Use a smaller maintained-fields crop rather than repeat the full hero. Desktop may be horizontal; mobile stacks vertically.
 
-Closing line:
+### Division of labor
 
-`Once you stop trusting the tracker, you are back to reconstructing your process from Gmail, Calendar, memory, and scattered notes. That is when follow-ups, thank-you notes, and next steps begin falling through the cracks.`
+`YOU CONTROL`
 
-The implementation may shorten this copy while preserving the argument.
+- Who you network with and contact
+- The outreach and replies you write
+- Your notes and relationship context
 
-### Case-study proof
+`BLOTTER MAINTAINS`
 
-Ratified qualification:
+- Contact status
+- Last contact and timing
+- Scheduled calls and next actions
 
-`Representative workload from a high-intensity Summer Analyst 2028 recruiting cycle that resulted in a JPMorgan offer.`
+### Product boundary
 
-Current exact figures:
+Place the product-boundary treatment at the bottom of Section 3 after the positive explanation.
 
-- 628 recruiting emails
-- 55 coffee chats
-- 19 applications
-- 30 interview rounds
+Main line:
 
-The figures are presented as one real case study, not an industry average.
+`You choose the people and write the messages. Blotter keeps the logistics current.`
 
-### Time-savings claim
-
-Ratified primary claim:
-
-`Save approximately 60 hours of manual tracker administration over one recruiting cycle.`
-
-Ratified small methodology line:
-
-`Estimated from manual Gmail and Calendar logging, tracker updates, and recurring reconciliation across the case-study recruiting cycle.`
-
-The claim applies specifically to the same JPMorgan-offer case. The methodology remains visually minor and no arithmetic is shown on the website.
-
-### Visual treatment
-
-Use four large case-study figures followed by one compact divergence visual.
-
-Divergence titles:
-
-- `WHAT ACTUALLY HAPPENED`
-- `WHAT MADE IT INTO THE MANUAL TRACKER`
-
-The left side shows continuous Gmail and Calendar events. The right side shows sparse, delayed, incomplete tracker updates. The 60-hour claim appears as a subordinate proof block with its small methodology line.
-
-No CTA appears in Section 2.
-
-## 6. Confirmed product-boundary language
-
-Primary statement:
-
-`Blotter is a recruiting-logistics layer that keeps your process organized. It does not teach technicals or write your outreach.`
-
-Compact strip:
+Small badges:
 
 - No technical-prep content
 - No generic mass AI outreach
 - No AI slop
 
-Supporting line:
-
-`You choose the people and write the messages. Blotter keeps the logistics current.`
-
-Likely placement is near Section 3 after the product has been explained positively.
+The longer logistics-layer statement may move to FAQ if the section is crowded. No CTA appears in Section 3.
 
 ## 7. Exact next action
 
-Specify Section 3, How It Works, as one compact ratification package. Settle:
+Specify Section 4 efficiently as one ratification package. Settle:
 
-1. Section headline and concise explanatory copy.
-2. Division of labor between the student and Blotter.
-3. Gmail → Blotter → Google Sheets and Calendar → Blotter → Google Sheets visual system.
-4. Exact visible activity examples.
-5. Placement and visual treatment of the confirmed product-boundary language.
+1. The communication job and copy.
+2. The exact action-focused view shown.
+3. Whether it uses grouped queues, filters, sorting, a separate tab, or another simple treatment.
+4. Representative actions and visual hierarchy.
+5. The placement and wording of the second primary CTA after the product and action proof.
 
-Then continue through Action View, Preservation, Privacy and FAQ, closing section, funnel screens, responsive constraints, and the final Lovable-ready implementation brief.
+Then continue through Preservation, Privacy and FAQ, closing section, funnel screens, responsive constraints, and the final Lovable-ready implementation brief.
 
-## 8. Workstream 3 constraints that remain fixed
+## 8. Fixed WS3 constraints
 
 - Every primary CTA enters the same funnel.
-- Two recruiting-configuration questions precede the product experience.
-- One concise spreadsheet experience occurs before email capture.
-- Product experience lasts approximately 15 to 20 seconds maximum.
+- Two recruiting-configuration questions precede one 15 to 20 second product experience.
 - Email capture is transparent and does not imitate OAuth.
 - Gmail, Sheets, and Calendar remain visible as the product engine.
 - Price appears only inside the funnel after email capture.
 - Price is $9.99 per month, monthly, cancel anytime.
-- Checkout includes payment-choice buttons without card entry or payment collection.
+- Checkout shows payment choices without card entry or payment collection.
 - The terminal state confirms a real place in the approximately 300-person Fall 2026 beta cohort.
-- Both surfaces ultimately use the same funnel, price, event set, and measurement rules.
+- Both surfaces use the same funnel, price, event set, and measurement rules.
 
 ## 9. Build state
 
 - No Lovable project exists yet.
-- No reusable production code exists.
-- No completed landing-page assets exist.
-- No public traffic should launch before both matched pages are ready, analytics are verified by hand, and the measurement period is frozen.
-
-## 10. Required reading for a new chat
-
-Read in this order:
-
-1. `docs/00-START-HERE.md`
-2. `docs/CURRENT-HANDOFF.md`
-3. `docs/workstreams/WS4-SPEC.md`
-4. `docs/workstreams/WS2-SPEC.md`
-5. `docs/workstreams/WS3-SPEC.md`
-6. `docs/05-working-agreement.md`
-
-Then execute the exact next action. Do not reopen completed WS2, WS3, the hero, or the ratified Section 2 package.
+- No reusable production code or completed landing-page assets exist.
+- No public traffic launches before both pages are ready, analytics are manually verified, and the measurement period is frozen.
