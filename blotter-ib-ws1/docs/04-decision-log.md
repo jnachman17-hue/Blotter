@@ -2,7 +2,7 @@
 
 Date last updated: August 1, 2026
 
-This file is a concise index of settled, rejected, and superseded project-level rulings. Detailed workstream decisions live in `docs/workstreams/WS#-SPEC.md` and ratified surface instructions live in `docs/workstreams/ws5-build-specs/`.
+This file is a concise index of settled, rejected, and superseded project-level rulings. Detailed workstream decisions live in `docs/workstreams/WS#-SPEC.md`; ratified surface instructions live in `docs/workstreams/ws5-build-specs/`; the governed Lovable process lives in `docs/workstreams/ws5-implementation/`.
 
 Only items marked **Confirmed** are binding. Unsettled items belong in `06-assumptions-and-open-questions.md`.
 
@@ -16,11 +16,15 @@ Status: Confirmed
 
 Status: Confirmed
 
-**New substantive product, copy, or presentation decisions require Jon ratification before becoming canonical or closing a workstream. Consultant-prepared audits, consolidation, and implementation guidance may proceed without ratification only where they do not create or alter substantive decisions.**
+**New substantive product, copy, presentation, funnel, analytics, privacy, or implementation decisions require Jon ratification before becoming canonical.**
 
 Status: Confirmed
 
-**During WS5, implementation-sensitive landing-page and funnel decisions must be recorded in self-contained files under `docs/workstreams/ws5-build-specs/`. All relevant canonical indexes and open-question records must be updated before moving to the next surface.**
+**During WS5, implementation-sensitive landing-page and funnel decisions must be recorded in self-contained files under `docs/workstreams/ws5-build-specs/`. All relevant canonical indexes and open-question records must be updated before advancing.**
+
+Status: Confirmed
+
+**GitHub is the durable source of truth. Existing Lovable code and chat output are implementation artifacts and cannot override the canonical specifications.**
 
 Status: Confirmed
 
@@ -48,7 +52,7 @@ Status: Confirmed
 
 Status: Confirmed
 
-**Both pages use the same canonical funnel, $9.99 monthly price, analytics event set, measurement rules, and displayed brand.**
+**Both pages use the same canonical funnel, `$9.99 / month` price, analytics event set, measurement rules, and displayed brand.**
 
 Status: Confirmed
 
@@ -90,7 +94,7 @@ The full durable specification is `docs/workstreams/WS3-SPEC.md`. Workstream 3 i
 
 Key rulings:
 
-- Canonical funnel: CTA entry, two recruiting questions, one concise product experience, recruiting-email capture, $9.99 monthly price, purchase progression, payment-choice click, and Fall 2026 cohort confirmation.
+- Canonical funnel: CTA entry, two recruiting questions, one concise product experience, recruiting-email capture, `$9.99 / month` price, purchase progression, payment-choice click, and Fall 2026 cohort confirmation.
 - One 15 to 20 second maximum click-to-progress product experience occurs before email capture.
 - Actual or simulated OAuth is excluded.
 - Price appears only after email capture.
@@ -142,17 +146,23 @@ Status: Confirmed
 
 Status: Confirmed
 
+### Hero
+
 **The desktop hero communicates that relevant Gmail and Calendar activity directly maintains the live relationship-state fields in the spreadsheet. It removes the stale rear sheet and explicit engine, maps each cue directly to the corresponding maintained row block, applies a faint shared Blotter-yellow tint across Status through Call, emphasizes the three cue-linked example rows, and uses below-sheet region underlines for `YOU add the contacts` and `BLOTTER keeps them current`.**
 
 Detailed authority: `docs/workstreams/ws5-build-specs/01-HERO.md`
 
 Status: Confirmed
 
+### Section 2
+
 **Landing-page Section 2 uses exact figures of 628 recruiting emails, 68 coffee chats, 19 applications, and 30 interview rounds; a subordinate approximately 60-hour administration estimate and methodology; one exact supporting paragraph; one formal exact Goldman Sachs rejection-email asset with two external annotations; exact closing copy; and no CTA.**
 
 Detailed authority: `docs/workstreams/ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`
 
 Status: Confirmed
+
+### Section 3
 
 **Landing-page Section 3 uses the systems-level sequence of Gmail and Google Calendar activity to Blotter to a current Google Sheet. It uses one formal exact `2048 × 633` mechanism asset, three external stage labels, the exact boundary line, one compact row of three product-boundary badges, the exact closing line, and no CTA. The former `YOU CONTROL` and `BLOTTER MAINTAINS` lists are removed.**
 
@@ -164,6 +174,8 @@ Status: Confirmed
 
 Status: Confirmed
 
+### Section 4 and funnel Frame 3
+
 **Landing-page Section 4 uses the exact `1848 × 1160` Outstanding Actions PNG as its dominant visual, with exact headline, supporting line, CTA line, and `See how Blotter works` button. The page CTA enters the canonical funnel with `cta_location = actions`.**
 
 Detailed authority: `docs/workstreams/ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`
@@ -174,15 +186,19 @@ Status: Confirmed
 
 Status: Confirmed
 
+### Section 5
+
 **Landing-page Section 5 uses one formal exact `1298 × 334` Google Sheets preservation asset with the exact column order `Name | Title | Firm | Email | LinkedIn | Status | Next move | Last contact | Days | Call`, the established five contacts, exact emails, blue underlined `Here` LinkedIn links, and a divider between LinkedIn and Status. The section has no eyebrow or CTA and uses the exact headline, supporting copy, and compact three-item reassurance strip.**
 
 Detailed authority: `docs/workstreams/ws5-build-specs/05-SECTION-5-PRESERVATION.md`
 
 Status: Confirmed
 
-**The Section 5 conceptual distinction between the existing tracker and the Blotter live layer remains binding, but the phrases `YOUR EXISTING TRACKER` and `BLOTTER ADDS THE LIVE LAYER` are not inserted into the exact spreadsheet asset. The distinction is communicated through column order, divider, fills, surrounding copy, and reassurance strip.**
+**The Section 5 conceptual distinction between the existing tracker and the Blotter live layer remains binding, but the phrases `YOUR EXISTING TRACKER` and `BLOTTER ADDS THE LIVE LAYER` are not inserted into the exact spreadsheet asset.**
 
 Status: Confirmed
+
+### Section 6
 
 **Landing-page Section 6 uses a calm, left-aligned disclosure system rather than a marketing section. Its exact order is title and opening statement, candid claim, four numbered processing rows, permissions matrix, visible broad-Google-permission notice, `What Blotter keeps`, nine commitments, account-deletion statement, provider disclosure, seven-question privacy FAQ, and privacy-policy link. The section has no eyebrow, CTA, security-seal imagery, fake OAuth, marketing cards, or external visual asset.**
 
@@ -190,11 +206,67 @@ Detailed authority: `docs/workstreams/ws5-build-specs/06-SECTION-6-DATA-AND-PRIV
 
 Status: Confirmed
 
-**Section 6 must remain provider-agnostic until a third-party connection provider is selected. Use: `Blotter uses a third-party provider to facilitate the connection with Google. The provider and its exact role will be disclosed in the privacy policy and connection flow.` Do not name a provider or imply Google verification, accreditation, CASA, SOC 2, or another certification before verification.**
+**Section 6 must remain provider-agnostic until a third-party connection provider is selected. Use: `Blotter uses a third-party provider to facilitate the connection with Google. The provider and its exact role will be disclosed in the privacy policy and connection flow.`**
 
 Status: Confirmed
 
 **Section 6 desktop presentation is ratified, but claims about message routing, unmatched-content exclusion, retention, deletion, revocation, Google scopes, unrelated Drive access, provider role, subprocessors, and the privacy policy remain publication gates that must match actual implementation truth.**
+
+Status: Confirmed
+
+### Section 7
+
+**Landing-page Section 7 uses the exact five-question general-product FAQ followed by a visually distinct final closing panel. The FAQ has no eyebrow or supporting paragraph, all questions are closed initially, only one answer may be open at a time, and every row must be keyboard accessible.**
+
+Detailed authority: `docs/workstreams/ws5-build-specs/07-SECTION-7-FAQ-AND-FINAL-CTA.md`
+
+Status: Confirmed
+
+**The final closing block uses `Your recruiting tracker, always current.`, the exact supporting line, the `See how Blotter works` CTA, and the reassurance line `Keep your existing Google Sheet. No mass outreach. No technical-prep content.` The CTA enters the canonical funnel with `cta_location = final`.**
+
+Status: Confirmed
+
+**Section 7 excludes price, availability, beta, Fall 2026, cohort size, payment, privacy FAQ duplication, a secondary CTA, and any external visual asset.**
+
+Status: Confirmed
+
+### Lovable packet and operating process
+
+**All seven landing-page build specifications are ratified and the pre-Lovable packet is frozen. The next step is plan-only intake in the existing private Lovable project.**
+
+Detailed authority: `docs/workstreams/ws5-implementation/LOVABLE-PLAN-AND-BUILD.md`
+
+Status: Confirmed
+
+**The existing Lovable shell is provisional scaffolding. Lovable must audit it under plan mode and may not make code changes until Jon approves the returned implementation plan.**
+
+Status: Confirmed
+
+**The Lovable implementation sequence is checkpointed: project knowledge and packet upload; plan-only intake; foundation and reusable spreadsheet primitive; Sections 1 through 7; complete-page desktop rhythm; canonical funnel; lead storage; analytics connection; responsive and accessibility work; privacy and claim verification; manual lead and event verification.**
+
+Status: Confirmed
+
+**Do not use one giant whole-site build prompt. Every implementation phase must identify its controlling specification, attached assets, stop condition, preview review, diff review, and acceptance criteria.**
+
+Status: Confirmed
+
+**No additional pre-Lovable unified storyboard or compact funnel Frame 1-to-Frame 2 asset is required. Frames 1 and 2 may be planned from WS3, WS4, the approved spreadsheet primitive, and the frozen asset grammar. A real contradiction must return to Jon before code.**
+
+Status: Confirmed
+
+**Because the GitHub repository is private, required documents and assets must be fetched, uploaded through Lovable's file-upload workflow, and attached to the plan or implementation message. Do not assume Lovable can open private GitHub paths directly.**
+
+Status: Confirmed
+
+**Analytics architecture is introduced during the foundation and funnel build through a provider-independent adapter. The vendor is selected and connected only after visual and funnel behavior are stable and before private verification.**
+
+Status: Confirmed
+
+**Lead storage is added after the funnel and email-capture behavior are approved. Database provisioning requires approval; Lovable's Supabase-backed database is an available option but is not automatically selected.**
+
+Status: Confirmed
+
+**The Lovable project remains private and unpublished throughout WS5. Public deployment and domain routing are prohibited until the matched platform page, verified analytics and lead storage, privacy and claim gates, and final simultaneous-launch authorization are complete.**
 
 Status: Confirmed
 
@@ -203,7 +275,7 @@ Status: Confirmed
 - Blotter is a logistics layer only.
 - Auto-capture is the founding principle.
 - Blotter must not be described as reading unrestricted personal email.
-- If validation justifies backend build, Gmail access should use an intermediary connection provider. Provider selection remains open.
+- A third-party Google connection provider remains unselected.
 - Lovable is the implementation tool.
 - The old design-token system and prior platform pixels are not authoritative.
 
@@ -235,9 +307,17 @@ Status: Confirmed
 - Treating the Outstanding Actions asset as merely directional. Superseded by formal exact status for Section 4 and funnel Frame 3.
 - Creating a second independently styled Outstanding Actions visual for funnel Frame 3. Rejected.
 - Converting Outstanding Actions into dashboard cards, KPI tiles, or a generic task-management interface. Rejected.
-- Adding `YOUR EXISTING TRACKER` or `BLOTTER ADDS THE LIVE LAYER` text inside the exact Section 5 spreadsheet asset. Superseded by the approved unlabeled visual zoning.
+- Adding `YOUR EXISTING TRACKER` or `BLOTTER ADDS THE LIVE LAYER` inside the exact Section 5 asset. Superseded by the approved unlabeled zoning.
 - Turning Section 5 into a migration flow, field-mapping diagram, two-sheet comparison, import animation, or arbitrary-layout-preservation promise. Rejected.
-- Section 6 provider wording that claims a selected provider's Google application has completed verification. Superseded until a provider and verification facts are established.
-- Naming Nylas, Unipile, or another third-party provider in Section 6 before selection. Rejected.
+- Section 6 wording that claims a selected provider's Google application has completed verification. Superseded until provider and verification facts are established.
+- Naming Nylas, Unipile, or another provider in Section 6 before selection. Rejected.
 - Section 6 security shields, seals, fake OAuth, marketing cards, `Bank-grade security`, `Industry-leading encryption`, `Secure by design`, `Accredited provider`, or unverified SOC 2, CASA, Google-verification, retention, deletion, and subprocessor claims. Rejected.
 - Creating an external visual asset for Section 6. Rejected as unnecessary.
+- Adding price or availability questions to Section 7. Rejected.
+- Merging Section 6 privacy FAQ with Section 7 product FAQ. Rejected.
+- Ending the landing page on an accordion. Rejected.
+- Adding an illustration, dashboard, spreadsheet, secondary CTA, or external asset to Section 7. Rejected.
+- Sending one giant Lovable whole-site build message before plan approval. Rejected.
+- Treating existing Lovable scaffolding as approved implementation. Rejected.
+- Selecting analytics, database, or Google connection providers by default without approval. Rejected.
+- Publishing the spreadsheet page during WS5. Rejected.
