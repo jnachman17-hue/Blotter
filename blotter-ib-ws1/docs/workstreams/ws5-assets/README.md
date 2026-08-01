@@ -42,6 +42,7 @@ Every asset must be used with its ratified build specification and the canonical
 - `../ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`
 - `../ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`
 - `../ws5-build-specs/05-SECTION-5-PRESERVATION.md`
+- `../ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`
 
 ## 1. Hero spreadsheet reference
 
@@ -111,6 +112,28 @@ Do not insert `YOUR EXISTING TRACKER` or `BLOTTER ADDS THE LIVE LAYER` labels in
 
 No additional Section 5 reference is required.
 
+## 6. Section 6 Data and Privacy
+
+Build authority: `../ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`.
+
+External asset status:
+
+- no external visual asset required;
+- no external visual asset approved.
+
+Section 6 is a conventional disclosure surface built from:
+
+- typography;
+- one candid-claim block;
+- four numbered processing rows;
+- one permissions matrix;
+- one visible broad-permission notice;
+- retention and commitment blocks;
+- provider-agnostic disclosure copy;
+- one accessible seven-question privacy accordion.
+
+Do not create a Claude render, security illustration, fake OAuth screen, shield icon, seal, or trust badge for this section. The written build specification is sufficient implementation authority.
+
 ## Storyboard and additional-reference status
 
 The former unified three-frame storyboard was never ratified and is not active.
@@ -121,23 +144,24 @@ Completed surfaces requiring no additional references:
 - Section 2;
 - Section 3;
 - Section 4 and funnel Frame 3;
-- Section 5.
+- Section 5;
+- Section 6.
 
 Still unresolved:
 
 - whether funnel Frames 1 and 2 require a compact transition reference;
 - whether a later complex surface requires an external reference after written decisions are settled.
 
-Do not default to the former storyboard or create visual assets for conventional text, disclosure, or FAQ sections without a specific implementation reason.
+Do not default to the former storyboard or create visual assets for conventional text, disclosure, FAQ, or CTA sections without a specific implementation reason.
 
 ## Handoff protocol
 
 For each approved visual surface:
 
 1. attach the ratified build specification;
-2. attach the relevant asset;
+2. attach the relevant asset when one exists;
 3. identify the controlling WS4 or WS3 requirements;
-4. state the asset authority level;
+4. state the asset authority level or explicit no-asset decision;
 5. state exact preserve, change, and exclusion rules;
 6. identify the checkpoint stop condition;
 7. use Lovable plan mode before multi-section or interactive implementation;
@@ -148,4 +172,4 @@ GitHub remains the durable source of truth.
 
 ## Exact next action
 
-Review Section 6, `How Blotter uses your data`, under the WS5 build-specification process. Resolve only the desktop information hierarchy, disclosure-component treatment, responsive posture, claim-gate handling, and acceptance criteria. Do not create an external visual asset unless a concrete ambiguity later proves that one is necessary.
+Review Section 7, `Frequently asked questions` and the final closing CTA, under the WS5 build-specification process. Preserve the already-ratified FAQ and closing copy, settle the desktop accordion and closing-block presentation, retain the price-and-availability disclosure boundary, define responsive behavior and acceptance criteria, and do not create an external visual asset unless a concrete ambiguity proves one is necessary.
