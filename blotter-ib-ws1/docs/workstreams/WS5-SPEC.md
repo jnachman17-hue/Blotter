@@ -1,7 +1,7 @@
 # Workstream 5 Specification
 
 Date created: July 30, 2026  
-Date last updated: July 31, 2026  
+Date last updated: August 1, 2026  
 Status: Active  
 Workstream: Spreadsheet-page build specifications, visual references, Lovable implementation, instrumentation, and private verification
 
@@ -53,20 +53,22 @@ The required build-specification process is defined in:
 
 Do not use `03-page-spec.md`, archived files, old handoffs, failed workbooks, deleted asset paths, abandoned design outputs, Lovable scaffolding, or plausible defaults to override the canonical files above.
 
-## Current state as of July 31, 2026
+## Current state as of August 1, 2026
 
 - Workstreams 1 through 4 are complete.
 - WS5 is active.
-- The repository and canonical asset paths were reconciled on July 31, 2026.
+- The repository and canonical asset paths are reconciled.
 - A granular WS5 build-specification system is active.
 - The desktop hero is fully ratified in `docs/workstreams/ws5-build-specs/01-HERO.md`.
 - Landing-page Section 2 is fully ratified in `docs/workstreams/ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`.
 - Landing-page Section 3 is fully ratified in `docs/workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`.
-- Directional hero and Outstanding Actions spreadsheet references exist.
+- Landing-page Section 4 and canonical funnel Frame 3 are fully ratified in `docs/workstreams/ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`.
+- The hero uses a directional spreadsheet reference governed by its ratified build specification.
 - Section 2 has one formal exact Goldman Sachs rejection-email asset.
 - Section 3 has one formal exact Gmail and Calendar to Blotter to Google Sheets mechanism asset.
+- Section 4 and funnel Frame 3 share one formal exact Outstanding Actions asset.
 - The former full unified three-frame storyboard was never ratified and is not active.
-- Section 4, `Outstanding Actions`, is the immediate next build-specification checkpoint.
+- Section 5, `Preservation`, is the immediate next build-specification checkpoint.
 - Additional build specifications and references will be decided surface by surface.
 - The Lovable project exists and remains private, unpublished, and paused.
 - Existing Lovable shell choices are unapproved scaffolding unless independently supported by the canonical record.
@@ -166,6 +168,7 @@ Ratified specifications:
 1. `docs/workstreams/ws5-build-specs/01-HERO.md` — landing-page desktop hero spreadsheet visual.
 2. `docs/workstreams/ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md` — landing-page desktop Section 2 scale and consequence.
 3. `docs/workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md` — landing-page desktop Section 3 mechanism and surrounding presentation.
+4. `docs/workstreams/ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md` — landing-page desktop Section 4 and canonical funnel Frame 3.
 
 Additional files will be created in page or funnel sequence only after the underlying decisions are ratified.
 
@@ -175,7 +178,7 @@ Detailed inventory:
 
 `docs/workstreams/ws5-assets/README.md`
 
-### Shared directional spreadsheet source
+### Shared editable spreadsheet source
 
 `docs/workstreams/ws5-assets/source/blotter-sheets-reference-v1.html`
 
@@ -184,10 +187,9 @@ Contains:
 - the hero recruiting tracker;
 - the Outstanding Actions view.
 
-### Directional review previews
+### Directional hero preview
 
 - `docs/workstreams/ws5-assets/hero/hero-reference-v1.png`
-- `docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`
 
 ### Formal exact Section 2 asset
 
@@ -197,6 +199,10 @@ Contains:
 ### Formal exact Section 3 asset
 
 - `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`
+
+### Formal exact Section 4 and funnel Frame 3 asset
+
+- `docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`
 
 ### Asset notes
 
@@ -269,16 +275,6 @@ Section 2 establishes that a serious recruiting cycle generates more continuousl
 
 The earlier `55 coffee chats` figure is superseded.
 
-### Figure presentation
-
-- typography-led;
-- visually interesting but immediately scannable;
-- professional, editorial, and data-led;
-- no icons;
-- default expectation of no cards;
-- no dashboard grammar;
-- bounded Lovable discretion for stagger, spacing, modest scale variation, and restrained rules.
-
 ### Exact proof copy
 
 Case-study qualification:
@@ -307,16 +303,7 @@ Status:
 
 Formal exact implementation asset.
 
-It uses one complete Gmail desktop view showing an exact Goldman Sachs rejection email after a missed first-round scheduling deadline. Lovable must reproduce the asset without redesigning it into a generic email card.
-
-The email uses:
-
-- Goldman Sachs Campus Recruiting;
-- `campusrecruiting@goldmansachs.com`;
-- recipient `david.solomon@gmail.com`;
-- exact timestamp, subject, body, signature, and visible controls in the asset.
-
-The asset is an illustrative designed scenario. It must not be described as documentary evidence of a genuine received email.
+Lovable must reproduce the complete Gmail desktop composition and exact visible email state. The asset is an illustrative designed scenario and must not be described as documentary evidence of a genuine received email.
 
 ### Exact annotations
 
@@ -331,7 +318,7 @@ Do not use:
 
 - another spreadsheet visual;
 - a stale manual-tracker crop;
-- a comparison table titled `WHAT ACTUALLY HAPPENED` versus `WHAT MADE IT INTO THE MANUAL TRACKER`;
+- a manual-tracker comparison table;
 - a three-message sequence;
 - an Evercore sender;
 - four metric cards;
@@ -420,18 +407,9 @@ Reference dimensions:
 
 - `2048 × 633`.
 
-The asset is a lossless, pixel-equivalent rendering of Jon's ratified uploaded PNG. Lovable must preserve:
+Lovable must preserve the complete Gmail and Google Calendar source cluster, exact cues and dates, arrows, central Blotter module, provisional mark and lowercase wordmark, Google Sheets crop, selected state, columns, rows, chips, colors, spacing, shadows, and proportions.
 
-- Gmail and Google Calendar logos;
-- exact source-cue copy and timestamps;
-- exact arrow placement;
-- exact central Blotter module;
-- exact provisional stacked-record mark and lowercase `blotter` wordmark;
-- exact Google Sheets chrome, selected state, columns, rows, chips, maintained-zone tint, crop, colors, spacing, shadows, and proportions.
-
-The three stage labels remain outside the visual. Do not insert them into or over the asset.
-
-The provisional mark and word treatment are authoritative inside this asset only. They do not establish the global canonical Blotter logo.
+The three stage labels remain outside the visual. The provisional mark and word treatment are authoritative inside this asset only and do not establish the global canonical Blotter logo.
 
 ### Superseded Section 3 direction
 
@@ -441,39 +419,81 @@ Do not use the former:
 - `BLOTTER MAINTAINS` heading and list;
 - two-column division-of-labor block.
 
-The hero already communicates the ownership split through `YOU add the contacts` and `BLOTTER keeps them current`. Section 3 should explain the systems-level flow rather than repeating that ownership treatment.
-
-### Explicit exclusions
-
-Do not use:
-
-- a CTA;
-- a second ownership comparison;
-- full Gmail or Calendar screens;
-- a generic table instead of the exact sheet;
-- a technical flowchart;
-- extra cues, arrows, particles, or animation;
-- privacy, OAuth, pricing, beta, or provider content;
-- the provisional asset mark elsewhere without a later logo decision.
-
-The detailed hierarchy, exact visual state, asset rules, copy placement, exclusions, responsive posture, Lovable instructions, and acceptance criteria live in the controlling build specification.
+The hero already communicates the ownership split.
 
 Tablet and mobile adaptation, optional global motion, final inter-section spacing, and any future global identity decision are deferred bounded questions and do not reopen desktop Section 3.
 
-## Outstanding Actions status
+## Ratified Section 4 and funnel Frame 3 implementation status
 
-Status: Directionally complete visual reference; detailed build specification not yet ratified.
+Controlling specification:
 
-Authoritative current content:
+`docs/workstreams/ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`
 
-- Google Sheets-native visual language shared with the hero;
-- one global column header: Contact, Next action, Why it is here;
-- `Outstanding actions` title;
-- `21 outstanding actions` count;
-- exact groups, counts, visible rows, reasons, and overflow rows;
-- full-width spreadsheet rows rather than dashboard cards.
+Section 4 and canonical funnel product-experience Frame 3 are ratified and no longer open desktop visual, copy, asset-authority, or reuse questions.
 
-Exact structure:
+### Communication job
+
+Section 4 shows the operational payoff: the user can open the tracker and see every reply, follow-up, and thank-you note that currently requires attention without reconstructing next moves from Gmail, Calendar, memory, or scattered notes.
+
+### Exact landing-page order
+
+1. Headline.
+2. Supporting line.
+3. Formal exact Outstanding Actions visual.
+4. CTA line.
+5. CTA button.
+6. No additional closing paragraph.
+
+There is no eyebrow.
+
+### Exact landing-page copy
+
+Headline:
+
+`Know exactly what needs your attention.`
+
+Supporting line:
+
+`Stop reconstructing your next moves from Gmail, Calendar, and memory. Blotter gives you one current view of every action you owe.`
+
+CTA line:
+
+`Open your tracker and know what to do next.`
+
+CTA button:
+
+`See how Blotter works`
+
+CTA behavior:
+
+- enters the canonical funnel;
+- stores `cta_location = actions`.
+
+### Exact Outstanding Actions asset
+
+Asset:
+
+`docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`
+
+Status:
+
+Formal exact implementation asset.
+
+Reference dimensions:
+
+- `1848 × 1160`.
+
+Jon ratified the current PNG exactly as rendered. Lovable must preserve:
+
+- complete Google Sheets chrome and exact crop;
+- `Outstanding actions` and `21 outstanding actions`;
+- one global column-header row: Contact, Next action, Why it is here;
+- three exact group headers and counts;
+- exact visible rows, reasons, and overflow rows;
+- exact fills, borders, row heights, spacing, typography, alignment, shadows, tint strength, and proportions;
+- full-width spreadsheet rows rather than cards.
+
+Exact content:
 
 `Replies owed - 6`
 
@@ -493,7 +513,61 @@ Exact structure:
 - James Wu | Send thank-you | Call completed 3 hours ago
 - `+2 more thank-you notes`
 
-The direction is intended to serve landing-page Section 4 and funnel Frame 3 through one shared spreadsheet component. The exact page-context implementation, responsive behavior, asset authority, and any remaining presentation refinements must be settled before this surface enters the frozen packet.
+The PNG controls exact rendered punctuation, dash styling, capitalization, and visual state.
+
+### Landing-page composition
+
+- centered single-column composition;
+- copy above the visual;
+- exact asset as the dominant object;
+- compact centered CTA block beneath it;
+- no additional card around the Google Sheets window;
+- no split text-and-visual layout;
+- uniform desktop scaling within an approximately `1180px` to `1280px` visual container;
+- no desktop crop.
+
+### Funnel Frame 3 reuse
+
+The same exact asset governs funnel Frame 3.
+
+Frame 3 surrounding content remains:
+
+Header:
+
+`Know exactly what needs your attention.`
+
+Supporting line:
+
+`Blotter gathers every reply, follow-up, and thank-you note you owe into one current view.`
+
+Progress indicator:
+
+`3 of 3`
+
+Button:
+
+`Continue`
+
+The page section and Frame 3 use different surrounding copy and controls, but the product visual itself must not be independently redesigned. Leaving Frame 3 through `Continue` triggers `product_experience_completed` under the canonical event rules.
+
+### Explicit exclusions
+
+Do not use:
+
+- an eyebrow;
+- three queue cards;
+- dashboard KPI tiles;
+- category icons;
+- extra categories or rows;
+- status pills or a status column;
+- filters, search, charts, sidebars, or task controls;
+- required animation;
+- a separately redesigned Frame 3 view;
+- different queue content between the page and funnel;
+- price, beta, OAuth, or permission content;
+- a secondary CTA or extra closing paragraph.
+
+Desktop is the approval target. Tablet and mobile adaptation, optional global motion, final inter-section spacing, and exact smaller-screen funnel treatment remain deferred bounded questions and do not reopen the desktop decision.
 
 ## Storyboard and additional-reference status
 
@@ -505,13 +579,13 @@ Completed reference decisions:
 
 - the hero requires no replacement storyboard;
 - Section 2 requires no stale-sheet reference or additional asset beyond its exact rejection-email component;
-- Section 3 requires no additional reference beyond its formal exact mechanism asset.
+- Section 3 requires no additional reference beyond its formal exact mechanism asset;
+- Section 4 and funnel Frame 3 require no additional reference beyond the shared formal exact Outstanding Actions asset.
 
 Still unresolved:
 
 - whether the funnel's Frame 1-to-Frame 2 transition requires a compact reference;
-- whether the current Outstanding Actions asset needs a dedicated build specification or material visual revision;
-- whether any other complex surface requires an external reference after its written decisions are developed.
+- whether any later complex surface requires an external reference after its written decisions are developed.
 
 Resolve actual implementation ambiguity surface by surface.
 
@@ -524,7 +598,7 @@ Unless Jon decides otherwise or a bounded Lovable attempt exposes a specific fai
 - Section 7 general FAQ and closing CTA;
 - recruiting questions, email capture, price, purchase summary, payment choices, and terminal screens outside the spreadsheet frames.
 
-Section 3 is no longer in this category because Jon explicitly ratified a dedicated build specification and formal exact visual asset.
+Section 3 and Section 4 are no longer in this category because Jon explicitly ratified dedicated build specifications and formal exact assets.
 
 A conventional surface may still receive a concise ratified build specification if substantive design choices are made and future implementation would otherwise depend on chat history.
 
@@ -545,11 +619,12 @@ Completed:
 
 - hero;
 - Section 2;
-- Section 3.
+- Section 3;
+- Section 4 and funnel Frame 3.
 
 Immediate next surface:
 
-- Section 4, `Outstanding Actions`.
+- Section 5, `Preservation`.
 
 ### Phase B: Settle remaining external-reference scope
 
@@ -693,35 +768,61 @@ Requirements:
 - include no CTA;
 - stop after the desktop Section 3 checkpoint.
 
-### Phase 5: Remaining landing-page sections
+### Phase 5: Desktop Section 4 and funnel Frame 3 implementation
+
+Controlling specification:
+
+`docs/workstreams/ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`
+
+Formal exact asset:
+
+`docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`
+
+Requirements:
+
+- use exact Section 4 copy and order;
+- reproduce the exact Outstanding Actions asset without redesign;
+- keep the visual dominant and centered;
+- implement the exact CTA line and button;
+- store `cta_location = actions` when the page CTA enters the funnel;
+- reuse the same exact asset for funnel Frame 3;
+- preserve the Frame 3 header, supporting line, `3 of 3` indicator, and `Continue` button;
+- trigger `product_experience_completed` when Frame 3 is completed;
+- include no cards, KPI tiles, filters, charts, extra controls, categories, rows, or separately styled Frame 3 visual;
+- stop after the desktop Section 4 and desktop Frame 3 reuse are ready for review.
+
+### Phase 6: Remaining landing-page sections
 
 Implement sequentially after required specifications are ratified:
 
-1. Section 4 Outstanding Actions.
-2. Section 5 Preservation.
-3. Section 6 Privacy and permissions.
-4. Section 7 General FAQ and final CTA.
+1. Section 5 Preservation.
+2. Section 6 Privacy and permissions.
+3. Section 7 General FAQ and final CTA.
 
 Maintain exact section order and page-rhythm rules. Conventional text sections do not automatically require external mockups.
 
-### Phase 6: Canonical funnel UI and state model
+### Phase 7: Canonical funnel UI and state model
 
 Implement:
 
 1. `funnel_started`.
 2. Two recruiting questions.
-3. Three-frame spreadsheet experience.
-4. Recruiting-email capture.
-5. Price screen.
-6. Purchase-summary screen.
-7. Payment-choice click.
-8. Terminal confirmation.
+3. Frame 1 recruiting activity.
+4. Frame 2 live-state update.
+5. Frame 3 exact Outstanding Actions view.
+6. Recruiting-email capture.
+7. Price screen.
+8. Purchase-summary screen.
+9. Payment-choice click.
+10. Terminal confirmation.
 
 Use one stable funnel shell and shared state model. Retain CTA origin, recruiting answers, session identity, and visitor identity through the flow.
 
+Frame 3 must reuse the formal exact Outstanding Actions asset governed by Build Specification 04.
+
 Do not add OAuth, social login, extra demos, plan selection, annual billing, coupons, card fields, payment collection, or pre-terminal beta, test, future-availability, or no-charge language.
 
-### Phase 7: Lead storage decision and implementation
+### Phase 8: Lead storage decision and implementation
 
 Before enabling a database or form service, make one explicit decision.
 
@@ -744,7 +845,7 @@ Requirements:
 - writes are idempotent or update the same visitor safely;
 - implementation remains appropriate for a private validation page.
 
-### Phase 8: Analytics vendor decision and wiring
+### Phase 9: Analytics vendor decision and wiring
 
 Use one reusable analytics adapter. Select the vendor only after UI and milestone boundaries are stable.
 
@@ -785,7 +886,7 @@ Rules:
 - calls occur at explicit state transitions, not arbitrary renders or mounts;
 - adapter and funnel burden remain reusable for the later platform variant.
 
-### Phase 9: Claims, privacy, responsive, and accessibility QA
+### Phase 10: Claims, privacy, responsive, and accessibility QA
 
 Verify or revise:
 
@@ -813,7 +914,7 @@ Check:
 - sufficient contrast;
 - logical reading order.
 
-### Phase 10: Private preview and manual verification
+### Phase 11: Private preview and manual verification
 
 Keep the project private. Do not launch traffic.
 
@@ -828,7 +929,7 @@ Verify:
 - no double firing on back or refresh;
 - all incidents repaired before traffic.
 
-### Phase 11: WS5 completion and WS6 handoff
+### Phase 12: WS5 completion and WS6 handoff
 
 WS5 is complete only when:
 
@@ -836,6 +937,7 @@ WS5 is complete only when:
 - hero and spreadsheet scenes use one coherent grammar;
 - Section 2 exact asset and claims are supportable;
 - Section 3 exact asset and external labels are reproduced correctly;
+- Section 4 and funnel Frame 3 reproduce the same exact Outstanding Actions visual correctly;
 - funnel works end to end;
 - lead capture and export are verified;
 - all nine events are manually verified;
@@ -881,22 +983,25 @@ WS5 is complete only when:
 - Section 2 Evercore sender: rejected.
 - Section 3 `YOU CONTROL` and `BLOTTER MAINTAINS` lists: superseded and removed.
 - Treating the Section 3 asset's provisional mark as the global Blotter logo: not ratified and prohibited without a later identity decision.
+- Treating the Outstanding Actions asset as directional: superseded by formal exact status.
+- Building a separate independently styled funnel Frame 3 Outstanding Actions view: rejected.
+- Converting Outstanding Actions into cards, KPI tiles, or a generic task-management interface: rejected.
 - Broad Lovable coding before packet freeze and plan approval: prohibited.
 - Real integrations, OAuth, card entry, payment collection, platform page, or public traffic during WS5: excluded.
 
 ## Exact next action
 
-Use the build-specification process to review Section 4, `Outstanding Actions`.
+Use the build-specification process to review Section 5, `Preservation`.
 
 Determine:
 
-- the exact desktop page-context composition around the already-ratified copy and CTA;
-- how the current directional Outstanding Actions asset is placed, scaled, and reused;
-- whether the asset requires material visual revision;
-- how the page section differs from funnel Frame 3 while preserving the same queue content;
+- the exact desktop composition for `YOUR EXISTING TRACKER` and `BLOTTER ADDS THE LIVE LAYER`;
+- how the section communicates preservation without becoming a technical migration diagram;
+- how the three reassurance lines are presented;
+- whether a spreadsheet visual, simpler conceptual comparison, or another treatment is appropriate;
 - whether a dedicated build specification is required;
+- whether any new external visual reference materially reduces ambiguity;
 - the responsive posture;
-- the desktop acceptance criteria;
-- the final asset authority.
+- the desktop acceptance criteria.
 
 Do not enter Lovable plan mode yet.
