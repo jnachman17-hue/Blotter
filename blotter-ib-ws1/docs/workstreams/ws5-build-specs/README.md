@@ -70,31 +70,15 @@ For each unresolved landing-page or funnel surface:
 3. Resolve the substantive presentation and behavior questions with Jon.
 4. Write or update one self-contained build specification.
 5. Obtain explicit Jon ratification.
-6. Before moving to the next surface, update:
-   - the build specification;
-   - this index;
-   - `WS5-SPEC.md`;
-   - `CURRENT-HANDOFF.md`;
-   - `06-assumptions-and-open-questions.md`;
-   - the relevant asset README or inventory;
-   - `00-START-HERE.md`;
-   - `04-decision-log.md` when the ruling is cross-project or load-bearing.
+6. Before moving to the next surface, update the build specification, this index, `WS5-SPEC.md`, `CURRENT-HANDOFF.md`, `06-assumptions-and-open-questions.md`, the relevant asset records, `00-START-HERE.md`, and `04-decision-log.md` where appropriate.
 7. Mark resolved questions as settled and remove them from the open-question register.
 8. Do not enter Lovable plan mode until the required build specifications and external-reference scope are frozen.
 
-This is the required documentation system for the remainder of WS5 design ratification.
-
 ## Lovable handoff rule
 
-A ratified build specification must be usable as the written implementation authority for its surface. The future Lovable handoff should include:
+A ratified build specification must be usable as the written implementation authority for its surface. The future Lovable handoff should include the build specification, relevant asset, editable source when useful, governing WS4 or WS3 source, authority level, exact preserve/change rules, exclusions, and checkpoint boundary.
 
-- the build specification;
-- the relevant visual reference or formal asset;
-- the editable source when useful;
-- the governing WS4 or WS3 source for surrounding copy and behavior;
-- a clear instruction to preserve, improve, and exclude exactly what the build specification states.
-
-Lovable should not be asked to infer unresolved product or presentation decisions from a visual reference. If a required decision is still unresolved, the specification must say so and the surface must not be treated as frozen.
+Lovable should not be asked to infer unresolved product or presentation decisions from a visual reference.
 
 ## Current specification inventory
 
@@ -104,28 +88,24 @@ Lovable should not be asked to infer unresolved product or presentation decision
 | 02 | Landing-page Section 2 scale and consequence | `02-SECTION-2-SCALE-AND-CONSEQUENCE.md` | Ratified |
 | 03 | Landing-page Section 3 How Blotter works | `03-SECTION-3-HOW-BLOTTER-WORKS.md` | Ratified |
 | 04 | Landing-page Section 4 Outstanding Actions and funnel Frame 3 | `04-SECTION-4-OUTSTANDING-ACTIONS.md` | Ratified |
-
-Additional files will be added in page or funnel sequence as decisions are ratified. File numbering is organizational and does not create authority by itself.
+| 05 | Landing-page Section 5 Preservation | `05-SECTION-5-PRESERVATION.md` | Ratified |
 
 ## Section 3 supersession note
 
-The ratified Section 3 build specification preserves the exact WS4 copy, three stage labels, boundary line, three product-boundary badges, closing line, and no-CTA rule.
-
-It explicitly removes the former `YOU CONTROL` and `BLOTTER MAINTAINS` lists because the hero already communicates the ownership split. It also establishes one formal exact desktop mechanism asset and requires the stage labels to remain outside that asset.
+The ratified Section 3 specification removes the former `YOU CONTROL` and `BLOTTER MAINTAINS` lists because the hero already communicates the ownership split. It uses one formal exact mechanism asset with external stage labels.
 
 ## Section 4 exact-asset and reuse note
 
-The ratified Section 4 build specification establishes the existing Outstanding Actions PNG as a formal exact desktop asset rather than a directional reference.
+The existing Outstanding Actions PNG is a formal exact desktop asset for both landing-page Section 4 and canonical funnel Frame 3. The surrounding copy and controls differ, but the spreadsheet visual must not be independently redesigned.
 
-The same exact visual governs:
+## Section 5 exact-asset note
 
-- landing-page Section 4;
-- canonical funnel product-experience Frame 3.
+The ratified Section 5 specification establishes `../ws5-assets/section-5/preservation-exact-v1.html` as a formal exact desktop asset.
 
-The two surfaces use different surrounding copy and controls, but the spreadsheet visual, queue content, composition, and styling must not be independently redesigned.
+The asset adds Email and LinkedIn to the established five-contact tracker and places the exact divider between LinkedIn and Status. The conceptual existing-tracker versus Blotter-live-layer distinction remains, but the former conceptual zone labels are not inserted into the exact spreadsheet visual.
 
 ## Next specification checkpoint
 
-Section 5: `Preservation`.
+Section 6: `How Blotter uses your data`.
 
-The next discussion must review the exact WS4 preservation communication job, settle the desktop composition for the existing-tracker and Blotter-live-layer zones, determine whether a dedicated build specification or external visual reference is required, define the responsive posture, and establish desktop acceptance criteria. Lovable remains paused until the required packet is frozen.
+Review the already-ratified disclosure content, settle only the desktop information hierarchy and component treatment, preserve the claim-verification gates, determine whether a dedicated build specification is needed, and avoid creating an unnecessary external visual asset. Lovable remains paused until the required packet is frozen.
