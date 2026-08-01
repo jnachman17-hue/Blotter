@@ -38,10 +38,12 @@ Current state:
 - Landing-page Section 3 is ratified in `docs/workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`.
 - Landing-page Section 4 and canonical funnel Frame 3 are ratified in `docs/workstreams/ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`.
 - Landing-page Section 5 is ratified in `docs/workstreams/ws5-build-specs/05-SECTION-5-PRESERVATION.md`.
+- Landing-page Section 6 is ratified in `docs/workstreams/ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`.
 - Section 2 uses a formal exact Goldman Sachs rejection-email asset at `docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.webp`.
 - Section 3 uses a formal exact mechanism asset at `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`.
 - Section 4 and funnel Frame 3 use the same formal exact Outstanding Actions asset at `docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`.
 - Section 5 uses a formal exact preservation asset at `docs/workstreams/ws5-assets/section-5/preservation-exact-v1.html`.
+- Section 6 requires no external asset. It uses the ratified written disclosure system directly.
 - The Section 2 figure set is 628 recruiting emails, 68 coffee chats, 19 applications, and 30 interview rounds.
 - The former `55 coffee chats` figure and manual-tracker comparison-table visual are superseded.
 - Section 3 uses external stage labels, the exact Gmail and Calendar to Blotter to Google Sheets visual, the boundary line, three product-boundary badges, the closing line, and no CTA.
@@ -50,12 +52,15 @@ Current state:
 - Section 4 uses the exact Outstanding Actions visual and CTA with `cta_location = actions`; the same visual governs funnel Frame 3.
 - Section 5 uses one exact Google Sheets preservation view with Email and LinkedIn added before the Blotter-maintained fields, a divider between LinkedIn and Status, exact five-contact data, blue underlined `Here` links, no eyebrow, and no CTA.
 - The conceptual Section 5 labels `YOUR EXISTING TRACKER` and `BLOTTER ADDS THE LIVE LAYER` remain conceptually true but are not inserted into the exact asset.
+- Section 6 uses a calm left-aligned disclosure section with the exact candid claim, four numbered processing steps, permissions table, broad Google-permission notice, retention and commitment blocks, account-deletion statement, provider-agnostic third-party disclosure, seven-question privacy FAQ, and privacy-policy link. It has no eyebrow or CTA.
+- No third-party connection provider has been selected. Section 6 must remain provider-agnostic and must not imply Google verification, accreditation, CASA, SOC 2, or a named provider before verification.
+- Section 6 desktop composition is ratified, but public use remains gated by actual implementation truth for scopes, routing, retention, deletion, provider role, subprocessors, and privacy-policy claims.
 - The former proposal for one full unified three-frame storyboard was never ratified and is not active.
 - The Lovable project is private, unpublished, and paused. Planning and implementation remain blocked until the required build specifications and remaining reference scope are frozen.
 
 Exact next action:
 
-Use the build-specification process to review Section 6, `How Blotter uses your data`. Preserve the already-ratified disclosure content and settle only the desktop information hierarchy, component treatment, responsive posture, claim-verification boundaries, and acceptance criteria. Do not create an external visual asset unless a concrete implementation ambiguity later proves one is necessary.
+Use the build-specification process to review Section 7, `Frequently asked questions` and the final closing CTA. Preserve the already-ratified FAQ and closing copy, settle the desktop accordion and final-CTA composition, retain the rule that price and availability appear only inside the canonical funnel, define responsive behavior and acceptance criteria, and do not create an external visual asset unless a concrete implementation ambiguity proves one is necessary.
 
 Do not enter Lovable plan mode yet.
 
@@ -74,7 +79,8 @@ Permanent cumulative records live under `docs/workstreams/`:
 - `ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`: ratified desktop Section 3 implementation specification.
 - `ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`: ratified desktop Section 4 and funnel Frame 3 implementation specification.
 - `ws5-build-specs/05-SECTION-5-PRESERVATION.md`: ratified desktop Section 5 implementation specification.
-- `ws5-assets/README.md`: active visual-reference inventory, authority levels, and handoff rules.
+- `ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`: ratified desktop Section 6 implementation specification.
+- `ws5-assets/README.md`: active visual-reference inventory, authority levels, no-asset decisions, and handoff rules.
 - `ws5-assets/section-2/README.md`: formal Section 2 asset record.
 - `ws5-assets/section-3/README.md`: formal Section 3 asset record.
 - `ws5-assets/outstanding-actions/README.md`: formal Section 4 and funnel Frame 3 asset record.
@@ -110,11 +116,12 @@ WS5 does not launch traffic, build the platform page, implement real integration
 - GitHub canonical documents are the durable source of truth.
 - New substantive product, copy, or presentation decisions require Jon ratification before becoming canonical.
 - Ratified surface decisions must be written as self-contained build specifications.
-- Every asset record must identify whether the asset is directional or a formal exact target.
+- Every asset record must identify whether an asset is directional, formal exact, or explicitly unnecessary.
 - Conventional text, disclosure, FAQ, and CTA layouts do not automatically require separate visual references.
 - The spreadsheet page is designed and built first.
 - Both variants ultimately launch at roughly the same time and use the identical funnel, price, event set, and read rules.
 - Analytics must be verified by hand before public traffic.
+- Privacy and provider claims must be verified against implementation truth before public traffic.
 - `03-page-spec.md` is a working baseline, not final truth.
 - Old design-token files and prior platform pixels are not authoritative.
 - No public traffic during WS5.
@@ -127,7 +134,7 @@ WS5 does not launch traffic, build the platform page, implement real integration
 4. `docs/workstreams/ws5-build-specs/README.md`
 5. The ratified build specifications for completed and current surfaces.
 6. `docs/workstreams/ws5-assets/README.md`
-7. The relevant asset README.
+7. The relevant asset README when an asset exists.
 8. `docs/workstreams/WS4-SPEC.md`
 9. `docs/workstreams/WS3-SPEC.md`
 10. `docs/workstreams/WS2-SPEC.md`
@@ -169,7 +176,8 @@ Archived material is historical context only.
 - `workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`: Section 3 build specification.
 - `workstreams/ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`: Section 4 and funnel Frame 3 build specification.
 - `workstreams/ws5-build-specs/05-SECTION-5-PRESERVATION.md`: Section 5 build specification.
-- `workstreams/ws5-assets/README.md`: visual-reference inventory and authority rules.
+- `workstreams/ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`: Section 6 build specification.
+- `workstreams/ws5-assets/README.md`: visual-reference inventory, authority rules, and explicit no-asset decisions.
 - `workstreams/ws5-assets/hero/hero-reference-v1.png`: directional hero preview.
 - `workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`: exact Section 4 and Frame 3 asset.
 - `workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.webp`: exact Section 2 asset.
