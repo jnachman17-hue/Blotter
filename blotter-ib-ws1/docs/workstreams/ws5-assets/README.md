@@ -1,7 +1,7 @@
 # WS5 visual reference index
 
 Date created: July 31, 2026  
-Date last updated: July 31, 2026  
+Date last updated: August 1, 2026  
 Status: Active supporting record  
 Governing specification: `../WS5-SPEC.md`  
 Build-specification index: `../ws5-build-specs/README.md`
@@ -32,10 +32,13 @@ This source contains:
 - the hero recruiting tracker;
 - the Outstanding Actions view.
 
-### Spreadsheet review previews
+### Directional hero preview
 
 - `hero/hero-reference-v1.png`
-- `outstanding-actions/outstanding-actions-reference-v1.png`
+
+### Formal Outstanding Actions asset
+
+- `outstanding-actions/outstanding-actions-reference-v1.png` (authoritative exact-pixel target for Section 4 and funnel Frame 3)
 
 ### Formal Section 2 asset
 
@@ -51,6 +54,7 @@ This source contains:
 - `../ws5-build-specs/01-HERO.md`
 - `../ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`
 - `../ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`
+- `../ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`
 
 ## 1. Hero spreadsheet reference v1
 
@@ -101,7 +105,7 @@ Asset package:
 - `section-2/goldman-sachs-rejection-email-exact-v1.webp` — authoritative exact-pixel target.
 - `section-2/goldman-sachs-rejection-email-exact-v1.html` — supplemental portable HTML reference.
 
-The AVIF was encoded losslessly from Jon's uploaded self-contained bundle at `1180 × 560`. Lovable must use it as the visual truth and reproduce:
+The WebP was rendered losslessly from Jon's uploaded self-contained bundle at `1180 × 560`. Lovable must use it as the visual truth and reproduce:
 
 - the full Gmail desktop composition;
 - the `1180 × 560` reference proportions;
@@ -149,24 +153,43 @@ Section 3 does not include the former `YOU CONTROL` and `BLOTTER MAINTAINS` list
 
 No additional Section 3 visual reference is required.
 
-## 4. Outstanding Actions reference v1
+## 4. Outstanding Actions exact asset
 
 Directory: `outstanding-actions/`
 
-Asset status: Directionally complete.  
-Build-specification status: Not yet ratified.
+Asset status: Formal exact implementation asset.  
+Build status: Landing-page Section 4 and funnel Frame 3 decisions ratified in `../ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`.
 
-Established direction:
+Asset package:
 
-- Google Sheets-native visual language shared with the hero;
-- one global column header: Contact, Next action, Why it is here;
-- `Outstanding actions` title and `21 outstanding actions` count;
-- three grouped action categories with restrained distinctions;
-- exact visible rows, reasons, group counts, and overflow rows;
-- full-width spreadsheet rows rather than dashboard cards;
-- intended reuse for landing-page Section 4 and funnel Frame 3.
+- `outstanding-actions/outstanding-actions-reference-v1.png` — authoritative exact-pixel target.
+- `outstanding-actions/README.md` — asset authority, exact visible state, shared-use rules, and handoff requirements.
+- `source/blotter-sheets-reference-v1.html` — supplemental editable source.
 
-Lovable should ultimately reuse the shared spreadsheet component rather than independently rebuilding this view. Exact page context, responsive behavior, and any remaining presentation decisions must be ratified before implementation.
+Reference dimensions:
+
+- `1848 × 1160`.
+
+Jon ratified the current PNG exactly as rendered. It is no longer directional.
+
+Lovable must reproduce:
+
+- complete Google Sheets chrome and exact crop;
+- `Outstanding actions` and `21 outstanding actions`;
+- one global column-header row;
+- three exact action groups and counts;
+- exact visible rows, reasons, and overflow rows;
+- exact fills, borders, row heights, spacing, typography, alignment, shadows, tint strength, and proportions;
+- full-width spreadsheet rows rather than dashboard cards.
+
+The same exact visual governs:
+
+1. landing-page Section 4;
+2. canonical funnel product-experience Frame 3.
+
+The two uses have different surrounding copy and controls, but Lovable must not build a second independently styled Outstanding Actions view. Uniform desktop scaling is allowed only as required by the page or funnel container.
+
+No additional Section 4 or Frame 3 visual reference is required.
 
 ## Storyboard and additional-reference status
 
@@ -178,10 +201,11 @@ Section 2 is complete. It uses one formal exact rejection-email asset package ra
 
 Section 3 is complete. It uses one formal exact mechanism asset plus its ratified build specification. No additional Section 3 visual reference is required.
 
+Section 4 and funnel Frame 3 are complete. They use the same formal exact Outstanding Actions asset plus one ratified build specification. No additional Outstanding Actions reference is required.
+
 Still unresolved:
 
 - whether the funnel's Frame 1-to-Frame 2 transition requires a compact reference;
-- whether the Outstanding Actions asset needs a detailed build specification or material revision;
 - whether another complex surface requires an external reference after written decisions are settled.
 
 Do not default to the former full storyboard or a compact replacement. Decide the minimum reference need surface by surface.
@@ -205,4 +229,4 @@ GitHub remains the durable source of truth. Lovable chat history and generated c
 
 ## Exact next action
 
-Use the WS5 build-specification process to review Section 4, `Outstanding Actions`, and settle the exact page-context implementation, any required visual revision, responsive posture, and build-specification need before advancing.
+Use the WS5 build-specification process to review Section 5, `Preservation`, settle the desktop composition and responsive posture, and determine whether written instructions alone are sufficient or an additional external visual reference is justified.
