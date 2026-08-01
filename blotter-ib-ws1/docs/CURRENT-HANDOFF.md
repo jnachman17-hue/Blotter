@@ -4,14 +4,15 @@ Date: July 31, 2026
 
 ## 1. Current objective
 
-Continue Workstream 5 from the completed desktop hero and Section 2 ratification checkpoints.
+Continue Workstream 5 from the completed desktop hero, Section 2, and Section 3 ratification checkpoints.
 
-Workstreams 1 through 4 are complete. WS5 is active. The repository is reconciled, the build-specification system is established, and the following surfaces are fully ratified for desktop implementation:
+Workstreams 1 through 4 are complete. WS5 is active. The repository is reconciled, the build-specification system is established, and the following landing-page surfaces are fully ratified for desktop implementation:
 
-1. Landing-page hero spreadsheet visual.
-2. Landing-page Section 2 scale and consequence.
+1. Hero spreadsheet visual.
+2. Section 2 scale and consequence.
+3. Section 3 How Blotter works.
 
-The next task is to review and settle Section 3, `How Blotter works`, through the same self-contained build-specification process.
+The next task is to review and settle Section 4, `Outstanding Actions`, through the same self-contained build-specification process.
 
 Do not begin Lovable planning or implementation yet.
 
@@ -25,12 +26,17 @@ Read in this order before acting:
 4. `docs/workstreams/ws5-build-specs/README.md`
 5. `docs/workstreams/ws5-build-specs/01-HERO.md`
 6. `docs/workstreams/ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`
-7. `docs/workstreams/ws5-assets/README.md`
-8. `docs/workstreams/ws5-assets/section-2/README.md`
-9. `docs/workstreams/WS4-SPEC.md`
-10. `docs/workstreams/WS3-SPEC.md`
-11. `docs/workstreams/WS2-SPEC.md`
-12. `docs/05-working-agreement.md`
+7. `docs/workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`
+8. `docs/workstreams/ws5-assets/README.md`
+9. `docs/workstreams/ws5-assets/outstanding-actions/README.md`
+10. `docs/workstreams/WS4-SPEC.md`
+11. `docs/workstreams/WS3-SPEC.md`
+12. `docs/workstreams/WS2-SPEC.md`
+13. `docs/05-working-agreement.md`
+
+For Section 3 implementation context, also read:
+
+- `docs/workstreams/ws5-assets/section-3/README.md`
 
 ## 3. Source-of-truth rules
 
@@ -69,7 +75,12 @@ Do not record decisions using internal labels such as `Mechanism A` or `Option B
 
 ### Formal exact Section 2 asset
 
-- `docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.html`
+- `docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.webp`
+- supplemental HTML: `docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.html`
+
+### Formal exact Section 3 asset
+
+- `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.webp`
 
 ### Asset notes
 
@@ -77,8 +88,9 @@ Do not record decisions using internal labels such as `Mechanism A` or `Option B
 - `docs/workstreams/ws5-assets/hero/README.md`
 - `docs/workstreams/ws5-assets/outstanding-actions/README.md`
 - `docs/workstreams/ws5-assets/section-2/README.md`
+- `docs/workstreams/ws5-assets/section-3/README.md`
 
-The hero and Outstanding Actions assets are directional. The Section 2 Goldman Sachs email asset is a formal exact desktop target.
+The hero and Outstanding Actions assets are directional. The Section 2 and Section 3 assets are formal exact desktop targets.
 
 ## 6. Ratified desktop hero status
 
@@ -146,54 +158,13 @@ Section 2 proves that a high-intensity recruiting cycle creates more continuousl
 
 `55 coffee chats` is superseded.
 
-### Figure treatment
-
-- typography-led;
-- professional, editorial, data-led, and immediately scannable;
-- no icons;
-- default expectation of no cards;
-- no dashboard treatment;
-- no animation;
-- bounded Lovable freedom for staggering, spacing, scale relationships, and restrained dividers.
-
-### Exact proof lines
-
-Case-study qualification:
-
-`* Representative workload from a high-intensity Summer Analyst 2028 recruiting cycle that resulted in a JPMorgan offer.`
-
-Secondary proof:
-
-`~60 hours saved on manual tracker administration over one recruiting cycle`
-
-Methodology:
-
-`Estimated from manual Gmail and Calendar logging, tracker updates, and recurring reconciliation across the case-study recruiting cycle.`
-
-### Exact supporting paragraph
-
-`Recruiting activity changes continuously across hundreds of emails, coffee chats, applications, and interview rounds. A manual tracker changes only when you remember to update it, so at this volume it inevitably falls behind reality. Deadlines, follow-ups, and next steps begin slipping through the cracks.`
-
 ### Exact formal email asset
 
 The consequence visual is:
 
-`docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.html`
+`docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.webp`
 
-It is a formal exact target, not a directional reference.
-
-Lovable must reproduce:
-
-- full Gmail desktop composition;
-- `1180 × 560` reference proportions;
-- exact Goldman Sachs sender;
-- exact recipient;
-- exact timestamp;
-- exact subject;
-- exact body and signature;
-- exact visible Gmail controls and rails.
-
-Do not change the sender to Evercore. Do not simplify the visual into a floating email card. Do not add multiple emails or a three-message sequence.
+It is a formal exact target, not a directional reference. The HTML is supplemental and does not override the WebP.
 
 The asset is an illustrative designed scenario and must not be described as documentary evidence of a genuine received email.
 
@@ -208,9 +179,9 @@ Annotations remain outside the Gmail visual.
 
 - no spreadsheet visual;
 - no stale-sheet comparison;
-- no `WHAT ACTUALLY HAPPENED` versus `WHAT MADE IT INTO THE MANUAL TRACKER` table;
-- no icons;
+- no manual-tracker divergence table;
 - no four KPI cards;
+- no icons;
 - no individual explanatory microcopy beneath the four figures;
 - no fifth equal 60-hour metric;
 - no CTA;
@@ -218,7 +189,91 @@ Annotations remain outside the Gmail visual.
 
 Tablet and mobile adaptation, optional global motion, final inter-section spacing, and claim review are deferred bounded questions. They do not reopen desktop Section 2.
 
-## 8. Outstanding Actions reference status
+## 8. Ratified Section 3 status
+
+Controlling specification:
+
+`docs/workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`
+
+Section 3 is complete and no longer an open desktop design, copy, or visual-reference question.
+
+### Communication job
+
+Section 3 explains the complete systems-level sequence:
+
+`Gmail + Google Calendar activity → Blotter → current Google Sheet`
+
+It does not replay the hero's contact-specific cue-to-row causality or repeat the hero's ownership treatment.
+
+### Exact order
+
+1. Eyebrow.
+2. Headline.
+3. Supporting copy.
+4. Three external stage labels.
+5. Formal exact mechanism visual.
+6. Boundary line.
+7. Three product-boundary badges.
+8. Closing line.
+9. No CTA.
+
+### Exact formal asset
+
+Asset:
+
+`docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.webp`
+
+Status:
+
+Formal exact desktop implementation target.
+
+Reference dimensions:
+
+- `2048 × 633`.
+
+Lovable must preserve the complete Gmail and Calendar source cluster, exact cues and dates, arrows, central Blotter module, provisional mark and lowercase wordmark, Google Sheets crop, selected state, columns, rows, chips, colors, spacing, shadows, and proportions.
+
+The provisional mark is exact inside this asset only. It is not the global canonical Blotter logo.
+
+### External stage labels
+
+- `RECRUITING HAPPENS HERE`
+- `BLOTTER KEEPS IT CURRENT`
+- `YOUR TRACKER STAYS CURRENT`
+
+The labels remain outside the asset and align with its left, center, and right stages.
+
+### Superseded Section 3 detail
+
+Do not include the former:
+
+- `YOU CONTROL` list;
+- `BLOTTER MAINTAINS` list;
+- two-column division-of-labor block.
+
+The hero already communicates the ownership split.
+
+### Exact remaining structure
+
+Boundary line:
+
+`You choose the people and write the messages. Blotter keeps the logistics current.`
+
+Badges:
+
+- `No technical-prep content`
+- `No generic mass AI outreach`
+- `No AI slop`
+
+Closing line:
+
+`You stay responsible for the judgment and communication. Blotter keeps the logistics synchronized.`
+
+No CTA.
+
+Desktop is the primary approval surface. Tablet and mobile adaptation, optional global motion, final inter-section spacing, and any later global logo decision are deferred bounded questions and do not reopen desktop Section 3.
+
+## 9. Outstanding Actions reference status
 
 The Outstanding Actions reference remains directionally complete but does not yet have a ratified build specification.
 
@@ -233,7 +288,9 @@ Preserve unless later revised:
 - spreadsheet-native grouped rows rather than dashboard cards;
 - intended reuse for landing-page Section 4 and funnel Frame 3.
 
-## 9. Storyboard and additional-reference status
+The next discussion must decide its exact page-context composition, relationship to Section 4 copy and CTA, responsive posture, whether the existing directional asset needs material revision, and the required desktop acceptance criteria.
+
+## 10. Storyboard and additional-reference status
 
 The former unified three-frame storyboard recommendation was never ratified and is not an active requirement.
 
@@ -241,16 +298,17 @@ The hero requires no replacement storyboard or additional reference.
 
 Section 2 requires no additional visual work. Its formal exact email asset and ratified build specification are sufficient.
 
+Section 3 requires no additional visual work. Its formal exact mechanism asset and ratified build specification are sufficient.
+
 Still unresolved:
 
-- whether Section 3 needs a dedicated build specification and/or reference;
 - whether the funnel's Frame 1-to-Frame 2 transition needs a compact reference;
-- whether Outstanding Actions needs a dedicated build specification or material revision;
+- whether Outstanding Actions needs material revision beyond its current directional asset;
 - whether another complex surface requires a reference after written decisions are resolved.
 
 Do not default to either the old full storyboard or a compact replacement.
 
-## 10. Lovable project state
+## 11. Lovable project state
 
 Project: `Blotter Foundation`  
 Project ID: `ec94e794-190a-4c92-b337-67ecfb8f1b10`  
@@ -260,24 +318,24 @@ Current state: Paused
 
 Existing code is unapproved scaffolding unless independently supported by the canonical specifications.
 
-## 11. Exact next action
+## 12. Exact next action
 
-Review Section 3, `How Blotter works`, under the WS5 build-specification process.
+Review Section 4, `Outstanding Actions`, under the WS5 build-specification process.
 
 The next discussion must determine:
 
-1. the exact desktop composition for `Gmail + Calendar → Blotter → Your Google Sheet`;
-2. how Section 3 differs from the hero rather than duplicating cue-to-sheet causality;
-3. how the three stage labels and division-of-labor lists are presented;
-4. whether the boundary line and three anti-AI badges remain in one block or are distributed;
-5. whether shared hero primitives are sufficient;
-6. whether a dedicated Section 3 build specification is required;
-7. whether any new external visual reference materially reduces ambiguity;
-8. the desktop acceptance criteria.
+1. the exact desktop composition around the already-ratified Section 4 copy and CTA;
+2. how the directional Outstanding Actions spreadsheet view is placed and scaled;
+3. whether the existing asset requires any material visual revision;
+4. how the section differs from funnel Frame 3 while reusing the same queue content;
+5. whether the page section uses the shared hero spreadsheet primitive without losing the approved grouped-action structure;
+6. the responsive posture;
+7. the desktop acceptance criteria;
+8. the final asset authority and build-specification status.
 
 Record the ratified result before advancing.
 
-## 12. Current exclusions
+## 13. Current exclusions
 
 Do not build or imply:
 
