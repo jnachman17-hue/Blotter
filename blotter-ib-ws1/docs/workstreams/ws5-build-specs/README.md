@@ -1,7 +1,7 @@
 # WS5 build-specification system
 
 Date created: July 31, 2026  
-Date last updated: July 31, 2026  
+Date last updated: August 1, 2026  
 Status: Active governance record  
 Governing workstream: `../WS5-SPEC.md`
 
@@ -103,6 +103,7 @@ Lovable should not be asked to infer unresolved product or presentation decision
 | 01 | Landing-page hero spreadsheet visual | `01-HERO.md` | Ratified |
 | 02 | Landing-page Section 2 scale and consequence | `02-SECTION-2-SCALE-AND-CONSEQUENCE.md` | Ratified |
 | 03 | Landing-page Section 3 How Blotter works | `03-SECTION-3-HOW-BLOTTER-WORKS.md` | Ratified |
+| 04 | Landing-page Section 4 Outstanding Actions and funnel Frame 3 | `04-SECTION-4-OUTSTANDING-ACTIONS.md` | Ratified |
 
 Additional files will be added in page or funnel sequence as decisions are ratified. File numbering is organizational and does not create authority by itself.
 
@@ -112,8 +113,19 @@ The ratified Section 3 build specification preserves the exact WS4 copy, three s
 
 It explicitly removes the former `YOU CONTROL` and `BLOTTER MAINTAINS` lists because the hero already communicates the ownership split. It also establishes one formal exact desktop mechanism asset and requires the stage labels to remain outside that asset.
 
+## Section 4 exact-asset and reuse note
+
+The ratified Section 4 build specification establishes the existing Outstanding Actions PNG as a formal exact desktop asset rather than a directional reference.
+
+The same exact visual governs:
+
+- landing-page Section 4;
+- canonical funnel product-experience Frame 3.
+
+The two surfaces use different surrounding copy and controls, but the spreadsheet visual, queue content, composition, and styling must not be independently redesigned.
+
 ## Next specification checkpoint
 
-Section 4: `Outstanding Actions`.
+Section 5: `Preservation`.
 
-The next discussion must review the existing directional Outstanding Actions asset, settle its exact page-context composition and responsive posture, determine whether any material visual revision is required, and create a dedicated build specification if needed. Lovable remains paused until the required packet is frozen.
+The next discussion must review the exact WS4 preservation communication job, settle the desktop composition for the existing-tracker and Blotter-live-layer zones, determine whether a dedicated build specification or external visual reference is required, define the responsive posture, and establish desktop acceptance criteria. Lovable remains paused until the required packet is frozen.
