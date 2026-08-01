@@ -149,7 +149,23 @@ Detailed authority: `docs/workstreams/ws5-build-specs/01-HERO.md`
 
 Status: Confirmed
 
-**Tracker decay and stale-sheet storytelling are excluded from the hero and may be considered separately for Section 2.**
+**Tracker decay and stale-sheet storytelling are excluded from the hero.**
+
+Status: Confirmed
+
+**Landing-page Section 2 uses an editorial scale-and-consequence sequence with exact figures of 628 recruiting emails, 68 coffee chats, 19 applications, and 30 interview rounds; a subordinate approximately 60-hour administration estimate and methodology; one exact three-sentence supporting paragraph; one formal exact Goldman Sachs rejection-email asset with two external annotations; exact closing copy; and no CTA. The prior 55-coffee-chat figure, manual-tracker divergence table, another spreadsheet visual, and multi-email sequence are superseded or rejected.**
+
+Detailed authority: `docs/workstreams/ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`
+
+Status: Confirmed
+
+**Landing-page Section 3 uses the exact systems-level sequence of Gmail and Google Calendar activity to Blotter to a current Google Sheet. It uses one formal exact `2048 × 633` mechanism asset, three external stage labels, the exact boundary line, one compact row of the three product-boundary badges, the exact closing line, and no CTA. The former `YOU CONTROL` and `BLOTTER MAINTAINS` lists are removed because the hero already communicates the ownership split.**
+
+Detailed authority: `docs/workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`
+
+Status: Confirmed
+
+**The provisional stacked-record mark and lowercase `blotter` treatment inside the Section 3 exact asset are authoritative for that asset only and do not establish the global canonical Blotter logo.**
 
 Status: Confirmed
 
@@ -185,3 +201,8 @@ Status: Confirmed
 - Explicit vertical Blotter engine or cue-to-engine-to-sheet diagram in the hero. Rejected.
 - Ownership labels above the hero spreadsheet. Rejected.
 - Curly-brace ownership treatment in the hero. Rejected in favor of restrained region underlines.
+- Section 2 manual-tracker divergence table and another spreadsheet visual. Superseded.
+- Section 2 `55 coffee chats`. Superseded by `68 coffee chats`.
+- Section 2 multi-email or three-message consequence sequence. Rejected.
+- Section 3 `YOU CONTROL` and `BLOTTER MAINTAINS` lists. Superseded and removed because the hero already communicates the division of labor.
+- Treating the provisional Section 3 Blotter mark as the global canonical logo. Not ratified and prohibited without a later identity decision.
