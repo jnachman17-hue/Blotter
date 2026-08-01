@@ -42,10 +42,15 @@ This source contains:
 - `section-2/goldman-sachs-rejection-email-exact-v1.webp` (authoritative exact-pixel target)
 - `section-2/goldman-sachs-rejection-email-exact-v1.html` (supplemental portable HTML reference)
 
+### Formal Section 3 asset
+
+- `section-3/how-blotter-works-exact-v1.webp` (authoritative exact-pixel target)
+
 ### Ratified written implementation authority
 
 - `../ws5-build-specs/01-HERO.md`
 - `../ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`
+- `../ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`
 
 ## 1. Hero spreadsheet reference v1
 
@@ -114,7 +119,37 @@ The build specification controls the surrounding Section 2 structure, four figur
 
 The asset is illustrative, not documentary evidence of a genuine Goldman Sachs email. Do not describe it internally or publicly as an authentic received email.
 
-## 3. Outstanding Actions reference v1
+## 3. Section 3 How Blotter works asset
+
+Directory: `section-3/`
+
+Asset status: Formal exact implementation asset.  
+Build status: Desktop Section 3 decisions ratified in `../ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`.
+
+Asset package:
+
+- `section-3/how-blotter-works-exact-v1.webp` — authoritative exact-pixel target.
+- `section-3/README.md` — asset authority, exact visible state, checksums, and handoff rules.
+
+The WebP was rendered losslessly from Jon's ratified uploaded PNG at `2048 × 633` and is pixel-equivalent to it.
+
+Lovable must reproduce:
+
+- Gmail and Google Calendar logos and exact source cues;
+- one restrained incoming arrow;
+- the exact central Blotter module, provisional mark, and lowercase wordmark;
+- one restrained outgoing arrow;
+- the exact Google Sheets chrome, selected cell, formula-bar state, columns, rows, chips, maintained-zone tint, proportions, spacing, shadows, and crop.
+
+The three stage labels remain external page copy and must not be inserted into or over the exact asset.
+
+The provisional mark is exact for this asset only. It is not the canonical global Blotter logo and must not be reused elsewhere merely because it appears here.
+
+Section 3 does not include the former `YOU CONTROL` and `BLOTTER MAINTAINS` lists. That WS4 presentation detail is superseded by the ratified Section 3 build specification because the hero already communicates the ownership split.
+
+No additional Section 3 visual reference is required.
+
+## 4. Outstanding Actions reference v1
 
 Directory: `outstanding-actions/`
 
@@ -139,11 +174,12 @@ The former proposal to build one full unified three-frame storyboard was never r
 
 The hero needs no replacement storyboard or additional external reference. Its implementation is governed by the ratified hero build specification plus the existing PNG and HTML source.
 
-Section 2 is also complete. It uses one formal exact rejection-email asset package rather than a stale spreadsheet or a comparison table. No additional Section 2 visual reference is required.
+Section 2 is complete. It uses one formal exact rejection-email asset package rather than a stale spreadsheet or a comparison table. No additional Section 2 visual reference is required.
+
+Section 3 is complete. It uses one formal exact mechanism asset plus its ratified build specification. No additional Section 3 visual reference is required.
 
 Still unresolved:
 
-- whether Section 3 requires a dedicated visual reference after its implementation questions are reviewed;
 - whether the funnel's Frame 1-to-Frame 2 transition requires a compact reference;
 - whether the Outstanding Actions asset needs a detailed build specification or material revision;
 - whether another complex surface requires an external reference after written decisions are settled.
@@ -169,4 +205,4 @@ GitHub remains the durable source of truth. Lovable chat history and generated c
 
 ## Exact next action
 
-Use the WS5 build-specification process to review Section 3, `How Blotter works`, and determine the minimum written and visual instruction required for a one-shot Lovable implementation.
+Use the WS5 build-specification process to review Section 4, `Outstanding Actions`, and settle the exact page-context implementation, any required visual revision, responsive posture, and build-specification need before advancing.
