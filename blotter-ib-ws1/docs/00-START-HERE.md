@@ -31,18 +31,20 @@ Workstream 5 is active.
 
 Current state:
 
-- The repository was reconciled on July 31, 2026 so the active WS5 records, asset inventory, and file paths describe the current project state.
-- Directional hero and Outstanding Actions visual references have been completed in Claude Design and stored in GitHub.
-- WS5 now uses a dedicated build-specification system for granular landing-page and funnel decisions.
-- The desktop hero visual is ratified in `docs/workstreams/ws5-build-specs/01-HERO.md`.
-- The hero preserves the current spreadsheet and cue-card direction, removes the stale rear sheet and explicit engine, uses direct cue-to-row mapping, applies a faint maintained-zone tint, emphasizes the three example rows, and uses below-sheet region underlines for ownership.
-- The former proposal for one full unified three-frame storyboard was never ratified and is not an active requirement.
-- Whether Section 2, the remaining landing-page surfaces, or the funnel spreadsheet frames require additional external references remains unresolved and will be decided surface by surface.
-- The existing Lovable project is private, unpublished, and paused. Planning and implementation remain blocked until the required build specifications and remaining reference scope are frozen.
+- The repository is reconciled to the active WS5 documentation system.
+- WS5 uses self-contained, ratified build specifications for implementation-sensitive landing-page and funnel surfaces.
+- The desktop hero is ratified in `docs/workstreams/ws5-build-specs/01-HERO.md`.
+- Landing-page Section 2 is ratified in `docs/workstreams/ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`.
+- Section 2 uses a formal exact Goldman Sachs rejection-email asset at `docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.html`.
+- The Section 2 figure set is 628 recruiting emails, 68 coffee chats, 19 applications, and 30 interview rounds.
+- The former `55 coffee chats` figure and manual-tracker comparison-table visual are superseded.
+- Directional hero and Outstanding Actions references remain stored in GitHub.
+- The former proposal for one full unified three-frame storyboard was never ratified and is not active.
+- The Lovable project is private, unpublished, and paused. Planning and implementation remain blocked until the required build specifications and remaining reference scope are frozen.
 
 Exact next action:
 
-Use the build-specification process to settle Section 2's scale and manual-tracker-divergence presentation, including whether the stale-sheet concept belongs there and whether a separate visual reference is required.
+Use the build-specification process to review Section 3, `How Blotter works`, determine the minimum build-grade instruction required, and decide whether any new external visual reference is justified.
 
 Do not enter Lovable plan mode yet.
 
@@ -57,7 +59,9 @@ Permanent cumulative records live under `docs/workstreams/`:
 - `WS5-SPEC.md`: active WS5 governor for build specifications, visual references, Lovable implementation, analytics, and verification.
 - `ws5-build-specs/README.md`: required system for self-contained surface-level build specifications.
 - `ws5-build-specs/01-HERO.md`: ratified desktop hero implementation specification.
-- `ws5-assets/README.md`: active visual-reference inventory, status, defects, and handoff rules.
+- `ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`: ratified desktop Section 2 implementation specification.
+- `ws5-assets/README.md`: active visual-reference inventory, authority levels, and handoff rules.
+- `ws5-assets/section-2/README.md`: formal Section 2 asset record.
 
 `CURRENT-HANDOFF.md` contains temporary resumption context only.
 
@@ -81,6 +85,8 @@ WS4 established:
 - responsive priorities;
 - claim-support safeguards;
 - Lovable-ready implementation constraints.
+
+Later ratified WS5 build specifications may supersede a specific figure, visual, or presentation detail while preserving the WS4 section communication job. Such supersessions must be explicit.
 
 ## Workstream 5 objective
 
@@ -109,7 +115,7 @@ WS5 does not launch traffic, build the platform page, implement real integration
 - New substantive product, copy, or presentation decisions require Jon ratification before becoming canonical.
 - Ratified surface decisions must be written as self-contained build specifications, not left in chat shorthand.
 - External visual references are limited to complex assets that materially reduce implementation ambiguity.
-- Directional references supplement written specifications and are not literal final pixel targets.
+- Every asset record must identify whether the asset is directional or a formal exact target.
 - Text, statistics, privacy disclosures, FAQ, CTA blocks, and conventional layouts do not automatically require separate prebuilt visual references.
 - The spreadsheet page is designed and built first.
 - Both variants ultimately launch at roughly the same time.
@@ -125,13 +131,14 @@ WS5 does not launch traffic, build the platform page, implement real integration
 2. `docs/CURRENT-HANDOFF.md`
 3. `docs/workstreams/WS5-SPEC.md`
 4. `docs/workstreams/ws5-build-specs/README.md`
-5. The ratified build specification for the current surface.
+5. The ratified build specifications for completed and current surfaces.
 6. `docs/workstreams/ws5-assets/README.md`
-7. `docs/workstreams/WS4-SPEC.md`
-8. `docs/workstreams/WS3-SPEC.md`
-9. `docs/workstreams/WS2-SPEC.md`
-10. `docs/05-working-agreement.md`
-11. Only additional canonical files needed for the exact task.
+7. The relevant asset README.
+8. `docs/workstreams/WS4-SPEC.md`
+9. `docs/workstreams/WS3-SPEC.md`
+10. `docs/workstreams/WS2-SPEC.md`
+11. `docs/05-working-agreement.md`
+12. Only additional canonical files needed for the exact task.
 
 ## Repository and archive rules
 
@@ -177,8 +184,11 @@ Archived material is historical context only.
 - `workstreams/WS5-SPEC.md`: active build-specification, visual-reference, Lovable implementation, analytics, and verification governor.
 - `workstreams/ws5-build-specs/README.md`: WS5 surface-specification governance and inventory.
 - `workstreams/ws5-build-specs/01-HERO.md`: ratified desktop hero build specification.
-- `workstreams/ws5-assets/README.md`: visual-reference inventory and reference rules.
+- `workstreams/ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`: ratified desktop Section 2 build specification.
+- `workstreams/ws5-assets/README.md`: visual-reference inventory and authority rules.
 - `workstreams/ws5-assets/source/blotter-sheets-reference-v1.html`: editable directional source containing the hero and Outstanding Actions scenes.
 - `workstreams/ws5-assets/hero/hero-reference-v1.png`: hero review preview.
 - `workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`: Outstanding Actions review preview.
+- `workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.html`: formal exact Section 2 consequence visual.
+- `workstreams/ws5-assets/section-2/README.md`: Section 2 asset record.
 - `CURRENT-HANDOFF.md`: temporary immediate resumption context.

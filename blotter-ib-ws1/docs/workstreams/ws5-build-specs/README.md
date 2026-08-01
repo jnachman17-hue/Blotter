@@ -1,6 +1,7 @@
 # WS5 build-specification system
 
 Date created: July 31, 2026  
+Date last updated: July 31, 2026  
 Status: Active governance record  
 Governing workstream: `../WS5-SPEC.md`
 
@@ -21,9 +22,11 @@ For a surface with a ratified build specification, use this order:
 3. The ratified build specification for that exact surface.
 4. `WS4-SPEC.md` for exact page copy, section order, communication job, funnel presentation, responsive priorities, and claim boundaries not superseded by a later ratified WS5 decision.
 5. `WS3-SPEC.md` for funnel architecture, event names, properties, price, measurement, and read rules.
-6. The relevant visual reference, editable source, and asset README.
+6. The relevant formal or directional visual reference, editable source, and asset README.
 
-The visual reference shows the approved direction. The ratified build specification controls any required preservation, correction, removal, or improvement. Lovable must not copy a known defect merely because it appears in the PNG or HTML source.
+Where a later ratified build specification changes a figure, copy line, visual, or presentation rule from WS4, the later build specification controls that surface and must identify the supersession explicitly.
+
+A directional visual reference shows approved direction. A formal exact asset is a direct implementation target. The relevant asset README and build specification state which status applies.
 
 ## Status vocabulary
 
@@ -74,6 +77,7 @@ For each unresolved landing-page or funnel surface:
    - `CURRENT-HANDOFF.md`;
    - `06-assumptions-and-open-questions.md`;
    - the relevant asset README or inventory;
+   - `00-START-HERE.md`;
    - `04-decision-log.md` when the ruling is cross-project or load-bearing.
 7. Mark resolved questions as settled and remove them from the open-question register.
 8. Do not enter Lovable plan mode until the required build specifications and external-reference scope are frozen.
@@ -85,17 +89,24 @@ This is the required documentation system for the remainder of WS5 design ratifi
 A ratified build specification must be usable as the written implementation authority for its surface. The future Lovable handoff should include:
 
 - the build specification;
-- the relevant visual reference PNG;
+- the relevant visual reference or formal asset;
 - the editable source when useful;
 - the governing WS4 or WS3 source for surrounding copy and behavior;
 - a clear instruction to preserve, improve, and exclude exactly what the build specification states.
 
-Lovable should not be asked to infer unresolved product or presentation decisions from the visual reference. If a required decision is still unresolved, the specification must say so and the surface must not be treated as frozen.
+Lovable should not be asked to infer unresolved product or presentation decisions from a visual reference. If a required decision is still unresolved, the specification must say so and the surface must not be treated as frozen.
 
 ## Current specification inventory
 
 | Sequence | Surface | File | Status |
 |---:|---|---|---|
 | 01 | Landing-page hero spreadsheet visual | `01-HERO.md` | Ratified |
+| 02 | Landing-page Section 2 scale and consequence | `02-SECTION-2-SCALE-AND-CONSEQUENCE.md` | Ratified |
 
 Additional files will be added in page or funnel sequence as decisions are ratified. File numbering is organizational and does not create authority by itself.
+
+## Next specification checkpoint
+
+Section 3: `How Blotter works`.
+
+The next discussion must determine whether the existing WS4 mechanism sequence can be implemented directly from text and shared hero primitives or requires a dedicated build specification and/or visual reference. Lovable remains paused until the required packet is frozen.

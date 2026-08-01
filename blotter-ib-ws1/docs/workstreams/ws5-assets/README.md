@@ -10,15 +10,20 @@ Build-specification index: `../ws5-build-specs/README.md`
 
 This directory stores the small set of visual references created outside Lovable for interface-heavy scenes that are difficult to communicate reliably through text alone.
 
-These references are implementation inputs, not standalone final website designs. Lovable must use them together with the ratified build specification for the relevant surface and the canonical copy, behavior, measurement, responsive, and claim rules in `WS4-SPEC.md`, `WS3-SPEC.md`, and `WS5-SPEC.md`.
+These references are implementation inputs. Their authority varies by asset:
 
-Where a ratified build specification exists, it controls how the visual reference must be preserved, corrected, removed, or improved. A visible defect in the PNG or HTML is not authoritative merely because it appears in the asset.
+- a `directional visual reference` establishes visual direction but is not a literal pixel target;
+- a `formal exact implementation asset` must be reproduced as specified and is not open to visual reinterpretation.
+
+Lovable must use every asset together with the ratified build specification for the relevant surface and the canonical copy, behavior, measurement, responsive, and claim rules in `WS4-SPEC.md`, `WS3-SPEC.md`, and `WS5-SPEC.md`.
+
+Where a ratified build specification exists, it controls how the asset must be preserved, corrected, removed, improved, placed, or adapted. The asset README states whether the asset is directional or exact.
 
 Do not create a bespoke visual reference for every page section merely because the section has visual hierarchy. Text, statistics, accordions, disclosure tables, CTA blocks, and other conventional layouts should normally be implemented from the canonical specifications unless a specific ambiguity justifies additional work.
 
 ## Current handoff packet
 
-### Editable source
+### Shared editable spreadsheet source
 
 `source/blotter-sheets-reference-v1.html`
 
@@ -27,16 +32,19 @@ This source contains:
 - the hero recruiting tracker;
 - the Outstanding Actions view.
 
-### Review previews
+### Spreadsheet review previews
 
 - `hero/hero-reference-v1.png`
 - `outstanding-actions/outstanding-actions-reference-v1.png`
 
+### Formal Section 2 asset
+
+- `section-2/goldman-sachs-rejection-email-exact-v1.html`
+
 ### Ratified written implementation authority
 
 - `../ws5-build-specs/01-HERO.md`
-
-The PNGs provide immediate visual review. The editable source, ratified build specifications, reference-specific notes, and governing workstream specifications form the implementation handoff.
+- `../ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`
 
 ## 1. Hero spreadsheet reference v1
 
@@ -75,7 +83,34 @@ Required implementation changes:
 
 The current engine and stale-sheet treatments are superseded by the ratified build specification and must not be copied.
 
-## 2. Outstanding Actions reference v1
+## 2. Section 2 Goldman Sachs rejection-email asset
+
+Directory: `section-2/`
+
+Asset status: Formal exact implementation asset.  
+Build status: Desktop Section 2 decisions ratified in `../ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`.
+
+Asset:
+
+`section-2/goldman-sachs-rejection-email-exact-v1.html`
+
+This asset is the exact desktop target for the consequence visual. Lovable must reproduce:
+
+- the full Gmail desktop composition;
+- the `1180 × 560` reference proportions;
+- top navigation;
+- left folder rail;
+- central opened-message surface;
+- right application rail;
+- exact sender, recipient, timestamp, subject, body, signature, and visible reply controls.
+
+Do not redesign it into a generic email card.
+
+The build specification controls the surrounding Section 2 structure, four figures, exact copy, two external annotations, placement, responsive checkpoint, and exclusions.
+
+The asset is illustrative, not documentary evidence of a genuine Goldman Sachs email. Do not describe it internally or publicly as an authentic received email.
+
+## 3. Outstanding Actions reference v1
 
 Directory: `outstanding-actions/`
 
@@ -92,7 +127,7 @@ Established direction:
 - full-width spreadsheet rows rather than dashboard cards;
 - intended reuse for landing-page Section 4 and funnel Frame 3.
 
-Lovable should ultimately reuse the shared spreadsheet component rather than independently rebuilding this view. Exact page-context, responsive, and any remaining presentation decisions must be ratified before implementation.
+Lovable should ultimately reuse the shared spreadsheet component rather than independently rebuilding this view. Exact page context, responsive behavior, and any remaining presentation decisions must be ratified before implementation.
 
 ## Storyboard and additional-reference status
 
@@ -100,9 +135,11 @@ The former proposal to build one full unified three-frame storyboard was never r
 
 The hero needs no replacement storyboard or additional external reference. Its implementation is governed by the ratified hero build specification plus the existing PNG and HTML source.
 
+Section 2 is also complete. It uses one formal exact rejection-email asset rather than a stale spreadsheet or a comparison table. No additional Section 2 visual reference is required.
+
 Still unresolved:
 
-- whether Section 2 requires a stale-tracker or divergence reference;
+- whether Section 3 requires a dedicated visual reference after its implementation questions are reviewed;
 - whether the funnel's Frame 1-to-Frame 2 transition requires a compact reference;
 - whether the Outstanding Actions asset needs a detailed build specification or material revision;
 - whether another complex surface requires an external reference after written decisions are settled.
@@ -114,9 +151,9 @@ Do not default to the former full storyboard or a compact replacement. Decide th
 For each approved visual surface:
 
 1. Attach the relevant ratified build specification.
-2. Attach the relevant PNG preview.
-3. Attach the editable source when useful.
-4. Identify the controlling WS4 or WS3 requirements for surrounding copy and behavior.
+2. Attach the relevant formal or directional asset.
+3. Identify the controlling WS4 or WS3 requirements for surrounding copy and behavior.
+4. State the asset's authority level.
 5. State what must be preserved.
 6. State what must be changed or removed.
 7. State explicit exclusions and the checkpoint stop condition.
@@ -128,4 +165,4 @@ GitHub remains the durable source of truth. Lovable chat history and generated c
 
 ## Exact next action
 
-Use the WS5 build-specification process to settle Section 2's scale and manual-tracker-divergence presentation, including whether the stale-sheet concept belongs there and whether a separate visual reference is required.
+Use the WS5 build-specification process to review Section 3, `How Blotter works`, and determine the minimum written and visual instruction required for a one-shot Lovable implementation.
