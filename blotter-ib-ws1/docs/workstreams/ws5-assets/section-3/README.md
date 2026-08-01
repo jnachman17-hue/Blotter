@@ -9,13 +9,13 @@ Governing build specification: `../../ws5-build-specs/03-SECTION-3-HOW-BLOTTER-W
 
 Authoritative exact-pixel target:
 
-`how-blotter-works-exact-v1.webp`
+`how-blotter-works-exact-v1.avif`
 
 Reference dimensions:
 
 - `2048 × 633`
 
-The WebP was rendered losslessly from Jon's ratified uploaded PNG. It is pixel-equivalent to the uploaded source and is the sole formal visual authority for the desktop Section 3 mechanism.
+The AVIF was encoded losslessly from Jon's ratified uploaded PNG. It is pixel-equivalent to the uploaded source and is the sole formal visual authority for the desktop Section 3 mechanism.
 
 Source PNG metadata:
 
@@ -23,10 +23,10 @@ Source PNG metadata:
 - color mode: RGBA;
 - SHA-256: `5a85baa4970ff4dd1ee39f6bb6ddce07d433543b099c728aa11ee674eecc187c`.
 
-Stored WebP metadata:
+Stored AVIF metadata:
 
-- lossless WebP;
-- SHA-256: `b09f21e7a5733587398c4fd5859c5eac191280829d76f025bfbe8fc38a556e06`.
+- lossless AVIF;
+- SHA-256: `96fc9213dcd55072082499409153563dbe56c82fe815781ba13fec34424a45b0`.
 
 ## Authority
 

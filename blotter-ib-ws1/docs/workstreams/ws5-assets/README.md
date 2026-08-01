@@ -44,7 +44,7 @@ This source contains:
 
 ### Formal Section 3 asset
 
-- `section-3/how-blotter-works-exact-v1.webp` (authoritative exact-pixel target)
+- `section-3/how-blotter-works-exact-v1.avif` (authoritative exact-pixel target)
 
 ### Ratified written implementation authority
 
@@ -101,7 +101,7 @@ Asset package:
 - `section-2/goldman-sachs-rejection-email-exact-v1.webp` — authoritative exact-pixel target.
 - `section-2/goldman-sachs-rejection-email-exact-v1.html` — supplemental portable HTML reference.
 
-The WebP was rendered losslessly from Jon's uploaded self-contained bundle at `1180 × 560`. Lovable must use it as the visual truth and reproduce:
+The AVIF was encoded losslessly from Jon's uploaded self-contained bundle at `1180 × 560`. Lovable must use it as the visual truth and reproduce:
 
 - the full Gmail desktop composition;
 - the `1180 × 560` reference proportions;
@@ -128,10 +128,10 @@ Build status: Desktop Section 3 decisions ratified in `../ws5-build-specs/03-SEC
 
 Asset package:
 
-- `section-3/how-blotter-works-exact-v1.webp` — authoritative exact-pixel target.
+- `section-3/how-blotter-works-exact-v1.avif` — authoritative exact-pixel target.
 - `section-3/README.md` — asset authority, exact visible state, checksums, and handoff rules.
 
-The WebP was rendered losslessly from Jon's ratified uploaded PNG at `2048 × 633` and is pixel-equivalent to it.
+The AVIF was encoded losslessly from Jon's ratified uploaded PNG at `2048 × 633` and is pixel-equivalent to it.
 
 Lovable must reproduce:
 

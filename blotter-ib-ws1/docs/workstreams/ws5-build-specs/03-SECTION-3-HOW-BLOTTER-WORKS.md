@@ -33,7 +33,7 @@ Use these sources together:
 - Build-specification system: `README.md`
 - Visual-reference inventory: `../ws5-assets/README.md`
 - Section 3 asset notes: `../ws5-assets/section-3/README.md`
-- Formal exact visual target: `../ws5-assets/section-3/how-blotter-works-exact-v1.webp`
+- Formal exact visual target: `../ws5-assets/section-3/how-blotter-works-exact-v1.avif`
 
 This specification explicitly supersedes one earlier WS4 presentation detail:
 
@@ -146,7 +146,7 @@ The exact asset may scale uniformly to the approved content width. Preserve its 
 
 Controlling asset:
 
-`../ws5-assets/section-3/how-blotter-works-exact-v1.webp`
+`../ws5-assets/section-3/how-blotter-works-exact-v1.avif`
 
 Asset status:
 
@@ -157,7 +157,7 @@ Desktop reference dimensions:
 - `2048px` wide;
 - `633px` high.
 
-The WebP is a lossless, pixel-equivalent rendering of Jon's ratified uploaded PNG. It is the authoritative desktop pixel target.
+The AVIF is a lossless, pixel-equivalent rendering of Jon's ratified uploaded PNG. It is the authoritative desktop pixel target.
 
 The asset contains one left-to-right flow:
 

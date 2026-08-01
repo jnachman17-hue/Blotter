@@ -80,7 +80,7 @@ Do not record decisions using internal labels such as `Mechanism A` or `Option B
 
 ### Formal exact Section 3 asset
 
-- `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.webp`
+- `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`
 
 ### Asset notes
 
@@ -221,7 +221,7 @@ It does not replay the hero's contact-specific cue-to-row causality or repeat th
 
 Asset:
 
-`docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.webp`
+`docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`
 
 Status:
 

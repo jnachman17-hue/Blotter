@@ -37,7 +37,7 @@ Current state:
 - Landing-page Section 2 is ratified in `docs/workstreams/ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`.
 - Landing-page Section 3 is ratified in `docs/workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`.
 - Section 2 uses a formal exact Goldman Sachs rejection-email asset at `docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.webp`.
-- Section 3 uses a formal exact mechanism asset at `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.webp`.
+- Section 3 uses a formal exact mechanism asset at `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`.
 - The Section 2 figure set is 628 recruiting emails, 68 coffee chats, 19 applications, and 30 interview rounds.
 - The former `55 coffee chats` figure and manual-tracker comparison-table visual are superseded.
 - Section 3 uses external stage labels, the exact Gmail and Calendar to Blotter to Google Sheets visual, the boundary line, three product-boundary badges, the closing line, and no CTA.
@@ -200,6 +200,6 @@ Archived material is historical context only.
 - `workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.webp`: formal exact Section 2 consequence visual.
 - `workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.html`: supplemental Section 2 HTML reference.
 - `workstreams/ws5-assets/section-2/README.md`: Section 2 asset record.
-- `workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.webp`: formal exact Section 3 mechanism visual.
+- `workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`: formal exact Section 3 mechanism visual.
 - `workstreams/ws5-assets/section-3/README.md`: Section 3 asset record.
 - `CURRENT-HANDOFF.md`: temporary immediate resumption context.

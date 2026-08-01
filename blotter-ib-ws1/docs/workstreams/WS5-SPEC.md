@@ -196,7 +196,7 @@ Contains:
 
 ### Formal exact Section 3 asset
 
-- `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.webp`
+- `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`
 
 ### Asset notes
 
@@ -410,7 +410,7 @@ Closing line:
 
 Asset:
 
-`docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.webp`
+`docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`
 
 Status:
 
@@ -680,7 +680,7 @@ Controlling specification:
 
 Formal exact asset:
 
-`docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.webp`
+`docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`
 
 Requirements:
 
