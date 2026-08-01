@@ -1,6 +1,6 @@
 # Decision log
 
-Date last updated: July 31, 2026
+Date last updated: August 1, 2026
 
 This file is a concise index of settled, rejected, and superseded project-level rulings. Detailed workstream decisions live in `docs/workstreams/WS#-SPEC.md` and ratified surface instructions live in `docs/workstreams/ws5-build-specs/`.
 
@@ -169,6 +169,16 @@ Status: Confirmed
 
 Status: Confirmed
 
+**Landing-page Section 4 uses the exact `1848 × 1160` Outstanding Actions PNG as its dominant visual, with exact headline, supporting line, CTA line, and `See how Blotter works` button. The page CTA enters the canonical funnel with `cta_location = actions`. The visual is a formal exact asset and must not be redesigned into cards, dashboard tiles, or a separate task-management interface.**
+
+Detailed authority: `docs/workstreams/ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`
+
+Status: Confirmed
+
+**The same formal exact Outstanding Actions asset governs canonical funnel product-experience Frame 3. Section 4 and Frame 3 use different surrounding copy and controls, but the spreadsheet visual, queue content, grouping, styling, and proportions must not be independently redesigned.**
+
+Status: Confirmed
+
 ## Product and technical context
 
 - Blotter is a logistics layer only.
@@ -206,3 +216,6 @@ Status: Confirmed
 - Section 2 multi-email or three-message consequence sequence. Rejected.
 - Section 3 `YOU CONTROL` and `BLOTTER MAINTAINS` lists. Superseded and removed because the hero already communicates the division of labor.
 - Treating the provisional Section 3 Blotter mark as the global canonical logo. Not ratified and prohibited without a later identity decision.
+- Treating the Outstanding Actions asset as merely directional. Superseded by formal exact status for Section 4 and funnel Frame 3.
+- Creating a second independently styled Outstanding Actions visual for funnel Frame 3. Rejected.
+- Converting Outstanding Actions into three dashboard cards, KPI tiles, or a generic task-management interface. Rejected.
