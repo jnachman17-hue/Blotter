@@ -5,15 +5,23 @@ Status: Formal exact implementation asset
 Surface: Landing-page Section 2 consequence visual  
 Controlling build specification: `../../ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`
 
-## Asset
+## Asset package
+
+Authoritative exact-pixel target:
+
+`goldman-sachs-rejection-email-exact-v1.webp`
+
+Supplemental portable HTML implementation reference:
 
 `goldman-sachs-rejection-email-exact-v1.html`
 
 ## Authority
 
-This asset is not directional.
+This package is not directional.
 
-It is the exact desktop visual and content target for the Section 2 rejection-email component. Lovable must reproduce its substantive composition, Gmail chrome, spacing, sender, recipient, timestamp, subject, body, signature, and visible controls without redesigning it into a generic email card.
+The lossless WebP is the exact desktop pixel target. It was rendered directly from Jon's uploaded self-contained Goldman Sachs rejection-email bundle at the native `1180 × 560` viewport. Lovable must match this image under side-by-side review.
+
+The HTML is supplemental. It provides an implementation-friendly reconstruction with the exact visible text and substantive Gmail layout. It may be translated into React and project CSS, but it does not override the WebP where any visual discrepancy exists.
 
 The ratified build specification controls:
 
@@ -53,16 +61,14 @@ Body and signature are preserved exactly in the HTML and repeated in the control
 
 ## Asset handling
 
-- Treat this HTML as the formal source.
-- Do not replace it with the earlier nonportable Claude export.
+- Use the WebP as the visual truth.
+- Use the HTML only as a supplemental structural and text reference.
 - Do not change Goldman Sachs to Evercore.
 - Do not rewrite the email.
 - Do not add additional messages.
 - Do not simplify it into a single floating email card.
 - Do not embed Blotter UI inside the Gmail visual.
 - Do not add warning stamps, rejection graphics, or animation.
-
-Lovable may translate the HTML into React and project CSS only if the rendered desktop result remains visually equivalent under side-by-side review.
 
 ## Claim-safety note
 

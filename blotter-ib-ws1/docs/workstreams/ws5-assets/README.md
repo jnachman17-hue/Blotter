@@ -39,7 +39,8 @@ This source contains:
 
 ### Formal Section 2 asset
 
-- `section-2/goldman-sachs-rejection-email-exact-v1.html`
+- `section-2/goldman-sachs-rejection-email-exact-v1.webp` (authoritative exact-pixel target)
+- `section-2/goldman-sachs-rejection-email-exact-v1.html` (supplemental portable HTML reference)
 
 ### Ratified written implementation authority
 
@@ -90,11 +91,12 @@ Directory: `section-2/`
 Asset status: Formal exact implementation asset.  
 Build status: Desktop Section 2 decisions ratified in `../ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`.
 
-Asset:
+Asset package:
 
-`section-2/goldman-sachs-rejection-email-exact-v1.html`
+- `section-2/goldman-sachs-rejection-email-exact-v1.webp` — authoritative exact-pixel target.
+- `section-2/goldman-sachs-rejection-email-exact-v1.html` — supplemental portable HTML reference.
 
-This asset is the exact desktop target for the consequence visual. Lovable must reproduce:
+The WebP was rendered losslessly from Jon's uploaded self-contained bundle at `1180 × 560`. Lovable must use it as the visual truth and reproduce:
 
 - the full Gmail desktop composition;
 - the `1180 × 560` reference proportions;
@@ -104,7 +106,9 @@ This asset is the exact desktop target for the consequence visual. Lovable must 
 - right application rail;
 - exact sender, recipient, timestamp, subject, body, signature, and visible reply controls.
 
-Do not redesign it into a generic email card.
+The HTML is an implementation-friendly structural and text reference. It does not override the WebP where a visual discrepancy exists.
+
+Do not redesign the asset into a generic email card.
 
 The build specification controls the surrounding Section 2 structure, four figures, exact copy, two external annotations, placement, responsive checkpoint, and exclusions.
 
@@ -135,7 +139,7 @@ The former proposal to build one full unified three-frame storyboard was never r
 
 The hero needs no replacement storyboard or additional external reference. Its implementation is governed by the ratified hero build specification plus the existing PNG and HTML source.
 
-Section 2 is also complete. It uses one formal exact rejection-email asset rather than a stale spreadsheet or a comparison table. No additional Section 2 visual reference is required.
+Section 2 is also complete. It uses one formal exact rejection-email asset package rather than a stale spreadsheet or a comparison table. No additional Section 2 visual reference is required.
 
 Still unresolved:
 
