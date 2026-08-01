@@ -102,11 +102,18 @@ Lovable should not be asked to infer unresolved product or presentation decision
 |---:|---|---|---|
 | 01 | Landing-page hero spreadsheet visual | `01-HERO.md` | Ratified |
 | 02 | Landing-page Section 2 scale and consequence | `02-SECTION-2-SCALE-AND-CONSEQUENCE.md` | Ratified |
+| 03 | Landing-page Section 3 How Blotter works | `03-SECTION-3-HOW-BLOTTER-WORKS.md` | Ratified |
 
 Additional files will be added in page or funnel sequence as decisions are ratified. File numbering is organizational and does not create authority by itself.
 
+## Section 3 supersession note
+
+The ratified Section 3 build specification preserves the exact WS4 copy, three stage labels, boundary line, three product-boundary badges, closing line, and no-CTA rule.
+
+It explicitly removes the former `YOU CONTROL` and `BLOTTER MAINTAINS` lists because the hero already communicates the ownership split. It also establishes one formal exact desktop mechanism asset and requires the stage labels to remain outside that asset.
+
 ## Next specification checkpoint
 
-Section 3: `How Blotter works`.
+Section 4: `Outstanding Actions`.
 
-The next discussion must determine whether the existing WS4 mechanism sequence can be implemented directly from text and shared hero primitives or requires a dedicated build specification and/or visual reference. Lovable remains paused until the required packet is frozen.
+The next discussion must review the existing directional Outstanding Actions asset, settle its exact page-context composition and responsive posture, determine whether any material visual revision is required, and create a dedicated build specification if needed. Lovable remains paused until the required packet is frozen.
