@@ -8,180 +8,204 @@ Blotter is being developed through a Build-Measure-Learn validation process for 
 
 The immediate objective is to test whether meaningful demand exists before building meaningful backend functionality. The project should produce evidence about demand, preferred product surface, valued features, and willingness to pay before further product buildout.
 
-## Current phase
-
-Spreadsheet-page design ratification, Lovable implementation, instrumentation, and private verification.
-
-Confirmed sequence:
+## Confirmed workstream sequence
 
 1. Workstream 1: continuity and source-of-truth setup. Complete.
 2. Workstream 2: spreadsheet-native proposition. Complete.
 3. Workstream 3: conversion and measurement design. Complete.
 4. Workstream 4: spreadsheet landing-page content and experience design. Complete.
-5. Workstream 5: granular build specifications, complex visual references, spreadsheet-page Lovable implementation, instrumentation, and private deployment. Active.
+5. Workstream 5: build specifications, visual references, Lovable implementation, instrumentation, and private verification. Active.
 6. Workstream 6: acquisition preparation and research.
 7. Workstream 7: platform-page proposition, design, and matched build.
 8. Workstream 8: final analytics verification and simultaneous launch.
 9. Use market evidence to continue, revise, retest, or stop investment.
 10. Do not build meaningful backend functionality until market evidence guides it.
 
-## Current workstream
+## Current phase
 
-Workstream 5 is active.
+The seven-section spreadsheet landing page is fully ratified and the pre-Lovable implementation packet is frozen.
 
-Current state:
+The project is ready for governed Lovable plan-only intake.
 
-- The repository is reconciled to the active WS5 documentation system.
-- WS5 uses self-contained, ratified build specifications for implementation-sensitive landing-page and funnel surfaces.
-- The desktop hero is ratified in `docs/workstreams/ws5-build-specs/01-HERO.md`.
-- Landing-page Section 2 is ratified in `docs/workstreams/ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`.
-- Landing-page Section 3 is ratified in `docs/workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`.
-- Landing-page Section 4 and canonical funnel Frame 3 are ratified in `docs/workstreams/ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`.
-- Landing-page Section 5 is ratified in `docs/workstreams/ws5-build-specs/05-SECTION-5-PRESERVATION.md`.
-- Landing-page Section 6 is ratified in `docs/workstreams/ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`.
-- Section 2 uses a formal exact Goldman Sachs rejection-email asset at `docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.webp`.
-- Section 3 uses a formal exact mechanism asset at `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`.
-- Section 4 and funnel Frame 3 use the same formal exact Outstanding Actions asset at `docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`.
-- Section 5 uses a formal exact preservation asset at `docs/workstreams/ws5-assets/section-5/preservation-exact-v1.html`.
-- Section 6 requires no external asset. It uses the ratified written disclosure system directly.
-- The Section 2 figure set is 628 recruiting emails, 68 coffee chats, 19 applications, and 30 interview rounds.
-- The former `55 coffee chats` figure and manual-tracker comparison-table visual are superseded.
-- Section 3 uses external stage labels, the exact Gmail and Calendar to Blotter to Google Sheets visual, the boundary line, three product-boundary badges, the closing line, and no CTA.
-- The former Section 3 `YOU CONTROL` and `BLOTTER MAINTAINS` lists are removed because the hero already communicates the ownership split.
-- The provisional Blotter mark inside the Section 3 exact asset is authoritative for that asset only and is not the global canonical logo.
-- Section 4 uses the exact Outstanding Actions visual and CTA with `cta_location = actions`; the same visual governs funnel Frame 3.
-- Section 5 uses one exact Google Sheets preservation view with Email and LinkedIn added before the Blotter-maintained fields, a divider between LinkedIn and Status, exact five-contact data, blue underlined `Here` links, no eyebrow, and no CTA.
-- The conceptual Section 5 labels `YOUR EXISTING TRACKER` and `BLOTTER ADDS THE LIVE LAYER` remain conceptually true but are not inserted into the exact asset.
-- Section 6 uses a calm left-aligned disclosure section with the exact candid claim, four numbered processing steps, permissions table, broad Google-permission notice, retention and commitment blocks, account-deletion statement, provider-agnostic third-party disclosure, seven-question privacy FAQ, and privacy-policy link. It has no eyebrow or CTA.
-- No third-party connection provider has been selected. Section 6 must remain provider-agnostic and must not imply Google verification, accreditation, CASA, SOC 2, or a named provider before verification.
-- Section 6 desktop composition is ratified, but public use remains gated by actual implementation truth for scopes, routing, retention, deletion, provider role, subprocessors, and privacy-policy claims.
-- The former proposal for one full unified three-frame storyboard was never ratified and is not active.
-- The Lovable project is private, unpublished, and paused. Planning and implementation remain blocked until the required build specifications and remaining reference scope are frozen.
+Do not begin with a build prompt. The next chat must first load the project knowledge, upload the frozen packet and assets, send a plan-only message, review the returned plan with Jon, and obtain approval before code changes.
 
-Exact next action:
+## Current Lovable project
 
-Use the build-specification process to review Section 7, `Frequently asked questions` and the final closing CTA. Preserve the already-ratified FAQ and closing copy, settle the desktop accordion and final-CTA composition, retain the rule that price and availability appear only inside the canonical funnel, define responsive behavior and acceptance criteria, and do not create an external visual asset unless a concrete implementation ambiguity proves one is necessary.
+Project: `Blotter Foundation`  
+Project ID: `ec94e794-190a-4c92-b337-67ecfb8f1b10`  
+Workspace ID: `c31c8d1d4fa00d0fc8fc`  
+Visibility: Private  
+Published: No  
+Current foundation commit at packet freeze: `fa7af41199847b36ab8a14b55a767b93a8955968`
 
-Do not enter Lovable plan mode yet.
+The current Lovable code is preliminary scaffolding. It is not approved page implementation and may be retained, rewritten, or removed only through the approved implementation plan.
 
-## Durable workstream specifications
+## Ratified landing-page surfaces
 
-Permanent cumulative records live under `docs/workstreams/`:
+1. Hero — `docs/workstreams/ws5-build-specs/01-HERO.md`
+2. Section 2 Scale and Consequence — `02-SECTION-2-SCALE-AND-CONSEQUENCE.md`
+3. Section 3 How Blotter Works — `03-SECTION-3-HOW-BLOTTER-WORKS.md`
+4. Section 4 Outstanding Actions and funnel Frame 3 — `04-SECTION-4-OUTSTANDING-ACTIONS.md`
+5. Section 5 Preservation — `05-SECTION-5-PRESERVATION.md`
+6. Section 6 Data and Privacy — `06-SECTION-6-DATA-AND-PRIVACY.md`
+7. Section 7 FAQ and Final CTA — `07-SECTION-7-FAQ-AND-FINAL-CTA.md`
 
-- `WS2-SPEC.md`: complete spreadsheet-native proposition.
-- `WS3-SPEC.md`: complete conversion and measurement system.
-- `WS4-SPEC.md`: complete spreadsheet landing-page content and experience specification.
-- `WS4-RATIFICATION-PACKAGE.md`: completed administrative ratification record.
-- `WS5-SPEC.md`: active WS5 governor for build specifications, visual references, Lovable implementation, analytics, and verification.
-- `ws5-build-specs/README.md`: required system for self-contained surface-level build specifications.
-- `ws5-build-specs/01-HERO.md`: ratified desktop hero implementation specification.
-- `ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`: ratified desktop Section 2 implementation specification.
-- `ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`: ratified desktop Section 3 implementation specification.
-- `ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`: ratified desktop Section 4 and funnel Frame 3 implementation specification.
-- `ws5-build-specs/05-SECTION-5-PRESERVATION.md`: ratified desktop Section 5 implementation specification.
-- `ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`: ratified desktop Section 6 implementation specification.
-- `ws5-assets/README.md`: active visual-reference inventory, authority levels, no-asset decisions, and handoff rules.
-- `ws5-assets/section-2/README.md`: formal Section 2 asset record.
-- `ws5-assets/section-3/README.md`: formal Section 3 asset record.
-- `ws5-assets/outstanding-actions/README.md`: formal Section 4 and funnel Frame 3 asset record.
-- `ws5-assets/section-5/README.md`: formal Section 5 asset record.
+All seven are ratified and binding.
 
-`CURRENT-HANDOFF.md` contains temporary resumption context only.
+## Frozen visual packet
 
-## Workstream 2 outcome
+### Directional hero input
 
-WS2 established the pre-decay prevention proposition, manual-tracker failure mode, split between student-maintained contacts and Blotter-maintained activity, operational-control outcome, minimum visible offer, low-switching-cost requirement, and product boundaries.
+- `docs/workstreams/ws5-assets/hero/hero-reference-v1.png`
+- `docs/workstreams/ws5-assets/source/blotter-sheets-reference-v1.html`
 
-## Workstream 3 outcome
+### Formal exact assets
 
-WS3 established the matched funnel, two recruiting questions, one pre-email product experience, transparent recruiting-email capture, delayed `$9.99 / month` price, purchase progression, payment-choice signal, Fall 2026 terminal state, nine-event analytics architecture, metric hierarchy, read rules, thresholds, sample requirements, and reporting rules.
+- Section 2: `docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.webp`
+- Section 2 supplemental HTML: `section-2/goldman-sachs-rejection-email-exact-v1.html`
+- Section 3: `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`
+- Section 4 and funnel Frame 3: `docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`
+- Section 5: `docs/workstreams/ws5-assets/section-5/preservation-exact-v1.html`
 
-## Workstream 4 outcome
+### No external asset required
 
-WS4 established the complete seven-section page narrative and exact copy; hero, scale, mechanism, outstanding-actions, preservation, privacy, FAQ, and closing communication jobs; three CTA placements; the three-frame product experience; exact funnel copy; responsive priorities; claim safeguards; and Lovable-ready implementation constraints.
+- Section 6
+- Section 7
+- conventional funnel screens
+- funnel Frames 1 and 2 unless the approved Lovable plan identifies a genuine contradiction
 
-Later ratified WS5 build specifications may supersede a specific figure, visual, or presentation detail while preserving the WS4 communication job. Such supersessions must be explicit.
+The visual-reference scope is frozen. Do not restart the unified storyboard process.
 
-## Workstream 5 objective
+## Funnel and measurement status
 
-Resolve implementation-sensitive presentation decisions in self-contained build specifications, create only the external visual references that materially reduce ambiguity, then implement and privately verify the spreadsheet-native page without changing the validated content architecture.
+The funnel is already ratified in WS3 and WS4.
 
-WS5 includes the ratified build-specification system, minimal visual-reference packet, Lovable component and page implementation, canonical funnel, lead capture and export, exact analytics wiring, claim and privacy verification, responsive and accessibility QA, private preview, and manual analytics and lead verification.
+Required flow:
 
-WS5 does not launch traffic, build the platform page, implement real integrations, or collect payment.
+1. CTA entry.
+2. Two recruiting questions.
+3. Three-frame spreadsheet product experience.
+4. Recruiting-email capture.
+5. `$9.99 / month` price screen.
+6. Purchase-summary screen.
+7. Payment-choice buttons without card entry.
+8. Fall 2026 terminal confirmation.
 
-## Current confirmed constraints
+The three page CTAs use the same funnel and store:
 
-- Jon's explicit instructions are highest authority.
-- GitHub canonical documents are the durable source of truth.
-- New substantive product, copy, or presentation decisions require Jon ratification before becoming canonical.
-- Ratified surface decisions must be written as self-contained build specifications.
-- Every asset record must identify whether an asset is directional, formal exact, or explicitly unnecessary.
-- Conventional text, disclosure, FAQ, and CTA layouts do not automatically require separate visual references.
-- The spreadsheet page is designed and built first.
-- Both variants ultimately launch at roughly the same time and use the identical funnel, price, event set, and read rules.
-- Analytics must be verified by hand before public traffic.
-- Privacy and provider claims must be verified against implementation truth before public traffic.
-- `03-page-spec.md` is a working baseline, not final truth.
-- Old design-token files and prior platform pixels are not authoritative.
-- No public traffic during WS5.
+- `hero`
+- `actions`
+- `final`
 
-## Required reading for a new chat
+as `cta_location`.
+
+The exact event set has nine events:
+
+1. `page_viewed`
+2. `funnel_started`
+3. `recruiting_profile_completed`
+4. `product_experience_completed`
+5. `email_submitted`
+6. `price_viewed`
+7. `checkout_started`
+8. `payment_option_clicked`
+9. `beta_spot_confirmed`
+
+There is no separate `cta_clicked` event.
+
+## Analytics and lead-storage posture
+
+Analytics is designed during the build but the vendor is not selected yet.
+
+The Lovable foundation should include a provider-independent analytics adapter with the exact event names and properties. The analytics vendor is selected and connected only after the page and funnel behavior are stable and before private verification.
+
+Lead storage is added after the funnel structure and email-capture behavior are approved. The simplest reliable implementation may use Lovable's Supabase-backed database, but database provisioning and schema details require approval before activation.
+
+Email belongs in lead storage only and must never be sent as a general analytics property.
+
+## Privacy and provider posture
+
+No Google connection provider has been selected.
+
+Section 6 uses provider-agnostic language. Do not claim a provider name, accreditation, Google verification, SOC 2, CASA, retention practice, deletion behavior, or subprocessor fact until verified.
+
+Claims about message routing, non-retention of full email bodies, deletion, connection revocation, scopes, unrelated Drive files, and subprocessors must match implementation truth before public release.
+
+## Exact Lovable process
+
+The end-to-end operating guide is:
+
+`docs/workstreams/ws5-implementation/LOVABLE-PLAN-AND-BUILD.md`
+
+Permanent Lovable project knowledge is:
+
+`docs/workstreams/ws5-implementation/LOVABLE-PROJECT-KNOWLEDGE.md`
+
+In human terms:
+
+1. confirm the private project has not changed;
+2. load the permanent project rules;
+3. upload the packet and visual assets because Lovable cannot be assumed to access the private GitHub repository;
+4. ask Lovable for a plan only;
+5. review and approve the plan;
+6. build the shared foundation and spreadsheet primitive;
+7. review it;
+8. build each page section in checkpoints;
+9. build and review the funnel;
+10. add lead storage;
+11. select and connect analytics;
+12. complete responsive, accessibility, privacy, claim, lead, and event QA;
+13. keep the project private and unpublished;
+14. do not launch traffic until the platform page and final matched test are ready.
+
+## Exact next action
+
+Open a new chat and begin the Lovable plan-only intake.
+
+Required first reading:
 
 1. `docs/00-START-HERE.md`
 2. `docs/CURRENT-HANDOFF.md`
-3. `docs/workstreams/WS5-SPEC.md`
-4. `docs/workstreams/ws5-build-specs/README.md`
-5. The ratified build specifications for completed and current surfaces.
-6. `docs/workstreams/ws5-assets/README.md`
-7. The relevant asset README when an asset exists.
-8. `docs/workstreams/WS4-SPEC.md`
-9. `docs/workstreams/WS3-SPEC.md`
-10. `docs/workstreams/WS2-SPEC.md`
-11. `docs/05-working-agreement.md`
-12. Only additional canonical files needed for the exact task.
+3. `docs/workstreams/ws5-implementation/LOVABLE-PLAN-AND-BUILD.md`
+4. `docs/workstreams/ws5-implementation/LOVABLE-PROJECT-KNOWLEDGE.md`
+5. `docs/workstreams/WS5-SPEC.md`
+6. `docs/workstreams/ws5-build-specs/README.md`
+7. `docs/workstreams/ws5-assets/README.md`
 
-## Repository and archive rules
+Then:
 
-Repository: `https://github.com/jnachman17-hue/Blotter-GPT/tree/main/blotter-ib-ws1`
+1. reconfirm the Lovable project state;
+2. read existing project knowledge before replacing it;
+3. set the approved project knowledge;
+4. fetch and upload the frozen packet and assets;
+5. send the exact plan-only intake message;
+6. bring the returned plan to Jon for review;
+7. make no code changes before approval.
 
-Canonical docs path: `blotter-ib-ws1/docs/`
+## Durable specifications
 
-Workstream specifications path: `blotter-ib-ws1/docs/workstreams/`
+- `docs/workstreams/WS2-SPEC.md`: spreadsheet-native proposition.
+- `docs/workstreams/WS3-SPEC.md`: funnel, conversion, analytics, and measurement.
+- `docs/workstreams/WS4-SPEC.md`: complete page and funnel content and experience.
+- `docs/workstreams/WS5-SPEC.md`: active implementation governor.
+- `docs/workstreams/ws5-build-specs/README.md`: frozen surface-specification index.
+- `docs/workstreams/ws5-assets/README.md`: frozen asset and no-asset authority index.
+- `docs/workstreams/ws5-implementation/LOVABLE-PLAN-AND-BUILD.md`: exact implementation process.
+- `docs/workstreams/ws5-implementation/LOVABLE-PROJECT-KNOWLEDGE.md`: permanent Lovable agent rules.
 
-WS5 build-specification path: `blotter-ib-ws1/docs/workstreams/ws5-build-specs/`
+`CURRENT-HANDOFF.md` contains immediate resumption context only.
 
-WS5 visual-reference path: `blotter-ib-ws1/docs/workstreams/ws5-assets/`
+## Non-negotiable constraints
 
-Historical archive path: `blotter-ib-ws1/archive/`
-
-Archived material is historical context only.
-
-## Canonical file map
-
-- `00-START-HERE.md`: current-state index and reading order.
-- `01-project-and-product.md`: durable project and product context.
-- `02-strategy-and-test.md`: validation strategy and test structure.
-- `03-page-spec.md`: working page baseline, not automatically final truth.
-- `04-decision-log.md`: concise cross-project rulings.
-- `05-working-agreement.md`: operating and documentation rules.
-- `06-assumptions-and-open-questions.md`: unsettled items only.
-- `workstreams/WS2-SPEC.md`: proposition specification.
-- `workstreams/WS3-SPEC.md`: conversion and measurement specification.
-- `workstreams/WS4-SPEC.md`: content and experience specification.
-- `workstreams/WS5-SPEC.md`: active WS5 governor.
-- `workstreams/ws5-build-specs/README.md`: build-specification governance and inventory.
-- `workstreams/ws5-build-specs/01-HERO.md`: hero build specification.
-- `workstreams/ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`: Section 2 build specification.
-- `workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`: Section 3 build specification.
-- `workstreams/ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`: Section 4 and funnel Frame 3 build specification.
-- `workstreams/ws5-build-specs/05-SECTION-5-PRESERVATION.md`: Section 5 build specification.
-- `workstreams/ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`: Section 6 build specification.
-- `workstreams/ws5-assets/README.md`: visual-reference inventory, authority rules, and explicit no-asset decisions.
-- `workstreams/ws5-assets/hero/hero-reference-v1.png`: directional hero preview.
-- `workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`: exact Section 4 and Frame 3 asset.
-- `workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.webp`: exact Section 2 asset.
-- `workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`: exact Section 3 asset.
-- `workstreams/ws5-assets/section-5/preservation-exact-v1.html`: exact Section 5 asset.
-- `workstreams/ws5-assets/section-5/README.md`: Section 5 asset record.
-- `CURRENT-HANDOFF.md`: temporary immediate resumption context.
+- Jon's explicit instructions are highest authority.
+- GitHub is the durable source of truth.
+- New substantive decisions require Jon ratification and GitHub documentation.
+- Existing Lovable code is provisional until approved against the frozen packet.
+- Use plan mode before code.
+- Use checkpointed implementation rather than one whole-site build prompt.
+- Do not implement real Gmail, Calendar, or Sheets integrations during WS5.
+- Do not implement real OAuth.
+- Do not collect payment or card details.
+- Do not publish or route public traffic during WS5.
+- Do not expose price or Fall 2026 timing before their ratified funnel stages.
+- Verify analytics by hand before traffic.
