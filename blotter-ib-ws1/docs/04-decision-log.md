@@ -20,7 +20,7 @@ Status: Confirmed
 
 Status: Confirmed
 
-**During WS5, implementation-sensitive landing-page and funnel decisions must be recorded in self-contained files under `docs/workstreams/ws5-build-specs/`. A build specification must explain the actual requirement without chat-dependent shorthand, and all relevant canonical indexes and open-question records must be updated before moving to the next surface.**
+**During WS5, implementation-sensitive landing-page and funnel decisions must be recorded in self-contained files under `docs/workstreams/ws5-build-specs/`. All relevant canonical indexes and open-question records must be updated before moving to the next surface.**
 
 Status: Confirmed
 
@@ -123,7 +123,6 @@ Key rulings:
 - The purchase summary uses `Complete your purchase`, shows `$9.99` due today, and preserves recognizable card and Apple Pay choices without card entry.
 - Fall 2026 timing, cohort status, and no-charge clarification appear only after the payment-choice click.
 - Responsive priorities preserve content meaning and readable spreadsheet crops.
-- A full-page coherence and claim-support audit found no need to reopen ratified Sections 1 through 7.
 
 Status: Confirmed
 
@@ -143,23 +142,19 @@ Status: Confirmed
 
 Status: Confirmed
 
-**The desktop hero communicates that relevant Gmail and Calendar activity directly maintains the live relationship-state fields in the spreadsheet. It uses one current Google Sheets-style tracker, preserves the three approved cue cards, removes the stale rear sheet and explicit engine, maps each cue directly to the corresponding maintained row block, applies a faint shared Blotter-yellow tint across Status through Call, emphasizes the three cue-linked example rows, and uses below-sheet region underlines for `YOU add the contacts` and `BLOTTER keeps them current`.**
+**The desktop hero communicates that relevant Gmail and Calendar activity directly maintains the live relationship-state fields in the spreadsheet. It removes the stale rear sheet and explicit engine, maps each cue directly to the corresponding maintained row block, applies a faint shared Blotter-yellow tint across Status through Call, emphasizes the three cue-linked example rows, and uses below-sheet region underlines for `YOU add the contacts` and `BLOTTER keeps them current`.**
 
 Detailed authority: `docs/workstreams/ws5-build-specs/01-HERO.md`
 
 Status: Confirmed
 
-**Tracker decay and stale-sheet storytelling are excluded from the hero.**
-
-Status: Confirmed
-
-**Landing-page Section 2 uses an editorial scale-and-consequence sequence with exact figures of 628 recruiting emails, 68 coffee chats, 19 applications, and 30 interview rounds; a subordinate approximately 60-hour administration estimate and methodology; one exact three-sentence supporting paragraph; one formal exact Goldman Sachs rejection-email asset with two external annotations; exact closing copy; and no CTA. The prior 55-coffee-chat figure, manual-tracker divergence table, another spreadsheet visual, and multi-email sequence are superseded or rejected.**
+**Landing-page Section 2 uses exact figures of 628 recruiting emails, 68 coffee chats, 19 applications, and 30 interview rounds; a subordinate approximately 60-hour administration estimate and methodology; one exact supporting paragraph; one formal exact Goldman Sachs rejection-email asset with two external annotations; exact closing copy; and no CTA.**
 
 Detailed authority: `docs/workstreams/ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`
 
 Status: Confirmed
 
-**Landing-page Section 3 uses the exact systems-level sequence of Gmail and Google Calendar activity to Blotter to a current Google Sheet. It uses one formal exact `2048 × 633` mechanism asset, three external stage labels, the exact boundary line, one compact row of the three product-boundary badges, the exact closing line, and no CTA. The former `YOU CONTROL` and `BLOTTER MAINTAINS` lists are removed because the hero already communicates the ownership split.**
+**Landing-page Section 3 uses the systems-level sequence of Gmail and Google Calendar activity to Blotter to a current Google Sheet. It uses one formal exact `2048 × 633` mechanism asset, three external stage labels, the exact boundary line, one compact row of three product-boundary badges, the exact closing line, and no CTA. The former `YOU CONTROL` and `BLOTTER MAINTAINS` lists are removed.**
 
 Detailed authority: `docs/workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`
 
@@ -169,13 +164,23 @@ Status: Confirmed
 
 Status: Confirmed
 
-**Landing-page Section 4 uses the exact `1848 × 1160` Outstanding Actions PNG as its dominant visual, with exact headline, supporting line, CTA line, and `See how Blotter works` button. The page CTA enters the canonical funnel with `cta_location = actions`. The visual is a formal exact asset and must not be redesigned into cards, dashboard tiles, or a separate task-management interface.**
+**Landing-page Section 4 uses the exact `1848 × 1160` Outstanding Actions PNG as its dominant visual, with exact headline, supporting line, CTA line, and `See how Blotter works` button. The page CTA enters the canonical funnel with `cta_location = actions`.**
 
 Detailed authority: `docs/workstreams/ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`
 
 Status: Confirmed
 
 **The same formal exact Outstanding Actions asset governs canonical funnel product-experience Frame 3. Section 4 and Frame 3 use different surrounding copy and controls, but the spreadsheet visual, queue content, grouping, styling, and proportions must not be independently redesigned.**
+
+Status: Confirmed
+
+**Landing-page Section 5 uses one formal exact `1298 × 334` Google Sheets preservation asset with the exact column order `Name | Title | Firm | Email | LinkedIn | Status | Next move | Last contact | Days | Call`, the established five contacts, exact emails, blue underlined `Here` LinkedIn links, and a divider between LinkedIn and Status. The section has no eyebrow or CTA and uses the exact headline, supporting copy, and compact three-item reassurance strip.**
+
+Detailed authority: `docs/workstreams/ws5-build-specs/05-SECTION-5-PRESERVATION.md`
+
+Status: Confirmed
+
+**The Section 5 conceptual distinction between the existing tracker and the Blotter live layer remains binding, but the phrases `YOUR EXISTING TRACKER` and `BLOTTER ADDS THE LIVE LAYER` are not inserted into the exact spreadsheet asset. The distinction is communicated through column order, divider, fills, surrounding copy, and reassurance strip.**
 
 Status: Confirmed
 
@@ -194,15 +199,12 @@ Status: Confirmed
 
 - `You keep your record. Blotter keeps the state alive.` Rejected.
 - Mandatory early Gmail OAuth or simulated Google authentication. Rejected.
-- No price or card-adjacent step in round one. Superseded.
 - Price on the main landing page. Rejected for round one.
 - Multiple plans or price A/B testing. Rejected.
 - Card-entry form or payment collection. Rejected.
 - Separate `cta_clicked` analytics event. Rejected.
 - Permanent or bounded project kill condition. Rejected.
-- Tally as the settled form solution. Not a decision.
 - Separate event-to-row narrative section duplicating the hero mechanism. Rejected.
-- Treating provider selection, domain routing, or production OAuth as WS4 design blockers. Rejected; these are implementation or later-product dependencies.
 - `See the spreadsheet experience` as the Question 2 button. Rejected.
 - School-email-only placeholder or implication. Rejected.
 - Pre-terminal `demand test`, `beta reservation`, future-price, future-availability, or no-charge disclosure. Rejected.
@@ -214,8 +216,10 @@ Status: Confirmed
 - Section 2 manual-tracker divergence table and another spreadsheet visual. Superseded.
 - Section 2 `55 coffee chats`. Superseded by `68 coffee chats`.
 - Section 2 multi-email or three-message consequence sequence. Rejected.
-- Section 3 `YOU CONTROL` and `BLOTTER MAINTAINS` lists. Superseded and removed because the hero already communicates the division of labor.
+- Section 3 `YOU CONTROL` and `BLOTTER MAINTAINS` lists. Superseded and removed.
 - Treating the provisional Section 3 Blotter mark as the global canonical logo. Not ratified and prohibited without a later identity decision.
 - Treating the Outstanding Actions asset as merely directional. Superseded by formal exact status for Section 4 and funnel Frame 3.
 - Creating a second independently styled Outstanding Actions visual for funnel Frame 3. Rejected.
-- Converting Outstanding Actions into three dashboard cards, KPI tiles, or a generic task-management interface. Rejected.
+- Converting Outstanding Actions into dashboard cards, KPI tiles, or a generic task-management interface. Rejected.
+- Adding `YOUR EXISTING TRACKER` or `BLOTTER ADDS THE LIVE LAYER` text inside the exact Section 5 spreadsheet asset. Superseded by the approved unlabeled visual zoning.
+- Turning Section 5 into a migration flow, field-mapping diagram, two-sheet comparison, import animation, or arbitrary-layout-preservation promise. Rejected.
