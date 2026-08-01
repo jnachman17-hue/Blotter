@@ -1,8 +1,8 @@
 # Decision log
 
-Date last updated: July 30, 2026
+Date last updated: July 31, 2026
 
-This file is a concise index of settled, rejected, and superseded project-level rulings. Detailed workstream decisions live in `docs/workstreams/WS#-SPEC.md`.
+This file is a concise index of settled, rejected, and superseded project-level rulings. Detailed workstream decisions live in `docs/workstreams/WS#-SPEC.md` and ratified surface instructions live in `docs/workstreams/ws5-build-specs/`.
 
 Only items marked **Confirmed** are binding. Unsettled items belong in `06-assumptions-and-open-questions.md`.
 
@@ -17,6 +17,10 @@ Status: Confirmed
 Status: Confirmed
 
 **New substantive product, copy, or presentation decisions require Jon ratification before becoming canonical or closing a workstream. Consultant-prepared audits, consolidation, and implementation guidance may proceed without ratification only where they do not create or alter substantive decisions.**
+
+Status: Confirmed
+
+**During WS5, implementation-sensitive landing-page and funnel decisions must be recorded in self-contained files under `docs/workstreams/ws5-build-specs/`. A build specification must explain the actual requirement without chat-dependent shorthand, and all relevant canonical indexes and open-question records must be updated before moving to the next surface.**
 
 Status: Confirmed
 
@@ -109,7 +113,7 @@ Key rulings:
 - Displayed brand is `Blotter`; the owned domain remains `blotterib.com`.
 - The spreadsheet page uses seven sections: hero, scale, how it works, outstanding actions, preservation, privacy and permissions, and general FAQ plus final CTA.
 - Three CTAs use `See how Blotter works` and store `hero`, `actions`, or `final` as `cta_location`.
-- The hero and Sections 2 through 7 are ratified.
+- The hero and Sections 2 through 7 are ratified at the content and experience level.
 - Price and availability are omitted from the landing-page FAQ and revealed only at their funnel stages.
 - The spreadsheet product experience uses one stable sheet across three frames and three total clicks, with a required frame indicator and clear signposting of changing cells.
 - Frame 3 reuses the exact ratified Outstanding Actions queues and wording.
@@ -131,11 +135,21 @@ The active specification is `docs/workstreams/WS5-SPEC.md`.
 
 Status: Confirmed
 
-**Before broad page-scene implementation, WS5 must create one reusable high-fidelity Google Sheets-style spreadsheet-window component, compare it against real Google Sheets references, obtain Jon's visual approval, and reuse the approved primitive across every spreadsheet scene.**
+**Before broad page-scene implementation, WS5 must create one reusable high-fidelity Google Sheets-style spreadsheet-window component, compare it against the approved references, obtain Jon's visual approval, and reuse the approved primitive across every spreadsheet scene.**
 
 Status: Confirmed
 
 **The purchase-like funnel must not disclose demand testing, beta status, Fall 2026 timing, future availability, or no-charge status before the payment-choice click. The terminal state is the first availability disclosure.**
+
+Status: Confirmed
+
+**The desktop hero communicates that relevant Gmail and Calendar activity directly maintains the live relationship-state fields in the spreadsheet. It uses one current Google Sheets-style tracker, preserves the three approved cue cards, removes the stale rear sheet and explicit engine, maps each cue directly to the corresponding maintained row block, applies a faint shared Blotter-yellow tint across Status through Call, emphasizes the three cue-linked example rows, and uses below-sheet region underlines for `YOU add the contacts` and `BLOTTER keeps them current`.**
+
+Detailed authority: `docs/workstreams/ws5-build-specs/01-HERO.md`
+
+Status: Confirmed
+
+**Tracker decay and stale-sheet storytelling are excluded from the hero and may be considered separately for Section 2.**
 
 Status: Confirmed
 
@@ -166,3 +180,8 @@ Status: Confirmed
 - `See the spreadsheet experience` as the Question 2 button. Rejected.
 - School-email-only placeholder or implication. Rejected.
 - Pre-terminal `demand test`, `beta reservation`, future-price, future-availability, or no-charge disclosure. Rejected.
+- Full unified three-frame WS5 storyboard as an active or preferred requirement. Never ratified and inactive.
+- Stale rear sheet, before-and-after transformation, or tracker-decay storytelling in the hero. Rejected for the hero.
+- Explicit vertical Blotter engine or cue-to-engine-to-sheet diagram in the hero. Rejected.
+- Ownership labels above the hero spreadsheet. Rejected.
+- Curly-brace ownership treatment in the hero. Rejected in favor of restrained region underlines.

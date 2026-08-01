@@ -4,11 +4,13 @@ Date: July 31, 2026
 
 ## 1. Current objective
 
-Continue Workstream 5 from the completed repository-reconciliation checkpoint.
+Continue Workstream 5 from the ratified desktop-hero checkpoint.
 
-Workstreams 1 through 4 are complete. WS5 is active. Directional hero and Outstanding Actions references exist. The next task is to review the current asset packet with Jon and decide whether any additional storyboard or visual reference is actually needed before freezing the implementation packet.
+Workstreams 1 through 4 are complete. WS5 is active. The repository is reconciled, the build-specification system is established, and the desktop hero implementation decisions are fully ratified.
 
-Do not begin Lovable planning or implementation before that review.
+The next task is to settle Section 2's scale and manual-tracker-divergence presentation through the same self-contained build-specification process.
+
+Do not begin Lovable planning or implementation yet.
 
 ## 2. Required reading
 
@@ -17,32 +19,37 @@ Read in this order before acting:
 1. `docs/00-START-HERE.md`
 2. `docs/CURRENT-HANDOFF.md`
 3. `docs/workstreams/WS5-SPEC.md`
-4. `docs/workstreams/ws5-assets/README.md`
-5. `docs/workstreams/WS4-SPEC.md`
-6. `docs/workstreams/WS3-SPEC.md`
-7. `docs/workstreams/WS2-SPEC.md`
-8. `docs/05-working-agreement.md`
+4. `docs/workstreams/ws5-build-specs/README.md`
+5. `docs/workstreams/ws5-build-specs/01-HERO.md`
+6. `docs/workstreams/ws5-assets/README.md`
+7. `docs/workstreams/WS4-SPEC.md`
+8. `docs/workstreams/WS3-SPEC.md`
+9. `docs/workstreams/WS2-SPEC.md`
+10. `docs/05-working-agreement.md`
 
 ## 3. Source-of-truth rules
 
-- Jon's explicit instructions are highest authority.
-- `WS5-SPEC.md` controls the durable WS5 implementation system, visual-reference status, sequence, and gates.
-- `WS4-SPEC.md` controls exact page copy, section order, funnel presentation, responsive priorities, and claim boundaries except where a later explicit Jon ruling is recorded in WS5.
+- Jon's explicit later instructions are highest authority.
+- `WS5-SPEC.md` controls the durable WS5 system, scope, sequence, and gates.
+- A ratified file in `ws5-build-specs/` controls the detailed visual and behavioral implementation of its exact surface.
+- `WS4-SPEC.md` controls exact page copy, section order, communication jobs, funnel presentation, responsive priorities, and claim boundaries except where a later ratified WS5 build specification governs presentation.
 - `WS3-SPEC.md` controls event names, properties, price, measurement, and read rules.
-- `docs/workstreams/ws5-assets/README.md` is the current visual-reference inventory and records what is authoritative, directional, complete, defective, or unresolved.
-- Do not use old handoffs, failed workbooks, abandoned renders, deleted asset paths, or Lovable defaults to override these files.
+- `ws5-assets/README.md` and the reference files provide visual direction; they do not override a ratified build specification.
+- Do not use old handoffs, failed workbooks, abandoned renders, deleted asset paths, chat shorthand, or Lovable defaults to override these files.
 
-## 4. Repository reconciliation completed
+## 4. Required build-specification system
 
-The July 31 reconciliation:
+For each unresolved landing-page or funnel surface:
 
-- aligned the canonical records to the completed hero and Outstanding Actions references;
-- renamed the current files to canonical paths;
-- removed references to deleted or superseded asset paths;
-- removed the former unified-storyboard proposal from the active implementation sequence;
-- recorded that the former unified three-frame storyboard was never ratified and is not an active requirement;
-- kept all additional storyboard or visual-reference scope unresolved for the next discussion with Jon;
-- updated the project and Lovable state to reflect reality.
+1. read the controlling WS4 or WS3 requirements;
+2. review any relevant visual reference;
+3. resolve presentation and behavior questions with Jon;
+4. write a self-contained specification that a future reader can understand without the originating chat;
+5. obtain explicit ratification;
+6. update the build-spec index, WS5, handoff, open questions, relevant asset records, and decision log where appropriate;
+7. only then move to the next surface.
+
+Do not record decisions using internal labels such as `Mechanism A` or `Option B`. State the actual requirement.
 
 ## 5. Current visual-reference packet
 
@@ -61,40 +68,46 @@ Reference notes:
 - `docs/workstreams/ws5-assets/hero/README.md`
 - `docs/workstreams/ws5-assets/outstanding-actions/README.md`
 
-These assets are directional implementation references. They are not final designs and must not be copied pixel for pixel.
+These assets are directional implementation inputs, not final pixel targets.
 
-## 6. Hero reference status
+## 6. Ratified desktop hero status
 
-The hero reference is directionally complete and sufficient for review.
+Controlling specification:
 
-Preserve unless Jon later revises the asset brief:
+`docs/workstreams/ws5-build-specs/01-HERO.md`
 
-- Google Sheets-native visual language.
-- Current-state recruiting tracker and exact data.
-- Student-maintained left side and Blotter-maintained right side.
-- Three cue cards:
-  - Sarah Chen replied.
-  - Coffee chat with Marcus Lee.
-  - Email sent to Alex Morgan.
+The desktop hero is no longer an open design question.
+
+Preserve closely:
+
+- the current Google Sheets-style spreadsheet;
+- exact tracker data and column order;
+- current cue cards and exact copy;
+- compact density and overall content structure;
+- spreadsheet dominance;
 - `YOU add the contacts` and `BLOTTER keeps them current`.
-- Exact phrase `keeps them current`.
-- Spreadsheet remains the dominant object.
 
-Current defects or unresolved implementation treatments:
+Required implementation:
 
-1. Cue-to-Blotter-to-sheet causality is not sufficiently clear.
-2. Cue-to-row or cue-to-field mapping is not sufficiently clear.
-3. The vertical Blotter engine is directional, not settled.
-4. The final ownership treatment is not settled.
-5. Desktop-to-mobile composition must be designed in page context.
+- one current spreadsheet only;
+- no tracker-decay or before-and-after story in the hero;
+- no stale rear sheet or stale fragment;
+- no explicit Blotter engine or intermediary processor;
+- direct cue-to-row mapping for Sarah Chen, Marcus Lee, and Alex Morgan;
+- faint shared Blotter-yellow-family tint across the complete Status-through-Call zone;
+- stronger full maintained-block emphasis for the three cue-linked example rows;
+- Priya Shah and Daniel Kim remain inside the baseline maintained zone without cues;
+- both ownership labels remain below the sheet;
+- restrained region underlines with small terminals map each label to its column group;
+- static desktop comprehension does not depend on animation.
 
-The stale rear sheet is parked, not rejected. Whether it appears in the final hero remains a later page-context decision.
+Desktop is the primary approval surface. Tablet and mobile adaptation, optional micro-motion, and final placement in the complete hero section are deferred bounded questions and do not reopen the desktop decision.
 
 ## 7. Outstanding Actions reference status
 
-The Outstanding Actions reference is directionally complete and sufficient for review.
+The Outstanding Actions reference remains directionally complete but does not yet have a ratified build specification.
 
-Preserve unless Jon later revises the asset brief:
+Preserve unless later revised:
 
 - one global column header: Contact, Next action, Why it is here;
 - `Outstanding actions` and `21 outstanding actions`;
@@ -102,17 +115,23 @@ Preserve unless Jon later revises the asset brief:
 - Follow-ups due: 11;
 - Thank-you notes: 4;
 - exact visible rows, reasons, and overflow rows;
-- spreadsheet-native grouped rows rather than dashboard cards.
+- spreadsheet-native grouped rows rather than dashboard cards;
+- intended reuse for landing-page Section 4 and funnel Frame 3.
 
-This state is intended to serve landing-page Section 4 and funnel Frame 3 if retained after the asset review.
-
-## 8. Ratified storyboard status
+## 8. Storyboard and additional-reference status
 
 The former unified three-frame storyboard recommendation was never ratified and is not an active requirement.
 
-Whether any additional storyboard, compact Frame 1-to-Frame 2 cell-treatment reference, Section 2 divergence reference, or other external visual reference is needed remains unresolved.
+The hero requires no replacement storyboard or additional external reference.
 
-Do not treat either the old full-storyboard proposal or the later compact-reference suggestion as the default. Reconsider the need from first principles after reviewing the current asset packet and before Lovable planning.
+Still unresolved outside the hero:
+
+- whether Section 2 uses a stale tracker and needs a visual reference;
+- whether the funnel's Frame 1-to-Frame 2 transition needs a compact reference;
+- whether Outstanding Actions needs a dedicated build specification or material revision;
+- whether another complex surface requires a reference after written decisions are resolved.
+
+Do not default to either the old full storyboard or a compact replacement.
 
 ## 9. Lovable project state
 
@@ -126,14 +145,17 @@ Existing code is unapproved scaffolding unless independently supported by the ca
 
 ## 10. Exact next action
 
-Review with Jon:
+Settle Section 2's scale and manual-tracker-divergence presentation.
 
-1. what the current hero and Outstanding Actions assets establish;
-2. what they leave unresolved;
-3. whether a revised storyboard or any additional reference is needed;
-4. what the final frozen implementation packet should contain.
+The discussion must determine, in self-contained terms:
 
-Only after those questions are settled should the project enter Lovable plan mode.
+1. what Section 2 must communicate visually;
+2. whether a stale recruiting spreadsheet appears there;
+3. how the stale state relates to the current hero without creating duplicate storytelling;
+4. whether written instructions are sufficient or a separate reference is required;
+5. the exact desktop acceptance criteria.
+
+Record the ratified result through the WS5 build-specification system before advancing.
 
 ## 11. Current exclusions
 

@@ -61,7 +61,9 @@ Current directional implementation assets show:
 - a Google Sheets-native hero tracker with student-maintained fields and Blotter-maintained fields;
 - a grouped Outstanding Actions view for replies owed, follow-ups due, and thank-you notes.
 
-These assets are validation-page references, not settled backend product requirements or final pixel designs.
+The desktop hero implementation is now ratified in `docs/workstreams/ws5-build-specs/01-HERO.md`. It uses the directional hero asset as a visual input but removes the stale rear sheet and explicit engine, connects the three activity cues directly to their corresponding maintained row blocks, tints the complete Status-through-Call zone, emphasizes the three cue-linked examples, and maps the below-sheet ownership labels with restrained region underlines.
+
+These assets and specifications are validation-page implementation requirements, not settled backend product requirements.
 
 ## Privacy story
 
@@ -111,7 +113,9 @@ For the July test, the proposition sells prevention of future tracker decay beca
   - Published: No
   - Current state: Paused
 - Directional hero and Outstanding Actions references exist in `docs/workstreams/ws5-assets/`.
-- The current asset packet must be reviewed and any remaining reference need settled before Lovable plan mode begins.
+- The WS5 build-specification system exists in `docs/workstreams/ws5-build-specs/`.
+- The desktop hero visual is ratified and no longer an open design question.
+- Section 2 and the remaining landing-page and funnel surfaces still require surface-by-surface decision review before the implementation packet can be frozen.
 - No funnel, lead database, analytics vendor, real integration, payment collection, or public deployment is complete.
 
 ## Discarded work
@@ -127,7 +131,8 @@ Do not resurrect this work unless Jon explicitly says to.
 | Prior platform product pixels | Scrapped. |
 | Feature inventory, roadmap, design brief, strategy reset documents | Superseded where not represented in current docs. |
 | Three-stage direct Google OAuth rollout | Dead. Replaced by intermediary-first assumption if validation justifies build. |
-| Full unified three-frame WS5 storyboard proposal | Never ratified and not an active requirement. Reconsider any additional reference need from the current asset packet. |
+| Full unified three-frame WS5 storyboard proposal | Never ratified and not an active requirement. Reconsider any additional reference need surface by surface. |
+| Stale rear sheet and explicit engine in the directional hero asset | Superseded for hero implementation by `ws5-build-specs/01-HERO.md`. |
 
 ## Assets and current state
 
@@ -139,5 +144,7 @@ Do not resurrect this work unless Jon explicitly says to.
   - `docs/workstreams/ws5-assets/source/blotter-sheets-reference-v1.html`
   - `docs/workstreams/ws5-assets/hero/hero-reference-v1.png`
   - `docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`
+- Ratified build specifications:
+  - `docs/workstreams/ws5-build-specs/01-HERO.md`
 - Lead-storage solution: not selected.
 - Analytics vendor: not selected.
