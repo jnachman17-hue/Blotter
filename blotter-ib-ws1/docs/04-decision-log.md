@@ -184,12 +184,26 @@ Status: Confirmed
 
 Status: Confirmed
 
+**Landing-page Section 6 uses a calm, left-aligned disclosure system rather than a marketing section. Its exact order is title and opening statement, candid claim, four numbered processing rows, permissions matrix, visible broad-Google-permission notice, `What Blotter keeps`, nine commitments, account-deletion statement, provider disclosure, seven-question privacy FAQ, and privacy-policy link. The section has no eyebrow, CTA, security-seal imagery, fake OAuth, marketing cards, or external visual asset.**
+
+Detailed authority: `docs/workstreams/ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`
+
+Status: Confirmed
+
+**Section 6 must remain provider-agnostic until a third-party connection provider is selected. Use: `Blotter uses a third-party provider to facilitate the connection with Google. The provider and its exact role will be disclosed in the privacy policy and connection flow.` Do not name a provider or imply Google verification, accreditation, CASA, SOC 2, or another certification before verification.**
+
+Status: Confirmed
+
+**Section 6 desktop presentation is ratified, but claims about message routing, unmatched-content exclusion, retention, deletion, revocation, Google scopes, unrelated Drive access, provider role, subprocessors, and the privacy policy remain publication gates that must match actual implementation truth.**
+
+Status: Confirmed
+
 ## Product and technical context
 
 - Blotter is a logistics layer only.
 - Auto-capture is the founding principle.
 - Blotter must not be described as reading unrestricted personal email.
-- If validation justifies backend build, Gmail access should use an intermediary such as Nylas or Unipile. Direct restricted-scope access and CASA remain deferred.
+- If validation justifies backend build, Gmail access should use an intermediary connection provider. Provider selection remains open.
 - Lovable is the implementation tool.
 - The old design-token system and prior platform pixels are not authoritative.
 
@@ -223,3 +237,7 @@ Status: Confirmed
 - Converting Outstanding Actions into dashboard cards, KPI tiles, or a generic task-management interface. Rejected.
 - Adding `YOUR EXISTING TRACKER` or `BLOTTER ADDS THE LIVE LAYER` text inside the exact Section 5 spreadsheet asset. Superseded by the approved unlabeled visual zoning.
 - Turning Section 5 into a migration flow, field-mapping diagram, two-sheet comparison, import animation, or arbitrary-layout-preservation promise. Rejected.
+- Section 6 provider wording that claims a selected provider's Google application has completed verification. Superseded until a provider and verification facts are established.
+- Naming Nylas, Unipile, or another third-party provider in Section 6 before selection. Rejected.
+- Section 6 security shields, seals, fake OAuth, marketing cards, `Bank-grade security`, `Industry-leading encryption`, `Secure by design`, `Accredited provider`, or unverified SOC 2, CASA, Google-verification, retention, deletion, and subprocessor claims. Rejected.
+- Creating an external visual asset for Section 6. Rejected as unnecessary.
