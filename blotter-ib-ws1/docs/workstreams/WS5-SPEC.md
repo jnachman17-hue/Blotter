@@ -29,9 +29,9 @@ WS5 uses three complementary record types:
 
 1. `WS5-SPEC.md` governs workstream scope, current state, sequence, gates, and implementation requirements.
 2. `docs/workstreams/ws5-build-specs/` contains ratified, self-contained, build-grade specifications for individual surfaces.
-3. `docs/workstreams/ws5-assets/` contains formal and directional visual assets, editable sources, previews, and asset-specific notes.
+3. `docs/workstreams/ws5-assets/` contains formal and directional visual assets, editable sources, previews, asset-specific notes, and explicit no-asset decisions.
 
-A build specification controls the implementation of its surface. The relevant asset README identifies whether an asset is directional or a formal exact implementation target.
+A build specification controls the implementation of its surface. The relevant asset README or asset index identifies whether an asset is directional, formal exact, or explicitly unnecessary.
 
 ## Source hierarchy
 
@@ -57,11 +57,13 @@ Do not use archived files, old handoffs, failed workbooks, abandoned renders, Lo
 - Section 3 is ratified in `ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`.
 - Section 4 and canonical funnel Frame 3 are ratified in `ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`.
 - Section 5 is ratified in `ws5-build-specs/05-SECTION-5-PRESERVATION.md`.
+- Section 6 is ratified in `ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`.
 - The hero uses a directional spreadsheet reference governed by its binding build specification.
 - Sections 2 through 5 use formal exact assets.
 - Section 4 and funnel Frame 3 share one exact Outstanding Actions asset.
+- Section 6 requires no external asset.
 - The former unified three-frame storyboard was never ratified and is inactive.
-- Section 6, `How Blotter uses your data`, is the immediate next build-specification checkpoint.
+- Section 7, `Frequently asked questions` and the final closing CTA, is the immediate next build-specification checkpoint.
 - The Lovable project remains private, unpublished, and paused.
 - No funnel, lead database, analytics vendor, production integration, payment collection, or public deployment is complete.
 
@@ -106,7 +108,7 @@ Do not authorize broad coding until the required page and funnel build specifica
 
 ## Build-specification production rule
 
-A dedicated build specification is required when a surface contains presentation, state, interaction, mapping, exact-asset, or responsive decisions that cannot be implemented reliably from WS4 or WS3 alone.
+A dedicated build specification is required when a surface contains presentation, state, interaction, mapping, exact-asset, claim-governance, or responsive decisions that cannot be implemented reliably from WS4 or WS3 alone.
 
 A binding build specification must:
 
@@ -130,7 +132,11 @@ A directional reference establishes structure, hierarchy, data, or visual gramma
 
 A formal exact asset is explicitly ratified as the visual and content target. It must be reproduced without independent redesign. A production component translation is allowed only when the rendered result remains visually equivalent.
 
-Every asset must be classified in its README.
+### Explicit no-asset decision
+
+A no-asset decision means the written build specification is sufficient and external visual production would add unnecessary work or introduce distracting design language.
+
+Every surface must identify the applicable authority status.
 
 ## Current build-specification inventory
 
@@ -139,8 +145,9 @@ Every asset must be classified in its README.
 3. `ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md` — desktop Section 3.
 4. `ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md` — desktop Section 4 and funnel Frame 3.
 5. `ws5-build-specs/05-SECTION-5-PRESERVATION.md` — desktop Section 5.
+6. `ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md` — desktop Section 6.
 
-All five are ratified.
+All six are ratified.
 
 ## Current visual-asset inventory
 
@@ -167,6 +174,11 @@ Detailed inventory: `ws5-assets/README.md`.
 ### Formal exact Section 5 asset
 
 - `ws5-assets/section-5/preservation-exact-v1.html`
+
+### Section 6 no-asset decision
+
+- no external visual asset required;
+- written authority: `ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`.
 
 ## Ratified hero status
 
@@ -262,6 +274,59 @@ The conceptual existing-tracker versus Blotter-live-layer distinction remains bi
 
 Do not turn Section 5 into a migration flow, field-mapping diagram, two-sheet comparison, or arbitrary-layout-preservation promise.
 
+## Ratified Section 6 status
+
+Controlling specification: `ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`.
+
+Section 6 is a calm, candid disclosure surface, not a marketing block. It uses no external asset.
+
+Exact order:
+
+1. `How Blotter uses your data` and the exact opening statement.
+2. The exact main candid claim.
+3. Four numbered processing rows.
+4. One Gmail, Google Calendar, and Google Sheets permissions matrix.
+5. A visible notice titled `Why Google’s permission may sound broader`.
+6. `What Blotter keeps`.
+7. Nine plain commitments.
+8. The exact account-deletion statement.
+9. A provider-agnostic `Google connection provider` disclosure.
+10. Seven dedicated privacy FAQ rows.
+11. `Read the full privacy policy`.
+
+Desktop presentation:
+
+- full-width subtly tinted neutral section;
+- left-aligned, document-like typography;
+- approximately `1080px` to `1160px` maximum content width;
+- candid claim as primary visual anchor;
+- stacked numbered processing rows;
+- sober permissions matrix;
+- broad-permission notice immediately below the table;
+- three-column commitments list;
+- full-width accessible privacy accordion;
+- no eyebrow, CTA, security seals, fake OAuth, marketing cards, or external illustration.
+
+Provider wording:
+
+`Blotter uses a third-party provider to facilitate the connection with Google. The provider and its exact role will be disclosed in the privacy policy and connection flow.`
+
+No provider has been selected. Do not name Nylas, Unipile, or another provider and do not imply Google verification, accreditation, CASA, SOC 2, or another certification without later evidence.
+
+This provider-agnostic wording supersedes the former WS4 sentence that stated a provider's Google application had completed verification.
+
+The desktop composition and copy are ratified. Public use remains gated by actual implementation truth for:
+
+- unmatched-message routing and exclusion;
+- matched-message processing;
+- full-body non-retention;
+- structured-fact retention;
+- account disconnection, revocation, and deletion;
+- Google scopes and consent-screen identity;
+- unrelated Drive-file restrictions;
+- provider identity, role, retention, and subprocessors;
+- final privacy-policy accuracy.
+
 ## Storyboard and reference status
 
 The former unified three-frame storyboard was never ratified and is inactive.
@@ -272,14 +337,15 @@ Completed surfaces require no additional external references:
 - Section 2;
 - Section 3;
 - Section 4 and funnel Frame 3;
-- Section 5.
+- Section 5;
+- Section 6.
 
 Still unresolved:
 
 - whether funnel Frames 1 and 2 require a compact transition reference;
 - whether another later complex surface requires a visual reference after written decisions are settled.
 
-Section 6 is a conventional disclosure surface and should not receive an external visual asset by default.
+Section 7 is a conventional FAQ and CTA surface and should not receive an external visual asset by default.
 
 ## Pre-Lovable decision sequence
 
@@ -297,18 +363,18 @@ For each remaining surface:
 Completed:
 
 - hero;
-- Sections 2 through 5;
+- Sections 2 through 6;
 - funnel Frame 3 visual.
 
 Immediate next surface:
 
-- Section 6, `How Blotter uses your data`.
+- Section 7, `Frequently asked questions` and the final closing CTA.
 
 Then:
 
-- Section 7 general FAQ and final CTA;
 - funnel Frames 1 and 2 and remaining funnel screens;
-- final responsive and reference-scope decisions.
+- final responsive and reference-scope decisions;
+- implementation-packet freeze.
 
 ### Phase B: Freeze the implementation packet
 
@@ -319,8 +385,9 @@ Assemble only approved materials:
 - all ratified build specifications needed for initial implementation;
 - asset inventory;
 - approved formal and directional assets;
+- explicit no-asset decisions;
 - each relevant asset README;
-- concise authority, defect, exclusion, and checkpoint notes.
+- concise authority, defect, exclusion, claim-gate, and checkpoint notes.
 
 No page copy, product capability, funnel step, claim, or reference scope may be invented during packet assembly.
 
@@ -331,7 +398,7 @@ Require Lovable to:
 - inspect the approved packet;
 - map all seven sections and funnel screens;
 - identify governing build specifications;
-- identify formal exact assets versus directional references;
+- identify formal exact assets, directional references, and no-asset surfaces;
 - propose reusable components and responsive behavior;
 - propose the funnel-state model;
 - identify event boundaries and lead writes;
@@ -352,7 +419,7 @@ Build:
 - buttons and links;
 - reusable CTA component with `cta_location`;
 - high-fidelity Google Sheets window component;
-- status-chip, activity-cue, connector, maintained-zone, editorial-figure, and section-wrapper primitives;
+- status-chip, activity-cue, connector, maintained-zone, editorial-figure, table, notice, accordion, and section-wrapper primitives;
 - funnel shell and shared state model;
 - analytics adapter interface.
 
@@ -378,11 +445,17 @@ Implement `04-SECTION-4-OUTSTANDING-ACTIONS.md` and reuse one exact Outstanding 
 
 Implement `05-SECTION-5-PRESERVATION.md` and the exact preservation asset; stop for review.
 
-### Phase 7: Remaining landing-page sections
+### Phase 7: Desktop Section 6
 
-Implement Section 6 and Section 7 only after their required presentation decisions are ratified.
+Implement `06-SECTION-6-DATA-AND-PRIVACY.md` directly from the written specification; stop for review.
 
-### Phase 8: Canonical funnel
+The private visual preview may use the ratified copy. Public readiness cannot be granted until the implementation-dependent claims are verified.
+
+### Phase 8: Desktop Section 7
+
+Implement only after the Section 7 presentation decisions are ratified.
+
+### Phase 9: Canonical funnel
 
 Implement:
 
@@ -461,20 +534,26 @@ Rules:
 
 ## Claims, privacy, responsive, and accessibility QA
 
-Before private-build approval, verify or revise:
+Before private-build or public approval as applicable, verify or revise:
 
 - case-study counts and JPMorgan offer wording;
 - approximately 60-hour estimate and methodology;
 - illustrative Goldman email context;
 - provider identity and role;
 - Google scopes and consent-screen language;
-- retention, deletion, privacy-policy, and subprocessor claims.
+- message-routing and unmatched-content exclusion;
+- matched-message processing;
+- retention and full-body non-retention;
+- account disconnection, revocation, and deletion;
+- unrelated Drive-file restrictions;
+- provider subprocessors and retention practices;
+- privacy-policy claims and destination.
 
 Check:
 
 - desktop, tablet, and mobile layouts after desktop approvals;
 - no page-level horizontal scrolling;
-- readable spreadsheet and email treatments;
+- readable spreadsheet, email, table, notice, and accordion treatments;
 - 16px minimum body text where appropriate;
 - 44px minimum touch targets;
 - visible keyboard focus;
@@ -499,7 +578,9 @@ Verify:
 - browser actions against lead records and analytics events;
 - retained event payload screenshots or logs;
 - no double firing on back or refresh;
-- all incidents repaired before traffic.
+- all incidents repaired before traffic;
+- Section 6 visual content against the ratified specification;
+- Section 6 claim text against the actual implementation before any public use.
 
 ## WS5 completion gate
 
@@ -519,7 +600,7 @@ WS5 is complete only when:
 
 ## Rejected, superseded, or inactive directions
 
-- Treating every Claude Design asset as pixel-perfect by default: rejected.
+- Treating every external design asset as pixel-perfect by default: rejected.
 - Ignoring an asset explicitly classified as formal exact: prohibited.
 - Requiring a separate reference for every page section: rejected.
 - Recording ratified visual decisions only in chat or a handoff: rejected.
@@ -533,24 +614,27 @@ WS5 is complete only when:
 - Creating a second independently styled Frame 3 view: rejected.
 - Inserting conceptual zone labels into the exact Section 5 asset: superseded by the approved unlabeled visual zoning.
 - Turning Section 5 into a migration flow, field-mapping diagram, two-sheet comparison, or arbitrary-layout-preservation promise: rejected.
+- Naming a third-party provider in Section 6 before selection: rejected.
+- Claiming a provider's Google application has completed verification before provider selection and verification: superseded and prohibited.
+- Section 6 security seals, fake OAuth, marketing cards, trust badges, `Bank-grade security`, `Industry-leading encryption`, `Secure by design`, `Accredited provider`, or unverified SOC 2, CASA, Google-verification, retention, deletion, or subprocessor claims: rejected.
+- Creating an external visual asset for Section 6: rejected as unnecessary.
 - Broad Lovable coding before packet freeze and plan approval: prohibited.
 - Real integrations, OAuth, card entry, payment collection, platform page, or public traffic during WS5: excluded.
 
 ## Exact next action
 
-Use the build-specification process to review Section 6, `How Blotter uses your data`.
+Use the build-specification process to review Section 7, `Frequently asked questions` and the final closing CTA.
 
-Preserve the ratified WS4 disclosure content and settle:
+Preserve the ratified WS4 copy and settle:
 
-- desktop information hierarchy;
-- main candid-claim treatment;
-- four-step explanation treatment;
-- permissions-table composition;
-- broad Google-permission disclosure placement and emphasis;
-- plain commitments and privacy FAQ treatment;
-- visible governance for provisional provider and implementation-dependent claims;
+- FAQ accordion width, separators, and accessible behavior;
+- visual transition from the FAQ into the final closing block;
+- exact centered closing composition;
+- final CTA treatment and `cta_location = final` behavior;
+- preservation of the rule that price and availability remain absent from the landing-page FAQ and appear only at their canonical funnel stages;
 - responsive posture;
 - desktop acceptance criteria;
-- whether a concise dedicated build specification is required.
+- whether a concise dedicated build specification is required;
+- confirmation that no external visual asset is needed.
 
-Do not create an external visual asset unless a specific implementation ambiguity later proves one is necessary. Do not enter Lovable plan mode yet.
+Do not create an external visual asset unless a specific implementation ambiguity proves one is necessary. Do not enter Lovable plan mode yet.
