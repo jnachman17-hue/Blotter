@@ -89,6 +89,7 @@ Lovable should not be asked to infer unresolved product or presentation decision
 | 03 | Landing-page Section 3 How Blotter works | `03-SECTION-3-HOW-BLOTTER-WORKS.md` | Ratified |
 | 04 | Landing-page Section 4 Outstanding Actions and funnel Frame 3 | `04-SECTION-4-OUTSTANDING-ACTIONS.md` | Ratified |
 | 05 | Landing-page Section 5 Preservation | `05-SECTION-5-PRESERVATION.md` | Ratified |
+| 06 | Landing-page Section 6 Data and Privacy | `06-SECTION-6-DATA-AND-PRIVACY.md` | Ratified |
 
 ## Section 3 supersession note
 
@@ -104,8 +105,16 @@ The ratified Section 5 specification establishes `../ws5-assets/section-5/preser
 
 The asset adds Email and LinkedIn to the established five-contact tracker and places the exact divider between LinkedIn and Status. The conceptual existing-tracker versus Blotter-live-layer distinction remains, but the former conceptual zone labels are not inserted into the exact spreadsheet visual.
 
+## Section 6 disclosure and provider note
+
+The ratified Section 6 specification establishes a calm, left-aligned disclosure system with one candid-claim block, four numbered processing rows, one permissions matrix, a visible broad-Google-permission notice, retention and commitment blocks, a provider disclosure, and a seven-question privacy accordion.
+
+No external visual asset is required or approved.
+
+The provider disclosure remains deliberately provider-agnostic because no connection provider has been selected. The earlier WS4 sentence implying that a selected provider's Google application had completed verification is superseded and prohibited unless later verified.
+
 ## Next specification checkpoint
 
-Section 6: `How Blotter uses your data`.
+Section 7: `Frequently asked questions` and the final closing CTA.
 
-Review the already-ratified disclosure content, settle only the desktop information hierarchy and component treatment, preserve the claim-verification gates, determine whether a dedicated build specification is needed, and avoid creating an unnecessary external visual asset. Lovable remains paused until the required packet is frozen.
+Review the already-ratified FAQ and closing copy, settle the desktop accordion and final-CTA composition, preserve the price-and-availability disclosure boundary, determine whether a concise dedicated build specification is required, and avoid creating an unnecessary external visual asset. Lovable remains paused until the required packet is frozen.
