@@ -1,0 +1,51 @@
+name: Finalize Section 3 asset documentation
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/finalize-section3-asset-docs.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconcile Section 3 asset format and metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          docs='blotter-ib-ws1/docs'
+          grep -rl 'how-blotter-works-exact-v1\.webp' "$docs" | xargs -r sed -i 's/how-blotter-works-exact-v1\.webp/how-blotter-works-exact-v1.avif/g'
+          readme="$docs/workstreams/ws5-assets/section-3/README.md"
+          spec="$docs/workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md"
+          index="$docs/workstreams/ws5-assets/README.md"
+          sed -i 's/The WebP was rendered losslessly/The AVIF was encoded losslessly/' "$readme" "$index"
+          sed -i 's/The WebP is a lossless/The AVIF is a lossless/' "$spec"
+          sed -i 's/Stored WebP metadata:/Stored AVIF metadata:/' "$readme"
+          sed -i 's/- lossless WebP;/- lossless AVIF;/' "$readme"
+          sed -i 's/b09f21e7a5733587398c4fd5859c5eac191280829d76f025bfbe8fc38a556e06/96fc9213dcd55072082499409153563dbe56c82fe815781ba13fec34424a45b0/' "$readme"
+          test "$(sha256sum "$docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif" | cut -d' ' -f1)" = '96fc9213dcd55072082499409153563dbe56c82fe815781ba13fec34424a45b0'
+          if grep -R 'how-blotter-works-exact-v1\.webp' "$docs"; then
+            echo 'Stale Section 3 WebP reference remains' >&2
+            exit 1
+          fi
+
+      - name: Commit reconciled documentation and remove workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add blotter-ib-ws1/docs
+          git rm .github/workflows/finalize-section3-asset-docs.yml
+          git commit -m 'Finalize Section 3 exact asset records'
+          git push origin HEAD:main
