@@ -1,32 +1,24 @@
 # Blotter IB - Current Handoff
 
-Date: August 1, 2026
+Date: August 1, 2026  
+Status: WS5 active; P1 and P2 implemented; P3 blocked on Lovable queue and asset transfer
 
 ## 1. Current objective
 
-Begin the governed Lovable plan-only intake for the complete spreadsheet landing page and canonical funnel.
+Resume the governed checkpointed Lovable implementation at P3, the desktop hero.
 
-Workstreams 1 through 4 are complete. WS5 is active.
+The Lovable implementation plan was returned, reviewed, amended, and ratified by Jon. Code implementation is authorized only through the existing checkpoint sequence.
 
-All seven landing-page sections are ratified:
+Completed:
 
-1. Hero.
-2. Scale and consequence.
-3. How Blotter works.
-4. Outstanding Actions.
-5. Preservation.
-6. Data and Privacy.
-7. FAQ and final CTA.
+- plan-only intake;
+- project-knowledge installation;
+- P1 foundation;
+- P2 reusable desktop Google Sheets primitive and exact-asset wrapper.
 
-The funnel architecture, exact copy, price, payment-choice simulation, terminal state, analytics events, and measurement rules are already ratified in WS3 and WS4.
+Do not restart planning, reopen the seven landing-page sections, or redesign the spreadsheet primitive.
 
-The pre-Lovable build-specification and visual-reference packet is frozen.
-
-Do not reopen page design or start another visual-reference round. Do not send a build prompt yet.
-
-The exact next action is to load the permanent Lovable project knowledge, upload the frozen packet and assets, send one plan-only Lovable message, and review the returned plan with Jon before any code changes.
-
-## 2. Required reading for the next chat
+## 2. Required reading
 
 Read in this order:
 
@@ -34,15 +26,12 @@ Read in this order:
 2. `docs/CURRENT-HANDOFF.md`
 3. `docs/workstreams/ws5-implementation/LOVABLE-PLAN-AND-BUILD.md`
 4. `docs/workstreams/ws5-implementation/LOVABLE-PROJECT-KNOWLEDGE.md`
-5. `docs/workstreams/WS5-SPEC.md`
-6. `docs/workstreams/ws5-build-specs/README.md`
-7. `docs/workstreams/ws5-assets/README.md`
-8. `docs/workstreams/WS4-SPEC.md`
-9. `docs/workstreams/WS3-SPEC.md`
-10. `docs/workstreams/WS2-SPEC.md`
-11. `docs/05-working-agreement.md`
-
-Then read the seven ratified build specifications and relevant asset READMEs as needed.
+5. `docs/workstreams/ws5-implementation/PLAN-AMENDMENTS-2026-08-01.md`
+6. `docs/workstreams/ws5-implementation/IMPLEMENTATION-PROGRESS-2026-08-01.md`
+7. `docs/workstreams/WS5-SPEC.md`
+8. `docs/workstreams/ws5-build-specs/README.md`
+9. `docs/workstreams/ws5-assets/README.md`
+10. the exact controlling build specification for the next checkpoint.
 
 ## 3. Current Lovable project
 
@@ -50,238 +39,155 @@ Project: `Blotter Foundation`
 Project ID: `ec94e794-190a-4c92-b337-67ecfb8f1b10`  
 Workspace ID: `c31c8d1d4fa00d0fc8fc`  
 Visibility: Private  
-Published: No  
-Status at packet freeze: Ready  
-Current foundation commit at packet freeze: `fa7af41199847b36ab8a14b55a767b93a8955968`
+Published: No
 
-The project currently contains a preliminary shell, navigation, CTA component, reserved visual placeholder, accordion primitives, and standard UI components.
+Installed project knowledge is the frozen `LOVABLE-PROJECT-KNOWLEDGE.md`.
 
-This code is provisional scaffolding. It is not approved page implementation.
+The current approved implementation baseline is the corrected P2 commit:
 
-Project knowledge was empty at packet freeze. Recheck it before replacing it.
+`a77bc7f4fc69a5af59894f754cc3d88be42f7313`
 
-## 4. Frozen landing-page specifications
+## 4. Ratified plan amendments
 
-- `docs/workstreams/ws5-build-specs/01-HERO.md`
-- `docs/workstreams/ws5-build-specs/02-SECTION-2-SCALE-AND-CONSEQUENCE.md`
-- `docs/workstreams/ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`
-- `docs/workstreams/ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`
-- `docs/workstreams/ws5-build-specs/05-SECTION-5-PRESERVATION.md`
-- `docs/workstreams/ws5-build-specs/06-SECTION-6-DATA-AND-PRIVACY.md`
-- `docs/workstreams/ws5-build-specs/07-SECTION-7-FAQ-AND-FINAL-CTA.md`
+Binding amendments are recorded in:
 
-All seven are marked `Ratified` and binding.
+`docs/workstreams/ws5-implementation/PLAN-AMENDMENTS-2026-08-01.md`
 
-## 5. Frozen visual packet
+Key rulings:
 
-### Directional hero input
+- retain the sticky-header CTA;
+- four CTA origins: `header`, `hero`, `actions`, `final`;
+- all four enter the same canonical funnel;
+- no separate `cta_clicked` event;
+- Section 6 processing rows are static, while its separate privacy FAQ is an accordion;
+- Section 7's five product questions are functioning accordions;
+- both recruiting questions require explicit Continue buttons;
+- `Summer 2028` is exact;
+- one checkout screen contains the purchase summary and payment choices;
+- duplicate suppression is namespaced by test iteration, surface, and event;
+- formal exact assets remain hard attachment gates.
 
-- `docs/workstreams/ws5-assets/hero/hero-reference-v1.png`
-- `docs/workstreams/ws5-assets/source/blotter-sheets-reference-v1.html`
+## 5. Completed P1 foundation
 
-The hero specification controls all required changes to the directional reference.
+P1 implemented:
 
-### Formal exact assets
+- four-origin CTA contract;
+- typed funnel state and reducer skeleton;
+- provider-independent analytics types and no-op adapter;
+- exact nine event names;
+- email excluded from analytics;
+- namespaced duplicate-suppression design;
+- lead-storage interfaces only;
+- no database or persistence;
+- frozen copy scaffolding;
+- focus, reduced-motion, typography, spacing, and spreadsheet foundations.
 
-- Section 2: `docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.webp`
-- Section 2 supplemental HTML: `goldman-sachs-rejection-email-exact-v1.html`
-- Section 3: `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`
-- Section 4 and funnel Frame 3: `docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`
-- Section 5: `docs/workstreams/ws5-assets/section-5/preservation-exact-v1.html`
+The canonical funnel model was corrected so price advances to one checkout screen and a payment-choice click advances directly to confirmation.
 
-### No external asset required
+## 6. Completed P2 spreadsheet primitive
 
-- Section 6.
-- Section 7.
-- conventional funnel question, email, price, purchase-summary, payment-choice, and terminal screens.
-- funnel Frames 1 and 2 unless Lovable's approved plan identifies a real contradiction.
+P2 implemented and reviewed:
 
-The former unified storyboard is inactive and must not be restarted.
+- reusable `SheetWindow` system;
+- stable typed column, row, geometry, selection, and tab models;
+- recognizable Google Sheets-style chrome;
+- exact eight columns and five canonical rows;
+- `Contacts` and active `Blotter` tabs;
+- maintained-zone tint from Status through Call;
+- divider after Firm;
+- `D2` Sarah Chen selection and `Replied` formula value;
+- corrected status-chip semantics;
+- fixed-aspect `ExactAsset` wrapper;
+- clean TypeScript check;
+- zero page-level horizontal overflow at the 1440px desktop audit.
 
-## 6. Exact next-chat actions
+Do not rebuild or re-style this primitive before P3. Later corrections must be bounded to the controlling section specification.
 
-### Action 1: Verify the project
+## 7. Asset packet
 
-Use Lovable to confirm:
+Jon supplied the complete repository ZIP. It contains:
 
-- project ID;
-- privacy status;
-- unpublished status;
-- latest commit;
-- no unreviewed changes since packet freeze.
+- `hero-reference-v1.png`
+- `blotter-sheets-reference-v1.html`
+- `goldman-sachs-rejection-email-exact-v1.webp`
+- `goldman-sachs-rejection-email-exact-v1.html`
+- `how-blotter-works-exact-v1.avif`
+- `outstanding-actions-reference-v1.png`
+- `preservation-exact-v1.html`
 
-Do not deploy.
+The ChatGPT runtime can read and extract these files.
 
-### Action 2: Verify and set project knowledge
+Lovable's MCP requires Lovable-issued upload IDs and rejects local paths and ChatGPT file IDs. Its presigned Google Cloud Storage endpoint is unreachable from the execution container. The Lovable environment also has no authenticated access to the private GitHub repository.
 
-Read current Lovable project knowledge first.
+A base64 fallback transfer was initiated for the hero asset. The Lovable main-agent queue then paused with reason `user`. The connector currently exposes no queue-unpause action.
 
-Set it to the exact contents of:
+No formal exact asset may be approximated or substituted.
 
-`docs/workstreams/ws5-implementation/LOVABLE-PROJECT-KNOWLEDGE.md`
+## 8. Exact next action
 
-Do not merge in unapproved existing instructions.
+In the Lovable editor for `Blotter Foundation`:
 
-### Action 3: Upload the frozen packet
+1. unpause the main agent queue;
+2. clear or complete the queued partial hero-transfer task;
+3. transfer and verify the actual hero directional asset;
+4. execute P3 only under `01-HERO.md`;
+5. stop for desktop preview, code-diff, and acceptance review before Section 2.
 
-Lovable must not be assumed to access the private GitHub repository directly.
+## 9. P3 hero requirements
 
-Fetch the required markdown and asset files from GitHub, upload them through Lovable's file-upload workflow, and attach the resulting file IDs to the plan-mode message.
+Use exact hero copy from WS4 and the hero build specification.
 
-Preserve original names where practical and identify each visual as directional, formal exact, or no-asset.
+Required visual behavior:
 
-### Action 4: Send the plan-only message
-
-Use `plan_mode = true`.
-
-Require Lovable to:
-
-- audit existing code;
-- map all seven sections;
-- map the complete funnel;
-- propose reusable components;
-- explain exact asset handling;
-- define the stable three-frame spreadsheet experience;
-- map all nine events to exact transitions;
-- propose provider-independent analytics architecture;
-- propose lead-storage architecture without enabling a database;
-- define responsive and accessibility behavior;
-- identify privacy and claim gates;
-- give phased implementation and stop points;
-- list genuine conflicts only;
-- make no code changes.
-
-Use the exact message substance in:
-
-`docs/workstreams/ws5-implementation/LOVABLE-PLAN-AND-BUILD.md`
-
-### Action 5: Review the returned plan
-
-Bring the plan to Jon.
-
-Compare it against:
-
-- WS3;
-- WS4;
-- WS5;
-- all seven build specifications;
-- asset authority rules;
-- the implementation handoff.
-
-Do not authorize code until Jon approves the plan.
-
-## 7. Implementation sequence after plan approval
-
-The approved process is checkpointed:
-
-1. Foundation and reusable Google Sheets primitive.
-2. Hero.
-3. Section 2.
-4. Section 3.
-5. Section 4 and shared funnel Frame 3 component.
-6. Section 5.
-7. Section 6.
-8. Section 7.
-9. Complete-page desktop rhythm.
-10. Canonical funnel.
-11. Lead storage.
-12. Analytics provider selection and connection.
-13. Responsive and accessibility adaptation.
-14. Privacy and claim verification.
-15. Manual lead and event verification.
-16. Private WS5 completion review.
-
-Each phase must have:
-
-- a named controlling specification;
-- relevant attachments;
-- an explicit stop condition;
-- preview review;
-- code-diff review;
-- acceptance-criteria review.
-
-Do not use one giant whole-site build prompt.
-
-## 8. Analytics in plain terms
-
-Analytics is partly handled now and partly later.
-
-During foundation and funnel implementation:
-
-- create one provider-independent tracking adapter;
-- wire calls at the exact nine state transitions;
-- preserve exact names and properties;
-- prevent duplicates;
-- retain CTA origin;
-- keep email out of analytics.
-
-Do not choose or connect an analytics vendor during plan-only intake.
-
-After visual and funnel behavior are stable:
-
-- evaluate the analytics options against WS3 requirements;
-- obtain approval for one provider;
-- connect the adapter;
-- manually verify every event before public traffic.
-
-Lovable aggregate site analytics do not automatically replace the custom nine-event contract.
-
-## 9. Lead storage in plain terms
-
-Do not enable a database during plan-only intake or the first visual phase.
-
-After the funnel and email-capture behavior are approved:
-
-- propose the minimum database schema;
-- review privacy implications;
-- approve the storage implementation;
-- provision once;
-- store the required lead fields;
-- verify export and safe updates.
-
-Lovable's Supabase-backed database may be the simplest option, but it is not selected merely because it is available.
-
-## 10. Privacy and provider rule
-
-No Google connection provider has been selected.
-
-Use only provider-agnostic language.
-
-Before public release, implementation truth must support claims about:
-
-- unmatched-message filtering;
-- full-email-body non-retention;
-- account deletion;
-- connection revocation;
-- Google scopes;
-- consent-screen identity;
-- unrelated Drive access;
-- subprocessors and privacy policy.
-
-Private layout review may use ratified copy. Public release may not use unsupported claims.
+- one current spreadsheet only;
+- the approved P2 `SheetWindow` primitive;
+- exact three activity cues;
+- direct cue-to-row mapping for Sarah Chen, Marcus Lee, and Alex Morgan;
+- stronger full maintained-block emphasis for those three rows;
+- baseline Status-through-Call tint for all rows;
+- exact below-sheet ownership underlines and labels;
+- no stale sheet;
+- no intermediary engine;
+- no extra cues or invented capability;
+- static first-load comprehension;
+- desktop-first, private preview only.
+
+CTA origins:
+
+- sticky header: `header`;
+- hero: `hero`.
+
+## 10. Remaining checkpoint sequence
+
+After P3 approval:
+
+1. Section 2.
+2. Section 3.
+3. Section 4 and shared funnel Frame 3.
+4. Section 5.
+5. Section 6.
+6. Section 7.
+7. Complete-page desktop rhythm.
+8. Canonical funnel.
+9. Lead-storage proposal and approval.
+10. Analytics-provider proposal and approval.
+11. Responsive and accessibility adaptation.
+12. Privacy, claim, lead, and event verification.
+13. Private WS5 completion review.
+
+Every checkpoint requires its controlling specification, relevant attachments, explicit stop condition, preview review, diff review, and acceptance review.
 
 ## 11. Deployment rule
 
 Keep the project private and unpublished throughout WS5.
 
-Use the private preview for review and testing.
+Do not:
 
-Do not call production deployment and do not route the public domain.
-
-Public launch waits for:
-
-- the matched platform page;
-- verified analytics and lead storage;
-- passed privacy and claim gates;
-- final simultaneous-launch authorization.
-
-## 12. Definition of next-chat success
-
-The next chat is successful when:
-
-- the Lovable project state is verified;
-- permanent project knowledge is installed;
-- the frozen packet and assets are uploaded;
-- a detailed plan-only response is returned;
-- the plan is reviewed with Jon;
-- no code has yet been changed.
+- deploy publicly;
+- route a public domain;
+- enable a database without approval;
+- connect an analytics vendor without approval;
+- implement real OAuth;
+- implement Gmail, Calendar, or Sheets integrations;
+- collect payment or card information;
+- route public traffic.
