@@ -1,32 +1,16 @@
 # WS5 Lovable implementation progress
 
-Date: August 1, 2026  
-Status: P1 and P2 complete; P3 blocked on Lovable queue and asset transfer  
+Date: August 2, 2026  
+Status: P1, P2, and corrected P3 complete; awaiting Jon's P3 visual approval and corrected Section 2 asset verification  
 Decision owner: Jon  
 Lovable project: `Blotter Foundation`  
 Project ID: `ec94e794-190a-4c92-b337-67ecfb8f1b10`
 
-## Governing authority
-
-Use together with:
-
-- `LOVABLE-PLAN-AND-BUILD.md`
-- `LOVABLE-PROJECT-KNOWLEDGE.md`
-- `PLAN-AMENDMENTS-2026-08-01.md`
-- `../WS5-SPEC.md`
-- the seven ratified build specifications
-
 The project remains private and unpublished.
 
-## Completed checkpoint P1 — foundation
+## P1 — foundation
 
-Lovable implementation commits:
-
-- `090ca0c9`
-- `9252d8f4`
-- correction: `e3d7683a`
-
-Implemented and verified:
+Completed and verified:
 
 - exactly four CTA origins in the contract: `header`, `hero`, `actions`, `final`;
 - sticky-header CTA retained;
@@ -41,43 +25,29 @@ Implemented and verified:
 - explicit Continue behavior for both recruiting questions;
 - one canonical checkout screen containing purchase summary and payment choices;
 - frozen copy-module scaffolding;
-- global focus, reduced-motion, typography, spacing, and spreadsheet token foundations;
-- no analytics vendor, integration, OAuth, payment collection, database, deployment, or public traffic.
+- global focus, reduced-motion, typography, spacing, and spreadsheet-token foundations.
 
-The project compiled after P1.
+No analytics vendor, OAuth, payment collection, database, deployment, or public traffic was enabled.
 
-## Completed checkpoint P2 — reusable Google Sheets primitive
+## P2 — reusable Google Sheets primitive
 
-Lovable implementation commits:
+Corrected/frozen commit:
 
-- initial: `e298e9c6c0bf62aa84cbd1ed9d494074e9338458`
-- corrected/frozen: `a77bc7f4fc69a5af59894f754cc3d88be42f7313`
+`a77bc7f4fc69a5af59894f754cc3d88be42f7313`
 
-Implemented files:
+Completed and verified:
 
-- `src/components/sheet/types.ts`
-- `src/components/sheet/data/ibRecruitingTracker.ts`
-- `src/components/sheet/StatusChip.tsx`
-- `src/components/sheet/SheetGrid.tsx`
-- `src/components/sheet/SheetChrome.tsx`
-- `src/components/sheet/SheetWindow.tsx`
-- `src/components/media/ExactAsset.tsx`
-- related global style and preview integration changes
-
-Verified desktop behavior:
-
-- recognizable compact Google Sheets-style chrome;
+- reusable typed `SheetWindow` system;
 - title `IB Recruiting Tracker`;
-- full menu, toolbar, formula bar, column letters, row numbers, grid, and tab strip;
+- full Sheets-style chrome, menu, toolbar, formula bar, column letters, row numbers, grid, and tabs;
 - exact tabs `Contacts` and `Blotter`, with `Blotter` active;
-- exact eight columns and canonical five rows;
-- blanks remain genuinely blank;
-- strong divider after Firm;
+- exact eight columns and five canonical rows;
+- genuinely blank cells;
+- divider after Firm;
 - continuous faint maintained-zone tint from Status through Call;
 - Sarah Chen `D2` selection and formula value `Replied`;
-- reusable typed state and stable geometry;
 - exact-asset fixed-aspect wrapper;
-- no page-level horizontal overflow at the 1440px desktop audit;
+- no page-level horizontal overflow at the 1440px audit;
 - clean TypeScript check.
 
 Corrected status semantics:
@@ -86,63 +56,87 @@ Corrected status semantics:
 - `Call scheduled`: blue;
 - `Call completed`: restrained amber;
 - `No reply`: neutral gray;
-- `Sent`: neutral gray;
-- red reserved for genuinely due or overdue actions and unused in this state.
+- `Sent`: neutral gray.
 
-Toolbar controls use restrained existing line icons rather than literal keyboard symbols or copied proprietary Google icon assets.
+## P3 — desktop hero
 
-P2 stopped before hero cues, connectors, ownership labels, or any later section.
+Initial implementation commit:
 
-## Asset packet available locally to the implementation chat
+`8ab373cbd8827b293028405c1a5bd82df3bc38f2`
 
-The complete repository ZIP was supplied by Jon and contains:
+Corrected/frozen implementation commit pending Jon visual approval:
 
-- `hero-reference-v1.png`
-- `blotter-sheets-reference-v1.html`
-- `goldman-sachs-rejection-email-exact-v1.webp`
-- `goldman-sachs-rejection-email-exact-v1.html`
-- `how-blotter-works-exact-v1.avif`
-- `outstanding-actions-reference-v1.png`
-- `preservation-exact-v1.html`
+`6771b9dd785ff538d28601b0412f8044fb48016e`
 
-## Current transfer blocker
+Implemented:
 
-The ChatGPT runtime can read and extract the ZIP, but Lovable's MCP attachment field accepts only Lovable-issued uploaded-file IDs. It rejects local paths and ChatGPT file IDs.
-
-Lovable successfully issued presigned Google Cloud Storage upload URLs, but the execution container cannot resolve or connect to `storage.googleapis.com`. Direct IP resolution attempts also fail at the network layer.
-
-The Lovable project environment has no authenticated access to the private GitHub repository and no mounted copy of it.
-
-A base64 chunk transfer into Lovable was initiated as a fallback for the directional hero asset. The first large chunk entered the Lovable queue, after which Lovable paused the main agent queue with reason `user`. The connector exposes no queue-unpause action. Additional implementation messages cannot execute until the queue is unpaused in the Lovable editor.
-
-No formal exact asset was inferred, redrawn, approximated, or substituted.
-
-## Exact next action
-
-1. Unpause the Lovable agent queue in the editor for `Blotter Foundation`.
-2. Confirm or clear the queued partial hero transfer task.
-3. Transfer the actual directional hero asset and verify its bytes/dimensions.
-4. Execute P3 only: desktop hero using the approved P2 spreadsheet primitive and `01-HERO.md`.
-5. Stop for preview, diff, and acceptance review before Section 2.
-
-## P3 requirements held ready
-
-The hero must include:
-
-- exact eyebrow, headline, subhead, CTA, and authority line;
-- sticky-header CTA retained with `cta_location = header`;
-- hero CTA with `cta_location = hero`;
-- one current spreadsheet only;
-- exact three activity cues;
+- exact hero eyebrow, headline, subhead, CTA, and authority line;
+- sticky-header CTA origin `header` and hero CTA origin `hero`;
+- one dominant current `SheetWindow`;
+- exactly three approved activity cues;
 - direct cue-to-row connectors for Sarah Chen, Marcus Lee, and Alex Morgan;
 - stronger maintained-block emphasis for those three rows;
-- baseline Status-through-Call tint for all rows;
-- exact below-sheet ownership labels and region underlines;
-- no stale sheet;
-- no intermediary engine;
-- no additional cues or invented product behavior;
-- static first-load comprehension;
-- desktop-first implementation and private preview only.
+- baseline maintained-zone tint for every row;
+- below-sheet ownership labels and region underlines;
+- no stale sheet, engine, extra cue, or animation dependency.
+
+Bounded correction completed:
+
+- removed forced uppercase styling so visible copy remains exactly `YOU add the contacts` and `BLOTTER keeps them current`;
+- replaced calculated underline positioning with rendered-DOM measurement;
+- added nonvisual column measurement hooks;
+- preserved sheet geometry, cues, connectors, CTA origins, and composition.
+
+Measured geometry at 1440px, relative to the 1006px SheetWindow:
+
+- Name left edge: `43px`;
+- Firm/Status boundary: `415px`;
+- Call right edge: `1005px`;
+- manual underline: `43px → 415px`;
+- maintained underline: `415px → 1005px`;
+- right window border: `1006px`.
+
+Typecheck passed, page-level horizontal overflow measured `0px`, and connectors did not cross or obscure cell content.
+
+Actual funnel opening remains deferred to P10. P3 contains the typed CTA-origin contract, not the final funnel interaction.
+
+## Asset intake
+
+Verified usable in Lovable:
+
+- directional hero reference;
+- supplemental Sheets HTML;
+- supplemental Section 2 HTML;
+- formal exact Section 3 asset;
+- formal exact Section 4 / funnel Frame 3 asset;
+- formal exact Section 5 asset.
+
+The repository's original Section 2 WebP is intrinsically truncated:
+
+- bytes stored: `13,676`;
+- RIFF-declared total: `29,672`;
+- dimensions declared: `1180 × 560`;
+- result: decoder failure.
+
+A valid replacement was rendered from the intact exact HTML source:
+
+- filename: `goldman-sachs-rejection-email-exact-v1-corrected.webp`;
+- lossless WebP;
+- `1180 × 560`;
+- actual bytes and RIFF total: `28,620`;
+- SHA-256: `47b61a01c55cc73025aedbddddc32452691501086757e92a83efbb081ffae660`;
+- opens successfully.
+
+The corrected binary must be attached directly in Lovable before P4. The corrupted binary in GitHub must later be replaced through a binary-capable workflow.
+
+## Current gates
+
+P4 Section 2 may begin only after:
+
+1. Jon reviews and explicitly approves the corrected P3 private preview; and
+2. Lovable verifies the corrected Section 2 WebP and supersedes the defective upload.
+
+No formal exact asset was inferred or substituted during implementation.
 
 ## Deployment and safety status
 
