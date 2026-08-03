@@ -1,7 +1,7 @@
 # Blotter IB - Current Handoff
 
 Date: August 1, 2026  
-Status: WS5 active; P1 and P2 implemented; P3 blocked on Lovable queue and asset transfer
+Status: WS5 active; P1 and P2 implemented; P3 waiting on direct Lovable asset attachments
 
 ## 1. Current objective
 
@@ -119,7 +119,9 @@ The ChatGPT runtime can read and extract these files.
 
 Lovable's MCP requires Lovable-issued upload IDs and rejects local paths and ChatGPT file IDs. Its presigned Google Cloud Storage endpoint is unreachable from the execution container. The Lovable environment also has no authenticated access to the private GitHub repository.
 
-A base64 fallback transfer was initiated for the hero asset. The Lovable main-agent queue then paused with reason `user`. The connector currently exposes no queue-unpause action.
+The base64 fallback is abandoned. Lovable's `/tmp` state did not persist between agent runs, and the attempted chunk was absent after the queue resumed. The main agent queue is now operating; there is no remaining queue blocker.
+
+The reliable transfer route is direct native attachment through the Lovable editor's paperclip. Attach the seven original files individually. Do not attach a base64 file and do not ask Lovable to reconstruct an asset from text.
 
 No formal exact asset may be approximated or substituted.
 
@@ -127,10 +129,10 @@ No formal exact asset may be approximated or substituted.
 
 In the Lovable editor for `Blotter Foundation`:
 
-1. unpause the main agent queue;
-2. clear or complete the queued partial hero-transfer task;
-3. transfer and verify the actual hero directional asset;
-4. execute P3 only under `01-HERO.md`;
+1. use the paperclip in the chat composer;
+2. attach all seven original asset files individually;
+3. send one storage-only message instructing Lovable to verify every filename, format, and dimension and to make no code changes;
+4. after verification, execute P3 only under `01-HERO.md`, using `hero-reference-v1.png` as directional input and `blotter-sheets-reference-v1.html` as supplemental source;
 5. stop for desktop preview, code-diff, and acceptance review before Section 2.
 
 ## 9. P3 hero requirements
