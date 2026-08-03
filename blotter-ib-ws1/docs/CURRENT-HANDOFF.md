@@ -1,39 +1,24 @@
 # Blotter IB - Current Handoff
 
-Date: August 1, 2026  
-Status: WS5 active; P1 and P2 implemented; P3 waiting on direct Lovable asset attachments
+Date: August 2, 2026  
+Status: WS5 active; P1, P2, and corrected P3 implemented; awaiting Jon's P3 visual approval and corrected Section 2 asset attachment
 
 ## 1. Current objective
 
-Resume the governed checkpointed Lovable implementation at P3, the desktop hero.
-
-The Lovable implementation plan was returned, reviewed, amended, and ratified by Jon. Code implementation is authorized only through the existing checkpoint sequence.
+Review and approve the completed desktop hero checkpoint, repair the defective Section 2 formal exact asset, and then begin P4 Section 2 only after both gates are satisfied.
 
 Completed:
 
-- plan-only intake;
-- project-knowledge installation;
+- Lovable plan-only intake and ratification;
+- permanent project-knowledge installation;
 - P1 foundation;
-- P2 reusable desktop Google Sheets primitive and exact-asset wrapper.
+- P2 reusable desktop Google Sheets primitive and exact-asset wrapper;
+- P3 desktop hero;
+- bounded P3 correction for ownership-label case and exact underline alignment.
 
-Do not restart planning, reopen the seven landing-page sections, or redesign the spreadsheet primitive.
+Do not restart planning, reopen ratified page decisions, redesign the P2 spreadsheet primitive, or begin Section 2 before the remaining gates below are cleared.
 
-## 2. Required reading
-
-Read in this order:
-
-1. `docs/00-START-HERE.md`
-2. `docs/CURRENT-HANDOFF.md`
-3. `docs/workstreams/ws5-implementation/LOVABLE-PLAN-AND-BUILD.md`
-4. `docs/workstreams/ws5-implementation/LOVABLE-PROJECT-KNOWLEDGE.md`
-5. `docs/workstreams/ws5-implementation/PLAN-AMENDMENTS-2026-08-01.md`
-6. `docs/workstreams/ws5-implementation/IMPLEMENTATION-PROGRESS-2026-08-01.md`
-7. `docs/workstreams/WS5-SPEC.md`
-8. `docs/workstreams/ws5-build-specs/README.md`
-9. `docs/workstreams/ws5-assets/README.md`
-10. the exact controlling build specification for the next checkpoint.
-
-## 3. Current Lovable project
+## 2. Current Lovable project
 
 Project: `Blotter Foundation`  
 Project ID: `ec94e794-190a-4c92-b337-67ecfb8f1b10`  
@@ -41,145 +26,117 @@ Workspace ID: `c31c8d1d4fa00d0fc8fc`
 Visibility: Private  
 Published: No
 
-Installed project knowledge is the frozen `LOVABLE-PROJECT-KNOWLEDGE.md`.
+Current corrected P3 commit:
 
-The current approved implementation baseline is the corrected P2 commit:
+`6771b9dd785ff538d28601b0412f8044fb48016e`
+
+The prior P3 implementation commit was:
+
+`8ab373cbd8827b293028405c1a5bd82df3bc38f2`
+
+The corrected P2 baseline was:
 
 `a77bc7f4fc69a5af59894f754cc3d88be42f7313`
 
-## 4. Ratified plan amendments
+## 3. Completed P3 desktop hero
 
-Binding amendments are recorded in:
+Implemented:
 
-`docs/workstreams/ws5-implementation/PLAN-AMENDMENTS-2026-08-01.md`
+- exact hero eyebrow, headline, subhead, CTA, and authority line;
+- retained sticky-header CTA origin `header`;
+- hero CTA origin `hero`;
+- one dominant current `SheetWindow` only;
+- exactly three activity cues with exact copy;
+- direct cue-to-row connectors for Sarah Chen, Marcus Lee, and Alex Morgan;
+- baseline Status-through-Call maintained-zone tint;
+- stronger maintained-block emphasis for the three cue-linked rows;
+- exact below-sheet ownership labels;
+- measured ownership underlines aligned to rendered column boundaries;
+- no stale sheet, engine, extra cue, or animation dependency.
 
-Key rulings:
+Corrected ownership geometry at the 1440px audit, relative to the 1006px SheetWindow:
 
-- retain the sticky-header CTA;
-- four CTA origins: `header`, `hero`, `actions`, `final`;
-- all four enter the same canonical funnel;
-- no separate `cta_clicked` event;
-- Section 6 processing rows are static, while its separate privacy FAQ is an accordion;
-- Section 7's five product questions are functioning accordions;
-- both recruiting questions require explicit Continue buttons;
-- `Summer 2028` is exact;
-- one checkout screen contains the purchase summary and payment choices;
-- duplicate suppression is namespaced by test iteration, surface, and event;
-- formal exact assets remain hard attachment gates.
+- Name true left edge: `43px`;
+- Firm/Status boundary: `415px`;
+- Call right edge: `1005px`;
+- manual underline: `43px` to `415px`;
+- maintained underline: `415px` to `1005px`;
+- right border: `1006px`.
 
-## 5. Completed P1 foundation
+Visible mixed-case copy is exactly:
 
-P1 implemented:
+- `YOU add the contacts`
+- `BLOTTER keeps them current`
 
-- four-origin CTA contract;
-- typed funnel state and reducer skeleton;
-- provider-independent analytics types and no-op adapter;
-- exact nine event names;
-- email excluded from analytics;
-- namespaced duplicate-suppression design;
-- lead-storage interfaces only;
-- no database or persistence;
-- frozen copy scaffolding;
-- focus, reduced-motion, typography, spacing, and spreadsheet foundations.
+Typecheck passed and page-level horizontal overflow measured `0px` at the desktop audit.
 
-The canonical funnel model was corrected so price advances to one checkout screen and a payment-choice click advances directly to confirmation.
+Actual funnel opening remains deferred to the canonical funnel checkpoint. P3 preserves the typed CTA-origin contract only.
 
-## 6. Completed P2 spreadsheet primitive
+## 4. P3 approval gate
 
-P2 implemented and reviewed:
+Jon must review the private Lovable preview and either:
 
-- reusable `SheetWindow` system;
-- stable typed column, row, geometry, selection, and tab models;
-- recognizable Google Sheets-style chrome;
-- exact eight columns and five canonical rows;
-- `Contacts` and active `Blotter` tabs;
-- maintained-zone tint from Status through Call;
-- divider after Firm;
-- `D2` Sarah Chen selection and `Replied` formula value;
-- corrected status-chip semantics;
-- fixed-aspect `ExactAsset` wrapper;
-- clean TypeScript check;
-- zero page-level horizontal overflow at the 1440px desktop audit.
+- approve P3 as shown; or
+- provide bounded hero corrections.
 
-Do not rebuild or re-style this primitive before P3. Later corrections must be bounded to the controlling section specification.
+Do not begin P4 Section 2 until P3 is explicitly approved.
 
-## 7. Asset packet
+## 5. Asset intake status
 
-Jon supplied the complete repository ZIP. It contains:
+Lovable received and opened:
 
-- `hero-reference-v1.png`
-- `blotter-sheets-reference-v1.html`
-- `goldman-sachs-rejection-email-exact-v1.webp`
-- `goldman-sachs-rejection-email-exact-v1.html`
-- `how-blotter-works-exact-v1.avif`
-- `outstanding-actions-reference-v1.png`
-- `preservation-exact-v1.html`
+- `hero-reference-v1.png` — directional hero reference;
+- `blotter-sheets-reference-v1.html` — supplemental directional source;
+- `goldman-sachs-rejection-email-exact-v1.html` — supplemental Section 2 source;
+- `how-blotter-works-exact-v1.avif` — formal exact Section 3 asset;
+- `outstanding-actions-reference-v1.png` — formal exact Section 4 and funnel Frame 3 asset;
+- `preservation-exact-v1.html` — formal exact Section 5 asset.
 
-The ChatGPT runtime can read and extract these files.
+The repository's original `goldman-sachs-rejection-email-exact-v1.webp` is intrinsically truncated, not merely damaged during upload:
 
-Lovable's MCP requires Lovable-issued upload IDs and rejects local paths and ChatGPT file IDs. Its presigned Google Cloud Storage endpoint is unreachable from the execution container. The Lovable environment also has no authenticated access to the private GitHub repository.
+- stored bytes: `13,676`;
+- RIFF-declared total: `29,672`;
+- declared dimensions: `1180 × 560`;
+- decoder result: cannot open.
 
-The base64 fallback is abandoned. Lovable's `/tmp` state did not persist between agent runs, and the attempted chunk was absent after the queue resumed. The main agent queue is now operating; there is no remaining queue blocker.
+The intact exact HTML source was rendered into a replacement lossless WebP:
 
-The reliable transfer route is direct native attachment through the Lovable editor's paperclip. Attach the seven original files individually. Do not attach a base64 file and do not ask Lovable to reconstruct an asset from text.
+- local filename: `goldman-sachs-rejection-email-exact-v1-corrected.webp`;
+- dimensions: `1180 × 560`;
+- actual bytes and RIFF-declared total: `28,620`;
+- SHA-256: `47b61a01c55cc73025aedbddddc32452691501086757e92a83efbb081ffae660`;
+- opens successfully.
 
-No formal exact asset may be approximated or substituted.
+The binary GitHub file still requires later replacement because the current GitHub connector cannot write binary content. The correction is documented here so the corrupt repository asset is not treated as authoritative.
 
-## 8. Exact next action
+## 6. Exact next actions
 
-In the Lovable editor for `Blotter Foundation`:
+1. Attach `goldman-sachs-rejection-email-exact-v1-corrected.webp` directly in the Lovable project chat.
+2. Ask Lovable to verify that it opens as a lossless `1180 × 560` WebP and to supersede the defective prior upload without modifying code.
+3. Review the current P3 private preview.
+4. Ratify P3 or provide bounded corrections.
+5. Only after both the P3 approval gate and Section 2 asset gate pass, execute P4 Section 2 under `02-SECTION-2-SCALE-AND-CONSEQUENCE.md`.
 
-1. use the paperclip in the chat composer;
-2. attach all seven original asset files individually;
-3. send one storage-only message instructing Lovable to verify every filename, format, and dimension and to make no code changes;
-4. after verification, execute P3 only under `01-HERO.md`, using `hero-reference-v1.png` as directional input and `blotter-sheets-reference-v1.html` as supplemental source;
-5. stop for desktop preview, code-diff, and acceptance review before Section 2.
+## 7. Remaining checkpoint sequence
 
-## 9. P3 hero requirements
+After P3 approval and corrected Section 2 asset verification:
 
-Use exact hero copy from WS4 and the hero build specification.
-
-Required visual behavior:
-
-- one current spreadsheet only;
-- the approved P2 `SheetWindow` primitive;
-- exact three activity cues;
-- direct cue-to-row mapping for Sarah Chen, Marcus Lee, and Alex Morgan;
-- stronger full maintained-block emphasis for those three rows;
-- baseline Status-through-Call tint for all rows;
-- exact below-sheet ownership underlines and labels;
-- no stale sheet;
-- no intermediary engine;
-- no extra cues or invented capability;
-- static first-load comprehension;
-- desktop-first, private preview only.
-
-CTA origins:
-
-- sticky header: `header`;
-- hero: `hero`.
-
-## 10. Remaining checkpoint sequence
-
-After P3 approval:
-
-1. Section 2.
-2. Section 3.
-3. Section 4 and shared funnel Frame 3.
-4. Section 5.
-5. Section 6.
-6. Section 7.
-7. Complete-page desktop rhythm.
-8. Canonical funnel.
-9. Lead-storage proposal and approval.
-10. Analytics-provider proposal and approval.
-11. Responsive and accessibility adaptation.
-12. Privacy, claim, lead, and event verification.
-13. Private WS5 completion review.
+1. P4 Section 2.
+2. P5 Section 3.
+3. P6 Section 4 and shared funnel Frame 3.
+4. P7 Section 5.
+5. P8 Section 6.
+6. P9 Section 7 and complete desktop page rhythm.
+7. P10 canonical funnel.
+8. Lead-storage proposal and approval.
+9. Analytics-provider proposal and approval.
+10. Responsive and accessibility adaptation.
+11. Privacy, claim, lead, and event verification.
+12. Private WS5 completion review.
 
 Every checkpoint requires its controlling specification, relevant attachments, explicit stop condition, preview review, diff review, and acceptance review.
 
-## 11. Deployment rule
+## 8. Deployment rule
 
 Keep the project private and unpublished throughout WS5.
 
