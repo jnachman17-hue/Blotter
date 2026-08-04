@@ -1,0 +1,12 @@
+# Impeccable design skill — installed and updated via its own installer.
+# ~3.2M of vendored code including multi-hundred-KB browser bundles.
+# Left untracked so `npx impeccable` upgrades don't fight git.
+.claude/skills/impeccable/
+
+# Impeccable local state (hook consent flag, machine-specific).
+.impeccable/
+
+# Per-machine Claude Code settings. Registers the impeccable hooks, so it
+# configures a skill that is itself ignored above. *.local.json is personal
+# by convention and should not be shared.
+.claude/settings.local.json
