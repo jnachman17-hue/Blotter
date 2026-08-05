@@ -1,0 +1,124 @@
+/**
+ * Standard row-and-column grid body for SheetWindow.
+ *
+ * Serves the hero, the Section 3 crop, Section 5 preservation, and funnel
+ * Frames 1 and 2. Section 4 Outstanding Actions uses a grouped body instead.
+ *
+ * Zone model (01-HERO sections 8 and 10, 05-SECTION-5 section 6):
+ *   - columns before `zoneSplit` are student-maintained
+ *   - columns from `zoneSplit` onward are Blotter-maintained and carry a
+ *     continuous faint tint across headers and every data row
+ *   - a legible vertical boundary sits at the split, stronger than a gridline
+ *
+ * Blank cells are genuinely blank. Never a dash, em dash, N/A, or placeholder
+ * (01-HERO section 6; reaffirmed by Jon August 4, 2026 for Section 5).
+ */
+
+import { cn } from "@/lib/cn";
+import { StatusChip, type Status } from "./status-chip";
+
+export interface SheetColumn {
+  header: string;
+  /** Tailwind width utility, e.g. `w-[180px]`. Omit to share remaining space. */
+  width?: string;
+  align?: "left" | "right";
+  /** Render the cell as a status chip rather than plain text. */
+  kind?: "text" | "status" | "link" | "italic";
+}
+
+export type SheetCell = string | { status: Status } | null;
+
+export interface SheetRow {
+  cells: SheetCell[];
+  /**
+   * Stronger emphasis across this row's maintained block. Used for the three
+   * cue-linked hero rows (01-HERO section 10). Priya and Daniel keep only the
+   * baseline tint and must not be de-emphasised.
+   */
+  emphasised?: boolean;
+}
+
+interface SheetGridProps {
+  columns: SheetColumn[];
+  rows: SheetRow[];
+  /** Index of the first Blotter-maintained column. Omit for no zone split. */
+  zoneSplit?: number;
+  /** Row number to start from in the gutter. Header occupies row 1. */
+  className?: string;
+}
+
+export function SheetGrid({
+  columns,
+  rows,
+  zoneSplit,
+  className,
+}: SheetGridProps) {
+  const maintained = (i: number) => zoneSplit !== undefined && i >= zoneSplit;
+  const isSplit = (i: number) => zoneSplit !== undefined && i === zoneSplit;
+
+  return (
+    <div className={cn("text-[15px]", className)}>
+      {/* Header row */}
+      <div className="flex border-b border-sheet-grid">
+        <div className="w-[43px] shrink-0 border-r border-sheet-grid bg-sheet-header py-2.5 text-center text-[12px] text-ink-muted">
+          1
+        </div>
+        {columns.map((col, i) => (
+          <div
+            key={col.header}
+            className={cn(
+              "px-3 py-2.5 font-semibold text-ink whitespace-nowrap",
+              col.width ?? "flex-1",
+              col.align === "right" && "text-right",
+              maintained(i) ? "bg-blotter-100" : "bg-manual-100",
+              isSplit(i) && "border-l-2 border-l-sheet-border",
+            )}
+          >
+            {col.header}
+          </div>
+        ))}
+      </div>
+
+      {/* Data rows */}
+      {rows.map((row, r) => (
+        <div key={r} className="flex border-b border-sheet-grid last:border-b-0">
+          <div className="w-[43px] shrink-0 border-r border-sheet-grid bg-sheet-header py-2.5 text-center text-[12px] text-ink-muted">
+            {r + 2}
+          </div>
+          {columns.map((col, i) => {
+            const cell = row.cells[i];
+            return (
+              <div
+                key={col.header}
+                className={cn(
+                  "px-3 py-2.5 whitespace-nowrap overflow-hidden",
+                  col.width ?? "flex-1",
+                  col.align === "right" && "text-right",
+                  col.kind === "italic" && "italic text-ink-muted",
+                  maintained(i) &&
+                    (row.emphasised ? "bg-blotter-200/60" : "bg-blotter-50"),
+                  isSplit(i) && "border-l-2 border-l-sheet-border",
+                )}
+              >
+                {cell === null || cell === "" ? null : typeof cell === "string" ? (
+                  col.kind === "link" ? (
+                    <a
+                      href="https://www.linkedin.com"
+                      className="text-chip-replied-fg underline"
+                    >
+                      {cell}
+                    </a>
+                  ) : (
+                    cell
+                  )
+                ) : (
+                  <StatusChip status={cell.status} />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  );
+}
