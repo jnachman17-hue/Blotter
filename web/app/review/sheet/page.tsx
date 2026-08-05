@@ -30,6 +30,7 @@ export default function SheetReviewPage() {
           selectedCell="D2"
           formulaValue="Replied"
           columnLetters={["A", "B", "C", "D", "E", "F", "G", "H"]}
+          columnWidths={HERO_COLUMNS.map((c) => c.width ?? "flex-1")}
           tabs={[{ label: "Contacts" }, { label: "Blotter", active: true }]}
         >
           <SheetGrid

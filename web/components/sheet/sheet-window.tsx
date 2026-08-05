@@ -61,6 +61,12 @@ export interface SheetWindowProps {
   formulaValue: string;
   /** Column letters across the top. Pass the exact count the surface needs. */
   columnLetters: string[];
+  /**
+   * Width utility per column, positionally matching `columnLetters`. Must be
+   * the same widths the grid body uses, otherwise the letter strip will not
+   * align over the columns it labels. Omit an entry to let it flex.
+   */
+  columnWidths?: string[];
   /** Bottom tab strip. */
   tabs: SheetTab[];
   /** Trim the menu row. The Section 3 crop shows a shortened menu set. */
@@ -79,6 +85,7 @@ export function SheetWindow({
   selectedCell,
   formulaValue,
   columnLetters,
+  columnWidths,
   tabs,
   menuCount = MENUS.length,
   showSaveState = true,
@@ -146,10 +153,13 @@ export function SheetWindow({
       {/* Column letters. The leading cell is the row-number gutter. */}
       <div className="flex border-b border-sheet-grid bg-sheet-header text-[12px] text-ink-muted">
         <div className="w-[43px] shrink-0 border-r border-sheet-grid" />
-        {columnLetters.map((letter) => (
+        {columnLetters.map((letter, i) => (
           <div
             key={letter}
-            className="flex-1 border-r border-sheet-grid py-1 text-center last:border-r-0"
+            className={cn(
+              "border-r border-sheet-grid py-1 text-center last:border-r-0",
+              columnWidths?.[i] ?? "flex-1",
+            )}
           >
             {letter}
           </div>
