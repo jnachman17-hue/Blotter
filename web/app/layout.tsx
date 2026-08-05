@@ -1,6 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto } from "next/font/google";
+import { Geist, Geist_Mono, Roboto, Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
+
+/*
+ * The display face, added August 5, 2026 after Jon twice flagged the type as
+ * flat. Schibsted Grotesk was drawn for a news publisher, so it carries
+ * editorial authority at large sizes and has real character in its terminals
+ * and apertures, where Geist is deliberately neutral. It is a system decision,
+ * not a one-off: it sets every headline and the Section 2 statement, and Geist
+ * keeps the body and the interface.
+ */
+const displaySans = Schibsted_Grotesk({
+  variable: "--font-schibsted",
+  subsets: ["latin"],
+});
 
 /*
  * Roboto exists on this page for one reason: the Section 2 asset is a Gmail
@@ -38,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} h-full`}
+      className={`${geistSans.variable} ${geistMono.variable} ${displaySans.variable} ${roboto.variable} h-full`}
     >
       <body className="min-h-full font-sans">{children}</body>
     </html>

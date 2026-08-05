@@ -6,24 +6,25 @@ Status: WS5 active. Sessions 1 and 2 complete. Stages 1 through 5 done. Ready fo
 ## 1. How this project is built
 
 Jon ruled on August 4, 2026 that the landing page is built in this repository rather
-than in Lovable. The Lovable project `Blotter Foundation` and its P1, P2 and P3 commits
-are abandoned. No Lovable code was ported. The GitHub specifications were always the
+than in Lovable. The Lovable project `Blotter Foundation` and its commits are
+abandoned. No Lovable code was ported. The GitHub specifications were always the
 source of truth; only the executor changed.
 
-`WS5-SPEC.md` now carries a notice naming the three passages that are stale as a result:
-the Lovable project state, the file-upload protocol, and the plan-only intake sequence.
-Everything else in it is binding.
+`WS5-SPEC.md` carries a notice naming the three passages that are stale as a result:
+the Lovable project state, the file-upload protocol, and the plan-only intake
+sequence. Everything else in it is binding.
 
 ## 2. How sessions work
 
-One session equals one chat. A session ends when the work is committed and pushed, this
-file is rewritten, and the assistant states explicitly that the session is complete.
+One session equals one chat. A session ends when the work is committed and pushed,
+this file is rewritten, and the assistant states explicitly that the session is
+complete.
 
-A new chat begins by reading `CLAUDE.md` and this file. Do not run sessions in parallel:
-one repository, one builder.
+A new chat begins by reading `CLAUDE.md` and this file. Do not run sessions in
+parallel: one repository, one builder.
 
-Within a session, work proceeds by stage checkpoint: name the stage, name the controlling
-specification, state the stop condition, build, review, approve.
+Within a session, work proceeds by stage checkpoint: name the stage, name the
+controlling specification, state the stop condition, build, review, approve.
 
 | Session | Stages | Deliverable |
 |---|---|---|
@@ -51,143 +52,131 @@ Application root: `web/`. Run with `pnpm --dir web dev`.
 
 ## 4. Completed in session 1
 
-**Stage 1, specification reconciliation.** Outstanding Actions transcription corrected
-against the ratified PNG. `Daniel Park` corrected to `Daniel Kim`. `WS4-SPEC` stamped with
-a supersession table. Superseded decision log archived. Stale pointers fixed.
+Specification reconciliation, the Next.js scaffold, the foundation (design tokens,
+the nine-event analytics adapter with per-visitor suppression, the typed funnel
+store, the CTA component carrying all four origins, the sticky header), and the
+`SheetWindow` primitive with its grid, status chips, canonical data and the
+comparison surface at `/review/sheet`.
 
-**Stage 2, scaffold.** Next.js app created in `web/`.
-
-**Stage 3, foundation.** Design tokens, the nine-event analytics adapter with per-visitor
-suppression, the typed funnel store, the CTA component carrying all four origins, and the
-sticky header.
-
-**Stage 4, SheetWindow primitive.** Approved August 5, 2026. Chrome, formula bar,
-column-letter strip, tab strip, zoned grid body, five status chips, canonical hero data,
-and the internal comparison surface at `/review/sheet`.
-
-Geometry reproduces the ratified hero at a 1006px window: 43px gutter, manual zone 43 to
-415 (Name 108, Title 126, Firm 138), maintained zone 415 to 1005 (Status 132, Next move
-156, Last contact 112, Days 56, Call 134).
+Geometry reproduces the ratified hero at a 1006px window: 43px gutter, manual zone
+43 to 415 (Name 108, Title 126, Firm 138), maintained zone 415 to 1005 (Status 132,
+Next move 156, Last contact 112, Days 56, Call 134).
 
 ## 5. Completed in session 2
 
 ### Hero, under `01-HERO.md`
 
-- `components/hero/activity-cue.tsx`, the three cue cards with exact copy
-- `components/hero/hero-visual.tsx`, the assembled module: sheet, cues, connectors,
-  ownership underlines, and the uniform scale wrapper
-- `components/sections/hero.tsx`, the surrounding copy from `WS4-SPEC` "Confirmed hero"
-- `components/google-marks.tsx`, the Gmail and Google Calendar marks
+Three cue cards with exact copy, three direct connectors landing on Sarah Chen's,
+Marcus Lee's and Alex Morgan's maintained blocks, the two ownership underlines, and
+the surrounding copy from `WS4-SPEC` "Confirmed hero". The engine rail that
+`hero-reference-v1.png` still draws is removed, per section 12.
 
-The engine rail that `hero-reference-v1.png` still draws is removed, per section 12.
+The cue stack is deliberately uneven. The cues map to rows 1, 2 and 5, so an evenly
+pitched stack would put a card level with Priya Shah or Daniel Kim and imply a
+mapping that does not exist. Every card sits within 13px of its own target row and
+no closer than 35px to any other. Cue centres are `[180, 243, 358]` from the window
+top.
 
-Three connectors leave each card's left edge, run a shallow S through an 80px corridor, and
-land with a small node on the right boundary of Sarah Chen's, Marcus Lee's and Alex
-Morgan's maintained blocks. No crossings, no arrowheads.
+### Page theme, ratified mid-session
 
-The cue stack is deliberately uneven. The cues map to rows 1, 2 and 5, so an evenly pitched
-stack would put a card level with Priya Shah or Daniel Kim and imply a mapping that does not
-exist. Every card sits within 13px of its own target row and no closer than 35px to any
-other, and the wide gap between the second and third card falls level with exactly the two
-rows that carry no cue. Cue centres are `[180, 243, 358]` from the window top.
+No specification had ever decided a page-level design system. It is now decided and
+recorded in full in `04-decision-log.md`. In short: Schibsted Grotesk for display,
+Geist for body and interface, Geist Mono for figures; the exact assets pinned to
+their own type (Arial for Sheets, Roboto for Gmail) so a theme change can never
+alter a ratified asset; one deep navy accent with the Blotter yellow kept semantic;
+one continuous gradient down the whole page with sections alternating in tone;
+pills for interactive elements and 12px for surfaces; light mode only; no motion.
 
-Ownership underlines are measured, not eyeballed: the gray rule spans x43 to x415 against
-manual columns at 44 to 415.5, the yellow rule spans 415 to 1005 against maintained columns
-at 415.5 to 1005.
+### Section 2, under `02-SECTION-2` as amended
 
-### Page theme, ratified by Jon August 5, 2026
+The first build was rejected by Jon as unreadable and unstructured beside the hero.
+Three replacement treatments were built side by side behind a temporary review
+route and compared live. The trajectory won; the other two and the route are
+deleted.
 
-No specification had ever decided a page-level design system. It is now decided and recorded
-in `04-decision-log.md`. Summary:
+What shipped: four volume bands across August to May, each built out of its own
+real units, 628 dots, 68 squares, 30 rings and 19 bars, distributed by largest
+remainder so each band sums exactly. The curve is the top of the piles. January and
+February are marked as the hinge. The numerals carry the blue-to-cream ramp and act
+as the legend.
 
-- Geist for the page, Geist Mono for figures
-- the spreadsheet pinned to Arial and the Gmail visual to Roboto through `.sheet-type` and
-  `.gmail-type`, so a page theme change can never alter a ratified asset
-- one deep navy accent; the Blotter yellow stays semantic and appears only where the assets
-  use it
-- a light blue to cream hero field resolving to white before Section 2
-- pills for interactive elements, 12px for surfaces
-- light mode only, no motion
+Below it, the supporting statement beside the 60-hour proof, then the qualification
+and methodology under a hairline, then the consequence visual as a single Gmail
+inbox row with muted neighbours.
 
-### Section 2, under `02-SECTION-2-SCALE-AND-CONSEQUENCE.md`
-
-- `components/section-2/gmail-message.tsx`, the exact Goldman Sachs Gmail view rebuilt as
-  components at its native 1180 by 560, translated directly from
-  `goldman-sachs-rejection-email-exact-v2.html`
-- `components/sections/scale-and-consequence.tsx`, the full section in ratified order
-- `components/layout/page-box.tsx`, the shared bounding box
-
-All seventeen exact strings verified present in the rendered DOM. No CTA in the section, no
-spreadsheet, no Blotter yellow, no icons outside the Gmail view, one email only.
+**Every amendment Jon made to `02-SECTION-2` is stamped at the top of that spec
+file and reasoned in `04-decision-log.md`.** In short: closing paragraph cut,
+supporting paragraph's first sentence cut, figures reordered descending, cards and
+chart furniture permitted, and the full Gmail message view collapsed to an inbox
+row.
 
 ### Layout system
 
-Both sections align to one bounding box, `PAGE_BOX_W`, which is exactly the width of the
-scaled hero visual, 1124px. The hero headline's left edge and the sheet's left edge both
-land on 158; the supporting column's right edge, the cue column's right edge and the box
-edge all land on 1282. Nothing is centred on the page. **Sections 3 through 7 inherit this
-box. Do not introduce a second page width.**
+Both sections align to one bounding box, `PAGE_BOX_W`, which is exactly the width
+of the scaled hero visual, 1124px. The hero headline's left edge and the sheet's
+left edge both land on 158; the supporting column's right edge, the cue column's
+right edge and the box edge all land on 1282. Nothing is centred on the page.
+**Sections 3 through 7 inherit this box. Do not introduce a second page width.**
 
-The complete hero fits a 13-inch MacBook Pro: at 1440 by 780 the last content pixel is at
-766.
+The complete hero fits a 13-inch MacBook Pro: at 1440 by 780 the last content pixel
+is at 766.
 
 ### Verification
 
-Production build passes. Typecheck clean. Lint clean apart from one pre-existing warning in
-`analytics.ts`. No horizontal scroll at 1440. The rebuilt Gmail view was compared against
-the asset side by side and does not read as a redesign.
+Production build passes. Typecheck clean. Lint clean apart from one pre-existing
+warning in `analytics.ts`. No horizontal scroll at 1440. Every mark count in the
+Section 2 diagram was asserted in the DOM as exactly 628, 68, 30 and 19.
 
 ## 6. Decisions that are settled. Do not reopen without Jon.
 
-**a. Maintained-zone row tint.** The maintained zone is marked by the header band alone.
-Data rows carry no tint and no per-row emphasis. Ruled August 5, 2026, supersedes `01-HERO`
-sections 8 and 10.
+Full reasoning for all of these is in `04-decision-log.md`.
 
-The section 8 revisit condition was resolved on August 5 once the full hero was assembled:
-the connectors are not carrying the signal alone. The cream header band, the heavier vertical
-divider between Firm and Status, and the yellow ownership underline are three independent
-markers of the maintained zone. The row tint stays off. The `emphasised` flag and the tokens
-`--color-blotter-row` and `--color-blotter-row-strong` are retained unused so reversal is one
-line.
+**a. Maintained-zone row tint.** Header band alone; data rows carry no tint. The
+section 8 revisit condition was resolved on August 5 once the full hero was
+assembled: the cream header band, the zone divider and the yellow ownership
+underline are three independent markers, so the connectors are not carrying the
+signal alone. The `emphasised` flag and the unused row tokens are retained so
+reversal is one line.
 
-**b. Status chip colours.** Replied blue, Call scheduled purple, Call completed green,
-No reply amber, Sent gray, from the ratified hero asset.
+**b. Status chip colours**, from the ratified hero asset. Chip metrics were retuned
+to the PNG when the sheet was pinned to Arial and the old values began clipping.
 
-**c. Alex Morgan's em dash.** Reinstated August 5, 2026, reversing the August 4 removal and
-overriding the `01-HERO` section 6 genuinely-blank rule for that one cell only. Every other
-blank cell on every surface stays genuinely blank. Implemented as `{ dash: true }`, which
-exists for this cell alone.
+**c. Alex Morgan's em dash**, reinstated August 5, overriding the `01-HERO` section
+6 genuinely-blank rule for that one cell only. Implemented as `{ dash: true }`,
+which exists for this cell alone. Every other blank cell on every surface stays
+genuinely blank.
 
-**d. Date formats.** `1/16/26`, `1/17 @ 2:00 PM`, `Completed 1/16`, from the ratified PNG.
-The `01-HERO` section 6 prose table writes these as `Jan 16` and `Jan 17, 2:00 PM`; Jon
-ruled on August 5 that the session-1 code stands.
+**d. Date formats** `1/16/26`, `1/17 @ 2:00 PM`, `Completed 1/16`, from the ratified
+PNG rather than the `01-HERO` section 6 prose table.
 
-**e. The page theme.** See section 5 above and `04-decision-log.md`.
+**e. The page theme and the bounded-box layout.**
+
+**f. Every Section 2 amendment**, stamped in `02-SECTION-2` and reasoned in the
+decision log.
 
 ## 7. Skill conflicts, recorded so they are not relitigated
 
-`CLAUDE.md` requires skills be invoked autonomously and conflicts surfaced rather than
-silently resolved. `design-taste-frontend` was invoked for the theme and collides with
-ratified specification in five places. The specification governs in all five and this is
-settled:
+`CLAUDE.md` requires skills be invoked autonomously and conflicts surfaced rather
+than silently resolved. `design-taste-frontend` and `impeccable` were both invoked.
+Five conflicts with ratified specification were surfaced and the specification
+governs in all five: the em-dash ban versus Jon's ratified em dash; the cap of one
+eyebrow per three sections versus the mandated eyebrows in the hero and Section 2;
+the hero stack discipline versus the ratified five-element hero; the ban on
+hand-built UI replicas and hand-rolled SVG icons versus `01-HERO` sections 2 and 14
+and `02-SECTION-2` section 10, which require exactly that; and mandatory dark mode
+versus the light-only Google Sheets and Gmail assets.
 
-1. Its em-dash ban versus Jon's ratified em dash.
-2. Its cap of one eyebrow per three sections versus the mandated eyebrows in the hero and
-   Section 2.
-3. Its hero stack discipline, which caps the hero at four text elements, bans a tagline
-   under the CTA and caps subtext at 20 words, versus the ratified five-element hero with a
-   28-word subhead and the authority line below the CTA.
-4. Its ban on hand-built UI replicas and hand-rolled SVG icons versus `01-HERO` section 2
-   and 14 and `02-SECTION-2` section 10, which require exactly that. Icon libraries carry
-   only monochrome Gmail and Calendar glyphs, which would not match the full-colour
-   references.
-5. Its mandatory dark mode versus the light-only Google Sheets and Gmail assets.
+The `impeccable` design hook also flags `border-accent-on-rounded` on
+`gmail-message.tsx`. It is a false positive: the element is the Google Calendar
+icon in Gmail's application rail, and its darker top edge is the calendar's header
+band, taken verbatim from the exact asset. No suppression has been added.
 
 ## 8. Open, flagged to Jon, not answered
 
-`web/app/layout.tsx:11` sets the page title to `Blotter — the recruiting tracker that stays
-current`. That em dash appears in the browser tab and contradicts the standing no-em-dash
-rule for visible copy. Session-1 code, flagged twice, not changed without instruction.
+`web/app/layout.tsx` sets the page title to `Blotter — the recruiting tracker that
+stays current`. That em dash appears in the browser tab and contradicts the standing
+no-em-dash rule for visible copy. Session-1 code, flagged three times, not changed
+without instruction.
 
 ## 9. Waiting on Jon, not blocking until session 6
 
@@ -196,10 +185,11 @@ rule for visible copy. Session-1 code, flagged twice, not changed without instru
 
 ## 10. Deployment rule, unchanged
 
-Keep the deployment private with protection enabled. Do not route `blotterib.com`. Do not
-implement real OAuth, real Gmail, Calendar or Sheets integrations, or payment collection. Do
-not route public traffic. Public launch waits for the matched platform page, verified
-analytics and lead storage, passed privacy and claim gates, and final launch authorisation.
+Keep the deployment private with protection enabled. Do not route `blotterib.com`.
+Do not implement real OAuth, real Gmail, Calendar or Sheets integrations, or payment
+collection. Do not route public traffic. Public launch waits for the matched
+platform page, verified analytics and lead storage, passed privacy and claim gates,
+and final launch authorisation.
 
 ## 11. Exact next action
 
@@ -207,10 +197,21 @@ Begin stage 6: Sections 3, 4 and 5, desktop only, under
 `ws5-build-specs/03-SECTION-3-HOW-BLOTTER-WORKS.md`,
 `04-SECTION-4-OUTSTANDING-ACTIONS.md` and `05-SECTION-5-PRESERVATION.md`.
 
-All three consume existing primitives. Section 3 uses the exact
-`how-blotter-works-exact-v1.avif` mechanism asset. Section 4 needs a grouped grid body for
-the Outstanding Actions view, which `SheetGrid` does not yet provide, and its CTA carries
-`cta_location = actions`. Section 5 reuses `SheetWindow` with the ten-column preservation
-view and the exact `preservation-exact-v1.html` asset.
+Section 3 uses the exact `how-blotter-works-exact-v1.avif` mechanism asset.
+Section 4 needs a grouped grid body for the Outstanding Actions view, which
+`SheetGrid` does not yet provide, and its CTA carries `cta_location = actions`.
+Section 5 reuses `SheetWindow` with the ten-column preservation view and the exact
+`preservation-exact-v1.html` asset.
 
-Inherit the page theme and `PageBox`. Do not rebuild either.
+Inherit the page theme, `PageBox` and the gradient bands. Do not rebuild any of
+them. Extend `globals.css` with the next band, starting on the colour Section 2
+ends on.
+
+Two things worth knowing before you start. First, `components/section-2/gmail-message.tsx`
+is a complete, verified translation of the exact Goldman Sachs asset at its native
+1180 by 560 and is currently unused; Jon parked it in case a later section wants it,
+so do not delete it as dead code. Second, Jon reviews visually and iterates hard on
+composition. Build the ratified content first, then expect at least one round of
+structural rework per section, and offer live side-by-side variants rather than
+prose descriptions when a layout question is genuinely open. That is what resolved
+Section 2.

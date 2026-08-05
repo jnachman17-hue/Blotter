@@ -21,6 +21,7 @@
     approved visual.
   */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-schibsted), var(--font-geist-sans), sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-sheet: Arial, Helvetica, sans-serif;
 
@@ -93,6 +94,32 @@
   --color-chip-sent-bg: #e8eaed;
   --color-chip-sent-fg: #5f6368;
 
+  /*
+    Section 2 metric ramp.
+
+    Four steps in one controlled range rather than four unrelated hues: 02
+    SECTION-2 section 7 bans bright multicolor treatment and section 13 bans
+    sensational red, and the page carries one accent. Deliberately no ochre,
+    so nothing here can be read as the hero's maintained-zone yellow, which
+    section 12 forbids repeating.
+  */
+  /*
+    Ratified by Jon August 5, 2026: the ramp follows the hero's blue to cream
+    rather than four unrelated hues. Cream cannot carry text or a stroke on a
+    light ground, it lands near 1.6:1, so each metric has two values: `-fill`
+    runs the true ramp in the areas where lightness is free, and `-ink` is the
+    darkened version used for the numeral and the curve. The ramp still reads
+    blue to warm, and the largest figure ends up the darkest.
+  */
+  --color-metric-email-fill: #12233d;
+  --color-metric-email-ink: #12233d;
+  --color-metric-chat-fill: #46689a;
+  --color-metric-chat-ink: #35527c;
+  --color-metric-interview-fill: #b08a3e;
+  --color-metric-interview-ink: #6f5520;
+  --color-metric-app-fill: #e6cf98;
+  --color-metric-app-ink: #b2913f;
+
   /* Outstanding Actions group accents */
   --color-group-replies: #1a73e8;
   --color-group-followups: #c9a227;
@@ -118,15 +145,30 @@ body {
 }
 
 /*
-  Hero field.
+  The page field.
 
-  Two soft washes drawn from the page's own semantics rather than chosen for
-  decoration: the blue is the manual zone the student owns, the cream is the
-  maintained zone Blotter keeps current. They resolve to white before the
-  section ends, so Section 2 opens on calm neutral ground and does not repeat
-  the hero's yellow, which 02-SECTION-2 section 12 forbids.
+  Ratified by Jon August 5, 2026: one continuous gradient runs the whole page,
+  and sections alternate in tone within it rather than sitting on plain white.
+
+  Continuity is built by handoff, not by one tall gradient: each band starts on
+  the exact colour the band above it ended on, so the seams are invisible and
+  adding a section later cannot shift the stops. `--field-a` through
+  `--field-c` are those handoff colours.
+
+  The hero's two washes are drawn from the page's own semantics rather than
+  chosen for decoration: the blue is the manual zone the student owns, the
+  cream is the maintained zone Blotter keeps current. They belong to the hero
+  alone. 02-SECTION-2 section 12 forbids repeating the maintained-zone yellow
+  in Section 2, so the yellow stops at the hero's lower edge.
 */
-.hero-field {
+:root {
+  --field-a: #fbfcfe; /* page top, lightest */
+  --field-b: #f2f6fb; /* hero to Section 2 handoff */
+  --field-c: #e7eef8; /* Section 2 floor, deepest and coolest */
+}
+
+/* Hero: lightest and warmest band. */
+.field-open {
   background:
     radial-gradient(
       1280px 700px at 0% -10%,
@@ -138,7 +180,17 @@ body {
       #fbeac6 0%,
       rgba(251, 234, 198, 0) 64%
     ),
-    linear-gradient(180deg, #fbfcfe 0%, #ffffff 74%);
+    linear-gradient(180deg, var(--field-a) 0%, var(--field-b) 100%);
+}
+
+/* Section 2: cooler and deeper. Picks up exactly where the hero left off. */
+.field-deep {
+  background: linear-gradient(
+    180deg,
+    var(--field-b) 0%,
+    var(--field-c) 58%,
+    var(--field-b) 100%
+  );
 }
 
 /*

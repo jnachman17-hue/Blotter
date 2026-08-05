@@ -55,7 +55,7 @@ export function Hero() {
               what moves, then what does not. Weight and tint carry that,
               which is cheaper than any decoration.
             */}
-            <h1 className="text-display leading-[1.06] font-semibold tracking-[-0.028em] text-ink">
+            <h1 className="font-display text-display leading-[1.06] font-semibold tracking-[-0.028em] text-ink">
               Your networking keeps moving.{" "}
               <span className="text-navy-400">Your tracker does not.</span>
             </h1>

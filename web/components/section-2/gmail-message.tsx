@@ -23,9 +23,36 @@
 
 import { GmailMark } from "@/components/google-marks";
 
-/** Native asset dimensions. Callers scale the whole object uniformly. */
+/**
+ * The asset's own dimensions.
+ *
+ * The window is resizable rather than fixed, because Jon ratified on August 5,
+ * 2026 that the email renders as a *smaller Gmail window*, not a cropped one.
+ * At 980 by 420 every element section 10 requires is still present, the folder
+ * rail, the toolbar, the message, the footer actions and the application rail;
+ * the window is simply the size a real Gmail window would be on a smaller
+ * screen. Nothing is removed and nothing meaningful is cropped, which is what
+ * section 15 protects.
+ *
+ * This replaced a uniform 0.95 scale of the native size, which left the email
+ * at 1.9 times the area of the hero spreadsheet and inverted the page's
+ * hierarchy. The hero is the largest object on the page.
+ */
 export const GMAIL_W = 1180;
 export const GMAIL_H = 560;
+
+/**
+ * The ratified landing-page size.
+ *
+ * 512 is the measured floor, not a preference: at 980 wide the message body
+ * wraps to four lines and the content needs 494px before the signature and the
+ * Reply / Reply all / Forward actions start clipping. Going shorter would crop
+ * meaningful content, which section 15 forbids. At this size the dead space
+ * below the message is gone entirely and the application rail sits close to the
+ * text, which is what Jon asked for.
+ */
+export const GMAIL_PAGE_W = 980;
+export const GMAIL_PAGE_H = 512;
 
 const FOLDERS = [
   "Starred",
@@ -70,11 +97,17 @@ function SenderAvatar() {
 
 /* ------------------------------------------------------------------ window */
 
-export function GmailMessage() {
+export function GmailMessage({
+  width = GMAIL_W,
+  height = GMAIL_H,
+}: {
+  width?: number;
+  height?: number;
+}) {
   return (
     <div
       className="gmail-type flex flex-col overflow-hidden bg-white text-[#1f1f1f]"
-      style={{ width: GMAIL_W, height: GMAIL_H }}
+      style={{ width, height }}
     >
       {/* Top bar */}
       <div className="flex h-12 shrink-0 items-center gap-3 px-3">

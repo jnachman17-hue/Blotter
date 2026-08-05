@@ -26,7 +26,7 @@ export default function Page() {
         continuous surface rather than a white bar sitting on a tinted
         section. It resolves to white before Section 2 begins.
       */}
-      <div className="hero-field">
+      <div className="field-open">
         <SiteHeader />
         <main id="top">
           <Hero />

@@ -1,7 +1,26 @@
 # WS5 Build Specification 02 — Section 2 scale and consequence
 
+> **Amended by Jon, August 5, 2026, during the stage 5 build.** He is authority
+> level 1 under `WS5-SPEC.md` "Source hierarchy". Reasoning for each is recorded
+> in `04-decision-log.md`; the implementation carries the same notes inline.
+>
+> | Item here | Amended to |
+> |---|---|
+> | Section 5, closing copy `Once you stop trusting the tracker...` | Cut. The section ends on the consequence visual. |
+> | Section 5 and 9, exact three-sentence supporting paragraph | First sentence cut. The trajectory diagram already makes that point. |
+> | Section 5, figure order `628 / 68 / 19 / 30` | Descending by volume, `628 / 68 / 30 / 19`. |
+> | Section 7, card rule and ban on chart furniture | Set aside for the trajectory treatment. |
+> | Section 10 and 15, full Gmail message view at `1180 × 560` | Collapsed to a single inbox row with muted neighbours. |
+> | Section 18 acceptance criteria | Read against the amendments above. |
+>
+> Unchanged and still binding: the four figures and their labels, the
+> qualification, the 60-hour proof and methodology, both annotation lines, the
+> sender, subject, and date of the email, the absence of a CTA, the section 12
+> ban on repeating any hero device, and the section 10 claim-safety note.
+
 Date ratified: July 31, 2026  
-Status: Ratified  
+Date amended: August 5, 2026  
+Status: Ratified, amended in part  
 Decision owner: Jon  
 Surface: Landing-page Section 2 — scale of recruiting volume and consequence of tracker failure  
 Implementation priority: Desktop first

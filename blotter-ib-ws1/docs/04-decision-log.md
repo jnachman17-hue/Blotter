@@ -282,15 +282,20 @@ Status: Confirmed
 
 **The page has a ratified visual theme. It was open until now: the specifications govern copy, section order and the exact assets, and never decided a page-level design system.**
 
-- Type is Geist, with Geist Mono reserved for figures. The exact assets keep their own type
-  independent of the page: the spreadsheet is pinned to Arial and the Gmail visual to Roboto,
-  matching the surfaces they reproduce, so a future theme change cannot alter a ratified asset.
+- Type is Geist for body and interface, with Schibsted Grotesk for display (added later the
+  same day, see the Section 2 rework below) and Geist Mono reserved for figures. The exact
+  assets keep their own type independent of the page: the spreadsheet is pinned to Arial and
+  the Gmail surfaces to Roboto, matching the products they reproduce, so a future theme change
+  cannot alter a ratified asset.
 - One accent, a deep navy, on the CTA, eyebrows, wordmark and headline emphasis. The Blotter
   yellow is semantic, not a second accent, and appears only where the ratified assets use it to
   mean "Blotter maintains this".
-- The hero sits on a light blue to cream field that resolves to white before Section 2, drawn
+- One continuous gradient runs the whole page and sections alternate in tone within it, drawn
   from the manual-zone and maintained-zone header colours already sampled from the assets.
-  Section 2 opens on neutral ground, as `02-SECTION-2` section 12 requires.
+  Continuity is built by handoff, each band starting on the colour the band above it ended on,
+  so adding a section later cannot shift the stops. The hero holds the lightest and warmest
+  band; Section 2 sits cooler and deeper. The maintained-zone yellow stops at the hero's lower
+  edge, as `02-SECTION-2` section 12 requires.
 - Interactive elements are pills, page surfaces are 12px. The spreadsheet keeps its own
   Google Sheets radii.
 - Light mode only. Every ratified asset is a light Google Sheets or Gmail surface.
@@ -322,7 +327,81 @@ Status: Confirmed
 
 Status: Confirmed
 
-**`628` carries more scale than the other three volume figures, and `inevitably falls behind reality` carries modest emphasis in the supporting paragraph.** Both are permitted by `02-SECTION-2` sections 7 and 9 and were ratified by Jon.
+### Section 2 rework, August 5, 2026
+
+Jon reviewed the first Section 2 build and rejected it as unreadable and
+unstructured next to the hero. Three replacement treatments were built side by
+side behind a review route and compared live. He chose the trajectory. The
+other two were deleted. Everything below is his ruling.
+
+**Section 2's scale block is a volume trajectory across one recruiting cycle, built out of the units themselves.**
+
+Each metric's real total is distributed across the cycle by largest remainder
+and drawn as that many marks, piled into the month they belong to: 628 dots, 68
+squares, 30 rings, 19 bars. The curve is the top of the piles rather than a line
+drawn over them. Mark size rises as the count falls so every band's heaviest
+month fills a comparable height while staying one to one with the count.
+Cross-band magnitude stays with the numerals, because a shared vertical scale
+across a thirty-three-fold spread renders applications invisible.
+
+The trajectory is directional, from Jon's own knowledge of the cycle, not
+measured data. January and February are marked identically as the hinge.
+
+This sets aside the `02-SECTION-2` section 7 ban on chart furniture.
+
+Status: Confirmed
+
+**Figure order is descending by volume: `628 / 68 / 30 / 19`.** Supersedes the section 5 order.
+
+Status: Confirmed
+
+**The four metrics carry a blue-to-cream ramp matching the page gradient.**
+
+Each metric has two values: a fill running the true ramp, and a darkened ink for
+the numeral and the curve. Literal cream lands near 1.6:1 on this ground and
+cannot carry text or a stroke. The ramp incidentally encodes volume, since the
+largest figure is the darkest.
+
+Status: Confirmed
+
+**The consequence visual is a single Gmail inbox row, not the full message view.**
+
+Sender, subject and date are unchanged; the muted neighbouring rows carry no
+text at all, so no email subject is invented and `One thread buried in 628
+emails` describes something visible. About 200px against the previous 512.
+
+This sets aside `02-SECTION-2` section 10, which forbids reducing the full Gmail
+view to a card. The verified full-message component is retained unused in
+`components/section-2/gmail-message.tsx` in case a later section wants it.
+
+Status: Confirmed
+
+**The supporting paragraph loses its first sentence, and the closing paragraph is cut entirely.**
+
+The cut first sentence named the same four metrics the diagram directly above
+had just charted month by month. The closing paragraph ended "begin falling
+through the cracks" ninety words after the supporting one ended "begin slipping
+through the cracks". The section now ends on the consequence visual.
+
+This overrides the section 5, 9 and 18 requirements for exact copy in both
+places.
+
+Status: Confirmed
+
+**The page gains a display typeface: Schibsted Grotesk, with Geist retained for body and interface.**
+
+Applied to the hero headline, section headlines, the Section 2 statement and the
+60-hour proof. Added after Jon twice judged the type flat; a display face was
+preferred over a one-off treatment so the page gains a voice rather than an odd
+paragraph.
+
+Status: Confirmed
+
+**The 60-hour proof sits beside the supporting statement rather than in the footnotes, in the page's own numeral language.**
+
+Below it, the qualification and the methodology sit on one row under a hairline.
+The qualification keeps the asterisk that is in its ratified copy and the mark
+now has an anchor at the foot of the diagram; the methodology carries no marker.
 
 Status: Confirmed
 
