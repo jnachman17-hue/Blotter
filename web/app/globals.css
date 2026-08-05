@@ -16,16 +16,26 @@
   --color-rule: #e6e6e3;
   --color-surface-quiet: #faf9f6;
 
-  /* Blotter yellow family. The maintained zone and ownership marks. */
-  --color-blotter-50: #fdfaf1;
-  --color-blotter-100: #faf3e2;
+  /*
+    Blotter yellow family.
+    Header value measured from hero-reference-v1.png. Row values are the
+    01-HERO section 8 baseline (5-8%) and section 10 emphasis (10-14%),
+    composited over white. The reference asset itself tints only the header;
+    the written specification adds the row treatment deliberately.
+  */
+  /* Currently unused. Retained so the row tint can be restored in one line
+     if the revisit condition in 01-HERO section 8 is triggered. */
+  --color-blotter-row: #fdfbf5; /* baseline maintained row, ~5% */
+  --color-blotter-row-strong: #faf4e6; /* cue-linked emphasis, ~12% */
+  --color-blotter-100: #f7f2e8; /* maintained header, measured */
   --color-blotter-200: #f3e6c6;
   --color-blotter-400: #d9b64a;
   --color-blotter-500: #c9a227;
   --color-blotter-700: #8a6d12;
 
-  /* Manual (student-maintained) zone */
-  --color-manual-100: #eef2f7;
+  /* Manual (student-maintained) zone. Header measured; rows are plain white. */
+  --color-manual-100: #edf2f8;
+  --color-manual-row: #ffffff;
   --color-manual-500: #4a6fa5;
 
   /* Google Sheets chrome */

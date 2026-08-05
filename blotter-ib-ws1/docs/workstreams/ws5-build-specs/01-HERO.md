@@ -182,12 +182,27 @@ The three cues are illustrative examples. They are not intended to exhaustively 
 
 ## 8. Baseline Blotter-maintained zone
 
+> **Superseded in part, August 5, 2026, by Jon's explicit instruction.**
+>
+> The maintained zone is marked by the **header band alone**. Data rows carry no tint.
+>
+> This matches `hero-reference-v1.png`, which samples `#f7f2e8` across the maintained header
+> and `#fafbfd` across every data row, with no per-row variation. The measured manual header
+> is `#edf2f8` and manual data rows are `#ffffff`.
+>
+> The requirement below for a tint across all five data rows, and the section 10 requirement
+> for stronger emphasis on the three cue-linked rows, are both inactive.
+>
+> **Revisit condition:** if, once the full hero is assembled, the cue-to-row connectors alone
+> prove too thin a signal for which rows each cue maintains, reopen this with Jon. The
+> implementation retains the per-row `emphasised` flag so reversal is a one-line change.
+
 The complete right-hand side of the spreadsheet must read as one continuous Blotter-maintained zone.
 
 Apply a faint shared tint to the grid area from `Status` through `Call`, covering:
 
 - the five spreadsheet headers from `Status` through `Call`;
-- all five visible data rows beneath those headers.
+- ~~all five visible data rows beneath those headers~~ (inactive, see above).
 
 Do not tint:
 
@@ -232,6 +247,11 @@ Connector requirements:
 The mapping must be legible in a static screenshot. Motion cannot be required for the viewer to understand which cue corresponds to which row.
 
 ## 10. Example-row emphasis
+
+> **Inactive, August 5, 2026, by Jon's explicit instruction.** See the note in section 8.
+> No data row carries a tint, so no row carries emphasis either. The cue-to-row connectors
+> are the sole indicator of which rows each cue maintains. Subject to the revisit condition
+> recorded in section 8.
 
 The three cue-linked rows must receive a secondary emphasis across their full Blotter-maintained block.
 
@@ -338,9 +358,9 @@ The desktop hero is ready for approval only when all of the following are true:
 - the sheet is the dominant object;
 - the three approved cue cards closely resemble the reference and use exact copy;
 - no explicit Blotter engine or intermediary processor appears;
-- every column from Status through Call has a faint shared yellow-family tint;
-- the Sarah, Marcus, and Alex maintained blocks have a stronger but restrained emphasis;
-- Priya and Daniel remain visibly inside the same maintained zone despite having no cue;
+- the header band from Status through Call carries the faint shared yellow-family tint;
+- no data row carries a zone tint or per-row emphasis (revised August 5, 2026, see section 8);
+- Priya and Daniel are not visually de-emphasised relative to the cue-linked rows;
 - each cue maps unambiguously to the correct row through one short, clean connector;
 - connectors do not cross or obscure spreadsheet content;
 - `YOU add the contacts` appears below a restrained underline spanning Name through Firm;

@@ -95,8 +95,20 @@ export function SheetGrid({
                   col.width ?? "flex-1",
                   col.align === "right" && "text-right",
                   col.kind === "italic" && "italic text-ink-muted",
-                  maintained(i) &&
-                    (row.emphasised ? "bg-blotter-200/60" : "bg-blotter-50"),
+                  /*
+                    Data rows carry no zone tint. Jon ruled August 5, 2026
+                    that the maintained zone is marked by the header band
+                    alone, matching hero-reference-v1.png, which samples
+                    #fafbfd across every data row.
+
+                    This supersedes 01-HERO sections 8 and 10, which called
+                    for a 5-8% baseline tint on all rows plus 10-14% emphasis
+                    on the three cue-linked rows. Revisit if the cue-to-row
+                    connectors alone prove too thin a signal once the full
+                    hero is assembled. `row.emphasised` is retained in the
+                    data model so that reversal is a one-line change.
+                  */
+                  "bg-manual-row",
                   isSplit(i) && "border-l-2 border-l-sheet-border",
                 )}
               >

@@ -19,9 +19,11 @@ import type { SheetColumn, SheetRow } from "@/components/sheet/sheet-grid";
  * 1005. Manual columns sum to 372, maintained to 590.
  */
 export const HERO_COLUMNS: SheetColumn[] = [
-  { header: "Name", width: "w-[132px]" },
-  { header: "Title", width: "w-[116px]", kind: "italic" },
-  { header: "Firm", width: "w-[124px]" },
+  // Manual zone totals 372px. Widths fit the longest value in each column
+  // without clipping: "Sarah Chen", "Vice President", "Morgan Stanley".
+  { header: "Name", width: "w-[108px]" },
+  { header: "Title", width: "w-[126px]", kind: "italic" },
+  { header: "Firm", width: "w-[138px]" },
   { header: "Status", width: "w-[132px]", kind: "status" },
   { header: "Next move", width: "w-[156px]" },
   { header: "Last contact", width: "w-[112px]" },
