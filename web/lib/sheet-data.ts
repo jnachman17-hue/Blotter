@@ -88,15 +88,18 @@ export const HERO_ROWS: SheetRow[] = [
   },
   {
     // Cue-linked: "Email sent to Alex Morgan", Jan 16 8:18 AM.
-    // Next move is genuinely blank. The em dash in the source asset was
-    // removed on Jon's instruction, August 4, 2026.
+    //
+    // `Next move` carries the em dash, muted and centred, exactly as
+    // hero-reference-v1.png draws it. Jon reinstated it on August 5, 2026,
+    // reversing his August 4 removal and overriding the 01-HERO section 6
+    // genuinely-blank rule for this one cell. Authority level 1.
     emphasised: true,
     cells: [
       "Alex Morgan",
       "Analyst",
       "Centerview",
       { status: "Sent" },
-      null,
+      { dash: true },
       "1/16/26",
       "0",
       null,

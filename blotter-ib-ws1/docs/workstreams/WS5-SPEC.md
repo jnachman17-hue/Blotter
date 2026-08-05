@@ -1,8 +1,23 @@
 # Workstream 5 Specification
 
+> **Executor change, ruled by Jon August 4, 2026.** The landing page is built in this
+> repository with Next.js, not in Lovable. The Lovable project `Blotter Foundation` and its
+> commits are abandoned and no code was ported.
+>
+> Everything in this file about scope, sequence, gates, the build-specification inventory, the
+> asset inventory, the nine-event contract, lead storage, and the deployment rule remains
+> binding and unchanged. Only the executor changed. Where this file says "Lovable", read "the
+> in-repo build".
+>
+> Three passages are stale as written and are superseded by `CURRENT-HANDOFF.md`: the
+> "Lovable project state" section, the "Frozen Lovable operating handoff" section including the
+> private-repository file-upload protocol, and the "Exact Lovable intake sequence" and
+> "Exact next action" sections, which describe a plan-only intake that has been replaced by
+> stage checkpoints carrying the same discipline.
+
 Date created: July 30, 2026  
-Date last updated: August 1, 2026  
-Status: Active - frozen packet, ready for Lovable plan intake  
+Date last updated: August 5, 2026  
+Status: Active - building in-repo, stages 1 to 5 complete  
 Workstream: Spreadsheet-page build specifications, visual references, Lovable implementation, instrumentation, and private verification
 
 ## Purpose

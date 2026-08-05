@@ -16,11 +16,11 @@ import { CtaButton } from "./cta-button";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-rule bg-page/85 backdrop-blur-sm">
-      <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
+    <header className="sticky top-0 z-40 backdrop-blur-md">
+      <div className="mx-auto flex h-[60px] max-w-[1400px] items-center justify-between px-6">
         <a
           href="#top"
-          className="text-[1.0625rem] font-semibold tracking-tight text-ink"
+          className="text-[1.0625rem] font-semibold tracking-[-0.02em] text-navy-900"
         >
           Blotter
         </a>

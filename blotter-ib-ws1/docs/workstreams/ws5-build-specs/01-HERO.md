@@ -145,6 +145,13 @@ Exact rows:
 
 Blank cells must be genuinely blank. Do not use a dash, em dash, `N/A`, `None`, or placeholder text.
 
+> **One exception, ruled by Jon August 5, 2026.** Alex Morgan's `Next move` carries the em dash,
+> muted and centred, exactly as `hero-reference-v1.png` draws it. This reverses the August 4
+> removal and overrides the rule above for that single cell.
+>
+> The rule stands everywhere else, on every surface, including the Section 5 preservation view.
+> Implemented as the `{ dash: true }` cell in `sheet-grid.tsx`, which exists for this cell alone.
+
 Use a clear vertical boundary between Firm and Status. It should be more legible than an ordinary gridline but remain consistent with spreadsheet geometry.
 
 ## 7. Activity cues: preserve closely

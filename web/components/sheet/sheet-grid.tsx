@@ -12,6 +12,11 @@
  *
  * Blank cells are genuinely blank. Never a dash, em dash, N/A, or placeholder
  * (01-HERO section 6; reaffirmed by Jon August 4, 2026 for Section 5).
+ *
+ * One ratified exception, instructed by Jon August 5, 2026: Alex Morgan's hero
+ * `Next move` carries the em dash exactly as the ratified PNG draws it, muted
+ * and centred. That is the `{ dash: true }` cell and it is the only place it is
+ * permitted. Section 5 and every other surface keep genuinely blank cells.
  */
 
 import { cn } from "@/lib/cn";
@@ -26,7 +31,7 @@ export interface SheetColumn {
   kind?: "text" | "status" | "link" | "italic";
 }
 
-export type SheetCell = string | { status: Status } | null;
+export type SheetCell = string | { status: Status } | { dash: true } | null;
 
 export interface SheetRow {
   cells: SheetCell[];
@@ -67,7 +72,9 @@ export function SheetGrid({
           <div
             key={col.header}
             className={cn(
-              "px-3 py-2.5 font-semibold text-ink whitespace-nowrap",
+              "py-2.5 font-semibold text-ink whitespace-nowrap",
+              // Chip columns sit closer to the cell edge, as the reference does.
+              col.kind === "status" ? "px-2" : "px-3",
               col.width ?? "flex-1",
               col.align === "right" && "text-right",
               maintained(i) ? "bg-blotter-100" : "bg-manual-100",
@@ -91,7 +98,8 @@ export function SheetGrid({
               <div
                 key={col.header}
                 className={cn(
-                  "px-3 py-2.5 whitespace-nowrap overflow-hidden",
+                  "py-2.5 whitespace-nowrap overflow-hidden",
+                  col.kind === "status" ? "px-2" : "px-3",
                   col.width ?? "flex-1",
                   col.align === "right" && "text-right",
                   col.kind === "italic" && "italic text-ink-muted",
@@ -123,6 +131,8 @@ export function SheetGrid({
                   ) : (
                     cell
                   )
+                ) : "dash" in cell ? (
+                  <span className="block text-center text-ink-faint">—</span>
                 ) : (
                   <StatusChip status={cell.status} />
                 )}

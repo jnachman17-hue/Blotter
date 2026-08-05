@@ -24,8 +24,13 @@ export const STATUSES = [
 
 export type Status = (typeof STATUSES)[number];
 
+/*
+ * Metrics matched to hero-reference-v1.png, where the widest chip, "Call
+ * completed", measures roughly 102px inside a 132px Status column. Earlier
+ * values ran 11px wider and clipped once the sheet was pinned to Arial.
+ */
 const chip = cva(
-  "inline-flex items-center gap-1 rounded-full px-2 py-[3px] text-[13px] leading-none whitespace-nowrap",
+  "inline-flex items-center gap-[3px] rounded-full px-[7px] py-[3px] text-[12.5px] leading-none whitespace-nowrap",
   {
     variants: {
       status: {
@@ -49,11 +54,11 @@ export function StatusChip({ status, className }: StatusChipProps) {
     <span className={cn(chip({ status }), className)}>
       {status}
       <svg
-        width="8"
-        height="5"
+        width="7"
+        height="4.5"
         viewBox="0 0 8 5"
         aria-hidden="true"
-        className="opacity-60"
+        className="shrink-0 opacity-60"
       >
         <path d="M0 0h8L4 5z" fill="currentColor" />
       </svg>

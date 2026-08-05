@@ -17,9 +17,9 @@ export default function SheetReviewPage() {
       <h1 className="text-2xl font-semibold">SheetWindow primitive review</h1>
       <p className="mt-2 max-w-2xl text-sm text-ink-muted">
         Built primitive on top, ratified reference asset below, both at the same
-        width. The reference still contains the vertical engine rail and the
-        Alex Morgan em dash, neither of which is reproduced: 01-HERO orders the
-        rail removed and blank cells genuinely blank.
+        width. The reference still contains the vertical engine rail, which
+        01-HERO section 12 orders removed. Alex Morgan&rsquo;s em dash is
+        reproduced: Jon reinstated it on August 5, 2026.
       </p>
 
       <h2 className="mt-10 mb-3 text-sm font-semibold tracking-wide uppercase text-ink-muted">

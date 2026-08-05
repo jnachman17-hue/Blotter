@@ -270,6 +270,62 @@ Status: Confirmed
 
 Status: Confirmed
 
+### Session 2, August 5, 2026: hero, page theme, Section 2
+
+**Alex Morgan's hero `Next move` carries the em dash, muted and centred, exactly as `hero-reference-v1.png` draws it.**
+
+This reverses the August 4 removal and overrides the `01-HERO` section 6 rule that blank cells
+must be genuinely blank, for that one cell only. Every other blank cell on every other surface,
+including Section 5, stays genuinely blank. Ruled by Jon.
+
+Status: Confirmed
+
+**The page has a ratified visual theme. It was open until now: the specifications govern copy, section order and the exact assets, and never decided a page-level design system.**
+
+- Type is Geist, with Geist Mono reserved for figures. The exact assets keep their own type
+  independent of the page: the spreadsheet is pinned to Arial and the Gmail visual to Roboto,
+  matching the surfaces they reproduce, so a future theme change cannot alter a ratified asset.
+- One accent, a deep navy, on the CTA, eyebrows, wordmark and headline emphasis. The Blotter
+  yellow is semantic, not a second accent, and appears only where the ratified assets use it to
+  mean "Blotter maintains this".
+- The hero sits on a light blue to cream field that resolves to white before Section 2, drawn
+  from the manual-zone and maintained-zone header colours already sampled from the assets.
+  Section 2 opens on neutral ground, as `02-SECTION-2` section 12 requires.
+- Interactive elements are pills, page surfaces are 12px. The spreadsheet keeps its own
+  Google Sheets radii.
+- Light mode only. Every ratified asset is a light Google Sheets or Gmail surface.
+- No motion. `01-HERO` section 13 requires static comprehension and micro-motion needs its own
+  approval.
+
+Status: Confirmed
+
+**The hero composition is bounded, not centred. Copy and visual share one box exactly the width of the scaled hero visual, the headline sits on the sheet's left edge, and the supporting column ends on the cue column's right edge.**
+
+Centring the copy on the page created two competing axes and made the sheet read as misaligned,
+because the visual's optical centre is left of its geometric centre. Sections 2 through 7 inherit
+the same box through `PageBox`. Do not introduce a second page width.
+
+Status: Confirmed
+
+**The hero visual scales uniformly to 0.85 so the complete section, copy included, lands inside a 13-inch MacBook Pro viewport of roughly 1440 by 780.**
+
+`01-HERO` section 3 fixes the composition's proportions, not its pixel count. The scale is one
+transform on the whole module, so every ratified measurement is preserved exactly.
+
+Status: Confirmed
+
+**Status-chip metrics were retuned to the ratified PNG, where the widest chip measures roughly 102px inside the 132px Status column. The earlier values ran 11px wider.**
+
+Status: Confirmed
+
+**The Section 2 email is rebuilt as React and CSS components rather than embedded, iframed or rasterised.** `02-SECTION-2` section 19 left the method open.
+
+Status: Confirmed
+
+**`628` carries more scale than the other three volume figures, and `inevitably falls behind reality` carries modest emphasis in the supporting paragraph.** Both are permitted by `02-SECTION-2` sections 7 and 9 and were ratified by Jon.
+
+Status: Confirmed
+
 ## Product and technical context
 
 - Blotter is a logistics layer only.

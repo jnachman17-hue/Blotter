@@ -1,4 +1,7 @@
 import { SiteHeader } from "@/components/site-header";
+import { PageView } from "@/components/page-view";
+import { Hero } from "@/components/sections/hero";
+import { ScaleAndConsequence } from "@/components/sections/scale-and-consequence";
 
 /**
  * Spreadsheet landing page.
@@ -17,14 +20,19 @@ import { SiteHeader } from "@/components/site-header";
 export default function Page() {
   return (
     <>
-      <SiteHeader />
-      <main id="top">
-        <div className="mx-auto max-w-[1280px] px-6 py-24">
-          <p className="text-sm text-ink-muted">
-            Foundation checkpoint. Sections build from here.
-          </p>
-        </div>
-      </main>
+      <PageView />
+      {/*
+        The hero field carries the header too, so the page opens as one
+        continuous surface rather than a white bar sitting on a tinted
+        section. It resolves to white before Section 2 begins.
+      */}
+      <div className="hero-field">
+        <SiteHeader />
+        <main id="top">
+          <Hero />
+        </main>
+      </div>
+      <ScaleAndConsequence />
     </>
   );
 }

@@ -95,6 +95,10 @@ export function SheetWindow({
   return (
     <div
       className={cn(
+        // Arial, not the page font. hero-reference-v1.png is set in Arial, so
+        // pinning it keeps the primitive faithful to the ratified asset and
+        // insulated from page-theme changes.
+        "sheet-type",
         "overflow-hidden rounded-xl border border-sheet-border bg-sheet-chrome",
         "shadow-[0_1px_3px_rgba(60,64,67,0.15),0_8px_28px_-8px_rgba(60,64,67,0.25)]",
         className,

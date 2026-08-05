@@ -1,9 +1,25 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-sans",
+/*
+ * Roboto exists on this page for one reason: the Section 2 asset is a Gmail
+ * surface and Gmail is set in Roboto. It is scoped to that component through
+ * `--font-gmail` and is not part of the page's type system.
+ */
+const roboto = Roboto({
+  variable: "--font-gmail",
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+});
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -20,7 +36,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} h-full`}
+    >
       <body className="min-h-full font-sans">{children}</body>
     </html>
   );

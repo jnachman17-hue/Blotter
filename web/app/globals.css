@@ -8,13 +8,49 @@
 */
 
 @theme {
+  /*
+    Type.
+
+    Geist for the page, chosen for tight apertures at small sizes and a
+    numeral set that holds up in Section 2's four-figure composition. Geist
+    Mono carries those figures.
+
+    The spreadsheet is pinned to Arial separately: hero-reference-v1.png is
+    set in Arial, so pinning it both moves the primitive closer to the
+    ratified asset and stops future page-theme changes leaking into an
+    approved visual.
+  */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sheet: Arial, Helvetica, sans-serif;
+
+  /* Type scale. Sections 2 through 7 inherit these rather than inventing sizes. */
+  --text-micro: 0.75rem; /* 12px  captions, methodology */
+  --text-eyebrow: 0.78rem; /* 12.5px uppercase section labels */
+  --text-small: 0.84rem; /* 13.5px proof notes, authority line */
+  --text-body: 1rem; /* 16px  body copy */
+  --text-lede: 1.0625rem; /* 17px  subheads */
+  --text-h2: 2.125rem; /* 34px  section headlines */
+  --text-display: 2.5rem; /* 40px  hero headline */
+
   /* Page */
   --color-page: #ffffff;
-  --color-ink: #1a1a1a;
+  --color-ink: #14181f;
   --color-ink-muted: #5f6368;
   --color-ink-faint: #a4a8ac;
   --color-rule: #e6e6e3;
   --color-surface-quiet: #faf9f6;
+
+  /*
+    The single page accent. One deep navy, used for the CTA, headline
+    emphasis and rules, and nothing else competes with it. The Blotter
+    yellow below is not a second accent: it is semantic, and it appears only
+    where the ratified assets use it to mean "Blotter maintains this".
+  */
+  --color-navy-900: #12233d;
+  --color-navy-800: #1b3050;
+  --color-navy-500: #40608c;
+  --color-navy-400: #647fa6;
 
   /*
     Blotter yellow family.
@@ -66,6 +102,11 @@
   --color-closing: #1c2434;
 }
 
+/*
+  Light only, deliberately. Every ratified asset on this page is a light
+  Google Sheets or Gmail surface, and 02-SECTION-2 fixes the Gmail palette as
+  "white and very light blue-gray". A dark mode would falsify the assets.
+*/
 :root {
   color-scheme: light;
 }
@@ -74,6 +115,47 @@ body {
   background: var(--color-page);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
+}
+
+/*
+  Hero field.
+
+  Two soft washes drawn from the page's own semantics rather than chosen for
+  decoration: the blue is the manual zone the student owns, the cream is the
+  maintained zone Blotter keeps current. They resolve to white before the
+  section ends, so Section 2 opens on calm neutral ground and does not repeat
+  the hero's yellow, which 02-SECTION-2 section 12 forbids.
+*/
+.hero-field {
+  background:
+    radial-gradient(
+      1280px 700px at 0% -10%,
+      #cfe0f6 0%,
+      rgba(207, 224, 246, 0) 62%
+    ),
+    radial-gradient(
+      1160px 640px at 100% -12%,
+      #fbeac6 0%,
+      rgba(251, 234, 198, 0) 64%
+    ),
+    linear-gradient(180deg, #fbfcfe 0%, #ffffff 74%);
+}
+
+/*
+  The exact assets keep their own type, independent of the page theme, because
+  each one reproduces a real product surface: Google Sheets is Arial, Gmail is
+  Roboto. Changing the page font must never alter either.
+*/
+.sheet-type {
+  font-family: var(--font-sheet);
+}
+
+.gmail-type {
+  font-family: var(--font-gmail), Roboto, Helvetica, Arial, sans-serif;
+}
+
+.gmail-type a {
+  color: #1a73e8;
 }
 
 /* Every section must work in a static screenshot. Motion is decoration only. */
