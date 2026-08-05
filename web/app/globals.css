@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/*
+  Blotter design tokens.
+  Spreadsheet values are sampled from the ratified assets:
+  hero-reference-v1.png, outstanding-actions-reference-v1.png,
+  how-blotter-works-exact-v1.avif, preservation-exact-v1.html.
+*/
+
+@theme {
+  /* Page */
+  --color-page: #ffffff;
+  --color-ink: #1a1a1a;
+  --color-ink-muted: #5f6368;
+  --color-ink-faint: #a4a8ac;
+  --color-rule: #e6e6e3;
+  --color-surface-quiet: #faf9f6;
+
+  /* Blotter yellow family. The maintained zone and ownership marks. */
+  --color-blotter-50: #fdfaf1;
+  --color-blotter-100: #faf3e2;
+  --color-blotter-200: #f3e6c6;
+  --color-blotter-400: #d9b64a;
+  --color-blotter-500: #c9a227;
+  --color-blotter-700: #8a6d12;
+
+  /* Manual (student-maintained) zone */
+  --color-manual-100: #eef2f7;
+  --color-manual-500: #4a6fa5;
+
+  /* Google Sheets chrome */
+  --color-sheet-border: #dadce0;
+  --color-sheet-grid: #e8eaed;
+  --color-sheet-header: #f8f9fa;
+  --color-sheet-chrome: #ffffff;
+  --color-sheet-green: #0f9d58;
+
+  /* Status chips, sampled from the ratified hero asset */
+  --color-chip-replied-bg: #d7e7fb;
+  --color-chip-replied-fg: #1a56a8;
+  --color-chip-scheduled-bg: #e5ddf7;
+  --color-chip-scheduled-fg: #5b3fa8;
+  --color-chip-completed-bg: #d7f0dd;
+  --color-chip-completed-fg: #1e6b34;
+  --color-chip-noreply-bg: #fbeacb;
+  --color-chip-noreply-fg: #8a5a00;
+  --color-chip-sent-bg: #e8eaed;
+  --color-chip-sent-fg: #5f6368;
+
+  /* Outstanding Actions group accents */
+  --color-group-replies: #1a73e8;
+  --color-group-followups: #c9a227;
+  --color-group-thanks: #0f9d58;
+
+  /* Closing panel */
+  --color-closing: #1c2434;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Every section must work in a static screenshot. Motion is decoration only. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-manual-500);
+  outline-offset: 2px;
+}

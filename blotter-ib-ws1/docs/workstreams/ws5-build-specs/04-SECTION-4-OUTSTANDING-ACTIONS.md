@@ -143,29 +143,40 @@ Global columns:
 
 Group 1:
 
-`Replies owed - 6`
+`Replies owed` — count `6`
 
-- Marcus Lee | Reply to Marcus | Marcus replied 2 hours ago
-- Daniel Kim | Reply to Daniel | Daniel replied yesterday
-- `+4 more replies owed`
+- Sarah Chen | Reply to Sarah | Sarah replied Jan 16 at 10:42 AM
+- `+5 more replies owed`
 
 Group 2:
 
-`Follow-ups due - 11`
+`Follow-ups due` — count `11`
 
-- Sarah Chen | Bump thread | No reply for 6 days
-- Alex Morgan | Bump thread | No reply for 8 days
-- `+9 more follow-ups due`
+- Daniel Kim | Bump thread | No reply for 5 days
+- `+10 more follow-ups due`
 
 Group 3:
 
-`Thank-you notes - 4`
+`Thank-you notes` — count `4`
 
-- Priya Shah | Send thank-you | Coffee chat completed yesterday
-- James Wu | Send thank-you | Call completed 3 hours ago
-- `+2 more thank-you notes`
+- Priya Shah | Send thank-you | Coffee chat completed Jan 16
+- `+3 more thank-you notes`
+
+Each group shows exactly **one** readable action row followed by one muted overflow row.
+Counts reconcile as 1 + 5 = 6, 1 + 10 = 11, 1 + 3 = 4, totalling `21 outstanding actions`.
+
+Marcus Lee, Alex Morgan, and James Wu do not appear in this view.
+
+The tab strip shows `Contacts` and `Outstanding`, with `Outstanding` active. The selected cell is
+`A1` and the formula bar reads `Outstanding actions`.
 
 Where punctuation or dash styling in the PNG differs from the plain-text transcription above, the PNG controls the rendered visual.
+
+**Transcription corrected August 4, 2026.** The earlier transcription in this section listed two
+rows per group and named Marcus Lee, Alex Morgan, and James Wu. That did not match the ratified
+PNG and contradicted the hero's contact states. The ratified asset is authoritative and is
+internally consistent with the hero on January 16: Sarah Chen's reply, Daniel Kim's five-day
+silence, and Priya Shah's completed coffee chat all correspond to hero rows and cues.
 
 Do not add a fourth group, additional visible rows, status columns, filters, charts, sidebars, or summary tiles.
 
@@ -200,8 +211,8 @@ The view uses:
 
 - one top-level title and total count;
 - one shared column-header row;
-- three full-width category headers;
-- two readable rows per category;
+- three full-width category headers, each with a coloured left rule and a right-aligned count;
+- one readable row per category;
 - one muted overflow row per category.
 
 The group counts remain part of the group headers. Do not repeat them as badges, KPI cards, or summary tiles.
@@ -290,7 +301,7 @@ Tablet and mobile adaptation remain deferred bounded implementation questions.
 Any later smaller-screen treatment must preserve:
 
 - all three category counts;
-- at least one readable explanatory row from each category;
+- the readable explanatory row from each category;
 - the category order;
 - the relationship among Contact, Next action, and Why it is here;
 - recognizable Google Sheets context;

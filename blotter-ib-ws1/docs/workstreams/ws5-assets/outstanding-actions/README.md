@@ -50,33 +50,35 @@ The asset contains:
 - `Outstanding actions`;
 - `21 outstanding actions`;
 - one global column-header row: Contact, Next action, Why it is here;
-- three full-width action-group headers;
-- two readable action rows per group;
+- three full-width action-group headers, each with a coloured left rule and right-aligned count;
+- one readable action row per group;
 - one muted overflow row per group;
+- tab strip showing `Contacts` and `Outstanding`, with `Outstanding` active;
+- selected cell `A1`, formula bar reading `Outstanding actions`;
 - exact spreadsheet density, fills, borders, row heights, spacing, typography, alignment, shadows, tint strength, crop, and proportions.
 
-Exact queue content:
+Exact queue content (transcription corrected August 4, 2026 against the PNG):
 
 ### Replies owed
 
 - count: 6;
-- Marcus Lee | Reply to Marcus | Marcus replied 2 hours ago;
-- Daniel Kim | Reply to Daniel | Daniel replied yesterday;
-- `+4 more replies owed`.
+- Sarah Chen | Reply to Sarah | Sarah replied Jan 16 at 10:42 AM;
+- `+5 more replies owed`.
 
 ### Follow-ups due
 
 - count: 11;
-- Sarah Chen | Bump thread | No reply for 6 days;
-- Alex Morgan | Bump thread | No reply for 8 days;
-- `+9 more follow-ups due`.
+- Daniel Kim | Bump thread | No reply for 5 days;
+- `+10 more follow-ups due`.
 
 ### Thank-you notes
 
 - count: 4;
-- Priya Shah | Send thank-you | Coffee chat completed yesterday;
-- James Wu | Send thank-you | Call completed 3 hours ago;
-- `+2 more thank-you notes`.
+- Priya Shah | Send thank-you | Coffee chat completed Jan 16;
+- `+3 more thank-you notes`.
+
+Marcus Lee, Alex Morgan, and James Wu do not appear in this asset. The three visible contacts
+correspond exactly to hero state on January 16, so the two surfaces are consistent.
 
 The exact PNG controls punctuation, capitalization, line breaks, dash styling, and rendered appearance.
 

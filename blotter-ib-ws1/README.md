@@ -10,4 +10,4 @@ Start with:
 2. `docs/CURRENT-HANDOFF.md`
 3. The relevant workflow-specific file in `docs/`
 
-Current workstream: Workstream 1, minimum viable project maintenance and continuity setup.
+Current workstream: Workstream 5, spreadsheet-page implementation. See `docs/00-START-HERE.md`.

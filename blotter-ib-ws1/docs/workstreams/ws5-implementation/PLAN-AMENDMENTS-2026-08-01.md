@@ -80,7 +80,7 @@ Required transferred inputs:
 
 - `hero-reference-v1.png`
 - `blotter-sheets-reference-v1.html`
-- `goldman-sachs-rejection-email-exact-v1.webp`
+- `goldman-sachs-rejection-email-exact-v2.html`
 - `goldman-sachs-rejection-email-exact-v1.html`
 - `how-blotter-works-exact-v1.avif`
 - `outstanding-actions-reference-v1.png`

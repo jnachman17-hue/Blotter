@@ -93,7 +93,7 @@ Directional hero input:
 
 Formal exact Section 2 input:
 
-- `ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.webp`
+- `ws5-assets/section-2/goldman-sachs-rejection-email-exact-v2.html`
 - supplemental HTML: `ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.html`
 
 Formal exact Section 3 input:

@@ -136,9 +136,13 @@ The vertical divider sits between LinkedIn and Status.
 | Marcus Lee | Analyst | Evercore | marcus.lee@evercore.com | Here | Call scheduled | Attend coffee chat | 1/15/26 | 1 | 1/17 @ 2:00 PM |
 | Priya Shah | Vice President | Lazard | priya.shah@lazard.com | Here | Call completed | Send thank-you | 1/16/26 | 0 | Completed 1/16 |
 | Daniel Kim | Associate | Morgan Stanley | daniel.kim@morganstanley.com | Here | No reply | Bump thread | 1/11/26 | 5 | blank |
-| Alex Morgan | Analyst | Centerview | alex.morgan@centerview.com | Here | Sent | em dash | 1/16/26 | 0 | blank |
+| Alex Morgan | Analyst | Centerview | alex.morgan@centerview.com | Here | Sent | blank | 1/16/26 | 0 | blank |
 
 The exact asset controls rendered punctuation, capitalization, dates, chip treatments, and blank-cell appearance.
+
+Alex Morgan's `Next move` cell is genuinely blank. The em dash previously rendered in that cell
+was removed on Jon's instruction, August 4, 2026, for consistency with the confirmed
+no-em-dash rule in `05-working-agreement.md` and with the blank-cell rule in `01-HERO.md`.
 
 Every LinkedIn cell displays `Here` as a blue underlined hyperlink to the generic LinkedIn domain. Do not invent fictional profile URLs.
 

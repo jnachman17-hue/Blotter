@@ -61,7 +61,7 @@ All seven are ratified and binding.
 
 ### Formal exact assets
 
-- Section 2: `docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v1.webp`
+- Section 2: `docs/workstreams/ws5-assets/section-2/goldman-sachs-rejection-email-exact-v2.html`
 - Section 2 supplemental HTML: `section-2/goldman-sachs-rejection-email-exact-v1.html`
 - Section 3: `docs/workstreams/ws5-assets/section-3/how-blotter-works-exact-v1.avif`
 - Section 4 and funnel Frame 3: `docs/workstreams/ws5-assets/outstanding-actions/outstanding-actions-reference-v1.png`

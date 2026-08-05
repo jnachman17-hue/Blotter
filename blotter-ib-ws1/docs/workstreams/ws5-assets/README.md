@@ -27,7 +27,7 @@ Every asset must be used with the ratified build specification for the exact sur
 
 ### Formal exact assets
 
-- `section-2/goldman-sachs-rejection-email-exact-v1.webp`
+- `section-2/goldman-sachs-rejection-email-exact-v2.html`
 - `section-2/goldman-sachs-rejection-email-exact-v1.html` — supplemental structural reference
 - `section-3/how-blotter-works-exact-v1.avif`
 - `outstanding-actions/outstanding-actions-reference-v1.png` — exact for Section 4 and funnel Frame 3

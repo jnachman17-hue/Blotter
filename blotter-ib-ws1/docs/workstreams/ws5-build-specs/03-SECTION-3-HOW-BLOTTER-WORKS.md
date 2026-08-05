@@ -436,7 +436,7 @@ Do not implement:
 When the Section 3 checkpoint is authorized, provide Lovable with:
 
 1. this build specification;
-2. the formal exact WebP asset;
+2. the formal exact AVIF asset;
 3. `../ws5-assets/section-3/README.md`;
 4. the relevant WS4 Section 3 source for inherited copy;
 5. the approved global page shell and typography system.
@@ -498,7 +498,7 @@ The following are deferred and do not reopen Section 3:
 - whether the provisional mark inside the asset later becomes part of a separate canonical Blotter identity system;
 - whether Lovable reproduces the asset through React and CSS or another method that produces the same approved desktop result.
 
-No additional Section 3 external visual reference is required. The formal exact WebP is the sole visual authority for this section.
+No additional Section 3 external visual reference is required. The formal exact AVIF is the sole visual authority for this section.
 
 ## 21. Ratification record
 

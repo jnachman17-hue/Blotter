@@ -1,0 +1,187 @@
+/**
+ * Provider-independent analytics adapter.
+ *
+ * Authority: WS3-SPEC.md (event set, meanings, properties),
+ * WS5-SPEC.md Phase 5, PLAN-AMENDMENTS-2026-08-01.md (suppression key shape).
+ *
+ * No vendor is connected here. `sink` is swapped at the analytics phase once
+ * a provider is approved. The nine event names and the property contract are
+ * frozen and must not change with the vendor.
+ */
+
+/** The complete canonical event set. There is no separate `cta_clicked` event. */
+export const CANONICAL_EVENTS = [
+  "page_viewed",
+  "funnel_started",
+  "recruiting_profile_completed",
+  "product_experience_completed",
+  "email_submitted",
+  "price_viewed",
+  "checkout_started",
+  "payment_option_clicked",
+  "beta_spot_confirmed",
+] as const;
+
+export type CanonicalEvent = (typeof CANONICAL_EVENTS)[number];
+
+/** The four ratified CTA origins. `header` was added in PLAN-AMENDMENTS-2026-08-01. */
+export type CtaLocation = "header" | "hero" | "actions" | "final";
+
+export type RecruitingTrack =
+  | "Investment Banking"
+  | "Management Consulting"
+  | "Private Equity / Growth Equity"
+  | "Sales & Trading"
+  | "Asset Management / Equity Research"
+  | "Venture Capital"
+  | "Other";
+
+export type RecruitingWindow = "Summer 2028" | "Full-time" | "Other";
+
+export type PaymentMethod = "card" | "apple_pay";
+
+/**
+ * Event properties. Email is deliberately absent and must never be added:
+ * it belongs in lead storage only (WS3-SPEC, LOVABLE-PROJECT-KNOWLEDGE).
+ */
+export interface EventProperties {
+  surface_variant: "spreadsheet";
+  session_id: string;
+  visitor_id: string;
+  traffic_source?: string;
+  campaign?: string;
+  device_type?: "desktop" | "tablet" | "mobile";
+  cta_location?: CtaLocation;
+  recruiting_track?: RecruitingTrack;
+  recruiting_window?: RecruitingWindow;
+  price?: 9.99;
+  billing_period?: "monthly";
+  payment_method?: PaymentMethod;
+}
+
+export interface AnalyticsSink {
+  capture(event: CanonicalEvent, properties: EventProperties): void;
+  identify?(visitorId: string): void;
+}
+
+/** Default sink. Records to console in development, discards in production. */
+const noopSink: AnalyticsSink = {
+  capture(event, properties) {
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.info(`[analytics] ${event}`, properties);
+    }
+  },
+};
+
+let sink: AnalyticsSink = noopSink;
+
+export function setAnalyticsSink(next: AnalyticsSink) {
+  sink = next;
+}
+
+/**
+ * Test iteration. Namespaces milestone suppression so a visitor is not
+ * permanently suppressed across future test rounds (PLAN-AMENDMENTS).
+ * Bump this whenever a material page, funnel, price, or proposition change
+ * creates a new labeled iteration under the WS3 test-integrity rule.
+ */
+export const TEST_ITERATION = "r1";
+
+const SURFACE_VARIANT = "spreadsheet" as const;
+
+function suppressionKey(event: CanonicalEvent) {
+  return `blotter:${TEST_ITERATION}:${SURFACE_VARIANT}:${event}`;
+}
+
+/** At-most-once per visitor, per iteration, per surface, per event. */
+function alreadyFired(event: CanonicalEvent): boolean {
+  if (typeof window === "undefined") return true;
+  try {
+    return window.localStorage.getItem(suppressionKey(event)) !== null;
+  } catch {
+    return false;
+  }
+}
+
+function markFired(event: CanonicalEvent) {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(suppressionKey(event), "1");
+  } catch {
+    /* storage unavailable; fire-through is preferable to dropping the event */
+  }
+}
+
+const VISITOR_KEY = "blotter:visitor_id";
+const SESSION_KEY = "blotter:session_id";
+
+function readId(storage: Storage, key: string): string {
+  const existing = storage.getItem(key);
+  if (existing) return existing;
+  const next = crypto.randomUUID();
+  storage.setItem(key, next);
+  return next;
+}
+
+export function getIdentifiers(): { visitor_id: string; session_id: string } {
+  if (typeof window === "undefined") {
+    return { visitor_id: "ssr", session_id: "ssr" };
+  }
+  try {
+    return {
+      visitor_id: readId(window.localStorage, VISITOR_KEY),
+      session_id: readId(window.sessionStorage, SESSION_KEY),
+    };
+  } catch {
+    return { visitor_id: "anonymous", session_id: "anonymous" };
+  }
+}
+
+function deviceType(): "desktop" | "tablet" | "mobile" {
+  if (typeof window === "undefined") return "desktop";
+  const w = window.innerWidth;
+  if (w < 768) return "mobile";
+  if (w < 1024) return "tablet";
+  return "desktop";
+}
+
+function attribution(): Pick<EventProperties, "traffic_source" | "campaign"> {
+  if (typeof window === "undefined") return {};
+  const params = new URLSearchParams(window.location.search);
+  return {
+    traffic_source: params.get("utm_source") ?? document.referrer ?? undefined,
+    campaign: params.get("utm_campaign") ?? undefined,
+  };
+}
+
+/**
+ * Fire a canonical milestone. Deduplicated per visitor, so back navigation
+ * and refresh do not inflate counts (WS3 metric rule: all rates use unique
+ * eligible visitors).
+ */
+export function track(
+  event: CanonicalEvent,
+  properties: Partial<EventProperties> = {},
+) {
+  if (alreadyFired(event)) return;
+
+  const payload: EventProperties = {
+    surface_variant: SURFACE_VARIANT,
+    ...getIdentifiers(),
+    device_type: deviceType(),
+    ...attribution(),
+    ...properties,
+  };
+
+  sink.capture(event, payload);
+  markFired(event);
+}
+
+/** Escape hatch for manual verification runs (WS5 Phase 8). */
+export function resetSuppression() {
+  if (typeof window === "undefined") return;
+  for (const event of CANONICAL_EVENTS) {
+    window.localStorage.removeItem(suppressionKey(event));
+  }
+}

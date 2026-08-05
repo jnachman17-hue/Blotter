@@ -7,21 +7,38 @@ Controlling build specification: `../../ws5-build-specs/02-SECTION-2-SCALE-AND-C
 
 ## Asset package
 
-Authoritative exact-pixel target:
+Authoritative exact source, supplied by Jon August 4, 2026:
 
-`goldman-sachs-rejection-email-exact-v1.webp`
+`goldman-sachs-rejection-email-exact-v2.html`
 
-Supplemental portable HTML implementation reference:
+- self-contained, no external resource references
+- SHA-256: `c8b08e76730e4d8ccbb4f4a5ba163839ed1fe6f5b71bc4f055cae14a8feb3a6f`
+- verified to contain the exact subject, sender, sender address, recipient,
+  timestamp, body, signature, and footer actions required by the build specification
+- contains no em or en dashes in visible copy
+
+Superseded supplemental reconstruction, retained for reference only:
 
 `goldman-sachs-rejection-email-exact-v1.html`
+
+## Removed asset
+
+`goldman-sachs-rejection-email-exact-v1.webp` was removed August 4, 2026.
+
+It was intrinsically truncated and could not be decoded: `13,676` stored bytes against a
+RIFF-declared total of `29,672`. It was documented as a hard implementation gate while being
+unusable, which blocked Section 2. Git history retains the file.
 
 ## Authority
 
 This package is not directional.
 
-The lossless WebP is the exact desktop pixel target. It was rendered directly from Jon's uploaded self-contained Goldman Sachs rejection-email bundle at the native `1180 × 560` viewport. Lovable must match this image under side-by-side review.
+`goldman-sachs-rejection-email-exact-v2.html` is the exact desktop target at the native
+`1180 × 560` viewport. The implementation must match it under side-by-side review.
 
-The HTML is supplemental. It provides an implementation-friendly reconstruction with the exact visible text and substantive Gmail layout. It may be translated into React and project CSS, but it does not override the WebP where any visual discrepancy exists.
+The implementation translates this source into the project's React and CSS component system.
+The rendered result must remain visually equivalent to the source in a close side-by-side
+comparison. Do not redesign it into a generic email card.
 
 The ratified build specification controls:
 

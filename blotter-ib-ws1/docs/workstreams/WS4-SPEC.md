@@ -1,8 +1,22 @@
 # Workstream 4 Specification
 
-Date last updated: July 30, 2026
-Status: Complete
+Date last updated: August 4, 2026
+Status: Complete, partially superseded
 Workstream: Spreadsheet landing-page content and experience design
+
+> **Supersession notice.** This file is authority level 4. Where a ratified WS5 build
+> specification in `ws5-build-specs/` covers the same surface, that file controls. The
+> following items in this document are known to be superseded and must not be built:
+>
+> | Item here | Superseded by |
+> |---|---|
+> | `55 coffee chats` | `68 coffee chats` (02-SECTION-2) |
+> | `WHAT ACTUALLY HAPPENED` vs `WHAT MADE IT INTO THE MANUAL TRACKER` visual | Goldman email asset (02-SECTION-2) |
+> | Hero with stale rear sheet and all-caps zone labels | 01-HERO: one current sheet, `YOU add the contacts` / `BLOTTER keeps them current` |
+> | `YOU CONTROL` / `BLOTTER MAINTAINS` lists | Removed (03-SECTION-3) |
+> | `YOUR EXISTING TRACKER` / `BLOTTER ADDS THE LIVE LAYER` labels inside the asset | Removed (05-SECTION-5) |
+> | Provider sentence claiming completed Google verification | Provider-agnostic copy (06-SECTION-6) |
+> | Three CTA locations | Four, including sticky header (PLAN-AMENDMENTS-2026-08-01) |
 
 ## Purpose
 
@@ -131,28 +145,27 @@ Google Sheets-native visual:
 - Replies owed: 6
 - Follow-ups due: 11
 - Thank-you notes: 4
-- Two visible rows per group
-- Muted overflow rows: `+4 more replies owed`, `+9 more follow-ups due`, `+2 more thank-you notes`
+- One visible row per group
+- Muted overflow rows: `+5 more replies owed`, `+10 more follow-ups due`, `+3 more thank-you notes`
 - Columns: Contact, Next action, Why it is here
 
-Exact visible rows:
+Exact visible rows (corrected August 4, 2026 against the ratified PNG):
 
-`Replies owed — 6`
-- Marcus Lee | Reply to Marcus | Marcus replied 2 hours ago
-- Daniel Kim | Reply to Daniel | Daniel replied yesterday
-- `+4 more replies owed`
+`Replies owed` count `6`
+- Sarah Chen | Reply to Sarah | Sarah replied Jan 16 at 10:42 AM
+- `+5 more replies owed`
 
-`Follow-ups due — 11`
-- Sarah Chen | Bump thread | No reply for 6 days
-- Alex Morgan | Bump thread | No reply for 8 days
-- `+9 more follow-ups due`
+`Follow-ups due` count `11`
+- Daniel Kim | Bump thread | No reply for 5 days
+- `+10 more follow-ups due`
 
-`Thank-you notes — 4`
-- Priya Shah | Send thank-you | Coffee chat completed yesterday
-- James Wu | Send thank-you | Call completed 3 hours ago
-- `+2 more thank-you notes`
+`Thank-you notes` count `4`
+- Priya Shah | Send thank-you | Coffee chat completed Jan 16
+- `+3 more thank-you notes`
 
-The visible rows explain the product; counts and overflow communicate scale.
+One readable row per group, one muted overflow row per group. The visible rows explain the
+product; counts and overflow communicate scale. See `ws5-build-specs/04-SECTION-4-OUTSTANDING-ACTIONS.md`
+for the governing transcription.
 
 ## Confirmed Section 5: Preservation
 
@@ -449,7 +462,7 @@ Supporting line:
 Visual:
 - Sarah Chen’s spreadsheet row is visible but stale.
 - Gmail chip: `Sarah Chen replied · Today, 10:42 AM`.
-- Calendar chip: `Coffee chat with Daniel Park · Friday, 2:00 PM`.
+- Calendar chip: `Coffee chat with Daniel Kim · Friday, 2:00 PM`.
 - The cells that will change in Frame 2 must be clearly signposted with a restrained outline, border, background treatment, or connector so the visitor knows where to look.
 
 Button:
@@ -470,7 +483,7 @@ Sarah Chen:
 - Days: 0
 - Call: —
 
-Daniel Park:
+Daniel Kim:
 - Status: Call scheduled
 - Next move: Prepare for call
 - Last contact: 2 days ago
@@ -493,18 +506,15 @@ Supporting line:
 The same spreadsheet transitions to the `Outstanding actions` view and uses the exact Section 4 queue structure and wording:
 
 - Summary: `21 outstanding actions`
-- Replies owed — 6
-  - Marcus Lee | Reply to Marcus | Marcus replied 2 hours ago
-  - Daniel Kim | Reply to Daniel | Daniel replied yesterday
-  - `+4 more replies owed`
-- Follow-ups due — 11
-  - Sarah Chen | Bump thread | No reply for 6 days
-  - Alex Morgan | Bump thread | No reply for 8 days
-  - `+9 more follow-ups due`
-- Thank-you notes — 4
-  - Priya Shah | Send thank-you | Coffee chat completed yesterday
-  - James Wu | Send thank-you | Call completed 3 hours ago
-  - `+2 more thank-you notes`
+- Replies owed, count 6
+  - Sarah Chen | Reply to Sarah | Sarah replied Jan 16 at 10:42 AM
+  - `+5 more replies owed`
+- Follow-ups due, count 11
+  - Daniel Kim | Bump thread | No reply for 5 days
+  - `+10 more follow-ups due`
+- Thank-you notes, count 4
+  - Priya Shah | Send thank-you | Coffee chat completed Jan 16
+  - `+3 more thank-you notes`
 
 Button:
 `Continue`
