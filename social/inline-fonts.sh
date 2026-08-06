@@ -13,7 +13,11 @@
 #
 #   Schibsted Grotesk 400-900   display, and the wordmark at 700 / -0.035em
 #   Geist 100-900               body and interface
-#   Geist Mono 100-900          the clock readout in the controls
+#   Geist Mono 100-900          figures, per the ratified page theme
+#   Roboto 400                  Gmail surfaces only. The page pins Gmail to
+#                               Roboto because Gmail is set in Roboto; an
+#                               inbox drawn in the page font stops reading as
+#                               Gmail at exactly the size where it matters.
 #
 # Re-run this after editing an HTML file only if you reset its font block back
 # to the /*FONTS*/ placeholder. Running it on an already-inlined file is a
@@ -30,8 +34,9 @@ media="$here/../web/.next/static/media"
 schibsted="$media/31a9145ccb84606d-s.p.3j3x29wbycqkn.woff2"
 geist="$media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2"
 geistmono="$media/797e433ab948586e-s.p.0r6juujl39pe6.woff2"
+roboto="$media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2"
 
-for f in "$schibsted" "$geist" "$geistmono"; do
+for f in "$schibsted" "$geist" "$geistmono" "$roboto"; do
   if [[ ! -f "$f" ]]; then
     echo "missing font: $f" >&2
     echo "The landing page's dev build supplies these. Start or build web/ once, then re-run." >&2
@@ -49,6 +54,7 @@ trap 'rm -f "$css"' EXIT
   printf '@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400 900;font-display:block;src:url(data:font/woff2;base64,%s) format("woff2")}\n' "$(b64 "$schibsted")"
   printf '@font-face{font-family:"Geist";font-style:normal;font-weight:100 900;font-display:block;src:url(data:font/woff2;base64,%s) format("woff2")}\n' "$(b64 "$geist")"
   printf '@font-face{font-family:"Geist Mono";font-style:normal;font-weight:100 900;font-display:block;src:url(data:font/woff2;base64,%s) format("woff2")}\n' "$(b64 "$geistmono")"
+  printf '@font-face{font-family:"Roboto";font-style:normal;font-weight:400;font-display:block;src:url(data:font/woff2;base64,%s) format("woff2")}\n' "$(b64 "$roboto")"
 } > "$css"
 
 targets=("$@")

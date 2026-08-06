@@ -50,6 +50,54 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+/** Set by Jon on August 6, 2026. Bump when the policy is materially revised. */
+const EFFECTIVE_DATE = "August 6, 2026";
+
+/**
+ * The Google authorisation scopes Blotter requests, with the exact wording
+ * Google shows for each on its own consent screen.
+ *
+ * Researched from Google's scope documentation on August 6, 2026 at Jon's
+ * instruction. The descriptions are Google's, quoted so a reader can match this
+ * page against the screen they are actually looking at.
+ *
+ * ⚠ CLAIM GATE. These are the correct scopes for what Section 6 claims, but no
+ * integration exists and none has been requested from Google yet.
+ *
+ *   gmail.readonly is a restricted scope and the only Gmail scope that permits
+ *   reading a message body. gmail.metadata would not, so it cannot support
+ *   matched-message processing. Its description — "View your email messages and
+ *   settings" — is precisely why the page has to explain that Google's
+ *   permission sounds broader than Blotter's processing boundary.
+ *
+ *   calendar.events.readonly is read-only, which is what makes the four
+ *   Calendar `Cannot do` claims true rather than merely intended.
+ *
+ *   drive.file, not spreadsheets. The `spreadsheets` scope grants every
+ *   spreadsheet in the account and would contradict the ratified claims that
+ *   Blotter cannot access or modify unrelated files. drive.file is limited to
+ *   files the user picks or Blotter creates, which is the same boundary the
+ *   page states.
+ */
+const SCOPES = [
+  {
+    service: "Gmail",
+    scope: "gmail.readonly",
+    google: "View your email messages and settings.",
+  },
+  {
+    service: "Google Calendar",
+    scope: "calendar.events.readonly",
+    google: "View events on all your calendars.",
+  },
+  {
+    service: "Google Sheets",
+    scope: "drive.file",
+    google:
+      "See, edit, create, and delete only the specific Google Drive files you use with this app.",
+  },
+];
+
 /* --------------------------------------------------------------- primitives */
 
 /**
@@ -131,22 +179,30 @@ export default function PrivacyPolicyPage() {
           Privacy policy
         </h1>
         <p className="mt-4 text-small text-ink-muted">
-          Effective date <Pending>effective date</Pending>
+          Effective date {EFFECTIVE_DATE}
           <span className="mx-2 text-ink-faint">/</span>
-          Last updated <Pending>last updated date</Pending>
+          Last updated {EFFECTIVE_DATE}
         </p>
 
         {/*
-          The draft notice. Honest rather than decorative: this policy is
-          incomplete, the deployment is private, and a reader who somehow
-          reaches it should not believe it governs anything yet.
+          The status notice.
+
+          Jon's ruling of August 6, 2026: it may not say `draft`, because a
+          draft reads as unofficial and this policy is in force. What it says
+          instead is the true and more useful thing — the product is not
+          available, no one's data is being processed, this is effective today,
+          and the specifics will change as the product is built.
         */}
         <div className="mt-8 border-l-2 border-blotter-400 bg-white py-5 pr-8 pl-6">
           <p className="text-body leading-[1.62] text-ink">
-            <strong className="font-semibold">This policy is a working draft.</strong>{" "}
-            Blotter is not yet available and is not processing anyone&rsquo;s data. Sections
-            that depend on facts not yet settled are marked in place. This draft
-            does not take effect until it is completed, dated and published.
+            <strong className="font-semibold">
+              Blotter is not yet available and is not processing anyone&rsquo;s data.
+            </strong>{" "}
+            This policy is effective as of the date above and describes how Blotter will
+            handle your information when the product launches. Details will change as it is
+            built: service providers, storage locations and specific practices may all be
+            revised, and this page will be updated when they are. Items still being settled
+            are marked in place rather than assumed.
           </p>
         </div>
 
@@ -157,10 +213,14 @@ export default function PrivacyPolicyPage() {
               Google account and use Blotter to maintain your recruiting tracker.
             </p>
             <p>
-              Blotter is operated by <Pending>legal entity name</Pending> of{" "}
-              <Pending>registered address</Pending>, referred to in this policy as
-              &ldquo;Blotter&rdquo;, &ldquo;we&rdquo; and &ldquo;us&rdquo;. You can reach us
-              at <Pending>contact address for privacy enquiries</Pending>.
+              {/*
+                No registered address: Jon confirmed on August 6, 2026 that
+                there is a legal entity but no address to publish, so none is
+                asserted.
+              */}
+              Blotter is referred to here as &ldquo;Blotter&rdquo;, &ldquo;we&rdquo; and
+              &ldquo;us&rdquo;. You can reach us at{" "}
+              <Pending>contact address for privacy enquiries</Pending>.
             </p>
           </Article>
 
@@ -187,9 +247,8 @@ export default function PrivacyPolicyPage() {
             <p>
               <strong className="font-semibold text-ink">Usage information</strong> generated
               when you use the product, such as device and browser type, approximate location
-              derived from an IP address, and the pages and features you use. The specific
-              analytics provider and the categories it records are{" "}
-              <Pending>analytics provider and the data it collects</Pending>.
+              derived from an IP address, and the pages and features you use. Blotter uses
+              PostHog for product analytics. Your email address is never sent to analytics.
             </p>
           </Article>
 
@@ -210,9 +269,34 @@ export default function PrivacyPolicyPage() {
                 </div>
               </div>
             ))}
+            {/*
+              The scopes, with Google's own consent-screen wording beside them.
+              This is the page's most checkable claim: a reader can hold it up
+              against the screen Google actually shows them.
+            */}
             <p>
-              The exact Google authorisation scopes requested, and the wording Google shows on
-              its consent screen, are <Pending>final Google scopes and consent wording</Pending>.
+              These are the authorisation scopes Blotter requests, and the wording Google
+              shows for each on its consent screen.
+            </p>
+            <ul className="space-y-3.5">
+              {SCOPES.map((s) => (
+                <li key={s.scope}>
+                  <span className="font-semibold text-ink">{s.service}</span>{" "}
+                  <code className="rounded-[3px] bg-white px-1.5 py-0.5 font-mono text-[0.85em] text-ink-muted">
+                    {s.scope}
+                  </code>
+                  <br />
+                  <span className="text-ink-faint">Google shows: &ldquo;{s.google}&rdquo;</span>
+                </li>
+              ))}
+            </ul>
+            <p>
+              The Gmail scope is the reason Google&rsquo;s consent screen sounds broader than
+              what Blotter does. Google does not offer a Gmail permission limited to the
+              contacts in your tracker, so the narrower boundary is enforced in
+              Blotter&rsquo;s own processing, as section 5 describes. The Sheets permission is
+              limited to files you choose or that Blotter creates, which is why Blotter cannot
+              reach the rest of your Drive.
             </p>
           </Article>
 
@@ -263,9 +347,16 @@ export default function PrivacyPolicyPage() {
               <p key={line}>{line}</p>
             ))}
             <p>{KEEPS_CALENDAR}</p>
+            {/*
+              Jon's ruling, August 6, 2026: Blotter keeps nothing after the
+              account goes. That is a stronger commitment than the retention
+              schedule this article used to defer, and it is the whole answer —
+              so the placeholder is gone rather than filled in.
+            */}
             <p>
-              How long each category is kept, and how long backups persist after deletion, is{" "}
-              <Pending>retention periods by data category, including backups</Pending>.
+              We keep this information for as long as your account exists, because it is what
+              keeps your tracker current. We do not keep it afterwards. When you delete your
+              Blotter account, the recruiting information associated with it is deleted.
             </p>
           </Article>
 
@@ -282,10 +373,15 @@ export default function PrivacyPolicyPage() {
             {PROVIDER_BODY.map((line) => (
               <p key={line}>{line}</p>
             ))}
+            {/* Named by Jon on August 6, 2026. */}
             <p>
-              We also rely on service providers for hosting, storage, analytics and payment
-              processing. The full list, what each one receives, and where each one processes
-              it, is <Pending>subprocessor list and their locations</Pending>.
+              We also rely on a small number of service providers to run Blotter:{" "}
+              <strong className="font-semibold text-ink">Supabase</strong> for hosting and
+              database storage, <strong className="font-semibold text-ink">PostHog</strong> for
+              product analytics, and{" "}
+              <strong className="font-semibold text-ink">Stripe</strong> for payments. Stripe
+              handles card details directly; Blotter never receives or stores them. Where each
+              provider processes data is set out in section 12.
             </p>
             <p>
               We do not sell your data. We may disclose information if we are legally required
@@ -299,21 +395,37 @@ export default function PrivacyPolicyPage() {
               You can also revoke Blotter&rsquo;s access directly from your Google account
               security settings at any time, independently of Blotter.
             </p>
+            {/*
+              The jurisdiction-by-jurisdiction rights table is dropped on Jon's
+              instruction of August 6, 2026. What replaces it is not a weaker
+              promise but a simpler one: ask, and we will do it. That is
+              answerable today, where a list of statutory rights is not.
+            */}
             <p>
-              Depending on where you live, you may have rights to access, correct, export or
-              delete your personal data, and to object to or restrict some processing. The
-              rights that apply to you, and how to exercise them, are{" "}
-              <Pending>applicable privacy rights and the process for exercising them</Pending>.
+              You can ask us for a copy of the information we hold about you, ask us to correct
+              it, or ask us to delete it, and we will. Depending on where you live you may also
+              have rights under local privacy law to object to or restrict some processing;
+              contact us and we will honour them.
             </p>
           </Article>
 
           <Article n="11" title="Keeping information safe">
+            {/*
+              Jon confirmed on August 6, 2026 that Blotter holds no audits or
+              certifications. Saying so plainly is the only honest option, and it
+              is also the one that cannot come back as a false claim. Do not add
+              SOC 2, ISO, CASA or `bank-grade` language here — the CASA
+              assessment on the provider block belongs to the connection
+              provider's Google application, not to Blotter.
+            */}
             <p>
               We use technical and organisational measures intended to protect the information
-              we hold. No service can promise perfect security, and we make no claim of
-              certification or audit that we have not obtained. Our specific security measures
-              and any completed assessments are{" "}
-              <Pending>security measures and any completed audits or certifications</Pending>.
+              we hold, and we rely on established providers that maintain their own security
+              programmes. No service can promise perfect security.
+            </p>
+            <p>
+              Blotter itself holds no security certification or third-party audit, and we will
+              not claim one until we have it.
             </p>
           </Article>
 
@@ -335,9 +447,11 @@ export default function PrivacyPolicyPage() {
 
           <Article n="14" title="Changes to this policy">
             <p>
-              We will update this policy when the product changes. Material changes will be
-              notified <Pending>how material changes are notified</Pending>, and the date at
-              the top will always show when the current version took effect.
+              Blotter is still being built, so this policy will change as it is: providers,
+              storage locations and specific practices may all be revised. We will update this
+              page when they are, and the date at the top will always show when the current
+              version took effect. If a change materially affects how we handle your
+              information, we will tell account holders by email before it takes effect.
             </p>
           </Article>
 
