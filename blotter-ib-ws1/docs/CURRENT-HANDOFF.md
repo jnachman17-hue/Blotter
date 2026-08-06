@@ -81,24 +81,43 @@ Full detail for all three is in `04-decision-log.md`.
 
 ### Section 6, `How Blotter uses your data`
 
-Built to spec, rejected outright by Jon as "a blob of unformatted information
-that no reader would ever read", and rebuilt the same session.
+**Three builds.** The first was rejected as "a blob of unformatted information
+that no reader would ever read", the second as chaotic. The second diagnosis was
+the useful one and it was Jon's: the section stacked six different layout
+languages, each defensible against its own spec clause, and arranging spec
+blocks is not designing a section.
 
-The cause was structural. `06-SECTION-6` asks for four passes over the same
-facts and then a seven-question FAQ restating all four: eight of the nine
-commitments and **all seven** FAQ answers repeated something already on the
-page. Roughly 700 words became roughly 320; the section went from 3,083px to
-2,087px.
+The reference settled it. Shortwave — a Gmail app on restricted scopes facing
+the same Google review — carries **none** of this on its marketing site. It is a
+docs page: eleven headed sections, prose only, no tables, no cards. The serious
+version of this surface is a small section plus a real page behind it.
 
-It now says each thing once: title and opening statement, the claim, the
-mechanism, the permissions table, two notes belonging to the table, retention
-and deletion, the provider, the policy link. The nine commitments and the seven
-privacy questions moved to the privacy-policy page — **moved, not withdrawn.**
+Section 6 is now three parts, one layout language, **1,284px** — down from
+3,083:
 
-The four processing steps are a mechanism rather than four rows of prose: one
-gate, two tracks, one outcome, carrying the Gmail, Calendar and Sheets marks.
-`SheetsMark` was added to `components/google-marks.tsx` this session and is the
-same glyph the `SheetWindow` chrome draws.
+- **the claim**, one paragraph a step above reading size. No block, no rule, no
+  display weight: both earlier builds set it as a large bold line under the
+  section head, which is the definition of a subheader;
+- **the flow**, four steps drawn horizontally with four marks and a hairline
+  connector, sitting on the gradient with no panel. The second beat is the
+  exclusion, so it carries the struck mark and a muted ring — colour does the
+  branching a fork diagram would have to draw;
+- **three service columns**, the permissions matrix turned ninety degrees and
+  stripped of all chrome. Same exact content, three short lists instead of one
+  wide grid.
+
+Then two footnotes — the broad-permission disclosure, which may not leave the
+page, and the provider sentence — and the link.
+
+`SheetsMark` was added to `components/google-marks.tsx` and is the same glyph the
+`SheetWindow` chrome draws. The four flow marks are in
+`components/section-6/step-icons.tsx`.
+
+**Everything else moved to `/privacy` and nothing was withdrawn:** retention,
+deletion, all nine commitments, the provider's supporting paragraph and its
+heading, the seven privacy questions, plus the four processing steps in prose
+and the broad-permission explanation. The copy verification diffs both surfaces
+together for exactly that reason.
 
 Section 6's ground is **warm paper**, chosen from three live variants. Continuing
 the page gradient made the boundary with Sections 4-5 vanish, which is what
@@ -124,8 +143,11 @@ exist yet.** Its mark renders as a non-interactive placeholder; set `X_URL` in
 No specification ratifies any policy text. Jon ruled a hybrid: conventional
 structure, written broadly, language to be drafted and ratified by him later.
 
-**Structure may be conventional; facts may not be invented.** Fourteen articles
-plus the relocated privacy questions. Every substantive claim imports from
+It is deliberately plain: paragraph text, no visual design, per his instruction
+that the back page does not need to be pretty. It is now the section's real
+body, and Section 6 is its front door.
+
+**Structure may be conventional; facts may not be invented.** Sixteen articles. Every substantive claim imports from
 `lib/privacy-copy.ts`, so the page and Section 6 cannot contradict each other,
 or renders as a visible `[ to be confirmed: … ]` slot. There are twelve slots.
 **Do not fill one with a plausible value** — each is a commitment about real

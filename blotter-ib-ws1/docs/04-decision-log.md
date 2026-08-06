@@ -728,9 +728,63 @@ closes the other, panels carry `role="region"` and `aria-labelledby`, and
 `hidden="until-found"` means find-in-page opens a closed answer instead of
 skipping it.
 
+### Section 6, third build
+
+Jon rejected the second build too, and his diagnosis was right and structural:
+the section stacked **six different layout languages** — a quote block, a
+bordered diagram card, a table card, a two-column note, a two-column text pair,
+a paragraph. Each was defensible against its own spec clause; together they read
+as chaos. The `01 / 02 03 / 04` arrangement implied a flow that was never drawn.
+The orphan bullets and the floating deletion statement were leftover content
+parked in whitespace, which is not a layout decision.
+
+His instruction: reduce the section massively, push the rest to the back page,
+keep one visual flow of the four steps with icons, take the box off it so it
+sits on the gradient, incorporate the permissions material minimally, and let
+the back page be plain paragraph text.
+
+**The reference settled the macro question.** Shortwave — a Gmail application on
+restricted scopes facing the same Google review — carries none of this on its
+marketing site. It is a docs page: eleven headed sections, prose only, no tables
+and no cards, roughly 600 words. The serious version of this surface is a small
+section plus a real page behind it.
+
+Section 6 is now three parts and a footnote:
+
+- **the claim**, one paragraph a step above reading size, no block, no rule, no
+  display weight. Both earlier builds set it as a large bold line directly under
+  the section head, which is the definition of a subheader;
+- **the flow**, four steps drawn horizontally with four hand-drawn marks and a
+  hairline connector, on the section ground with no panel. The second beat is
+  the exclusion, so it carries the struck mark and a muted ring and colour does
+  the branching a fork diagram would otherwise have to draw;
+- **three service columns**, the permissions matrix turned ninety degrees and
+  stripped of every piece of chrome. Same exact content; the eye scans three
+  short lists instead of tracking across a 1,124px row, and the columns end at
+  roughly the same depth, which the table never did.
+
+Then two footnotes — the broad-permission disclosure and the provider sentence —
+and the link.
+
+3,083px, then 2,087px, then **1,284px**. One layout language.
+
+Everything else moved to `/privacy`: retention, deletion, all nine commitments,
+the provider's supporting paragraph and its `Google connection provider`
+heading, the seven privacy questions, and now also the four processing steps in
+prose and the broad-permission explanation. Nothing was withdrawn, which is why
+the copy verification diffs both surfaces together.
+
+`06-SECTION-6` §7's ban on icons is reversed; §18's ban on seals, shields and
+security iconography is not, and nothing drawn here is one.
+
 ### Rejected during this session
 
 - Section 6's first build, entire. Rejected by Jon.
+- Section 6's second build, entire. Rejected by Jon.
+- The permissions matrix as a bordered table with a header row. Rejected: still
+  a wall of text at full page width.
+- The claim in a tinted block behind a rule, at display weight. Rejected twice.
+  It reads as a section subheader.
 - Continuing the page gradient into Section 6. Rejected after seeing it: the
   section boundary vanished.
 - The nine commitments set beside the retention copy. Rejected on evidence:

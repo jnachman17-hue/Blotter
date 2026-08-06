@@ -13,17 +13,36 @@
 > **all seven** FAQ answers repeated something already on the page. Exactly one
 > statement in the section appeared once.
 >
+> Three builds were needed. The first was rejected as unreadable, the second as
+> chaotic — six different layout languages stacked in one section, each
+> defensible against its own clause. The third reduces the section to three
+> parts and moves the rest to `/privacy`, on his instruction and on the
+> reference point below.
+>
+> **Reference.** Shortwave — a Gmail application on restricted scopes facing the
+> same Google review — carries none of this on its marketing site. It lives on a
+> docs page: eleven headed sections, prose only, no tables and no cards. The
+> serious version of this surface is a small section plus a real page behind it.
+>
 > | Item here | Amended to |
 > |---|---|
-> | Section 5, opening statement `Connecting Gmail and Calendar…` | `Connecting Gmail, Calendar, and Sheets…`. The permissions table three blocks below discloses a Sheets scope, and the one section whose job is disclosure may not name two of three services. No other word changes. |
-> | Section 6, the claim in a tinted block with a border | The tinted block is cut. The claim carries itself typographically: first sentence at display size, the two that qualify it at reading size, on the section ground behind the same thin navy rule. Copy is byte-identical. |
-> | Section 7, four stacked numbered rows, and the ban on icons and illustrations | Rebuilt as a mechanism: one gate, two tracks, one outcome. The Gmail, Calendar and Sheets marks appear on it. All four exact sentences survive in place. Nothing is hidden behind an interaction. |
-> | Section 8, restrained service names without marks | The three service marks are used, at the small size section 8 always permitted. |
-> | Section 9, the disclosure as its own tinted notice block | Demoted to a caption beneath the table. Jon asked whether it could move into the privacy policy; it may not, and he accepted that. It stays immediately below the table, legible, per section 9 and the section 18 ban on hiding it. |
-> | Section 11, the nine commitments as a three-column block | Cut as a block. Seven of the nine are already `Cannot do` rows or already stated above. The two nothing else covers — Google Contacts, and not selling data — sit beneath the table. All nine still appear on the privacy-policy page. |
-> | Section 13 and 18, provider-agnostic copy and the ban on implying CASA completion | Superseded. The page now says the provider's Google application has passed Google's CASA security assessment. **This is an unverified claim.** See below. |
-> | Section 14, the seven-question privacy FAQ on the page | Relocated in full to the privacy-policy page. Moved, not withdrawn. |
-> | Section 4 order, and the section 20 acceptance criteria | Read against every amendment above. |
+> | Section 5, opening statement `Connecting Gmail and Calendar…` | `Connecting Gmail, Calendar, and Sheets…`. The permissions material discloses a Sheets scope, and the one section whose job is disclosure may not name two of three services. No other word changes. |
+> | Section 5, title and opening statement stacked | Set as the page's standard two-column head, headline left and statement right, matching Sections 3, 4 and 5. |
+> | Section 6, the claim as a tinted block and the section's primary visual anchor | Block, border and display weight all cut. Jon: it read as a subheader to the section, because that is what a large bold line under a section head is. It is now one paragraph a step above reading size, sitting on the ground. Copy verbatim. |
+> | Section 7, four stacked numbered rows, and the ban on icons and illustrations | Rebuilt as one horizontal flow with four drawn marks and a hairline connector, on the section ground with no panel around it. All four exact sentences survive as captions. The second beat carries the struck mark and a muted ring, so colour does the branching. Nothing is hidden behind an interaction. |
+> | Section 8, a three-column table with a header row, and restrained service names without marks | The matrix is turned ninety degrees into three service columns and stripped of all chrome — no header row, no borders, no fills, no container. Same exact content. The three service marks are used, at the small size section 8 always permitted. |
+> | Section 9, the disclosure as its own tinted notice block | A footnote beneath the permissions columns. Jon asked twice whether it could move into the privacy policy; it may not, and he accepted that. It stays on the page and legible, per section 9 and the section 18 ban on hiding it. |
+> | Section 10, the `What Blotter keeps` block | Off the page. In full on `/privacy`. |
+> | Section 11, the nine commitments | Off the page. In full on `/privacy`. Seven of the nine were already `Cannot do` entries or already stated above them. |
+> | Section 12, the account-deletion statement | Off the page. In full on `/privacy`. |
+> | Section 13 and 18, provider-agnostic copy and the ban on implying CASA completion | Superseded. The page now says the provider's Google application has passed Google's CASA security assessment, as one footnote sentence. The supporting paragraph and the `Google connection provider` heading move to `/privacy`. **This is an unverified claim.** See below. |
+> | Section 14, the seven-question privacy FAQ | Off the page. In full on `/privacy`, set open as prose rather than in accordions. |
+> | Section 4 order, and the section 20 acceptance criteria | Read against every amendment above. The section is now: head, claim, flow, service columns, two footnotes, link. |
+>
+> **Nothing was withdrawn.** Everything removed from the section is rendered on
+> `/privacy`, which also gained the four processing steps in prose and the
+> broad-permission explanation. The copy verification diffs both surfaces
+> together for exactly this reason.
 >
 > **The provider sentence is a claim gate, not a settled fact.** No provider is
 > selected. Two findings from August 6, 2026 that the final wording has to

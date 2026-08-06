@@ -32,12 +32,16 @@ import Link from "next/link";
 
 import { BlotterLockup } from "@/components/brand/blotter-mark";
 import {
+  BROAD_BODY,
+  BROAD_HEADING,
   COMMITMENTS,
   DELETION_STATEMENT,
   KEEPS_BODY,
   KEEPS_CALENDAR,
   PERMISSIONS,
   PRIVACY_FAQ,
+  PROCESSING_STEPS,
+  PROVIDER_HEADING,
   PROVIDER_BODY,
 } from "@/lib/privacy-copy";
 
@@ -178,7 +182,7 @@ export default function PrivacyPolicyPage() {
             <p>
               <strong className="font-semibold text-ink">Google account information</strong>{" "}
               you authorise us to access: Gmail, Google Calendar and Google Sheets, limited to
-              what section 4 describes.
+              what sections 4 and 5 describe.
             </p>
             <p>
               <strong className="font-semibold text-ink">Usage information</strong> generated
@@ -212,18 +216,38 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="05" title="How we use the information">
+          {/*
+            The four processing steps, in full.
+
+            Section 6 draws these as a flow with four short captions; this is
+            where the exact sentences live now. Jon's instruction of August 6,
+            2026: the back page does not need to be pretty, it needs to explain
+            what we do in paragraphs, and the content already exists.
+          */}
+          <Article n="05" title="How Blotter decides what to read">
+            <p>
+              Every message goes through the same check before any of its content is
+              processed.
+            </p>
+            {PROCESSING_STEPS.map((step) => (
+              <p key={step.n}>
+                <strong className="font-semibold text-ink">{step.title}.</strong> {step.body}
+              </p>
+            ))}
+            <p>
+              <strong className="font-semibold text-ink">{BROAD_HEADING}.</strong>{" "}
+              {BROAD_BODY}
+            </p>
+          </Article>
+
+          <Article n="06" title="How we use the information">
             <p>
               We use it to operate Blotter: to identify recruiting activity involving the
               contacts in your tracker, to maintain the status, timing, scheduled calls and
               next actions in your Google Sheet, to run your account and subscription, to
               provide support, and to keep the service working and secure.
             </p>
-            <p>
-              Blotter checks who a message is from before any message content is processed. If
-              the sender is not a contact stored in your tracker, the body of that message is
-              not routed into Blotter&rsquo;s content-processing system.
-            </p>
+            {/* The sender check is stated in full in the article above. */}
             <p>
               We do not use your Google account data to build advertising profiles, and we do
               not sell personal data.
@@ -234,7 +258,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="06" title="What we keep">
+          <Article n="07" title="What we keep">
             {KEEPS_BODY.map((line) => (
               <p key={line}>{line}</p>
             ))}
@@ -245,11 +269,16 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="07" title="What we do not do">
+          <Article n="08" title="What we do not do">
             <List items={COMMITMENTS} />
           </Article>
 
-          <Article n="08" title="Who else is involved">
+          {/*
+            §13's own visible heading. Section 6 dropped it when the provider
+            block became a footnote, so it lives here, where the provider detail
+            now is — and it beats the invented heading this article carried.
+          */}
+          <Article n="09" title={PROVIDER_HEADING}>
             {PROVIDER_BODY.map((line) => (
               <p key={line}>{line}</p>
             ))}
@@ -264,7 +293,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="09" title="Your choices">
+          <Article n="10" title="Your choices">
             <p>{DELETION_STATEMENT}</p>
             <p>
               You can also revoke Blotter&rsquo;s access directly from your Google account
@@ -278,7 +307,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="10" title="Keeping information safe">
+          <Article n="11" title="Keeping information safe">
             <p>
               We use technical and organisational measures intended to protect the information
               we hold. No service can promise perfect security, and we make no claim of
@@ -288,7 +317,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="11" title="Where information is processed">
+          <Article n="12" title="Where information is processed">
             <p>
               The countries in which information is stored and processed, and the safeguards
               used for any transfer between them, are{" "}
@@ -296,7 +325,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="12" title="Age">
+          <Article n="13" title="Age">
             <p>
               Blotter is built for university students and graduates recruiting for finance
               roles. The minimum age for an account is <Pending>minimum age</Pending>, and we
@@ -304,7 +333,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="13" title="Changes to this policy">
+          <Article n="14" title="Changes to this policy">
             <p>
               We will update this policy when the product changes. Material changes will be
               notified <Pending>how material changes are notified</Pending>, and the date at
@@ -312,7 +341,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="14" title="Contact">
+          <Article n="15" title="Contact">
             <p>
               Questions about this policy or your data can be sent to{" "}
               <Pending>contact address for privacy enquiries</Pending>.
@@ -330,7 +359,7 @@ export default function PrivacyPolicyPage() {
             a policy page is read, not scanned, and there is nothing here worth
             hiding behind a click.
           */}
-          <Article n="15" title="Common questions">
+          <Article n="16" title="Common questions">
             {PRIVACY_FAQ.map((item) => (
               <div key={item.q}>
                 <p className="font-semibold text-ink">{item.q}</p>
