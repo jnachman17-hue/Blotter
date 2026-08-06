@@ -9,6 +9,7 @@ Nothing here touches `web/`. Nothing here is committed by this session.
 | File | State |
 |---|---|
 | `blotter-film-a-4x5.html` | **Current.** Film A, the launch post. 1080 x 1350, 21.5s, seamless loop. |
+| `blotter-film-b-4x5.html` | **Current.** Film B, the explainer. 1080 x 1350, 34.5s, seamless loop. |
 | `blotter-launch-4x5.html` | Superseded first cut, 12s. Kept only for comparison. |
 | `inline-fonts.sh` | Embeds Schibsted Grotesk, Geist, Geist Mono and Roboto as base64. |
 
@@ -34,8 +35,69 @@ Three films, three jobs. One cannot do all of them.
 | | Job | Length | State |
 |---|---|---|---|
 | **A** | The launch post. Hello world, day one. | 21.5s | **Built** |
-| **B** | The explainer. Shows the connection and the mechanism properly. | 25 to 35s | Next |
-| **C** | The silence cut. One idea, no setup, for replies and Reddit. | 6 to 8s | After B |
+| **B** | The explainer. Shows the connection and the mechanism properly. | 34.5s | **Built** |
+| **C** | The silence cut. One idea, no setup, for replies and Reddit. | 6 to 8s | Next |
+
+## Film B, the explainer
+
+A makes an argument. B answers the questions somebody has AFTER watching A,
+which is what makes the beat order inevitable rather than arbitrary:
+
+1. How does it get my data? -> the connection
+2. Does it read my whole inbox? -> recognition, and the answer is no
+3. How does it fill the cells? -> derivation
+4. What will it not do? -> the three ratified refusals
+
+| | Beat | What happens |
+|---|---|---|
+| 0.0 to 6.4 | **Connect** | *Connect it once. That is the whole setup.* Google's consent screen, then Blotter's card saying what it actually means. |
+| 6.5 to 13.5 | **Recognition** | *It only reads mail from the people you track.* Seven messages arrive; tracked senders light up, everyone else greys out and is marked not read. |
+| 13.7 to 20.4 | **Derivation** | *One reply. Four fields.* Sarah replies at 10:42 and Status, Next move, Last contact and Days each land in turn, flashing as they do. |
+| 20.5 to 25.9 | **Time** | *Nothing arrives. The tracker moves anyway.* Daniel's Days climbs to 5 with no message from him at any point. |
+| 26.0 to 29.8 | **The list** | *Everything you owe. One list. Nothing slips through the cracks.* 21 outstanding actions, 6 / 11 / 4. |
+| 30.2 to 32.9 | **Boundary** | The ratified line plus all three refusals. |
+| 32.9 to 34.5 | **Mark** | Navy, Ledger B, wordmark, the chosen closing line. |
+
+**Each beat owns the frame.** Fitting a message stream and a readable
+spreadsheet on a 4:5 canvas at once pushes the sheet type under 7px on a phone,
+so the film cuts between objects rather than cramming them.
+
+### The two consent screens
+
+Jon chose to show both in sequence, and that is stronger than either alone:
+Google's screen is the thing that makes people nervous, and Blotter's card
+defusing it immediately beats never raising the fear at all.
+
+It also solves a real problem. A pixel-faithful reproduction of a restricted
+scope consent screen would say something like *"Read, compose, send and
+permanently delete all your email"* — Google's own broad wording, and precisely
+why the intermediary path exists. Putting that on screen during the beat meant
+to reassure would be self-defeating. So the Google card is recognisably a
+consent surface and names the three products, and the plain-language
+description of what is actually accessed is carried by the Blotter card that
+follows. That split is the whole point of showing both.
+
+**Daniel Kim is deliberately absent from the recognition stream.** He is a
+tracked contact, so showing him greyed and "not read" would say Blotter ignores
+his mail, which is the opposite of true and would wreck the time beat that
+follows. Nothing arrives from Daniel because nothing arrives from Daniel. The
+first build got this wrong and it was caught in review.
+
+### B's columns
+
+B drops Firm and brings back Last contact. B is about mechanism, and Last
+contact is a field that **changes**, so it earns its place in a derivation demo
+where static texture does not. That is also what lets "four fields" be literally
+true. Ownership underlines are omitted; A already made that argument and B needs
+the vertical space.
+
+### Verification run on Film B
+
+- All 1036 frames rendered, no runtime errors.
+- Loop seam frame-identical apart from a float rounding on the lockup scale at
+  opacity zero.
+- Every visible element stays inside the 1:1 safe band, `y 137` to `1200`
+  against a band of `135` to `1215`.
 
 ## Film A, the twenty-one and a half seconds
 

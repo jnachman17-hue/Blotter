@@ -18,14 +18,33 @@ import type {
   RecruitingWindow,
 } from "./analytics";
 
-/** The nine funnel stages, in ratified order. */
+/**
+ * The funnel stages, in order.
+ *
+ * Amended by Jon on August 6, 2026: the three-frame click-through product
+ * experience — `experience_1`, `experience_2`, `experience_3` — is replaced by
+ * a single `film` stage carrying the launch film.
+ *
+ * What that costs, measured against `WS3-SPEC.md` rather than guessed:
+ *
+ *   - the primary comparative metric is `checkout_started / page_viewed` and is
+ *     untouched;
+ *   - three diagnostic ratios built on `product_experience_completed` are lost.
+ *     WS3 states diagnostics do not determine surface selection, so this is an
+ *     acceptable loss;
+ *   - `product_experience_completed` keeps its place in the frozen nine-event
+ *     contract and now fires when the film stage is left. It is not renumbered
+ *     and not repurposed.
+ *
+ * WS3 also requires the spreadsheet and platform funnels stay comparable in
+ * duration and interaction burden. **If the platform variant is ever built it
+ * must use this same sequence**, or the comparison is void.
+ */
 export const FUNNEL_STAGES = [
   "closed",
   "question_track",
   "question_window",
-  "experience_1",
-  "experience_2",
-  "experience_3",
+  "film",
   "email",
   "price",
   "checkout",

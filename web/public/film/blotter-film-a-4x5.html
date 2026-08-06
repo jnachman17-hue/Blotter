@@ -3,98 +3,102 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blotter — Film B, the explainer (4:5)</title>
+<title>Blotter — Film A, the launch post (4:5)</title>
 
 <!--
-  FILM B, the explainer. 4:5 master, 1080 x 1350, 34.5 seconds, seamless loop.
+  FILM A, the launch post. 4:5 master, 1080 x 1350, 17 seconds, seamless loop.
 
-  Self-contained. Open with file://. Fonts inlined.
-
-  ---------------------------------------------------------------------------
-  WHAT B IS FOR
-
-  Film A makes an argument. B answers the questions somebody has AFTER watching
-  A, which is what makes the beat order inevitable rather than arbitrary:
-
-    1. How does it get my data?          -> the connection
-    2. Does it read my whole inbox?      -> recognition, and the answer is no
-    3. How does it fill the cells?       -> derivation
-    4. What will it not do?              -> the three ratified refusals
-
-  Each beat owns the frame. Trying to fit a message stream and a readable
-  spreadsheet on a 4:5 canvas at the same time pushes the sheet type under 7px
-  on a phone, so the film cuts between objects instead of cramming them.
+  Self-contained. Open with file://. Fonts inlined, so it works offline and the
+  wordmark cannot fall back mid-recording.
 
   ---------------------------------------------------------------------------
-  THE CONNECTION BEAT, AND JON'S OVERRIDE
+  WHAT CHANGED FROM THE FIRST CUT, AND WHY
 
-  OAuth and connection UI are banned on every landing-page surface:
-  `04-decision-log.md` rejects "simulated Google authentication", `WS3-SPEC.md`
-  excludes "actual or simulated OAuth", `03-SECTION-3` s17 bans "OAuth or
-  account-connection UI" and "full Gmail or Calendar screens", and
-  `03-page-spec.md` requires auth-adjacent screens avoid anything that could
-  look like a fake login.
+  Jon's direction, August 5, 2026:
 
-  Jon overrode all of that FOR VIDEO ONLY on August 5, 2026. He is authority
-  level 1 under `WS5-SPEC.md` "Source hierarchy". His reasoning: a video
-  describes how the product works rather than offering a live product, and the
-  two-ring model is exactly how the privacy story will work. The page bans are
-  untouched and still govern every page surface.
+  1. THE FRAMING WAS WRONG AND IS FIXED. The first cut opened on "Nothing in
+     your inbox will tell you which one." That is false: you can scroll Gmail
+     and reconstruct who has gone quiet. The honest argument is the one
+     `01-project-and-product.md` already makes, that a spreadsheet "cannot
+     reliably hold live state, because state changes every time an email
+     arrives and nobody updates a spreadsheet every time an email arrives."
+     The problem is not that you cannot know. It is that you cannot KEEP
+     knowing. So the film now opens on volume, not on a riddle.
 
-  He then chose to show BOTH screens in sequence, which is the better call than
-  either alone. Google's screen is the thing that makes people nervous; Blotter's
-  card defusing it immediately is a stronger beat than never raising the fear.
+  2. VOLUME IS SHOWN, NOT ASSERTED. Jon's shape: an inbox that fills slowly
+     enough to read, then faster, then far too fast, with a counter running to
+     the ratified figures. Four seconds of it before the sheet appears.
 
-  Two guardrails held regardless, neither of which fights the ruling:
+  3. THE SILENCE BEAT IS RE-EARNED. It no longer claims Blotter sees what you
+     cannot. It says Blotter is the only one still counting, which is true and
+     which the volume opening has by then paid for.
 
-    1. NO CREDENTIAL FIELD, EVER. No email input, no password input, at any
-       size, in any frame. A consent screen legitimately sits after sign-in, so
-       nothing here needs one.
-    2. The recognition beat shows only mail from tracked contacts. Nothing
-       depicts a sweep across an inbox: `01-project-and-product.md` calls that
-       claim "wrong and damaging", which is an accuracy point rather than a
-       presentation one.
-
-  One thing worth knowing about the Google card below. A pixel-faithful
-  reproduction of a real restricted-scope consent screen would say something
-  like "Read, compose, send and permanently delete all your email" — Google's
-  own broad wording, and precisely why the intermediary path exists. Putting
-  that on screen during the beat meant to reassure would be self-defeating. The
-  card here is recognisably a Google consent surface in structure and chrome,
-  and it names the three products, but the plain-language description of what
-  is actually accessed is carried by the Blotter card that follows it. That
-  split is the whole point of showing both.
+  4. SEVENTEEN SECONDS, not twelve. The first cut moved slightly too fast.
 
   ---------------------------------------------------------------------------
-  THE COLUMNS
+  THE SEVENTEEN SECONDS
 
-  B drops Firm and brings back Last contact. B is about mechanism, and Last
-  contact is a field that CHANGES, so it earns its place in a derivation demo
-  where static texture does not. That is also what lets "four fields" be
-  literally true: Status, Next move, Last contact and Days all move from one
-  reply. Ownership underlines are omitted here; A already made that argument
-  and B needs the vertical space for its own beats.
+    0.0 - 4.6   VOLUME    One recruiting cycle arriving. The first few subject
+                          lines are readable. Then they are not. The counter
+                          runs to 628 while a calendar column stacks to 68.
+
+    4.6 - 6.4   THE STALL The torrent stops and the tracker is sitting there
+                          with three columns in it, exactly as current as it
+                          was an hour ago. Ratified line: a manual tracker
+                          changes only when you remember to update it.
+
+    6.4 - 10.6  BLOTTER   The maintained zone arrives and every row writes
+                          itself. Relevant activity from Gmail and Calendar.
+
+   10.6 - 13.4  SILENCE   Everything dims but Daniel Kim, and then nothing
+                          moves at all for nearly two seconds. In a film that
+                          opened on a torrent, the stillness is the argument.
+
+   13.4 - 15.5  SCALE     Outstanding Actions. 21, counting up, 6 / 11 / 4.
+
+   15.5 - 17.0  MARK      Navy, Ledger B, wordmark, ratified tagline. Wipes
+                          off onto the opening frame.
 
   ---------------------------------------------------------------------------
-  SOURCES. Nothing invented.
+  WHAT IS REAL AND WHAT IS TEXTURE
 
-    lib/brand.ts, blotter-mark.tsx     navy, reversed white, mark, lockup ratios
-    app/globals.css                    every colour token, the field gradient
-    lib/sheet-data.ts                  the five contacts, January 16, 2026
-    components/sheet/*, google-marks    chrome, grid, chip and mark geometry
-    04-SECTION-4 s7                     21 actions, 6 / 11 / 4, exact rows
-    03-SECTION-3 s5                     the boundary line and all three refusals,
-                                        verbatim
-    WS4-SPEC "Confirmed hero"           the end-card line
+  Load-bearing, all copied from the repository, none invented:
+    the five contacts and their January 16 state   lib/sheet-data.ts
+    628 / 68 / 30 / 19 and their labels             02-SECTION-2 s5
+    21 outstanding actions, 6 / 11 / 4, the rows    04-SECTION-4 s7
+    "A manual tracker changes only when you
+     remember to update it."                        02-SECTION-2 s5, verbatim
+    the tagline                                     WS4-SPEC, Confirmed hero
+    Ledger B, navy, wordmark weight and tracking    lib/brand.ts, mark tsx
+    every colour token and the field gradient       app/globals.css
 
-  CLAIM SAFETY. No price, availability, beta, launch date or cohort language.
-  Nothing claims Blotter writes outreach: every Next move is a prompt, and no
-  drafted message appears. The boundary beat is not optional in B — a film that
-  shows an engine reading your email needs the refusals, or it reads as AI doing
-  your networking. No em dashes in spoken copy.
+  Texture, and clearly texture: the sender names and subject lines in the
+  torrent. They exist to be unreadable. They are generic recruiting subjects
+  with no firm attached, no offer language and no rejection language, so
+  nothing in the blur can be read as a claim. The five canonical contacts
+  appear among them. No bank logo appears anywhere.
 
-  CONTROLS, not part of the film: space play, arrows step, c clean, f true size,
-  1 the 1:1 safe band, r restart.
+  The 628 figure is one person's real cycle, not a market average, so the
+  qualification rides with it on screen. 02-SECTION-2 s8 requires that
+  association and it is cheap to honour.
+
+  ---------------------------------------------------------------------------
+  CLAIM SAFETY
+
+  No price, no availability, no beta, no launch date, no cohort language.
+  Nothing claims Blotter writes outreach or generates content: every Next move
+  on screen is a prompt to the user and no drafted message appears. "Relevant"
+  stays in the Gmail line, because Blotter reads recruiting mail from the
+  people the user tracks and any copy implying broader inbox access is wrong.
+  No em dashes in spoken copy; Alex Morgan's Next move cell keeps the one
+  ratified exception.
+
+  ---------------------------------------------------------------------------
+  CONTROLS, not part of the film
+
+    space  play / pause        c  hide the controls for recording
+    arrows step one frame      f  fit-to-window / true 1080px
+    r      restart             1  show the 1:1 safe band
 -->
 
 <style id="brand-fonts">
@@ -107,6 +111,7 @@
 
 <style>
 /* ------------------------------------------------------------------ tokens */
+/* Sampled from web/app/globals.css. Retune there, not here. */
 :root{
   --navy-900:#12233d; --navy-800:#1b3050; --navy-500:#40608c; --navy-400:#647fa6;
   --ink:#14181f; --ink-muted:#5f6368; --ink-faint:#a4a8ac;
@@ -123,13 +128,16 @@
   --group-replies:#1a73e8; --group-followups:#c9a227; --group-thanks:#0f9d58;
   --reversed:#ffffff; --muted-on-dark:#93abcb;
   --field-a:#fbfcfe; --field-b:#f2f6fb;
+
   --sans:"Geist","Geist Fallback",ui-sans-serif,system-ui,sans-serif;
   --display:"Schibsted Grotesk","Schibsted Grotesk Fallback",var(--sans);
   --mono:"Geist Mono","Geist Mono Fallback",ui-monospace,monospace;
   --sheet-type:Arial,Helvetica,sans-serif;
+  /* Gmail is Roboto. The page pins it for the same reason. */
   --gmail-type:"Roboto",Helvetica,Arial,sans-serif;
 }
 
+/* -------------------------------------------------------------------- shell */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
@@ -141,6 +149,7 @@ body.bare{background:#000;gap:0;padding:0}
 body.bare .chrome{display:none}
 .stagehold{flex:none;overflow:hidden}
 .stagewrap{width:1080px;height:1350px;transform-origin:top left}
+
 .stage{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--field-a)}
 .field{
   position:absolute;inset:0;
@@ -151,7 +160,8 @@ body.bare .chrome{display:none}
 }
 
 /* ---------------------------------------------------------------- type slot */
-/* Everything lives inside the 1:1 safe band, y 135 to 1215. Press `1`. */
+/* Everything sits inside the 1:1 safe band, y 135 to 1215, because the square
+   is a centre crop of this master. Press `1` to see it. */
 .typeslot{position:absolute;left:40px;right:40px;top:150px;height:250px}
 .line{position:absolute;left:0;right:0;top:0;opacity:0;will-change:opacity,transform}
 .l1{
@@ -159,97 +169,125 @@ body.bare .chrome{display:none}
   letter-spacing:-0.03em;color:var(--navy-900);
 }
 .l1 .soft{color:var(--navy-400)}
+/* Each l2 is written to fit one line at this measure. A second line orphans a
+   word and changes the type block's height between beats. */
 .l2{margin-top:22px;font-size:29px;line-height:1.38;color:var(--ink-muted);max-width:900px}
+/*
+  The sources line carries the mechanism claim and was reading as a footnote.
 
-/* ---------------------------------------------------------------- the stage */
-.slot{
+  A rule draws itself along the line, left to right, from the Gmail mark to the
+  full stop after "Calendar".
+
+  Two rejected attempts before this. A cream fill sweeping in behind the text
+  read as annotation rather than emphasis. A pill outline around the line then
+  read as a control, like something you could click, and it did not lead the
+  eye anywhere: an outline arrives everywhere at once, whereas a rule travels,
+  and travel is what pulls a reader across a line of type.
+
+  It spans with `left:0; right:0` rather than a measured width. The pill was
+  measured in JS and cached on first paint, which put it a few pixels short
+  when the webfont resolved after that frame and clipped the end of the word it
+  was supposed to be emphasising. Geometry the browser owns cannot go stale.
+
+  Navy rather than the Blotter yellow, deliberately. globals.css assigns the
+  navy accent to "headline emphasis", which is exactly what this is, and the
+  yellow is semantic on this page: it means "Blotter maintains this". This line
+  is about the activity Blotter READS, not a field it maintains, so marking it
+  yellow would overload the one colour that carries meaning.
+*/
+.sources{position:relative;display:inline-flex;align-items:center;gap:16px;margin-top:22px}
+.sources svg{display:block;position:relative}
+.sources .txt{font-size:29px;color:var(--ink);position:relative}
+.srcrule{
+  position:absolute;left:0;right:0;bottom:-16px;height:5px;
+  background:var(--navy-500);border-radius:3px;
+  transform-origin:left center;will-change:transform;
+}
+
+/* the volume counters ----------------------------------------------------- */
+/* Geist Mono carries the figures, per the ratified page theme. */
+/* Both rows carry their source mark, in a shared fixed-width column so the two
+   numerals start on the same left edge. The first cut marked the calendar and
+   not Gmail, which read as an omission rather than a choice. */
+.cmark{width:46px;flex:none;display:flex;align-items:center;justify-content:flex-start}
+.cmark svg{display:block}
+.counts{display:flex;align-items:flex-end;gap:22px}
+.bignum{
+  font-family:var(--mono);font-weight:600;font-size:104px;line-height:.86;
+  letter-spacing:-0.04em;color:var(--navy-900);font-variant-numeric:tabular-nums;
+}
+.biglab{font-size:31px;color:var(--ink-muted);padding-bottom:9px}
+.subcount{display:flex;align-items:center;gap:22px;margin-top:20px}
+.subcount svg{display:block}
+.subnum{
+  font-family:var(--mono);font-weight:600;font-size:38px;line-height:1;
+  color:var(--navy-500);font-variant-numeric:tabular-nums;
+}
+.sublab{font-size:27px;color:var(--ink-muted)}
+/* 02-SECTION-2 s8: the qualification travels with the figures. These are one
+   person's real numbers, not a market average, and the film has to say so. */
+.qual{margin-top:18px;font-size:21px;color:var(--ink-faint)}
+
+/* --------------------------------------------------------------- sheet slot */
+.sheetslot{
   position:absolute;left:40px;right:40px;top:410px;height:785px;
   display:flex;align-items:center;justify-content:center;
 }
-/* `position:relative` so the reply cue can hang above the sheet. It cannot live
-   inside `.sheet`, which clips with overflow:hidden and cut the cue off at the
-   window edge. */
-.obj{position:absolute;width:1000px;will-change:opacity,transform}
-#oSheet{position:absolute}
-#oSheet .sheetwrap{position:relative}
+.sheetgroup{width:1000px;will-change:transform,opacity}
 
-/* ============================================================ 1. CONNECT === */
-/*
-  The Google card is recognisably a consent surface in structure and chrome and
-  it names the three products. It carries NO credential field: a consent screen
-  sits after sign-in, so it never needs one. The plain-language description of
-  what is actually accessed is carried by the Blotter card that follows.
-*/
-.gcard{
-  width:880px;margin:0 auto;background:#fff;border:1px solid var(--sheet-border);
-  border-radius:22px;padding:54px 60px 48px;
-  box-shadow:0 2px 6px rgba(60,64,67,.15),0 22px 60px -16px rgba(60,64,67,.3);
+/* =========================================================== the torrent === */
+/* One recruiting cycle arriving. Gmail on the left, Calendar on the right.
+   Both are virtualized: sixteen row elements and six chip elements are reused
+   for 628 and 68 arrivals, because the point is the rate, not the rows. */
+.volume{
+  position:absolute;left:40px;right:40px;top:410px;height:785px;
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  will-change:opacity;
+}
+.inbox{
+  width:700px;height:660px;overflow:hidden;position:relative;
+  background:#fff;border:1px solid var(--sheet-border);border-radius:14px;
+  box-shadow:0 2px 6px rgba(60,64,67,.15),0 18px 52px -14px rgba(60,64,67,.28);
   font-family:var(--gmail-type);
 }
-.glogo{display:flex;justify-content:center;margin-bottom:32px}
-.gtitle{font-size:40px;line-height:1.3;color:#202124;text-align:center}
-.gtitle b{font-weight:500}
-.gacct{
-  display:flex;align-items:center;justify-content:center;gap:14px;
-  margin:28px auto 0;border:1px solid var(--sheet-border);border-radius:999px;
-  padding:11px 26px;width:max-content;font-size:26px;color:#3c4043;
+.inboxbar{
+  height:62px;display:flex;align-items:center;gap:14px;padding:0 20px;
+  border-bottom:1px solid var(--sheet-grid);color:var(--ink-muted);font-size:22px;
+  position:relative;z-index:2;background:#fff;
 }
-.gacct .av{width:36px;height:36px;border-radius:50%;background:#5f6b7a;color:#fff;
-  font-size:15px;font-weight:500;display:grid;place-items:center;font-family:var(--sans)}
-.gsub{margin-top:38px;font-size:26px;color:#5f6368}
-.grow{display:flex;align-items:center;gap:22px;margin-top:26px}
-.grow .gi{width:40px;flex:none;display:flex;justify-content:center}
-.grow .gt{font-size:28px;color:#3c4043}
-.gbtns{display:flex;justify-content:flex-end;gap:18px;margin-top:44px}
-.gbtn{font-size:27px;padding:13px 32px;border-radius:8px}
-.gbtn.ghost{color:#1a73e8}
-.gbtn.solid{background:#1a73e8;color:#fff}
-
-/* Blotter's card: the same three products, said plainly. */
-.bcard{
-  width:960px;margin:0 auto;background:#fff;border:1px solid var(--sheet-border);
-  border-radius:22px;padding:56px 58px;
-  box-shadow:0 2px 6px rgba(60,64,67,.15),0 22px 60px -16px rgba(60,64,67,.3);
+.inboxbar .who{color:var(--ink);font-size:24px}
+.mrows{position:absolute;left:0;right:0;top:62px;bottom:0;overflow:hidden}
+.mrow{
+  position:absolute;left:0;right:0;height:66px;display:flex;align-items:center;
+  gap:16px;padding:0 20px;border-bottom:1px solid var(--sheet-grid);
+  background:#fff;
 }
-.bhead{font-family:var(--display);font-weight:700;font-size:46px;
-  letter-spacing:-0.02em;color:var(--navy-900)}
-.brow{display:flex;align-items:flex-start;gap:24px;margin-top:38px;will-change:opacity,transform}
-.brow .bi{width:40px;flex:none;display:flex;justify-content:center;padding-top:4px}
-.brow .bt{font-size:31px;line-height:1.32;color:var(--ink)}
-/* "Nothing else." is the most load-bearing sentence in the film: it is the
-   privacy claim stated plainly. Its own line, deliberately, rather than a
-   wrapped orphan at the end of the sentence above it. */
-.brow .bt .no{display:block;margin-top:8px;color:var(--navy-500);font-weight:600}
-
-/* ======================================================== 2. RECOGNITION === */
-/*
-  Only mail from tracked contacts is read. Untracked senders arrive, go grey and
-  pass. This is the intelligence demonstration and the privacy story in the same
-  gesture, which is why it is worth seven seconds.
-*/
-.stream{width:900px;margin:0 auto}
-.srow{
-  display:flex;align-items:center;gap:20px;height:88px;padding:0 26px;
-  border-radius:12px;background:#fff;border:1px solid var(--sheet-border);
-  margin-bottom:12px;font-family:var(--gmail-type);
-  will-change:opacity,transform;
-}
-.srow .who{width:250px;flex:none;font-size:25px;color:var(--ink);
+.mrow .dot{width:9px;height:9px;border-radius:50%;background:#1a73e8;flex:none}
+.mrow .from{width:186px;flex:none;color:var(--ink);font-size:23px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.srow .subj{flex:1;font-size:24px;color:var(--ink-muted);
+.mrow .subj{flex:1;color:var(--ink-muted);font-size:23px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.srow .tag{
-  flex:none;font-family:var(--sans);font-size:20px;padding:7px 16px;
-  border-radius:999px;white-space:nowrap;
+.mrow .when{flex:none;color:var(--ink-faint);font-size:20px}
+
+.calcol{
+  width:280px;height:660px;overflow:hidden;position:relative;
+  background:#fff;border:1px solid var(--sheet-border);border-radius:14px;
+  box-shadow:0 2px 6px rgba(60,64,67,.15),0 18px 52px -14px rgba(60,64,67,.28);
+  font-family:var(--gmail-type);
 }
-/* Neutral elevation, the same grey every other surface in this file uses,
-   sampled from the ratified Sheets and Gmail assets. A navy-tinted shadow was
-   inconsistent with them and read as a glow rather than as lift. */
-.srow.on{border-color:var(--navy-400);box-shadow:0 2px 10px rgba(60,64,67,.13)}
-.srow.on .tag{background:var(--chip-replied-bg);color:var(--chip-replied-fg)}
-.srow.off{background:#f4f6f9;border-color:#e6e9ee}
-.srow.off .who,.srow.off .subj{color:var(--ink-faint)}
-.srow.off .tag{color:var(--ink-faint)}
+.calbar{
+  height:62px;display:flex;align-items:center;gap:12px;padding:0 18px;
+  border-bottom:1px solid var(--sheet-grid);color:var(--ink);font-size:23px;
+  position:relative;z-index:2;background:#fff;
+}
+.cchips{position:absolute;left:0;right:0;top:62px;bottom:0;overflow:hidden}
+.cchip{
+  position:absolute;left:14px;right:14px;height:64px;border-radius:9px;
+  background:#e8f0fe;border-left:4px solid #1a73e8;padding:10px 14px;
+}
+.cchip .t{font-size:18px;color:#1967d2}
+.cchip .n{font-size:21px;color:var(--ink);margin-top:3px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* ============================================================== the sheet == */
 .sheet{
@@ -257,6 +295,7 @@ body.bare .chrome{display:none}
   background:var(--sheet-chrome);border:1px solid var(--sheet-border);
   border-radius:16px;overflow:hidden;
   box-shadow:0 2px 6px rgba(60,64,67,.15),0 18px 52px -14px rgba(60,64,67,.28);
+  will-change:opacity;
 }
 .titlebar{display:flex;align-items:center;gap:16px;padding:18px 22px 0}
 .gicon{width:44px;height:44px;flex:none;border-radius:9px;background:var(--sheet-green);
@@ -295,6 +334,9 @@ body.bare .chrome{display:none}
 .gut{width:44px;flex:none;border-right:1px solid var(--sheet-grid);
   background:var(--sheet-header);color:var(--ink-muted);font-size:18px;
   display:flex;align-items:center;justify-content:center}
+/* Widths and padding solved against the longest real value in each column at
+   24px Arial: "Morgan Stanley", "Attend coffee chat", "Alex Morgan", and the
+   "Call completed" chip. Nothing clips. */
 .cell{padding:0 13px;font-size:24px;color:var(--ink);white-space:nowrap;
   overflow:hidden;display:flex;align-items:center;height:74px}
 .cell.num{justify-content:flex-end}
@@ -302,7 +344,11 @@ body.bare .chrome{display:none}
 .split{border-left:2px solid var(--sheet-border)}
 .hrow .cell{font-weight:bold;font-size:23px;height:70px}
 .hrow .manual{background:var(--manual-100)}
+/* 01-HERO s8 as amended August 5: the header band alone carries the maintained
+   zone. Data rows stay plain white. */
 .hrow .kept{background:var(--blotter-100)}
+.hrow .kept.blank{background:var(--manual-row)}
+.dash{width:100%;text-align:center;color:var(--ink-faint)}
 .chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;
   padding:6px 11px;font-size:20px;line-height:1;white-space:nowrap;
   will-change:transform,opacity}
@@ -314,24 +360,48 @@ body.bare .chrome{display:none}
 .chip[data-s="Sent"]{background:var(--chip-sent-bg);color:var(--chip-sent-fg)}
 .kv{will-change:opacity,transform}
 
-/* The reply that causes the derivation. It sits above the sheet rather than on
-   it: the space between the headline block and the sheet is empty at this beat,
-   and overlaying the window would cover its own chrome. */
-.cue{
-  position:absolute;right:0;top:-88px;display:flex;align-items:center;gap:14px;
-  background:#fff;border:1px solid var(--sheet-border);border-radius:12px;
-  padding:16px 22px;font-family:var(--gmail-type);
-  box-shadow:0 2px 10px rgba(60,64,67,.16);will-change:opacity,transform;
+/* ------------------------------------------------------------ zone washes */
+/*
+  Jon's idea, August 5, 2026, and it is a better device than the label alone:
+  each zone starts as an unfilled area carrying a caption, and the caption
+  recedes as the zone is filled. The left is filled by the user typing. The
+  right fills itself. The two gestures mirror, which is the entire ownership
+  argument made as motion rather than asserted by a word underneath.
+
+  The wash sits over the DATA rows only. It never covers the header, because the
+  header band is what carries the maintained zone (01-HERO s8 as amended) and
+  hiding it would lose the one marker the sheet has.
+*/
+.wash{
+  position:absolute;pointer-events:none;
+  will-change:top,height,opacity;
 }
-.cue .ct{font-size:24px;color:var(--ink)}
-.cue .cs{font-size:20px;color:var(--ink-faint);margin-left:4px}
+.wash.manual{background:rgba(237,242,248,.94)}
+.wash.kept{background:rgba(247,242,232,.94)}
 
-/* Each derived field flashes once as it lands, so the causal link is visible
-   without drawing four arrows across the grid. */
-.flash{position:absolute;pointer-events:none;background:var(--blotter-200);
-  border-radius:5px;will-change:opacity}
+/*
+  The caption is pinned to the zone, not to the wash. Riding the wash's top
+  edge puts it directly over the row currently being written, which reads as a
+  rendering fault. It is centred on the whole data area and leaves early.
+*/
+.washcap{
+  position:absolute;pointer-events:none;display:flex;
+  align-items:center;justify-content:center;text-align:center;
+  font-family:var(--sans);font-size:24px;line-height:1.4;will-change:opacity;
+}
+.washcap.manual{color:var(--ink-muted)}
+.washcap.kept{color:var(--blotter-700)}
 
-/* ========================================================= 5. THE LIST ==== */
+/* The Sheets selection box, riding down the rows as they are typed. */
+.selbox{
+  position:absolute;border:2px solid #1a73e8;pointer-events:none;
+  will-change:top,opacity;
+}
+/* Manual values are revealed left to right, which reads as typing where a
+   fade reads as an import. */
+.mv{display:block;will-change:clip-path}
+
+/* Outstanding Actions, 04-SECTION-4 s7 exact ------------------------------- */
 .oa{display:none}
 .oa.live{display:block}
 .oatitle{display:flex;align-items:center;justify-content:space-between;
@@ -344,7 +414,8 @@ body.bare .chrome{display:none}
   font-size:25px;font-weight:bold;color:var(--ink)}
 .grouphead .lbl{display:flex;align-items:center;gap:12px}
 .dot2{width:11px;height:11px;border-radius:50%;flex:none}
-/* 04-SECTION-4 s9 requires the coloured left rule; the ratified PNG draws it. */
+/* The coloured left rule is required by 04-SECTION-4 s9 and drawn by the
+   ratified PNG. It is what keeps these group headers rather than cards. */
 .grouphead[data-g="replies"]{background:#eef4fe;border-left:5px solid var(--group-replies)}
 .grouphead[data-g="replies"] .dot2{background:var(--group-replies)}
 .grouphead[data-g="followups"]{background:#fdf6e8;border-left:5px solid var(--group-followups)}
@@ -359,28 +430,26 @@ body.bare .chrome{display:none}
 .oarow .c.act{width:290px;flex:none}
 .oarow .c.why{flex:1;color:var(--ink)}
 
-/* ========================================================= 6. BOUNDARY ==== */
-/* 03-SECTION-3 s5, all four strings verbatim. Not optional in B: a film that
-   shows an engine reading your email needs the refusals. */
-.bound{width:1000px;margin:0 auto;text-align:center}
-.boundline{
-  font-family:var(--display);font-weight:700;font-size:42px;line-height:1.24;
-  letter-spacing:-0.02em;color:var(--navy-900);
-}
-/* One row, never wrapped: three refusals stacked two-and-one read as an
-   afterthought rather than as a set. */
-.badges{display:flex;justify-content:center;gap:16px;margin-top:48px;flex-wrap:nowrap}
-.badge{
-  font-size:23px;padding:15px 26px;border-radius:999px;
-  border:1px solid var(--navy-400);color:var(--navy-800);background:rgba(255,255,255,.6);
-  white-space:nowrap;will-change:opacity,transform;
-}
+/* ------------------------------------------------------ ownership labels */
+/* 01-HERO s11 treatment: a thin region line under each column group, aligned
+   to that group's span, end ticks, label centred beneath, gray for manual and
+   the Blotter yellow family for maintained. */
+.owners{position:relative;height:64px;margin-top:26px}
+.own{position:absolute;top:0}
+.own .bar{height:11px;border-left:1px solid;border-right:1px solid;border-bottom:1px solid}
+.own .lab{margin-top:11px;text-align:center;font-family:var(--sans);font-size:22px;white-space:nowrap}
+.own .lead{font-weight:600;letter-spacing:.14em}
+.own.manual .bar{border-color:var(--ink-faint)}
+.own.manual .lab{color:var(--ink-muted)}
+.own.kept .bar{border-color:var(--blotter-400);transform-origin:left center}
+.own.kept .lab{color:var(--blotter-700)}
 
 /* ---------------------------------------------------------------- end card */
 .endcard{position:absolute;inset:0;background:var(--navy-900);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:44px;will-change:clip-path;clip-path:inset(100% 0 0 0)}
-/* brand.ts ratios: wordmark is mark * 0.773, gap is mark * 0.45. */
+/* brand.ts ratios: at a 122px mark the wordmark is 122 * 0.773 and the gap is
+   122 * 0.45. Weight and tracking are part of the wordmark, not styling. */
 .lockup{display:flex;align-items:center;gap:55px;color:var(--reversed)}
 .lockup svg{display:block}
 .wordmark{font-family:var(--display);font-weight:700;letter-spacing:-0.035em;
@@ -389,6 +458,7 @@ body.bare .chrome{display:none}
   letter-spacing:-0.02em;text-align:center;color:var(--reversed)}
 .endline .soft{color:var(--muted-on-dark)}
 
+/* --------------------------------------------------------------- 1:1 guide */
 .crop11{position:absolute;left:0;right:0;top:135px;height:1080px;
   border-top:2px dashed rgba(18,35,61,.45);border-bottom:2px dashed rgba(18,35,61,.45);
   display:none;pointer-events:none}
@@ -396,11 +466,12 @@ body.bare .chrome{display:none}
 .crop11::after{content:"1:1 safe";position:absolute;right:10px;top:8px;
   font-family:var(--sans);font-size:17px;color:rgba(18,35,61,.55)}
 
+/* ------------------------------------------------------------- controls */
 .chrome{display:flex;align-items:center;gap:14px;font-size:13px;flex:none}
 .chrome button{font:inherit;background:#21262d;color:#c9d1d9;border:1px solid #30363d;
   border-radius:7px;padding:7px 14px;cursor:pointer}
 .chrome button:hover{background:#30363d}
-.chrome input[type=range]{width:460px;accent-color:#d9b64a}
+.chrome input[type=range]{width:440px;accent-color:#d9b64a}
 .chrome .t{font-family:var(--mono);color:#8b949e;min-width:118px}
 .chrome .hint{color:#6e7681}
 </style>
@@ -412,147 +483,103 @@ body.bare .chrome{display:none}
 <div class="stage" id="stage">
   <div class="field"></div>
 
-  <!-- ============================================================== type -->
+  <!-- =============================================================== type -->
   <div class="typeslot">
-    <div class="line" id="tConn">
-      <div class="l1">Connect it once.<br><span class="soft">That is the whole setup.</span></div>
+
+    <!-- 1. VOLUME -->
+    <div class="line" id="tVol">
+      <div class="counts">
+        <span class="cmark">
+          <svg width="34" height="26" viewBox="0 0 24 18" aria-hidden="true">
+            <path d="M1.64 18h3.27V9.95L0 6.27v10.09C0 17.27.73 18 1.64 18Z" fill="#4285F4"/>
+            <path d="M19.09 18h3.27c.9 0 1.64-.73 1.64-1.64V6.27l-4.91 3.68V18Z" fill="#34A853"/>
+            <path d="M19.09 1.64v8.31L24 6.27V2.45c0-1.52-1.73-2.38-2.95-1.47l-1.96 1.47Z" fill="#FBBC04"/>
+            <path d="M4.91 9.95V1.64L12 6.95l7.09-5.31v8.31L12 15.27 4.91 9.95Z" fill="#EA4335"/>
+            <path d="M0 2.45v3.82l4.91 3.68V1.64L2.95.98C1.73.07 0 .93 0 2.45Z" fill="#C5221F"/>
+          </svg>
+        </span>
+        <span class="bignum" id="nMail">0</span>
+        <span class="biglab">recruiting emails</span>
+      </div>
+      <div class="subcount">
+        <span class="cmark">
+        <svg width="28" height="28" viewBox="0 0 20 20" aria-hidden="true">
+          <defs><clipPath id="calr1"><rect width="20" height="20" rx="2.4"/></clipPath></defs>
+          <g clip-path="url(#calr1)">
+            <rect width="20" height="20" fill="#4285F4"/>
+            <rect x="15.6" width="4.4" height="4.4" fill="#1967D2"/>
+            <rect x="15.6" y="4.4" width="4.4" height="11.2" fill="#FBBC04"/>
+            <rect y="15.6" width="4.4" height="4.4" fill="#188038"/>
+            <rect x="4.4" y="15.6" width="11.2" height="4.4" fill="#34A853"/>
+            <rect x="15.6" y="15.6" width="4.4" height="4.4" fill="#EA4335"/>
+            <rect x="4.4" y="4.4" width="11.2" height="11.2" fill="#ffffff"/>
+            <text x="10" y="13.6" text-anchor="middle" font-size="9.4" font-weight="500"
+                  fill="#4285F4" font-family="Arial, Helvetica, sans-serif">31</text>
+          </g>
+        </svg>
+        </span>
+        <span class="subnum" id="nCal">0</span>
+        <span class="sublab">coffee chats</span>
+      </div>
+      <!-- 2027 by Jon's instruction, August 5, 2026. `02-SECTION-2` s5's exact
+           qualification says Summer Analyst 2028 and `01-project-and-product.md`
+           records the test subject as SA '28, so this diverges from ratified
+           copy and needs reconciling in those files by whoever owns them. -->
+      <div class="qual">One Summer Analyst 2027 recruiting cycle.</div>
     </div>
-    <div class="line" id="tRec">
-      <div class="l1">It only reads mail from<br><span class="soft">the people you track.</span></div>
+
+    <!-- 2. THE STALL. Copy is switchable; see STALL_COPY in the script. -->
+    <div class="line" id="tStall">
+      <div class="l1" id="stallL1"></div>
+      <div class="l2" id="stallL2"></div>
     </div>
-    <div class="line" id="tDer">
-      <div class="l1">One reply.<br><span class="soft">Four fields.</span></div>
+
+    <!-- 3. BLOTTER -->
+    <div class="line" id="tSources">
+      <div class="l1">Blotter keeps<br><span class="soft">the sheet current.</span></div>
+      <div class="sources">
+        <span class="srcrule" id="srcRule"></span>
+        <svg width="34" height="26" viewBox="0 0 24 18" aria-hidden="true">
+          <path d="M1.64 18h3.27V9.95L0 6.27v10.09C0 17.27.73 18 1.64 18Z" fill="#4285F4"/>
+          <path d="M19.09 18h3.27c.9 0 1.64-.73 1.64-1.64V6.27l-4.91 3.68V18Z" fill="#34A853"/>
+          <path d="M19.09 1.64v8.31L24 6.27V2.45c0-1.52-1.73-2.38-2.95-1.47l-1.96 1.47Z" fill="#FBBC04"/>
+          <path d="M4.91 9.95V1.64L12 6.95l7.09-5.31v8.31L12 15.27 4.91 9.95Z" fill="#EA4335"/>
+          <path d="M0 2.45v3.82l4.91 3.68V1.64L2.95.98C1.73.07 0 .93 0 2.45Z" fill="#C5221F"/>
+        </svg>
+        <svg width="30" height="30" viewBox="0 0 20 20" aria-hidden="true">
+          <g clip-path="url(#calr1)">
+            <rect width="20" height="20" fill="#4285F4"/>
+            <rect x="15.6" width="4.4" height="4.4" fill="#1967D2"/>
+            <rect x="15.6" y="4.4" width="4.4" height="11.2" fill="#FBBC04"/>
+            <rect y="15.6" width="4.4" height="4.4" fill="#188038"/>
+            <rect x="4.4" y="15.6" width="11.2" height="4.4" fill="#34A853"/>
+            <rect x="15.6" y="15.6" width="4.4" height="4.4" fill="#EA4335"/>
+            <rect x="4.4" y="4.4" width="11.2" height="11.2" fill="#ffffff"/>
+            <text x="10" y="13.6" text-anchor="middle" font-size="9.4" font-weight="500"
+                  fill="#4285F4" font-family="Arial, Helvetica, sans-serif">31</text>
+          </g>
+        </svg>
+        <span class="txt">Relevant activity from Gmail and Calendar.</span>
+      </div>
     </div>
-    <div class="line" id="tTime">
-      <div class="l1">Nothing arrives.<br><span class="soft">The tracker moves anyway.</span></div>
+
+    <!-- 4. SILENCE. Reframed: not "you cannot know", but "you cannot keep knowing". -->
+    <div class="line" id="tAnswer">
+      <div class="l1">Daniel Kim.<br><span class="soft">Five days of silence.</span></div>
+      <div class="l2">Blotter is the only one still counting.</div>
     </div>
-    <div class="line" id="tList">
+
+    <!-- 5. SCALE -->
+    <div class="line" id="tOwe">
       <div class="l1">Everything you owe.<br><span class="soft">One list.</span></div>
-      <div class="l2">Nothing slips through the cracks.</div>
+      <div class="l2" id="oweL2"></div>
     </div>
   </div>
 
-  <!-- ============================================================= stage -->
-  <div class="slot">
-
-    <!-- 1a. Google consent -->
-    <div class="obj" id="oGoogle">
-      <div class="gcard">
-        <div class="glogo">
-          <svg width="86" height="29" viewBox="0 0 74 24" aria-hidden="true">
-            <path d="M9.24 9.6v2.3h5.5c-.16 1.3-.6 2.24-1.26 2.9-.8.8-2.06 1.7-4.24 1.7-3.38 0-6.02-2.72-6.02-6.1S5.86 4.3 9.24 4.3c1.82 0 3.15.72 4.13 1.64l1.62-1.62C13.63 3.01 11.79 2 9.24 2 4.6 2 .7 5.78.7 10.4s3.9 8.4 8.54 8.4c2.5 0 4.39-.82 5.86-2.35 1.51-1.51 1.99-3.64 1.99-5.36 0-.53-.04-1.02-.12-1.43H9.24Z" fill="#4285F4"/>
-            <path d="M25.2 8.2c-3 0-5.45 2.28-5.45 5.43 0 3.13 2.45 5.43 5.45 5.43s5.45-2.3 5.45-5.43c0-3.15-2.45-5.43-5.45-5.43Zm0 8.72c-1.64 0-3.06-1.35-3.06-3.29 0-1.95 1.42-3.29 3.06-3.29s3.06 1.34 3.06 3.29c0 1.94-1.42 3.29-3.06 3.29Z" fill="#EA4335"/>
-            <path d="M51.5 9.42h-.08c-.54-.64-1.57-1.22-2.87-1.22-2.72 0-5.06 2.36-5.06 5.43 0 3.05 2.34 5.43 5.06 5.43 1.3 0 2.33-.58 2.87-1.24h.08v.76c0 2.08-1.11 3.19-2.9 3.19-1.46 0-2.37-1.05-2.74-1.94l-2.08.87c.6 1.44 2.18 3.21 4.82 3.21 2.8 0 5.17-1.65 5.17-5.67V8.5H51.5v.92Zm-2.74 7.5c-1.64 0-3.02-1.37-3.02-3.29 0-1.94 1.38-3.29 3.02-3.29 1.62 0 2.9 1.39 2.9 3.31.01 1.9-1.28 3.27-2.9 3.27Z" fill="#4285F4"/>
-            <path d="M37.7 8.2c-3 0-5.45 2.28-5.45 5.43 0 3.13 2.45 5.43 5.45 5.43s5.45-2.3 5.45-5.43c0-3.15-2.45-5.43-5.45-5.43Zm0 8.72c-1.64 0-3.06-1.35-3.06-3.29 0-1.95 1.42-3.29 3.06-3.29s3.06 1.34 3.06 3.29c0 1.94-1.42 3.29-3.06 3.29Z" fill="#FBBC05"/>
-            <path d="M55.9 2.24h2.35v16.6H55.9V2.24Z" fill="#34A853"/>
-            <path d="M65.5 16.92c-1.21 0-2.07-.55-2.63-1.64l7.25-3-.24-.61c-.45-1.21-1.83-3.45-4.64-3.45-2.79 0-5.11 2.2-5.11 5.43 0 3.05 2.29 5.43 5.37 5.43 2.48 0 3.92-1.52 4.52-2.4l-1.85-1.24c-.62.9-1.46 1.48-2.67 1.48Zm-.17-6.68c.96 0 1.77.48 2.04 1.17l-4.87 2.02c-.06-2.1 1.62-3.19 2.83-3.19Z" fill="#EA4335"/>
-          </svg>
-        </div>
-        <div class="gtitle"><b>Blotter</b> wants access to your Google Account</div>
-        <div class="gacct"><span class="av">JN</span><span>you@gmail.com</span></div>
-        <div class="gsub">This will allow Blotter to:</div>
-        <div class="grow">
-          <span class="gi">
-            <svg width="30" height="23" viewBox="0 0 24 18" aria-hidden="true">
-              <path d="M1.64 18h3.27V9.95L0 6.27v10.09C0 17.27.73 18 1.64 18Z" fill="#4285F4"/>
-              <path d="M19.09 18h3.27c.9 0 1.64-.73 1.64-1.64V6.27l-4.91 3.68V18Z" fill="#34A853"/>
-              <path d="M19.09 1.64v8.31L24 6.27V2.45c0-1.52-1.73-2.38-2.95-1.47l-1.96 1.47Z" fill="#FBBC04"/>
-              <path d="M4.91 9.95V1.64L12 6.95l7.09-5.31v8.31L12 15.27 4.91 9.95Z" fill="#EA4335"/>
-              <path d="M0 2.45v3.82l4.91 3.68V1.64L2.95.98C1.73.07 0 .93 0 2.45Z" fill="#C5221F"/>
-            </svg>
-          </span>
-          <span class="gt">Gmail</span>
-        </div>
-        <div class="grow">
-          <span class="gi">
-            <svg width="26" height="26" viewBox="0 0 20 20" aria-hidden="true">
-              <defs><clipPath id="calB"><rect width="20" height="20" rx="2.4"/></clipPath></defs>
-              <g clip-path="url(#calB)">
-                <rect width="20" height="20" fill="#4285F4"/>
-                <rect x="15.6" width="4.4" height="4.4" fill="#1967D2"/>
-                <rect x="15.6" y="4.4" width="4.4" height="11.2" fill="#FBBC04"/>
-                <rect y="15.6" width="4.4" height="4.4" fill="#188038"/>
-                <rect x="4.4" y="15.6" width="11.2" height="4.4" fill="#34A853"/>
-                <rect x="15.6" y="15.6" width="4.4" height="4.4" fill="#EA4335"/>
-                <rect x="4.4" y="4.4" width="11.2" height="11.2" fill="#ffffff"/>
-                <text x="10" y="13.6" text-anchor="middle" font-size="9.4" font-weight="500"
-                      fill="#4285F4" font-family="Arial, Helvetica, sans-serif">31</text>
-              </g>
-            </svg>
-          </span>
-          <span class="gt">Google Calendar</span>
-        </div>
-        <div class="grow">
-          <span class="gi">
-            <span style="display:grid;place-items:center;width:26px;height:26px;border-radius:5px;background:var(--sheet-green)">
-              <svg width="13" height="16" viewBox="0 0 15 19" fill="none" aria-hidden="true">
-                <path d="M9 0H1.5A1.5 1.5 0 0 0 0 1.5v16A1.5 1.5 0 0 0 1.5 19h12a1.5 1.5 0 0 0 1.5-1.5V6L9 0Z" fill="#fff" fill-opacity=".25"/>
-                <path d="M3.5 8.5h8v6h-8v-6Zm1 1.5v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Zm-3.5 2v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Z" fill="#fff"/>
-              </svg>
-            </span>
-          </span>
-          <span class="gt">Google Sheets</span>
-        </div>
-        <div class="gbtns"><span class="gbtn ghost">Cancel</span><span class="gbtn solid">Continue</span></div>
-      </div>
-    </div>
-
-    <!-- 1b. Blotter's card: the same three, said plainly -->
-    <div class="obj" id="oBlotter">
-      <div class="bcard">
-        <div class="bhead">What that means</div>
-        <div class="brow" id="bRow0">
-          <span class="bi">
-            <svg width="32" height="24" viewBox="0 0 24 18" aria-hidden="true">
-              <path d="M1.64 18h3.27V9.95L0 6.27v10.09C0 17.27.73 18 1.64 18Z" fill="#4285F4"/>
-              <path d="M19.09 18h3.27c.9 0 1.64-.73 1.64-1.64V6.27l-4.91 3.68V18Z" fill="#34A853"/>
-              <path d="M19.09 1.64v8.31L24 6.27V2.45c0-1.52-1.73-2.38-2.95-1.47l-1.96 1.47Z" fill="#FBBC04"/>
-              <path d="M4.91 9.95V1.64L12 6.95l7.09-5.31v8.31L12 15.27 4.91 9.95Z" fill="#EA4335"/>
-              <path d="M0 2.45v3.82l4.91 3.68V1.64L2.95.98C1.73.07 0 .93 0 2.45Z" fill="#C5221F"/>
-            </svg>
-          </span>
-          <span class="bt">Recruiting email from the contacts you add.
-            <span class="no">Nothing else.</span></span>
-        </div>
-        <div class="brow" id="bRow1">
-          <span class="bi">
-            <svg width="28" height="28" viewBox="0 0 20 20" aria-hidden="true">
-              <g clip-path="url(#calB)">
-                <rect width="20" height="20" fill="#4285F4"/>
-                <rect x="15.6" width="4.4" height="4.4" fill="#1967D2"/>
-                <rect x="15.6" y="4.4" width="4.4" height="11.2" fill="#FBBC04"/>
-                <rect y="15.6" width="4.4" height="4.4" fill="#188038"/>
-                <rect x="4.4" y="15.6" width="11.2" height="4.4" fill="#34A853"/>
-                <rect x="15.6" y="15.6" width="4.4" height="4.4" fill="#EA4335"/>
-                <rect x="4.4" y="4.4" width="11.2" height="11.2" fill="#ffffff"/>
-                <text x="10" y="13.6" text-anchor="middle" font-size="9.4" font-weight="500"
-                      fill="#4285F4" font-family="Arial, Helvetica, sans-serif">31</text>
-              </g>
-            </svg>
-          </span>
-          <span class="bt">Calendar events with those contacts.</span>
-        </div>
-        <div class="brow" id="bRow2">
-          <span class="bi">
-            <span style="display:grid;place-items:center;width:28px;height:28px;border-radius:6px;background:var(--sheet-green)">
-              <svg width="14" height="18" viewBox="0 0 15 19" fill="none" aria-hidden="true">
-                <path d="M9 0H1.5A1.5 1.5 0 0 0 0 1.5v16A1.5 1.5 0 0 0 1.5 19h12a1.5 1.5 0 0 0 1.5-1.5V6L9 0Z" fill="#fff" fill-opacity=".25"/>
-                <path d="M3.5 8.5h8v6h-8v-6Zm1 1.5v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Zm-3.5 2v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Z" fill="#fff"/>
-              </svg>
-            </span>
-          </span>
-          <span class="bt">Your recruiting tracker, kept current.</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. Recognition -->
-    <div class="obj" id="oStream"><div class="stream" id="stream"></div></div>
-
-    <!-- 3 and 4. The sheet -->
-    <div class="obj" id="oSheet">
-     <div class="sheetwrap">
-      <div class="cue" id="cue">
+  <!-- ============================================================ volume -->
+  <div class="volume" id="volume">
+    <div class="inbox">
+      <div class="inboxbar">
         <svg width="30" height="23" viewBox="0 0 24 18" aria-hidden="true">
           <path d="M1.64 18h3.27V9.95L0 6.27v10.09C0 17.27.73 18 1.64 18Z" fill="#4285F4"/>
           <path d="M19.09 18h3.27c.9 0 1.64-.73 1.64-1.64V6.27l-4.91 3.68V18Z" fill="#34A853"/>
@@ -560,98 +587,136 @@ body.bare .chrome{display:none}
           <path d="M4.91 9.95V1.64L12 6.95l7.09-5.31v8.31L12 15.27 4.91 9.95Z" fill="#EA4335"/>
           <path d="M0 2.45v3.82l4.91 3.68V1.64L2.95.98C1.73.07 0 .93 0 2.45Z" fill="#C5221F"/>
         </svg>
-        <span class="ct">Sarah Chen replied</span><span class="cs">10:42 AM</span>
+        <span class="who">Primary</span>
       </div>
-      <div class="sheet">
-        <div class="titlebar">
-          <span class="gicon">
-            <svg width="21" height="27" viewBox="0 0 15 19" fill="none" aria-hidden="true">
-              <path d="M9 0H1.5A1.5 1.5 0 0 0 0 1.5v16A1.5 1.5 0 0 0 1.5 19h12a1.5 1.5 0 0 0 1.5-1.5V6L9 0Z" fill="#fff" fill-opacity=".25"/>
-              <path d="M3.5 8.5h8v6h-8v-6Zm1 1.5v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Zm-3.5 2v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Z" fill="#fff"/>
-            </svg>
-          </span>
-          <div class="tmeta">
-            <div class="tname">IB Recruiting Tracker <span class="star">&#9734;</span></div>
-            <div class="menus"><span>File</span><span>Edit</span><span>View</span><span>Insert</span><span>Format</span><span>Data</span><span>Tools</span><span>Extensions</span><span>Help</span></div>
-          </div>
-          <span class="saved">All changes saved in Drive</span>
-          <span class="share">Share</span>
-          <span class="avatar">JN</span>
-        </div>
-        <div class="fbar">
-          <div class="fcell"><span id="fCell">B2</span><span class="caret">&#9662;</span></div>
-          <div class="fval"><span class="fx">fx</span><span id="fVal">Replied</span></div>
-        </div>
-        <div class="letters" id="letters"></div>
-        <div class="letters" id="lettersOA" style="display:none">
-          <div class="gut"></div>
-          <div class="col" style="width:290px;flex:none">A</div>
-          <div class="col" style="width:290px;flex:none">B</div>
-          <div class="col" style="flex:1">C</div>
-        </div>
-
-        <div class="body" id="tracker"></div>
-
-        <div class="body oa" id="oa">
-          <div class="oatitle">
-            <h3>Outstanding actions</h3>
-            <span class="oapill"><span id="oaTotal">0</span> outstanding actions</span>
-          </div>
-          <div class="oarow" style="background:var(--sheet-header)">
-            <div class="c who" style="font-weight:bold">Contact</div>
-            <div class="c act" style="font-weight:bold">Next action</div>
-            <div class="c why" style="font-weight:bold">Why it is here</div>
-          </div>
-          <div class="grouphead" data-g="replies">
-            <span class="lbl"><span class="dot2"></span>Replies owed</span>
-            <span class="cnt" data-to="6" style="color:var(--group-replies)">0</span>
-          </div>
-          <div class="oarow">
-            <div class="c who">Sarah Chen</div><div class="c act">Reply to Sarah</div>
-            <div class="c why">Sarah replied Jan 16 at 10:42 AM</div>
-          </div>
-          <div class="oarow more"><div class="c">+5 more replies owed</div></div>
-          <div class="grouphead" data-g="followups">
-            <span class="lbl"><span class="dot2"></span>Follow-ups due</span>
-            <span class="cnt" data-to="11" style="color:var(--blotter-700)">0</span>
-          </div>
-          <div class="oarow">
-            <div class="c who">Daniel Kim</div><div class="c act">Bump thread</div>
-            <div class="c why">No reply for 5 days</div>
-          </div>
-          <div class="oarow more"><div class="c">+10 more follow-ups due</div></div>
-          <div class="grouphead" data-g="thanks">
-            <span class="lbl"><span class="dot2"></span>Thank-you notes</span>
-            <span class="cnt" data-to="4" style="color:var(--group-thanks)">0</span>
-          </div>
-          <div class="oarow">
-            <div class="c who">Priya Shah</div><div class="c act">Send thank-you</div>
-            <div class="c why">Coffee chat completed Jan 16</div>
-          </div>
-          <div class="oarow more"><div class="c">+3 more thank-you notes</div></div>
-        </div>
-
-        <div class="tabs">
-          <span class="sym">+</span><span class="sym">&#9776;</span>
-          <span class="tab" id="tabContacts">Contacts</span>
-          <span class="tab on" id="tabBlotter">Blotter<span class="tcaret">&#9662;</span></span>
-        </div>
-      </div>
-     </div>
+      <div class="mrows" id="mrows"></div>
     </div>
 
-    <!-- 6. Boundary. 03-SECTION-3 s5, verbatim. -->
-    <div class="obj" id="oBound">
-      <div class="bound">
-        <div class="boundline">You choose the people and write the messages.<br>
-          <span style="color:var(--navy-400)">Blotter keeps the logistics current.</span></div>
-        <div class="badges">
-          <span class="badge" id="bg0">No technical-prep content</span>
-          <span class="badge" id="bg1">No generic mass AI outreach</span>
-          <span class="badge" id="bg2">No AI slop</span>
+    <div class="calcol">
+      <div class="calbar">
+        <svg width="26" height="26" viewBox="0 0 20 20" aria-hidden="true">
+          <g clip-path="url(#calr1)">
+            <rect width="20" height="20" fill="#4285F4"/>
+            <rect x="15.6" width="4.4" height="4.4" fill="#1967D2"/>
+            <rect x="15.6" y="4.4" width="4.4" height="11.2" fill="#FBBC04"/>
+            <rect y="15.6" width="4.4" height="4.4" fill="#188038"/>
+            <rect x="4.4" y="15.6" width="11.2" height="4.4" fill="#34A853"/>
+            <rect x="15.6" y="15.6" width="4.4" height="4.4" fill="#EA4335"/>
+            <rect x="4.4" y="4.4" width="11.2" height="11.2" fill="#ffffff"/>
+            <text x="10" y="13.6" text-anchor="middle" font-size="9.4" font-weight="500"
+                  fill="#4285F4" font-family="Arial, Helvetica, sans-serif">31</text>
+          </g>
+        </svg>
+        <span>January</span>
+      </div>
+      <div class="cchips" id="cchips"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================== sheet -->
+  <div class="sheetslot">
+   <div class="sheetgroup" id="sheetgroup">
+    <div class="sheet" id="sheet">
+      <div class="titlebar">
+        <span class="gicon">
+          <svg width="21" height="27" viewBox="0 0 15 19" fill="none" aria-hidden="true">
+            <path d="M9 0H1.5A1.5 1.5 0 0 0 0 1.5v16A1.5 1.5 0 0 0 1.5 19h12a1.5 1.5 0 0 0 1.5-1.5V6L9 0Z" fill="#fff" fill-opacity=".25"/>
+            <path d="M3.5 8.5h8v6h-8v-6Zm1 1.5v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Zm-3.5 2v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Z" fill="#fff"/>
+          </svg>
+        </span>
+        <div class="tmeta">
+          <div class="tname">IB Recruiting Tracker <span class="star">&#9734;</span></div>
+          <div class="menus"><span>File</span><span>Edit</span><span>View</span><span>Insert</span><span>Format</span><span>Data</span><span>Tools</span><span>Extensions</span><span>Help</span></div>
         </div>
+        <span class="saved">All changes saved in Drive</span>
+        <span class="share">Share</span>
+        <span class="avatar">JN</span>
+      </div>
+
+      <div class="fbar">
+        <div class="fcell"><span id="fCell">A2</span><span class="caret">&#9662;</span></div>
+        <div class="fval"><span class="fx">fx</span><span id="fVal">Sarah Chen</span></div>
+      </div>
+
+      <!-- Two strips: the Outstanding view has three columns, the tracker five,
+           so one shared strip would label boundaries that are not there. -->
+      <div class="letters" id="letters"></div>
+      <div class="letters" id="lettersOA" style="display:none">
+        <div class="gut"></div>
+        <div class="col" style="width:290px;flex:none">A</div>
+        <div class="col" style="width:290px;flex:none">B</div>
+        <div class="col" style="flex:1">C</div>
+      </div>
+
+      <div class="body" id="tracker">
+        <!-- Short on purpose: these are on screen for well under a second, and
+             the ratified underline below the sheet completes the thought. -->
+        <div class="wash manual" id="washManual"></div>
+        <div class="wash kept" id="washKept"></div>
+        <div class="washcap manual" id="washManualTxt">You add the contacts.</div>
+        <div class="washcap kept" id="washKeptTxt">Blotter fills in the rest.</div>
+        <div class="selbox" id="selbox"></div>
+      </div>
+
+      <div class="body oa" id="oa">
+        <div class="oatitle">
+          <h3>Outstanding actions</h3>
+          <span class="oapill"><span id="oaTotal">0</span> outstanding actions</span>
+        </div>
+        <div class="oarow" style="background:var(--sheet-header)">
+          <div class="c who" style="font-weight:bold">Contact</div>
+          <div class="c act" style="font-weight:bold">Next action</div>
+          <div class="c why" style="font-weight:bold">Why it is here</div>
+        </div>
+        <div class="grouphead" data-g="replies">
+          <span class="lbl"><span class="dot2"></span>Replies owed</span>
+          <span class="cnt" data-to="6" style="color:var(--group-replies)">0</span>
+        </div>
+        <div class="oarow">
+          <div class="c who">Sarah Chen</div><div class="c act">Reply to Sarah</div>
+          <div class="c why">Sarah replied Jan 16 at 10:42 AM</div>
+        </div>
+        <div class="oarow more"><div class="c">+5 more replies owed</div></div>
+        <div class="grouphead" data-g="followups">
+          <span class="lbl"><span class="dot2"></span>Follow-ups due</span>
+          <span class="cnt" data-to="11" style="color:var(--blotter-700)">0</span>
+        </div>
+        <div class="oarow">
+          <div class="c who">Daniel Kim</div><div class="c act">Bump thread</div>
+          <div class="c why">No reply for 5 days</div>
+        </div>
+        <div class="oarow more"><div class="c">+10 more follow-ups due</div></div>
+        <div class="grouphead" data-g="thanks">
+          <span class="lbl"><span class="dot2"></span>Thank-you notes</span>
+          <span class="cnt" data-to="4" style="color:var(--group-thanks)">0</span>
+        </div>
+        <div class="oarow">
+          <div class="c who">Priya Shah</div><div class="c act">Send thank-you</div>
+          <div class="c why">Coffee chat completed Jan 16</div>
+        </div>
+        <div class="oarow more"><div class="c">+3 more thank-you notes</div></div>
+      </div>
+
+      <div class="tabs">
+        <span class="sym">+</span><span class="sym">&#9776;</span>
+        <span class="tab" id="tabContacts">Contacts</span>
+        <span class="tab" id="tabBlotter">Blotter<span class="tcaret">&#9662;</span></span>
       </div>
     </div>
+
+    <!-- Spans match the column geometry exactly: manual from the gutter's right
+         edge to the end of Firm, maintained from there to the sheet's edge. -->
+    <div class="owners" id="owners">
+      <div class="own manual" id="ownManual" style="left:44px;width:396px">
+        <div class="bar"></div>
+        <div class="lab"><span class="lead">YOU</span> add the contacts</div>
+      </div>
+      <div class="own kept" id="ownKept" style="left:440px;width:560px">
+        <div class="bar"></div>
+        <div class="lab"><span class="lead">BLOTTER</span> keeps them current</div>
+      </div>
+    </div>
+   </div>
   </div>
 
   <!-- =========================================================== end card -->
@@ -668,9 +733,7 @@ body.bare .chrome{display:none}
       </svg>
       <span class="wordmark">Blotter</span>
     </div>
-    <div class="endline">
-      Your networking keeps moving.<br><span class="soft">Your tracker does not.</span>
-    </div>
+    <div class="endline" id="endline"></div>
   </div>
 
   <div class="crop11" id="crop11"></div>
@@ -680,80 +743,169 @@ body.bare .chrome{display:none}
 
 <div class="chrome">
   <button id="play">Pause</button>
-  <input type="range" id="scrub" min="0" max="34500" value="0" step="1">
-  <span class="t" id="clock">0.00 / 34.50</span>
+  <input type="range" id="scrub" min="0" max="21500" value="0" step="1">
+  <span class="t" id="clock">0.00 / 21.50</span>
+  <button id="btnStall">Stall</button>
+  <button id="btnOwe">Owe</button>
+  <button id="btnEnd">End</button>
   <button id="btn11">1:1 guide</button>
   <button id="btnFit">True size</button>
-  <span class="hint">space play &middot; arrows step &middot; c clean &middot; r restart</span>
+  <span class="hint">space play &middot; arrows step &middot; s stall &middot; o owe &middot; e end &middot; c clean &middot; r restart</span>
 </div>
 
 <script>
 "use strict";
 
 /* =========================================================================
-   DATA. lib/sheet-data.ts. Five contacts, January 16, 2026.
-
-   B drops Firm and keeps Last contact: Last contact is a field that CHANGES,
-   so it earns its place in a derivation demo where static texture does not.
-   That is also what makes "four fields" literally true.
+   CANONICAL DATA, from web/lib/sheet-data.ts. Five contacts, January 16, 2026.
+   Nothing here may be edited without a ruling.
    ========================================================================= */
 
 const COLS = [
-  { key:"name",   head:"Name",         w:190, kept:false },
-  { key:"status", head:"Status",       w:222, kept:true, chip:true },
-  { key:"next",   head:"Next move",    w:262, kept:true },
-  { key:"last",   head:"Last contact", w:172, kept:true },
-  { key:"days",   head:"Days",         w:110, kept:true, num:true },
+  { key:"name",   head:"Name",      w:180, kept:false },
+  { key:"firm",   head:"Firm",      w:216, kept:false },
+  { key:"status", head:"Status",    w:214, kept:true, chip:true },
+  { key:"next",   head:"Next move", w:252, kept:true },
+  { key:"days",   head:"Days",      w:94,  kept:true, num:true },
 ];
 const LETTERS = ["A","B","C","D","E"];
 const SPLIT = COLS.findIndex(c => c.kept);
 
-/* Sarah's row is the derivation subject. `before` is the state the moment
-   before her reply lands; the row values are the state after. */
 const ROWS = [
-  { name:"Sarah Chen", status:"Replied",        next:"Reply to Sarah",     last:"1/16/26", days:"0",
-    before:{ status:"Sent", next:"", last:"1/14/26", days:"2" } },
-  { name:"Marcus Lee", status:"Call scheduled", next:"Attend coffee chat", last:"1/15/26", days:"1" },
-  { name:"Priya Shah", status:"Call completed", next:"Send thank-you",     last:"1/16/26", days:"0" },
-  { name:"Daniel Kim", status:"No reply",       next:"Bump thread",        last:"1/11/26", days:"5",
-    /* Daniel is the time beat: nothing arrives and his row moves regardless. */
-    before:{ status:"Sent", next:"", last:"1/11/26", days:"0" } },
-  { name:"Alex Morgan",status:"Sent",           next:"",                   last:"1/16/26", days:"0" },
+  { name:"Sarah Chen", firm:"JPMorgan",       status:"Replied",        next:"Reply to Sarah",     days:"0" },
+  { name:"Marcus Lee", firm:"Evercore",       status:"Call scheduled", next:"Attend coffee chat", days:"1" },
+  { name:"Priya Shah", firm:"Lazard",         status:"Call completed", next:"Send thank-you",     days:"0" },
+  { name:"Daniel Kim", firm:"Morgan Stanley", status:"No reply",       next:"Bump thread",        days:"5" },
+  /* Alex Morgan's Next move keeps the em dash: ruled by Jon August 5, 2026 and
+     the only cell anywhere permitted one. */
+  { name:"Alex Morgan",firm:"Centerview",     status:"Sent",           next:{dash:true},          days:"0" },
 ];
-const SARAH = 0, DANIEL = 3;
+const DANIEL = 3;
 
-/* Recognition stream. The five tracked contacts are canonical; the untracked
-   senders are texture and exist to be ignored, which is the point of the beat.
-   Nothing here is a real person and no firm is attached to any of them. */
+/* -------------------------------------------------------------- torrent text */
 /*
-  DANIEL KIM IS DELIBERATELY ABSENT FROM THIS LIST.
-
-  He is a tracked contact, so showing him greyed and "Not read" would say
-  Blotter ignores his mail, which is the opposite of true and would wreck the
-  time beat that follows. Nothing arrives from Daniel because nothing arrives
-  from Daniel: that silence is the whole payoff at 20.5s, and it only lands if
-  he was never in the stream to begin with.
-
-  "Career Center" is the useful untracked case: recruiting-adjacent mail from a
-  sender the user did not add is still not read. That is a sharper statement of
-  the boundary than a newsletter alone.
+  Texture, and deliberately so: these exist to become unreadable. Generic
+  recruiting subjects with no firm attached, no offer language and no rejection
+  language, so nothing legible in the blur can be read as a claim. The five
+  canonical contacts appear among the senders. No bank logo anywhere.
 */
-/* Seven, not eight. Each row is 100px in flow and the slot is 785, so eight
-   pushed the list four pixels past the 1:1 safe band. Seven also ends the beat
-   on a tracked contact, which is the note to leave it on. */
-const STREAM = [
-  { who:"Sarah Chen",    subj:"Re: Coffee chat availability", on:true  },
-  { who:"Campus Events", subj:"Spring career fair reminder",  on:false },
-  { who:"Career Center", subj:"Resume workshop signup",       on:false },
-  { who:"Mom",           subj:"Sunday dinner?",               on:false },
-  { who:"Priya Shah",    subj:"Re: Thank you",                on:true  },
-  { who:"Newsletter",    subj:"This week in markets",         on:false },
-  { who:"Marcus Lee",    subj:"Re: 15 minutes this week?",    on:true  },
+const SENDERS = [
+  "Sarah Chen","Marcus Lee","Priya Shah","Daniel Kim","Alex Morgan",
+  "Jordan Ellis","Nina Patel","Tom Reyes","Grace Liu","Omar Haddad",
+  "Ben Carter","Sofia Rossi","Wes Nakamura","Hana Kim","Luis Ortega","Iris Delgado",
 ];
+const SUBJECTS = [
+  "Re: Coffee chat availability","Following up on our call","Thank you for your time",
+  "Re: Networking call next week","Quick question about your group","Re: Introduction",
+  /* 2027 to match the qualification on screen. A subject line naming a
+     different class than the caption would contradict it in the same frame. */
+  "SA 2027 application","Re: 15 minutes this week?","Availability for a call",
+  "Re: Thank you","Checking in","Recruiting timeline question",
+  "Re: Following up","Re: Coffee chat","Re: Your note","Happy to connect",
+];
+const TIMES = ["9:04 AM","9:41 AM","10:12 AM","10:42 AM","11:20 AM","12:05 PM",
+               "1:18 PM","2:00 PM","2:47 PM","3:31 PM","4:09 PM","5:22 PM"];
+/* Twelve times, walked with a stride coprime to the length. A stride sharing a
+   factor with the pool cycles through two or three entries and the stack reads
+   as a rendering fault instead of a full calendar. */
+const CAL_TIMES = ["8:45 AM","9:30 AM","10:15 AM","11:00 AM","11:45 AM","12:30 PM",
+                   "1:00 PM","2:00 PM","2:45 PM","3:30 PM","4:15 PM","5:00 PM"];
 
-/* All seven stay on screen: they fit, and a list that scrolls away mid-beat
-   makes the reader chase it instead of comparing the tracked against the not. */
-const N_VISIBLE = STREAM.length;
+/* The ratified figures, 02-SECTION-2 s5. */
+const N_MAIL = 628, N_CAL = 68;
+
+/* ------------------------------------------------------------- stall copy */
+/*
+  Jon, August 5, 2026: the first version blamed the reader. "A manual tracker
+  changes only when you remember to update it" is the exact ratified sentence
+  from 02-SECTION-2 s5, and it is true, but it lands as "you forgot." Everyone
+  serious about recruiting does update their tracker. It goes stale anyway,
+  because the volume outruns the upkeep rather than because the effort was
+  missing. Aiming that at the diligent student, who is the buyer, is both
+  inaccurate and alienating.
+
+  Every option below carries the same second line, which is also 02-SECTION-2
+  s5 verbatim and which already makes exactly Jon's point: the cause is volume
+  and the outcome is inevitable, with no fault assigned.
+
+  Press `s`, or the button in the controls, to cycle. Whichever wins, delete
+  the rest.
+*/
+const STALL_SUB = "At this volume, a manual tracker inevitably falls behind reality.";
+/* Exactly two lines each. The type slot is a fixed 250px and a third line
+   overflows it into the sheet. `a` is the navy line, `b` the soft one. */
+/*
+  Jon, second pass: the bold first line is the only thing a skimmer reads, so it
+  has to carry the message on its own. "You keep it updated." read alone says the
+  opposite of the point. Every option below now fails safe: line one is either
+  the problem or it concedes the effort without asserting success.
+*/
+/* CHOSEN BY JON, August 5, 2026: `try`. */
+const STALL_COPY = [
+  { id:"try",      a:"You try to keep it updated.", b:"It keeps going stale.",   sub:STALL_SUB },
+  { id:"outrun",   a:"You cannot update it",        b:"fast enough.",            sub:STALL_SUB },
+  { id:"snapshot", a:"A tracker is a snapshot.",    b:"Recruiting is not.",      sub:STALL_SUB },
+  { id:"sunday",   a:"You updated it Sunday.",      b:"It was wrong by Tuesday.", sub:STALL_SUB },
+];
+let stallPick = 0;
+
+/*
+  End-card copy. Jon asked whether the hero headline or the category descriptor
+  belongs here.
+
+  My read is neither, and it is worth saying why. The hero line is the PROBLEM
+  statement: on the page it opens the argument. Closing a film with it, after
+  seventeen seconds of showing the solution, inverts it, and the last thing on
+  screen becomes "your tracker does not move." The descriptor is the category,
+  which a cold viewer does need, but the film has already shown what this is for
+  seventeen seconds, and the full eyebrow is far too long for a final frame.
+
+  `default` is the ratified Section 7 closing line. It is short, it says what the
+  product is and does in five words, and it RESOLVES rather than restating the
+  problem, which is the one job a last frame has.
+*/
+/*
+  The scale beat's subhead. Jon asked whether to keep the enumeration or go to
+  something like "nothing slips through the cracks again."
+
+  My read: `cracks` is the most emotional and the only one I would not ship.
+  "Nothing slips through the cracks" and "never miss a deadline again" are
+  promises about an OUTCOME that depends on the reader acting. Blotter "tracks,
+  computes, and prompts. Nothing else." (`01-project-and-product.md`). It shows
+  you the thank-you note you owe; it cannot make you send it. An absolute
+  never-miss guarantee is the one kind of claim that cannot be walked back, and
+  it is the sort of line that gets a launch post quote-tweeted.
+
+  Note also that "slipping through the cracks" is ratified vocabulary, but
+  02-SECTION-2 s5 uses it to describe the PROBLEM. Inverting it into a guarantee
+  is a different claim, not the same words reused.
+
+  `owe` is my pick: it is the ratified 04-SECTION-4 s5 promise, "one current view
+  of every action you owe", which is specific, strong and true.
+*/
+/*
+  CHOSEN BY JON, August 5, 2026: `cracks`.
+
+  My objection is recorded above and in the README, was put to him, and he ruled
+  for it anyway. His call. Recorded here rather than argued again, with one
+  practical consequence noted: this is the only line in the film that promises
+  an outcome, so it is the line to put in front of the claim gate that
+  `WS5-SPEC.md` already requires before public traffic.
+*/
+const OWE_COPY = [
+  { id:"cracks",    s:"Nothing slips through the cracks." },
+  { id:"owe",       s:"One current view of every action you owe." },
+  { id:"enumerate", s:"Replies, follow-ups and thank-you notes, all current." },
+];
+let owePick = 0;
+
+/* CHOSEN BY JON, August 5, 2026: `hero`, the ratified hero headline. */
+const END_COPY = [
+  { id:"hero",     a:"Your networking keeps moving.", b:"Your tracker does not." },
+  { id:"closing",  a:"Your recruiting tracker,", b:"always current." },
+  { id:"category", a:"The smart recruiting tracker", b:"for investment banking." },
+];
+let endPick = 0;
 
 /* =========================================================================
    BUILD
@@ -762,117 +914,133 @@ const N_VISIBLE = STREAM.length;
 const $ = id => document.getElementById(id);
 const CARET = '<svg width="11" height="7" viewBox="0 0 8 5"><path d="M0 0h8L4 5z" fill="currentColor"/></svg>';
 
-const HDR_H = 70, ROW_H = 74, GUT_W = 44;
-
 (function letters(){
   $("letters").innerHTML = '<div class="gut"></div>' + COLS.map((c,i) =>
     `<div class="col" style="width:${c.w}px;flex:none">${LETTERS[i]}</div>`).join("");
 })();
 
-const rowEls = [], cellEls = [];
+const keptCells = [], rowValueEls = [], rowEls = [], rowManualEls = [];
+
+/* Grid geometry, kept in one place because the washes and the selection box
+   are positioned from it. Must match .hrow .cell and .cell heights. */
+const HDR_H = 70, ROW_H = 74, GUT_W = 44;
+const MANUAL_W = COLS.filter(c => !c.kept).reduce((n,c) => n + c.w, 0);
+const KEPT_W   = COLS.filter(c =>  c.kept).reduce((n,c) => n + c.w, 0);
+const GRID_H   = HDR_H + ROWS.length * ROW_H;
 
 (function grid(){
   const el = $("tracker");
   const h = document.createElement("div");
   h.className = "row hrow";
   h.innerHTML = '<div class="gut">1</div>' + COLS.map((c,i) => {
-    const cls = ["cell", c.kept ? "kept" : "manual", i===SPLIT ? "split" : "", c.num ? "num" : ""].join(" ");
-    return `<div class="${cls}" style="width:${c.w}px;flex:none">${c.head}</div>`;
+    const cls = ["cell", c.kept ? "kept blank" : "manual", i===SPLIT ? "split" : "", c.num ? "num" : ""].join(" ");
+    return `<div class="${cls}" style="width:${c.w}px;flex:none">`
+         + (c.kept ? `<span class="kv">${c.head}</span>` : c.head) + `</div>`;
   }).join("");
   el.appendChild(h);
+  h.querySelectorAll(".kept").forEach(n => keptCells.push(n));
 
   ROWS.forEach((r, ri) => {
     const row = document.createElement("div");
     row.className = "row";
     row.innerHTML = '<div class="gut">' + (ri+2) + '</div>' + COLS.map((c,i) => {
+      const v = r[c.key];
+      let inner;
+      if (c.chip) inner = `<span class="chip" data-s="${v}">${v}${CARET}</span>`;
+      else if (v && v.dash) inner = '<span class="dash">&mdash;</span>';
+      else inner = v;
       const cls = ["cell", i===SPLIT ? "split" : "", c.num ? "num" : "", c.chip ? "chipcell" : ""].join(" ");
-      return `<div class="${cls}" style="width:${c.w}px;flex:none"><span class="kv"></span></div>`;
+      return `<div class="${cls}" style="width:${c.w}px;flex:none">`
+           + (c.kept ? `<span class="kv">${inner}</span>` : `<span class="mv">${inner}</span>`)
+           + `</div>`;
     }).join("");
     el.appendChild(row);
     rowEls.push(row);
-    cellEls.push([...row.querySelectorAll(".kv")]);
-  });
-
-  /* One flash per derived field, positioned over Sarah's maintained cells. */
-  let x = GUT_W;
-  COLS.forEach((c, i) => {
-    if (c.kept) {
-      const f = document.createElement("div");
-      f.className = "flash";
-      f.style.left = (x + 3) + "px";
-      f.style.width = (c.w - 6) + "px";
-      f.style.top = (HDR_H + SARAH * ROW_H + 5) + "px";
-      f.style.height = (ROW_H - 10) + "px";
-      f.style.opacity = 0;
-      f.dataset.k = i;
-      el.appendChild(f);
-    }
-    x += c.w;
+    rowValueEls.push([...row.querySelectorAll(".kv")]);
+    rowManualEls.push([...row.querySelectorAll(".mv")]);
   });
 })();
 
-const flashEls = [...$("tracker").querySelectorAll(".flash")];
+/* torrent pools. Sixteen rows and eight chips are reused for 628 and 68
+   arrivals: only about ten are ever on screen and the point is the rate. */
+const MROW_H = 66, MROW_POOL = 12;
+const CCHIP_H = 76, CCHIP_POOL = 10;
+const mrows = [], cchips = [];
 
-(function stream(){
-  const el = $("stream");
-  STREAM.forEach((m, i) => {
+(function pools(){
+  const mr = $("mrows");
+  for (let i = 0; i < MROW_POOL; i++) {
     const d = document.createElement("div");
-    d.className = "srow";
-    d.innerHTML = `<span class="who"></span><span class="subj"></span><span class="tag"></span>`;
-    el.appendChild(d);
-  });
+    d.className = "mrow";
+    d.innerHTML = '<span class="dot"></span><span class="from"></span>'
+                + '<span class="subj"></span><span class="when"></span>';
+    mr.appendChild(d);
+    mrows.push({ el:d, from:d.querySelector(".from"), subj:d.querySelector(".subj"), when:d.querySelector(".when") });
+  }
+  const cc = $("cchips");
+  for (let i = 0; i < CCHIP_POOL; i++) {
+    const d = document.createElement("div");
+    d.className = "cchip";
+    d.innerHTML = '<div class="t"></div><div class="n"></div>';
+    cc.appendChild(d);
+    cchips.push({ el:d, t:d.querySelector(".t"), n:d.querySelector(".n") });
+  }
 })();
-const streamEls = [...$("stream").children];
-
-function cellText(r, key, useBefore){
-  const src = useBefore && r.before ? { ...r, ...r.before } : r;
-  return src[key];
-}
 
 /* =========================================================================
-   TIMELINE
+   TIMELINE. Every visible property is a pure function of t, so scrubbing back
+   is identical to playing forward and a capture at a given t is reproducible.
    ========================================================================= */
 
-const DUR = 34.5;
+const DUR = 21.5;
 
 const P = {
-  /* 1. CONNECT */
-  connIn:[0.30,0.80], connOut:[6.05,6.35],
-  gIn:[0.55,1.10],  gOut:[3.05,3.35],
-  bIn:[3.30,3.85],  bOut:[6.05,6.35],
-  bRowFrom:3.95, bRowStep:0.32, bRowDur:0.36,
+  /* volume */
+  volIn:[0.55,1.05], volOut:[4.10,4.35],
+  /* Both streams land on the same frame. They start apart, because mail should
+     be the thing you are reading first, but a calendar still climbing after the
+     mail counter has stopped reads as one of them being broken. */
+  mailFrom:0.22, mailTo:3.55,
+  calFrom:1.05,  calTo:3.55,
+  volFade:[4.00,4.40],          /* the torrent clears */
 
-  /* 2. RECOGNITION */
-  recIn:[6.55,7.05], recOut:[13.20,13.50],
-  streamFrom:7.05, streamStep:0.70, streamDur:0.34,
-  streamOut:[13.10,13.50],
+  /* YOU add the contacts. The sheet arrives with its headers and nothing else,
+     and the left zone is filled by hand. This beat is not additive: it takes
+     over the slot where the sheet used to just sit there being static. */
+  sheetIn:[4.25,4.75],
+  mCapIn:[4.65,5.00], mCapOut:[5.15,5.45],   /* caption gets its own window */
+  typeFrom:5.25, typeStep:0.36, typeDur:0.30,
+  manualBar:[7.05,7.45],        /* the manual underline draws once typing ends */
 
-  /* 3. DERIVATION */
-  derIn:[13.75,14.25], derOut:[20.05,20.35],
-  sheetIn:[13.60,14.15],
-  cueIn:[14.55,15.05],
-  fieldFrom:15.35, fieldStep:0.34, fieldDur:0.42,
-  cueOut:[17.60,17.95],
+  /* The stall, over a sheet whose names are filled and whose state is not.
+     Two full seconds of hold: this is a two-line headline plus a subhead, and
+     the previous 1.2s was not enough to read it before the next beat took the
+     slot. */
+  stallIn:[7.55,8.05], stallOut:[10.05,10.30],
 
-  /* 4. TIME */
-  timeIn:[20.50,21.00], timeOut:[25.55,25.85],
-  daysFrom:21.15, daysTo:23.55,
+  /* BLOTTER keeps them current. The right side mirrors the left exactly. */
+  reveal:[10.20,10.80],         /* cream header band, and the kept wash appears */
+  kCapIn:[10.55,10.90], kCapOut:[11.15,11.45],
+  fillFrom:11.25, fillStep:0.22, fillDur:0.44,
+  keptBar:[12.65,13.10],
+  tabIn:[10.40,10.90],
+  /* The sources line is the mechanism claim and it was reading as a footnote.
+     It now gets a marker sweep and holds for over three seconds. */
+  srcIn:[10.35,10.85], srcRule:[10.60,11.55], srcOut:[14.00,14.25],
 
-  /* 5. THE LIST */
-  swap:[25.85,26.45],
-  counts:[26.40,27.45],
-  listIn:[26.65,27.15], listOut:[29.55,29.80],
+  /* silence. 15.3 to 16.9 is deliberately empty: nothing moves at all. */
+  dim:[14.30,14.90],
+  ansIn:[14.80,15.30], ansOut:[16.90,17.15],
 
-  /* 6. BOUNDARY. The sheet clears first: each beat owns the frame, and a
-     boundary statement printed over a live spreadsheet reads as a caption on
-     the sheet rather than as a statement about the product. */
-  sheetOut:[29.80,30.20],
-  boundIn:[30.15,30.65], boundOut:[32.55,32.85],
-  badgeFrom:30.80, badgeStep:0.24, badgeDur:0.34,
+  /* scale. The hold runs 18.4 to 19.8, roughly a second longer than before. */
+  swap:[17.10,17.70],
+  counts:[17.65,18.70],
+  oweIn:[17.90,18.40], oweOut:[19.80,20.00],
 
-  /* 7. MARK */
-  card:[32.85,33.20], cardCopy:[33.20,33.60], cardOff:[34.25,34.50],
-  reset:33.75,
+  /* mark */
+  card:[20.00,20.35], cardCopy:[20.35,20.75], cardOff:[21.25,21.50],
+  /* the stage silently returns to frame 0 here, under full navy coverage */
+  reset:20.85,
 };
 
 const cl = u => u < 0 ? 0 : u > 1 ? 1 : u;
@@ -884,153 +1052,292 @@ function setLine(el, v, rise){
   el.style.opacity = v;
   el.style.transform = `translateY(${(1-v) * (rise===undefined?14:rise)}px)`;
 }
-function setObj(el, v, rise){
-  el.style.opacity = v;
-  el.style.transform = `translateY(${(1-v) * (rise===undefined?18:rise)}px)`;
-  el.style.pointerEvents = "none";
+
+/*
+  Arrival curve.
+
+  The first five land far enough apart to read. After that the gaps collapse
+  toward nothing, so by about two and a half seconds the subject lines are a
+  texture rather than text. That progression is the whole argument of the beat:
+  you can keep up with the first few, and then you cannot.
+*/
+/*
+  Two curves, because the two streams are doing different jobs.
+
+  Mail is the torrent: five readable arrivals, then a hard ramp into texture.
+  Calendar is a steady stack behind it. 68 events given the mail curve would sit
+  empty for two seconds and then dump everything at once, which reads as a bug
+  rather than as a season filling up.
+*/
+const CURVE = {
+  mail: { early:[0.00, 0.46, 0.86, 1.20, 1.50], p:2.35 },
+  cal:  { early:[0.00, 0.28, 0.52, 0.74],       p:1.45 },
+};
+
+function arrived(t, from, to, total, c){
+  if (t <= from) return 0;
+  const e = t - from, last = c.early[c.early.length - 1];
+  if (e < last) {
+    let n = 0;
+    for (let i = 0; i < c.early.length; i++) if (e >= c.early[i]) n = i + 1;
+    return n;
+  }
+  const u = cl((e - last) / ((to - from) - last));
+  return Math.min(total, c.early.length + (total - c.early.length) * Math.pow(u, c.p));
 }
 
 const els = {
-  conn:$("tConn"), rec:$("tRec"), der:$("tDer"), time:$("tTime"), list:$("tList"),
-  google:$("oGoogle"), blotter:$("oBlotter"), stream:$("oStream"),
-  sheet:$("oSheet"), bound:$("oBound"),
-  bRows:[$("bRow0"),$("bRow1"),$("bRow2")],
-  badges:[$("bg0"),$("bg1"),$("bg2")],
-  cue:$("cue"), tracker:$("tracker"), oa:$("oa"),
+  vol:$("tVol"), stall:$("tStall"), src:$("tSources"), ans:$("tAnswer"), owe:$("tOwe"),
+  nMail:$("nMail"), nCal:$("nCal"), volume:$("volume"),
+  sheet:$("sheet"), group:$("sheetgroup"), tracker:$("tracker"), oa:$("oa"),
   letters:$("letters"), lettersOA:$("lettersOA"),
   tabB:$("tabBlotter"), tabC:$("tabContacts"),
+  owners:$("owners"), ownManual:$("ownManual"), ownKept:$("ownKept"),
+  srcRule:$("srcRule"),
+  washM:$("washManual"), washMTxt:$("washManualTxt"),
+  washK:$("washKept"),   washKTxt:$("washKeptTxt"), selbox:$("selbox"),
+  card:$("endcard"), lockup:$("lockup"), endline:$("endline"),
   fCell:$("fCell"), fVal:$("fVal"), oaTotal:$("oaTotal"),
-  card:$("endcard"), lockup:$("lockup"),
 };
 const countEls = [...document.querySelectorAll(".cnt")];
 
-/* The Outstanding view is taller than the tracker, so the frame gives ground.
-   Measured rather than hard-coded so a row-height edit cannot push it out of
-   the 1:1 safe band. */
+function applyStall(){
+  const c = STALL_COPY[stallPick];
+  $("stallL1").innerHTML = c.a + '<br><span class="soft">' + c.b + "</span>";
+  $("stallL2").textContent = c.sub;
+  const b = $("btnStall");
+  if (b) b.textContent = "Stall: " + c.id;
+}
+function applyOwe(){
+  const c = OWE_COPY[owePick];
+  $("oweL2").textContent = c.s;
+  const b = $("btnOwe");
+  if (b) b.textContent = "Owe: " + c.id;
+}
+function applyEnd(){
+  const c = END_COPY[endPick];
+  $("endline").innerHTML = c.a + '<br><span class="soft">' + c.b + "</span>";
+  const b = $("btnEnd");
+  if (b) b.textContent = "End: " + c.id;
+}
+applyStall();
+applyOwe();
+applyEnd();
+
+/* How far the group gives so the Outstanding view fits the slot. Measured, not
+   hard-coded, so a row-height edit cannot silently push it out of the 1:1 band. */
 const SLOT_H = 785;
 const OA_FIT = (function(){
   els.oa.classList.add("live");
   els.tracker.style.display = "none";
-  const h = els.sheet.offsetHeight;
+  const ph = els.owners.style.height, pm = els.owners.style.marginTop;
+  els.owners.style.height = "0px"; els.owners.style.marginTop = "0px";
+  const h = els.group.offsetHeight;
   els.oa.classList.remove("live");
   els.tracker.style.display = "";
+  els.owners.style.height = ph; els.owners.style.marginTop = pm;
   return Math.min(1, SLOT_H / h);
 })();
 
 function render(T){
   /* The stage runs on its own clock, snapping to zero once the navy card fully
-     covers it, so the wipe-off reveals frame 0 and the loop has no seam. */
+     covers it. Without this the card wipes off onto the Outstanding view and
+     the cut to frame 0 is a visible jolt. */
   const t = T < P.reset ? T : 0;
 
   /* ------------------------------------------------------------------ type */
-  setLine(els.conn, band(t, P.connIn, P.connOut));
-  setLine(els.rec,  band(t, P.recIn,  P.recOut));
-  setLine(els.der,  band(t, P.derIn,  P.derOut));
-  setLine(els.time, band(t, P.timeIn, P.timeOut));
-  setLine(els.list, band(t, P.listIn, P.listOut));
+  setLine(els.vol,   band(t, P.volIn,   P.volOut));
+  setLine(els.stall, band(t, P.stallIn, P.stallOut));
+  setLine(els.src,   band(t, P.srcIn,   P.srcOut));
+  /* The rule travels the line left to right, and leaves with the line it marks. */
+  els.srcRule.style.transform = `scaleX(${seg(t, P.srcRule)})`;
+  setLine(els.ans,   band(t, P.ansIn,   P.ansOut));
+  setLine(els.owe,   band(t, P.oweIn,   P.oweOut));
 
-  /* ------------------------------------------------------- 1. the connection */
-  setObj(els.google, band(t, P.gIn, P.gOut));
-  setObj(els.blotter, band(t, P.bIn, P.bOut));
-  els.bRows.forEach((r, i) => {
-    const a = P.bRowFrom + i * P.bRowStep;
-    const v = seg(t, [a, a + P.bRowDur]);
-    r.style.opacity = v;
-    r.style.transform = `translateY(${(1-v)*10}px)`;
+  /* --------------------------------------------------------------- torrent */
+  const nm = arrived(t, P.mailFrom, P.mailTo, N_MAIL, CURVE.mail);
+  const nc = arrived(t, P.calFrom,  P.calTo,  N_CAL,  CURVE.cal);
+  els.nMail.textContent = Math.round(nm);
+  els.nCal.textContent  = Math.round(nc);
+
+  const volV = 1 - seg(t, P.volFade);
+  els.volume.style.opacity = volV;
+
+  if (volV > 0.01) {
+    /* Rate drives a blur, which is what sells "too fast to read". Measured
+       from the curve rather than keyed, so it always matches the actual speed. */
+    const dt = 0.05;
+    const rate = (arrived(t + dt, P.mailFrom, P.mailTo, N_MAIL, CURVE.mail) - nm) / dt;
+    $("mrows").style.filter = `blur(${Math.min(4.5, Math.max(0, (rate - 8) / 55)).toFixed(2)}px)`;
+    const cRate = (arrived(t + dt, P.calFrom, P.calTo, N_CAL, CURVE.cal) - nc) / dt;
+    const calBlur = `blur(${Math.min(3.2, Math.max(0, (cRate - 6) / 22)).toFixed(2)}px)`;
+
+    const idx = Math.floor(nm), frac = nm - idx;
+    mrows.forEach((r, i) => {
+      const m = idx - i;
+      if (m < 1) { r.el.style.opacity = 0; return; }
+      r.el.style.opacity = 1;
+      r.el.style.transform = `translateY(${(i - 1 + frac) * MROW_H}px)`;
+      r.from.textContent = SENDERS[m % SENDERS.length];
+      r.subj.textContent = SUBJECTS[(m * 7) % SUBJECTS.length];
+      r.when.textContent = TIMES[(m * 5) % TIMES.length];
+    });
+
+    const ci = Math.floor(nc), cf = nc - ci;
+    cchips.forEach((c, i) => {
+      const m = ci - i;
+      if (m < 1) { c.el.style.opacity = 0; return; }
+      c.el.style.opacity = 1;
+      c.el.style.transform = `translateY(${(i - 1 + cf) * CCHIP_H + 10}px)`;
+      c.el.style.filter = calBlur;
+      c.t.textContent = CAL_TIMES[(m * 5) % CAL_TIMES.length];
+      /* Every chip is a coffee chat because that is exactly what the 68
+         counts. The name varies so the stack reads as a season rather than one
+         event repeated. */
+      c.n.textContent = "Coffee chat, " + SENDERS[(m * 3) % SENDERS.length].split(" ")[0];
+    });
+  }
+
+  /* ----------------------------------------------------------------- sheet */
+  els.group.style.opacity = seg(t, P.sheetIn);
+
+  const rv = seg(t, P.reveal);
+  keptCells.forEach(n => {
+    n.style.backgroundColor = rv > 0.02
+      ? `color-mix(in srgb, var(--blotter-100) ${rv*100}%, var(--manual-row))`
+      : "";
+    const kv = n.querySelector(".kv");
+    if (kv) setLine(kv, seg(t, [P.reveal[0]+0.22, P.reveal[1]+0.20]), 10);
   });
 
-  /* ------------------------------------------------------- 2. recognition */
-  const recV = band(t, P.recIn, P.recOut);
-  setObj(els.stream, recV);
-  streamEls.forEach((el, i) => {
-    const m = STREAM[i];
-    const a = P.streamFrom + i * P.streamStep;
-    const v = seg(t, [a, a + P.streamDur]);
-    /* Only the last N_VISIBLE stay: earlier ones scroll off the top. */
-    const age = Math.max(0, (t - a) / P.streamStep);
-    const gone = age > N_VISIBLE ? cl(age - N_VISIBLE) : 0;
-    el.style.opacity = v * (1 - gone) * (m.on ? 1 : 0.55);
-    el.style.transform = `translateY(${(1-v)*16 - gone*40}px)`;
-    el.className = "srow " + (m.on ? "on" : "off");
-    el.children[0].textContent = m.who;
-    el.children[1].textContent = m.subj;
-    el.children[2].textContent = m.on ? "In your tracker" : "Not read";
+  /* ----------------------------------------------- YOU add the contacts */
+  /*
+    Each name and firm is revealed left to right rather than faded in, because
+    a fade reads as an import and a wipe reads as typing. The selection box
+    rides down with it, which is what a Sheets user actually sees while doing
+    this, and the grey wash recedes one row at a time so the unfilled part of
+    the sheet stays visibly the reader's job.
+  */
+  let typed = 0;
+  rowManualEls.forEach((cells, ri) => {
+    const a = P.typeFrom + ri * P.typeStep;
+    const v = seg(t, [a, a + P.typeDur]);
+    typed += v;
+    cells.forEach(mv => { mv.style.clipPath = `inset(0 ${(1-v)*100}% 0 0)`; });
   });
 
-  /* ---------------------------------------------------------- 3 and 4. sheet */
-  const sheetV = Math.min(seg(t, P.sheetIn), 1 - seg(t, P.sheetOut));
-  setObj(els.sheet, sheetV);
+  const mShow = seg(t, [P.sheetIn[0]+0.10, P.sheetIn[1]])
+              * (1 - seg(t, [P.typeFrom + 4*P.typeStep, P.typeFrom + 4*P.typeStep + P.typeDur + 0.15]));
+  els.washM.style.opacity = mShow;
+  els.washM.style.left   = GUT_W + "px";
+  els.washM.style.width  = MANUAL_W + "px";
+  els.washM.style.top    = (HDR_H + typed * ROW_H) + "px";
+  els.washM.style.height = Math.max(0, GRID_H - HDR_H - typed * ROW_H) + "px";
 
-  /* Sarah's four fields land one at a time, each flashing as it does, so the
-     causal link is visible without drawing four arrows across the grid. */
-  let kept = 0;
-  cellEls.forEach((cells, ri) => {
-    cells.forEach((kv, ci) => {
-      const col = COLS[ci];
-      if (!col.kept) { kv.textContent = ROWS[ri].name; return; }
+  els.washMTxt.style.opacity = band(t, P.mCapIn, P.mCapOut);
+  els.washMTxt.style.left   = GUT_W + "px";
+  els.washMTxt.style.width  = MANUAL_W + "px";
+  els.washMTxt.style.top    = HDR_H + "px";
+  els.washMTxt.style.height = (GRID_H - HDR_H) + "px";
 
-      let after;                       /* has this cell taken its final value? */
-      if (ri === SARAH) {
-        const k = kept++;
-        after = t >= P.fieldFrom + k * P.fieldStep + P.fieldDur * 0.5;
-      } else if (ri === DANIEL) {
-        after = t >= P.daysTo - 0.15;  /* Daniel resolves at the end of the climb */
-      } else {
-        after = true;
-      }
+  /* The selection box only exists while there is something being typed. */
+  const typing = t > P.typeFrom - 0.1 && typed < ROWS.length - 0.02;
+  els.selbox.style.opacity = typing ? seg(t, [P.typeFrom - 0.10, P.typeFrom + 0.10]) : 0;
+  els.selbox.style.left   = GUT_W + "px";
+  els.selbox.style.width  = MANUAL_W + "px";
+  els.selbox.style.height = ROW_H + "px";
+  els.selbox.style.top    = (HDR_H + Math.min(ROWS.length - 1, Math.floor(typed)) * ROW_H) + "px";
 
-      let v = cellText(ROWS[ri], col.key, !after);
-
-      /* Daniel's Days climbs while nothing arrives. */
-      if (ri === DANIEL && col.key === "days") {
-        const climb = seg(t, [P.daysFrom, P.daysTo]);
-        v = String(Math.round(climb * 5));
-      }
-
-      if (col.chip) {
-        kv.innerHTML = v ? `<span class="chip" data-s="${v}">${v}${CARET}</span>` : "";
-      } else {
-        kv.textContent = v || "";
-      }
+  /* ------------------------------------------ BLOTTER keeps them current */
+  let filled = 0;
+  rowValueEls.forEach((cells, ri) => {
+    const a = P.fillFrom + ri * P.fillStep;
+    const v = seg(t, [a, a + P.fillDur]);
+    filled += v;
+    cells.forEach(kv => {
+      kv.style.opacity = v;
+      kv.style.transform = `translateY(${(1-v)*9}px)`;
+      const chip = kv.querySelector(".chip");
+      if (chip) chip.style.transform = `scale(${0.90 + 0.10*v})`;
     });
   });
 
-  flashEls.forEach((f, k) => {
-    const a = P.fieldFrom + k * P.fieldStep;
-    const u = seg(t, [a, a + P.fieldDur]);
-    f.style.opacity = u > 0 && u < 1 ? Math.sin(Math.PI * u) * 0.85 : 0;
+  /* The right wash mirrors the left, and that mirroring is the argument: one
+     side is filled by hand, the other fills itself. */
+  const kShow = seg(t, [P.reveal[0]+0.15, P.reveal[1]])
+              * (1 - seg(t, [P.fillFrom + 4*P.fillStep, P.fillFrom + 4*P.fillStep + P.fillDur + 0.15]));
+  els.washK.style.opacity = kShow;
+  els.washK.style.left   = (GUT_W + MANUAL_W) + "px";
+  els.washK.style.width  = KEPT_W + "px";
+  els.washK.style.top    = (HDR_H + filled * ROW_H) + "px";
+  els.washK.style.height = Math.max(0, GRID_H - HDR_H - filled * ROW_H) + "px";
+
+  els.washKTxt.style.opacity = band(t, P.kCapIn, P.kCapOut);
+  els.washKTxt.style.left   = (GUT_W + MANUAL_W) + "px";
+  els.washKTxt.style.width  = KEPT_W + "px";
+  els.washKTxt.style.top    = HDR_H + "px";
+  els.washKTxt.style.height = (GRID_H - HDR_H) + "px";
+
+  /* The formula bar follows the sheet's own state: an empty cell before
+     anything is typed, then Sarah Chen's name, then her status once Blotter
+     has written it, then the Outstanding view's own A1. */
+  const hasState = t >= P.fillFrom + 0.30;
+  const hasName  = t >= P.typeFrom + 0.20;
+  const onOA     = t >= P.swap[0] + 0.30;
+  els.fCell.textContent = onOA ? "A1" : hasState ? "C2" : "A2";
+  els.fVal.textContent  = onOA ? "Outstanding actions"
+                        : hasState ? "Replied" : hasName ? "Sarah Chen" : "";
+
+  /* ------------------------------------------------------ ownership labels */
+  /* Each underline is now the CONCLUSION of its zone's gesture rather than a
+     duplicate of the caption inside it: the manual one lands as the last name
+     is typed, the maintained one as the last field writes itself. */
+  els.ownManual.style.opacity = seg(t, P.manualBar);
+  const okBar = seg(t, P.keptBar);
+  const okLab = seg(t, [P.keptBar[0]+0.10, P.keptBar[1]+0.20]);
+  els.ownKept.querySelector(".bar").style.transform = `scaleX(${okBar})`;
+  els.ownKept.querySelector(".bar").style.opacity = okBar > 0 ? 1 : 0;
+  els.ownKept.querySelector(".lab").style.opacity = okLab;
+  /* Both describe the tracker's zones, so they leave with it, and the block
+     collapses rather than just fading: leaving 90px reserved for invisible
+     labels would push the taller Outstanding view out of the slot. */
+  const oGone = seg(t, [P.swap[0], P.swap[0]+0.30]);
+  els.owners.style.opacity = 1 - oGone;
+  els.owners.style.height = (64 * (1 - oGone)) + "px";
+  els.owners.style.marginTop = (26 * (1 - oGone)) + "px";
+
+  /* ------------------------------------------------------------- tab strip */
+  const tb = seg(t, P.tabIn);
+  els.tabB.style.opacity = tb;
+  els.tabB.style.transform = `translateX(${(1-tb)*-14}px)`;
+  els.tabB.classList.toggle("on", tb > 0.6);
+  els.tabC.classList.toggle("on", tb <= 0.6);
+  els.tabB.childNodes[0].nodeValue = onOA ? "Outstanding" : "Blotter";
+
+  /* --------------------------------------------------- isolate Daniel Kim */
+  /* From here to the swap NOTHING ELSE MOVES. The stillness is the argument. */
+  const dm = seg(t, P.dim) * (1 - seg(t, P.swap));
+  rowEls.forEach((row, ri) => {
+    row.style.opacity = ri === DANIEL ? 1 : (1 - dm * 0.80);
   });
 
-  setObj(els.cue, band(t, P.cueIn, P.cueOut), 10);
-
-  const onOA = t >= P.swap[0] + 0.30;
-  els.fCell.textContent = onOA ? "A1" : "B2";
-  els.fVal.textContent  = onOA ? "Outstanding actions"
-                        : (t >= P.fieldFrom + P.fieldDur ? "Replied" : "Sent");
-
-  /* -------------------------------------------------- 5. tracker to the list */
+  /* ------------------------------------- tracker becomes Outstanding */
   const sw = seg(t, P.swap);
   const showOA = sw > 0.5;
   els.oa.classList.toggle("live", showOA);
   els.tracker.style.display = showOA ? "none" : "";
   els.letters.style.display = showOA ? "none" : "";
   els.lettersOA.style.display = showOA ? "" : "none";
-  els.tabB.childNodes[0].nodeValue = onOA ? "Outstanding" : "Blotter";
-  els.sheet.style.transform =
-    `translateY(${(1-sheetV)*18}px) scale(${1 - (1 - OA_FIT) * sw})`;
+  /* A dip through the swap so the two bodies never cross-fade on top of one
+     another, which at this type size reads as a smear. The group settles to
+     OA_FIT, which is a real pull-back: the Outstanding view is taller, so the
+     camera gives ground to show there is more here than five rows. */
+  els.sheet.style.opacity = 1 - Math.sin(cl(sw) * Math.PI) * 0.55;
+  els.group.style.transform = `scale(${1 - (1 - OA_FIT) * sw})`;
 
   const cu = seg(t, P.counts);
   countEls.forEach(n => n.textContent = Math.round(+n.dataset.to * cu));
   els.oaTotal.textContent = Math.round(21 * cu);
-
-  /* -------------------------------------------------------- 6. the boundary */
-  setObj(els.bound, band(t, P.boundIn, P.boundOut));
-  els.badges.forEach((b, i) => {
-    const a = P.badgeFrom + i * P.badgeStep;
-    const v = seg(t, [a, a + P.badgeDur]);
-    b.style.opacity = v;
-    b.style.transform = `translateY(${(1-v)*12}px)`;
-  });
 
   /* -------------------------------------------------------------- end card */
   const up = seg(T, P.card), off = seg(T, P.cardOff);
@@ -1038,7 +1345,7 @@ function render(T){
   const cc = seg(T, P.cardCopy) * (1 - seg(T, [P.cardOff[0]-0.10, P.cardOff[1]]));
   els.lockup.style.opacity = cc;
   els.lockup.style.transform = `scale(${0.965 + 0.035*cc})`;
-  setLine(document.querySelector(".endline"), cc, 12);
+  setLine(els.endline, cc, 12);
 }
 
 /* =========================================================================
@@ -1064,7 +1371,8 @@ let trueSize = false;
 function fit(){
   const wrap = $("stagewrap"), hold = $("stagehold");
   const pad = document.body.classList.contains("bare") ? 0 : 96;
-  const k = trueSize ? 1 : Math.min(1, (innerWidth - 40) / 1080, (innerHeight - pad) / 1350);
+  const bare = document.body.classList.contains("bare");
+  const k = trueSize ? 1 : Math.min(1, (innerWidth - (bare ? 0 : 40)) / 1080, (innerHeight - pad) / 1350);
   wrap.style.transform = `scale(${k})`;
   hold.style.width = (1080 * k) + "px";
   hold.style.height = (1350 * k) + "px";
@@ -1072,6 +1380,32 @@ function fit(){
 addEventListener("resize", fit);
 $("btnFit").addEventListener("click", () => { trueSize = !trueSize; fit(); });
 $("btn11").addEventListener("click", () => $("crop11").classList.toggle("on"));
+
+/* Cycle the stall copy and jump to the beat, so the effect is visible at once
+   rather than nineteen seconds later. */
+/* Cycle a copy option and jump to its beat, so the effect is visible at once
+   rather than a dozen seconds later. */
+function cycleStall(){
+  stallPick = (stallPick + 1) % STALL_COPY.length;
+  applyStall();
+  window.renderAt(9.0);
+}
+function cycleOwe(){
+  owePick = (owePick + 1) % OWE_COPY.length;
+  applyOwe();
+  window.renderAt(19.0);
+}
+function cycleEnd(){
+  endPick = (endPick + 1) % END_COPY.length;
+  applyEnd();
+  window.renderAt(20.6);
+}
+$("btnStall").addEventListener("click", cycleStall);
+$("btnOwe").addEventListener("click", cycleOwe);
+$("btnEnd").addEventListener("click", cycleEnd);
+applyStall();
+applyOwe();
+applyEnd();
 
 addEventListener("keydown", e => {
   const step = 1 / 30;
@@ -1082,10 +1416,15 @@ addEventListener("keydown", e => {
   else if (e.key === "c") { document.body.classList.toggle("bare"); fit(); }
   else if (e.key === "f") { trueSize = !trueSize; fit(); }
   else if (e.key === "1") { $("crop11").classList.toggle("on"); }
+  else if (e.key === "s") { cycleStall(); }
+  else if (e.key === "o") { cycleOwe(); }
+  else if (e.key === "e") { cycleEnd(); }
 });
 
-/* Deterministic single-frame access, for capture and inspection. render is a
-   pure function of t, so this gives exactly the frame the player would show. */
+/* Deterministic single-frame access, for capture and for inspecting a beat.
+   render is a pure function of t, so this gives exactly the frame the player
+   would show. Exposed because requestAnimationFrame is throttled in a
+   background tab and any capture tool would otherwise read a stale frame. */
 window.renderAt = function (sec) {
   playing = false; play.textContent = "Play";
   t = Math.max(0, Math.min(DUR, sec));
@@ -1094,8 +1433,14 @@ window.renderAt = function (sec) {
   return t;
 };
 
-const q = new URLSearchParams(location.search).get("t");
+const params = new URLSearchParams(location.search);
+const q = params.get("t");
 if (q !== null) window.renderAt(+q);
+
+/* Embedded use: `?bare=1` strips the chrome so the film can sit inside the
+   funnel as an asset rather than as a player. Added when the film was copied
+   into web/public on August 6, 2026; the source in social/ is unchanged. */
+if (params.get("bare") !== null) document.body.classList.add("bare");
 
 fit();
 requestAnimationFrame(frame);

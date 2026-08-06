@@ -16,8 +16,24 @@ import { cn } from "@/lib/cn";
 import { track, type CtaLocation } from "@/lib/analytics";
 import { useFunnel } from "@/lib/funnel-store";
 
-/** The ratified label. Identical at every placement. */
-export const CTA_LABEL = "See how Blotter works";
+/**
+ * The label, identical at every placement.
+ *
+ * `See how Blotter works` until August 6, 2026, when Jon changed it to
+ * `Try Blotter Now`. The change is forced rather than cosmetic: the old label
+ * promised a demonstration, and the funnel kept that promise with the
+ * three-frame product experience. He cut the three frames, so the old label
+ * would have been writing a cheque the funnel could no longer cash.
+ *
+ * Supersedes `WS4-SPEC.md` and `07-SECTION-7` §9, both of which ratify the old
+ * string. Nothing here may say `early access`, `waitlist` or `beta` — WS3
+ * forbids any availability signal before the terminal screen.
+ *
+ * If the platform variant is ever built, it must carry this exact label too.
+ * WS3 requires the two funnels stay comparable, and the CTA is the first thing
+ * that would diverge.
+ */
+export const CTA_LABEL = "Try Blotter Now";
 
 /*
  * Shape rule for the page: interactive elements are pills, surfaces are 12px.

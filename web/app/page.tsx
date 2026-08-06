@@ -6,6 +6,7 @@ import { HowBlotterWorks } from "@/components/sections/how-blotter-works";
 import { TrackerAndActions } from "@/components/sections/tracker-and-actions";
 import { DataAndPrivacy } from "@/components/sections/data-and-privacy";
 import { FaqAndClose } from "@/components/sections/faq-and-close";
+import { Funnel } from "@/components/funnel/funnel";
 
 /**
  * Spreadsheet landing page.
@@ -41,6 +42,11 @@ export default function Page() {
       <TrackerAndActions />
       <DataAndPrivacy />
       <FaqAndClose />
+      {/*
+        The canonical funnel. A modal over the page rather than a route, so all
+        four CTAs open the same thing without leaving the argument behind.
+      */}
+      <Funnel />
     </>
   );
 }
