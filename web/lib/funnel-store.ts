@@ -63,6 +63,9 @@ interface FunnelState {
   ctaLocation: CtaLocation | null;
   track: RecruitingTrack | null;
   window: RecruitingWindow | null;
+  /** Free text captured when `Other` is chosen. Required before continuing. */
+  trackOther: string;
+  windowOther: string;
   email: string | null;
   paymentMethod: PaymentMethod | null;
   furthestStage: FunnelStage;
@@ -72,6 +75,8 @@ interface FunnelState {
   goTo: (stage: FunnelStage) => void;
   setTrack: (track: RecruitingTrack) => void;
   setWindow: (window: RecruitingWindow) => void;
+  setTrackOther: (value: string) => void;
+  setWindowOther: (value: string) => void;
   setEmail: (email: string) => void;
   setPaymentMethod: (method: PaymentMethod) => void;
   reset: () => void;
@@ -82,6 +87,8 @@ const initial = {
   ctaLocation: null,
   track: null,
   window: null,
+  trackOther: "",
+  windowOther: "",
   email: null,
   paymentMethod: null,
   furthestStage: "closed" as FunnelStage,
@@ -116,6 +123,8 @@ export const useFunnel = create<FunnelState>((set) => ({
 
   setTrack: (track) => set({ track }),
   setWindow: (window) => set({ window }),
+  setTrackOther: (trackOther) => set({ trackOther }),
+  setWindowOther: (windowOther) => set({ windowOther }),
   setEmail: (email) => set({ email }),
   setPaymentMethod: (paymentMethod) => set({ paymentMethod }),
 

@@ -4,22 +4,25 @@
  * The canonical funnel.
  *
  * Authority: `WS3-SPEC.md` for sequence, events and price rules, `WS4-SPEC.md`
- * for every visible string, as amended by Jon on August 6, 2026.
+ * for visible strings, as amended by Jon on August 6, 2026.
  *
- * **A modal card over the page, not a route.** He asked which is right and this
- * is the answer. The two real patterns are a full-page flow — Typeform, Stripe
- * Checkout, product onboarding — which suits long, high-commitment, deep-linked
- * flows; and a card over a dimmed page, which suits short flows where context
- * matters and dismissing should be cheap. This flow is six short screens, the
- * page underneath *is* the argument, and `funnel_started / page_viewed` is a
- * ratified comparative metric — so anything that makes starting feel heavier is
- * a measurement cost, not just a UX one. A card also makes `Return to Blotter`
- * literal rather than a navigation.
+ * **A modal card over the page, not a route.** He asked which was right. Full
+ * page suits long, high-commitment, deep-linked flows — Typeform, Stripe
+ * Checkout, onboarding. A card suits short flows where context matters and
+ * dismissing should be cheap. This is six short screens, the page underneath
+ * *is* the argument, and `funnel_started / page_viewed` is a ratified
+ * comparative metric, so anything making the start feel heavier is a
+ * measurement cost rather than only a design one. A card also makes
+ * `Return to Blotter` literal instead of a navigation.
  *
- * It is a real dialog: focus moves into it, Escape closes it, the backdrop
- * closes it, and the page behind it does not scroll.
+ * **The card is one fixed size for every screen.** His note, and he was right:
+ * a dialog that resizes on each `Continue` reads as unfinished. `CARD_W` and
+ * `CARD_H` are the stage; every step composes inside it and none of them
+ * changes it. The film needs the most room, so it sets the size and the rest
+ * centre a narrower reading column inside it.
  *
- * The sequence, after his amendment:
+ * It is a real dialog: focus moves in, Escape and the backdrop close it, and
+ * the page behind does not scroll.
  *
  *   question_track → question_window → film → email → price → checkout → confirmed
  *
@@ -30,7 +33,17 @@
 import { Dialog } from "@base-ui/react/dialog";
 import { useEffect, useState } from "react";
 
+import { BlotterMark } from "@/components/brand/blotter-mark";
 import { FilmStep } from "@/components/funnel/film-step";
+import {
+  ApplePayMark,
+  BackLink,
+  Check,
+  Choice,
+  Eyebrow,
+  Primary,
+  Title,
+} from "@/components/funnel/parts";
 import {
   BACK,
   CHECKOUT_SUMMARY,
@@ -46,11 +59,11 @@ import {
   EMAIL_LABEL,
   EMAIL_SUPPORTING,
   EMAIL_TITLE,
-  PAY_APPLE,
   PAY_CARD,
   PRICE_AMOUNT,
   PRICE_BILLING,
   PRICE_CTA,
+  PRICE_DELIVERY,
   PRICE_DESCRIPTION,
   PRICE_INCLUDED,
   PRICE_TITLE,
@@ -64,105 +77,36 @@ import { saveLead } from "@/lib/lead-store";
 import { useFunnel } from "@/lib/funnel-store";
 import { cn } from "@/lib/cn";
 
-/* --------------------------------------------------------------- primitives */
+/** The stage. Set by the film, which needs the most room, and never varies. */
+export const CARD_W = 960;
+export const CARD_H = 730;
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-eyebrow leading-none font-medium tracking-[0.1em] text-navy-500 uppercase">
-      {children}
-    </p>
-  );
-}
+/** The reading measure every screen except the film centres inside the stage. */
+const COLUMN = 460;
 
-function Title({ children }: { children: React.ReactNode }) {
-  return (
-    <h2 className="font-display text-[1.5rem] leading-[1.25] font-bold tracking-[-0.02em] text-ink">
-      {children}
-    </h2>
-  );
-}
-
-function Primary({
-  children,
-  disabled,
-  onClick,
-}: {
-  children: React.ReactNode;
-  disabled?: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      disabled={disabled}
-      onClick={onClick}
-      className={cn(
-        "inline-flex min-h-11 w-full items-center justify-center rounded-full px-6 text-[0.95rem] font-medium",
-        "transition-[transform,background-color,opacity] duration-150 ease-out active:scale-[0.98]",
-        disabled
-          ? "cursor-not-allowed bg-navy-900/25 text-white"
-          : "bg-navy-900 text-white hover:bg-navy-800",
-      )}
-    >
-      {children}
-    </button>
-  );
-}
-
-function BackLink({ onClick }: { onClick: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="text-small font-medium text-ink-muted transition-colors duration-150 ease-out hover:text-ink"
-    >
-      {BACK}
-    </button>
-  );
-}
-
-/** The option rows on both questions. One choice, then an explicit Continue. */
-function Choice({
-  label,
-  selected,
-  onSelect,
-}: {
-  label: string;
-  selected: boolean;
-  onSelect: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onSelect}
-      aria-pressed={selected}
-      className={cn(
-        "flex min-h-11 w-full items-center justify-between rounded-lg border px-4 py-3 text-left text-body transition-colors duration-150 ease-out",
-        selected
-          ? "border-navy-500 bg-navy-500/[0.07] text-ink"
-          : "border-rule bg-white text-ink-read hover:border-navy-400/50",
-      )}
-    >
-      {label}
-      <span
-        aria-hidden="true"
-        className={cn(
-          "grid size-[18px] shrink-0 place-items-center rounded-full border",
-          selected ? "border-navy-500" : "border-rule",
-        )}
-      >
-        {selected && <span className="size-[8px] rounded-full bg-navy-500" />}
-      </span>
-    </button>
-  );
-}
+/** Free-text `Other` needs something typed before it counts as an answer. */
+const answered = (choice: string | null, other: string) =>
+  Boolean(choice) && (choice !== "Other" || other.trim().length > 0);
 
 /* -------------------------------------------------------------------- steps */
 
-function QuestionTrack() {
-  const { track: chosen, setTrack, goTo } = useFunnel();
+/** Centres a narrow column in the fixed stage. */
+function Column({ children }: { children: React.ReactNode }) {
   return (
-    <div className="p-8">
+    <div className="flex h-full items-center justify-center p-10">
+      <div className="w-full" style={{ maxWidth: COLUMN }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function QuestionTrack() {
+  const { track: chosen, trackOther, setTrack, setTrackOther, goTo } = useFunnel();
+  const ready = answered(chosen, trackOther);
+
+  return (
+    <Column>
       <Title>{Q1_TITLE}</Title>
       <div className="mt-6 space-y-2">
         {TRACKS.map((t) => (
@@ -171,33 +115,53 @@ function QuestionTrack() {
             label={t}
             selected={chosen === t}
             onSelect={() => setTrack(t)}
+            other={
+              t === "Other"
+                ? {
+                    value: trackOther,
+                    onChange: setTrackOther,
+                    placeholder: "What are you recruiting for?",
+                  }
+                : undefined
+            }
           />
         ))}
       </div>
       <div className="mt-7">
-        <Primary disabled={!chosen} onClick={() => goTo("question_window")}>
+        <Primary disabled={!ready} onClick={() => goTo("question_window")}>
           {CONTINUE}
         </Primary>
       </div>
-    </div>
+    </Column>
   );
 }
 
 function QuestionWindow() {
-  const { window: chosen, track: chosenTrack, setWindow, goTo } = useFunnel();
+  const {
+    window: chosen,
+    windowOther,
+    track: chosenTrack,
+    trackOther,
+    setWindow,
+    setWindowOther,
+    goTo,
+  } = useFunnel();
+  const ready = answered(chosen, windowOther);
 
-  /* `recruiting_profile_completed` means both questions are answered, so it
-     belongs on the way out of the second one, not on the way in. */
+  /* Both questions are answered here, so this is where the event belongs. The
+     two `_other` values ride along as research fields. */
   function next() {
     track("recruiting_profile_completed", {
       recruiting_track: chosenTrack ?? undefined,
       recruiting_window: chosen ?? undefined,
+      recruiting_track_other: chosenTrack === "Other" ? trackOther.trim() : undefined,
+      recruiting_window_other: chosen === "Other" ? windowOther.trim() : undefined,
     });
     goTo("film");
   }
 
   return (
-    <div className="p-8">
+    <Column>
       <Title>{Q2_TITLE}</Title>
       <div className="mt-6 space-y-2">
         {WINDOWS.map((w) => (
@@ -206,26 +170,43 @@ function QuestionWindow() {
             label={w}
             selected={chosen === w}
             onSelect={() => setWindow(w)}
+            other={
+              w === "Other"
+                ? {
+                    value: windowOther,
+                    onChange: setWindowOther,
+                    placeholder: "Which window are you recruiting for?",
+                  }
+                : undefined
+            }
           />
         ))}
       </div>
-      <div className="mt-7 flex items-center gap-6">
-        <Primary disabled={!chosen} onClick={next}>
+      <div className="mt-7">
+        <Primary disabled={!ready} onClick={next}>
           {CONTINUE}
         </Primary>
       </div>
       <div className="mt-4">
-        <BackLink onClick={() => goTo("question_track")} />
+        <BackLink label={BACK} onClick={() => goTo("question_track")} />
       </div>
-    </div>
+    </Column>
   );
 }
 
 function EmailStep() {
-  const { setEmail, goTo, track: t, window: w, ctaLocation, furthestStage } = useFunnel();
+  const {
+    setEmail,
+    goTo,
+    track: t,
+    trackOther,
+    window: w,
+    windowOther,
+    ctaLocation,
+    furthestStage,
+  } = useFunnel();
   const [value, setValue] = useState("");
   const [touched, setTouched] = useState(false);
-
   const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 
   function submit(e: React.FormEvent) {
@@ -239,6 +220,8 @@ function EmailStep() {
       email: value.trim(),
       recruiting_track: t,
       recruiting_window: w,
+      recruiting_track_other: t === "Other" ? trackOther.trim() : null,
+      recruiting_window_other: w === "Other" ? windowOther.trim() : null,
       cta_location: ctaLocation,
       furthest_stage: furthestStage,
     });
@@ -247,54 +230,62 @@ function EmailStep() {
   }
 
   return (
-    <form className="p-8" onSubmit={submit} noValidate>
-      <Eyebrow>{EMAIL_EYEBROW}</Eyebrow>
-      <div className="mt-3">
-        <Title>{EMAIL_TITLE}</Title>
-      </div>
-      <p className="mt-3 text-body leading-[1.6] text-ink-read">{EMAIL_SUPPORTING}</p>
+    <form onSubmit={submit} noValidate className="h-full">
+      <Column>
+        <Eyebrow>{EMAIL_EYEBROW}</Eyebrow>
+        <div className="mt-3">
+          <Title>{EMAIL_TITLE}</Title>
+        </div>
+        <p className="mt-3 text-body leading-[1.6] text-ink-read">{EMAIL_SUPPORTING}</p>
 
-      <label className="mt-6 block">
-        <span className="text-small font-medium text-ink">{EMAIL_LABEL}</span>
-        <input
-          type="email"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          autoComplete="email"
-          aria-invalid={touched && !valid}
-          className={cn(
-            "mt-2 block min-h-11 w-full rounded-lg border bg-white px-3.5 text-body text-ink outline-none",
-            "transition-colors duration-150 ease-out",
-            touched && !valid
-              ? "border-[#c5221f]"
-              : "border-rule focus:border-navy-500",
-          )}
-        />
-      </label>
-      {/* WS4: invalid feedback appears only after an invalid submission. */}
-      {touched && !valid && (
-        <p className="mt-2 text-small text-[#c5221f]">Enter a valid email address.</p>
-      )}
+        <label className="mt-6 block">
+          <span className="text-small font-medium text-ink">{EMAIL_LABEL}</span>
+          <input
+            type="email"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            autoComplete="email"
+            aria-invalid={touched && !valid}
+            className={cn(
+              "mt-2 block min-h-12 w-full rounded-lg border bg-white px-3.5 text-body text-ink outline-none",
+              "transition-colors duration-150 ease-out",
+              touched && !valid ? "border-[#c5221f]" : "border-rule focus:border-navy-500",
+            )}
+          />
+        </label>
+        {/* WS4: invalid feedback appears only after an invalid submission. */}
+        {touched && !valid && (
+          <p className="mt-2 text-small text-[#c5221f]">Enter a valid email address.</p>
+        )}
 
-      <div className="mt-7">
-        <button
-          type="submit"
-          className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-navy-900 px-6 text-[0.95rem] font-medium text-white transition-[transform,background-color] duration-150 ease-out hover:bg-navy-800 active:scale-[0.98]"
-        >
-          {CONTINUE}
-        </button>
-      </div>
-      <div className="mt-4">
-        <BackLink onClick={() => goTo("film")} />
-      </div>
+        <div className="mt-7">
+          <Primary type="submit">{CONTINUE}</Primary>
+        </div>
+        <div className="mt-4">
+          <BackLink label={BACK} onClick={() => goTo("film")} />
+        </div>
+      </Column>
     </form>
   );
 }
 
+/**
+ * The price screen.
+ *
+ * Jon's note: it did not look official enough for a screen that leads to a
+ * payment click. What real plan screens do and this now does — the product is
+ * identified by its mark rather than by a word, the price is the largest thing
+ * on the screen, what is included sits inside a bordered panel rather than
+ * floating, the included marks are filled rather than dots, and the billing
+ * terms sit with the price instead of below the fold.
+ *
+ * `PRICE_DELIVERY` answers the question he actually had at this screen, which
+ * was what arrives when you pay. Everything else is WS4 verbatim, and no
+ * availability signal may appear here.
+ */
 function PriceStep() {
-  const { goTo } = useFunnel();
+  const goTo = useFunnel((s) => s.goTo);
 
-  /* WS3: `price_viewed` means the exact monthly price rendered. */
   useEffect(() => {
     track("price_viewed", { price: 9.99, billing_period: "monthly" });
   }, []);
@@ -305,42 +296,54 @@ function PriceStep() {
   }
 
   return (
-    <div className="p-8">
-      {/* Reads as a current product-selection step. No availability signal. */}
-      <Title>{PRICE_TITLE}</Title>
-      <p className="mt-4 font-display text-[2rem] leading-none font-bold tracking-[-0.02em] text-ink">
-        {PRICE_AMOUNT}
-      </p>
-      <p className="mt-2 text-small text-ink-muted">{PRICE_BILLING}</p>
-      <p className="mt-5 text-body leading-[1.6] text-ink-read">{PRICE_DESCRIPTION}</p>
+    <Column>
+      <div className="flex items-center gap-2.5">
+        <BlotterMark size={22} />
+        <span className="font-display text-[1.0625rem] font-bold tracking-[-0.02em] text-ink">
+          {PRICE_TITLE}
+        </span>
+      </div>
 
-      <ul className="mt-5 space-y-2.5 border-t border-rule pt-5">
-        {PRICE_INCLUDED.map((line) => (
-          <li key={line} className="flex gap-3 text-body leading-[1.5] text-ink-read">
-            <span
-              aria-hidden="true"
-              className="mt-[0.55em] h-[5px] w-[5px] shrink-0 rounded-full bg-navy-500"
-            />
-            {line}
-          </li>
-        ))}
-      </ul>
+      <div className="mt-5 flex items-baseline gap-3">
+        <span className="font-display text-[2.5rem] leading-none font-bold tracking-[-0.03em] text-ink">
+          $9.99
+        </span>
+        <span className="text-body text-ink-muted">/ month</span>
+      </div>
+      <p className="mt-2.5 text-small text-ink-muted">{PRICE_BILLING}</p>
 
-      <div className="mt-7">
+      <div className="mt-6 rounded-xl border border-rule bg-white p-5">
+        <p className="text-small leading-[1.6] text-ink-read">{PRICE_DESCRIPTION}</p>
+        <ul className="mt-4 space-y-3 border-t border-rule pt-4">
+          {PRICE_INCLUDED.map((line) => (
+            <li key={line} className="flex gap-3 text-body leading-[1.45] text-ink">
+              <Check />
+              {line}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <p className="mt-4 text-small leading-[1.55] text-ink-muted">{PRICE_DELIVERY}</p>
+
+      <div className="mt-6">
         <Primary onClick={next}>{PRICE_CTA}</Primary>
       </div>
       <div className="mt-4">
-        <BackLink onClick={() => goTo("email")} />
+        <BackLink label={BACK} onClick={() => goTo("email")} />
       </div>
-    </div>
+      {/* `PRICE_AMOUNT` is the ratified single string; it is composed above so
+          the figure can carry display weight. Referenced so it stays in sync. */}
+      <span className="sr-only">{PRICE_AMOUNT}</span>
+    </Column>
   );
 }
 
 function CheckoutStep() {
   const { setPaymentMethod, goTo } = useFunnel();
 
-  /* No card fields and no money. Either button records the method and advances
-     immediately. WS3 is explicit that both trigger the same canonical event. */
+  /* No card fields and no money. Either button records the method and advances.
+     WS3 is explicit that both trigger the same canonical event. */
   function pay(method: PaymentMethod) {
     setPaymentMethod(method);
     track("payment_option_clicked", {
@@ -352,17 +355,25 @@ function CheckoutStep() {
   }
 
   return (
-    <div className="p-8">
+    <Column>
       <Title>{CHECKOUT_TITLE}</Title>
 
-      <dl className="mt-6 space-y-3 border-y border-rule py-5">
-        {CHECKOUT_SUMMARY.map((row) => (
-          <div key={row.label} className="flex items-baseline justify-between gap-8">
+      <dl className="mt-6 rounded-xl border border-rule bg-white p-5">
+        {CHECKOUT_SUMMARY.map((row, i) => (
+          <div
+            key={row.label}
+            className={cn(
+              "flex items-baseline justify-between gap-10",
+              i > 0 && "mt-3 border-t border-rule pt-3",
+            )}
+          >
             <dt className="shrink-0 text-small text-ink-muted">{row.label}</dt>
             <dd
               className={cn(
-                "text-right text-small",
-                row.label === "Due today" ? "font-semibold text-ink" : "text-ink-read",
+                "text-right",
+                row.label === "Due today"
+                  ? "font-display text-[1.0625rem] font-bold text-ink"
+                  : "text-small text-ink-read",
               )}
             >
               {row.value}
@@ -371,20 +382,21 @@ function CheckoutStep() {
         ))}
       </dl>
 
-      <div className="mt-7 space-y-2.5">
+      <div className="mt-6 space-y-2.5">
         <Primary onClick={() => pay("card")}>{PAY_CARD}</Primary>
         <button
           type="button"
           onClick={() => pay("apple_pay")}
-          className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-ink px-6 text-[0.95rem] font-medium text-white transition-[transform,opacity] duration-150 ease-out hover:opacity-90 active:scale-[0.98]"
+          aria-label="Pay with Apple Pay"
+          className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-black px-6 text-white transition-[transform,opacity] duration-150 ease-out hover:opacity-90 active:scale-[0.98]"
         >
-          {PAY_APPLE}
+          <ApplePayMark />
         </button>
       </div>
       <div className="mt-4">
-        <BackLink onClick={() => goTo("price")} />
+        <BackLink label={BACK} onClick={() => goTo("price")} />
       </div>
-    </div>
+    </Column>
   );
 }
 
@@ -396,7 +408,7 @@ function ConfirmedStep() {
   }, []);
 
   return (
-    <div className="p-8">
+    <Column>
       <Eyebrow>{DONE_EYEBROW}</Eyebrow>
       <div className="mt-3">
         <Title>{DONE_TITLE}</Title>
@@ -407,32 +419,29 @@ function ConfirmedStep() {
       <div className="mt-7">
         <Primary onClick={close}>{DONE_BUTTON}</Primary>
       </div>
-    </div>
+    </Column>
   );
 }
 
 /* ------------------------------------------------------------------ the shell */
 
-/** The film step is wider than the rest: it holds a 4:5 frame beside its copy. */
-const WIDE = new Set(["film"]);
-
 export function Funnel() {
   const stage = useFunnel((s) => s.stage);
   const close = useFunnel((s) => s.close);
-  const open = stage !== "closed";
 
   return (
-    <Dialog.Root open={open} onOpenChange={(next) => !next && close()}>
+    <Dialog.Root open={stage !== "closed"} onOpenChange={(next) => !next && close()}>
       <Dialog.Portal>
-        <Dialog.Backdrop className="funnel-backdrop fixed inset-0 z-50 bg-ink/45 backdrop-blur-[2px]" />
+        <Dialog.Backdrop className="fixed inset-0 z-50 bg-ink/45 backdrop-blur-[2px]" />
         <Dialog.Popup
+          style={{ width: CARD_W, height: CARD_H }}
           className={cn(
-            "funnel-card fixed top-1/2 left-1/2 z-50 max-h-[92vh] w-[calc(100vw-32px)] -translate-x-1/2 -translate-y-1/2",
-            "overflow-y-auto rounded-xl bg-surface-quiet shadow-[0_24px_60px_rgba(20,24,31,0.22)]",
-            WIDE.has(stage) ? "max-w-[880px]" : "max-w-[520px]",
+            "fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2",
+            "max-h-[94vh] max-w-[calc(100vw-32px)] overflow-hidden",
+            "rounded-xl bg-surface-quiet shadow-[0_24px_60px_rgba(20,24,31,0.22)]",
           )}
         >
-          {/* Every screen is titled; the visible heading is the accessible one. */}
+          {/* Every screen is visibly titled; this names the dialog itself. */}
           <Dialog.Title className="sr-only">Try Blotter</Dialog.Title>
 
           {stage === "question_track" && <QuestionTrack />}

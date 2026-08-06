@@ -54,6 +54,20 @@ export interface EventProperties {
   cta_location?: CtaLocation;
   recruiting_track?: RecruitingTrack;
   recruiting_window?: RecruitingWindow;
+  /**
+   * What the visitor typed when they chose `Other`.
+   *
+   * Added August 6, 2026 on Jon's instruction, and it is a research field
+   * rather than a segmentation one: the point is to learn which categories are
+   * missing from the two option lists. Additive to WS3's frozen property set,
+   * which it does not alter — every existing property keeps its meaning, so
+   * the two variants stay comparable.
+   *
+   * Free text typed by a stranger. Never render it back into the page, and
+   * treat it as untrusted anywhere it is read.
+   */
+  recruiting_track_other?: string;
+  recruiting_window_other?: string;
   price?: 9.99;
   billing_period?: "monthly";
   payment_method?: PaymentMethod;

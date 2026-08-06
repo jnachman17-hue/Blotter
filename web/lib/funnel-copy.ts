@@ -61,17 +61,45 @@ export const PRICE_INCLUDED = [
   "Automatic recruiting-activity updates",
   "Current relationship status and next actions",
 ];
+
+/**
+ * How the product actually reaches you. Added August 6, 2026.
+ *
+ * ⚠ UNRATIFIED COPY. Jon's note: at the price screen he could not tell what he
+ * was buying — a download, a signup, a link — because everything above it
+ * describes what Blotter does rather than how it arrives. The page explains the
+ * product at length; this one line answers the delivery question and nothing
+ * else, which is why it is one line.
+ *
+ * It must not imply that a connection is being made now. Nothing in this funnel
+ * touches OAuth.
+ */
+export const PRICE_DELIVERY =
+  "Nothing to install. You connect the Google account you recruit from, and Blotter works inside the Sheet you already use.";
 export const PRICE_CTA = "Continue to payment";
 export const BACK = "Back";
 
 /* ------------------------------------------------------- the checkout step */
 
 export const CHECKOUT_TITLE = "Complete your purchase";
+
+/**
+ * The description line is amended, August 6, 2026.
+ *
+ * WS4 had `Recruiting tracker with Gmail, Calendar, and Google Sheets
+ * synchronization`, which names the parts rather than the thing being bought.
+ * Jon asked that the description say how the product is actually served, on the
+ * same reasoning as `PRICE_DELIVERY`: this is the last screen before a payment
+ * click and it is the wrong place to still be guessing what arrives.
+ *
+ * ⚠ UNRATIFIED COPY. Every other string on this screen is WS4 verbatim.
+ */
 export const CHECKOUT_SUMMARY = [
   { label: "Product", value: "Blotter" },
   {
     label: "Description",
-    value: "Recruiting tracker with Gmail, Calendar, and Google Sheets synchronization",
+    value:
+      "Connects your Google account and keeps your existing recruiting Sheet current",
   },
   { label: "Billing", value: "Monthly" },
   { label: "Due today", value: "$9.99" },

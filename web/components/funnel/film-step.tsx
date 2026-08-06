@@ -11,25 +11,35 @@
  * it reads as an asset rather than as a player. The source in `social/` is
  * untouched.
  *
- * **4:5 is the right shape here, not a compromise.** The film was authored
- * portrait for X and LinkedIn, and a modal card is portrait too, so it sits in
- * a column beside the copy at its native aspect with nothing cropped. It is the
- * one placement on this project where the phone aspect is an advantage.
+ * **The film sets the size of the whole dialog.** It needs the most room of any
+ * screen, so `CARD_W` and `CARD_H` are chosen for it and every other step
+ * composes inside what it leaves. That is why the card never resizes between
+ * steps, which was Jon's note.
  *
- * It is embedded in an iframe rather than ported to React on purpose: the film
- * is 250KB of self-contained timing code that another chat is still editing.
- * Re-implementing it would fork it. Refreshing the copy is a file copy.
+ * It was 380px wide in the first build and he was right that it read small and
+ * blurry: at that width the film's own type lands around 8px effective and
+ * mushes. It is 520px now, which is 37% wider and 87% more area, and the film
+ * scales itself with a CSS transform so nothing is resampled — the gain is real
+ * resolution rather than a bigger blur.
  *
- * What survives from `WS4-SPEC.md`'s frame rules: back navigation is allowed
- * and does not refire events, nothing is a mandatory gate, and
- * `product_experience_completed` fires on the way out — not on render.
+ * **4:5 is an advantage here, not a compromise.** The film was authored portrait
+ * for X and LinkedIn; the card is portrait too, so it sits at native aspect with
+ * nothing cropped.
  *
- * The `1 of 3` progress indicator goes with the frames it counted.
+ * Embedded in an iframe rather than ported to React on purpose: it is 250KB of
+ * self-contained timing code that another chat is still editing. Re-implementing
+ * it would fork it; refreshing the copy is a file copy.
+ *
+ * What survives from WS4's frame rules: back navigation is allowed and does not
+ * refire events, nothing is a mandatory gate, and `product_experience_completed`
+ * fires on the way out rather than on render. The `1 of 3` progress indicator
+ * went with the frames it counted.
  */
 
 import { useState } from "react";
 
-import { CONTINUE } from "@/lib/funnel-copy";
+import { BackLink, Primary } from "@/components/funnel/parts";
+import { BACK, CONTINUE } from "@/lib/funnel-copy";
 import { track } from "@/lib/analytics";
 import { useFunnel } from "@/lib/funnel-store";
 
@@ -37,8 +47,8 @@ import { useFunnel } from "@/lib/funnel-store";
 const FILM_W = 1080;
 const FILM_H = 1350;
 
-/** Rendered width inside the card. 4:5 gives 475px of height at this width. */
-const SLOT_W = 380;
+/** Rendered width inside the card. 4:5 puts the height at 650. */
+const SLOT_W = 520;
 const SLOT_H = Math.round((SLOT_W * FILM_H) / FILM_W);
 
 export function FilmStep() {
@@ -51,15 +61,15 @@ export function FilmStep() {
   }
 
   return (
-    <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-9 p-8">
+    <div className="flex h-full items-center gap-10 p-10">
       <div
-        className="relative overflow-hidden rounded-lg bg-[#eef2f8]"
+        className="relative shrink-0 overflow-hidden rounded-lg bg-[#eef2f8]"
         style={{ width: SLOT_W, height: SLOT_H }}
       >
         {/*
           Mounted only while this stage is on screen, so the film starts from
-          its first frame every time the step is reached, including after a
-          back navigation. It autoplays on load and runs 21.5 seconds.
+          its first frame every time the step is reached, including after a back
+          navigation. It autoplays on load and runs 21.5 seconds.
         */}
         <iframe
           src="/film/blotter-film-a-4x5.html?bare=1"
@@ -71,37 +81,27 @@ export function FilmStep() {
         />
       </div>
 
-      <div className="flex flex-col justify-center">
+      <div className="flex min-w-0 flex-1 flex-col justify-center">
         {/*
           ⚠ UNRATIFIED COPY. The three frames this step replaced had ratified
           copy; this step has none, because Jon created it on August 6, 2026.
-          These two lines are placeholders written to the same rules as the rest
-          of the page: no dash, no availability signal, no claim the product
-          cannot support. Bring them to him before public traffic.
+          Written to the same rules as the rest of the page: no dash, no
+          availability signal, no claim the product cannot support. Bring these
+          two lines to him before public traffic.
         */}
-        <h2 className="font-display max-w-[18ch] text-[1.5rem] leading-[1.25] font-bold tracking-[-0.02em] text-ink">
+        <h2 className="font-display max-w-[16ch] text-[1.625rem] leading-[1.2] font-bold tracking-[-0.022em] text-ink">
           This is what Blotter does.
         </h2>
-        <p className="mt-4 max-w-[42ch] text-body leading-[1.62] text-ink-read">
+        <p className="mt-4 max-w-[34ch] text-body leading-[1.62] text-ink-read">
           One recruiting cycle, and a tracker that keeps up with it. Watch it or
           continue whenever you like.
         </p>
 
-        <div className="mt-8 max-w-[280px]">
-          <button
-            type="button"
-            onClick={next}
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-navy-900 px-6 text-[0.95rem] font-medium text-white transition-[transform,background-color] duration-150 ease-out hover:bg-navy-800 active:scale-[0.98]"
-          >
-            {CONTINUE}
-          </button>
-          <button
-            type="button"
-            onClick={() => goTo("question_window")}
-            className="mt-4 text-small font-medium text-ink-muted transition-colors duration-150 ease-out hover:text-ink"
-          >
-            Back
-          </button>
+        <div className="mt-8 max-w-[260px]">
+          <Primary onClick={next}>{CONTINUE}</Primary>
+          <div className="mt-4">
+            <BackLink label={BACK} onClick={() => goTo("question_window")} />
+          </div>
         </div>
       </div>
     </div>

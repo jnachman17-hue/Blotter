@@ -25,6 +25,9 @@ export interface Lead {
   email: string;
   recruiting_track: RecruitingTrack | null;
   recruiting_window: RecruitingWindow | null;
+  /** Free text when `Other` was chosen. Untrusted input; never render it back. */
+  recruiting_track_other: string | null;
+  recruiting_window_other: string | null;
   surface_variant: "spreadsheet";
   cta_location: CtaLocation | null;
   session_id: string;
