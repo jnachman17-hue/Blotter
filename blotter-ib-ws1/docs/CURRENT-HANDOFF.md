@@ -2,7 +2,13 @@
 
 Date: August 6, 2026
 Status: WS5 active. Sessions 1 through 4 complete. Stages 1 through 7 done.
-**All seven landing-page sections exist.** Ready for stage 8 or 9.
+**All seven landing-page sections exist and Jon tentatively ratified them on
+August 6, 2026** — happy overall, small tweaks expected later. Ready for stage 8.
+
+**Stage 8 is now a different shape than WS3 and WS4 specify.** Jon ruled on
+August 6, 2026 that the funnel is built without the three-frame product
+experience, and that the CTA label changes. Both are open items in section 8
+below and neither is built yet.
 
 ## 1. How this project is built
 
