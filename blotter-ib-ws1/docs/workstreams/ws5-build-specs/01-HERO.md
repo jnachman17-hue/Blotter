@@ -1,5 +1,26 @@
 # WS5 Build Specification 01 — Landing-page hero spreadsheet visual
 
+
+> **Amended by Jon, August 5, 2026, during the stage 6 build.** He is authority
+> level 1 under `WS5-SPEC.md` "Source hierarchy". Reasoning is recorded in
+> `04-decision-log.md`; the implementation carries the same notes inline.
+>
+> | Item here | Amended to |
+> |---|---|
+> | Section 7, third cue `Gmail: Email sent to Alex Morgan — Jan 16 · 8:18 AM` | `Gmail: No reply for 5 days — Last contact Jan 11`, mapped to Daniel Kim. |
+> | Section 7 closing paragraph, holding that Daniel Kim's no-reply state stays Blotter-maintained with no card shown | Superseded. Silence is the stronger proof: a reply is bolded in the reader's inbox and they can notice it unaided, whereas nothing at all arrives to mark a thread going quiet. |
+>
+> Consequences, all implemented: the cue stack was retuned from `[180, 243, 358]`
+> to `[180, 243, 322]`, because the old third position sat 35.25px from Daniel
+> and would have read as pointing at Alex Morgan. Every card still sits within
+> 13px of its own target row and no closer than 35px to any other. Connector
+> endpoints were asserted in the DOM at 192.25, 235.75 and 322.75, dead-centre on
+> Sarah, Marcus and Daniel.
+>
+> Unchanged and still binding: the other two cues verbatim, Alex Morgan's row and
+> its ratified em dash, which is a ruling about the cell rather than the cue, the
+> section 9 connector rules, and the section 12 exclusions.
+
 Date ratified: July 31, 2026  
 Status: Ratified  
 Decision owner: Jon  

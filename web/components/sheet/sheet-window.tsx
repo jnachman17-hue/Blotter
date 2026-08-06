@@ -62,12 +62,21 @@ export interface SheetWindowProps {
   /** Column letters across the top. Pass the exact count the surface needs. */
   columnLetters: string[];
   /**
-   * Width utility per column, positionally matching `columnLetters`. Must be
-   * the same widths the grid body uses, otherwise the letter strip will not
-   * align over the columns it labels. Omit an entry to let it flex.
+   * Width per column, positionally matching `columnLetters`. Must be the same
+   * widths the grid body uses, otherwise the letter strip will not align over
+   * the columns it labels. Omit an entry to let it flex.
+   *
+   * A string is applied as a Tailwind utility and must be written as a literal
+   * somewhere Tailwind can scan it. A number is applied as an inline pixel
+   * width, which is the right choice for any width computed at runtime — a
+   * template-built `w-[123px]` never reaches the compiler and the strip
+   * silently stops aligning.
    */
-  columnWidths?: string[];
-  /** Bottom tab strip. */
+  columnWidths?: (string | number | undefined)[];
+  /**
+   * Bottom tab strip. Pass an empty array to omit the strip entirely, for a
+   * surface that composes its own.
+   */
   tabs: SheetTab[];
   /** Trim the menu row. The Section 3 crop shows a shortened menu set. */
   menuCount?: number;
@@ -157,48 +166,54 @@ export function SheetWindow({
       {/* Column letters. The leading cell is the row-number gutter. */}
       <div className="flex border-b border-sheet-grid bg-sheet-header text-[12px] text-ink-muted">
         <div className="w-[43px] shrink-0 border-r border-sheet-grid" />
-        {columnLetters.map((letter, i) => (
-          <div
-            key={letter}
-            className={cn(
-              "border-r border-sheet-grid py-1 text-center last:border-r-0",
-              columnWidths?.[i] ?? "flex-1",
-            )}
-          >
-            {letter}
-          </div>
-        ))}
+        {columnLetters.map((letter, i) => {
+          const w = columnWidths?.[i];
+          return (
+            <div
+              key={letter}
+              className={cn(
+                "border-r border-sheet-grid py-1 text-center last:border-r-0",
+                typeof w === "string" ? w : w === undefined ? "flex-1" : "shrink-0",
+              )}
+              style={typeof w === "number" ? { width: w } : undefined}
+            >
+              {letter}
+            </div>
+          );
+        })}
       </div>
 
       {children}
 
-      {/* Tab strip */}
-      <div className="flex items-center gap-1 border-t border-sheet-grid px-3 py-2 text-[13px]">
-        <span aria-hidden="true" className="px-1.5 text-ink-muted">
-          +
-        </span>
-        <span aria-hidden="true" className="px-1.5 text-ink-muted">
-          ☰
-        </span>
-        {tabs.map((tab) => (
-          <span
-            key={tab.label}
-            className={cn(
-              "rounded px-3 py-1",
-              tab.active
-                ? "bg-chip-replied-bg font-medium text-chip-replied-fg"
-                : "text-ink-muted",
-            )}
-          >
-            {tab.label}
-            {tab.active && (
-              <span aria-hidden="true" className="ml-1 opacity-60">
-                ▾
-              </span>
-            )}
+      {/* Tab strip. Omitted entirely when the surface composes its own. */}
+      {tabs.length > 0 && (
+        <div className="flex items-center gap-1 border-t border-sheet-grid px-3 py-2 text-[13px]">
+          <span aria-hidden="true" className="px-1.5 text-ink-muted">
+            +
           </span>
-        ))}
-      </div>
+          <span aria-hidden="true" className="px-1.5 text-ink-muted">
+            ☰
+          </span>
+          {tabs.map((tab) => (
+            <span
+              key={tab.label}
+              className={cn(
+                "rounded px-3 py-1",
+                tab.active
+                  ? "bg-chip-replied-bg font-medium text-chip-replied-fg"
+                  : "text-ink-muted",
+              )}
+            >
+              {tab.label}
+              {tab.active && (
+                <span aria-hidden="true" className="ml-1 opacity-60">
+                  ▾
+                </span>
+              )}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

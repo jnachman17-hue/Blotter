@@ -127,6 +127,23 @@
 
   /* Closing panel */
   --color-closing: #1c2434;
+
+  /*
+    Brand.
+
+    Ratified by Jon August 5, 2026: the mark is `Ledger B` and it is navy. It
+    shares the page accent token rather than introducing a seventh blue.
+
+    Yellow and cream are deliberately absent from the identity. They are
+    semantic on this page — they mean "Blotter maintains this" — so a yellow
+    mark would make the logo read as a maintained field everywhere it appeared.
+    Reversed contexts use pure white for the same reason: cream would carry the
+    maintained meaning onto an avatar.
+
+    The geometry that goes with these lives in `lib/brand.ts`.
+  */
+  --color-brand: var(--color-navy-900);
+  --color-brand-reversed: #ffffff;
 }
 
 /*
@@ -165,6 +182,8 @@ body {
   --field-a: #fbfcfe; /* page top, lightest */
   --field-b: #f2f6fb; /* hero to Section 2 handoff */
   --field-c: #e7eef8; /* Section 2 floor, deepest and coolest */
+  --field-d: #f4f8fc; /* Section 3 to Sections 4-5 handoff */
+  --field-e: #eef3fa; /* Sections 4-5 floor, handoff to Section 6 */
 }
 
 /* Hero: lightest and warmest band. */
@@ -190,6 +209,35 @@ body {
     var(--field-b) 0%,
     var(--field-c) 58%,
     var(--field-b) 100%
+  );
+}
+
+/*
+  Section 3: lifts back toward the light. Sections alternate in tone within the
+  one continuous field, so the section after Section 2's floor rises rather than
+  deepening again. Starts on `--field-b`, exactly where Section 2 ended, and
+  settles on `--field-d` for Section 4 to pick up.
+*/
+.field-rise {
+  background: linear-gradient(
+    180deg,
+    var(--field-b) 0%,
+    #fbfcfe 46%,
+    var(--field-d) 100%
+  );
+}
+
+/*
+  Sections 4 and 5, merged. Settles cooler again after Section 3's lift, so the
+  page keeps alternating rather than drifting pale. Starts on `--field-d`,
+  exactly where Section 3 ended, and rests on `--field-e` for Section 6.
+*/
+.field-settle {
+  background: linear-gradient(
+    180deg,
+    var(--field-d) 0%,
+    #f0f5fb 52%,
+    var(--field-e) 100%
   );
 }
 

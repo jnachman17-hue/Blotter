@@ -2,6 +2,8 @@ import { SiteHeader } from "@/components/site-header";
 import { PageView } from "@/components/page-view";
 import { Hero } from "@/components/sections/hero";
 import { ScaleAndConsequence } from "@/components/sections/scale-and-consequence";
+import { HowBlotterWorks } from "@/components/sections/how-blotter-works";
+import { TrackerAndActions } from "@/components/sections/tracker-and-actions";
 
 /**
  * Spreadsheet landing page.
@@ -10,8 +12,8 @@ import { ScaleAndConsequence } from "@/components/sections/scale-and-consequence
  *   1 Hero
  *   2 Scale and consequence
  *   3 How Blotter works
- *   4 Outstanding Actions        (CTA, cta_location = actions)
- *   5 Preservation
+ *   4+5 Tracker and actions      (merged by Jon August 5, 2026;
+ *                                CTA, cta_location = actions)
  *   6 How Blotter uses your data
  *   7 FAQ and final CTA          (CTA, cta_location = final)
  *
@@ -33,6 +35,8 @@ export default function Page() {
         </main>
       </div>
       <ScaleAndConsequence />
+      <HowBlotterWorks />
+      <TrackerAndActions />
     </>
   );
 }

@@ -456,3 +456,124 @@ Status: Confirmed
 - Treating existing Lovable scaffolding as approved implementation. Rejected.
 - Selecting analytics, database, or Google connection providers by default without approval. Rejected.
 - Publishing the spreadsheet page during WS5. Rejected.
+
+---
+
+## Session 3, stage 6. Jon's rulings, August 5, 2026
+
+Every item here is authority level 1 under `WS5-SPEC.md` "Source hierarchy".
+Each is stamped in an amendment table at the top of the spec file it changes,
+and the implementation carries the same reasoning inline.
+
+### The identity, newly created
+
+`03-SECTION-3` section 7 held that the provisional mark inside its asset was
+authoritative for that asset alone, and section 20 left "whether it later
+becomes part of a separate canonical Blotter identity system" open. It is now
+decided.
+
+- **Mark: `Ledger B`.** The letter is built from the spreadsheet rather than
+  decorated with it — the two bowls are rows, the stem is the row-number
+  gutter, split into one cell per row by the hairline the sheet uses between
+  the gutter and column A. Chosen over four alternatives and a control.
+- **Wordmark: Schibsted Grotesk 700, tracking -0.035em.** The page's display
+  face, so wordmark and headlines are one voice rather than two.
+- **Colour: navy alone.** Yellow and cream are unavailable to the identity
+  because they are semantic on this page and mean "Blotter maintains this"; a
+  yellow mark would read as a maintained field everywhere it appeared,
+  including the header, where nothing is maintained. Reversed contexts use
+  pure white, never cream, for the same reason.
+- **Rejected:** a pixel-grid letterform, which only survived small sizes by
+  pixelating and stopped looking good before it stopped being legible; a
+  Sheets selection frame, whose fill handle read as a speech bubble; a
+  metaphor-only record mark; a plain monogram; and a folded-corner document,
+  which is the most generic mark in software.
+- Geometry, ratios and size floors live in `web/lib/brand.ts`. The mark, the
+  wordmark, the lockup and the reversed tile live in
+  `web/components/brand/blotter-mark.tsx`, drawn once so the favicon and the
+  header cannot drift apart.
+
+### The page-theme colour rule, relaxed
+
+The August 5 page theme fixed one navy accent with the Blotter yellow kept
+strictly semantic. Jon relaxed it the same day for Section 3's resolution
+block, where the symbol tiles carry three distinct tints. The semantic meaning
+still governs the product surfaces and the identity.
+
+### Section 3
+
+The formal exact asset is discarded and the mechanism rebuilt as a day. The
+full amendment table is at the top of `03-SECTION-3-HOW-BLOTTER-WORKS.md`.
+
+The reasoning worth preserving: the asset was three boxes in a row, two of them
+real and one — the Blotter module, the only stage the section exists to
+explain — an empty square with a logo in it. It asserted Blotter rather than
+showing it. `Current` is a time word and nothing else on the page carries time;
+every other section shows a tracker that happens to be right, never one
+becoming right.
+
+Blotter is claimed once, by the rail every moment passes through, never by a
+badge on an individual row. Marking only Daniel would have read as the one
+thing Blotter caught, when it is equally what recognised Sarah's reply and
+Priya's chat.
+
+The ChatGPT mark on `No AI slop` overrides section 17's "provider references"
+exclusion. The trademark use and the negative comparative position were both
+put to Jon and both waived.
+
+### The hero
+
+The third activity cue moves from Alex Morgan to Daniel Kim. Silence is the
+stronger proof: a reply is bolded in the reader's inbox and they can notice it
+unaided, whereas nothing at all arrives to mark a thread going quiet. Alex
+Morgan's row and its ratified em dash are untouched — that ruling is about the
+cell, not the cue.
+
+### Sections 4 and 5, merged
+
+One section, two beats, preservation first. The full amendment tables are at
+the top of both spec files.
+
+The page was carrying three separate Google Sheets windows and a reader files
+three tables as one repeated idea. The two beats are literally two tabs of one
+file. `Contacts` sitting untouched in the tab strip is itself the preservation
+proof. Both ratified headlines survive intact and in order, so the merge costs
+no copy, only a section boundary.
+
+The Outstanding Actions asset is discarded and section 13's exclusions fall
+wholesale with it. The asset filled four of its six rows with `+N more`, so two
+thirds of the visible content announced that the content was not visible, in
+the one section whose job is to prove completeness.
+
+Eighteen of the twenty-one contacts in the rebuilt action view are invented.
+Flagged and accepted.
+
+### Funnel implications, set aside
+
+Jon ruled that already-ratified funnel frames must not constrain landing-page
+design, and that he may cut the funnel entirely in favour of showing everything
+on the page behind a single direct CTA. `04-SECTION-4` section 10's Frame 3
+reuse is therefore inactive as a design constraint. The funnel decision itself
+is deferred.
+
+### Rejected during this session
+
+- Reproducing `how-blotter-works-exact-v1.avif`. Rejected by Jon.
+- Reproducing `outstanding-actions-reference-v1.png`. Rejected by Jon.
+- A three-stage pipeline diagram for Section 3, in any styling. Rejected.
+- Twenty-one stacked action rows. Rejected: each extra row bought nothing.
+- Group bands showing two of six rows. Rejected: the truncation makes no sense.
+- A dark navy panel behind Section 3's product-boundary statements. Rejected as
+  too bold and too dull at once.
+- Outlined pills for those statements. Rejected.
+- Leader lines ticking each reassurance claim to the part of the sheet that
+  proves it. Rejected, and the arithmetic was wrong as built.
+- Reworking the hero to reduce page content. Rejected in favour of merging
+  Sections 4 and 5.
+
+### Parked, not rejected
+
+The rear sheet in a stacked-tabs treatment rendered as the messy, stale,
+unformatted spreadsheet the reader actually has, which Blotter converts into
+the clean Blotter tab. Jon's idea. Recorded in
+`web/components/sections/tracker-and-actions.tsx` and worth its own round.

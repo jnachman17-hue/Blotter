@@ -74,16 +74,24 @@ function rowCenterY(i: number) {
  * Vertical centre of each cue card, measured from the window top.
  *
  * Section 9 asks each cue to sit as close to its target row as practical. The
- * cue rows are 1, 2 and 5, so an evenly pitched stack is impossible without a
- * card coming to rest level with Priya Shah or Daniel Kim, which would imply a
- * mapping that does not exist. The stack is therefore deliberately uneven, and
- * the wide gap between the second and third card falls level with exactly the
- * two rows that carry no cue.
+ * cue rows are 1, 2 and 4 — Sarah Chen, Marcus Lee and Daniel Kim — so an
+ * evenly pitched stack is impossible without a card coming to rest level with
+ * Priya Shah or Alex Morgan, which would imply a mapping that does not exist.
+ * The stack is therefore deliberately uneven.
  *
- * Every card sits within 13px of its own target row and no closer than 35px to
- * any other row, so the nearest row to a card is always the row it maps to.
+ * Retuned on August 5, 2026 when Jon swapped the third cue from Alex Morgan to
+ * Daniel Kim, moving its target up one row. The old third position, 358, sat
+ * 35.25px from Daniel and would have read as pointing at the wrong contact.
+ *
+ * Row centres are 192.25, 235.75, 279.25, 322.75 and 366.25. Against those,
+ * every card still sits within 13px of its own target row and no closer than
+ * 35px to any other, so the nearest row to a card is always the row it maps to:
+ *
+ *   180 -> Sarah  12.25 away, next nearest Marcus at 55.75
+ *   243 -> Marcus  7.25 away, next nearest Priya at 36.25
+ *   322 -> Daniel  0.75 away, next nearest Priya at 42.75, Alex at 44.25
  */
-const CUE_CENTER_Y = [180, 243, 358];
+const CUE_CENTER_Y = [180, 243, 322];
 
 /* ------------------------------------------------------------- connectors */
 

@@ -1,5 +1,40 @@
 # WS5 Build Specification 04 - Section 4 Outstanding Actions
 
+
+> **Amended by Jon, August 5, 2026, during the stage 6 build.** He is authority
+> level 1 under `WS5-SPEC.md` "Source hierarchy". Reasoning is recorded in
+> `04-decision-log.md`; the implementation carries the same notes inline.
+>
+> | Item here | Amended to |
+> |---|---|
+> | Section 6, `outstanding-actions-reference-v1.png` as the formal exact asset | Discarded. Jon rejected it outright. |
+> | Section 13, the full list of explicit exclusions | Falls wholesale with the asset. They existed to protect it. |
+> | Section 4 and 8, Section 4 as its own section with its own composition | Merged with Section 5 into one section with two beats. See `05-SECTION-5` for the same amendment. |
+> | Section 7, one readable row plus one `+N more` overflow row per group | Overruled. Every one of the 21 actions is shown. |
+> | Section 10, reuse as canonical funnel Frame 3 | Set aside. Jon ruled on August 5 that funnel implications are not to constrain landing-page design, and that he may cut the funnel entirely. Frame 3 is a session 5 question. |
+>
+> Why the asset failed, in Jon's judgement and mine: the section promises "one
+> current view of every action you owe", and four of the asset's six rows read
+> `+5 more`, `+10 more`, `+3 more`. Two thirds of the visible content was a label
+> announcing that the content was not visible, in the one section whose job is to
+> prove completeness. The `21` sat in a grey pill in the corner.
+>
+> What replaced it: the three groups run as columns rather than stacked bands, so
+> each count sits at the head of its own column instead of stranded at the far
+> right, and all 21 actions fit in thirteen rows instead of twenty-six. The
+> composition argues on its own — the follow-ups column runs nearly twice as long
+> as the others, which is Section 3's silence argument landing again at scale.
+>
+> **Eighteen of the twenty-one contacts are invented.** Sarah Chen, Daniel Kim and
+> Priya Shah keep their exact ratified wording. The rest exist because the view
+> has to show the work rather than admit it is a mockup. Flagged to Jon and
+> accepted.
+>
+> Unchanged and still binding: the section 5 copy verbatim, including the CTA line
+> and `See how Blotter works`; `cta_location = actions`; the section 7 counts,
+> which still reconcile as 6 + 11 + 4 = 21; the Google Sheets chrome, which stays
+> exactly as the hero establishes it; and the static-screenshot rule.
+
 Date ratified: August 1, 2026  
 Status: Ratified  
 Decision owner: Jon  

@@ -10,3 +10,5 @@
 # configures a skill that is itself ignored above. *.local.json is personal
 # by convention and should not be shared.
 .claude/settings.local.json
+.DS_Store
+**/.DS_Store

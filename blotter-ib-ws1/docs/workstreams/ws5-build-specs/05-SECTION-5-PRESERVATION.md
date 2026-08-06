@@ -1,5 +1,32 @@
 # WS5 Build Specification 05 - Section 5 Preservation
 
+
+> **Amended by Jon, August 5, 2026, during the stage 6 build.** He is authority
+> level 1 under `WS5-SPEC.md` "Source hierarchy". Reasoning is recorded in
+> `04-decision-log.md`; the implementation carries the same notes inline.
+>
+> | Item here | Amended to |
+> |---|---|
+> | Section 3 and 10, Section 5 as its own section | Merged with Section 4 into one section with two beats, preservation first. See `04-SECTION-4` for the same amendment. |
+> | Section 5, `preservation-exact-v1.html` as the formal exact target | Reproduced in geometry and content, but rebuilt rather than translated pixel for pixel, and the maintained zone is treated per the amendments below. |
+> | Section 9, "Do not add the two zone labels over or inside the exact asset" | Overruled for labels placed *outside* the sheet at full size. That ban existed to protect the exact asset. |
+> | Section 4, the reassurance strip as "one compact horizontal strip with restrained separators or small check marks" | Overruled. Jon rejected plain text on a rule as the most word-heavy, least visual thing in the section. Each claim now carries a marked glyph, ruled apart, set to the sheet's width. |
+> | The maintained-zone treatment | The cream carries down every maintained cell rather than stopping at the header band, which is where the hero and Section 3 stop it. This section's job is the ownership split itself, and an area reads faster than an edge. |
+>
+> Why merged. The page was carrying three separate Google Sheets windows — hero,
+> Section 4, Section 5 — and however different the arguments are, a reader files
+> three tables as one repeated idea. The two beats are literally two tabs of one
+> file, which is what the product is. `Contacts` sitting untouched in the tab
+> strip is itself the preservation proof. Both ratified headlines survive intact
+> and in their ratified order, so the merge costs no copy, only a section
+> boundary.
+>
+> Unchanged and still binding: the section 4 copy verbatim, the section 6 column
+> order and the divider between LinkedIn and Status, the section 7 rows and
+> values, the `Here` links, the absence of an eyebrow, and the static rule. The
+> section 7 note that Alex Morgan's `Next move` is genuinely blank still holds —
+> the em-dash exception is scoped to the hero cell alone.
+
 Date ratified: August 1, 2026  
 Status: Ratified  
 Decision owner: Jon  

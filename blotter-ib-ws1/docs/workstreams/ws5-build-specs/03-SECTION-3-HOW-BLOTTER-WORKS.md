@@ -1,5 +1,37 @@
 # WS5 Build Specification 03 — Section 3 How Blotter works
 
+
+> **Amended by Jon, August 5, 2026, during the stage 6 build.** He is authority
+> level 1 under `WS5-SPEC.md` "Source hierarchy". Reasoning is recorded in
+> `04-decision-log.md`; the implementation carries the same notes inline.
+>
+> | Item here | Amended to |
+> |---|---|
+> | Section 2 and 7, `how-blotter-works-exact-v1.avif` as the formal exact target | Discarded. The mechanism is rebuilt. Jon rejected the asset outright. |
+> | Section 7's three preserve-lists, and the section 16 requirement to preserve the complete `2048 × 633` composition | Superseded by the rebuilt visual. |
+> | Section 19 acceptance criteria 3 through 8, and the matching section 21 ratification lines | Read against the rebuild. |
+> | Section 11, "one compact horizontal row on desktop" and "restrained outlined-pill or compact-label treatment" | Overruled. The three statements stack, and the pills are gone. |
+> | Section 11, "no icons" | Overruled. Each statement carries a symbol. |
+> | Section 12, closing line placed after the badges as its own beat | Overruled. It is incorporated into the same block. |
+> | Section 17, "provider references" | Overruled for the ChatGPT mark on `No AI slop`. Raised twice, including the trademark and comparative-claim exposure, and waived both times. |
+>
+> What replaced the asset: one Friday, three moments, one tracker. Not a flow.
+> `Current` is a time word and nothing else on the page has time in it — every
+> other section shows a tracker that happens to be right, never one becoming
+> right. Columns run in causal order, when, what happened, Blotter, what the
+> tracker says, so the ratified section 5 stage labels land in the order sections
+> 4 and 8 require without drawing a pipeline.
+>
+> Daniel Kim opens it rather than Alex Morgan, on the same reasoning as the
+> `01-HERO` amendment. `No reply for 5 days` is the exact line already ratified in
+> `04-SECTION-4-OUTSTANDING-ACTIONS` section 7.
+>
+> Unchanged and still binding: the section 1 communication job, all section 5
+> copy verbatim, the section 10 removal of the ownership lists, the section 13 ban
+> on repeating the hero's cue-to-row demonstration, section 14's ban on brain,
+> robot, sparkle, circuit and wand iconography, section 15's static-screenshot
+> rule, and the absence of a CTA.
+
 Date ratified: July 31, 2026  
 Status: Ratified  
 Decision owner: Jon  

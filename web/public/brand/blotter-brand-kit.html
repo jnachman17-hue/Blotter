@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blotter brand kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #12233d;
+    --ink: #14181f;
+    --muted: #5f6368;
+    --faint: #a4a8ac;
+    --rule: #e6e6e3;
+    --page: #f4f6f9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font: 400 15px/1.6 "Schibsted Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 56px 32px 96px; }
+  h1 { font-size: 36px; line-height: 1.12; font-weight: 700; letter-spacing: -0.02em; margin: 10px 0 0; }
+  .eyebrow { font-size: 12.5px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: #40608c; margin: 0; }
+  .lede { max-width: 68ch; color: var(--muted); margin: 14px 0 0; }
+  h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.015em; margin: 56px 0 4px; }
+  h2 .dims { font-size: 13px; font-weight: 400; color: var(--faint); letter-spacing: 0; margin-left: 10px; }
+  .note { color: var(--muted); font-size: 13.5px; margin: 0 0 20px; max-width: 74ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+  /* Banners need the width to be judged; two to a row rather than three. */
+  .grid.wide { grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); }
+  .card { background: #fff; border: 1px solid var(--rule); border-radius: 14px; padding: 16px; }
+  .frame {
+    background: repeating-conic-gradient(#f0f0ee 0% 25%, #fff 0% 50%) 50%/16px 16px;
+    border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center;
+  }
+  canvas { display: block; width: 100%; height: auto; }
+  .meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
+  .name { font-size: 13.5px; font-weight: 500; }
+  .sub { font-size: 12px; color: var(--faint); }
+  button {
+    font: inherit; font-size: 13px; font-weight: 500; cursor: pointer;
+    background: var(--navy); color: #fff; border: 0; border-radius: 999px;
+    padding: 9px 18px; white-space: nowrap; transition: opacity .15s ease-out;
+  }
+  button:hover { opacity: .88; }
+  button.ghost { background: transparent; color: var(--navy); box-shadow: inset 0 0 0 1px var(--rule); }
+  .bar { display: flex; gap: 10px; align-items: center; margin-top: 24px; flex-wrap: wrap; }
+  .status { font-size: 13px; color: var(--muted); }
+  .safe { background: #fff8e6; border: 1px solid #f0e0b4; border-radius: 10px; padding: 14px 16px; margin: 22px 0 0; font-size: 13.5px; color: #6b5312; max-width: 74ch; }
+  .rule-note { background: #eef3fa; border: 1px solid #cfdcee; border-radius: 10px; padding: 14px 16px; margin: 12px 0 0; font-size: 13.5px; color: #2c4467; max-width: 74ch; }
+  .toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--muted); cursor: pointer; user-select: none; }
+  select {
+    font: inherit; font-size: 13px; cursor: pointer; color: var(--navy);
+    background: #fff; border: 1px solid var(--rule); border-radius: 999px; padding: 8px 12px;
+  }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92em; background: #f2f2f0; padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Blotter · brand kit</p>
+  <h1>Social assets, ready to upload</h1>
+  <p class="lede">
+    Every asset below is drawn at its exact platform pixel size and downloads as a real PNG.
+    Nothing here is a screenshot or a resize &mdash; the mark is redrawn from its source geometry
+    at each size, so it stays crisp at 1000px and at 48px.
+  </p>
+
+  <div class="bar">
+    <button id="all">Download every asset</button>
+    <button class="ghost" id="allNavy">Navy set</button>
+    <button class="ghost" id="allWhite">White set</button>
+    <button class="ghost" id="allGradient">Gradient set</button>
+    <span class="status" id="status">Loading the wordmark font&hellip;</span>
+  </div>
+
+  <div class="bar">
+    <label class="toggle" for="safeMode">Show what covers the banner on</label>
+    <select id="safeMode">
+      <option value="off">nothing &mdash; show the artwork</option>
+      <option value="personal">a personal profile</option>
+      <option value="company">a company page</option>
+    </select>
+  </div>
+
+  <div class="safe">
+    <strong>Banner safe areas.</strong> On both X and LinkedIn your profile photo overlaps the
+    lower-left of the banner on desktop, and the sides get cropped on mobile. Every banner here
+    keeps its content centred and well inside those zones, so nothing important gets covered or cut.
+    Pick a surface above to see its footprint drawn over each banner &mdash; it is a preview only
+    and never reaches the PNG.
+    <br><br>
+    <strong>Company pages are different.</strong> A company cover renders at roughly 5.86:1, so a
+    1584&nbsp;&times;&nbsp;396 banner uploaded there loses a band off the top and the bottom, and the
+    page&rsquo;s logo tile covers the lower left &mdash; a bigger bite than a profile photo, starting
+    higher up, landing exactly where the mark sits. Use the 1128&nbsp;&times;&nbsp;191 headline-only
+    banners on a company page.
+  </div>
+
+  <div class="rule-note">
+    <strong>One thing to rule on.</strong> The gradient banners come in two versions. The
+    <em>cool</em> one runs the manual-zone blue twice, corner to corner. The <em>warm</em> one is
+    the landing page verbatim, which means it carries the maintained-zone cream
+    <code>#fbeac6</code>. <code>lib/brand.ts</code> ratifies cream as semantic &mdash; it means
+    &ldquo;Blotter maintains this&rdquo; &mdash; and keeps it out of identity assets, and a banner
+    is an identity asset. The warm version is here to be looked at, not because it is approved.</div>
+
+  <div id="sections"></div>
+</div>
+
+<script>
+/* ------------------------------------------------------------------ tokens */
+
+const NAVY  = "#12233d";
+const INK   = "#14181f";
+const WHITE = "#ffffff";
+/* Second headline line, matching the hero's two-tone treatment. */
+const MUTED_ON_LIGHT = "#647fa6";
+const MUTED_ON_DARK  = "#93abcb";
+
+const TAGLINE = ["Your networking keeps moving.", "Your tracker does not."];
+
+/* ------------------------------------------------------------------- glyph */
+/*
+  Ledger B, in the same 24-unit space as components/brand/blotter-mark.tsx.
+  Two gutter cells plus the bowls, whose pill counters are knocked out with the
+  even-odd rule. Ink occupies x 3.2 to 20.6 and y 2.8 to 21.2.
+*/
+const GLYPH = "M7.5 2.8H14.2a4.2 4.2 0 0 1 0 8.4H7.5Z"
+            + "M11.8 5.6H13.4a1.4 1.4 0 0 1 0 2.8H11.8a1.4 1.4 0 0 1 0-2.8Z"
+            + "M7.5 12.8H16.4a4.2 4.2 0 0 1 0 8.4H7.5Z"
+            + "M11.8 15.6H14.8a1.4 1.4 0 0 1 0 2.8H11.8a1.4 1.4 0 0 1 0-2.8Z";
+const INK_X = 3.2, INK_Y = 2.8, INK_W = 17.4, INK_H = 18.4;
+
+/** Draws the mark with its ink box top-left at (x, y) and returns its width. */
+function drawMark(ctx, x, y, h, color) {
+  const s = h / INK_H;
+  ctx.save();
+  ctx.translate(x - INK_X * s, y - INK_Y * s);
+  ctx.scale(s, s);
+  ctx.fillStyle = color;
+  ctx.beginPath(); ctx.roundRect(3.2, 2.8, 3.4, 8.4, 1.1); ctx.fill();
+  ctx.beginPath(); ctx.roundRect(3.2, 12.8, 3.4, 8.4, 1.1); ctx.fill();
+  ctx.fill(new Path2D(GLYPH), "evenodd");
+  ctx.restore();
+  return INK_W * s;
+}
+
+/* ---------------------------------------------------------------- wordmark */
+/* Schibsted Grotesk 700 at -0.035em, which is the ratified wordmark. */
+
+function setWordmarkFont(ctx, size) {
+  ctx.font = `700 ${size}px "Schibsted Grotesk", sans-serif`;
+  try { ctx.letterSpacing = `${-0.035 * size}px`; } catch (e) { /* older engines */ }
+}
+
+function drawWordmark(ctx, x, cy, size, color) {
+  setWordmarkFont(ctx, size);
+  ctx.fillStyle = color;
+  ctx.textAlign = "left";
+  ctx.textBaseline = "alphabetic";
+  const m = ctx.measureText("Blotter");
+  /* Centre the visible ink rather than the em box, so it sits level with the mark. */
+  const mid = (m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2;
+  ctx.fillText("Blotter", x, cy + mid);
+  return m.width;
+}
+
+/* ------------------------------------------------------------------ lockup */
+/* Ratios come straight from lib/brand.ts: wordmark 0.773x and gap 0.45x the
+   mark's box, which in ink terms is ~1.0x and ~0.587x its ink height. */
+
+function lockupWidth(ctx, inkH) {
+  setWordmarkFont(ctx, inkH);
+  return INK_W * (inkH / INK_H) + inkH * 0.587 + ctx.measureText("Blotter").width;
+}
+
+function drawLockup(ctx, cx, cy, inkH, markColor, textColor) {
+  let x = cx - lockupWidth(ctx, inkH) / 2;
+  x += drawMark(ctx, x, cy - inkH / 2, inkH, markColor) + inkH * 0.587;
+  drawWordmark(ctx, x, cy, inkH, textColor);
+}
+
+/* ------------------------------------------------------------- page field */
+/*
+  The landing page's hero band, redrawn at banner proportions.
+
+  `globals.css .field-open` is a cool wash from the top left and a warm one from
+  the top right, over a near-white vertical fade. Its radii are sized for a tall
+  hero, so copied literally onto a 3:1 banner both washes collapse into a stripe
+  along the top edge. The ellipse ratio, the hues and the reading — cool left,
+  warm right, lightest in the middle — are the page's; only the radii move.
+
+  Two versions ship on purpose.
+
+  `warm` is the page verbatim, cream included. `cool` swaps the cream for a
+  second pass of the manual-zone blue, coming up from the bottom right so the
+  field still has somewhere to travel. That split exists because `lib/brand.ts`
+  ratifies cream as semantic — it means "Blotter maintains this" — and keeps it
+  out of identity assets. A banner is an identity asset, so the warm version is
+  awaiting Jon's ruling and is not approved by being here.
+*/
+
+const FIELD_TOP    = "#fbfcfe";       /* --field-a */
+const FIELD_BOTTOM = "#f2f6fb";       /* --field-b */
+const WASH_COOL = "207,224,246";      /* #cfe0f6, the manual-zone blue */
+const WASH_WARM = "251,234,198";      /* #fbeac6, the maintained-zone cream */
+
+/* The page's washes are 1280x700 and 1160x640 ellipses — both about 0.55. */
+const WASH_RATIO = 0.55;
+
+function wash(ctx, cx, cy, rx, rgb, fadeAt) {
+  const ry = rx * WASH_RATIO;
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.scale(1, ry / rx);
+  const g = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+  g.addColorStop(0, `rgba(${rgb},1)`);
+  g.addColorStop(fadeAt, `rgba(${rgb},0)`);
+  ctx.fillStyle = g;
+  ctx.fillRect(-rx, -rx, rx * 2, rx * 2);
+  ctx.restore();
+}
+
+function paintField(ctx, w, h, warm) {
+  const base = ctx.createLinearGradient(0, 0, 0, h);
+  base.addColorStop(0, FIELD_TOP);
+  base.addColorStop(1, FIELD_BOTTOM);
+  ctx.fillStyle = base;
+  ctx.fillRect(0, 0, w, h);
+
+  wash(ctx, 0, -0.14 * h, 0.80 * w, WASH_COOL, 0.62);
+  if (warm) wash(ctx, w, -0.16 * h, 0.74 * w, WASH_WARM, 0.64);
+  else      wash(ctx, w,  1.12 * h, 0.72 * w, WASH_COOL, 0.60);
+}
+
+/* ----------------------------------------------------------------- layouts */
+
+function fill(ctx, w, h, spec) {
+  ctx.clearRect(0, 0, w, h);
+  if (spec.field) { paintField(ctx, w, h, spec.field === "warm"); return; }
+  if (spec.bg) { ctx.fillStyle = spec.bg; ctx.fillRect(0, 0, w, h); }
+}
+
+/** Square avatar. Platforms crop this to a circle themselves. */
+function layoutProfile(ctx, w, h, spec) {
+  fill(ctx, w, h, spec);
+  const inkH = h * 0.58;
+  drawMark(ctx, (w - INK_W * (inkH / INK_H)) / 2, (h - inkH) / 2, inkH, spec.fg);
+}
+
+/** Mark alone on transparency, for anywhere that supplies its own background. */
+function layoutMark(ctx, w, h, spec) {
+  fill(ctx, w, h, spec);
+  const inkH = h * 0.72;
+  drawMark(ctx, (w - INK_W * (inkH / INK_H)) / 2, (h - inkH) / 2, inkH, spec.fg);
+}
+
+/** Banner carrying the lockup alone. */
+function layoutLockup(ctx, w, h, spec) {
+  fill(ctx, w, h, spec);
+  drawLockup(ctx, w / 2, h / 2, h * 0.34, spec.fg, spec.fg);
+}
+
+/** Banner carrying the lockup above the ratified hero headline. */
+function layoutTagline(ctx, w, h, spec) {
+  fill(ctx, w, h, spec);
+
+  const size    = h * 0.105;
+  const lineGap = size * 1.28;
+  const inkH    = size * 1.15;
+  const gap     = size * 0.9;
+
+  /* Establishing the headline's own text state, used for measuring and drawing. */
+  const setHeadline = () => {
+    ctx.font = `700 ${size}px "Schibsted Grotesk", sans-serif`;
+    try { ctx.letterSpacing = `${-0.02 * size}px`; } catch (e) {}
+    ctx.textAlign = "center";
+    ctx.textBaseline = "alphabetic";
+  };
+
+  /*
+    Centre the visible ink, not an estimate of the block. A line box is taller
+    than the letters inside it, so assuming two full line heights leaves dead
+    space under the last line and the whole composition floats high.
+  */
+  setHeadline();
+  const ascent  = ctx.measureText(TAGLINE[0]).actualBoundingBoxAscent;
+  const descent = ctx.measureText(TAGLINE[1]).actualBoundingBoxDescent;
+  const total   = inkH + gap + ascent + lineGap + descent;
+  const y = (h - total) / 2;
+
+  drawLockup(ctx, w / 2, y + inkH / 2, inkH, spec.fg, spec.fg);
+
+  /* The lockup leaves the context set up for the wordmark, so restore ours. */
+  setHeadline();
+  const baseline = y + inkH + gap + ascent;
+  ctx.fillStyle = spec.fg;
+  ctx.fillText(TAGLINE[0], w / 2, baseline);
+  ctx.fillStyle = spec.accent;
+  ctx.fillText(TAGLINE[1], w / 2, baseline + lineGap);
+}
+
+/* --------------------------------------------------------- stacked lockup */
+/*
+  The mark with the wordmark centred beneath it — the left half of a split
+  banner, when it carries the name as well as the letter.
+
+  `lib/brand.ts` ratifies the horizontal lockup and does not decide a stacked
+  one, so these three proportions are chosen rather than derived. The wordmark
+  sits at a little over half the mark's ink height, which keeps the letter
+  dominant and stops the name reading as a caption under it.
+*/
+
+const STACK_WORD = 0.55; /* wordmark size, as a multiple of the mark's ink height */
+const STACK_GAP  = 0.24; /* space between them, same units */
+
+/* "Blotter" carries no descender, so its ink is about 73% of the em box. */
+const WORD_INK = 0.73;
+
+/** The stack's total ink height, as a multiple of the mark's. */
+const STACK_HEIGHT = 1 + STACK_GAP + STACK_WORD * WORD_INK;
+
+/** Widest of the two, which is the wordmark at every size this kit uses. */
+function stackWidth(ctx, markInk) {
+  setWordmarkFont(ctx, markInk * STACK_WORD);
+  return Math.max(INK_W * (markInk / INK_H), ctx.measureText("Blotter").width);
+}
+
+function drawStack(ctx, cx, top, markInk, markColor, textColor) {
+  drawMark(ctx, cx - (INK_W * (markInk / INK_H)) / 2, top, markInk, markColor);
+
+  const size = markInk * STACK_WORD;
+  setWordmarkFont(ctx, size);
+  const wordTop = top + markInk * (1 + STACK_GAP);
+  drawWordmark(
+    ctx,
+    cx - ctx.measureText("Blotter").width / 2,
+    wordTop + (size * WORD_INK) / 2,
+    size,
+    textColor,
+  );
+}
+
+/* ------------------------------------------------------------ split banner */
+/*
+  Mark on the left, headline on the right, a hairline between them.
+
+  The group is measured first and then centred as a unit, and that is also what
+  keeps the mark safe: the profile photo bites the lower left of both platforms,
+  and a centred group starts a long way inside that corner instead of on the
+  canvas edge. `leftMax` is the second guard — it caps the left block's height
+  so its bottom stays above the photo even on the shortest canvas. Only the left
+  block needs that cap, because the headline sits well clear of the bite in x.
+
+  Everything scales linearly with the headline size, so the type is measured
+  once at `PROBE` and the size solved from it rather than guessed and nudged.
+*/
+
+const SPLIT_WIDTH    = 0.78; /* group width, as a fraction of the canvas */
+const SPLIT_LINE_GAP = 1.24; /* headline leading, as a multiple of its size */
+const SPLIT_MARK     = 0.88; /* left block height, as a multiple of the headline block */
+const SPLIT_PAD      = 0.34; /* clearance either side of the rule, same units */
+const PROBE = 100;
+
+function layoutSplit(ctx, w, h, spec) {
+  fill(ctx, w, h, spec);
+
+  const setHeadline = (size) => {
+    ctx.font = `700 ${size}px "Schibsted Grotesk", sans-serif`;
+    try { ctx.letterSpacing = `${-0.02 * size}px`; } catch (e) {}
+    ctx.textAlign = "left";
+    ctx.textBaseline = "alphabetic";
+  };
+
+  /* Measure the composition at PROBE, in units that all scale together. */
+  setHeadline(PROBE);
+  const m0 = ctx.measureText(TAGLINE[0]);
+  const m1 = ctx.measureText(TAGLINE[1]);
+  const textW = Math.max(m0.width, m1.width);
+  const blockH =
+    m0.actualBoundingBoxAscent + PROBE * SPLIT_LINE_GAP + m1.actualBoundingBoxDescent;
+
+  const leftH = blockH * SPLIT_MARK;
+  const markInk = spec.stacked ? leftH / STACK_HEIGHT : leftH;
+  const leftW = spec.stacked ? stackWidth(ctx, markInk) : INK_W * (markInk / INK_H);
+  const pad = blockH * SPLIT_PAD;
+
+  /* The rule is a fixed hairline, so it comes out of the width before solving. */
+  const ruleW = Math.max(2, Math.round(h / 220));
+
+  const byWidth  = (SPLIT_WIDTH * w - ruleW) / (leftW + pad * 2 + textW);
+  const byLeft   = (spec.leftMax * h) / leftH;
+  const byHeight = 0.5 * h / blockH;
+  const k = Math.min(byWidth, byLeft, byHeight);
+
+  const groupW = (leftW + pad * 2 + textW) * k + ruleW;
+  const x = (w - groupW) / 2;
+  const cy = h / 2;
+
+  const markColor = spec.mark || spec.fg;
+  if (spec.stacked) {
+    drawStack(ctx, x + (leftW * k) / 2, cy - (leftH * k) / 2, markInk * k, markColor, markColor);
+  } else {
+    drawMark(ctx, x, cy - (markInk * k) / 2, markInk * k, markColor);
+  }
+
+  const ruleX = x + leftW * k + pad * k;
+  const ruleH = Math.max(leftH, blockH) * k;
+  ctx.fillStyle = spec.rule;
+  ctx.fillRect(ruleX, cy - ruleH / 2, ruleW, ruleH);
+
+  /* The stack leaves the wordmark's tracking behind, so set our own state again. */
+  const size = PROBE * k;
+  setHeadline(size);
+  const textX = ruleX + ruleW + pad * k;
+  const baseline = cy - (blockH * k) / 2 + ctx.measureText(TAGLINE[0]).actualBoundingBoxAscent;
+  ctx.fillStyle = spec.fg;
+  ctx.fillText(TAGLINE[0], textX, baseline);
+  ctx.fillStyle = spec.accent;
+  ctx.fillText(TAGLINE[1], textX, baseline + size * SPLIT_LINE_GAP);
+}
+
+/* -------------------------------------------------------- headline alone */
+/*
+  The field and the two lines, nothing else.
+
+  This is the company-page answer. A company page already carries the mark in
+  its own logo tile, and that tile sits on the banner's lower left — so a mark
+  drawn there does not read as a lockup, it reads as a mark with a tile on top
+  of it. Jon's screenshot of the live page on August 5 is what established that.
+
+  Both lines are centred, and centring is also what keeps them clear: the tile
+  occupies the lower left, and the second line is the shorter of the two, so it
+  sits in the lower middle with the tile well outside it.
+*/
+
+const HEADLINE_WIDTH = 0.66; /* first line's width, as a fraction of the canvas */
+
+function layoutHeadline(ctx, w, h, spec) {
+  fill(ctx, w, h, spec);
+
+  const setHeadline = (size) => {
+    ctx.font = `700 ${size}px "Schibsted Grotesk", sans-serif`;
+    try { ctx.letterSpacing = `${-0.02 * size}px`; } catch (e) {}
+    ctx.textAlign = "center";
+    ctx.textBaseline = "alphabetic";
+  };
+
+  setHeadline(PROBE);
+  const m0 = ctx.measureText(TAGLINE[0]);
+  const m1 = ctx.measureText(TAGLINE[1]);
+  const blockH =
+    m0.actualBoundingBoxAscent + PROBE * SPLIT_LINE_GAP + m1.actualBoundingBoxDescent;
+
+  const k = Math.min(
+    (HEADLINE_WIDTH * w) / Math.max(m0.width, m1.width),
+    (spec.blockMax * h) / blockH,
+  );
+
+  const size = PROBE * k;
+  setHeadline(size);
+  const baseline =
+    h / 2 - (blockH * k) / 2 + ctx.measureText(TAGLINE[0]).actualBoundingBoxAscent;
+  ctx.fillStyle = spec.fg;
+  ctx.fillText(TAGLINE[0], w / 2, baseline);
+  ctx.fillStyle = spec.accent;
+  ctx.fillText(TAGLINE[1], w / 2, baseline + size * SPLIT_LINE_GAP);
+}
+
+/* -------------------------------------------------------------- safe areas */
+/*
+  What each surface puts on top of the banner, and what it cuts off.
+
+  Profile photos: X sits a 133px avatar centred on the header's bottom edge
+  inside a 600px header, LinkedIn a 152px photo 24px in from the left of a
+  1128px cover. Both are circles; radii are fractions of the banner's width.
+
+  Company pages are the awkward one. A company cover renders at about 5.86:1,
+  so a 4:1 banner uploaded there loses a band off the top and the bottom, and
+  the page's logo tile covers the lower left — a much bigger bite than a profile
+  photo takes, and it starts higher up. Measured off Jon's screenshot of the
+  live BlotterIB page, August 5, at one window width; LinkedIn reflows, so read
+  it as close rather than exact.
+
+  All of this is a preview aid. `download` repaints without it, so no overlay
+  can reach a PNG.
+*/
+
+const CO_ASPECT = 5.86; /* the company cover's rendered aspect ratio */
+const CO_TILE = { x0: 0.035, x1: 0.190, top: 0.531 }; /* the logo tile, of the visible band */
+
+const SAFE = {
+  x:  { shape: "circle", cx: 0.1380, cy: 1.0000, r: 0.1113 },
+  li: { shape: "circle", cx: 0.0884, cy: 0.9419, r: 0.0669 },
+};
+
+/**
+ * The company-page zone for a banner of this shape. Anything taller than the
+ * cover's own ratio gets centre-cropped, which moves the tile down the source
+ * image, so the zone has to be solved per size rather than stored.
+ */
+function companyZone(w, h) {
+  const crop = Math.max(0, (1 - w / h / CO_ASPECT) / 2);
+  return {
+    shape: "rect",
+    crop,
+    x0: CO_TILE.x0,
+    x1: CO_TILE.x1,
+    y0: crop + CO_TILE.top * (1 - crop * 2),
+    y1: 1,
+  };
+}
+
+/** Which zone an asset shows, given what the viewer picked. */
+function zoneFor(asset, mode) {
+  if (asset.safe === "co") return companyZone(asset.w, asset.h);
+  if (asset.safe === "li" && mode === "company") return companyZone(asset.w, asset.h);
+  return SAFE[asset.safe];
+}
+
+function drawSafe(ctx, w, h, z) {
+  ctx.save();
+
+  if (z.crop) {
+    /* The bands a company page trims off a banner taller than its own cover. */
+    ctx.fillStyle = "rgba(20,24,31,.34)";
+    ctx.fillRect(0, 0, w, z.crop * h);
+    ctx.fillRect(0, (1 - z.crop) * h, w, z.crop * h);
+  }
+
+  ctx.beginPath();
+  if (z.shape === "circle") ctx.arc(z.cx * w, z.cy * h, z.r * w, 0, Math.PI * 2);
+  else ctx.rect(z.x0 * w, z.y0 * h, (z.x1 - z.x0) * w, (z.y1 - z.y0) * h);
+  ctx.fillStyle = "rgba(217,48,37,.18)";
+  ctx.fill();
+  ctx.lineWidth = Math.max(2, w / 500);
+  ctx.setLineDash([w / 110, w / 110]);
+  ctx.strokeStyle = "rgba(217,48,37,.8)";
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+/* ------------------------------------------------------------------ the set */
+
+/*
+  The four grounds a split banner can sit on. `mark` is stated separately from
+  `fg` so the mark stays the ratified navy on every light ground while the
+  headline's first line keeps the page's near-black ink.
+*/
+const GROUNDS = {
+  navy:  { key: "navy",     label: "navy",           set: "navy",     bg: NAVY,  mark: WHITE, fg: WHITE, accent: MUTED_ON_DARK,  rule: "rgba(255,255,255,.28)" },
+  white: { key: "white",    label: "white",          set: "white",    bg: WHITE, mark: NAVY,  fg: INK,   accent: MUTED_ON_LIGHT, rule: "rgba(18,35,61,.24)"   },
+  cool:  { key: "cool",     label: "gradient, cool", set: "gradient", field: "cool", mark: NAVY, fg: INK, accent: MUTED_ON_LIGHT, rule: "rgba(18,35,61,.24)" },
+  warm:  { key: "warm",     label: "gradient, warm", set: "gradient", field: "warm", mark: NAVY, fg: INK, accent: MUTED_ON_LIGHT, rule: "rgba(18,35,61,.24)" },
+};
+
+/**
+ * One split banner. `platform` picks the safe-area overlay and the cap that
+ * keeps the left block above that platform's profile photo.
+ */
+function split(platform, ground, stacked, w, h) {
+  const g = GROUNDS[ground];
+  return {
+    ...g,
+    id: `${platform}-split${stacked ? "-name" : ""}-${g.key}`,
+    name: `${stacked ? "Mark and name" : "Mark"} — ${g.label}`,
+    sub: `${w} × ${h}`,
+    w, h,
+    draw: layoutSplit,
+    stacked,
+    safe: platform,
+    /*
+      Left-block ceiling, as a fraction of the canvas height. Twice the distance
+      from the vertical centre to just above the profile photo, since the group
+      is centred: X's photo starts at 0.666h and LinkedIn's at 0.674h.
+    */
+    leftMax: platform === "x" ? 0.27 : 0.30,
+  };
+}
+
+/** Every ground, in the order Jon reads them, for one platform and one layout. */
+function splitRow(platform, stacked, w, h) {
+  return ["navy", "white", "cool", "warm"].map((g) => split(platform, g, stacked, w, h));
+}
+
+/**
+ * The headline-alone banners. `blockMax` caps the type's height so it clears
+ * whatever that surface puts on the banner: X's avatar reaches highest, the
+ * company cover is shallow enough to give the type most of it.
+ */
+function headlineRow(platform, w, h, blockMax) {
+  return ["navy", "white", "cool", "warm"].map((g) => {
+    const ground = GROUNDS[g];
+    return {
+      ...ground,
+      id: `${platform}-headline-${ground.key}`,
+      name: `Headline only — ${ground.label}`,
+      sub: `${w} × ${h}`,
+      w, h,
+      draw: layoutHeadline,
+      safe: platform,
+      blockMax,
+    };
+  });
+}
+
+const SECTIONS = [
+  {
+    title: "Profile photo",
+    dims: "1000 × 1000",
+    note: "Upload the same file to LinkedIn, X, Instagram and anywhere else. Both platforms crop to a circle, and the mark is inset far enough that nothing clips.",
+    assets: [
+      { id: "profile-navy",  name: "Profile — navy",  sub: "White mark on navy",  w: 1000, h: 1000, set: "navy",  draw: layoutProfile, bg: NAVY,  fg: WHITE },
+      { id: "profile-white", name: "Profile — white", sub: "Navy mark on white",  w: 1000, h: 1000, set: "white", draw: layoutProfile, bg: WHITE, fg: NAVY  },
+    ],
+  },
+  {
+    title: "Mark on transparency",
+    dims: "1000 × 1000",
+    note: "For decks, partner pages, or anywhere that brings its own background. PNG with a real alpha channel.",
+    assets: [
+      { id: "mark-navy",  name: "Mark — navy",  sub: "Transparent background", w: 1000, h: 1000, set: "navy",  draw: layoutMark, bg: null, fg: NAVY  },
+      { id: "mark-white", name: "Mark — white", sub: "Transparent background", w: 1000, h: 1000, set: "white", draw: layoutMark, bg: null, fg: WHITE },
+    ],
+  },
+  {
+    title: "X header — mark left, headline right",
+    dims: "1500 × 500",
+    wide: true,
+    note: "The mark on the left, the headline beside it rather than under it, a hairline between them. Four grounds: the two identity colours, then the landing page's own field in a cool version and the warm version that carries the page's cream.",
+    assets: [...splitRow("x", false, 1500, 500), ...splitRow("x", true, 1500, 500)],
+  },
+  {
+    title: "X header — headline only",
+    dims: "1500 × 500",
+    wide: true,
+    note: "No mark at all: the field and the two lines, centred. Both lines run larger here than they can beside a mark.",
+    assets: headlineRow("x", 1500, 500, 0.30),
+  },
+  {
+    title: "X header — centred",
+    dims: "1500 × 500",
+    note: "The earlier treatment, kept for comparison: lockup above the headline, the whole thing on one axis.",
+    assets: [
+      { id: "x-header-navy-tagline",  name: "X header — navy, headline",  sub: "1500 × 500", w: 1500, h: 500, set: "navy",  draw: layoutTagline, bg: NAVY,  fg: WHITE, accent: MUTED_ON_DARK,  safe: "x" },
+      { id: "x-header-white-tagline", name: "X header — white, headline", sub: "1500 × 500", w: 1500, h: 500, set: "white", draw: layoutTagline, bg: WHITE, fg: INK,   accent: MUTED_ON_LIGHT, safe: "x" },
+      { id: "x-header-navy-lockup",   name: "X header — navy, mark only", sub: "1500 × 500", w: 1500, h: 500, set: "navy",  draw: layoutLockup,  bg: NAVY,  fg: WHITE, safe: "x" },
+    ],
+  },
+  {
+    title: "LinkedIn personal banner — mark left, headline right",
+    dims: "1584 × 396",
+    wide: true,
+    note: "The same four grounds at LinkedIn's shallower 4:1. Your photo takes a bigger bite out of this one, so the composition runs a little smaller than the X header does.",
+    assets: [...splitRow("li", false, 1584, 396), ...splitRow("li", true, 1584, 396)],
+  },
+  {
+    title: "LinkedIn personal banner — headline only",
+    dims: "1584 × 396",
+    wide: true,
+    note: "The field and the two lines, no mark. This is also the one to use if you are putting a 1584 × 396 banner on a company page rather than a profile — switch the overlay above to “company page” to see why.",
+    assets: headlineRow("li", 1584, 396, 0.44),
+  },
+  {
+    title: "LinkedIn personal banner — centred",
+    dims: "1584 × 396",
+    note: "The earlier treatment, kept for comparison.",
+    assets: [
+      { id: "li-personal-navy",  name: "LinkedIn personal — navy",  sub: "1584 × 396", w: 1584, h: 396, set: "navy",  draw: layoutTagline, bg: NAVY,  fg: WHITE, accent: MUTED_ON_DARK,  safe: "li" },
+      { id: "li-personal-white", name: "LinkedIn personal — white", sub: "1584 × 396", w: 1584, h: 396, set: "white", draw: layoutTagline, bg: WHITE, fg: INK,   accent: MUTED_ON_LIGHT, safe: "li" },
+    ],
+  },
+  {
+    title: "LinkedIn company page banner",
+    dims: "1128 × 191",
+    wide: true,
+    note: "Upload these to a company page rather than the 1584 × 396 ones: this shape is already the cover's own, so nothing gets cropped off the top and bottom. The headline-only four are the ones to use — the page's logo tile carries the mark, and it sits exactly where a second mark would go. The two lockup versions are kept for anywhere the tile is absent.",
+    assets: [
+      ...headlineRow("co", 1128, 191, 0.52),
+      { id: "li-company-navy",  name: "Lockup — navy",  sub: "1128 × 191", w: 1128, h: 191, set: "navy",  draw: layoutLockup, bg: NAVY,  fg: WHITE, safe: "co" },
+      { id: "li-company-white", name: "Lockup — white", sub: "1128 × 191", w: 1128, h: 191, set: "white", draw: layoutLockup, bg: WHITE, fg: NAVY,  safe: "co" },
+    ],
+  },
+  {
+    title: "Link preview",
+    dims: "1200 × 630",
+    note: "The card that shows when the site is pasted into Slack, iMessage, X or LinkedIn.",
+    assets: [
+      { id: "og-navy",  name: "Link preview — navy",  sub: "1200 × 630", w: 1200, h: 630, set: "navy",  draw: layoutTagline, bg: NAVY,  fg: WHITE, accent: MUTED_ON_DARK  },
+      { id: "og-white", name: "Link preview — white", sub: "1200 × 630", w: 1200, h: 630, set: "white", draw: layoutTagline, bg: WHITE, fg: INK,   accent: MUTED_ON_LIGHT },
+    ],
+  },
+];
+
+/* -------------------------------------------------------------------- build */
+
+const canvases = new Map();
+
+function build() {
+  const root = document.getElementById("sections");
+  for (const section of SECTIONS) {
+    const h2 = document.createElement("h2");
+    h2.innerHTML = section.title + ' <span class="dims">' + section.dims + "</span>";
+    root.appendChild(h2);
+
+    const note = document.createElement("p");
+    note.className = "note";
+    note.textContent = section.note;
+    root.appendChild(note);
+
+    const grid = document.createElement("div");
+    grid.className = section.wide ? "grid wide" : "grid";
+    for (const a of section.assets) {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const frame = document.createElement("div");
+      frame.className = "frame";
+      const c = document.createElement("canvas");
+      c.width = a.w; c.height = a.h;
+      frame.appendChild(c);
+      card.appendChild(frame);
+
+      const meta = document.createElement("div");
+      meta.className = "meta";
+      const label = document.createElement("div");
+      label.innerHTML = '<div class="name"></div><div class="sub"></div>';
+      label.querySelector(".name").textContent = a.name;
+      label.querySelector(".sub").textContent = a.sub;
+      const btn = document.createElement("button");
+      btn.textContent = "PNG";
+      btn.onclick = () => download(a);
+      meta.append(label, btn);
+      card.appendChild(meta);
+
+      grid.appendChild(card);
+      canvases.set(a.id, { canvas: c, asset: a });
+    }
+    root.appendChild(grid);
+  }
+}
+
+/** `off`, `personal` or `company` — which surface the previews are showing. */
+let safeMode = "off";
+
+function paint(asset, withOverlay) {
+  const ctx = canvases.get(asset.id).canvas.getContext("2d");
+  asset.draw(ctx, asset.w, asset.h, asset);
+  if (!withOverlay || !asset.safe) return;
+  const zone = zoneFor(asset, safeMode);
+  if (zone) drawSafe(ctx, asset.w, asset.h, zone);
+}
+
+function paintAll() {
+  for (const { asset } of canvases.values()) paint(asset, safeMode !== "off");
+}
+
+function download(asset) {
+  const { canvas } = canvases.get(asset.id);
+  /* Repaint clean first: the safe-area overlay is a preview aid, never a file. */
+  paint(asset, false);
+  canvas.toBlob((blob) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `blotter-${asset.id}.png`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    if (safeMode !== "off") paint(asset, true);
+  }, "image/png");
+}
+
+async function downloadSet(filter) {
+  const list = [...canvases.values()].map((v) => v.asset).filter(filter);
+  const status = document.getElementById("status");
+  for (let i = 0; i < list.length; i++) {
+    status.textContent = `Downloading ${i + 1} of ${list.length}…`;
+    download(list[i]);
+    await new Promise((r) => setTimeout(r, 450));
+  }
+  status.textContent = `Done. ${list.length} files in your Downloads folder.`;
+}
+
+build();
+
+/*
+  The wordmark must be loaded before anything is painted, or the first render
+  falls back to the system sans and every banner ships with the wrong letterform.
+*/
+(async () => {
+  const status = document.getElementById("status");
+  try {
+    await document.fonts.load('700 100px "Schibsted Grotesk"');
+    await document.fonts.ready;
+    status.textContent = "Ready.";
+  } catch (e) {
+    status.textContent = "Wordmark font unavailable — connect to the internet and reload.";
+  }
+  paintAll();
+})();
+
+document.getElementById("all").onclick = () => downloadSet(() => true);
+document.getElementById("allNavy").onclick = () => downloadSet((a) => a.set === "navy");
+document.getElementById("allWhite").onclick = () => downloadSet((a) => a.set === "white");
+document.getElementById("allGradient").onclick = () => downloadSet((a) => a.set === "gradient");
+
+document.getElementById("safeMode").onchange = (e) => {
+  safeMode = e.target.value;
+  paintAll();
+};
+</script>
+</body>
+</html>
