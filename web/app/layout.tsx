@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto, Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
 
+import { AnalyticsProvider } from "@/components/analytics-provider";
+
 /*
  * The display face, added August 5, 2026 after Jon twice flagged the type as
  * flat. Schibsted Grotesk was drawn for a news publisher, so it carries
@@ -53,7 +55,15 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${displaySans.variable} ${roboto.variable} h-full`}
     >
-      <body className="min-h-full font-sans">{children}</body>
+      <body className="min-h-full font-sans">
+        {/*
+          Connects PostHog to the analytics adapter, or does nothing at all if
+          no key is configured. It renders no markup and must stay above the
+          page so the sink is installed as early as possible.
+        */}
+        <AnalyticsProvider />
+        {children}
+      </body>
     </html>
   );
 }

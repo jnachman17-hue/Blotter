@@ -1,3 +1,11 @@
+# Which dependencies may run install scripts.
+#
+# pnpm blocks postinstall scripts by default and refuses to proceed while any
+# are merely "ignored", so every one has to be answered explicitly.
+#
+# `core-js` arrived with posthog-js on August 6, 2026. Its script only prints a
+# funding notice, so it is denied: nothing depends on it running.
 allowBuilds:
+  core-js: false
   sharp: true
   unrs-resolver: true

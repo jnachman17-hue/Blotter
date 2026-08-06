@@ -90,8 +90,26 @@ const noopSink: AnalyticsSink = {
 
 let sink: AnalyticsSink = noopSink;
 
+/**
+ * Events fired before a real sink arrived.
+ *
+ * `page_viewed` fires the moment the page mounts, and the vendor is loaded
+ * asynchronously, so the first and most important event of the contract is
+ * guaranteed to be early. It is the denominator of every ratio in WS3's metric
+ * hierarchy — losing it does not lose one event, it silently deflates every
+ * rate on the surface.
+ *
+ * So they queue instead. Suppression has already been applied by the time an
+ * event lands here, so flushing cannot double-count.
+ */
+const pending: Array<[CanonicalEvent, EventProperties]> = [];
+let sinkIsReal = false;
+
 export function setAnalyticsSink(next: AnalyticsSink) {
   sink = next;
+  sinkIsReal = true;
+  const queued = pending.splice(0, pending.length);
+  for (const [event, properties] of queued) sink.capture(event, properties);
 }
 
 /**
@@ -188,7 +206,14 @@ export function track(
     ...properties,
   };
 
-  sink.capture(event, payload);
+  if (sinkIsReal) {
+    sink.capture(event, payload);
+  } else {
+    /* Held until a vendor connects. The console sink still shows it in
+       development so the flow can be watched without a provider. */
+    sink.capture(event, payload);
+    pending.push([event, payload]);
+  }
   markFired(event);
 }
 

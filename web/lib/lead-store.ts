@@ -19,7 +19,7 @@
  */
 
 import type { CtaLocation, RecruitingTrack, RecruitingWindow } from "./analytics";
-import { getIdentifiers } from "./analytics";
+import { getIdentifiers, TEST_ITERATION } from "./analytics";
 
 export interface Lead {
   email: string;
@@ -41,15 +41,32 @@ const captured = new Map<string, Lead>();
 
 type Sink = (lead: Lead) => void;
 
-const memorySink: Sink = (lead) => {
+/**
+ * Posts to `/api/lead`, which writes to Supabase with a server-side key.
+ *
+ * Deliberately not awaited by the caller and deliberately swallowing its own
+ * failures: a visitor's progress through the funnel may never depend on the
+ * database being reachable. `keepalive` lets the request survive if they close
+ * the tab in the second after submitting.
+ */
+const httpSink: Sink = (lead) => {
   // Keyed by visitor so a second submission updates rather than duplicates.
   captured.set(lead.visitor_id, lead);
   if (process.env.NODE_ENV !== "production") {
     console.info("[lead]", lead);
   }
+
+  void fetch("/api/lead", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...lead, test_iteration: TEST_ITERATION }),
+    keepalive: true,
+  }).catch(() => {
+    /* Storage is best-effort. The funnel has already moved on. */
+  });
 };
 
-let sink: Sink = memorySink;
+let sink: Sink = httpSink;
 
 /** Swap in the real destination once Supabase is provisioned. */
 export function setLeadSink(next: Sink) {

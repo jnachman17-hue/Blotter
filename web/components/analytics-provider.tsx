@@ -1,0 +1,90 @@
+"use client";
+
+/**
+ * Connects PostHog to the provider-independent adapter.
+ *
+ * The adapter in `lib/analytics.ts` is unchanged and stays the contract: the
+ * nine canonical event names, the property set, and the per-visitor milestone
+ * suppression are all decided there. This file only supplies a sink. Swapping
+ * vendors means editing this file and nothing else.
+ *
+ * If `NEXT_PUBLIC_POSTHOG_KEY` is absent, nothing initialises and the default
+ * console sink stays in place. That is the normal state before Jon provisions
+ * the project, and it is also what keeps local development out of production
+ * data.
+ *
+ * ## The four settings that matter, and why
+ *
+ * `autocapture: false` — WS3 defines an exact nine-event contract and the whole
+ * measurement design rests on it. Autocapture would bury those nine in
+ * thousands of incidental clicks, and it reads DOM text, which is how form
+ * content ends up somewhere it was never meant to be.
+ *
+ * `disable_session_recording: true` — **the important one.** The funnel has an
+ * email field. A session recording captures the screen, and the privacy policy
+ * we published says email is used for the account and the cohort list. Nothing
+ * on this page justifies recording a stranger typing their address.
+ *
+ * `capture_pageview: false` — `page_viewed` is one of the canonical nine and is
+ * fired explicitly by `components/page-view.tsx`. Letting PostHog also fire its
+ * own would double-count the denominator of every ratio in WS3's metric
+ * hierarchy.
+ *
+ * `person_profiles: "identified_only"` with an explicit `identify` — WS3's
+ * rates are all "unique eligible visitors", so PostHog's notion of a person has
+ * to match ours. We hand it our own `visitor_id`, which is a random local
+ * identifier and carries no personal data.
+ *
+ * The host is pinned to US Cloud. `/privacy` states that information is stored
+ * and processed in the United States, so an EU project would make a published
+ * claim false.
+ */
+
+import { useEffect } from "react";
+
+import { getIdentifiers, setAnalyticsSink } from "@/lib/analytics";
+
+export function AnalyticsProvider() {
+  useEffect(() => {
+    const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+    if (!key) return;
+
+    let cancelled = false;
+
+    void import("posthog-js").then(({ default: posthog }) => {
+      if (cancelled) return;
+
+      posthog.init(key, {
+        api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com",
+        autocapture: false,
+        capture_pageview: false,
+        capture_pageleave: true,
+        disable_session_recording: true,
+        person_profiles: "identified_only",
+        respect_dnt: true,
+      });
+
+      /* Our visitor id becomes PostHog's person, so its unique-user counts and
+         WS3's "unique eligible visitors" mean the same thing. It is a random
+         local identifier and carries nothing personal. */
+      posthog.identify(getIdentifiers().visitor_id);
+
+      /* Setting the sink also flushes anything fired while the vendor loaded —
+         `page_viewed` almost always lands before this point. */
+      setAnalyticsSink({
+        capture(event, properties) {
+          posthog.capture(event, properties);
+        },
+        identify(visitorId) {
+          posthog.identify(visitorId);
+        },
+      });
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return null;
+}
