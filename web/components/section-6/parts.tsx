@@ -92,7 +92,7 @@ export function ProcessingFlow() {
             >
               {step.title}
             </h3>
-            <p className="mt-2 text-small leading-[1.6] text-ink-muted">{step.body}</p>
+            <p className="mt-2 text-small leading-[1.6] text-ink-read">{step.body}</p>
           </li>
         );
       })}
@@ -133,12 +133,12 @@ export function ServicePermissions() {
             {row.service}
           </h3>
 
-          <p className="mt-4 text-micro leading-none font-medium tracking-[0.09em] text-ink-faint uppercase">
+          <p className="mt-4 text-micro leading-none font-medium tracking-[0.09em] text-ink-muted uppercase">
             Can do
           </p>
           <ul className="mt-2.5 space-y-2">
             {row.can.map((line) => (
-              <li key={line} className="flex gap-2.5 text-small leading-[1.55] text-ink-muted">
+              <li key={line} className="flex gap-2.5 text-small leading-[1.55] text-ink-read">
                 <span
                   aria-hidden="true"
                   className="mt-[0.55em] h-[5px] w-[5px] shrink-0 rounded-full bg-navy-500"
@@ -148,12 +148,12 @@ export function ServicePermissions() {
             ))}
           </ul>
 
-          <p className="mt-5 text-micro leading-none font-medium tracking-[0.09em] text-ink-faint uppercase">
+          <p className="mt-5 text-micro leading-none font-medium tracking-[0.09em] text-ink-muted uppercase">
             Cannot do
           </p>
           <ul className="mt-2.5 space-y-2">
             {row.cannot.map((line) => (
-              <li key={line} className="flex gap-2.5 text-small leading-[1.55] text-ink-muted">
+              <li key={line} className="flex gap-2.5 text-small leading-[1.55] text-ink-read">
                 <span
                   aria-hidden="true"
                   className="mt-[0.55em] h-[5px] w-[5px] shrink-0 rounded-full border border-ink-faint/80"

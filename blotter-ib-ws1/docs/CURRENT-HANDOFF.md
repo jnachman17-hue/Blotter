@@ -147,11 +147,23 @@ It is deliberately plain: paragraph text, no visual design, per his instruction
 that the back page does not need to be pretty. It is now the section's real
 body, and Section 6 is its front door.
 
-**Structure may be conventional; facts may not be invented.** Sixteen articles. Every substantive claim imports from
-`lib/privacy-copy.ts`, so the page and Section 6 cannot contradict each other,
-or renders as a visible `[ to be confirmed: … ]` slot. There are twelve slots.
-**Do not fill one with a plausible value** — each is a commitment about real
-user data someone would be entitled to rely on.
+**Structure may be conventional; facts may not be invented.** It shipped with
+every unknown as a visible `[ to be confirmed: … ]` marker rather than a
+plausible guess. Jon answered all of them on August 6, 2026, so the markers and
+the component that drew them are gone, and the page now states only settled
+facts: effective August 6 2026, entity Blotter with no published address,
+`blotterib@gmail.com`, US-only processing, 18+, PostHog for analytics, Supabase
+for hosting and database, Stripe for payments, data kept while the account
+exists and deleted with it, and no Blotter-held certification or audit.
+
+**The Google scopes are stated with Google's own consent wording beside each**,
+so a reader can check the page against the screen they are looking at:
+`gmail.readonly`, `calendar.events.readonly`, and `drive.file`.
+
+`drive.file` is a decision, not a detail. The `spreadsheets` scope grants every
+sheet in the account and would contradict the ratified claim that Blotter cannot
+reach unrelated files. **If the build ever reaches for `spreadsheets`, the page
+becomes false.**
 
 ### Section 2
 

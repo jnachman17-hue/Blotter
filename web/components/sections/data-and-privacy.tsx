@@ -102,10 +102,10 @@ export function DataAndPrivacy() {
           footnotes because that is their weight, not because they are fine print.
         */}
         <div className="mt-14 grid grid-cols-2 gap-x-16 border-t border-rule pt-7">
-          <p className="text-small leading-[1.6] text-ink-muted">
+          <p className="text-small leading-[1.6] text-ink-read">
             <span className="font-semibold text-ink">{BROAD_HEADING}.</span> {BROAD_BODY}
           </p>
-          <p className="text-small leading-[1.6] text-ink-muted">{PROVIDER_LEAD}</p>
+          <p className="text-small leading-[1.6] text-ink-read">{PROVIDER_LEAD}</p>
         </div>
 
         {/*

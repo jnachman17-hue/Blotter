@@ -8,23 +8,23 @@
  * broadly, on the grounds that no product is being offered yet and the language
  * will be drafted and ratified by him later.
  *
- * The rule this page is built on: **structure may be conventional, facts may
- * not be invented.**
+ * The rule this page was built on: **structure may be conventional, facts may
+ * not be invented.** It shipped with every unknown marked in place as a visible
+ * `[ to be confirmed: … ]` slot rather than filled with a plausible value.
+ * Jon answered all of them on August 6, 2026, so the markers are gone and the
+ * page states only settled facts.
  *
- * Every substantive statement below is either traceable to Section 6's ratified
- * copy, imported from `lib/privacy-copy.ts` so the two cannot contradict each
- * other, or marked with `<Pending>` — a visible slot for a fact that does not
- * exist yet. There is no legal entity, no jurisdiction, no retention schedule,
- * no selected connection provider, no subprocessor list and no contact address,
- * so none of those is asserted. `06-assumptions-and-open-questions.md` lists
- * each one as an open gate.
+ * Every substantive claim is either his answer or is imported from
+ * `lib/privacy-copy.ts`, which Section 6 also renders, so the two surfaces
+ * cannot contradict each other.
  *
- * Do not fill a `<Pending>` slot with a plausible value. Every one of them is a
- * commitment about real user data that someone would be entitled to rely on.
+ * **If a fact here stops being true, mark it — do not leave it standing.** The
+ * two most likely to move are the connection provider and the Google scopes,
+ * and both are claims someone would be entitled to rely on.
  *
- * Publication gate: this page is `noindex` and the deployment stays private.
- * It is not a published policy and must not be treated as one until Jon
- * ratifies the language and the WS5 Phase 7 claim verification passes.
+ * Publication gate, unchanged: this page is `noindex` and the deployment stays
+ * private. WS5 Phase 7 claim verification must pass before public traffic —
+ * the language is settled, the implementation it describes does not exist yet.
  */
 
 import type { Metadata } from "next";
@@ -99,21 +99,6 @@ const SCOPES = [
 ];
 
 /* --------------------------------------------------------------- primitives */
-
-/**
- * A fact that does not exist yet.
- *
- * Deliberately loud. A placeholder that blends into the paragraph is a
- * placeholder that ships, and this page is one where a shipped placeholder
- * becomes a false statement about someone's email.
- */
-function Pending({ children }: { children: React.ReactNode }) {
-  return (
-    <mark className="mx-0.5 rounded-[3px] bg-blotter-200 px-1.5 py-0.5 text-[0.9em] font-medium text-blotter-700">
-      [ to be confirmed: {children} ]
-    </mark>
-  );
-}
 
 function Article({
   n,
@@ -220,7 +205,12 @@ export default function PrivacyPolicyPage() {
               */}
               Blotter is referred to here as &ldquo;Blotter&rdquo;, &ldquo;we&rdquo; and
               &ldquo;us&rdquo;. You can reach us at{" "}
-              <Pending>contact address for privacy enquiries</Pending>.
+              <a
+                href="mailto:blotterib@gmail.com"
+                className="font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900"
+              >
+                blotterib@gmail.com
+              </a>.
             </p>
           </Article>
 
@@ -423,25 +413,39 @@ export default function PrivacyPolicyPage() {
               we hold, and we rely on established providers that maintain their own security
               programmes. No service can promise perfect security.
             </p>
+            {/*
+              Jon's revision, August 6, 2026: keep the plain admission, drop the
+              promise after it, and say what actually carries the weight.
+
+              Careful with this paragraph. The CASA assessment belongs to the
+              connection provider's Google application, not to Blotter, and the
+              sentence has to keep saying so. Do not compress it into anything
+              that reads as Blotter holding a Google licence or certification.
+            */}
             <p>
-              Blotter itself holds no security certification or third-party audit, and we will
-              not claim one until we have it.
+              Blotter itself holds no security certification or third-party audit. The work
+              that most needs one is not done by us: the connection to your Google account is
+              handled by a specialist provider whose entire business is building and securing
+              these integrations, whose Google application has passed Google&rsquo;s CASA
+              security assessment, and who is verified by Google for the permissions Blotter
+              requests. The services that store and process information on our behalf maintain
+              their own security programmes and independent assessments.
             </p>
           </Article>
 
           <Article n="12" title="Where information is processed">
             <p>
-              The countries in which information is stored and processed, and the safeguards
-              used for any transfer between them, are{" "}
-              <Pending>processing locations and transfer safeguards</Pending>.
+              Your information is stored and processed in the United States. Blotter does not
+              operate outside the United States, and we do not transfer your information
+              elsewhere.
             </p>
           </Article>
 
           <Article n="13" title="Age">
             <p>
               Blotter is built for university students and graduates recruiting for finance
-              roles. The minimum age for an account is <Pending>minimum age</Pending>, and we
-              do not knowingly collect information from anyone below it.
+              roles. You must be 18 or older to hold a Blotter account, and we do not
+              knowingly collect information from anyone under 18.
             </p>
           </Article>
 
@@ -458,7 +462,12 @@ export default function PrivacyPolicyPage() {
           <Article n="15" title="Contact">
             <p>
               Questions about this policy or your data can be sent to{" "}
-              <Pending>contact address for privacy enquiries</Pending>.
+              <a
+                href="mailto:blotterib@gmail.com"
+                className="font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900"
+              >
+                blotterib@gmail.com
+              </a>.
             </p>
           </Article>
 

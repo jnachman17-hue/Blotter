@@ -39,6 +39,14 @@
   --color-ink: #14181f;
   --color-ink-muted: #5f6368;
   --color-ink-faint: #a4a8ac;
+  /*
+    Reading grey, added August 6, 2026 on Jon's note that Section 6's small copy
+    sat too light against the warm document ground. `-muted` is tuned for body
+    text on white and gives about 5:1 there; on `#f6f4f0` at small sizes it goes
+    slack. This is about 7.9:1 on that ground and still clearly below `-ink`, so
+    the hierarchy survives. Use it for small copy on the document ground.
+  */
+  --color-ink-read: #454a51;
   --color-rule: #e6e6e3;
   --color-surface-quiet: #faf9f6;
 
