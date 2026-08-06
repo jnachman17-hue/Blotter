@@ -78,3 +78,36 @@ export function CalendarMark({ size = 19 }: { size?: number }) {
     </svg>
   );
 }
+
+/**
+ * Google Sheets mark, added August 6, 2026 for Section 6's permissions table.
+ *
+ * The same glyph the `SheetWindow` chrome already draws in its title bar, so
+ * the mark beside `Google Sheets` in the table and the mark on the spreadsheet
+ * the page has been showing since the hero are the same object.
+ *
+ * `06-SECTION-6` §8 permits small service marks provided they do not dominate
+ * the table, and prefers restrained service names alongside them.
+ */
+export function SheetsMark({ size = 19 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+      className="shrink-0"
+    >
+      <rect width="20" height="20" rx="2.4" fill="#0F9D58" />
+      <path
+        d="M11.2 3.4H5.9a1 1 0 0 0-1 1v11.2a1 1 0 0 0 1 1h8.2a1 1 0 0 0 1-1V7.2l-3.9-3.8Z"
+        fill="#fff"
+        fillOpacity=".28"
+      />
+      <path
+        d="M7.1 9.1h5.8v5.2H7.1V9.1Zm.9 1.3v1h1.8v-1H8Zm2.7 0v1h1.8v-1h-1.8ZM8 12.1v1h1.8v-1H8Zm2.7 0v1h1.8v-1h-1.8Z"
+        fill="#fff"
+      />
+    </svg>
+  );
+}

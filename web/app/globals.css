@@ -184,6 +184,7 @@ body {
   --field-c: #e7eef8; /* Section 2 floor, deepest and coolest */
   --field-d: #f4f8fc; /* Section 3 to Sections 4-5 handoff */
   --field-e: #eef3fa; /* Sections 4-5 floor, handoff to Section 6 */
+  --field-f: #f2f1ee; /* Section 6 floor, handoff to Section 7 */
 }
 
 /* Hero: lightest and warmest band. */
@@ -239,6 +240,65 @@ body {
     #f0f5fb 52%,
     var(--field-e) 100%
   );
+}
+
+/*
+  Section 6: the document ground.
+
+  `06-SECTION-6-DATA-AND-PRIVACY.md` §3 requires a background "materially
+  different from the preceding product-demonstration sections" and bans
+  gradients inside the section. Jon asked on August 6, 2026 why a different
+  ground was needed and said continuing the gradient would look fine; the three
+  candidates were built live and he chose this one after seeing that continuing
+  the blue made the section boundary disappear altogether. It keeps the handoff
+  discipline by starting on `--field-e`, exactly where Sections 4 and 5 end, but
+  it travels warm instead of deeper blue. The product sections never go there,
+  so the disclosure reads as a different kind of page without a seam.
+
+  The warmth is deliberately off the yellow family. `--color-blotter-*` means
+  "Blotter maintains this" on this page, and a disclosure about what Blotter
+  does not touch is the last place that meaning belongs.
+*/
+.field-document {
+  background: linear-gradient(
+    180deg,
+    var(--field-e) 0%,
+    #f6f4f0 22%,
+    #f6f4f0 88%,
+    var(--field-f) 100%
+  );
+}
+
+/*
+  Section 7: back to the page's own light before the dark closing panel, so the
+  panel lands against the lightest ground it can and takes the full contrast.
+*/
+.field-close {
+  background: linear-gradient(180deg, var(--field-f) 0%, #ffffff 60%, #ffffff 100%);
+}
+
+/*
+  Accordion panels, shared by both FAQs.
+
+  Base UI publishes the measured height as `--accordion-panel-height` and marks
+  the first and last frames with `data-starting-style` and `data-ending-style`.
+  200ms and a strong ease-out: fast enough that the answer feels like it was
+  already there, slow enough not to snap. Opacity resolves faster than height so
+  the text is fully legible before the box finishes settling, rather than
+  fading in against a still-moving edge.
+*/
+.disclosure-panel {
+  height: var(--accordion-panel-height);
+  overflow: hidden;
+  transition:
+    height 200ms cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 140ms ease-out;
+}
+
+.disclosure-panel[data-starting-style],
+.disclosure-panel[data-ending-style] {
+  height: 0;
+  opacity: 0;
 }
 
 /*

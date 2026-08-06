@@ -18,6 +18,20 @@
 > sender, subject, and date of the email, the absence of a CTA, the section 12
 > ban on repeating any hero device, and the section 10 claim-safety note.
 
+> **Amended again by Jon, August 6, 2026, during the stage 7 build.**
+>
+> | Item here | Amended to |
+> |---|---|
+> | Section 6 methodology footnote, `Summer Analyst 2028 recruiting cycle` | `Summer Analyst 2027 recruiting cycle`. |
+>
+> The cycle year alone. Every other word of the footnote, the 60-hour estimate
+> it qualifies, and the JPMorgan qualification are untouched.
+>
+> The `Summer Analyst 2028` inside the Goldman Sachs email asset at section 15
+> is **not** amended: it is body copy inside a reproduced exact asset, and that
+> component is parked and unrendered. `Summer 2028` also remains a funnel
+> recruiting-window option in `WS3-SPEC.md`, which this ruling did not touch.
+
 Date ratified: July 31, 2026  
 Date amended: August 5, 2026  
 Status: Ratified, amended in part  

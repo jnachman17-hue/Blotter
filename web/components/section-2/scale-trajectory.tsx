@@ -34,7 +34,7 @@ export const HEADLINE =
   "Your manual tracker was never built to keep up with this.";
 
 export const QUALIFICATION =
-  "* Representative workload from a high-intensity Summer Analyst 2028 recruiting cycle that resulted in a JPMorgan offer.";
+  "* Representative workload from a high-intensity Summer Analyst 2027 recruiting cycle that resulted in a JPMorgan offer.";
 
 export const METHODOLOGY =
   "Estimated from manual Gmail and Calendar logging, tracker updates, and recurring reconciliation across the case-study recruiting cycle.";

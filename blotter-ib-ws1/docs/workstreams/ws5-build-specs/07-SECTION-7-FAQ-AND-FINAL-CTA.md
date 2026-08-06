@@ -1,7 +1,35 @@
 # WS5 Build Specification 07 - Section 7 FAQ and Final CTA
 
+> **Amended by Jon, August 6, 2026, during the stage 7 build.** He is authority
+> level 1 under `WS5-SPEC.md` "Source hierarchy". Reasoning is recorded in
+> `04-decision-log.md`; the implementation carries the same notes inline.
+>
+> The FAQ was reviewed and passed without changes. The ending was cut down: "we
+> don't need this super bold massive deep blue box", and "we do enough to pull
+> you in already". He asked for a small closing banner and a conventional site
+> footer instead.
+>
+> | Item here | Amended to |
+> |---|---|
+> | Section 3 and 10, a large centred closing panel with headline, supporting line, CTA and reassurance line | A compact footer. The exact headline survives as its one statement, set left; the CTA sits opposite it. |
+> | Section 9, the exact supporting line `Keep your relationships moving…` | Cut. |
+> | Section 9, the exact reassurance line `Keep your existing Google Sheet…` | Cut. |
+> | Section 10, `centered content` and `generous but controlled vertical padding` | Superseded by the footer composition. The deep navy ground is kept: `--color-closing` was reserved for this moment and a compact dark footer still satisfies section 1's rule that the page not end on an accordion. |
+> | Nothing in this specification, or in WS3, WS4 or WS5 | A site footer is added: the brand lockup, a privacy-policy link, and social links. The page's first. |
+>
+> The X account does not exist yet. Its mark renders as a non-interactive
+> placeholder rather than a dead link, and becomes a link when Jon supplies the
+> URL. LinkedIn is `https://www.linkedin.com/company/blotter`, his.
+>
+> Unchanged and still binding: the exact FAQ title, all five questions and
+> answers verbatim and in order, the accordion behaviour in section 7 in full,
+> the section 8 price and availability exclusion, the exact CTA label, the
+> single canonical funnel with `cta_location = final`, and every section 13
+> exclusion including the bans on a second CTA, an illustration and trust badges.
+
 Date ratified: August 1, 2026  
-Status: Ratified  
+Date amended: August 6, 2026  
+Status: Ratified, amended in part  
 Decision owner: Jon  
 Surface: Landing-page Section 7, `Frequently asked questions` and final closing CTA  
 Implementation priority: Desktop first

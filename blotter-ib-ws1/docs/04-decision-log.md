@@ -577,3 +577,168 @@ The rear sheet in a stacked-tabs treatment rendered as the messy, stale,
 unformatted spreadsheet the reader actually has, which Blotter converts into
 the clean Blotter tab. Jon's idea. Recorded in
 `web/components/sections/tracker-and-actions.tsx` and worth its own round.
+
+## Session 4 — August 6, 2026 — Sections 6 and 7, and the privacy policy
+
+Stage 7. Sections 6 and 7 built, rejected, and rebuilt in one session, plus the
+page's first footer and its first standalone page. Every ruling below is Jon's
+and is stamped at the top of the affected build spec.
+
+### Section 6's ground
+
+`06-SECTION-6` section 3 requires a background "materially different from the
+preceding product-demonstration sections" and bans gradients inside the section.
+Jon asked why a different ground was needed and said continuing the field would
+look fine. Three candidates were built live behind `/review/section-6` rather
+than argued in prose: continued blue, warm paper, flat neutral.
+
+Continuing the blue made the boundary between Sections 4-5 and Section 6
+disappear entirely, which is the failure section 3 was written to prevent. He
+chose **warm paper**: the band starts on `--field-e`, exactly where Sections 4
+and 5 end, so the handoff discipline holds, but it travels warm rather than
+deeper blue and the product sections never go there. `--field-f` is its floor.
+
+### Section 6, rejected on first build
+
+"Absolutely no stylistic technique, so much text, so hard to read, not pretty or
+digestible at all. A blob of unformatted information that no reader would ever
+read."
+
+The cause was structural rather than typographic. The specification asks for
+four passes over the same facts and then a seven-question FAQ that restates all
+four. Measured against the built section:
+
+- eight of the nine commitments restated a `Cannot do` row or a sentence above;
+- **all seven** privacy FAQ answers restated something already on the page,
+  204 words carrying no new fact;
+- exactly one statement in the section — Google Contacts — appeared once.
+
+Roughly 700 words became roughly 320, and Section 6 went from 3,083px to
+2,087px. What changed:
+
+- The opening statement names **Sheets**. The permissions table three blocks
+  below discloses a Sheets scope, and the one section whose job is disclosure
+  cannot name two of three services.
+- The claim's tinted block is cut. It carries itself typographically instead:
+  first sentence at display size, the two that qualify it at reading size.
+  The copy is byte-identical and the verification checks that.
+- The four steps stop being four rows of prose and become a mechanism — one
+  gate, two tracks, one outcome — carrying the Gmail, Calendar and Sheets marks.
+  Colour is semantic: the excluded track is recessed, the processed one is not,
+  and what survives is cream, which means "Blotter maintains this" everywhere
+  else on the page.
+- The permissions table gains the three service marks, which section 8 always
+  permitted and the first build declined.
+- The broad-permission disclosure loses its banner and becomes a caption under
+  the table. Jon asked whether it could move into the privacy policy. It cannot:
+  it is the only place the page reconciles Google's broad consent screen with
+  the narrower processing claim, section 9 fixes its position and section 18
+  bans hiding it. He accepted the argument. Losing the banner was the right half
+  of the instruction.
+- The nine-commitment block is cut. The two commitments nothing else covers sit
+  under the table; all nine still appear on the privacy-policy page.
+- The seven privacy questions move to the privacy-policy page in full. Moved,
+  not withdrawn, and they have still never met Section 7's product FAQ.
+
+A first pass set the excluded track and the whole `Cannot do` column in
+`ink-faint`. Reverted: it made the page's most important exclusions its least
+legible sentences, and a `Cannot do` list is a fact rather than a warning.
+
+### The provider sentence, and what the research found
+
+Jon rejected the provider-agnostic copy as unusable and ruled the page should
+say the provider is CASA certified. This supersedes `06-SECTION-6` sections 13
+and 18 and reverses the WS4 supersession-table row that replaced exactly this
+kind of sentence.
+
+He asked for research first, and it changed the wording:
+
+- Nylas's public claim for its shared Google application is **Tier 3** CASA, not
+  Tier 2. Stating any tier would be wrong for Nylas and unknown for anyone else,
+  so the sentence names the assessment and no tier.
+- On the Nylas shared application the Google consent screen reads **`Nylas`**,
+  not `Blotter`. Blotter's own name there requires Blotter's own Google
+  application, which makes the CASA assessment Blotter's obligation rather than
+  the provider's — at which point the sentence is false as written.
+
+Built as: `Blotter connects to Google through an established connection provider
+whose Google application has passed Google's CASA security assessment.`
+
+**This is the page's one unverified claim.** No provider is selected. Carried as
+three new gates in `06-assumptions-and-open-questions.md`, including the
+consent-screen identity question, which is a product decision and not a copy
+decision.
+
+### Section 7
+
+The five-question FAQ was reviewed and passed with no changes.
+
+The closing block was cut: "we don't need this super bold massive deep blue box
+— we do enough to pull you in already." The large centred panel is replaced by a
+compact footer carrying the exact closing headline, the final CTA opposite it,
+and then the brand, a privacy-policy link and social links. The supporting line
+and the reassurance line are cut.
+
+The navy ground survives the cut. `--color-closing` was reserved for this moment
+in session 2 and left unused through six sections, and section 1 still requires
+the page not end on an accordion. A compact dark footer satisfies both.
+
+There is no footer in WS3, WS4 or WS5. This is the page's first, built to
+instruction. LinkedIn is `linkedin.com/company/blotter`; the X account does not
+exist, so its mark renders as a non-interactive placeholder rather than a dead
+link.
+
+### The privacy policy page
+
+No specification ratifies any policy text. `06-SECTION-6` section 15 requires a
+real destination before public traffic and stops there. Jon ruled a hybrid:
+conventional structure, written broadly, because no product is being offered
+yet, with the language to be drafted and ratified by him later.
+
+The rule the page is built on: **structure may be conventional, facts may not be
+invented.** Fourteen articles plus the relocated privacy questions. Every
+substantive claim either imports from `lib/privacy-copy.ts`, so the page and
+Section 6 cannot contradict each other, or renders as a visible
+`[ to be confirmed: … ]` slot. Twelve such slots. None may be filled with a
+plausible value: each is a commitment about real user data.
+
+### Other
+
+- Section 2's methodology footnote reads `Summer Analyst 2027`, was `2028`. The
+  year inside the parked Goldman Sachs email asset is untouched, as is the
+  `Summer 2028` funnel recruiting-window option.
+- The privacy FAQ heading invented during the first build,
+  `Common questions about your data`, is gone with the FAQ. No invented visible
+  copy remains in Section 6.
+
+### Verification
+
+Production build passes. Typecheck clean. Lint clean apart from the pre-existing
+`analytics.ts` warning. Page is 7,953px, no horizontal scroll at 1440.
+
+Every backtick-quoted string in both build specs was extracted and diffed
+against the rendered DOM of the landing page and the policy page together, so
+the consolidation is provably a relocation rather than a deletion: all present,
+none of the forbidden ones, and the four Jon amended are recorded as
+intentionally absent. Two dashes in visible copy, both permitted — Alex Morgan's
+hero cell, and the section 10 sentence Jon cleared this session.
+
+Accordion behaviour asserted in the DOM: all rows closed on load, opening one
+closes the other, panels carry `role="region"` and `aria-labelledby`, and
+`hidden="until-found"` means find-in-page opens a closed answer instead of
+skipping it.
+
+### Rejected during this session
+
+- Section 6's first build, entire. Rejected by Jon.
+- Continuing the page gradient into Section 6. Rejected after seeing it: the
+  section boundary vanished.
+- The nine commitments set beside the retention copy. Rejected on evidence:
+  three 130px columns, every promise over four lines, columns ending at
+  different depths, and the longest promise reading as the most important.
+- Moving the broad-permission disclosure into the privacy policy. Argued
+  against and not pursued.
+- Dropdowns for the four processing steps. Argued against: hiding a permission
+  claim behind a click is what section 18 exists to prevent.
+- Stating a CASA tier. Rejected on research: Nylas claims Tier 3, not the
+  Tier 2 Jon had in mind.

@@ -1,7 +1,55 @@
 # WS5 Build Specification 06 - Section 6 Data and Privacy
 
+> **Amended by Jon, August 6, 2026, during the stage 7 build.** He is authority
+> level 1 under `WS5-SPEC.md` "Source hierarchy". Reasoning is recorded in
+> `04-decision-log.md`; the implementation carries the same notes inline.
+>
+> He rejected the first build of this section outright: no stylistic technique,
+> too much text, unreadable, "a blob of unformatted information that no reader
+> would ever read." The cause was structural. This specification asks for four
+> passes over the same facts — the candid claim, the four steps, the permissions
+> matrix, the nine commitments — and then a seven-question FAQ that restates all
+> four. Measured against the built section: eight of the nine commitments and
+> **all seven** FAQ answers repeated something already on the page. Exactly one
+> statement in the section appeared once.
+>
+> | Item here | Amended to |
+> |---|---|
+> | Section 5, opening statement `Connecting Gmail and Calendar…` | `Connecting Gmail, Calendar, and Sheets…`. The permissions table three blocks below discloses a Sheets scope, and the one section whose job is disclosure may not name two of three services. No other word changes. |
+> | Section 6, the claim in a tinted block with a border | The tinted block is cut. The claim carries itself typographically: first sentence at display size, the two that qualify it at reading size, on the section ground behind the same thin navy rule. Copy is byte-identical. |
+> | Section 7, four stacked numbered rows, and the ban on icons and illustrations | Rebuilt as a mechanism: one gate, two tracks, one outcome. The Gmail, Calendar and Sheets marks appear on it. All four exact sentences survive in place. Nothing is hidden behind an interaction. |
+> | Section 8, restrained service names without marks | The three service marks are used, at the small size section 8 always permitted. |
+> | Section 9, the disclosure as its own tinted notice block | Demoted to a caption beneath the table. Jon asked whether it could move into the privacy policy; it may not, and he accepted that. It stays immediately below the table, legible, per section 9 and the section 18 ban on hiding it. |
+> | Section 11, the nine commitments as a three-column block | Cut as a block. Seven of the nine are already `Cannot do` rows or already stated above. The two nothing else covers — Google Contacts, and not selling data — sit beneath the table. All nine still appear on the privacy-policy page. |
+> | Section 13 and 18, provider-agnostic copy and the ban on implying CASA completion | Superseded. The page now says the provider's Google application has passed Google's CASA security assessment. **This is an unverified claim.** See below. |
+> | Section 14, the seven-question privacy FAQ on the page | Relocated in full to the privacy-policy page. Moved, not withdrawn. |
+> | Section 4 order, and the section 20 acceptance criteria | Read against every amendment above. |
+>
+> **The provider sentence is a claim gate, not a settled fact.** No provider is
+> selected. Two findings from August 6, 2026 that the final wording has to
+> survive:
+>
+> - Nylas's public claim for its shared Google application is **Tier 3** CASA,
+>   not Tier 2. Any tier stated on the page would be wrong for Nylas and unknown
+>   for anyone else, which is why the sentence names the assessment and not a
+>   tier.
+> - On the Nylas shared application the Google consent screen reads **`Nylas`**,
+>   not `Blotter`. Putting Blotter's own name on that screen means Blotter's own
+>   Google application, and then the CASA assessment is Blotter's to pass rather
+>   than the provider's, at which point the sentence is false as written.
+>
+> Verify against the signed provider before public traffic.
+> `06-assumptions-and-open-questions.md` carries it as a gate.
+>
+> Unchanged and still binding: every string is verbatim, the section 4 order of
+> what remains, no eyebrow, no CTA, no cards, no seals or security iconography,
+> no simulated OAuth or permission toggles, no checkmark-versus-X treatment, no
+> centred sales copy, no provider name, no `accredited`, no SOC 2, and the
+> section 17 rule that ratified presentation is not ratified truth.
+
 Date ratified: August 1, 2026  
-Status: Ratified  
+Date amended: August 6, 2026  
+Status: Ratified, amended in part  
 Decision owner: Jon  
 Surface: Landing-page Section 6, `How Blotter uses your data`  
 Implementation priority: Desktop first

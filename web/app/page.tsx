@@ -4,6 +4,8 @@ import { Hero } from "@/components/sections/hero";
 import { ScaleAndConsequence } from "@/components/sections/scale-and-consequence";
 import { HowBlotterWorks } from "@/components/sections/how-blotter-works";
 import { TrackerAndActions } from "@/components/sections/tracker-and-actions";
+import { DataAndPrivacy } from "@/components/sections/data-and-privacy";
+import { FaqAndClose } from "@/components/sections/faq-and-close";
 
 /**
  * Spreadsheet landing page.
@@ -37,6 +39,8 @@ export default function Page() {
       <ScaleAndConsequence />
       <HowBlotterWorks />
       <TrackerAndActions />
+      <DataAndPrivacy />
+      <FaqAndClose />
     </>
   );
 }

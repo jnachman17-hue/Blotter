@@ -1,8 +1,8 @@
 # Blotter IB - Current Handoff
 
-Date: August 5, 2026
-Status: WS5 active. Sessions 1, 2 and 3 complete. Stages 1 through 6 done.
-Ready for stage 7.
+Date: August 6, 2026
+Status: WS5 active. Sessions 1 through 4 complete. Stages 1 through 7 done.
+**All seven landing-page sections exist.** Ready for stage 8 or 9.
 
 ## 1. How this project is built
 
@@ -31,15 +31,14 @@ neither was allowed to commit: the social-media asset kit in
 `web/public/brand/`, and a `social/` directory for a launch animation. If you
 run a parallel chat, the rules are: it edits only its own directory, it treats
 `web/lib/brand.ts` and `web/components/brand/` as read-only, it never runs
-`git add`/`commit`/`push`, and it never starts a dev server. Port 3000 is taken
-and `next dev` refuses a second instance in the same directory.
+`git add`/`commit`/`push`, and it never starts a dev server.
 
 | Session | Stages | Deliverable |
 |---|---|---|
 | 1 (complete) | 1-4 | Spec fixes, scaffold, foundation, SheetWindow |
 | 2 (complete) | 5 | Hero, page theme, Section 2, desktop |
 | 3 (complete) | 6 | Brand identity, Section 3, Sections 4+5 merged, desktop |
-| 4 | 7 | Sections 6, 7, privacy policy page |
+| 4 (complete) | 7 | Sections 6 and 7, the footer, the privacy policy page |
 | 5 | 8 | Funnel — **if Jon still wants one.** See section 8. |
 | 6 | 9-10 | Supabase, PostHog, responsive, accessibility, private deploy |
 
@@ -49,7 +48,7 @@ and `next dev` refuses a second instance in the same directory.
 |---|---|
 | Framework | Next.js 16 App Router, TypeScript |
 | Styling | Tailwind v4 with CSS custom properties |
-| UI primitives | Base UI 1.6.0 (accordions in Sections 6 and 7) |
+| UI primitives | Base UI 1.6.0 — **installed and in use**, both accordions |
 | Funnel state | zustand |
 | Variants | clsx and cva |
 | Hosting | Vercel, private with deployment protection |
@@ -58,161 +57,159 @@ and `next dev` refuses a second instance in the same directory.
 
 Application root: `web/`. Run with `pnpm --dir web dev`.
 
-## 4. Completed in sessions 1 and 2
+## 4. Completed in sessions 1 through 3
 
 Session 1: specification reconciliation, the Next.js scaffold, the foundation
 (design tokens, the nine-event analytics adapter with per-visitor suppression,
 the typed funnel store, the CTA component carrying all four origins, the sticky
-header), and the `SheetWindow` primitive with its grid, status chips, canonical
-data and the comparison surface at `/review/sheet`.
+header), and the `SheetWindow` primitive with its comparison surface at
+`/review/sheet`.
 
 Session 2: the hero at its ratified geometry, the page theme, and Section 2 as a
-volume trajectory built from 745 real marks. Both sections align to one bounding
-box, `PAGE_BOX_W` = 1124px. **Sections 3 through 7 inherit it. Do not introduce
-a second page width.**
+volume trajectory built from 745 real marks. Both align to one bounding box,
+`PAGE_BOX_W` = 1124px. **Every section inherits it. Do not introduce a second
+page width.**
 
-Full detail for both is in `04-decision-log.md`.
+Session 3: the brand identity (`Ledger B`, Schibsted Grotesk 700 at -0.035em,
+navy alone — yellow and cream are semantic on this page and unavailable to the
+identity), Section 3 as one Friday in three moments, and Sections 4 and 5 merged
+into one section with two beats sharing a tab strip.
 
-## 5. Completed in session 3
+Full detail for all three is in `04-decision-log.md`.
 
-### The brand identity, newly created
+## 5. Completed in session 4
 
-No canonical identity existed before this session. It now does, and it is
-ratified.
+### Section 6, `How Blotter uses your data`
 
-The mark is **`Ledger B`**: the letter built from the spreadsheet rather than
-decorated with it, its two bowls rows and its stem the row-number gutter. The
-wordmark is **Schibsted Grotesk 700 at -0.035em**. The colour is **navy alone** —
-yellow and cream are unavailable to the identity because they are semantic on
-this page and mean "Blotter maintains this".
+Built to spec, rejected outright by Jon as "a blob of unformatted information
+that no reader would ever read", and rebuilt the same session.
 
-- `web/lib/brand.ts` — colour, the ratios that generate the lockup, tracking and
-  weight, clear space, and the size floors. Below a 16px mark the gutter hairline
-  closes and it resolves to a plain solid B.
-- `web/components/brand/blotter-mark.tsx` — `BlotterMark`, `BlotterWordmark`,
-  `BlotterLockup`, `BlotterTile`. The glyph is drawn once and every component
-  consumes it, so the favicon and the header cannot drift apart.
-- `web/app/icon.svg` — favicon, reversed mark on a navy tile.
-- `web/public/brand/` — SVG exports plus `blotter-brand-kit.html`, a
-  self-contained page that draws thirteen social assets at exact platform pixel
-  sizes and downloads them as real PNGs. Open it directly; it needs no server.
+The cause was structural. `06-SECTION-6` asks for four passes over the same
+facts and then a seven-question FAQ restating all four: eight of the nine
+commitments and **all seven** FAQ answers repeated something already on the
+page. Roughly 700 words became roughly 320; the section went from 3,083px to
+2,087px.
 
-### Section 3, `How Blotter works`
+It now says each thing once: title and opening statement, the claim, the
+mechanism, the permissions table, two notes belonging to the table, retention
+and deletion, the provider, the policy link. The nine commitments and the seven
+privacy questions moved to the privacy-policy page — **moved, not withdrawn.**
 
-The formal exact asset is discarded and the mechanism rebuilt as **one Friday,
-three moments, one tracker**. Not a flow. Columns run in causal order — when,
-what happened, Blotter, what the tracker says — so the ratified stage labels
-land in their required order without a pipeline diagram.
+The four processing steps are a mechanism rather than four rows of prose: one
+gate, two tracks, one outcome, carrying the Gmail, Calendar and Sheets marks.
+`SheetsMark` was added to `components/google-marks.tsx` this session and is the
+same glyph the `SheetWindow` chrome draws.
 
-Daniel Kim opens it on silence: no email, no calendar event, just day five
-arriving. Then Sarah's reply, then Priya's coffee chat. One of each trigger
-type, and the one a person cannot notice unaided goes first.
+Section 6's ground is **warm paper**, chosen from three live variants. Continuing
+the page gradient made the boundary with Sections 4-5 vanish, which is what
+`06-SECTION-6` §3 exists to prevent. The band starts on `--field-e` and rests on
+the new `--field-f`.
 
-The section resolves with the boundary line facing three product-boundary
-statements in a warm panel, each carrying a struck symbol. The third is the
-ChatGPT mark, which overrides the "provider references" exclusion.
+### Section 7, and the page's first footer
 
-### The hero, amended
+The five-question FAQ passed review unchanged.
 
-The third activity cue moves from Alex Morgan to Daniel Kim,
-`No reply for 5 days` / `Last contact Jan 11`. The cue stack was retuned from
-`[180, 243, 358]` to `[180, 243, 322]`; connector endpoints were asserted in the
-DOM at 192.25, 235.75 and 322.75. Alex Morgan's row and its ratified em dash are
-untouched.
+The large centred navy closing panel was cut. In its place is a compact footer:
+the exact closing headline set left, the final CTA opposite it, then the brand,
+a privacy-policy link and social links. The supporting and reassurance lines are
+gone. The navy ground survives — `--color-closing`, reserved since session 2 and
+finally used.
 
-### Sections 4 and 5, merged
+LinkedIn is `https://www.linkedin.com/company/blotter`. **The X account does not
+exist yet.** Its mark renders as a non-interactive placeholder; set `X_URL` in
+`components/sections/faq-and-close.tsx` when Jon supplies it.
 
-**One section, two beats, sharing a tab strip.** `components/sections/tracker-and-actions.tsx`.
+### The privacy policy page, `/privacy`
 
-Beat 1 is the ten-column Blotter tab with loud zone labels above it and the
-cream carried down every maintained cell. Beat 2 is the Outstanding view with
-its three groups running as **columns**, so all 21 actions fit in thirteen rows
-and the follow-ups column visibly runs twice as long as the others. The CTA
-follows, `cta_location = actions`.
+No specification ratifies any policy text. Jon ruled a hybrid: conventional
+structure, written broadly, language to be drafted and ratified by him later.
 
-Eighteen of the twenty-one action contacts are invented. Flagged and accepted.
+**Structure may be conventional; facts may not be invented.** Fourteen articles
+plus the relocated privacy questions. Every substantive claim imports from
+`lib/privacy-copy.ts`, so the page and Section 6 cannot contradict each other,
+or renders as a visible `[ to be confirmed: … ]` slot. There are twelve slots.
+**Do not fill one with a plausible value** — each is a commitment about real
+user data someone would be entitled to rely on.
+
+### Section 2
+
+The methodology footnote reads `Summer Analyst 2027`, was `2028`. Nothing else
+changed. The year inside the parked Goldman email asset and the `Summer 2028`
+funnel option are deliberately untouched.
 
 ### Verification
 
-Production build passes. Typecheck clean. Lint clean apart from one pre-existing
-warning in `analytics.ts`. No horizontal scroll at 1440. The page is 5,003px,
-about 5.6 screens. Section 3's copy was diffed against the spec in the DOM: every
-line exact, no CTA, zero em or en dashes.
+Production build passes. Typecheck clean. Lint clean apart from the pre-existing
+`analytics.ts` warning. Page is 7,953px, no horizontal scroll at 1440.
 
-## 6. Decisions that are settled. Do not reopen without Jon.
+Every backtick-quoted string in both build specs was extracted and diffed
+against the rendered DOM of both pages together, proving the consolidation is a
+relocation and not a deletion. Two dashes in visible copy, both permitted.
+Accordion semantics asserted in the DOM.
 
-Full reasoning for all of these is in `04-decision-log.md`.
+## 6. The one unverified claim on the page. Read this before touching it.
+
+Section 6 says: `Blotter connects to Google through an established connection
+provider whose Google application has passed Google's CASA security assessment.`
+
+Jon ruled this in and it supersedes `06-SECTION-6` §13 and §18, which forbid
+implying CASA completion without evidence. **No provider is selected, so the
+sentence is true of no actual arrangement.** Two research findings from this
+session that the final wording has to survive:
+
+- Nylas's public claim for its shared Google application is **Tier 3** CASA, not
+  Tier 2. Do not state a tier: it would be wrong for Nylas and unknown for
+  anyone else.
+- On the Nylas shared application the Google consent screen reads **`Nylas`**,
+  not `Blotter`. Blotter's own name there requires Blotter's own Google
+  application — and then the CASA assessment is Blotter's to pass, not the
+  provider's, and this sentence is false as written. **That is a product
+  decision, not a copy decision, and it is open.**
+
+Three gates in `06-assumptions-and-open-questions.md` carry this.
+
+## 7. Decisions that are settled. Do not reopen without Jon.
+
+Full reasoning is in `04-decision-log.md`.
 
 **a. The brand identity** — mark, wordmark, navy-only colour.
 
 **b. Maintained-zone row tint.** Header band alone in the hero and Section 3.
-The merged Section 4+5 is the deliberate exception: the cream runs down every
-maintained cell there because that section's job is the ownership split itself.
+The merged Section 4+5 is the deliberate exception.
 
 **c. Status chip colours**, from the ratified hero asset.
 
-**d. Alex Morgan's em dash** — the only one on the page. A ruling about the cell,
-not the cue.
+**d. Alex Morgan's em dash**, and now **the Section 6 §10 sentence**. Those two
+are the only dashes permitted in visible copy anywhere on the page.
 
 **e. Date formats** `1/16/26`, `1/17 @ 2:00 PM`, `Completed 1/16`.
 
-**f. The page theme and the bounded-box layout.** The semantic colour rule was
-relaxed on August 5 for Section 3's resolution block only.
+**f. The page theme and the bounded-box layout**, now including `--field-f` and
+Section 6's warm-paper ground.
 
-**g. Every Section 2 amendment**, stamped in `02-SECTION-2`.
-
-**h. Every session 3 amendment**, stamped at the top of `01-HERO`,
-`03-SECTION-3`, `04-SECTION-4` and `05-SECTION-5`.
-
-## 7. Exact next action
-
-Begin stage 7: **Sections 6 and 7, plus the privacy policy page.**
-
-Section 6, `How Blotter uses your data`, under `06-SECTION-6-DATA-AND-PRIVACY.md`.
-It is a document, not a marketing section — left-aligned, calm, thin rules, no
-eyebrow, no CTA, no gradients, no shields or seals, and a background materially
-different from the product-demonstration sections above it. Eleven parts in fixed
-order: title and opening statement, the candid claim, the four-step processing
-explanation, the exact permissions table, the broad Google-permission disclosure,
-`What Blotter keeps`, plain commitments, the account-deletion statement, the
-third-party connection-provider disclosure, its own privacy FAQ, and the
-privacy-policy link. Do not merge its FAQ into Section 7's.
-
-Section 7, under `07-SECTION-7-FAQ-AND-FINAL-CTA.md`: five exact FAQ questions in
-accordions, then the final closing block and the page's last CTA,
-`cta_location = final`. Base UI 1.6.0 is the ratified accordion primitive and is
-not yet installed.
-
-The gradient extends with the next band starting on `--field-e` (#eef3fa), where
-Sections 4+5 end. `--color-closing` is still unused and was reserved for Section
-7's final CTA — Section 3's resolution block deliberately stayed light so that
-one dark moment on the page keeps its weight.
-
-**Expect Jon to reject at least one ratified asset or presentation rule per
-section.** That happened for Section 2, Section 3, Section 4 and Section 5. The
-pattern that works: build the ratified content, then build live side-by-side
-variants behind a temporary review route under `/review/`, let him flip between
-them, delete the losers and the route. Prose descriptions do not work — he said
-so three times in this session. Show, do not describe.
+**g. Every amendment stamped at the top of `01-HERO`, `02-SECTION-2`,
+`03-SECTION-3`, `04-SECTION-4`, `05-SECTION-5`, `06-SECTION-6` and
+`07-SECTION-7`.** All seven build specs now carry amendment tables.
 
 ## 8. Open, flagged to Jon, not answered
 
-- **The funnel may be cut entirely.** Jon said on August 5 that he may not want
-  a funnel behind `See how Blotter works`, preferring everything on the page
-  behind a single direct CTA such as `Try Blotter now`. He ruled that ratified
-  funnel frames must not constrain landing-page design. Stage 8 is therefore
-  conditional. Do not build funnel screens until he decides.
-- **Section 3's boundary box gradient.** Jon suggested a blue-to-cream gradient
-  inside it, echoing the sheet header band above. Approved in principle, queued,
-  not built.
-- **The messy-spreadsheet concept**, parked. The rear sheet in a stacked-tabs
-  treatment rendered as the stale, unformatted spreadsheet the reader actually
-  has, which Blotter converts. Jon's idea, worth its own round.
+- **The funnel may be cut entirely.** Jon said on August 5 that he may prefer
+  everything on the page behind a single direct CTA. Ratified funnel frames must
+  not constrain landing-page design. Stage 8 is conditional. Do not build funnel
+  screens until he decides.
+- **The privacy-policy language.** Jon is drafting and ratifying it himself.
+  Twelve `[ to be confirmed: … ]` slots wait on him.
+- **The X account URL.**
+- **Consent-screen identity**, above. Product decision, open.
+- **Section 3's boundary box gradient.** Blue-to-cream inside it, echoing the
+  sheet header band. Approved in principle, queued, not built.
+- **The messy-spreadsheet concept**, parked. The rear sheet rendered as the
+  stale, unformatted spreadsheet the reader actually has. Jon's idea.
 - **`web/app/layout.tsx` page title** carries an em dash in the browser tab,
-  contradicting the standing no-em-dash rule for visible copy. Session-1 code,
-  flagged four times, unchanged without instruction.
-- **A launch animation** for social, roughly ten seconds, to be built in a
-  separate chat under `social/`.
+  contradicting the standing rule. Session-1 code, flagged five times now,
+  unchanged without instruction.
+- **A launch animation** for social, roughly ten seconds, in a separate chat
+  under `social/`.
 
 ## 9. Waiting on Jon, not blocking until session 6
 
@@ -229,18 +226,36 @@ privacy and claim gates, and final launch authorisation.
 
 ## 11. Things worth knowing before you start
 
+**Jon rejects at least one ratified asset or presentation rule per section, and
+has in every session.** The pattern that works: build the ratified content,
+then build live side-by-side variants behind a temporary route under `/review/`,
+let him flip between them, delete the losers and the route. Prose descriptions
+do not work. Show, do not describe. `/review/section-6` was built and deleted
+this session; `.claude/skills/prototype/PICKER.md` has the picker, verbatim.
+
+**The Browser pane's screenshots return blank in this environment.** Its DOM
+tools work fine — `read_page`, `javascript_tool`, console and network all
+behave. For images, drive headless Chrome over the DevTools protocol:
+`Page.captureScreenshot` with a `clip` rectangle is the only reliable way to
+frame a section 5,000px down the page, since the Chrome CLI only captures from
+the top of the document. A working script was used this session and is not
+committed; rebuild it in the scratchpad if you need it.
+
+**Another chat's `next dev` may already hold `web/`.** Next refuses a second
+instance in the same directory, so `preview_start` dies immediately. The running
+server serves the same source — point the browser at it rather than killing
+someone else's process.
+
 `web/components/section-2/gmail-message.tsx` is a complete, verified translation
 of the exact Goldman Sachs asset at its native 1180 by 560 and is currently
 unused. Jon parked it in case a later section wants it. Do not delete it as dead
 code.
 
-`SheetWindow` gained two capabilities this session: an empty `tabs` array omits
-the tab strip entirely, and `columnWidths` now accepts numbers as well as
-Tailwind utilities. Use numbers for any width computed at runtime — a
-template-built `w-[123px]` never reaches the Tailwind compiler and the
-column-letter strip silently stops aligning over its columns.
+`SheetWindow`: an empty `tabs` array omits the tab strip, and `columnWidths`
+accepts numbers as well as Tailwind utilities. Use numbers for any width
+computed at runtime — a template-built `w-[123px]` never reaches the Tailwind
+compiler and the column-letter strip silently stops aligning.
 
 The `impeccable` design hook flags the prototype picker's `width` transition on
-every review route. It is a false positive: the picker is copied verbatim from
-`.claude/skills/prototype/PICKER.md`, which documents that transition as a
-deliberate exception. No suppression has been added.
+every review route. It is a false positive documented in `PICKER.md`. No
+suppression has been added, in this session or the last.
