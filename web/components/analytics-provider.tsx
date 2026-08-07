@@ -57,21 +57,32 @@ export function AnalyticsProvider() {
       posthog.init(key, {
         api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com",
         autocapture: false,
-        capture_pageview: false,
         /*
-          Both off, added August 6, 2026 after the first live events showed
-          `$pageleave` and `Web vitals` arriving alongside the nine.
-          `$pageleave` is orphaned here: it exists to close a `$pageview`, and
-          we do not send those, so it pairs with nothing. Web vitals is
-          autocapture by another name, and autocapture is off for the reason
-          above. Neither is in WS3's event set, and a feed where the nine
-          milestones are outnumbered by incidental traffic is harder to read
-          for no gain in round one.
+          `$pageview` and `$pageleave` are ON, reversing an earlier call.
 
-          Turn `capture_performance` back on if page speed ever becomes a
-          question worth measuring. It is a real signal, just not this one.
+          They were switched off on the reasoning that PostHog firing its own
+          pageview would double-count the denominator of WS3's ratios. That was
+          wrong. Our denominator is `page_viewed`, a distinct event name that we
+          fire ourselves and suppress per visitor; `$pageview` cannot inflate it
+          because nothing reads `$pageview`.
+
+          What it does do is make PostHog's built-in Web Analytics work —
+          traffic, referrers, UTM sources, bounce. With them off, every prebuilt
+          dashboard reads zero no matter how much traffic arrives, which is
+          exactly what Jon found on August 6, 2026. For a paid-traffic demand
+          test, where the traffic came from is not incidental.
+
+          The division of labour is now explicit:
+            `page_viewed`  ours, one per visitor, the denominator of every
+                           ratified metric. Never read `$pageview` for these.
+            `$pageview`    PostHog's, one per page load, feeds its own reports.
         */
-        capture_pageleave: false,
+        capture_pageview: true,
+        capture_pageleave: true,
+        /*
+          Web vitals stays off. It is autocapture by another name and no
+          decision in round one turns on page speed. Turn it on if that changes.
+        */
         capture_performance: false,
         disable_session_recording: true,
         person_profiles: "identified_only",
