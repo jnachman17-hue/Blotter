@@ -7,8 +7,70 @@ August 6, 2026** — happy overall, small tweaks expected later. Ready for stage
 
 **Stage 8 is now a different shape than WS3 and WS4 specify.** Jon ruled on
 August 6, 2026 that the funnel is built without the three-frame product
-experience, and that the CTA label changes. Both are open items in section 8
-below and neither is built yet.
+experience, and that the CTA label changes. **Both are built.** The funnel is a
+fixed 960x730 modal carrying Film A, and the CTA reads `Try Blotter Now`.
+
+**Lead storage and analytics are live**, which was most of stage 9. Supabase and
+PostHog are both connected and verified end to end.
+
+**The repository moved on August 6, 2026.** `Jon-sOrg/Blotter-Claude` was a
+private *fork* of `jnachman17-hue/Blotter-GPT`, and GitHub will neither transfer
+nor detach a private fork — which also meant Vercel's Hobby plan refused it,
+since Hobby allows private *personal* repos but not private *organisation* ones.
+All 242 commits were pushed to a new, unforked, private personal repo:
+
+    origin     https://github.com/jnachman17-hue/Blotter-Claude   <- push here
+    org-fork   https://github.com/Jon-sOrg/Blotter-Claude         <- stale, do not use
+    upstream   https://github.com/jnachman17-hue/Blotter-GPT      <- unrelated lineage
+
+Large pushes to it need `git config http.postBuffer 524288000`; without it the
+initial push fails with an unhelpful `RPC failed; HTTP 400`.
+
+## 0. Act on these before anything else
+
+**This section is a checklist, not background. Read it, work out whether any
+item is now due, and if one is, tell Jon in the first reply of the session.**
+
+### Due the moment the site is reachable at a public URL
+
+**Jon must mark his own browsers as internal, and only he can do it.**
+
+Send him this, unprompted, the first session after a public deployment exists:
+
+> Visit `https://<the live domain>/?blotter_internal=1` once on every browser
+> and device you use — desktop, phone, any second browser. Each one needs its
+> own visit.
+
+Why it cannot wait and cannot be delegated:
+
+- The flag lives in `localStorage`, which is **per origin**. Marking himself on
+  `localhost:3000` does nothing for the live domain. It has to be redone there.
+- No assistant can reach his browser or his phone. This is his to do.
+- Until it is done, every click of his own counts as real traffic. That inflates
+  `page_viewed`, the denominator of **every** rate in WS3's metric hierarchy,
+  and drops his own funnel runs into `leads` as if they were demand.
+- Data gathered before he does it cannot be cleanly separated afterwards.
+
+Verify it took: `localStorage['blotter:internal'] === '1'` on that origin, and
+the person carries `is_internal` in PostHog. `?blotter_internal=0` clears it.
+
+Then, in PostHog: **Settings -> Project -> Filter out internal and test users**,
+add `is_internal` `is set`. The toggle alone filters nothing; the rule is what
+does the work. Search the property name `is_internal`, not a value.
+
+And when reading leads, query the **`real_leads`** view, never `leads` — the
+view excludes internal rows, the table does not.
+
+### Due before public traffic, not before deployment
+
+Section 6 and `/privacy` state as settled fact that unmatched messages are never
+routed for content analysis, that full email bodies are not retained, that
+deletion revokes and erases, and that the connection provider has passed
+Google's CASA assessment. **None of it is true of any implementation, because
+there is no implementation.** These are safe behind deployment protection and
+are representations about handling real people's email once they are not. Jon
+agreed on August 6, 2026 that the claims get fixed; that work has not happened.
+The full gate list is `06-assumptions-and-open-questions.md`.
 
 ## 1. How this project is built
 
