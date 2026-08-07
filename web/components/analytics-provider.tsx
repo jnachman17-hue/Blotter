@@ -64,6 +64,11 @@ export function AnalyticsProvider() {
         respect_dnt: true,
       });
 
+      /* PostHog's own toolbar and debugger look for `window.posthog`, and the
+         module import does not set it. Also the only way to inspect what was
+         sent during a manual verification run (WS5 Phase 8). */
+      (window as unknown as { posthog: unknown }).posthog = posthog;
+
       /* Our visitor id becomes PostHog's person, so its unique-user counts and
          WS3's "unique eligible visitors" mean the same thing. It is a random
          local identifier and carries nothing personal. */

@@ -20,6 +20,26 @@ import "server-only";
 
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
+/**
+ * Reduce whatever was pasted to the project origin.
+ *
+ * Supabase's dashboard shows the project URL in one place and the Data API
+ * endpoint — the same host with `/rest/v1` on the end — in another, and the
+ * second is the one that looks like it belongs in a variable called URL. The
+ * client wants the origin and appends its own paths, so a pasted
+ * `https://ref.supabase.co/rest/v1/` produces
+ * `Invalid path specified in request URL`, which names nothing useful.
+ *
+ * Normalising here costs one line and removes the trap permanently.
+ */
+function projectOrigin(raw: string): string | null {
+  try {
+    return new URL(raw.trim()).origin;
+  } catch {
+    return null;
+  }
+}
+
 let client: SupabaseClient | null = null;
 let checked = false;
 
@@ -27,9 +47,15 @@ export function supabaseAdmin(): SupabaseClient | null {
   if (checked) return client;
   checked = true;
 
-  const url = process.env.SUPABASE_URL;
+  const raw = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) return null;
+  if (!raw || !key) return null;
+
+  const url = projectOrigin(raw);
+  if (!url) {
+    console.error("[supabase] SUPABASE_URL is not a valid URL");
+    return null;
+  }
 
   client = createClient(url, key, {
     auth: { persistSession: false, autoRefreshToken: false },

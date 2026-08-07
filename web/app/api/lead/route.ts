@@ -78,6 +78,13 @@ export async function POST(request: Request) {
     session_id: text(body.session_id, 64),
     visitor_id: text(body.visitor_id, 64),
     furthest_stage: text(body.furthest_stage, 32),
+    furthest_stage_index:
+      typeof body.furthest_stage_index === "number" &&
+      Number.isInteger(body.furthest_stage_index) &&
+      body.furthest_stage_index >= 0 &&
+      body.furthest_stage_index < 32
+        ? body.furthest_stage_index
+        : 0,
     test_iteration: text(body.test_iteration, 16),
   };
 

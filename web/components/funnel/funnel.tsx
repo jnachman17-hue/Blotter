@@ -74,7 +74,7 @@ import {
 } from "@/lib/funnel-copy";
 import { track, type PaymentMethod } from "@/lib/analytics";
 import { saveLead } from "@/lib/lead-store";
-import { useFunnel } from "@/lib/funnel-store";
+import { stageIndex, useFunnel } from "@/lib/funnel-store";
 import { cn } from "@/lib/cn";
 
 /** The stage. Set by the film, which needs the most room, and never varies. */
@@ -87,6 +87,31 @@ const COLUMN = 460;
 /** Free-text `Other` needs something typed before it counts as an answer. */
 const answered = (choice: string | null, other: string) =>
   Boolean(choice) && (choice !== "Other" || other.trim().length > 0);
+
+/**
+ * Re-write the lead with the stage the visitor has now reached.
+ *
+ * WS5 Phase 4 requires the record hold the **furthest funnel stage reached**,
+ * and the lead is first written at email capture — three screens before the
+ * end. Written once, the field would say `email` for everyone forever and the
+ * one thing it exists to answer, how far they got, would be unanswerable.
+ *
+ * The upsert conflicts on `visitor_id`, so this updates the row rather than
+ * adding one. Safe to call at every later milestone.
+ */
+function syncLead(state: ReturnType<typeof useFunnel.getState>) {
+  if (!state.email) return;
+  saveLead({
+    email: state.email,
+    recruiting_track: state.track,
+    recruiting_window: state.window,
+    recruiting_track_other: state.track === "Other" ? state.trackOther.trim() : null,
+    recruiting_window_other: state.window === "Other" ? state.windowOther.trim() : null,
+    cta_location: state.ctaLocation,
+    furthest_stage: state.furthestStage,
+    furthest_stage_index: stageIndex(state.furthestStage),
+  });
+}
 
 /* -------------------------------------------------------------------- steps */
 
@@ -224,6 +249,7 @@ function EmailStep() {
       recruiting_window_other: w === "Other" ? windowOther.trim() : null,
       cta_location: ctaLocation,
       furthest_stage: furthestStage,
+      furthest_stage_index: stageIndex(furthestStage),
     });
     track("email_submitted");
     goTo("price");
@@ -293,6 +319,7 @@ function PriceStep() {
   function next() {
     track("checkout_started", { price: 9.99, billing_period: "monthly" });
     goTo("checkout");
+    syncLead(useFunnel.getState());
   }
 
   return (
@@ -352,6 +379,7 @@ function CheckoutStep() {
       billing_period: "monthly",
     });
     goTo("confirmed");
+    syncLead(useFunnel.getState());
   }
 
   return (
@@ -405,6 +433,8 @@ function ConfirmedStep() {
 
   useEffect(() => {
     track("beta_spot_confirmed");
+    /* The last word on how far this visitor got. */
+    syncLead(useFunnel.getState());
   }, []);
 
   return (

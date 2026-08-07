@@ -33,6 +33,8 @@ export interface Lead {
   session_id: string;
   visitor_id: string;
   furthest_stage: string;
+  /** Ordinal of `furthest_stage`. The database keeps the highest it has seen. */
+  furthest_stage_index: number;
   submitted_at: string;
 }
 
