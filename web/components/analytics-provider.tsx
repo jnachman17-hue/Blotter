@@ -58,7 +58,21 @@ export function AnalyticsProvider() {
         api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com",
         autocapture: false,
         capture_pageview: false,
-        capture_pageleave: true,
+        /*
+          Both off, added August 6, 2026 after the first live events showed
+          `$pageleave` and `Web vitals` arriving alongside the nine.
+          `$pageleave` is orphaned here: it exists to close a `$pageview`, and
+          we do not send those, so it pairs with nothing. Web vitals is
+          autocapture by another name, and autocapture is off for the reason
+          above. Neither is in WS3's event set, and a feed where the nine
+          milestones are outnumbered by incidental traffic is harder to read
+          for no gain in round one.
+
+          Turn `capture_performance` back on if page speed ever becomes a
+          question worth measuring. It is a real signal, just not this one.
+        */
+        capture_pageleave: false,
+        capture_performance: false,
         disable_session_recording: true,
         person_profiles: "identified_only",
         respect_dnt: true,
