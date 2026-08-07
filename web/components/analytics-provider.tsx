@@ -25,10 +25,10 @@
  * we published says email is used for the account and the cohort list. Nothing
  * on this page justifies recording a stranger typing their address.
  *
- * `capture_pageview: false` — `page_viewed` is one of the canonical nine and is
- * fired explicitly by `components/page-view.tsx`. Letting PostHog also fire its
- * own would double-count the denominator of every ratio in WS3's metric
- * hierarchy.
+ * `capture_pageview: true` — and the reasoning is inline below, because it
+ * reverses an earlier decision. `$pageview` is PostHog's own event and feeds
+ * its own reports; `page_viewed` is ours and is the denominator of every
+ * ratified metric. They are different names and never mix.
  *
  * `person_profiles: "identified_only"` with an explicit `identify` — WS3's
  * rates are all "unique eligible visitors", so PostHog's notion of a person has
@@ -43,9 +43,14 @@
 import { useEffect } from "react";
 
 import { getIdentifiers, setAnalyticsSink } from "@/lib/analytics";
+import { isInternalVisitor, syncInternalFlag } from "@/lib/internal-visitor";
 
 export function AnalyticsProvider() {
   useEffect(() => {
+    /* Before anything is captured, so the first event of a marked session is
+       already marked. */
+    syncInternalFlag();
+
     const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
     if (!key) return;
 
@@ -98,6 +103,17 @@ export function AnalyticsProvider() {
          WS3's "unique eligible visitors" mean the same thing. It is a random
          local identifier and carries nothing personal. */
       posthog.identify(getIdentifiers().visitor_id);
+
+      /*
+        A person property, which is exactly what PostHog's "internal and test
+        users" setting consumes. Set once and it sticks to this person forever,
+        so the filter keeps working on the public domain — where a host-based
+        rule stops helping, because Jon is on the same domain as everyone else.
+      */
+      if (isInternalVisitor()) {
+        posthog.setPersonProperties({ is_internal: true });
+        posthog.register({ is_internal: true });
+      }
 
       /* Setting the sink also flushes anything fired while the vendor loaded —
          `page_viewed` almost always lands before this point. */

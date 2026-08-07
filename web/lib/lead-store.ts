@@ -20,6 +20,7 @@
 
 import type { CtaLocation, RecruitingTrack, RecruitingWindow } from "./analytics";
 import { getIdentifiers, TEST_ITERATION } from "./analytics";
+import { isInternalVisitor } from "./internal-visitor";
 
 export interface Lead {
   email: string;
@@ -35,6 +36,8 @@ export interface Lead {
   furthest_stage: string;
   /** Ordinal of `furthest_stage`. The database keeps the highest it has seen. */
   furthest_stage_index: number;
+  /** True when this browser is marked internal. Exclude when counting leads. */
+  is_internal: boolean;
   submitted_at: string;
 }
 
@@ -76,7 +79,7 @@ export function setLeadSink(next: Sink) {
 }
 
 export function saveLead(
-  input: Omit<Lead, "session_id" | "visitor_id" | "surface_variant" | "submitted_at">,
+  input: Omit<Lead, "session_id" | "visitor_id" | "surface_variant" | "submitted_at" | "is_internal">,
 ) {
   const { visitor_id, session_id } = getIdentifiers();
   sink({
@@ -84,6 +87,7 @@ export function saveLead(
     surface_variant: "spreadsheet",
     session_id,
     visitor_id,
+    is_internal: isInternalVisitor(),
     submitted_at: new Date().toISOString(),
   });
 }

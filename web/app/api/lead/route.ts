@@ -86,6 +86,7 @@ export async function POST(request: Request) {
         ? body.furthest_stage_index
         : 0,
     test_iteration: text(body.test_iteration, 16),
+    is_internal: body.is_internal === true,
   };
 
   if (!supabaseConfigured()) {

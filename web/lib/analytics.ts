@@ -9,6 +9,8 @@
  * frozen and must not change with the vendor.
  */
 
+import { isInternalVisitor } from "./internal-visitor";
+
 /** The complete canonical event set. There is no separate `cta_clicked` event. */
 export const CANONICAL_EVENTS = [
   "page_viewed",
@@ -71,6 +73,14 @@ export interface EventProperties {
   price?: 9.99;
   billing_period?: "monthly";
   payment_method?: PaymentMethod;
+  /**
+   * True for browsers marked with `?blotter_internal=1`.
+   *
+   * Present on every event so no query has to guess. **Exclude it when reading
+   * results**: internal traffic is captured deliberately so production can be
+   * verified, which means it is in the data until something filters it out.
+   */
+  is_internal?: true;
 }
 
 export interface AnalyticsSink {
@@ -203,6 +213,7 @@ export function track(
     ...getIdentifiers(),
     device_type: deviceType(),
     ...attribution(),
+    ...(isInternalVisitor() ? { is_internal: true as const } : {}),
     ...properties,
   };
 
