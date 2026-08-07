@@ -22,9 +22,20 @@
  * two most likely to move are the connection provider and the Google scopes,
  * and both are claims someone would be entitled to rely on.
  *
- * Publication gate, unchanged: this page is `noindex` and the deployment stays
- * private. WS5 Phase 7 claim verification must pass before public traffic —
- * the language is settled, the implementation it describes does not exist yet.
+ * **The landing page is a demand test and stays in the present tense.** Jon
+ * ruled on August 6, 2026 that Section 6 is not to be hedged: presenting the
+ * product as real is the instrument, and a visitor who has to work to discover
+ * it is unbuilt is precisely what makes the intent signal meaningful. That is
+ * his call and it is a normal way to validate a product.
+ *
+ * This page is where that stops. Article 03 states plainly what happens today,
+ * because real people are handing over real email addresses now and real
+ * analytics are being collected now. Everything after article 03 describes the
+ * launch. **If what is collected changes, article 03 changes first.**
+ *
+ * Publication gate: `noindex` here and in `app/robots.ts`. Note that production
+ * cannot be password-protected on Vercel's Hobby plan, so the live URL is
+ * public rather than merely unlisted.
  */
 
 import type { Metadata } from "next";
@@ -173,21 +184,30 @@ export default function PrivacyPolicyPage() {
           The status notice.
 
           Jon's ruling of August 6, 2026: it may not say `draft`, because a
-          draft reads as unofficial and this policy is in force. What it says
-          instead is the true and more useful thing — the product is not
-          available, no one's data is being processed, this is effective today,
-          and the specifics will change as the product is built.
+          draft reads as unofficial and this policy is in force.
+
+          Revised the same day once collection went live. It used to say no
+          one's data was being processed, which stopped being true the moment
+          Supabase and PostHog were connected. It now separates the two claims
+          that matter: the Google connection does not exist, and email and usage
+          data are already being collected.
         */}
         <div className="mt-8 border-l-2 border-blotter-400 bg-white py-5 pr-8 pl-6">
           <p className="text-body leading-[1.62] text-ink">
             <strong className="font-semibold">
-              Blotter is not yet available and is not processing anyone&rsquo;s data.
+              Blotter is still in development and is not yet connected to anyone&rsquo;s
+              Google account.
             </strong>{" "}
-            This policy is effective as of the date above and describes how Blotter will
-            handle your information when the product launches. Details will change as it is
-            built: service providers, storage locations and specific practices may all be
-            revised, and this page will be updated when they are. Items still being settled
-            are marked in place rather than assumed.
+            Two things are already true today, and section 3 sets them out in full: if you
+            give us your email address, we store it, and we record how this site is used.
+            Nothing reads your Gmail, Calendar or Sheets, because that connection does not
+            exist yet.
+          </p>
+          <p className="mt-3 text-body leading-[1.62] text-ink">
+            The rest of this policy describes how your information will be handled once the
+            product launches. Details will change as it is built: service providers, storage
+            locations and specific practices may all be revised, and this page will be
+            updated when they are.
           </p>
         </div>
 
@@ -222,7 +242,64 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="03" title="Information we collect">
+          {/*
+            The one article that describes the present rather than the launch.
+
+            Jon's ruling of August 6, 2026: Section 6 and the rest of this
+            policy stay in the present tense, because the landing page is a
+            demand test and hedging it would destroy the instrument being
+            measured. That is his call and it is a normal way to validate a
+            product.
+
+            What is not optional is this: real people are handing over real
+            email addresses today, and real analytics are being collected. A
+            policy that says "we are not processing anyone's data" while a
+            Supabase table fills up with addresses is the one statement here
+            that could actually mislead somebody. So this article says plainly
+            what happens now, and everything after it describes the launch.
+
+            **Keep this accurate.** If collection changes, change this first.
+          */}
+          <Article n="03" title="What happens today">
+            <p>
+              Blotter is still being built. The connection to Gmail, Calendar and Google
+              Sheets described in the rest of this policy is not active, and nothing has
+              access to your Google account.
+            </p>
+            <p>
+              Two things do happen now.
+            </p>
+            <p>
+              <strong className="font-semibold text-ink">If you give us your email address</strong>{" "}
+              at the end of the sign-up flow, we store it, together with what you told us
+              about what you are recruiting for and your recruiting window, which link you
+              arrived through, and how far through the flow you went. It is stored in our
+              database, run by Supabase in the United States.
+            </p>
+            <p>
+              <strong className="font-semibold text-ink">We record how this site is used</strong>{" "}
+              through PostHog, in the United States: pages viewed, which steps of the sign-up
+              flow were reached, your device and browser type, approximate location derived
+              from your IP address, and where you arrived from. Your email address is never
+              attached to this usage data.
+            </p>
+            <p>
+              No payment has been taken from anyone and no card details are collected
+              anywhere on this site.
+            </p>
+            <p>
+              If you would like the email address you gave us deleted, write to{" "}
+              <a
+                href="mailto:blotterib@gmail.com"
+                className="font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900"
+              >
+                blotterib@gmail.com
+              </a>{" "}
+              and we will remove it.
+            </p>
+          </Article>
+
+          <Article n="04" title="Information we collect">
             <p>We collect three kinds of information.</p>
             <p>
               <strong className="font-semibold text-ink">Account information</strong> you give
@@ -242,7 +319,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="04" title="What we access in your Google account">
+          <Article n="05" title="What we access in your Google account">
             <p>
               The permissions Blotter requests, and the limits on each, are the following.
             </p>
@@ -298,7 +375,7 @@ export default function PrivacyPolicyPage() {
             2026: the back page does not need to be pretty, it needs to explain
             what we do in paragraphs, and the content already exists.
           */}
-          <Article n="05" title="How Blotter decides what to read">
+          <Article n="06" title="How Blotter decides what to read">
             <p>
               Every message goes through the same check before any of its content is
               processed.
@@ -314,7 +391,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="06" title="How we use the information">
+          <Article n="07" title="How we use the information">
             <p>
               We use it to operate Blotter: to identify recruiting activity involving the
               contacts in your tracker, to maintain the status, timing, scheduled calls and
@@ -332,7 +409,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="07" title="What we keep">
+          <Article n="08" title="What we keep">
             {KEEPS_BODY.map((line) => (
               <p key={line}>{line}</p>
             ))}
@@ -350,7 +427,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="08" title="What we do not do">
+          <Article n="09" title="What we do not do">
             <List items={COMMITMENTS} />
           </Article>
 
@@ -359,7 +436,7 @@ export default function PrivacyPolicyPage() {
             block became a footnote, so it lives here, where the provider detail
             now is — and it beats the invented heading this article carried.
           */}
-          <Article n="09" title={PROVIDER_HEADING}>
+          <Article n="10" title={PROVIDER_HEADING}>
             {PROVIDER_BODY.map((line) => (
               <p key={line}>{line}</p>
             ))}
@@ -379,7 +456,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="10" title="Your choices">
+          <Article n="11" title="Your choices">
             <p>{DELETION_STATEMENT}</p>
             <p>
               You can also revoke Blotter&rsquo;s access directly from your Google account
@@ -399,7 +476,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="11" title="Keeping information safe">
+          <Article n="12" title="Keeping information safe">
             {/*
               Jon confirmed on August 6, 2026 that Blotter holds no audits or
               certifications. Saying so plainly is the only honest option, and it
@@ -433,7 +510,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="12" title="Where information is processed">
+          <Article n="13" title="Where information is processed">
             <p>
               Your information is stored and processed in the United States. Blotter does not
               operate outside the United States, and we do not transfer your information
@@ -441,7 +518,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="13" title="Age">
+          <Article n="14" title="Age">
             <p>
               Blotter is built for university students and graduates recruiting for finance
               roles. You must be 18 or older to hold a Blotter account, and we do not
@@ -449,7 +526,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="14" title="Changes to this policy">
+          <Article n="15" title="Changes to this policy">
             <p>
               Blotter is still being built, so this policy will change as it is: providers,
               storage locations and specific practices may all be revised. We will update this
@@ -459,7 +536,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="15" title="Contact">
+          <Article n="16" title="Contact">
             <p>
               Questions about this policy or your data can be sent to{" "}
               <a
@@ -482,7 +559,7 @@ export default function PrivacyPolicyPage() {
             a policy page is read, not scanned, and there is nothing here worth
             hiding behind a click.
           */}
-          <Article n="16" title="Common questions">
+          <Article n="17" title="Common questions">
             {PRIVACY_FAQ.map((item) => (
               <div key={item.q}>
                 <p className="font-semibold text-ink">{item.q}</p>
