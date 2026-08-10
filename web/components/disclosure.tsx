@@ -33,8 +33,14 @@ import { Accordion } from "@base-ui/react/accordion";
 import { cn } from "@/lib/cn";
 import type { FaqEntry } from "@/lib/privacy-copy";
 
-/** The plus that becomes a minus. Restrained, per both specs. */
-function Control() {
+/**
+ * The plus that becomes a minus. Restrained, per both specs.
+ *
+ * Exported because Section 6's mobile service stack is an accordion too, and
+ * three different open/close affordances on one page would be three different
+ * promises about what a tap does.
+ */
+export function DisclosureControl() {
   return (
     <span
       aria-hidden="true"
@@ -88,7 +94,7 @@ export function DisclosureList({
               )}
             >
               {item.q}
-              <Control />
+              <DisclosureControl />
             </Accordion.Trigger>
           </Accordion.Header>
           <Accordion.Panel hiddenUntilFound className="disclosure-panel">

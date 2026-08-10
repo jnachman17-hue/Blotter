@@ -21,6 +21,7 @@
  */
 
 import { CtaButton } from "@/components/cta-button";
+import { HeroFilm } from "@/components/hero/hero-film";
 import { HeroVisualModule, TOTAL_W } from "@/components/hero/hero-visual";
 import { Fit } from "@/components/layout/fit";
 import { PageBox } from "@/components/layout/page-box";
@@ -68,12 +69,36 @@ export function Hero() {
               <span className="text-navy-400">Your tracker does not.</span>
             </h1>
 
-            <div>
-              <p className="text-lede leading-[1.6] text-ink-muted">
+            <div className="contents desk:block">
+              {/*
+                THE MOBILE FOLD, and the ordering is deliberate.
+
+                A phone gives about 700 usable pixels. Headline, film and CTA
+                come to roughly 650 of them; adding the supporting paragraph
+                above the film pushes the film's own foot past the fold, and the
+                film is the thing that explains the product.
+
+                So on a phone the order is headline, film, CTA, then the
+                supporting line — because the film *is* that sentence, moving.
+                A reader who wants it in words still gets it, one scroll down,
+                unchanged and in full. Above `desk` the wrapper is a normal
+                block again and the ratified desktop order is untouched:
+                supporting copy, CTA, authority line, in the right-hand column.
+
+                `contents` on the phone dissolves this wrapper so its children
+                become direct grid items and can be ordered independently; at
+                `desk` it becomes a block and the column reassembles.
+              */}
+              <p className="order-3 text-lede leading-[1.6] text-ink-muted desk:order-none">
                 Blotter updates the Google Sheet you already use by reading
                 relevant recruiting activity from Gmail and Calendar, so you do
                 not miss follow-ups, coffee chats, or next steps.
               </p>
+
+              {/* Mobile only; the desktop hero keeps its ratified composition. */}
+              <div className="order-1 desk:hidden">
+                <HeroFilm />
+              </div>
 
               {/*
                 Full width on a phone — a 44px pill floating in a 350px column
@@ -87,7 +112,7 @@ export function Hero() {
                 nothing. `StickyCta` watches `#hero-cta` to know when this
                 button has left the viewport and the bar should take over.
               */}
-              <div id="hero-cta" className="mt-7">
+              <div id="hero-cta" className="order-2 mt-7 desk:order-none">
                 <CtaButton
                   location="hero"
                   size="large"
@@ -101,7 +126,7 @@ export function Hero() {
                 "Blotter maintains this" and appears only where the ratified
                 assets use it; borrowing it as decoration would dilute that.
               */}
-              <p className="mt-6 flex items-center gap-3 text-small text-ink-muted">
+              <p className="order-4 mt-6 flex items-center gap-3 text-small text-ink-muted desk:order-none">
                 <span
                   aria-hidden="true"
                   className="h-px w-8 shrink-0 bg-ink-faint"
@@ -119,11 +144,12 @@ export function Hero() {
             defines the constants `PAGE_BOX_W` is derived from and must not
             import back from `components/layout/`.
 
-            Below the breakpoint this shrinks, which is scaffolding: the
-            mobile hero is a separate composition built around the looping
-            film and it replaces this block rather than resizing it.
+            Desktop only. Below the breakpoint this composition shrinks to
+            0.265 and its sheet type falls under 4px, so `HeroFilm` replaces it
+            outright rather than resizing it — the first section of the mobile
+            build to stop being scaffolding and become a real translation.
           */}
-          <div className="mt-8">
+          <div className="mt-8 hidden desk:block">
             <Fit width={TOTAL_W}>
               <HeroVisualModule />
             </Fit>
