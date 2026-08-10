@@ -796,3 +796,175 @@ security iconography is not, and nothing drawn here is one.
   claim behind a click is what section 18 exists to prevent.
 - Stating a CASA tier. Rejected on research: Nylas claims Tier 3, not the
   Tier 2 Jon had in mind.
+
+## Session 5 — August 6 to 10, 2026 — the funnel, the infrastructure, and launch
+
+The longest session so far. It began with Sections 6 and 7 ratified and ended
+with a live site on `blotterib.com` carrying real traffic and one real lead.
+
+### The CTA label
+
+`See how Blotter works` becomes **`Try Blotter Now`** (capital N, his).
+
+Forced rather than cosmetic. The old label promised a demonstration and the
+funnel kept that promise with the three-frame product experience. He cut the
+three frames, so the old label would have been writing a cheque the funnel could
+no longer cash. Supersedes `WS4-SPEC.md` and `07-SECTION-7` §9.
+
+If the platform variant is ever built it must carry this exact label. WS3
+requires the two surfaces stay comparable and the CTA is the first thing that
+would diverge.
+
+### The funnel, built
+
+Ruled on August 6: build everything WS3 and WS4 specify **except** the
+three-frame click-through, and put Film A in its place. Film A is the launch
+asset from the parallel `social/` chat.
+
+**A modal card over the page, not a route.** He asked which was right. Full-page
+flows suit long, high-commitment, deep-linked journeys — Typeform, Stripe
+Checkout, onboarding. A card suits short flows where context matters and
+dismissing should be cheap. This is six short screens, the page underneath *is*
+the argument, and `funnel_started / page_viewed` is a ratified comparative
+metric, so anything that makes starting feel heavier is a measurement cost
+rather than only a design one.
+
+Sequence: `question_track → question_window → film → email → price → checkout →
+confirmed`.
+
+What replacing the frames cost, measured against WS3 rather than guessed: the
+primary comparative metric is untouched; three diagnostic ratios built on
+`product_experience_completed` are lost, and WS3 states diagnostics do not
+determine surface selection. The event keeps its place in the frozen nine and
+now fires when the film stage is left. **Not renumbered, not repurposed.**
+
+### Funnel rulings, in the order he made them
+
+- **One card size for every screen.** A dialog that resizes on each `Continue`
+  reads as unfinished. Fixed at 960x730; the film sets the size because it needs
+  the most room, and every other step centres a 460px column inside it.
+- **`Other` is a text field on both questions**, typing required before
+  `Continue` enables, and the text is kept. A research field: the point is
+  learning which categories are missing from the lists. Added
+  `recruiting_track_other` and `recruiting_window_other` to the event properties
+  and the lead record — additive to WS3's frozen set, so every existing property
+  keeps its meaning and the variants stay comparable.
+- **The film was too small.** 380px was rejected as small and blurry; at that
+  width the film's own type lands around 8px effective. Now 520px, 87% more
+  area. 4:5 is an advantage in a portrait card, not a compromise.
+- **The price screen did not look official enough.** Rebuilt to what real plan
+  screens do: product identified by its mark, price the largest thing on screen,
+  included items in a bordered panel with filled checks, billing terms with the
+  price. Apple Pay uses the Apple mark.
+- **Two copy amendments, both his diagnosis.** At the price screen he could not
+  tell what he was buying — a download, a signup, a link. `PRICE_DELIVERY`
+  answers that in one line. The checkout description named the parts rather than
+  the thing being bought. Both are flagged unratified in code.
+
+### Gating the film: asked and answered
+
+He asked whether the film should be watchable-to-completion before `Continue`
+enables. Ruled against, on three grounds: it sits immediately before the email
+field, which is where funnels bleed; it would turn `checkout_started /
+page_viewed` into a patience filter rather than an intent measure, and WS3
+requires the platform variant to match on interaction burden, so the gate would
+have to be replicated there too; and WS3 and WS4 already say "no timer, autoplay
+gate" and "no unnecessary tutorial burden".
+
+**The traffic then settled it.** The one real visitor spent eight seconds on a
+21.5-second film and went on to submit an email. A gate would likely have lost
+them.
+
+### The demand-test framing. Do not re-litigate this.
+
+Claude proposed hedging Section 6 into future tense on the grounds that it
+states as fact things true of no implementation. **Jon rejected it and was
+right.** The landing page is a demand test: presenting the product as real is
+the instrument, and a visitor who has to work to discover it is unbuilt is
+precisely what makes the intent signal meaningful.
+
+Section 6 stays in the present tense. The privacy policy is where that stops.
+
+### The privacy policy, completed and then corrected
+
+Every `[ to be confirmed ]` marker was answered on August 6: entity `Blotter`,
+no registered address, `blotterib@gmail.com`, minimum age 18, United States
+only, PostHog and Supabase and Stripe named, no audits or certifications held.
+The Google scopes were researched and stated with Google's own consent-screen
+wording: `gmail.readonly`, `calendar.events.readonly`, and `drive.file` rather
+than `spreadsheets`, because `spreadsheets` grants every spreadsheet in the
+account and would contradict the ratified claim that Blotter cannot reach
+unrelated files.
+
+Then corrected on August 10, at his instruction. The notice said "Blotter is not
+yet available and is not processing anyone's data", which stopped being true the
+moment Supabase and PostHog were connected. New **article 03, `What happens
+today`**, states exactly what is collected now, by whom, where, and how to have
+it deleted. Everything after article 03 describes the launch.
+
+**If what is collected changes, article 03 changes first.**
+
+### Infrastructure
+
+- **Supabase** for leads, US region. Browser posts to `/api/lead`, which writes
+  with the `service_role` key server-side. The browser never touches the
+  database: the alternative puts a write-capable key in the page source. RLS on
+  with no policies, so the anon key can do nothing. Verified: the served HTML
+  does not contain the service key.
+- **PostHog** for analytics, US Cloud. Autocapture off, session recording off
+  (the funnel has an email field), web vitals off. `$pageview` **on** —
+  reversing an earlier call, because our denominator is `page_viewed`, a
+  distinct event, and disabling `$pageview` left every prebuilt dashboard
+  reading zero.
+- **A real bug found while wiring it**: `page_viewed` fires on mount and the
+  vendor loads asynchronously, so the first and most important event was landing
+  in the discard sink. Events now queue and flush when a sink connects. Losing
+  `page_viewed` would not lose one event, it would silently deflate every rate
+  on the surface.
+- **The internal-visitor flag.** `?blotter_internal=1` marks a browser forever;
+  it becomes a PostHog person property and an `is_internal` column on leads.
+  **Marked, not dropped** — dropping would mean never being able to verify
+  production without polluting the data being protected.
+
+### The repository moved
+
+`Jon-sOrg/Blotter-Claude` was a private **fork** of `jnachman17-hue/Blotter-GPT`,
+and GitHub will neither transfer nor detach a private fork. Vercel's Hobby plan
+refuses private *organisation* repos but accepts private *personal* ones, so all
+242 commits were pushed to a new unforked personal repo.
+
+### Live, and what production protection actually allows
+
+`blotterib.com` and `www.blotterib.com` both serve. **Vercel Hobby cannot
+password- or SSO-protect a production deployment** — that is a Pro feature — so
+the plan of deploying privately and fixing claims later was never available.
+`noindex` plus `app/robots.ts` are what keep it out of indexes.
+
+Jon overrode the standing "do not route blotterib.com" rule explicitly.
+
+### What the first real traffic said
+
+Eleven external visitors, eight of whom viewed the page, and **one real lead**:
+a Columbia address, Management Consulting, on desktop.
+
+That session, minute by minute: landed, **clicked the CTA nine seconds later**,
+spent 4.5 minutes on the questions, skipped the film after 8 seconds, submitted
+a real `.edu` address, saw `$9.99 / month`, and **left seven minutes later
+without clicking through to payment**.
+
+Three readings, all provisional on n=1:
+
+- the hero converts;
+- the film is not earning its 21.5 seconds;
+- the price is where it stopped, and seven minutes on that screen is
+  deliberation rather than disinterest.
+
+Zero external visitors have reached `checkout_started`.
+
+### Rejected during this session
+
+- Hedging Section 6 into future tense. Rejected by Jon; the demand test needs
+  the present tense.
+- Gating the film behind full playback.
+- Deployment protection as a sequencing plan. Not available on Hobby.
+- Dropping internal traffic rather than marking it.

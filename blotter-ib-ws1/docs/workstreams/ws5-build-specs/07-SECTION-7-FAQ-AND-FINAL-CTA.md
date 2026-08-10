@@ -11,6 +11,7 @@
 >
 > | Item here | Amended to |
 > |---|---|
+> | Section 9, the exact CTA label `See how Blotter works` | **`Try Blotter Now`**, ruled August 6 during the funnel build. The old label promised a demonstration, and the funnel kept that promise with the three-frame product experience; he cut the frames, so the label had to go with them. Applies at all four placements, from the single `CTA_LABEL` constant. |
 > | Section 3 and 10, a large centred closing panel with headline, supporting line, CTA and reassurance line | A compact footer. The exact headline survives as its one statement, set left; the CTA sits opposite it. |
 > | Section 9, the exact supporting line `Keep your relationships moving…` | Cut. |
 > | Section 9, the exact reassurance line `Keep your existing Google Sheet…` | Cut. |
@@ -28,7 +29,7 @@
 > exclusion including the bans on a second CTA, an illustration and trust badges.
 
 Date ratified: August 1, 2026  
-Date amended: August 6, 2026  
+Date amended: August 6, 2026 (ending), August 6, 2026 (CTA label)  
 Status: Ratified, amended in part  
 Decision owner: Jon  
 Surface: Landing-page Section 7, `Frequently asked questions` and final closing CTA  

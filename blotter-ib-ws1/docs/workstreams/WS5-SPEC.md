@@ -16,8 +16,10 @@
 > stage checkpoints carrying the same discipline.
 
 Date created: July 30, 2026  
-Date last updated: August 5, 2026  
-Status: Active - building in-repo, stages 1 to 5 complete  
+Date last updated: August 10, 2026  
+Status: Active - building in-repo. Stages 1 to 9 complete. **The site is live
+and public at `blotterib.com`**, with lead storage and analytics connected. Only
+responsive and accessibility remain before WS5's completion gate.  
 Workstream: Spreadsheet-page build specifications, visual references, Lovable implementation, instrumentation, and private verification
 
 ## Purpose

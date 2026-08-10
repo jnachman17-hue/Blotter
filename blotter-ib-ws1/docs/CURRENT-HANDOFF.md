@@ -1,76 +1,49 @@
 # Blotter IB - Current Handoff
 
-Date: August 6, 2026
-Status: WS5 active. Sessions 1 through 4 complete. Stages 1 through 7 done.
-**All seven landing-page sections exist and Jon tentatively ratified them on
-August 6, 2026** — happy overall, small tweaks expected later. Ready for stage 8.
+Date: August 10, 2026
+Status: WS5 active. Sessions 1 through 5 complete. Stages 1 through 9 done
+apart from responsive and accessibility.
 
-**Stage 8 is now a different shape than WS3 and WS4 specify.** Jon ruled on
-August 6, 2026 that the funnel is built without the three-frame product
-experience, and that the CTA label changes. **Both are built.** The funnel is a
-fixed 960x730 modal carrying Film A, and the CTA reads `Try Blotter Now`.
+**The site is live at `blotterib.com`, public, carrying real traffic, and has
+one real lead.** Lead storage and analytics are provisioned, connected and
+verified in production. All seven landing-page sections and the canonical funnel
+are built and ratified.
 
-**Lead storage and analytics are live**, which was most of stage 9. Supabase and
-PostHog are both connected and verified end to end.
-
-**The repository moved on August 6, 2026.** `Jon-sOrg/Blotter-Claude` was a
-private *fork* of `jnachman17-hue/Blotter-GPT`, and GitHub will neither transfer
-nor detach a private fork — which also meant Vercel's Hobby plan refused it,
-since Hobby allows private *personal* repos but not private *organisation* ones.
-All 242 commits were pushed to a new, unforked, private personal repo:
-
-    origin     https://github.com/jnachman17-hue/Blotter-Claude   <- push here
-    org-fork   https://github.com/Jon-sOrg/Blotter-Claude         <- stale, do not use
-    upstream   https://github.com/jnachman17-hue/Blotter-GPT      <- unrelated lineage
-
-Large pushes to it need `git config http.postBuffer 524288000`; without it the
-initial push fails with an unhelpful `RPC failed; HTTP 400`.
+**Stage 10 is next and it is the mobile build.** The page is desktop-only at a
+fixed 1,124px. See section 1.
 
 ## 0. Act on these before anything else
 
-**This section is a checklist, not background. Read it, work out whether any
-item is now due, and if one is, tell Jon in the first reply of the session.**
+**A checklist, not background.** Work out whether any item is due and say so in
+the first reply of the session.
 
-### Due the moment the site is reachable at a public URL
+### Done, do not repeat
 
-**Jon must mark his own browsers as internal, and only he can do it.**
+Jon flagged his desktop and phone as internal on both live hostnames on
+August 10, and applied the host and person filters to his `Canonical Funnel`
+insight. The numbers now match. **Do not ask him to do this again**, and do not
+re-explain the internal flag unless a new hostname appears.
 
-Send him this, unprompted, the first session after a public deployment exists:
+### Due if PostHog scopes are ever fixed
 
-> Visit `https://<the live domain>/?blotter_internal=1` once on every browser
-> and device you use — desktop, phone, any second browser. Each one needs its
-> own visit.
+`insight:write` and `person:write` were granted on August 10 but did not
+register; both still return 403. If they start working, flag the fourteen
+internal persons listed in `07-infrastructure-runbook.md` so the timestamp
+cutoff stops being needed. Low priority.
 
-Why it cannot wait and cannot be delegated:
+### Standing, and it governs every number you report
 
-- The flag lives in `localStorage`, which is **per origin**. Marking himself on
-  `localhost:3000` does nothing for the live domain. It has to be redone there.
-- No assistant can reach his browser or his phone. This is his to do.
-- Until it is done, every click of his own counts as real traffic. That inflates
-  `page_viewed`, the denominator of **every** rate in WS3's metric hierarchy,
-  and drops his own funnel runs into `leads` as if they were demand.
-- Data gathered before he does it cannot be cleanly separated afterwards.
+**Never read `leads`; read `real_leads`.** Never report a PostHog figure without
+the three filters in the runbook. Unfiltered, the funnel claims three people
+confirmed a beta spot. The true number is zero.
 
-Verify it took: `localStorage['blotter:internal'] === '1'` on that origin, and
-the person carries `is_internal` in PostHog. `?blotter_internal=0` clears it.
+### Due before the domain is promoted anywhere
 
-Then, in PostHog: **Settings -> Project -> Filter out internal and test users**,
-add `is_internal` `is set`. The toggle alone filters nothing; the rule is what
-does the work. Search the property name `is_internal`, not a value.
-
-And when reading leads, query the **`real_leads`** view, never `leads` — the
-view excludes internal rows, the table does not.
-
-### Due before public traffic, not before deployment
-
-Section 6 and `/privacy` state as settled fact that unmatched messages are never
-routed for content analysis, that full email bodies are not retained, that
-deletion revokes and erases, and that the connection provider has passed
-Google's CASA assessment. **None of it is true of any implementation, because
-there is no implementation.** These are safe behind deployment protection and
-are representations about handling real people's email once they are not. Jon
-agreed on August 6, 2026 that the claims get fixed; that work has not happened.
-The full gate list is `06-assumptions-and-open-questions.md`.
+The provider sentence — that the connection provider's Google application has
+passed CASA — is the one unverified claim on the page, and no provider has been
+selected. Section 6's present tense is deliberate and ratified; this sentence is
+not the same thing, because it is a specific security credential attributed to a
+third party. Section 6 of this file has the full record.
 
 ## 1. How this project is built
 
@@ -107,8 +80,8 @@ run a parallel chat, the rules are: it edits only its own directory, it treats
 | 2 (complete) | 5 | Hero, page theme, Section 2, desktop |
 | 3 (complete) | 6 | Brand identity, Section 3, Sections 4+5 merged, desktop |
 | 4 (complete) | 7 | Sections 6 and 7, the footer, the privacy policy page |
-| 5 | 8 | Funnel — **if Jon still wants one.** See section 8. |
-| 6 | 9-10 | Supabase, PostHog, responsive, accessibility, private deploy |
+| 5 (complete) | 8-9 | Funnel, Supabase, PostHog, repo move, live deploy on `blotterib.com` |
+| 6 | 10 | **Responsive and accessibility. Start here.** |
 
 ## 3. Technical stack, ratified by Jon August 4, 2026
 
@@ -119,11 +92,13 @@ run a parallel chat, the rules are: it edits only its own directory, it treats
 | UI primitives | Base UI 1.6.0 — **installed and in use**, both accordions |
 | Funnel state | zustand |
 | Variants | clsx and cva |
-| Hosting | Vercel, private with deployment protection |
-| Lead storage | Supabase (not yet provisioned) |
-| Analytics | PostHog behind the provider-independent adapter (not yet connected) |
+| Hosting | Vercel Hobby, **public** — production cannot be protected on this plan |
+| Lead storage | Supabase, US region — **live**, see `07-infrastructure-runbook.md` |
+| Analytics | PostHog US Cloud behind the adapter — **live**, project `546166` |
 
 Application root: `web/`. Run with `pnpm --dir web dev`.
+
+Secrets live in `web/.env.local` (gitignored). Never print a value.
 
 ## 4. Completed in sessions 1 through 3
 
@@ -145,7 +120,7 @@ into one section with two beats sharing a tab strip.
 
 Full detail for all three is in `04-decision-log.md`.
 
-## 5. Completed in session 4
+## 5. Completed in session 4 (Sections 6 and 7, the privacy policy)
 
 ### Section 6, `How Blotter uses your data`
 
@@ -249,6 +224,94 @@ against the rendered DOM of both pages together, proving the consolidation is a
 relocation and not a deletion. Two dashes in visible copy, both permitted.
 Accordion semantics asserted in the DOM.
 
+## 5b. Completed in session 5 (the funnel, the infrastructure, launch)
+
+### The CTA label changed
+
+**`Try Blotter Now`**, not `See how Blotter works`. The old label promised a
+demonstration and the funnel kept that promise with the three-frame product
+experience; Jon cut the frames, so the label had to go too. Supersedes WS4 and
+`07-SECTION-7` §9. One string, `CTA_LABEL` in `cta-button.tsx`, all four
+placements.
+
+### The funnel, built
+
+Everything WS3 and WS4 specify **except** the three-frame product experience,
+which is replaced by Film A from the parallel `social/` chat.
+
+`question_track → question_window → film → email → price → checkout → confirmed`
+
+**A modal card, not a route**, fixed at 960x730 for every screen. The film sets
+the size because it needs the most room; every other step centres a 460px column
+inside it. Do not let the card resize between steps — Jon rejected that
+explicitly.
+
+`product_experience_completed` keeps its place in the frozen nine and now fires
+when the film step is left. Not renumbered, not repurposed.
+
+`Other` on both questions is a text field with typing required, captured as
+`recruiting_track_other` / `recruiting_window_other` in both the event
+properties and the lead record.
+
+Unratified copy lives in two places and is flagged in code: the film step's two
+lines, and `PRICE_DELIVERY` plus the checkout description.
+
+### Infrastructure, live
+
+Supabase for leads, PostHog for analytics, both US region, both verified in
+production. **`07-infrastructure-runbook.md` is the operational reference** —
+credentials, query patterns, migrations, the internal flag, and the filters that
+make a reported number true. Read it before touching data.
+
+### The repo moved and the site launched
+
+`github.com/jnachman17-hue/Blotter-Claude`, private, not a fork. `origin` points
+there. `blotterib.com` is live and public.
+
+### What the first real traffic said
+
+Eleven external visitors, eight page views, **one real lead**: a Columbia
+address, Management Consulting, desktop. Zero external visitors have reached
+`checkout_started`.
+
+That one session: landed, clicked the CTA **nine seconds later**, spent 4.5
+minutes on the questions, **skipped the film after 8 seconds**, submitted a real
+`.edu` address, saw `$9.99 / month`, and left **seven minutes later** without
+clicking through to payment.
+
+n=1, so hold it lightly. But it is the only evidence that exists, and it says
+the hero converts, the film is not earning its 21.5 seconds, and the price is
+where the decision happens.
+
+## 5c. Stage 10, and what the next session is for
+
+**The mobile build.** The page is desktop-only at a fixed `PAGE_BOX_W` of
+1,124px. On a phone it overflows sideways.
+
+This is not cosmetic. Mobile and desktop split evenly among identified visitors,
+and anything Jon pushes on Reddit, X or LinkedIn lands majority-mobile. Sending
+social traffic to this page today wastes the test.
+
+What has to survive the translation, in rough order of difficulty:
+
+- **the hero**, whose composition depends on the cue column sitting beside the
+  sheet at a fixed width;
+- **Sections 4 and 5**, a ten-column Google Sheets window and a 21-row action
+  view. `05-SECTION-5` §16 and `04-SECTION-4` require all fields and all three
+  groups survive;
+- **Section 2's** volume trajectory, built from 745 marks across a wide field;
+- **Section 6's** four-across flow and three service columns —
+  `06-SECTION-6` §16 says the permissions matrix becomes three sequential
+  service blocks rather than a compressed table, and that no claim may be
+  weakened or hidden;
+- **the funnel card**, currently a fixed 960x730. The film is 4:5, which is
+  native phone shape and should be an advantage here rather than a problem;
+- **44px touch targets**, visible focus, and reduced-motion, per WS5 Phase 6.
+
+`06-assumptions-and-open-questions.md` carries a per-section responsive row for
+every one of these, each written when that section was ratified. They are the
+brief.
+
 ## 6. The one unverified claim on the page. Read this before touching it.
 
 Section 6 says: `Blotter connects to Google through an established connection
@@ -295,13 +358,14 @@ Section 6's warm-paper ground.
 
 ## 8. Open, flagged to Jon, not answered
 
-- **The funnel may be cut entirely.** Jon said on August 5 that he may prefer
-  everything on the page behind a single direct CTA. Ratified funnel frames must
-  not constrain landing-page design. Stage 8 is conditional. Do not build funnel
-  screens until he decides.
-- **The privacy-policy language.** Jon is drafting and ratifying it himself.
-  Twelve `[ to be confirmed: … ]` slots wait on him.
-- **The X account URL.**
+- **The X account URL.** The footer renders the mark as a non-link placeholder
+  until it exists. Set `X_URL` in `components/sections/faq-and-close.tsx`.
+- **Whether the film earns its place in the funnel.** The one real visitor gave
+  it 8 seconds of 21.5. Jon asked about gating it and that was ruled out. The
+  open question is whether it should be shorter, or replaced, or moved.
+- **The price screen is where the one real visitor stopped**, for seven minutes.
+  Nothing has been decided about it. It is the most interesting open question
+  the data has produced.
 - **Consent-screen identity**, above. Product decision, open.
 - **Section 3's boundary box gradient.** Blue-to-cream inside it, echoing the
   sheet header band. Approved in principle, queued, not built.
@@ -313,18 +377,32 @@ Section 6's warm-paper ground.
 - **A launch animation** for social, roughly ten seconds, in a separate chat
   under `social/`.
 
-## 9. Waiting on Jon, not blocking until session 6
+## 9. Waiting on Jon
 
-- Supabase project and credentials
-- PostHog project API key
+- **PostHog `insight:write` and `person:write`** — granted August 10 but not
+  registered. Low priority; see section 0.
+- **A connection provider**, which is what closes the last unverified claim.
 
-## 10. Deployment rule, unchanged
+## 10. Deployment rule, superseded August 10, 2026
 
-Keep the deployment private with protection enabled. Do not route
-`blotterib.com`. Do not implement real OAuth, real Gmail, Calendar or Sheets
-integrations, or payment collection. Do not route public traffic. Public launch
-waits for the matched platform page, verified analytics and lead storage, passed
-privacy and claim gates, and final launch authorisation.
+The old rule said keep it private, do not route `blotterib.com`, do not route
+public traffic. **Jon overrode all three explicitly** and the site is live and
+public. Record, not debate: he was told the claim gates had not passed and
+decided to launch anyway, which is his call to make.
+
+What survives unchanged, and is not his to waive casually:
+
+- no real OAuth, no real Gmail, Calendar or Sheets integration;
+- no real payment collection and no card fields anywhere;
+- `noindex` and `app/robots.ts` stay until he says launch. Production cannot be
+  password-protected on Vercel Hobby, so they are the only thing keeping the
+  page out of search.
+
+**The demand-test framing is ratified and is not a claims problem.** Section 6
+states the product works in the present tense because that is the instrument.
+Do not propose hedging it; that argument was made, rejected, and the rejection
+was correct. The privacy policy is where the truth about present-day collection
+lives, in article 03.
 
 ## 11. Things worth knowing before you start
 
@@ -333,7 +411,16 @@ has in every session.** The pattern that works: build the ratified content,
 then build live side-by-side variants behind a temporary route under `/review/`,
 let him flip between them, delete the losers and the route. Prose descriptions
 do not work. Show, do not describe. `/review/section-6` was built and deleted
-this session; `.claude/skills/prototype/PICKER.md` has the picker, verbatim.
+in session 4; `.claude/skills/prototype/PICKER.md` has the picker, verbatim.
+
+**He thinks in screenshots and live pages, not descriptions.** For the mobile
+build this matters more than usual: build it, put it in front of him at real
+device widths, and let him react. Do not write paragraphs about breakpoints.
+
+**Verification that has caught real bugs**, worth repeating each session: the
+copy diff against both build specs read out of the live DOM, the dash scan
+(exactly two permitted), the production build, and the service-key-not-in-HTML
+check.
 
 **The Browser pane's screenshots return blank in this environment.** Its DOM
 tools work fine — `read_page`, `javascript_tool`, console and network all
