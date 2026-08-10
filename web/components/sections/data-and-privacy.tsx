@@ -58,11 +58,15 @@ export function DataAndPrivacy() {
           had been the only one stacking them, which is part of why it never
           looked like it belonged to this page. No eyebrow: §5 removes it.
         */}
-        <div className="flex items-start gap-16">
-          <h2 className="font-display max-w-[15ch] flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink">
+        {/* Stacked on a phone, the ratified side-by-side from `desk`. See the
+            note on the same row in `how-blotter-works.tsx` for why `min-w-0`
+            is here. `06-SECTION-6` §16 requires one column on mobile, so this
+            row is the first of that section's clauses to be discharged. */}
+        <div className="flex flex-col gap-4 desk:flex-row desk:items-start desk:gap-16">
+          <h2 className="font-display max-w-[15ch] min-w-0 flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink">
             {PRIVACY_TITLE}
           </h2>
-          <p className="max-w-[52ch] flex-1 pt-1 text-body leading-[1.62] text-ink-muted">
+          <p className="max-w-[52ch] min-w-0 flex-1 text-body leading-[1.62] text-ink-muted desk:pt-1">
             {PRIVACY_OPENING}
           </p>
         </div>
@@ -101,7 +105,10 @@ export function DataAndPrivacy() {
           which is the section's one claim about a third party. Both are set as
           footnotes because that is their weight, not because they are fine print.
         */}
-        <div className="mt-14 grid grid-cols-2 gap-x-16 border-t border-rule pt-7">
+        {/* One column on a phone. `06-SECTION-6` §16 allows one or two, and two
+            inside a 280px box leaves 108px per footnote — a measure no reader
+            gets through. Both footnotes survive in full and in order. */}
+        <div className="mt-14 grid gap-y-5 border-t border-rule pt-7 desk:grid-cols-2 desk:gap-x-16 desk:gap-y-0">
           <p className="text-small leading-[1.6] text-ink-read">
             <span className="font-semibold text-ink">{BROAD_HEADING}.</span> {BROAD_BODY}
           </p>

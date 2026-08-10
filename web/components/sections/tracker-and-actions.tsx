@@ -56,22 +56,40 @@ function Head({ h, sub, flip }: { h: string; sub: string; flip?: boolean }) {
   const title = (
     <h2
       className={cn(
-        "font-display max-w-[16ch] flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink",
-        flip && "text-right",
+        "font-display max-w-[16ch] min-w-0 flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink",
+        /* The mirroring is what stops the two beats reading as one long
+           column, and a phone has no second column to mirror into. Right
+           alignment on a stacked headline just reads as a mistake. */
+        flip && "desk:text-right",
       )}
     >
       {h}
     </h2>
   );
   const body = (
-    <p className="max-w-[52ch] flex-1 pt-1 text-body leading-[1.62] text-ink-muted">
+    <p className="max-w-[52ch] min-w-0 flex-1 text-body leading-[1.62] text-ink-muted desk:pt-1">
       {sub}
     </p>
   );
   return (
-    <div className="flex items-start gap-16">
-      {flip ? body : title}
-      {flip ? title : body}
+    /*
+      Stacked on a phone, the ratified side-by-side from `desk`.
+
+      `desk:flex-row-reverse` rather than reordering the children, so on a
+      phone both beats read headline-then-copy in DOM order. Beat 2's mirroring
+      is a desktop composition device; inverting the reading order on a phone
+      would put the supporting line above the headline it supports, and screen
+      readers would follow it. See the note on `min-w-0` in
+      `how-blotter-works.tsx`.
+    */
+    <div
+      className={cn(
+        "flex flex-col gap-4 desk:items-start desk:gap-16",
+        flip ? "desk:flex-row-reverse" : "desk:flex-row",
+      )}
+    >
+      {title}
+      {body}
     </div>
   );
 }

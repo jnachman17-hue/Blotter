@@ -57,42 +57,76 @@ const ICONS = [CheckSenderIcon, StopIcon, ReadIcon, KeepIcon];
  * The connector is a hairline running between the marks at their centre. It
  * stops before the last one, because the story does.
  */
+/**
+ * `06-SECTION-6` §16: on mobile "the four processing steps remain stacked".
+ *
+ * Four columns inside a 280px page box gave each step 46px, narrower than the
+ * word `Unmatched`, and the text painted outside its column — which is why the
+ * page still scrolled sideways at 320px after every box on it was in bounds.
+ *
+ * **The connector turns ninety degrees rather than disappearing.** It is the
+ * only thing saying these four are one flow rather than four notes, and the
+ * second beat is the exclusion, so the join is what makes the branch read as a
+ * branch. Horizontally it runs from each mark to the next and stops before the
+ * last; stacked it runs downward and stops at the same place.
+ *
+ * Both wrappers are `desk:contents`, so above the breakpoint they vanish from
+ * layout and the desktop tree is exactly what it was before this change: the
+ * mark row, then the numeral, then the heading, then the body, as direct
+ * children of the `li`.
+ */
 export function ProcessingFlow() {
   return (
-    <ol className="grid grid-cols-4 gap-x-8">
+    <ol className="grid desk:grid-cols-4 desk:gap-x-8">
       {PROCESSING_STEPS.map((step, i) => {
         const Icon = ICONS[i];
         const excluded = i === 1;
+        const joined = i < PROCESSING_STEPS.length - 1;
         return (
-          <li key={step.n}>
-            <div className="flex items-center">
-              <span
-                className={cn(
-                  "grid size-[52px] shrink-0 place-items-center rounded-full border bg-white",
-                  excluded
-                    ? "border-rule text-ink-faint"
-                    : "border-navy-400/35 text-navy-800",
+          <li key={step.n} className="flex gap-4 desk:block">
+            <div className="flex flex-col items-center desk:contents">
+              <div className="flex items-center desk:w-full">
+                <span
+                  className={cn(
+                    "grid size-[52px] shrink-0 place-items-center rounded-full border bg-white",
+                    excluded
+                      ? "border-rule text-ink-faint"
+                      : "border-navy-400/35 text-navy-800",
+                  )}
+                >
+                  <Icon />
+                </span>
+                {joined && (
+                  <span
+                    aria-hidden="true"
+                    className="hidden h-px flex-1 bg-navy-400/25 desk:block"
+                  />
                 )}
-              >
-                <Icon />
-              </span>
-              {i < PROCESSING_STEPS.length - 1 && (
-                <span aria-hidden="true" className="h-px flex-1 bg-navy-400/25" />
+              </div>
+              {joined && (
+                <span
+                  aria-hidden="true"
+                  className="mt-2 w-px flex-1 bg-navy-400/25 desk:hidden"
+                />
               )}
             </div>
 
-            <p className="mt-5 font-mono text-micro leading-none font-medium text-ink-faint tabular-nums">
-              {step.n}
-            </p>
-            <h3
-              className={cn(
-                "mt-2 text-body leading-[1.35] font-semibold",
-                excluded ? "text-ink-muted" : "text-ink",
-              )}
-            >
-              {step.title}
-            </h3>
-            <p className="mt-2 text-small leading-[1.6] text-ink-read">{step.body}</p>
+            {/* The trailing space the vertical connector runs through. The
+                last step has no connector, so it needs none. */}
+            <div className={cn("min-w-0 flex-1 desk:contents", joined && "pb-9")}>
+              <p className="font-mono text-micro leading-none font-medium text-ink-faint tabular-nums desk:mt-5">
+                {step.n}
+              </p>
+              <h3
+                className={cn(
+                  "mt-2 text-body leading-[1.35] font-semibold",
+                  excluded ? "text-ink-muted" : "text-ink",
+                )}
+              >
+                {step.title}
+              </h3>
+              <p className="mt-2 text-small leading-[1.6] text-ink-read">{step.body}</p>
+            </div>
           </li>
         );
       })}
@@ -125,7 +159,19 @@ const MARKS: Record<string, React.ReactNode> = {
  */
 export function ServicePermissions() {
   return (
-    <div className="grid grid-cols-3 gap-x-12">
+    /*
+      `06-SECTION-6` §16, verbatim: on mobile "the permissions matrix becomes
+      three sequential service sections rather than a compressed table". Three
+      columns inside a 280px page box gave each service 61px, which is narrower
+      than the word `standardized` — the last thing on the page still pushing a
+      320px viewport sideways.
+
+      Stacking discharges the clause rather than working around it: same three
+      services, same order, every `Can do` and `Cannot do` line intact, and
+      nothing behind a tap. §16's "no claim may disappear behind hover-only
+      behavior" is satisfied because nothing is hidden at all.
+    */
+    <div className="grid gap-y-10 desk:grid-cols-3 desk:gap-x-12 desk:gap-y-0">
       {PERMISSIONS.map((row) => (
         <div key={row.service}>
           <h3 className="flex items-center gap-2.5 border-b border-rule pb-3 text-body leading-[1.4] font-semibold text-ink">

@@ -195,8 +195,21 @@ function BoundaryRow({ item, last }: { item: Boundary; last: boolean }) {
  */
 function Facing() {
   return (
-    <div className="flex items-stretch gap-14">
-      <div className="flex flex-1 flex-col justify-center">
+    /*
+      Stacked on a phone, facing from the desktop breakpoint. The counterweight
+      reading — statement on the left, refusals answering from the right — is a
+      desktop composition; below `desk` the refusals sit under the statement
+      they answer, which keeps the order and the relationship without the
+      side-by-side.
+
+      `min-w-0` on both columns is the fix for the real bug here, not a
+      convenience. A flex item defaults to `min-width: auto`, so neither column
+      could shrink below its own longest unbreakable line and the pair held a
+      375px floor open — the only thing on the page still overflowing at 320
+      and 360.
+    */
+    <div className="flex flex-col gap-8 desk:flex-row desk:items-stretch desk:gap-14">
+      <div className="flex min-w-0 flex-1 flex-col justify-center">
         <p className="font-display max-w-[26ch] text-[1.625rem] leading-[1.28] font-semibold tracking-[-0.02em] text-navy-900">
           {BOUNDARY}
         </p>
@@ -204,7 +217,7 @@ function Facing() {
           {CLOSING}
         </p>
       </div>
-      <ul className="flex flex-1 flex-col justify-center rounded-xl bg-[#fbf9f5] px-7 py-3 ring-1 ring-navy-900/[0.07]">
+      <ul className="flex min-w-0 flex-1 flex-col justify-center rounded-xl bg-[#fbf9f5] px-7 py-3 ring-1 ring-navy-900/[0.07]">
         {BOUNDARIES.map((item, i) => (
           <BoundaryRow
             key={item.label}

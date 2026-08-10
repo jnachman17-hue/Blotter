@@ -34,6 +34,22 @@
   --text-h2: 2.125rem; /* 34px  section headlines */
   --text-display: 2.5rem; /* 40px  hero headline */
 
+  /*
+    The one breakpoint.
+
+    Above it the desktop page renders exactly as ratified and untouched; below
+    it the mobile layout takes over. It is set at the width the desktop layout
+    actually needs — the 1124px page box plus its 48px of gutter, plus a little
+    — rather than at a conventional device size, because below 1172px the
+    desktop composition cannot lay out without either overflowing or scaling
+    into illegibility.
+
+    Named `desk` rather than reusing Tailwind's `lg` or `xl` so a section can
+    never pick it up by accident: `desk:` means "the ratified desktop page",
+    and everything unprefixed is the phone.
+  */
+  --breakpoint-desk: 1180px;
+
   /* Page */
   --color-page: #ffffff;
   --color-ink: #14181f;
@@ -167,6 +183,45 @@ body {
   background: var(--color-page);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
+}
+
+/*
+  The page box's two ceilings.
+
+  Both widths are set as custom properties by `PageBox` so `page-box.tsx` stays
+  the single source of truth for the numbers; only the breakpoint lives here,
+  because a media query is the one thing a component cannot express inline.
+
+  Mobile-first: the phone ceiling is the default and the desktop ceiling is the
+  override, which is the direction that fails safe. A new section that forgets
+  the desktop rule renders narrow, not broken.
+*/
+.page-box__inner {
+  max-width: var(--page-box-mobile-w);
+}
+
+@media (min-width: 1180px) {
+  .page-box__inner {
+    max-width: var(--page-box-w);
+  }
+}
+
+/*
+  Mobile type scale.
+
+  Only two tokens move. Same faces, same weights, same colours, same copy —
+  40px and 34px are sized for a 1124px column and on a 390px phone they spend
+  the whole first screenful before the reader has seen anything else.
+
+  Everything below `--text-h2` holds at its desktop size. Body copy in
+  particular must never go under 16px: iOS auto-zooms any input smaller than
+  that, which throws the funnel's email step sideways on focus.
+*/
+@media (max-width: 1179px) {
+  :root {
+    --text-display: 2rem; /* 40px -> 32px */
+    --text-h2: 1.625rem; /* 34px -> 26px */
+  }
 }
 
 /*

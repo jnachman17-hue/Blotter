@@ -21,6 +21,7 @@
  * this section carries `field-deep`.
  */
 
+import { Fit } from "@/components/layout/fit";
 import { PageBox, PAGE_BOX_W } from "@/components/layout/page-box";
 import { EYEBROW, ScaleTrajectory } from "@/components/section-2/scale-trajectory";
 import { GmailInboxStrip } from "@/components/section-2/gmail-inbox-strip";
@@ -41,11 +42,28 @@ function ConsequenceVisual() {
         One thread buried in 628 emails
       </p>
 
-      <GmailInboxStrip width={PAGE_BOX_W} />
+      {/*
+        The strip is a Gmail surface built at page-box width. `Fit` scales it
+        into whatever width it is given, which on desktop is 1124px and so
+        leaves the ratified composition untouched.
 
+        `02-SECTION-2` §15 permits proportional scaling, a controlled crop, or a
+        separately composed translation on smaller screens, and none of them is
+        chosen yet — this is the placeholder that stops the section pushing the
+        page sideways in the meantime.
+      */}
+      <Fit width={PAGE_BOX_W}>
+        <GmailInboxStrip width={PAGE_BOX_W} />
+      </Fit>
+
+      {/*
+        The annotation is bounded by the page box rather than pinned to it, so
+        it wraps on a phone instead of holding 1124px open. It stays outside
+        the email asset and covers nothing, per §15.
+      */}
       <p
         className="mt-3 flex items-center justify-end gap-3 text-[14px] font-medium text-navy-900"
-        style={{ width: PAGE_BOX_W }}
+        style={{ maxWidth: PAGE_BOX_W }}
       >
         A stale tracker does not direct you back before the deadline passes
         <span aria-hidden="true" className="h-px w-6 shrink-0 bg-navy-400" />

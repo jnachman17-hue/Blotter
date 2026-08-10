@@ -27,6 +27,8 @@
  * appear, which section 12 forbids.
  */
 
+import { Fit } from "@/components/layout/fit";
+
 /* ------------------------------------------------------------------- copy */
 
 export const EYEBROW = "The scale of a recruiting cycle";
@@ -186,6 +188,8 @@ const BAND_H = 54;
 const SLOT = CHART_W / MONTHS.length;
 const LABEL_W = 236;
 const GUTTER = 32;
+/** The diagram's full natural width. `Fit` scales it as one object. */
+const CHART_TOTAL_W = LABEL_W + GUTTER + CHART_W;
 
 /** Smooth line through the top of each month's pile. */
 function smoothPath(points: readonly (readonly [number, number])[]) {
@@ -251,8 +255,15 @@ function TrajectoryBand({ metric, last }: { metric: Metric; last: boolean }) {
 
 /* ------------------------------------------------------- argument and notes */
 
-/** Shared column geometry, so the two rows below the diagram line up exactly. */
-const ROW = "grid grid-cols-[minmax(0,1fr)_460px] items-start gap-x-16";
+/**
+ * Shared column geometry, so the two rows below the diagram line up exactly.
+ *
+ * One column on a phone; the ratified two-column split from the desktop
+ * breakpoint. The 460px track is fixed and a fixed track cannot narrow, so
+ * below `desk` it held the row open past the viewport on its own.
+ */
+const ROW =
+  "grid gap-y-8 items-start desk:grid-cols-[minmax(0,1fr)_460px] desk:gap-x-16";
 
 /**
  * The argument and its proof, side by side.
@@ -315,7 +326,20 @@ export function ScaleTrajectory() {
         {HEADLINE}
       </h2>
 
-      <div className="mt-10">
+      {/*
+        The diagram is one fixed 1120px composition — the label column, the
+        gutter and the ten month slots all depend on each other, so it scales
+        as one object rather than reflowing piecemeal.
+
+        Scaffolding, and specifically the thing this section must replace:
+        `perRow` on each band is a real parameter, so the mark field can be
+        rebuilt to reflow at phone width instead of shrinking. `02-SECTION-2`
+        §15 leaves the choice open between proportional scaling, a controlled
+        crop and a separate translation, and the reflow is the one that keeps
+        every mark one-to-one with its count.
+      */}
+      <Fit width={CHART_TOTAL_W}>
+        <div className="mt-10" style={{ width: CHART_TOTAL_W }}>
         {/* Months read first, at the top, before the four shapes. */}
         <div className="flex gap-8 pb-2">
           <div className="shrink-0" style={{ width: LABEL_W }} />
@@ -368,12 +392,13 @@ export function ScaleTrajectory() {
         </div>
 
         {/* The asterisk's anchor, at the foot of the block it qualifies. */}
-        <div className="mt-2 flex justify-end" style={{ width: LABEL_W + GUTTER + CHART_W }}>
+        <div className="mt-2 flex justify-end" style={{ width: CHART_TOTAL_W }}>
           <span className="text-small leading-none text-ink-muted" aria-hidden="true">
             *
           </span>
         </div>
-      </div>
+        </div>
+      </Fit>
 
       <ArgumentRow />
       <FootnoteStrip />

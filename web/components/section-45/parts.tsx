@@ -22,9 +22,7 @@
 
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
-
-import { PAGE_BOX_W } from "@/components/layout/page-box";
+import { Fit } from "@/components/layout/fit";
 import { SheetWindow } from "@/components/sheet/sheet-window";
 import { StatusChip } from "@/components/sheet/status-chip";
 import { cn } from "@/lib/cn";
@@ -73,22 +71,15 @@ const TABS_OUT = [{ label: "Contacts" }, { label: "Blotter" }, { label: "Outstan
 
 /* ------------------------------------------------------------------- helpers */
 
-/** Scales a composition built at its natural width into the page box. */
-export function Fit({ width, children }: { width: number; children: React.ReactNode }) {
-  const scale = PAGE_BOX_W / width;
-  const inner = useRef<HTMLDivElement>(null);
-  const [h, setH] = useState(0);
-  useLayoutEffect(() => {
-    if (inner.current) setH(inner.current.offsetHeight * scale);
-  }, [scale, children]);
-  return (
-    <div style={{ width: PAGE_BOX_W, height: h || undefined }}>
-      <div ref={inner} style={{ width, transform: `scale(${scale})`, transformOrigin: "top left" }}>
-        {children}
-      </div>
-    </div>
-  );
-}
+/*
+ * `Fit` used to live here, hard-coded to `PAGE_BOX_W`, which is why this
+ * section was 1124px wide inside a 375px phone. It now measures the width it
+ * is given and is shared with the hero and Section 3 —
+ * `components/layout/fit.tsx`. On desktop the measurement is 1124px, so this
+ * section's scale is unchanged to the pixel. Re-exported because the two beats
+ * below and `tracker-and-actions.tsx` import it from here.
+ */
+export { Fit };
 
 function Gut({ n }: { n: number }) {
   return (

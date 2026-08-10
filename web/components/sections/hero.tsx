@@ -21,7 +21,8 @@
  */
 
 import { CtaButton } from "@/components/cta-button";
-import { HeroVisual } from "@/components/hero/hero-visual";
+import { HeroVisualModule, TOTAL_W } from "@/components/hero/hero-visual";
+import { Fit } from "@/components/layout/fit";
 import { PageBox } from "@/components/layout/page-box";
 
 /**
@@ -46,9 +47,16 @@ export function Hero() {
             networking
           </p>
 
+          {/*
+            One column on a phone, the ratified two-column split from the
+            desktop breakpoint. The grid template is desktop-only because
+            `${RIGHT_COL_W}px` is a fixed track and a fixed track cannot
+            narrow: at 375px it forced the row to 490px and pushed the page
+            sideways on its own, independently of the visual below.
+          */}
           <div
-            className="mt-5 grid items-start gap-x-10"
-            style={{ gridTemplateColumns: `minmax(0,1fr) ${RIGHT_COL_W}px` }}
+            className="mt-5 grid items-start gap-x-10 gap-y-6 desk:[grid-template-columns:minmax(0,1fr)_var(--hero-right-col)]"
+            style={{ "--hero-right-col": `${RIGHT_COL_W}px` } as React.CSSProperties}
           >
             {/*
               Two-tone headline. The sentences are a contrast, not a list:
@@ -86,8 +94,22 @@ export function Hero() {
             </div>
           </div>
 
+          {/*
+            `Fit` rather than `HeroVisual`, so the module is scaled to the
+            width it is actually given. On desktop that is the 1124px page box
+            and the scale resolves to the ratified 0.85 exactly. The fitting
+            lives here rather than inside `hero-visual.tsx` because that file
+            defines the constants `PAGE_BOX_W` is derived from and must not
+            import back from `components/layout/`.
+
+            Below the breakpoint this shrinks, which is scaffolding: the
+            mobile hero is a separate composition built around the looping
+            film and it replaces this block rather than resizing it.
+          */}
           <div className="mt-8">
-            <HeroVisual />
+            <Fit width={TOTAL_W}>
+              <HeroVisualModule />
+            </Fit>
           </div>
       </PageBox>
     </section>

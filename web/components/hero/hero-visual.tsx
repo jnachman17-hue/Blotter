@@ -184,6 +184,14 @@ function OwnershipLabel({
 /**
  * Scale wrapper. The inner module keeps its true 1322px geometry; the wrapper
  * reserves the scaled footprint so surrounding layout stays honest.
+ *
+ * **This file deliberately imports no layout module.** `page-box.tsx` derives
+ * `PAGE_BOX_W` from `TOTAL_W` and `VISUAL_SCALE` here, so anything this file
+ * imports from `components/layout/` closes a cycle, and `PAGE_BOX_W` is
+ * computed at module load — a partially initialised cycle resolves it to `NaN`
+ * rather than failing loudly. The responsive fitting therefore happens one
+ * level up, in `sections/hero.tsx`, which wraps `HeroVisualModule` in `Fit`.
+ * This wrapper stays for any caller that wants the module at a pinned scale.
  */
 export function HeroVisual({ scale = VISUAL_SCALE }: { scale?: number }) {
   return (
@@ -205,7 +213,7 @@ export function HeroVisual({ scale = VISUAL_SCALE }: { scale?: number }) {
 }
 
 /** Untransformed module at its ratified geometry. */
-function HeroVisualModule() {
+export function HeroVisualModule() {
   return (
     <div className="relative" style={{ width: TOTAL_W }}>
       {/* Sheet, cues and connectors share one coordinate space. */}

@@ -64,11 +64,21 @@ export function HowBlotterWorks() {
           bounding box as the visual below it. The page theme fixes that nothing
           is centred, and the hero established the same two-column reading.
         */}
-        <div className="mt-6 flex items-start gap-16">
-          <h2 className="font-display max-w-[15ch] flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink">
+        {/*
+          Stacked on a phone, the ratified side-by-side from `desk`. Headline
+          then copy is the same reading order the row already has, so nothing
+          about the argument changes — only the axis.
+
+          `min-w-0` is the bug fix rather than the layout: a flex item defaults
+          to `min-width: auto` and will not shrink below its own longest
+          unbreakable line, which is what held this row open past a 320px
+          viewport.
+        */}
+        <div className="mt-6 flex flex-col gap-4 desk:flex-row desk:items-start desk:gap-16">
+          <h2 className="font-display max-w-[15ch] min-w-0 flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink">
             {HEADLINE}
           </h2>
-          <p className="max-w-[52ch] flex-1 pt-1 text-body leading-[1.62] text-ink-muted">
+          <p className="max-w-[52ch] min-w-0 flex-1 text-body leading-[1.62] text-ink-muted desk:pt-1">
             {SUPPORTING}
           </p>
         </div>
