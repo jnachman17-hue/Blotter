@@ -25,6 +25,28 @@
  * that reaches this state on a phone still needs replacing.** When the last one
  * is done, the only callers left should be desktop-only paths.
  *
+ * ## FIRST PAINT, and why the outer box clips
+ *
+ * The scale is measured on the client, so the server has no viewport and
+ * renders the desktop scale. On a phone that means the *first paint* lays out
+ * a 1124px-wide page and only corrects once React hydrates and the layout
+ * effect runs. On a desktop that is one frame and invisible. On a phone it is
+ * long enough to see, and iOS Safari can hold the horizontal scroll range it
+ * established on that first layout even after the content settles — which is
+ * exactly what Jon saw on August 10, 2026: the hero, both Section 2 assets and
+ * all three sheets hanging off the right edge on a real device, on a page that
+ * measured clean in a headless iframe because the test waited for hydration.
+ *
+ * `overflow: hidden` on the outer box makes the overflow *structurally*
+ * impossible rather than dependent on JavaScript timing. Worst case is a
+ * composition briefly cropped at the fold; it can never push the document
+ * sideways. It costs nothing once measured, because a scaled child's visual
+ * bounds are exactly the width of the box by construction.
+ *
+ * Any future replacement of this shrink-to-fit scaffolding must keep that
+ * property: a section's mobile treatment has to be correct in the HTML, not
+ * one frame after it.
+ *
  * ## The coordinate trap
  *
  * `getBoundingClientRect` inside a scaled subtree returns *post-transform*
@@ -38,6 +60,20 @@
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 
 import { PAGE_BOX_W } from "./page-box";
+
+/**
+ * The one scale formula, so the server-rendered value and the measured value
+ * can never disagree.
+ *
+ * Two ceilings, and the `1` matters. Section 2's diagram is 1120px natural
+ * inside a 1124px box, so without it a ratified composition is scaled *up* by
+ * 0.36% — resampling to gain four pixels. Nothing here is ever enlarged past
+ * the geometry that was approved. `PAGE_BOX_W` is the second ceiling and
+ * guards a `Fit` used outside the page box.
+ */
+function fitScale(available: number, naturalWidth: number) {
+  return Math.min(1, Math.min(available, PAGE_BOX_W) / naturalWidth);
+}
 
 interface FitState {
   /** Uniform scale applied to the natural-width child. */
@@ -59,10 +95,11 @@ export function useFit(naturalWidth: number, deps: React.DependencyList = []) {
   const outer = useRef<HTMLDivElement>(null);
   const inner = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<FitState>({
-    /* The server and first client paint both assume desktop, which is the
-       ratified geometry. A phone corrects it in the same frame, before paint,
-       because this runs in a layout effect. */
-    scale: PAGE_BOX_W / naturalWidth,
+    /* The server has no viewport, so it renders the desktop geometry — which
+       is correct on a desktop and too wide on a phone until the layout effect
+       below corrects it. The outer box clips, so that interval is a crop
+       rather than a sideways page. See FIRST PAINT above. */
+    scale: fitScale(PAGE_BOX_W, naturalWidth),
     height: 0,
     measured: false,
   });
@@ -74,16 +111,7 @@ export function useFit(naturalWidth: number, deps: React.DependencyList = []) {
     function measure() {
       const avail = box!.getBoundingClientRect().width;
       if (!avail) return;
-      /*
-        Two ceilings, and the `1` matters. Section 2's diagram is 1120px
-        natural inside a 1124px box, so without it the diagram was scaled *up*
-        by 0.36% — resampling a ratified composition to gain four pixels.
-        Nothing here is ever enlarged past the geometry that was approved.
-
-        `PAGE_BOX_W` is the second ceiling and guards a `Fit` used outside the
-        page box; inside it the measurement is already capped.
-      */
-      const scale = Math.min(1, Math.min(avail, PAGE_BOX_W) / naturalWidth);
+      const scale = fitScale(avail, naturalWidth);
       const height = (inner.current?.offsetHeight ?? 0) * scale;
       setState((prev) =>
         prev.measured &&
@@ -134,7 +162,12 @@ export function Fit({
 }) {
   const { outer, inner, scale, height } = useFit(width, [children]);
   return (
-    <div ref={outer} className="w-full" style={{ height: height || undefined }}>
+    <div
+      ref={outer}
+      /* `overflow-hidden` is load-bearing — see FIRST PAINT above. */
+      className="w-full overflow-hidden"
+      style={{ height: height || undefined }}
+    >
       <div
         ref={inner}
         style={{ width, transform: `scale(${scale})`, transformOrigin: "top left" }}

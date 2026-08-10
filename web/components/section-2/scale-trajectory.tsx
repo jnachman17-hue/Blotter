@@ -338,8 +338,15 @@ export function ScaleTrajectory() {
         crop and a separate translation, and the reflow is the one that keeps
         every mark one-to-one with its count.
       */}
+      {/*
+        The `mt-10` sits outside `Fit`, not inside it. `Fit` clips, and a
+        clipping box is a new block formatting context, so a top margin on its
+        first child is trapped inside a box whose height is set explicitly —
+        the 40px simply disappears and the section comes up short on desktop.
+      */}
+      <div className="mt-10">
       <Fit width={CHART_TOTAL_W}>
-        <div className="mt-10" style={{ width: CHART_TOTAL_W }}>
+        <div style={{ width: CHART_TOTAL_W }}>
         {/* Months read first, at the top, before the four shapes. */}
         <div className="flex gap-8 pb-2">
           <div className="shrink-0" style={{ width: LABEL_W }} />
@@ -399,6 +406,7 @@ export function ScaleTrajectory() {
         </div>
         </div>
       </Fit>
+      </div>
 
       <ArgumentRow />
       <FootnoteStrip />

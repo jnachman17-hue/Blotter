@@ -221,8 +221,17 @@ export function DayTimeline() {
     }
   }, [scale, toNatural]);
 
+  /*
+    `overflow-hidden` for the same reason `Fit` carries it: the server renders
+    the desktop scale, so without the clip this composition pushes the document
+    sideways on a phone until hydration corrects it.
+  */
   return (
-    <div ref={outer} className="w-full" style={{ height: height || undefined }}>
+    <div
+      ref={outer}
+      className="w-full overflow-hidden"
+      style={{ height: height || undefined }}
+    >
       <div
         ref={inner}
         style={{
