@@ -75,8 +75,25 @@ export function Hero() {
                 not miss follow-ups, coffee chats, or next steps.
               </p>
 
-              <div className="mt-7">
-                <CtaButton location="hero" size="large" />
+              {/*
+                Full width on a phone — a 44px pill floating in a 350px column
+                reads as an afterthought, and the CTA is the point of the
+                screen.
+
+                `id` rather than a shared constant: this file is a server
+                component, and importing a value from a `"use client"` module
+                into one yields a client reference rather than the string, so a
+                computed `{...{[SENTINEL]: ""}}` spread silently rendered
+                nothing. `StickyCta` watches `#hero-cta` to know when this
+                button has left the viewport and the bar should take over.
+              */}
+              <div id="hero-cta" className="mt-7">
+                <CtaButton
+                  location="hero"
+                  size="large"
+                  full
+                  className="desk:w-auto"
+                />
               </div>
 
               {/*

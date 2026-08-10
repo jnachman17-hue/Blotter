@@ -7,6 +7,7 @@ import { TrackerAndActions } from "@/components/sections/tracker-and-actions";
 import { DataAndPrivacy } from "@/components/sections/data-and-privacy";
 import { FaqAndClose } from "@/components/sections/faq-and-close";
 import { Funnel } from "@/components/funnel/funnel";
+import { StickyCta, StickyCtaSpacer } from "@/components/sticky-cta";
 
 /**
  * Spreadsheet landing page.
@@ -43,8 +44,19 @@ export default function Page() {
       <DataAndPrivacy />
       <FaqAndClose />
       {/*
+        Reserves the sticky bar's height so it cannot sit on top of the
+        footer's privacy link and social marks. Collapses at the desktop
+        breakpoint with the bar itself.
+      */}
+      <StickyCtaSpacer />
+      {/*
+        The fifth CTA placement, mobile only, appearing once the hero's own
+        button leaves the viewport. Approved by Jon August 10, 2026.
+      */}
+      <StickyCta />
+      {/*
         The canonical funnel. A modal over the page rather than a route, so all
-        four CTAs open the same thing without leaving the argument behind.
+        five CTAs open the same thing without leaving the argument behind.
       */}
       <Funnel />
     </>
