@@ -133,7 +133,7 @@ export function Hero({
             sideways on its own, independently of the visual below.
           */}
           <div
-            className="mt-5 grid items-start gap-x-10 gap-y-6 desk:[grid-template-columns:minmax(0,1fr)_var(--hero-right-col)]"
+            className="mt-5 grid items-start gap-x-10 gap-y-4 desk:gap-y-6 desk:[grid-template-columns:minmax(0,1fr)_var(--hero-right-col)]"
             style={{ "--hero-right-col": `${RIGHT_COL_W}px` } as React.CSSProperties}
           >
             {/*
@@ -177,7 +177,7 @@ export function Hero({
                   // Phone: a caption under the film, set down a step from the
                   // desktop lede so it reads as support rather than as a second
                   // headline. Desktop: exactly the ratified treatment.
-                  "order-2 text-small leading-[1.55] text-ink-muted",
+                  "order-4 text-small leading-[1.55] text-ink-muted",
                   "desk:order-none desk:text-lede desk:leading-[1.6]",
                   supporting === "none" && "hidden desk:block",
                 )}
@@ -193,7 +193,7 @@ export function Hero({
               </p>
 
               {/* Mobile only; the desktop hero keeps its ratified composition. */}
-              <div className="order-1 desk:hidden">
+              <div className="order-2 desk:hidden">
                 <HeroFilm />
               </div>
 
@@ -201,7 +201,7 @@ export function Hero({
                   before it. Never rendered above `desk`, where the ratified
                   position at the top of the section governs. */}
               {eyebrow === "below" && (
-                <p className="order-2 flex items-start gap-3 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase desk:hidden">
+                <p className="order-3 flex items-start gap-3 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase desk:hidden">
                   {eyebrowLine}
                 </p>
               )}
@@ -221,7 +221,7 @@ export function Hero({
               <div
                 id="hero-cta"
                 className={cn(
-                  "order-3 mt-7 desk:order-none desk:block",
+                  "order-5 mt-5 desk:order-none desk:mt-7 desk:block",
                   !heroCta && "hidden",
                 )}
               >
@@ -238,7 +238,22 @@ export function Hero({
                 "Blotter maintains this" and appears only where the ratified
                 assets use it; borrowing it as decoration would dilute that.
               */}
-              <p className="order-4 mt-6 flex items-center gap-3 text-small text-ink-muted desk:order-none">
+              {/*
+                A byline on a phone, not a footer.
+
+                Jon's note on the top-only arrangement, and it was the real
+                defect in it: with no button under the film, the supporting line
+                and this one just stacked, and this one floated with nothing to
+                attach to. It is proof *for* the CTA, so without a CTA beneath
+                it it reads as a stray sentence.
+
+                Moved above the film in every mobile arrangement, where it is a
+                byline under the headline — who is saying this, before the
+                demonstration — and nothing is left dangling under the film in
+                any of the three. Desktop keeps it where it is ratified, at the
+                foot of the right-hand column beneath the CTA it supports.
+              */}
+              <p className="order-1 mt-3 flex items-center gap-3 text-small text-ink-muted desk:order-none desk:mt-6">
                 <span
                   aria-hidden="true"
                   className="h-px w-8 shrink-0 bg-ink-faint"

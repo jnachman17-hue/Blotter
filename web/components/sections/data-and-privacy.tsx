@@ -34,7 +34,7 @@ import Link from "next/link";
 
 import { PageBox } from "@/components/layout/page-box";
 import {
-  BroadPermissionDisclosure,
+  ConnectionFinePrint,
   ProcessingFlow,
   ServicePermissions,
 } from "@/components/section-6/parts";
@@ -132,14 +132,13 @@ export function DataAndPrivacy() {
         </div>
 
         {/*
-          Mobile: the broad-permission note folds and takes the Drive note in
-          with it, because they are the same argument. The provider sentence
-          does not fold — it is the page's one claim about a third party and the
-          only unverified thing on it, so it stays in plain sight.
+          Mobile: both footnotes fold into one row of fine print about the
+          Google connection. Nothing leaves the page — see `ConnectionFinePrint`
+          for why the provider sentence in particular belongs behind the tap
+          rather than in front of it.
         */}
         <div className="mt-12 desk:hidden">
-          <BroadPermissionDisclosure />
-          <p className="mt-6 text-small leading-[1.6] text-ink-read">{PROVIDER_LEAD}</p>
+          <ConnectionFinePrint providerLead={PROVIDER_LEAD} />
         </div>
 
         {/*

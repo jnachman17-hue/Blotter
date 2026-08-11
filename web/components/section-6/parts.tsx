@@ -161,24 +161,20 @@ const MARKS: Record<string, React.ReactNode> = {
  * Only Sheets has one, because Sheets is the only service whose Google consent
  * screen names a different product than this page does. See `SHEETS_SCOPE_NOTE`.
  */
-function ServiceLists({
-  row,
-  scopeNote = false,
-}: {
-  row: (typeof PERMISSIONS)[number];
-  /**
-   * Desktop shows the Drive note in the Sheets column, where it sits beside the
-   * claims it qualifies. Mobile does not: inside a collapsed accordion it was
-   * behind a row labelled `Google Sheets`, which gives a reader no reason to
-   * open it — and the note exists precisely to stop them being surprised. On a
-   * phone it moves in with the broad-permission disclosure, under a title that
-   * says what is inside. Same argument, one place.
-   */
-  scopeNote?: boolean;
-}) {
+function ServiceLists({ row }: { row: (typeof PERMISSIONS)[number] }) {
   return (
     <>
-      {scopeNote && row.service === "Google Sheets" && (
+      {/*
+        Under `Google Sheets` on every surface, ruled by Jon on August 10, 2026.
+
+        It briefly moved into the broad-permission disclosure on the argument
+        that both say "Google's wording sounds wider than what Blotter does".
+        He put it back, and he is right: this note is not about Google's wording
+        in general, it is about *this row*. It qualifies the two claims directly
+        beneath it, and a reader opening the Sheets row is exactly the reader
+        who needs it.
+      */}
+      {row.service === "Google Sheets" && (
         <p className="mb-4 text-small leading-[1.55] text-ink-muted">
           {SHEETS_SCOPE_NOTE}
         </p>
@@ -242,7 +238,7 @@ function ServiceColumns() {
             {row.service}
           </h3>
           <div className="mt-4">
-            <ServiceLists row={row} scopeNote />
+            <ServiceLists row={row} />
           </div>
         </div>
       ))}
@@ -351,22 +347,29 @@ function ServiceStack() {
  * keyboard-operable, and `hiddenUntilFound` means find-in-page opens it. The
  * text is unshortened and in its ratified position.
  *
- * ## Why the Drive note joins it
+ * ## Why the provider sentence folds in with it
  *
- * They are the same argument. The broad-permission note says Google's consent
- * wording sounds wider than what Blotter does; the Drive note says Google's
- * consent screen names Drive when Blotter touches one sheet. Putting them under
- * one title a reader can act on — *why the permission sounds broader* — beats
- * leaving the Drive fact inside a row labelled `Google Sheets`, which gives
- * nobody a reason to open it.
+ * The provider sentence — that the connection provider's Google application has
+ * passed CASA — was left visible in the first build on the reasoning that a
+ * claim about a third party should not be behind a tap. That was backwards.
  *
- * Desktop is unchanged: the two footnotes stay side by side and the Drive note
- * stays in the Sheets column beside the claims it qualifies.
+ * It is **the one unverified claim on the page**: no provider has been
+ * selected, so it is true of no actual arrangement, and this is the surface
+ * about to take social traffic. Being unverified argues for less prominence,
+ * not more. Both sentences are fine print about how the Google connection
+ * works, and one row is where fine print belongs.
+ *
+ * Nothing leaves the page, which is what the handoff requires of the
+ * broad-permission disclosure and what `06-SECTION-6` §18 means by not hiding
+ * it: a tap is keyboard-operable and `hiddenUntilFound` opens it for
+ * find-in-page.
+ *
+ * Desktop is unchanged — the two footnotes stay side by side.
  */
-export function BroadPermissionDisclosure() {
+export function ConnectionFinePrint({ providerLead }: { providerLead: string }) {
   return (
     <Accordion.Root className="border-t border-rule desk:hidden">
-      <Accordion.Item value="broad" className="border-b border-rule">
+      <Accordion.Item value="fine-print" className="border-b border-rule">
         <Accordion.Header>
           <Accordion.Trigger className="group flex min-h-14 w-full cursor-pointer items-start justify-between gap-6 py-4 text-left">
             <span className="text-body leading-[1.5] font-medium text-ink">
@@ -378,9 +381,7 @@ export function BroadPermissionDisclosure() {
         <Accordion.Panel hiddenUntilFound className="disclosure-panel">
           <div className="pb-6">
             <p className="text-small leading-[1.6] text-ink-read">{BROAD_BODY}</p>
-            <p className="mt-4 text-small leading-[1.6] text-ink-read">
-              {SHEETS_SCOPE_NOTE}
-            </p>
+            <p className="mt-4 text-small leading-[1.6] text-ink-read">{providerLead}</p>
           </div>
         </Accordion.Panel>
       </Accordion.Item>
