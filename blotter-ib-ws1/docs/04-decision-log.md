@@ -1747,3 +1747,26 @@ otherwise confound reading the argument work.
 regressions. Web work deliberately abandons that baseline, so without a fresh
 one there is no way to tell an intended change from a regression, and the safety
 net disappears silently rather than loudly.
+
+### The 481 to 1179px band, found by Jon on his own laptop
+
+He opened `blotterib.com` on a computer and got the mobile page, and asked why
+it was not adapting.
+
+**It is adapting. The rule is width, not device**, because there is no honest
+device signal — a browser only knows how wide it is. His window was under the
+1180px breakpoint, which happens with a non-maximised window or with browser
+zoom, where 125% on a 1440 screen leaves a 1152px CSS viewport.
+
+**But he found a real gap.** Reproduced on production at 1100: five numerals,
+page box 480, Section 3 hidden — a **480px phone column floating in an 1100px
+window**. `PAGE_BOX_MOBILE_W` was set to 480 in session 6 so a tablet would get
+"a centred phone-shaped column rather than a stretched one". That is defensible
+at 768. It is not at 1100.
+
+Verified correct above the breakpoint: production at 1440 measures page box
+1124, zero numerals, 7,200px. The desktop page is intact.
+
+Logged in `06` and made the **first row of wave 1** in
+`10-web-reconciliation.md`, because it is the only item in the reconciliation
+inventory a real visitor can hit today.
