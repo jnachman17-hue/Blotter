@@ -365,22 +365,20 @@ body {
     are. Height only: the CTA inside it must not move, because it is a target
     the reader may already be reaching for.
 
-    Transition on height rather than transform because the bar has to keep its
-    hit area honest at every frame — an element that only looks shorter while
-    still catching taps at its old size is worse than one that does not move.
-  */
-  .site-header__bar {
-    transition: height 180ms cubic-bezier(0.23, 1, 0.32, 1);
-  }
+    **It snaps rather than tweens, and that is the fix rather than a
+    compromise.** The first build transitioned `height` over 180ms, which the
+    design hook flagged and was right to: animating a layout property forces
+    layout on every frame, and this one fires *during a scroll*, which is
+    exactly when the main thread has none to spare. `transform: scaleY` is the
+    usual escape and is wrong here — it would leave the bar catching taps at a
+    size it no longer looks, and this bar's content is entirely tap target.
 
+    So it changes once, at the threshold, with no interpolation. A 12px step
+    that happens while the reader is already moving reads as responsive; the
+    tween was the only thing that could have read as jank.
+  */
   .site-header[data-header-mode="shrink"][data-scrolled] .site-header__bar {
     height: 48px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .site-header__bar {
-    transition: none;
   }
 }
 
