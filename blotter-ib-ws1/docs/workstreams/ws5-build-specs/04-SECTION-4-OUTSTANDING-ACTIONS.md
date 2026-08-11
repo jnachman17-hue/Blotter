@@ -44,7 +44,13 @@
 > | Item here | Amended to, below `--breakpoint-desk` only |
 > |---|---|
 > | The August 5 merge of Sections 4 and 5 into one section with two beats | **Split again on a phone**, into two numbered sections: `02` carries preservation and ownership, `03` carries the Outstanding list and the CTA. The merge existed so a reader would not file three spreadsheet windows as one repeated idea; on a phone they are already screenfuls apart, and the two beats now make genuinely different claims. |
-> | Section 12, responsive posture | Still open. The Outstanding list has no phone treatment yet; it is the next stage-10 task and §12's preserve-list still governs it. |
+> | **Section 12, responsive posture** | **Discharged.** The phone takes the films' vertical list, which is section 7's own structure: a title bar with the total, one Contact-to-reason header row, then each group announced by a tinted header carrying its coloured rule, dot and count. Desktop's three columns stay desktop-only. |
+> | Section 7, one readable row plus one `+N more` overflow row per group | **Still overruled, and the phone does not reintroduce it.** All 21 are present; each group shows its count and first row and puts the rest behind a `Show N more` disclosure. The August 5 objection was to a *label announcing that content was not visible* — a control that delivers it is the opposite of that. |
+>
+> **Open, and named by Jon on August 11, 2026:** the Outstanding view is now
+> drawn three ways. Film A cuts to one row plus `+N more`, desktop shows all 21
+> as columns, mobile shows all 21 with the tail disclosed. Nobody chose that.
+> `09-page-argument-rework.md` §8 row 8b carries it into web reconciliation.
 
 Date ratified: August 1, 2026  
 Status: Ratified  

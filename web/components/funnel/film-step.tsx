@@ -8,8 +8,12 @@
  * parallel chat and lives at `social/blotter-film-a-4x5.html`; a copy sits in
  * `public/film/` because Next serves static files only from `public`, and that
  * copy carries one addition — `?bare=1`, which strips the film's scrub bar so
- * it reads as an asset rather than as a player. The source in `social/` is
- * untouched.
+ * it reads as an asset rather than as a player.
+ *
+ * The two files are kept by hand and nothing propagates, so a fix has to land
+ * in both. On August 11, 2026 the source in `social/` was still subtracting 40
+ * horizontal pixels in bare mode that the copy here had already stopped
+ * subtracting; it now matches, so a future re-copy cannot walk the fix back.
  *
  * **The film sets the size of the whole dialog.** It needs the most room of any
  * screen, so `CARD_W` and `CARD_H` are chosen for it and every other step
@@ -55,10 +59,10 @@ import { useFunnel } from "@/lib/funnel-store";
  * height at the ratified 650, and `.funnel-film-slot` in `globals.css` derives
  * it from the aspect ratio rather than repeating it as a second number.
  *
- * Below the breakpoint the slot is the full width of the sheet, capped so the
- * copy and both controls still fit the screen: about 350x437 at a 390x844
- * phone. Smaller than desktop's 520, but it is the whole width available and
- * still well clear of the 380px build that read blurry.
+ * Below the breakpoint the slot is the full width of the **screen**, capped so
+ * the copy and both controls still fit: 390x487 at a 390x844 phone. Smaller
+ * than desktop's 520, but it is every pixel available and well clear of the
+ * 380px build that read blurry.
  */
 const SLOT_W = 520;
 
@@ -76,8 +80,14 @@ export function FilmStep() {
       Stacked on a phone, the ratified side-by-side from `desk`. Film first,
       because it is what the step is for and it is what the reader came to see;
       the copy and the controls follow it down the sheet.
+
+      Full-bleed, too. The film had 20px gutters either side, which is 11% of a
+      390px screen spent on margin around the one thing the step exists to show,
+      and Jon's note was that the video is hard to see. Edge to edge also reads
+      as deliberate for video in a way an inset rectangle does not. The copy
+      keeps its gutters; only the film loses them.
     */
-    <div className="flex h-full flex-col items-center gap-6 px-5 pt-14 pb-8 desk:flex-row desk:gap-10 desk:p-10">
+    <div className="flex h-full flex-col items-center gap-6 pt-14 pb-8 desk:flex-row desk:gap-10 desk:p-10">
       {/*
         Sized by one rule in `globals.css` rather than by utilities here.
 
@@ -106,7 +116,7 @@ export function FilmStep() {
         />
       </div>
 
-      <div className="flex w-full min-w-0 flex-col justify-center desk:flex-1">
+      <div className="flex w-full min-w-0 flex-col justify-center px-5 desk:flex-1 desk:px-0">
         {/*
           ⚠ UNRATIFIED COPY. The three frames this step replaced had ratified
           copy; this step has none, because Jon created it on August 6, 2026.

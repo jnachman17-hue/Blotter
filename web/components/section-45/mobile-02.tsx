@@ -50,7 +50,6 @@ import { ReassuranceStack } from "@/components/section-45/parts";
 import {
   SheetPhone,
   type PhoneSheetVariant,
-  type WashStrength,
 } from "@/components/section-45/sheet-phone";
 import { SECTION_3_HEADLINE } from "@/components/sections/how-blotter-works";
 import { KEEP_H } from "@/components/sections/tracker-and-actions";
@@ -73,10 +72,8 @@ const KEEP_SUB_TRIMMED =
  */
 export function Mobile02({
   variant = "swipe",
-  wash = "soft",
 }: {
   variant?: PhoneSheetVariant;
-  wash?: WashStrength;
 }) {
   return (
     <section className="field-settle pt-16 pb-16 desk:hidden">
@@ -106,7 +103,7 @@ export function Mobile02({
         </div>
 
         <div className="mt-9">
-          <SheetPhone variant={variant} wash={wash} />
+          <SheetPhone variant={variant} />
         </div>
 
         {/*

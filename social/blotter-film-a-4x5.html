@@ -1371,7 +1371,14 @@ let trueSize = false;
 function fit(){
   const wrap = $("stagewrap"), hold = $("stagehold");
   const pad = document.body.classList.contains("bare") ? 0 : 96;
-  const k = trueSize ? 1 : Math.min(1, (innerWidth - 40) / 1080, (innerHeight - pad) / 1350);
+  const bare = document.body.classList.contains("bare");
+  /* The horizontal inset is the preview chrome's, exactly like `pad`, and it
+     has to disappear in bare mode for the same reason. Left un-guarded it
+     costs 40px of an embedded frame: at the funnel's 350px slot on a phone
+     that is 11% of the width, spent on letterbox. Fixed August 11, 2026;
+     `web/public/film/` already carried the guard and this is the source
+     catching up, so a future re-copy cannot reintroduce it. */
+  const k = trueSize ? 1 : Math.min(1, (innerWidth - (bare ? 0 : 40)) / 1080, (innerHeight - pad) / 1350);
   wrap.style.transform = `scale(${k})`;
   hold.style.width = (1080 * k) + "px";
   hold.style.height = (1350 * k) + "px";

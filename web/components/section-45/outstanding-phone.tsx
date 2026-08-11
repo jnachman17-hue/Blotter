@@ -22,17 +22,33 @@
  * `04-SECTION-4` §7's own structure and the shape the ratified PNG draws, so
  * this is a return to the spec rather than a departure from it.
  *
- * ## The one thing taken from the film and not reproduced
+ * ## Every action is here, and most of them are one tap away
  *
- * The film ends each group with a `+N more` row. **`FULL` does not**, and that
- * is deliberate: Jon overruled exactly those rows on August 5, 2026, because
- * the section promises *"one current view of every action you owe"* and four of
- * the discarded asset's six rows were labels announcing that the content was
- * not visible. A phone has the vertical room the desktop three-column layout
- * did not, so every one of the 21 actions is listed.
+ * The first build listed all 21 open and ran about 950px — Jon's measure, three
+ * thumbs of scroll. The film's answer is to cut each group to one row and
+ * append `+N more`, and he asked whether Section 6's disclosure would work
+ * instead. It does, and it is the better answer of the two.
  *
- * `CUT` reproduces the film exactly, `+N more` included, so the two can be
- * compared at device width. It is the film's compression, not a new idea.
+ * **A disclosure is not the thing he overruled.** On August 5, 2026 he rejected
+ * `+5 more` because the section promises *"one current view of every action you
+ * owe"* and four of the discarded asset's six rows were **labels announcing
+ * that the content was not visible**. `Show 5 more` is not that label. It is a
+ * control that delivers them. A dead sign against a working door, and the
+ * distinction is exactly what his objection was about — so this satisfies the
+ * August 5 ruling rather than reopening it.
+ *
+ * It collapses roughly 950px to about 400px, and it is the page's own ratified
+ * mobile idiom: Section 6's service rows and both footnote disclosures already
+ * work this way, so a reader meets one open-close affordance on this page
+ * rather than three.
+ *
+ * **One accordion per group**, rather than one accordion with three items,
+ * because Base UI closes siblings by default and opening `Follow-ups due`
+ * should not shut `Replies owed`. Each group owns its own state.
+ *
+ * The first row of every group stays outside the panel and always visible.
+ * §12's readable explanatory row from each category is a hard requirement, and
+ * it must not depend on a tap.
  *
  * ## Next action
  *
@@ -42,10 +58,14 @@
  * and it is why the rows carry a contact and a reason rather than a verb each.
  */
 
+"use client";
+
+import { Accordion } from "@base-ui/react/accordion";
+
+import { DisclosureControl } from "@/components/disclosure";
+import { cn } from "@/lib/cn";
 import { SheetWindow } from "@/components/sheet/sheet-window";
 import { OUTSTANDING_GROUPS, OUTSTANDING_TOTAL } from "@/lib/sheet-data";
-
-export type OutstandingPhoneVariant = "full" | "cut";
 
 const TABS = [
   { label: "Contacts" },
@@ -53,21 +73,20 @@ const TABS = [
   { label: "Outstanding", active: true },
 ];
 
-/**
- * The film's own overflow copy, kept verbatim so `CUT` really is the film.
- * Only ever rendered by `CUT`.
- */
-const MORE: Record<string, string> = {
-  "Replies owed": "more replies owed",
-  "Follow-ups due": "more follow-ups due",
-  "Thank-you notes": "more thank-you notes",
-};
+function Row({ row }: { row: { who: string; why: string } }) {
+  return (
+    <div className="flex items-baseline border-b border-sheet-grid">
+      <span className="w-[46%] shrink-0 truncate px-3 py-[7px] font-medium text-ink">
+        {row.who}
+      </span>
+      <span className="truncate px-3 py-[7px] text-[11.5px] text-ink-faint">
+        {row.why}
+      </span>
+    </div>
+  );
+}
 
-export function OutstandingPhone({
-  variant = "full",
-}: {
-  variant?: OutstandingPhoneVariant;
-}) {
+export function OutstandingPhone() {
   return (
     <SheetWindow
       selectedCell="A1"
@@ -100,14 +119,14 @@ export function OutstandingPhone({
         </div>
 
         {OUTSTANDING_GROUPS.map((g) => {
-          const rows = variant === "cut" ? g.rows.slice(0, 1) : g.rows;
-          const remaining = g.count - rows.length;
+          const [first, ...rest] = g.rows;
           return (
             <div key={g.label}>
               {/*
                 The group header. `04-SECTION-4` §9 requires the coloured left
                 rule and the ratified PNG draws it; it is what keeps these
-                headers rather than cards.
+                headers rather than cards. The count is the completeness claim
+                per group and it is never behind the disclosure.
               */}
               <div
                 className="flex items-center justify-between border-b border-sheet-grid px-3 py-2"
@@ -129,24 +148,44 @@ export function OutstandingPhone({
                 </span>
               </div>
 
-              {rows.map((row) => (
-                <div
-                  key={row.who}
-                  className="flex items-baseline border-b border-sheet-grid"
-                >
-                  <span className="w-[46%] shrink-0 truncate px-3 py-[7px] font-medium text-ink">
-                    {row.who}
-                  </span>
-                  <span className="truncate px-3 py-[7px] text-[11.5px] text-ink-faint">
-                    {row.why}
-                  </span>
-                </div>
-              ))}
+              <Row row={first} />
 
-              {variant === "cut" && remaining > 0 && (
-                <div className="border-b border-sheet-grid px-3 py-[7px] text-[12px] text-ink-faint">
-                  +{remaining} {MORE[g.label]}
-                </div>
+              {rest.length > 0 && (
+                <Accordion.Root>
+                  <Accordion.Item value={g.label}>
+                    <Accordion.Header>
+                      <Accordion.Trigger
+                        className={cn(
+                          "group flex w-full cursor-pointer items-center justify-between gap-4",
+                          "border-b border-sheet-grid px-3 text-left",
+                          /* 44px, the target floor the footer rebuild set. */
+                          "min-h-11 py-2",
+                          "transition-colors duration-150 ease-out hover:bg-sheet-header",
+                        )}
+                      >
+                        <span className="text-[12.5px] font-medium text-navy-700">
+                          <span className="group-data-[panel-open]:hidden">
+                            Show {rest.length} more
+                          </span>
+                          <span className="hidden group-data-[panel-open]:inline">
+                            Show fewer
+                          </span>
+                        </span>
+                        <DisclosureControl />
+                      </Accordion.Trigger>
+                    </Accordion.Header>
+                    {/*
+                      `hiddenUntilFound` so find-in-page lands on a closed row
+                      and opens it. It matters here: someone scanning for a name
+                      should not have to open three groups to learn it is listed.
+                    */}
+                    <Accordion.Panel hiddenUntilFound className="disclosure-panel">
+                      {rest.map((row) => (
+                        <Row key={row.who} row={row} />
+                      ))}
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                </Accordion.Root>
               )}
             </div>
           );

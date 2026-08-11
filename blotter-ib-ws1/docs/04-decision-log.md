@@ -1321,3 +1321,109 @@ The lesson is narrow and practical: **this page now has two film iframes**, one
 in the hero and one in the funnel, and any measurement of either has to say
 which. Comments written on the false diagnosis have been corrected rather than
 left standing.
+
+### The swipe cue became a veil
+
+**Jon's design, August 11, 2026**, replacing the pill that said `Swipe`. His
+note: the cue has to coach the gesture, not label it. Grey out what is ahead,
+ramp it darker toward the right edge, blur mildly behind it, and let it clear as
+the reader travels; the same on the maintained side in cream.
+
+Built as one mechanic. The veil is anchored to the viewport rather than the
+content, so it recedes rather than slides. Its tint takes the colour of the zone
+at the reader's right edge, so it announces what is coming rather than
+describing what is already there. `SWIPE ••• →` rides it, with the dots
+travelling left to right because the gesture being taught is travel. Progress is
+a high-water mark: a cue that repeats after it has been followed is nagging.
+
+**The one decision inside his idea**, put to him and confirmed: the veil covers
+only what is *ahead*, not the visible area. Blurring what someone is reading
+fights the reason the swipe beat the crop — nothing shrunk, nothing dropped,
+every field legible.
+
+**It recovers a cost.** `09` §5 recorded that the swipe gives up the still frame.
+Veiling forward means a screenshot now shows a sharp, readable manual zone with
+an obviously unfinished right edge, which reads as *there is more* rather than
+as *this is all there is*. Better than the flat wash it replaces.
+
+The two wash strengths built earlier the same day are superseded and deleted.
+
+### Mobile 03 collapses to disclosures, and it does not reopen August 5
+
+Jon: the 21-row list is *"three thumbs of scroll"*, and could the Section 6
+disclosure work here. It can, and it beats the film's `+N more`.
+
+**It satisfies the August 5 ruling rather than overriding it.** He rejected
+`+5 more` because the section promises *"one current view of every action you
+owe"* and four of the discarded asset's six rows were **labels announcing that
+the content was not visible**. `Show 5 more` is not that label. It is a control
+that delivers them — a dead sign against a working door, which is exactly the
+distinction his objection turned on.
+
+About 950px to roughly 400px. Each group keeps its count and its first row in
+the open, because §12 requires a readable explanatory row per category and that
+must not depend on a tap. One accordion per group, so opening `Follow-ups due`
+does not shut `Replies owed`. `hiddenUntilFound`, so find-in-page opens a closed
+group rather than missing the name inside it.
+
+`Cut` is deleted. The comparison it existed for is settled.
+
+### Section 01's figures gave weight back to their labels
+
+Jon: the numerals are *"doing too much of the work"* and the labels need to be
+bigger or bolder. Numeral 2rem to 1.75rem, label 13.5px muted to 15px semibold
+in full ink, so the pair reads as one phrase — *628 recruiting emails* — rather
+than a figure with a caption under it.
+
+Not underlined, which he offered as an alternative. An underline on a phrase
+that is not a link is a promise the page does not keep.
+
+`02-SECTION-2` fixes the figures and the copy, not their type scale, so this is
+presentation rather than an override. Recorded because mobile 01 was ratified on
+August 10.
+
+### The film's letterbox bug was in the source, not the copy
+
+Jon reported black bars beside the funnel film and asked for a fix in both
+places. **The bars did not reproduce**: measured live at 390, the slot is
+350x437.5, the film fills it at k=0.3237, `bare` is applied, no bars. The copy
+in `web/public/film/` had already been guarded when it was made.
+
+**`social/` had not.** Both current films there still subtracted 40 horizontal
+pixels in bare mode — the preview chrome's inset, which `pad` already zeroes for
+the vertical. At the funnel's slot that is 11% of the width spent on letterbox.
+Fixed in `blotter-film-a` and `blotter-film-b`; `blotter-film-c` was already
+correct, and `blotter-launch` is the superseded cut and was left alone.
+
+**The real point is the trap, not the pixels.** The two directories are kept by
+hand and nothing propagates, so the copy was right and its source was wrong, and
+the next re-copy would have walked the fix back in silence. They now match.
+
+Separately, and this is what actually addresses "the video is very hard to see":
+the film is full-bleed on a phone. It had 20px gutters, which is 11% of a 390px
+screen spent on margin around the one thing the step exists to show. 350 to 390
+wide, and edge to edge reads as deliberate for video.
+
+### Analytics: all nine events verified from a phone-width session
+
+Asked for by Jon. Driven end to end at 390 on an internal-flagged browser,
+`page_viewed` through `beta_spot_confirmed`, and read back out of PostHog.
+
+- **All nine fire, in order, one per visitor.** The suppression in
+  `lib/analytics.ts` is working: exactly one of each per `distinct_id`.
+- **All nine carry `$host`.** That matters more than it sounds — the runbook's
+  canonical filter keys on `$host`, so an event without it would be silently
+  absent from every number. None is.
+- No mobile change touched event logic. `film-step.tsx` and `funnel.tsx` were
+  edited for layout only, and `cta_location = actions` still fires on a phone
+  because the CTA sits outside the desktop-only wrapper.
+
+**One trap worth recording.** A first query five seconds after the run reported
+`price_viewed` and `payment_option_clicked` missing. They were not missing;
+PostHog had not finished ingesting, and events do not become queryable in
+timestamp order. **Wait a minute before believing a negative result**, and
+confirm against an all-time query for the event name before calling anything
+broken.
+
+The run wrote one lead. It is `is_internal = true` and `real_leads` still reads
+**1**, which is the one real lead and unchanged.

@@ -48,31 +48,6 @@ import { TRACKER_CONTACTS } from "@/lib/sheet-data";
 
 export type PhoneSheetVariant = "crop" | "swipe";
 
-/**
- * How hard the two zone washes push.
- *
- * `soft` was the ratified build. Jon asked on August 11, 2026 to see the
- * stronger value, on the note that the wash is what carries the ownership claim
- * during the swipe and a tint that reads as a rendering artefact carries
- * nothing. It is one value per zone and nothing else changes.
- *
- * The ceiling is legibility: the wash sits over live spreadsheet cells and the
- * fields underneath are the thing the swipe exists to show, so this cannot
- * become an opaque panel.
- */
-export type WashStrength = "soft" | "strong";
-
-const WASH: Record<WashStrength, { yours: string; maintained: string }> = {
-  soft: {
-    yours: "rgba(27,48,80,0.05)",
-    maintained: "rgba(201,162,39,0.10)",
-  },
-  strong: {
-    yours: "rgba(27,48,80,0.10)",
-    maintained: "rgba(201,162,39,0.22)",
-  },
-};
-
 /* ------------------------------------------------------------- zone wording */
 
 /** Desktop's exact wording, unchanged on both treatments. */
@@ -337,31 +312,44 @@ const SPLIT_X = FULL_GUTTER + YOURS_W;
 const FROZEN_NAME_FILL = "#f6f8fb";
 
 /**
- * Which zone the reader is currently looking at.
+ * How far the reader has travelled, and which zone is ahead of them.
  *
- * Whichever zone occupies more of the visible window owns the frame. Both
- * washes are always painted, so a screenshot is tinted and labelled rather than
- * bare; the active one is at full strength and the other recedes.
+ * `zone` drives two different things and they want opposite readings, which is
+ * why it is computed from the **right edge** rather than from the middle. The
+ * veil covers what is ahead, so it should take the colour of the zone the
+ * reader is about to meet; the labels dim the one they have left. Right-edge
+ * ownership gives both: the veil turns cream slightly before the divider
+ * arrives, which is the point at which telling someone what is coming is
+ * useful rather than redundant.
+ *
+ * `progress` is a **high-water mark**. Scrolling back does not put the veil
+ * back, because a cue that repeats after it has been followed is nagging.
  */
 function useActiveZone(ref: React.RefObject<HTMLDivElement | null>) {
-  const [zone, setZone] = useState<"yours" | "maintained">("yours");
-  const [swiped, setSwiped] = useState(false);
-  const [scrollable, setScrollable] = useState(false);
+  const [state, setState] = useState({
+    zone: "yours" as "yours" | "maintained",
+    progress: 0,
+    scrollable: false,
+  });
+  const furthest = useRef(0);
 
   const read = useCallback(() => {
     const el = ref.current;
     if (!el) return;
-    setScrollable(el.scrollWidth - el.clientWidth > 8);
-    const start = el.scrollLeft;
-    const end = start + el.clientWidth;
-    const overlap = (a: number, b: number) =>
-      Math.max(0, Math.min(end, b) - Math.max(start, a));
-    setZone(
-      overlap(FULL_GUTTER, SPLIT_X) >= overlap(SPLIT_X, FULL_W)
-        ? "yours"
-        : "maintained",
+    const max = el.scrollWidth - el.clientWidth;
+    const scrollable = max > 8;
+    const p = max > 0 ? Math.min(1, Math.max(0, el.scrollLeft / max)) : 1;
+    if (p > furthest.current) furthest.current = p;
+    const rightEdge = el.scrollLeft + el.clientWidth;
+    const zone: "yours" | "maintained" =
+      rightEdge <= SPLIT_X ? "yours" : "maintained";
+    setState((prev) =>
+      prev.zone === zone &&
+      prev.scrollable === scrollable &&
+      Math.abs(prev.progress - furthest.current) < 0.004
+        ? prev
+        : { zone, progress: furthest.current, scrollable },
     );
-    if (start > 16) setSwiped(true);
   }, [ref]);
 
   useEffect(() => {
@@ -377,37 +365,7 @@ function useActiveZone(ref: React.RefObject<HTMLDivElement | null>) {
     };
   }, [read, ref]);
 
-  return { zone, swiped, scrollable };
-}
-
-/**
- * A wash over one zone, carrying nothing itself — the label rides above the
- * grid in `ZoneBand`. Kept deliberately light: an opaque panel over the cells
- * would hide the fields the swipe exists to show.
- */
-function Wash({
-  x,
-  w,
-  tint,
-  active,
-}: {
-  x: number;
-  w: number;
-  tint: string;
-  active: boolean;
-}) {
-  return (
-    <span
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-y-0 z-10 transition-opacity duration-300"
-      style={{
-        left: x,
-        width: w,
-        background: tint,
-        opacity: active ? 1 : 0.35,
-      }}
-    />
-  );
+  return state;
 }
 
 /**
@@ -451,29 +409,92 @@ function ZoneBand({ zone }: { zone: "yours" | "maintained" }) {
 }
 
 /**
- * The prompt. Without it nothing on the page says this object moves, which is
- * the defect Jon named and the only reason the swipe is back on the table.
+ * The veil, and it is the whole swipe affordance.
  *
- * It sits over the sheet rather than beside it, because an instruction printed
- * underneath is read after the reader has already scrolled past.
+ * Jon's design, August 11, 2026, replacing a pill that said `Swipe`. His note:
+ * the cue has to *coach* the gesture rather than label it. So the sheet is
+ * veiled ahead of the reader, mildly blurred, denser toward the right edge
+ * where the content runs off screen, and the veil recedes as they travel.
+ *
+ * Four decisions inside it, each load-bearing:
+ *
+ * **It covers only what is ahead.** The alternative was veiling the visible
+ * area too. Blurring what someone is actively reading fights the entire reason
+ * the swipe beat the crop — nothing shrunk, nothing dropped, every field
+ * legible. Veiling forward instead means a screenshot shows a sharp, readable
+ * manual zone with an obviously unfinished right edge, which reads as *there is
+ * more* rather than as *this is all there is*. That is a better still frame
+ * than the flat wash it replaces, and it recovers a cost recorded against the
+ * swipe in `09` §5.
+ *
+ * **It takes the colour of the zone it is covering**, so the veil announces
+ * what is coming: grey while the manual columns run out, cream once the
+ * remainder is Blotter's. The reader learns the split before they arrive at it.
+ *
+ * **The blur is mild and masked on the same ramp as the tint.** It has to
+ * obscure enough to read as "not yet" and little enough that the sheet is
+ * plainly a sheet. An opaque panel would hide the fields the swipe exists to
+ * show.
+ *
+ * **The progress is a high-water mark.** Scrolling back does not re-veil what
+ * has already been cleared; the cue is instruction, and instruction that
+ * repeats after it has been followed is nagging.
  */
-function SwipePrompt({ show }: { show: boolean }) {
+const VEIL_TINT: Record<"yours" | "maintained", string> = {
+  yours: "rgba(23,42,70,0.20)",
+  maintained: "rgba(196,155,40,0.28)",
+};
+
+/** Tint and blur share this ramp, so the two never disagree about density. */
+const VEIL_RAMP =
+  "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.30) 34%, rgba(0,0,0,0.92) 100%)";
+
+function Veil({
+  progress,
+  ahead,
+  show,
+}: {
+  progress: number;
+  ahead: "yours" | "maintained";
+  show: boolean;
+}) {
+  /* Fully clear by 80% travelled: the last stretch needs no coaching. */
+  const veilOpacity = show ? Math.max(0, 1 - progress / 0.8) : 0;
+  /* The words go earlier than the veil. Once someone is moving they know. */
+  const coachOpacity = show ? Math.max(0, 1 - progress / 0.22) : 0;
+
   return (
     <div
-      className={cn(
-        "pointer-events-none absolute inset-y-0 right-0 z-30 flex w-24 items-center justify-end pr-3",
-        "bg-gradient-to-l from-white/85 via-white/45 to-transparent",
-        "transition-opacity duration-300",
-        show ? "opacity-100" : "opacity-0",
-      )}
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-y-0 right-0 z-30 w-[64%]"
+      style={{ opacity: veilOpacity, transition: "opacity 220ms ease-out" }}
     >
-      <span className="flex items-center gap-1.5 rounded-full bg-navy-900/85 py-1.5 pr-2.5 pl-3 text-[11px] font-medium tracking-[0.04em] whitespace-nowrap text-white uppercase">
+      <span
+        className="absolute inset-0 backdrop-blur-[2.5px]"
+        style={{ maskImage: VEIL_RAMP, WebkitMaskImage: VEIL_RAMP }}
+      />
+      <span
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(to right, transparent 0%, ${VEIL_TINT[ahead]} 100%)`,
+          transition: "background 300ms ease-out",
+        }}
+      />
+      <span
+        className="absolute top-1/2 right-3 flex -translate-y-1/2 items-center gap-2 rounded-full bg-white/80 py-1.5 pr-2.5 pl-3 text-[11px] font-semibold tracking-[0.1em] whitespace-nowrap text-navy-900 uppercase shadow-[0_1px_4px_rgba(20,24,31,0.12)]"
+        style={{ opacity: coachOpacity, transition: "opacity 220ms ease-out" }}
+      >
         Swipe
-        <svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true">
+        <span className="flex items-center gap-[3px]">
+          <span className="swipe-dot block size-[3px] rounded-full bg-navy-900" />
+          <span className="swipe-dot block size-[3px] rounded-full bg-navy-900" />
+          <span className="swipe-dot block size-[3px] rounded-full bg-navy-900" />
+        </span>
+        <svg width="11" height="9" viewBox="0 0 12 10" fill="none">
           <path
             d="M1 5h9M6.6 1.2 10.4 5l-3.8 3.8"
             stroke="currentColor"
-            strokeWidth="1.6"
+            strokeWidth="1.7"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -483,9 +504,10 @@ function SwipePrompt({ show }: { show: boolean }) {
   );
 }
 
-function SwipeSheet({ wash }: { wash: WashStrength }) {
+function SwipeSheet() {
+
   const scroller = useRef<HTMLDivElement>(null);
-  const { zone, swiped, scrollable } = useActiveZone(scroller);
+  const { zone, progress, scrollable } = useActiveZone(scroller);
 
   return (
     <SheetWindow
@@ -508,19 +530,6 @@ function SwipeSheet({ wash }: { wash: WashStrength }) {
             <ZoneBand zone={zone} />
 
             <div className="relative">
-              <Wash
-                x={FULL_GUTTER}
-                w={YOURS_W}
-                tint={WASH[wash].yours}
-                active={zone === "yours"}
-              />
-              <Wash
-                x={SPLIT_X}
-                w={MAINT_W}
-                tint={WASH[wash].maintained}
-                active={zone === "maintained"}
-              />
-
               {/* Letter strip, scrolling with the grid it labels. */}
               <div className="flex border-b border-sheet-grid bg-sheet-header text-[12px] text-ink-muted">
                 <div
@@ -640,7 +649,7 @@ function SwipeSheet({ wash }: { wash: WashStrength }) {
           </div>
         </div>
 
-        <SwipePrompt show={scrollable && !swiped} />
+        <Veil progress={progress} ahead={zone} show={scrollable} />
       </div>
     </SheetWindow>
   );
@@ -648,12 +657,6 @@ function SwipeSheet({ wash }: { wash: WashStrength }) {
 
 /* ------------------------------------------------------------------- entry */
 
-export function SheetPhone({
-  variant,
-  wash = "soft",
-}: {
-  variant: PhoneSheetVariant;
-  wash?: WashStrength;
-}) {
-  return variant === "swipe" ? <SwipeSheet wash={wash} /> : <CropSheet />;
+export function SheetPhone({ variant }: { variant: PhoneSheetVariant }) {
+  return variant === "swipe" ? <SwipeSheet /> : <CropSheet />;
 }

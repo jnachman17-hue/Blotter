@@ -1,17 +1,21 @@
 "use client";
 
 /**
- * The two open mobile comparisons, in one picker.
+ * Mobile 02, ratified against the treatment it beat.
  *
- * Both show the section they belong to rather than the visual alone — showing
- * a visual with its argument stripped away is why the first pass of this route
- * could not be judged.
+ * Both open questions this route carried are settled: the swipe won over the
+ * crop on August 11, 2026, and the wash it used has since been replaced by the
+ * veil, so the two wash strengths are moot and gone. What is left is the
+ * comparison the specs reference — `05-SECTION-5`'s amendment table says the
+ * crop "survives behind `/review/sheet-mobile`", and this is that.
  *
- *   1, 2   mobile 02, the two wash strengths. Everything else is identical.
- *   3, 4   mobile 03, the Outstanding list. Every action, or the films' cut.
+ * Mobile 03 no longer has a variant either. `Cut` was dropped when the
+ * disclosure landed; `components/section-45/outstanding-phone.tsx` records why
+ * a disclosure satisfies the August 5 ruling rather than reopening it.
  *
- * The crop that lost to the swipe is still reachable at `?crop=1`, so the
- * ratified decision stays reversible without a fifth pill in the picker.
+ * The section shows whole, not the visual alone. Showing a visual with its
+ * argument stripped away is why the first pass of this route could not be
+ * judged.
  */
 
 import { useSearchParams } from "next/navigation";
@@ -19,48 +23,25 @@ import { useCallback, useState } from "react";
 
 import { PageBox } from "@/components/layout/page-box";
 import { Mobile02 } from "@/components/section-45/mobile-02";
-import {
-  OutstandingPhone,
-  type OutstandingPhoneVariant,
-} from "@/components/section-45/outstanding-phone";
-import { type WashStrength } from "@/components/section-45/sheet-phone";
+import { type PhoneSheetVariant } from "@/components/section-45/sheet-phone";
 
 import { Picker } from "./picker";
 
-type Variant =
-  | { kind: "wash"; key: WashStrength; label: string; note: string }
-  | { kind: "outstanding"; key: OutstandingPhoneVariant; label: string; note: string };
-
-const VARIANTS: Variant[] = [
+const VARIANTS: { key: PhoneSheetVariant; label: string; note: string }[] = [
   {
-    kind: "wash",
-    key: "soft",
-    label: "Soft",
-    note: "Mobile 02 as shipped. The wash is deliberately quiet so the cells underneath stay readable. Swipe across the divider and watch which zone is lit.",
+    key: "swipe",
+    label: "Swipe",
+    note: "Live. All ten columns at full size, Name frozen and tinted as yours, the zone labels riding the scroll. The veil covers what is ahead of you and recedes as you travel; it takes the colour of the zone you are about to reach.",
   },
   {
-    kind: "wash",
-    key: "strong",
-    label: "Strong",
-    note: "The same section, one value per zone doubled. Nothing else changes. The question is whether the cells are still comfortable to read under it.",
-  },
-  {
-    kind: "outstanding",
-    key: "full",
-    label: "All 21",
-    note: "Mobile 03, the films' vertical list. Every one of the 21 actions is present, which is what the section claims. Taller, and no row that says the content is elsewhere.",
-  },
-  {
-    kind: "outstanding",
-    key: "cut",
-    label: "Cut",
-    note: "The films' own compression: one readable row per group and a +N more line. Shorter. Note that you overruled exactly these rows on August 5 for the desktop build.",
+    key: "crop",
+    label: "Crop",
+    note: "The treatment the swipe beat, kept so the decision stays reversible. Four columns, the divider at rest, the whole argument in a screenshot. It gave up the zone labels to get there, which is why it lost.",
   },
 ];
 
 export function Stage() {
   const params = useSearchParams();
-  const crop = params.get("crop") === "1";
   const fromUrl = parseInt(params.get("v") ?? "", 10);
   const initial = fromUrl >= 1 && fromUrl <= VARIANTS.length ? fromUrl - 1 : 0;
   const [i, setI] = useState(initial);
@@ -90,35 +71,14 @@ export function Stage() {
       </div>
 
       {/* Keyed so switching re-mounts and the sheet re-measures cleanly. */}
-      {active.kind === "wash" ? (
-        <Mobile02
-          key={active.key}
-          variant={crop ? "crop" : "swipe"}
-          wash={active.key}
-        />
-      ) : (
-        <section key={active.key} className="field-settle pt-10 pb-16">
-          <PageBox>
-            <h2 className="font-display max-w-[16ch] text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink">
-              Know exactly what needs your attention.
-            </h2>
-            <p className="mt-4 text-body leading-[1.62] text-ink-muted">
-              Stop reconstructing your next moves from Gmail, Calendar, and
-              memory. Blotter gives you one current view of every action you owe.
-            </p>
-            <div className="mt-8">
-              <OutstandingPhone variant={active.key} />
-            </div>
-          </PageBox>
-        </section>
-      )}
+      <Mobile02 key={active.key} variant={active.key} />
 
       <div className="pb-40">
         <PageBox>
           <hr className="mb-6 border-navy-900/10" />
           <p className="max-w-[46ch] text-[12.5px] leading-[1.5] text-ink-faint">
-            The whole page is at <code>/</code>. The funnel is a full-screen
-            sheet on a phone now, so any CTA opens it.
+            The whole page, including mobile 03 and the funnel, is at{" "}
+            <code>/</code>.
           </p>
         </PageBox>
       </div>

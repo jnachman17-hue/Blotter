@@ -513,15 +513,28 @@ function VolumeBlocks() {
             block for no gain — the label is short enough to sit on the numeral's
             baseline, and four blocks of two lines each reads as a list of
             headings rather than as four quantities.
+
+            **Rebalanced August 11, 2026, on Jon's note** that the numerals were
+            "doing too much of the work" and the labels needed to be bigger or
+            bolder. The numeral came down 2rem to 1.75rem and the label went up
+            13.5px muted to 15px semibold in full ink. The pair now reads as one
+            phrase — *628 recruiting emails* — rather than as a figure with a
+            caption under it, which is what "628" alone was becoming.
+
+            Not underlined, which he offered as an alternative. An underline on
+            a phrase that is not a link is a promise the page does not keep, and
+            there are already five real underlines in the sheet asset.
           */}
           <p className="flex items-baseline gap-2.5">
             <span
-              className="font-display text-[2rem] leading-none font-semibold tracking-[-0.03em] tabular-nums"
+              className="font-display text-[1.75rem] leading-none font-semibold tracking-[-0.03em] tabular-nums"
               style={{ color: m.ink }}
             >
               {m.value}
             </span>
-            <span className="text-small leading-none text-ink-muted">{m.label}</span>
+            <span className="text-[0.9375rem] leading-none font-semibold text-ink">
+              {m.label}
+            </span>
           </p>
           <div className="mt-3">
             <MarkBlock metric={m} />
