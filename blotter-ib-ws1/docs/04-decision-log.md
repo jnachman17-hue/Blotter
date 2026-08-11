@@ -1718,3 +1718,32 @@ setting a reader has to turn on deliberately, usually because motion makes them
 ill. It drops the blur and the veil's tint easing, which are decoration, and
 keeps every fade, which carries meaning. Reduced motion means less movement, not
 less information.
+
+### Stage 10 shipped to production
+
+Jon, August 11, 2026: *"I want you to push this mobile version to live."*
+
+`mobile` merged to `main`, thirty commits, deployed. Verified live on
+`blotterib.com`: mobile 02's deck, mobile 03's header row and the X link all
+present, zero phantom anchors, and `noindex` plus `robots.txt` still in place —
+the launch gates were deliberately untouched.
+
+Desktop measured 7,200px with zero per-section deltas immediately before the
+merge, which is what made a thirty-commit ship to a live site with real traffic
+a safe act rather than a hopeful one.
+
+### The next phase has a framework, and it is ordered by risk
+
+Jon asked how best to approach web. `10-web-reconciliation.md` is the answer:
+three waves, and the ordering is the whole point.
+
+**Wave 2 changes what sections exist; wave 3 changes what is inside them.** So
+assets last, argument second, and the settled presentation sweep first because
+nothing later can invalidate it and it removes the cosmetic noise that would
+otherwise confound reading the argument work.
+
+**And before any of it, record a new desktop baseline.** Every change in stage
+10 was checked against a fixed one and "all zeros" caught three real
+regressions. Web work deliberately abandons that baseline, so without a fresh
+one there is no way to tell an intended change from a regression, and the safety
+net disappears silently rather than loudly.
