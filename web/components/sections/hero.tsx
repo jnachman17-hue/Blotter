@@ -48,6 +48,23 @@ const RIGHT_COL_W = 490;
 export type HeroSupporting = "full" | "short" | "none";
 
 /**
+ * Where the ratified eyebrow sits on a phone.
+ *
+ * `top`   above the headline, as ratified and as desktop always renders it
+ * `below` under the film, as a qualifier read after the demonstration
+ * `none`  not shown on a phone
+ *
+ * Jon's question, August 10, 2026: does the eyebrow plus the headline plus the
+ * film all work stacked before a reader has scrolled? Together they are about
+ * 182px of the roughly 700 a phone gives. The eyebrow is the only thing on the
+ * screen that says *who this is for*, which for a cold visitor off a social
+ * link is arguably the first question — but it is 79 characters of uppercase at
+ * 12.5px, which is a lot of visual work for a qualifier. Desktop is unaffected
+ * by all three.
+ */
+export type HeroEyebrow = "top" | "below" | "none";
+
+/**
  * UNRATIFIED COPY. Written for the stage-10 comparison on August 10, 2026 and
  * shown only below the desktop breakpoint.
  *
@@ -64,21 +81,48 @@ const SUPPORTING_SHORT =
   "Blotter keeps the Google Sheet you already use current, from Gmail and Calendar.";
 
 export function Hero({
-  supporting = "full",
+  supporting = "short",
+  eyebrow = "top",
+  heroCta = true,
 }: {
   supporting?: HeroSupporting;
+  eyebrow?: HeroEyebrow;
+  /**
+   * Whether the in-flow hero button renders on a phone. Desktop always has it.
+   *
+   * It exists to test the arrangement Jon described: if the header keeps its
+   * button and it is blurred-sticky the whole way down, the hero's own button
+   * may be redundant rather than necessary. My first answer — that it cannot
+   * leave because it is the button that follows the film — was too strong. The
+   * honest position is that it is a trade between salience and cleanliness, and
+   * the only evidence either way is that the single real lead this page has
+   * produced clicked `cta_location = hero`.
+   */
+  heroCta?: boolean;
 }) {
+  const eyebrowLine = (
+    <>
+      <span
+        aria-hidden="true"
+        className="mt-[0.35em] h-[0.9em] w-[2px] shrink-0 bg-navy-500"
+      />
+      The smart recruiting tracker for investment banking and high-finance
+      networking
+    </>
+  );
+
   return (
     <section className="pb-14">
       <PageBox>
-          {/* Eyebrow, on the shared left edge. */}
-          <p className="flex items-start gap-3 pt-6 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase">
-            <span
-              aria-hidden="true"
-              className="mt-[0.35em] h-[0.9em] w-[2px] shrink-0 bg-navy-500"
-            />
-            The smart recruiting tracker for investment banking and high-finance
-            networking
+          {/* Eyebrow, on the shared left edge. Desktop always renders it here;
+              on a phone `eyebrow` may move it below the film or drop it. */}
+          <p
+            className={cn(
+              "flex items-start gap-3 pt-6 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase",
+              eyebrow !== "top" && "hidden desk:flex",
+            )}
+          >
+            {eyebrowLine}
           </p>
 
           {/*
@@ -153,6 +197,15 @@ export function Hero({
                 <HeroFilm />
               </div>
 
+              {/* The same eyebrow, read after the demonstration instead of
+                  before it. Never rendered above `desk`, where the ratified
+                  position at the top of the section governs. */}
+              {eyebrow === "below" && (
+                <p className="order-2 flex items-start gap-3 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase desk:hidden">
+                  {eyebrowLine}
+                </p>
+              )}
+
               {/*
                 Full width on a phone — a 44px pill floating in a 350px column
                 reads as an afterthought, and the CTA is the point of the
@@ -165,7 +218,13 @@ export function Hero({
                 nothing. `StickyCta` watches `#hero-cta` to know when this
                 button has left the viewport and the bar should take over.
               */}
-              <div id="hero-cta" className="order-3 mt-7 desk:order-none">
+              <div
+                id="hero-cta"
+                className={cn(
+                  "order-3 mt-7 desk:order-none desk:block",
+                  !heroCta && "hidden",
+                )}
+              >
                 <CtaButton
                   location="hero"
                   size="large"

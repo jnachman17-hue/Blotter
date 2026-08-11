@@ -286,7 +286,13 @@ function ServiceColumns() {
 function ServiceStack() {
   return (
     <div className="desk:hidden">
-      <p className="mb-1 text-small leading-[1.55] text-ink-muted">
+      {/*
+        Set at reading size in full ink rather than as a muted caption. It is
+        not a label on the rows below it — it is the sentence that tells a
+        reader the rows contain a `cannot` list, which is the reassuring half
+        and the reason to open one. Jon's note: it has to jump out.
+      */}
+      <p className="mb-3 text-body leading-[1.5] font-semibold text-ink">
         What each connection can and cannot do.
       </p>
       <Accordion.Root

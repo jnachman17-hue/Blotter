@@ -8,19 +8,26 @@
  *
  * **1. Where the persistent CTA lives.** On a phone the sticky header's button
  * and the hero's own button are both on the first screenful — two controls with
- * the same four words. The hero one cannot go: it is the button that follows
- * the film. So the choice is between dropping the header's and letting the
- * bottom bar take over, or keeping the header's and dropping the bar.
+ * the same four words.
  *
- *   Bottom bar   header carries the brand only; the bar appears once the hero
- *                CTA scrolls away. Thumb-reachable, but permanently covers
- *                about 85px of every screenful.
- *   Top bar      the header keeps its button the whole way down and no bar
- *                appears. Costs no screen space, but sits at the hardest point
- *                on a phone to reach.
+ *   Bottom bar  header carries the brand only, and the bar appears once the
+ *               hero CTA scrolls away. Thumb-reachable, but permanently covers
+ *               about 85px of every screenful.
+ *   Both        today's state, and the one being fixed: header button and hero
+ *               button, no bar. Included so the problem is visible next to its
+ *               two solutions rather than only described.
+ *   Top only    the header keeps its button the whole way down, the hero's own
+ *               button goes, and no bar appears. The cleanest, and the version
+ *               Jon described. It costs no screen space and puts the only
+ *               control at the hardest point on a phone to reach.
  *
- * **2. How much of the supporting paragraph survives.** Full, condensed to one
- * line, or nothing at all with the film carrying it.
+ * **2. Where the eyebrow sits.** Above the headline as ratified, under the film
+ * as a qualifier read after the demonstration, or not on a phone at all. The
+ * eyebrow, headline and film together are about 182px of the roughly 700 a
+ * phone gives, and the eyebrow is the only line that says who this is for.
+ *
+ * The supporting paragraph is no longer a variant: Jon chose the one-line
+ * condensation on August 10, 2026, and it is now the default in `Hero` itself.
  *
  * ## The picker is at the top here, and that is a deliberate departure
  *
@@ -34,22 +41,33 @@
 import { useState } from "react";
 
 import { Funnel } from "@/components/funnel/funnel";
-import { Hero, type HeroSupporting } from "@/components/sections/hero";
+import {
+  Hero,
+  type HeroEyebrow,
+  type HeroSupporting,
+} from "@/components/sections/hero";
 import { ScaleAndConsequence } from "@/components/sections/scale-and-consequence";
 import { SiteHeader } from "@/components/site-header";
 import { StickyCta, StickyCtaSpacer } from "@/components/sticky-cta";
 
-type CtaMode = "bottom" | "top";
+/**
+ * `topOnly` is the arrangement Jon described: the blurred header keeps its
+ * button the whole way down, the hero's own button goes, and no bottom bar
+ * appears. It is the genuinely clean version, and it is here because my first
+ * answer — that the hero CTA could not leave — was too strong.
+ */
+type CtaMode = "bottom" | "top" | "topOnly";
 
 const CTA_MODES: { id: CtaMode; label: string }[] = [
   { id: "bottom", label: "Bottom bar" },
-  { id: "top", label: "Top bar" },
+  { id: "top", label: "Both" },
+  { id: "topOnly", label: "Top only" },
 ];
 
-const SUPPORTING_MODES: { id: HeroSupporting; label: string }[] = [
-  { id: "full", label: "Full" },
-  { id: "short", label: "One line" },
-  { id: "none", label: "None" },
+const EYEBROW_MODES: { id: HeroEyebrow; label: string }[] = [
+  { id: "top", label: "Eyebrow up" },
+  { id: "below", label: "Under film" },
+  { id: "none", label: "No eyebrow" },
 ];
 
 /** Harness chrome. Verbatim from PICKER.md apart from the anchor. */
@@ -84,7 +102,10 @@ function Picker<T extends string>({
 
 export default function HeroReview() {
   const [cta, setCta] = useState<CtaMode>("bottom");
-  const [supporting, setSupporting] = useState<HeroSupporting>("full");
+  const [eyebrow, setEyebrow] = useState<HeroEyebrow>("top");
+  /* Jon chose the one-line condensation on August 10, 2026, so it is the
+     default here rather than a variant to pick. */
+  const supporting: HeroSupporting = "short";
 
   return (
     <>
@@ -114,17 +135,21 @@ export default function HeroReview() {
       <div className="fixed inset-x-0 top-[68px] z-[2147483647] flex flex-col items-center gap-2">
         <Picker items={CTA_MODES} value={cta} onChange={setCta} label="CTA placement" />
         <Picker
-          items={SUPPORTING_MODES}
-          value={supporting}
-          onChange={setSupporting}
-          label="Supporting paragraph"
+          items={EYEBROW_MODES}
+          value={eyebrow}
+          onChange={setEyebrow}
+          label="Eyebrow position"
         />
       </div>
 
       <div className="field-open">
-        <SiteHeader mobileCta={cta === "top"} />
+        <SiteHeader mobileCta={cta !== "bottom"} />
         <main id="top">
-          <Hero supporting={supporting} />
+          <Hero
+            supporting={supporting}
+            eyebrow={eyebrow}
+            heroCta={cta !== "topOnly"}
+          />
         </main>
       </div>
 
