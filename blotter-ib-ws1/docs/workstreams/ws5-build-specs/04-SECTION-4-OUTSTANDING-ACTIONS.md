@@ -46,6 +46,14 @@
 > | The August 5 merge of Sections 4 and 5 into one section with two beats | **Split again on a phone**, into two numbered sections: `02` carries preservation and ownership, `03` carries the Outstanding list and the CTA. The merge existed so a reader would not file three spreadsheet windows as one repeated idea; on a phone they are already screenfuls apart, and the two beats now make genuinely different claims. |
 > | **Section 12, responsive posture** | **Discharged.** The phone takes the films' vertical list, which is section 7's own structure: a title bar with the total, one Contact-to-reason header row, then each group announced by a tinted header carrying its coloured rule, dot and count. Desktop's three columns stay desktop-only. |
 > | Section 7, one readable row plus one `+N more` overflow row per group | **Still overruled, and the phone does not reintroduce it.** All 21 are present; each group shows its count and first row and puts the rest behind a `Show N more` disclosure. The August 5 objection was to a *label announcing that content was not visible* — a control that delivers it is the opposite of that. |
+> | **Section 9, exclusion list, "collapsible groups"** | **Overruled for the phone only, and it is a real override rather than a gap.** Jon proposed the disclosure himself on August 11, 2026, by analogy to Section 6's service rows. The ban is anchored to the discarded exact asset in the same way section 13's list was, and the reasoning behind it — that the view is static product proof — is satisfied: every count and one row per category are open at all times, the panels are `hiddenUntilFound` so find-in-page reaches them, and section 9's separate ban on *required* animation holds because nothing about comprehension depends on motion. Desktop keeps all 21 open and collapses nothing. |
+>
+> **Not overruled, and load-bearing:** section 9's *"coloured left rule"* on each
+> category header. The `impeccable` design hook flags it as a side-tab accent,
+> which is a fair generic heuristic and wrong here — the rule is required
+> verbatim by section 9, drawn by the ratified PNG, and reproduced in Film A.
+> The spec governs. Recorded so the next session does not delete it on a
+> linter's advice.
 >
 > **Open, and named by Jon on August 11, 2026:** the Outstanding view is now
 > drawn three ways. Film A cuts to one row plus `+N more`, desktop shows all 21
