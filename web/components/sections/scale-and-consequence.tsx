@@ -25,7 +25,10 @@ import { Fit } from "@/components/layout/fit";
 import { SectionNumber } from "@/components/layout/section-number";
 import { PageBox, PAGE_BOX_W } from "@/components/layout/page-box";
 import { EYEBROW, ScaleTrajectory } from "@/components/section-2/scale-trajectory";
-import { GmailInboxStrip } from "@/components/section-2/gmail-inbox-strip";
+import {
+  GmailInboxPhone,
+  GmailInboxStrip,
+} from "@/components/section-2/gmail-inbox-strip";
 
 /**
  * The consequence visual and its two annotations, sections 10 and 11.
@@ -53,9 +56,16 @@ function ConsequenceVisual() {
         chosen yet — this is the placeholder that stops the section pushing the
         page sideways in the meantime.
       */}
-      <Fit width={PAGE_BOX_W}>
-        <GmailInboxStrip width={PAGE_BOX_W} />
-      </Fit>
+      {/* Desktop: the ratified strip, scaled into the page box. */}
+      <div className="hidden desk:block">
+        <Fit width={PAGE_BOX_W}>
+          <GmailInboxStrip width={PAGE_BOX_W} />
+        </Fit>
+      </div>
+      {/* Phone: the same five rows as a phone inbox. See `GmailInboxPhone`. */}
+      <div className="desk:hidden">
+        <GmailInboxPhone />
+      </div>
 
       {/*
         The annotation is bounded by the page box rather than pinned to it, so

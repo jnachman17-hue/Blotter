@@ -27,6 +27,11 @@
  * appear, which section 12 forbids.
  */
 
+"use client";
+
+import { Accordion } from "@base-ui/react/accordion";
+
+import { DisclosureControl } from "@/components/disclosure";
 import { Fit } from "@/components/layout/fit";
 
 /* ------------------------------------------------------------------- copy */
@@ -306,13 +311,191 @@ function ArgumentRow() {
  */
 function FootnoteStrip() {
   return (
-    <div className={`mt-10 border-t border-ink/10 pt-5 ${ROW}`}>
-      <p className="max-w-[540px] text-micro leading-[1.6] text-ink-faint">
-        {QUALIFICATION}
-      </p>
-      <p className="max-w-[440px] text-micro leading-[1.6] text-ink-faint">
-        {METHODOLOGY}
-      </p>
+    <>
+      {/* Desktop: both notes side by side, exactly as ratified. */}
+      <div className={`mt-10 hidden border-t border-ink/10 pt-5 desk:grid ${ROW}`}>
+        <p className="max-w-[540px] text-micro leading-[1.6] text-ink-faint">
+          {QUALIFICATION}
+        </p>
+        <p className="max-w-[440px] text-micro leading-[1.6] text-ink-faint">
+          {METHODOLOGY}
+        </p>
+      </div>
+
+      {/*
+        Mobile: one folded row.
+
+        Both notes are claim-safety text and neither may be cut — together they
+        are what stops 628 and `~60 hours` being read as audited figures rather
+        than as a representative reconstruction, and there is an open claim gate
+        on exactly that in `06-assumptions-and-open-questions.md`. Stacked they
+        are about 90px of 12px grey type nobody reads; behind one row that names
+        what is inside, a reader who wants the provenance can find it and a
+        reader who does not is not made to scroll past it.
+
+        The asterisk stays on the qualification, so the marker under the diagram
+        still has something to refer to.
+      */}
+      <div className="mt-10 desk:hidden">
+        <MethodDisclosure />
+      </div>
+    </>
+  );
+}
+
+function MethodDisclosure() {
+  return (
+    <Accordion.Root className="border-t border-ink/10">
+      <Accordion.Item value="method" className="border-b border-ink/10">
+        <Accordion.Header>
+          <Accordion.Trigger className="group flex min-h-14 w-full cursor-pointer items-center justify-between gap-6 py-4 text-left">
+            <span className="text-small leading-[1.5] font-medium text-ink-muted">
+              Where these numbers come from
+            </span>
+            <DisclosureControl />
+          </Accordion.Trigger>
+        </Accordion.Header>
+        <Accordion.Panel hiddenUntilFound className="disclosure-panel">
+          <div className="pb-5">
+            <p className="text-micro leading-[1.6] text-ink-faint">{QUALIFICATION}</p>
+            <p className="mt-3 text-micro leading-[1.6] text-ink-faint">{METHODOLOGY}</p>
+          </div>
+        </Accordion.Panel>
+      </Accordion.Item>
+    </Accordion.Root>
+  );
+}
+
+
+/* -------------------------------------------------------------- mobile blocks */
+
+/**
+ * The four volumes as packed blocks, with no month axis. Mobile only.
+ *
+ * ## Jon's idea, and it is better than the three I proposed
+ *
+ * The desktop diagram spends 236 of its 1120px on a label column beside each
+ * band, and gives the remaining 852 to ten month columns. Scaled to a 350px
+ * phone that is 74px of label and **24.5px per month**, which no mark field
+ * and no month name survives — the four figures themselves ended up at 12.5px,
+ * and they are the argument.
+ *
+ * Dropping the time axis is what unlocks it. With no months, the marks pack
+ * across the full width: 628 dots become eight rows of seventy-nine and stand
+ * 35px tall. All 745 marks survive, still one to one with their counts, in
+ * about 90px of actual marks.
+ *
+ * `02-SECTION-2` §15 permits "a separately composed responsive translation" and
+ * its do-not-reopen list is the figures, the exact copy, the exact email
+ * content, one email only, no second spreadsheet, and the consequence-first
+ * job. **The trajectory is not on that list.** Every figure is preserved
+ * exactly, which is what the list protects.
+ *
+ * ## What it costs
+ *
+ * The January and February pivot band — the two months marked identically as
+ * the cycle's hinge, Jon's own addition of August 5, 2026 — has no time axis to
+ * live on and does not survive here. He accepted that on August 10 rather than
+ * add copy to replace it. Desktop keeps it.
+ *
+ * ## The size ramp still earns its place
+ *
+ * 3px dots against 11px bars is what stops a 19 vanishing beside a 628 while
+ * every mark stays one real unit. Without it the applications block would be a
+ * single thin line next to a dense field, which is true and reads as "this one
+ * does not matter". The numerals carry the real magnitude, which is the same
+ * division of labour the desktop diagram uses.
+ *
+ * Each mark sits centred in a `pitch x pitch` cell and the row wraps, so the
+ * density is exactly the desktop density at any width, with no measurement.
+ */
+function MarkBlock({ metric }: { metric: Metric }) {
+  const cells = Array.from({ length: metric.count });
+  return (
+    <ul
+      aria-hidden="true"
+      className="flex flex-wrap"
+      /* One cell per unit. Wrapping does the packing, so this is correct at
+         320, 390 and 430 without measuring anything. */
+    >
+      {cells.map((_, i) => (
+        <li
+          key={i}
+          className="grid shrink-0 place-items-center"
+          style={{ width: metric.pitch, height: metric.pitch }}
+        >
+          <BlockMark metric={metric} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** The same four shapes the diagram draws, as elements rather than SVG. */
+function BlockMark({ metric }: { metric: Metric }) {
+  const s = metric.size;
+  if (metric.mark === "dot") {
+    return (
+      <span
+        className="block rounded-full"
+        style={{ width: s, height: s, background: metric.ink, opacity: 0.72 }}
+      />
+    );
+  }
+  if (metric.mark === "square") {
+    return (
+      <span
+        className="block rounded-[1px]"
+        style={{ width: s, height: s, background: metric.ink, opacity: 0.72 }}
+      />
+    );
+  }
+  if (metric.mark === "ring") {
+    return (
+      <span
+        className="block rounded-full"
+        style={{
+          width: s,
+          height: s,
+          border: `1.6px solid ${metric.ink}`,
+          opacity: 0.8,
+        }}
+      />
+    );
+  }
+  return (
+    <span
+      className="block rounded-[0.8px]"
+      style={{ width: s, height: s / 3, background: metric.ink, opacity: 0.78 }}
+    />
+  );
+}
+
+function VolumeBlocks() {
+  return (
+    <div className="mt-8 space-y-7 desk:hidden">
+      {METRICS.map((m) => (
+        <div key={m.label}>
+          {/*
+            Numeral and label share one line. Stacking them costs about 18px a
+            block for no gain — the label is short enough to sit on the numeral's
+            baseline, and four blocks of two lines each reads as a list of
+            headings rather than as four quantities.
+          */}
+          <p className="flex items-baseline gap-2.5">
+            <span
+              className="font-display text-[2rem] leading-none font-semibold tracking-[-0.03em] tabular-nums"
+              style={{ color: m.ink }}
+            >
+              {m.value}
+            </span>
+            <span className="text-small leading-none text-ink-muted">{m.label}</span>
+          </p>
+          <div className="mt-3">
+            <MarkBlock metric={m} />
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -325,6 +508,8 @@ export function ScaleTrajectory() {
       <h2 className="max-w-[900px] font-display text-h2 leading-[1.12] font-semibold tracking-[-0.025em] text-ink">
         {HEADLINE}
       </h2>
+
+      <VolumeBlocks />
 
       {/*
         The diagram is one fixed 1120px composition — the label column, the
@@ -344,7 +529,7 @@ export function ScaleTrajectory() {
         first child is trapped inside a box whose height is set explicitly —
         the 40px simply disappears and the section comes up short on desktop.
       */}
-      <div className="mt-10">
+      <div className="mt-10 hidden desk:block">
       <Fit width={CHART_TOTAL_W}>
         <div style={{ width: CHART_TOTAL_W }}>
         {/* Months read first, at the top, before the four shapes. */}
