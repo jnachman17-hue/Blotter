@@ -167,11 +167,19 @@ export function Hero({
               */}
               <p
                 className={cn(
-                  // Phone: a caption under the film, set down a step from the
-                  // desktop lede so it reads as support rather than as a second
-                  // headline. Desktop: exactly the ratified treatment.
-                  "order-2 text-small leading-[1.55] text-ink-muted",
-                  "desk:order-none desk:text-lede desk:leading-[1.6]",
+                  /*
+                    Phone: reading size in the darker reading grey.
+
+                    Jon, August 10, 2026: this line and the authority line below
+                    the CTA were the same size, weight and colour, and they do
+                    completely different jobs. This one is the sentence that
+                    says what the product does — the only prose above the fold —
+                    so it takes definition. The authority line is a footnote and
+                    is set down accordingly. Desktop keeps both exactly as
+                    ratified.
+                  */
+                  "order-2 text-body leading-[1.55] text-ink-read",
+                  "desk:order-none desk:text-lede desk:leading-[1.6] desk:text-ink-muted",
                   supporting === "none" && "hidden desk:block",
                 )}
               >
@@ -233,10 +241,17 @@ export function Hero({
                 that is the arrangement, not the line. It is proof for the CTA
                 and it belongs under the CTA.
               */}
-              <p className="order-6 mt-6 flex items-center gap-3 text-small text-ink-muted desk:order-none">
+              <p className="order-6 mt-5 flex items-center gap-3 text-micro leading-[1.5] text-ink-muted desk:order-none desk:mt-6 desk:text-small">
+                {/*
+                  The rule is desktop-only. Jon called it "the big dash" and he
+                  is right that at phone width it reads as a stray mark rather
+                  than as the lead-in to a credit: on desktop it starts a line
+                  that sits in a 490px column and the rule gives it an origin,
+                  while stacked full-width it has nothing to lead into.
+                */}
                 <span
                   aria-hidden="true"
-                  className="h-px w-8 shrink-0 bg-ink-faint"
+                  className="hidden h-px w-8 shrink-0 bg-ink-faint desk:block"
                 />
                 Built by a former Goldman Sachs banker for recruitment.
               </p>

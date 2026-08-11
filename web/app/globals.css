@@ -221,14 +221,28 @@ body {
   display: none;
 }
 
-[data-section-numbers="on"] .section-number,
-[data-section-numbers="total"] .section-number {
-  display: block;
-  margin-bottom: 0.75rem;
+/*
+  Mobile only, and deliberately.
+
+  Jon chose `01` on August 10, 2026 after comparing it against `01 / 05` and
+  against nothing. It is on below the desktop breakpoint and off above it, which
+  means the two surfaces currently disagree about whether this page has numbered
+  sections. That is a known cost, not an oversight: turning it on for desktop
+  overrides four build specs that forbid an eyebrow, and stage 10 does not touch
+  desktop. `08-desktop-changes-pending.md` carries the decision.
+*/
+@media (max-width: 1179px) {
+  [data-section-numbers="on"] .section-number,
+  [data-section-numbers="total"] .section-number {
+    display: block;
+    margin-bottom: 0.75rem;
+  }
 }
 
 /* `01` alone, versus `01 / 05` — the second tells a phone reader how much page
-   is left, which is the thing a scrollbar gives desktop for free. */
+   is left, which is the thing a scrollbar gives desktop for free. Jon chose the
+   bare numeral: the total read as a progress meter on a page that is an
+   argument rather than a form. */
 [data-section-numbers="on"] .section-number__total {
   display: none;
 }

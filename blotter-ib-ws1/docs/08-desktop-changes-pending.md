@@ -55,13 +55,21 @@ sentence is wrong and must change with it.**
 
 ---
 
-## 2. Two CTAs on one screen — DECIDED IN PRINCIPLE, MOBILE ONLY SO FAR
+## 2. Two CTAs on one screen — DECIDED, MOBILE ONLY
 
-**Status: decided for mobile, open for desktop.**
+**Status: decided for mobile. Desktop unaffected and must stay so.**
 
 On a phone the sticky header's CTA and the hero's own CTA are both on the first
-screenful — two controls, same four words. `/review/hero` runs the two ways out
-of it and Jon picks.
+screenful — two controls, same four words. Three arrangements were built and
+Jon compared them on his phone on August 10, 2026: bottom bar with a brand-only
+header, both buttons and no bar, and header button only.
+
+**He chose both buttons and no bar.** The sticky bottom bar he had approved
+earlier the same day is not mounted on the live page: it cost 85px of every
+screenful permanently, and once he saw the doubling in place it read as
+persistence rather than as a mistake. `StickyCta` and the
+`cta_location = "sticky"` enum value are kept so the decision is reversible
+without touching the analytics contract; nothing fires it today.
 
 **Desktop does not have this problem** and nothing here changes it: a desktop
 reader sees the whole hero at once, the four ratified placements are
@@ -107,13 +115,53 @@ and is not to be touched.
 
 ---
 
-## 5. Copy written for mobile that has not been ratified
+## 5. Section numbering is on for mobile and off for desktop — DECIDED, HALF APPLIED
+
+**Status: decided and live on mobile. Desktop is the open half.**
+
+Jon chose `01` on August 10, 2026, over `01 / 05` and over nothing, after
+comparing all three on his phone. It renders below `--breakpoint-desk` and not
+above it, so **the two surfaces currently disagree about whether this page has
+numbered sections.**
+
+That is a known cost rather than an oversight. Turning it on for desktop means
+overriding four build specs that forbid an eyebrow, because a numeral above a
+headline reads as one:
+
+| Spec | Clause |
+|---|---|
+| `04-SECTION-4` | §101 "There is no eyebrow in Section 4", §351 exclusion list |
+| `05-SECTION-5` | §74 "There is no eyebrow", §253 exclusion list, §292 |
+| `06-SECTION-6` | §157 "There is no eyebrow" |
+| `07-SECTION-7` | §85 "no eyebrow", §269 exclusion list |
+
+Five blocks are numbered and the hero is not, because the hero is the opening
+rather than a place a reader navigates to. If desktop adopts this, the numbering
+must match mobile exactly or the page contradicts itself between devices.
+
+**Why Jon rejected the total.** `01 / 05` read as a progress meter, and this
+page is an argument rather than a form.
+
+## 6. The rule before the authority line — MOBILE ONLY SO FAR
+
+**Status: hidden on mobile. Desktop unchanged and undecided.**
+
+`Built by a former Goldman Sachs banker for recruitment.` is preceded by a
+32px hairline. Jon called it "the big dash" and hid it below the breakpoint.
+
+The reasoning is genuinely width-dependent, so this is not automatically a
+desktop change: on desktop the line sits in a 490px column and the rule gives it
+an origin, while stacked full width on a phone it has nothing to lead into and
+reads as a stray mark. **But he did not say he liked it on desktop either.**
+Ask before the next desktop pass.
+
+## 7. Copy written for mobile that has not been ratified
 
 **Status: unratified. Must go to Jon before public traffic if kept.**
 
 | String | Where | Note |
 |---|---|---|
-| `SUPPORTING_SHORT` in `components/sections/hero.tsx` | mobile hero, `supporting="short"` variant only | A condensation of the ratified hero paragraph, not a new claim. Never renders above `desk` |
+| `SUPPORTING_SHORT` in `components/sections/hero.tsx` | **live on the mobile hero** — Jon chose it over the full paragraph and over nothing | A condensation of the ratified hero paragraph, not a new claim. Never renders above `desk`, which still gets the ratified sentence in full |
 | `What each connection can and cannot do.` | mobile Section 6, above the three service rows | Replaced the per-row `2 can · 3 cannot` counts, which Jon read as a spec sheet on a section about trust |
 
 Both follow the page's standing rules: no dash, no availability signal, no claim
@@ -121,7 +169,7 @@ the product cannot support.
 
 ---
 
-## 6. Things this session deliberately did **not** change on desktop
+## 8. Things this session deliberately did **not** change on desktop
 
 Recorded so the absence reads as a decision rather than an oversight.
 
@@ -135,7 +183,7 @@ Recorded so the absence reads as a decision rather than an oversight.
 - **The funnel**, including which film it plays. Film A stays.
 - **`page.tsx` section order.**
 
-## 7. Bugs the mobile build found that were latent on desktop — ALREADY FIXED
+## 9. Bugs the mobile build found that were latent on desktop — ALREADY FIXED
 
 Listed for the record; all three are already in `main`'s history on the `mobile`
 branch and need no further action.
