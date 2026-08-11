@@ -48,6 +48,31 @@ import { TRACKER_CONTACTS } from "@/lib/sheet-data";
 
 export type PhoneSheetVariant = "crop" | "swipe";
 
+/**
+ * How hard the two zone washes push.
+ *
+ * `soft` was the ratified build. Jon asked on August 11, 2026 to see the
+ * stronger value, on the note that the wash is what carries the ownership claim
+ * during the swipe and a tint that reads as a rendering artefact carries
+ * nothing. It is one value per zone and nothing else changes.
+ *
+ * The ceiling is legibility: the wash sits over live spreadsheet cells and the
+ * fields underneath are the thing the swipe exists to show, so this cannot
+ * become an opaque panel.
+ */
+export type WashStrength = "soft" | "strong";
+
+const WASH: Record<WashStrength, { yours: string; maintained: string }> = {
+  soft: {
+    yours: "rgba(27,48,80,0.05)",
+    maintained: "rgba(201,162,39,0.10)",
+  },
+  strong: {
+    yours: "rgba(27,48,80,0.10)",
+    maintained: "rgba(201,162,39,0.22)",
+  },
+};
+
 /* ------------------------------------------------------------- zone wording */
 
 /** Desktop's exact wording, unchanged on both treatments. */
@@ -458,7 +483,7 @@ function SwipePrompt({ show }: { show: boolean }) {
   );
 }
 
-function SwipeSheet() {
+function SwipeSheet({ wash }: { wash: WashStrength }) {
   const scroller = useRef<HTMLDivElement>(null);
   const { zone, swiped, scrollable } = useActiveZone(scroller);
 
@@ -486,13 +511,13 @@ function SwipeSheet() {
               <Wash
                 x={FULL_GUTTER}
                 w={YOURS_W}
-                tint="rgba(27,48,80,0.05)"
+                tint={WASH[wash].yours}
                 active={zone === "yours"}
               />
               <Wash
                 x={SPLIT_X}
                 w={MAINT_W}
-                tint="rgba(201,162,39,0.10)"
+                tint={WASH[wash].maintained}
                 active={zone === "maintained"}
               />
 
@@ -623,6 +648,12 @@ function SwipeSheet() {
 
 /* ------------------------------------------------------------------- entry */
 
-export function SheetPhone({ variant }: { variant: PhoneSheetVariant }) {
-  return variant === "swipe" ? <SwipeSheet /> : <CropSheet />;
+export function SheetPhone({
+  variant,
+  wash = "soft",
+}: {
+  variant: PhoneSheetVariant;
+  wash?: WashStrength;
+}) {
+  return variant === "swipe" ? <SwipeSheet wash={wash} /> : <CropSheet />;
 }

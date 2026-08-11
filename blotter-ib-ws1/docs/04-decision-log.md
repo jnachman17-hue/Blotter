@@ -1253,3 +1253,71 @@ section, and the section order.
 **Desktop verified unchanged**: all six section heights identical before and
 after, document height 7,200px both times. The all-zeros result the handoff asks
 for, with no exceptions this time.
+
+### Mobile 03 takes the films' Outstanding list, not the desktop one
+
+**Jon, August 11, 2026:** use *"that version of know what needs your
+attention"* from the films, *"instead of this, like, long, mini row version
+that's used for the desktop web screen"*.
+
+He is right, and the desktop composition is the reason. Desktop runs the three
+groups as **columns**, which is exactly what lets all 21 actions fit in thirteen
+rows. A phone has no room for three columns, so `Fit` was scaling that
+composition to about 0.29 and every name in it was under 4px.
+
+`social/blotter-film-a-4x5.html` already sets the same data as a **vertical
+list**: a title bar with the total, one header row naming the columns, then each
+group announced by a tinted header carrying its coloured rule, its dot and its
+count, with its rows beneath. **That is `04-SECTION-4` §7's own structure** and
+the shape the discarded PNG drew, so this is a return to the spec rather than a
+departure from it, and §12's preserve-list is satisfied literally.
+
+**One thing from the film is deliberately not reproduced.** The film ends each
+group with a `+N more` row. Jon overruled exactly those rows on August 5, 2026:
+the section promises *"one current view of every action you owe"*, and four of
+the discarded asset's six rows were labels announcing that the content was not
+visible. The phone has the vertical room the three-column desktop layout did
+not, so all 21 are listed.
+
+That is a conflict between two of his own rulings rather than between a ruling
+and a spec, so both are built and both are behind the picker: **All 21** and
+**Cut**. The conflict is named on the review page itself rather than resolved
+quietly.
+
+### The funnel is a full-screen sheet below the breakpoint
+
+The card is right on a desktop and wrong on a phone. At 390 the fixed 960px
+collapsed to `100vw - 32px` while every step inside was still composed for 960,
+and the film alone is a 520px slot, so content overflowed a container that
+clips. A modal that is almost the whole screen but not quite also reads as a
+mistake rather than as a choice.
+
+The August 6 reasoning survives the translation intact: the card is one fixed
+size that never changes between steps, and on a phone the *screen* is that size.
+
+Three details that are decisions rather than mechanics:
+
+- **`100dvh`, not `100vh`.** iOS Safari's `vh` is the tallest the viewport ever
+  gets, so a `100vh` sheet puts its own footer under the address bar. That is
+  where `Continue` lives.
+- **The sheet scrolls.** The film step plus its copy and both controls is taller
+  than a phone, and a sheet that clips its own CTA converts nobody.
+- **The film step stacks, film first.** It is what the reader came to see. The
+  slot is capped at `62dvh * 0.8` so the copy and controls still fit, landing
+  about 350x437 at a 390x844 phone.
+
+**Verified against a production build**: the desktop dialog is still exactly
+960x730 and its film slot exactly 520x650.
+
+### A measurement error worth recording, because it nearly became a fix
+
+The desktop film slot was measured at 0x0 and diagnosed as a stale-Tailwind
+failure of the kind `CURRENT-HANDOFF.md` warns about. **It was neither.** The
+query had selected the *first* iframe whose `src` contained `film`, and that is
+the hero's Film C, which sits inside a `desk:hidden` container and is therefore
+correctly 0x0 at 1440. Scoping the query to the dialog showed 520x650 all along.
+
+The lesson is narrow and practical: **this page now has two film iframes**, one
+in the hero and one in the funnel, and any measurement of either has to say
+which. Comments written on the false diagnosis have been corrected rather than
+left standing.

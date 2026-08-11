@@ -222,6 +222,40 @@ body {
 }
 
 /*
+  The funnel's film slot.
+
+  Full width on a phone, the ratified 520px from the desktop breakpoint. The
+  aspect ratio derives the height on both surfaces: 520 x 1350/1080 is exactly
+  the ratified 650, so there is one number here rather than two that can drift.
+
+  `62dvh` caps the film so the copy and both controls still fit a phone screen
+  without the sheet having to scroll to reach `Continue`. `dvh` rather than
+  `vh`, because iOS Safari's `vh` is the tallest the viewport ever gets and the
+  cap has to hold while the address bar is showing.
+
+  A rule rather than utilities on the element: the phone cap has to switch off
+  above the breakpoint, which an inline style cannot express, and doing it in
+  Tailwind takes four arbitrary `desk:` variants on one div to say what six
+  lines of CSS say plainly.
+
+  Verified against a production build, both surfaces: 520 x 650 at 1440, and the
+  full sheet width at 390.
+*/
+.funnel-film-slot {
+  width: 100%;
+  max-width: min(100%, calc(62dvh * 0.8));
+  aspect-ratio: 1080 / 1350;
+}
+
+@media (min-width: 1180px) {
+  .funnel-film-slot {
+    width: var(--slot-w);
+    max-width: none;
+    flex: none;
+  }
+}
+
+/*
   Mobile only, and deliberately.
 
   Jon chose `01` on August 10, 2026 after comparing it against `01 / 05` and

@@ -43,13 +43,24 @@ import { BACK, CONTINUE } from "@/lib/funnel-copy";
 import { track } from "@/lib/analytics";
 import { useFunnel } from "@/lib/funnel-store";
 
-/** Native size of the film stage, and the aspect the frame is held at. */
-const FILM_W = 1080;
-const FILM_H = 1350;
+/*
+ * The film's native stage is 1080 x 1350. That ratio now lives in exactly one
+ * place, `.funnel-film-slot` in `globals.css`, which derives the slot's height
+ * from its width on both surfaces. It used to be repeated here as a second
+ * constant and the two could drift.
+ */
 
-/** Rendered width inside the card. 4:5 puts the height at 650. */
+/**
+ * Rendered width inside the card, from the desktop breakpoint up. 4:5 puts the
+ * height at the ratified 650, and `.funnel-film-slot` in `globals.css` derives
+ * it from the aspect ratio rather than repeating it as a second number.
+ *
+ * Below the breakpoint the slot is the full width of the sheet, capped so the
+ * copy and both controls still fit the screen: about 350x437 at a 390x844
+ * phone. Smaller than desktop's 520, but it is the whole width available and
+ * still well clear of the 380px build that read blurry.
+ */
 const SLOT_W = 520;
-const SLOT_H = Math.round((SLOT_W * FILM_H) / FILM_W);
 
 export function FilmStep() {
   const goTo = useFunnel((s) => s.goTo);
@@ -61,10 +72,24 @@ export function FilmStep() {
   }
 
   return (
-    <div className="flex h-full items-center gap-10 p-10">
+    /*
+      Stacked on a phone, the ratified side-by-side from `desk`. Film first,
+      because it is what the step is for and it is what the reader came to see;
+      the copy and the controls follow it down the sheet.
+    */
+    <div className="flex h-full flex-col items-center gap-6 px-5 pt-14 pb-8 desk:flex-row desk:gap-10 desk:p-10">
+      {/*
+        Sized by one rule in `globals.css` rather than by utilities here.
+
+        The phone cap is `min(100%, calc(62dvh * 0.8))` and it has to switch off
+        above the breakpoint, which an inline style cannot express and which
+        would otherwise need four arbitrary `desk:` variants on one element. The
+        rule also lets the aspect ratio derive the height on both surfaces, so
+        the ratified 650 is computed from 520 rather than written down twice.
+      */}
       <div
-        className="relative shrink-0 overflow-hidden rounded-lg bg-[#eef2f8]"
-        style={{ width: SLOT_W, height: SLOT_H }}
+        className="funnel-film-slot relative overflow-hidden rounded-lg bg-[#eef2f8]"
+        style={{ "--slot-w": `${SLOT_W}px` } as React.CSSProperties}
       >
         {/*
           Mounted only while this stage is on screen, so the film starts from
@@ -81,7 +106,7 @@ export function FilmStep() {
         />
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col justify-center">
+      <div className="flex w-full min-w-0 flex-col justify-center desk:flex-1">
         {/*
           ⚠ UNRATIFIED COPY. The three frames this step replaced had ratified
           copy; this step has none, because Jon created it on August 6, 2026.
@@ -97,7 +122,7 @@ export function FilmStep() {
           continue whenever you like.
         </p>
 
-        <div className="mt-8 max-w-[260px]">
+        <div className="mt-6 w-full desk:mt-8 desk:max-w-[260px]">
           <Primary onClick={next}>{CONTINUE}</Primary>
           <div className="mt-4">
             <BackLink label={BACK} onClick={() => goTo("question_window")} />

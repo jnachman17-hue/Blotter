@@ -31,6 +31,7 @@
 import { CtaButton } from "@/components/cta-button";
 import { PageBox } from "@/components/layout/page-box";
 import { SectionNumber } from "@/components/layout/section-number";
+import { OutstandingPhone } from "@/components/section-45/outstanding-phone";
 import {
   BlotterTab,
   OutstandingTab,
@@ -129,8 +130,17 @@ export function TrackerAndActions() {
         <div className="desk:mt-24">
           <Head h={ACT_H} sub={ACT_SUB} flip />
         </div>
-        <div className="mt-10">
+        {/*
+          Desktop keeps the three-column composition, which is what lets all 21
+          actions land in thirteen rows. A phone has no room for three columns,
+          so it takes the films' vertical list of the same data —
+          `components/section-45/outstanding-phone.tsx` has the full reasoning.
+        */}
+        <div className="mt-10 hidden desk:block">
           <OutstandingTab />
+        </div>
+        <div className="mt-8 desk:hidden">
+          <OutstandingPhone />
         </div>
 
         {/*

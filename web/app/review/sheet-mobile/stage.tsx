@@ -1,14 +1,17 @@
 "use client";
 
 /**
- * Mobile 02, whole, in two treatments.
+ * The two open mobile comparisons, in one picker.
  *
- * The first pass showed the sheet on its own with the section stripped away,
- * and Jon could not tell what it was for — correctly, because a visual with its
- * argument removed is not judgeable. Everything the section says is here now:
- * the number, the headline, the deck, the paragraph, the reassurance claims and
- * the refusals. The only thing that differs between the two options is the
- * sheet.
+ * Both show the section they belong to rather than the visual alone — showing
+ * a visual with its argument stripped away is why the first pass of this route
+ * could not be judged.
+ *
+ *   1, 2   mobile 02, the two wash strengths. Everything else is identical.
+ *   3, 4   mobile 03, the Outstanding list. Every action, or the films' cut.
+ *
+ * The crop that lost to the swipe is still reachable at `?crop=1`, so the
+ * ratified decision stays reversible without a fifth pill in the picker.
  */
 
 import { useSearchParams } from "next/navigation";
@@ -16,25 +19,48 @@ import { useCallback, useState } from "react";
 
 import { PageBox } from "@/components/layout/page-box";
 import { Mobile02 } from "@/components/section-45/mobile-02";
-import { type PhoneSheetVariant } from "@/components/section-45/sheet-phone";
+import {
+  OutstandingPhone,
+  type OutstandingPhoneVariant,
+} from "@/components/section-45/outstanding-phone";
+import { type WashStrength } from "@/components/section-45/sheet-phone";
 
 import { Picker } from "./picker";
 
-const VARIANTS: { key: PhoneSheetVariant; label: string; note: string }[] = [
+type Variant =
+  | { kind: "wash"; key: WashStrength; label: string; note: string }
+  | { kind: "outstanding"; key: OutstandingPhoneVariant; label: string; note: string };
+
+const VARIANTS: Variant[] = [
   {
-    key: "crop",
-    label: "Crop",
-    note: "Static. Four columns, the divider on screen at rest, the zone labels small but still sitting over the columns they name. Whole argument in a screenshot. The six columns it drops are named underneath.",
+    kind: "wash",
+    key: "soft",
+    label: "Soft",
+    note: "Mobile 02 as shipped. The wash is deliberately quiet so the cells underneath stay readable. Swipe across the divider and watch which zone is lit.",
   },
   {
-    key: "swipe",
-    label: "Swipe",
-    note: "All ten columns at full size. Swipe and the zone you reach washes and names itself. Nothing is shrunk and nothing is dropped, but a reader who does not swipe sees only the half you own.",
+    kind: "wash",
+    key: "strong",
+    label: "Strong",
+    note: "The same section, one value per zone doubled. Nothing else changes. The question is whether the cells are still comfortable to read under it.",
+  },
+  {
+    kind: "outstanding",
+    key: "full",
+    label: "All 21",
+    note: "Mobile 03, the films' vertical list. Every one of the 21 actions is present, which is what the section claims. Taller, and no row that says the content is elsewhere.",
+  },
+  {
+    kind: "outstanding",
+    key: "cut",
+    label: "Cut",
+    note: "The films' own compression: one readable row per group and a +N more line. Shorter. Note that you overruled exactly these rows on August 5 for the desktop build.",
   },
 ];
 
 export function Stage() {
   const params = useSearchParams();
+  const crop = params.get("crop") === "1";
   const fromUrl = parseInt(params.get("v") ?? "", 10);
   const initial = fromUrl >= 1 && fromUrl <= VARIANTS.length ? fromUrl - 1 : 0;
   const [i, setI] = useState(initial);
@@ -64,14 +90,35 @@ export function Stage() {
       </div>
 
       {/* Keyed so switching re-mounts and the sheet re-measures cleanly. */}
-      <Mobile02 key={active.key} variant={active.key} />
+      {active.kind === "wash" ? (
+        <Mobile02
+          key={active.key}
+          variant={crop ? "crop" : "swipe"}
+          wash={active.key}
+        />
+      ) : (
+        <section key={active.key} className="field-settle pt-10 pb-16">
+          <PageBox>
+            <h2 className="font-display max-w-[16ch] text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink">
+              Know exactly what needs your attention.
+            </h2>
+            <p className="mt-4 text-body leading-[1.62] text-ink-muted">
+              Stop reconstructing your next moves from Gmail, Calendar, and
+              memory. Blotter gives you one current view of every action you owe.
+            </p>
+            <div className="mt-8">
+              <OutstandingPhone variant={active.key} />
+            </div>
+          </PageBox>
+        </section>
+      )}
 
       <div className="pb-40">
         <PageBox>
           <hr className="mb-6 border-navy-900/10" />
           <p className="max-w-[46ch] text-[12.5px] leading-[1.5] text-ink-faint">
-            Section 03, the Outstanding list, follows this on the real page and
-            carries the CTA. Not built yet.
+            The whole page is at <code>/</code>. The funnel is a full-screen
+            sheet on a phone now, so any CTA opens it.
           </p>
         </PageBox>
       </div>
