@@ -968,3 +968,92 @@ Zero external visitors have reached `checkout_started`.
 - Gating the film behind full playback.
 - Deployment protection as a sequencing plan. Not available on Hobby.
 - Dropping internal traffic rather than marking it.
+
+---
+
+## Session 6 — August 10, 2026. Stage 10, the mobile build.
+
+Seventeen commits on the `mobile` branch. Nothing deployed; `blotterib.com` is
+still session 5's build.
+
+### The page was desktop-only and it is not any more
+
+A fixed 1,124px page box at every viewport meant every section stuck out 749px
+past the right edge of a 375px phone. One breakpoint, `desk` at 1180px, now
+separates the ratified desktop page from a real mobile build. The box became a
+ceiling rather than a fixed number, two type tokens move below it, and a shared
+`Fit` primitive replaced four hard-coded scale calculations.
+
+**Desktop is byte-identical.** Verified by measuring every section's height
+before and after: all zeros except Section 6's +50px, which is one new sentence.
+
+### Film C is the mobile hero
+
+The desktop hero's mechanism *is* its sideways relationship — activity right,
+connector, the row it changed left. A phone has no "beside", and shrinking the
+1322px composition lands it at 0.265 with sheet type under 4px.
+
+Film C was briefed and built in a parallel chat: 11 seconds, three beats, no end
+card, looping, shown as a 1:1 centre crop. Its three beats are Section 3's three
+ratified moments, so it cannot contradict the page — a property held on purpose.
+
+**Two heroes, each right for its device.** Whether desktop should also become a
+film is parked in `06-assumptions-and-open-questions.md`.
+
+### Jon's translation of the volume chart beat all three I proposed
+
+The desktop diagram spends 236 of 1120px on a label column and the rest on ten
+month columns; at 350px that is 24.5px per month and the four figures land at
+12.5px. He proposed dropping the time axis entirely and packing the marks.
+
+All 745 marks survive, one per unit, in about 90px. `02-SECTION-2` §15 permits a
+separately composed translation and its do-not-reopen list does not include the
+trajectory. The cost, which he accepted, is the January–February pivot band.
+
+### The sticky bottom CTA was approved and then rejected
+
+He approved a fifth CTA placement in the morning and chose against it the same
+day having compared all three arrangements on his phone. It cost 85px of every
+screenful, and the doubling it existed to solve read as persistence rather than
+as a mistake once he saw it in place. The component and the enum value are kept
+so the decision is reversible.
+
+**The pattern worth remembering:** three live arrangements behind a picker
+settled in one look what two rounds of argument had not.
+
+### Section numbering, mobile only
+
+`01` through `05` above each section headline. He chose the bare numeral over
+`01 / 05`, which read as a progress meter on a page that is an argument rather
+than a form. Desktop stays unnumbered — four build specs forbid an eyebrow and a
+numeral above a headline reads as one.
+
+### The page's argument has a real fault, and he found it
+
+Reading the live desktop page he noticed three consecutive headlines saying the
+same thing, with visuals that did not match their headlines.
+
+The ownership claim is stated **four times**, three of them inside Section 3, and
+`03-SECTION-3` line 341 shows the duplication was seen at ratification and
+mitigated with whitespace — which is the one thing a phone has none of.
+
+Worse, the words and pictures are crossed between two sections: Section 3 argues
+ownership and demonstrates mechanism; Section 4+5 argues preservation and
+demonstrates ownership.
+
+**He ruled it be fixed on both surfaces**, mobile first, with the decisions
+carried to web in web-appropriate ways. The full diagnosis, the agreed mobile
+architecture and the porting rules are in `09-page-argument-rework.md`.
+
+### Rejected during this session
+
+- Scaling every composition down to fit the phone. It lands near 0.29 — a page
+  that fits and cannot be read, and it passes a naive overflow check.
+- Putting the hero eyebrow in the sticky header. 79 characters of tracked
+  uppercase needs about 630px against roughly 265px of usable bar.
+- Moving the authority line above the film as a byline. It only dangled because
+  the arrangement being tested had removed the button beneath it.
+- Merging the Drive note into the broad-permission disclosure. That note is
+  about one row, not about Google's wording in general.
+- Cutting the broad-permission disclosure from mobile. It may not leave the
+  page; folding it is a defensible reading of §18, removing it is not.
