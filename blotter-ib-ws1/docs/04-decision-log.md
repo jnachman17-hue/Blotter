@@ -1057,3 +1057,79 @@ architecture and the porting rules are in `09-page-argument-rework.md`.
   about one row, not about Google's wording in general.
 - Cutting the broad-permission disclosure from mobile. It may not leave the
   page; folding it is a defensible reading of §18, removing it is not.
+
+## Session 7 — August 11, 2026. Stage 10 continued, mobile 02.
+
+### The sheet on a phone: a deliberate crop
+
+**Ruled by Jon, August 11, 2026, unblocking mobile 02.** `09-page-argument-rework.md`
+§5 listed three approaches and nothing was agreed. He chose the crop.
+
+The arithmetic that framed the choice. The Blotter tab is 1,221px natural — a
+43px gutter, five `yours` columns at 640px and five maintained at 538px — set in
+13px Arial. Phone content width is 350px at a 390 viewport, 320px at 360, 280px
+at 320. Scale-to-fit is **0.287**, which puts the sheet type at 3.7px. Holding
+11px type affords roughly 412px of natural width, which is the gutter plus
+**three of the current columns**.
+
+**The constraint that actually decided it, and it was not in `09`.**
+`05-SECTION-5`'s amendment table lists as still binding *"the section 6 column
+order and the divider between LinkedIn and Status."* Column order is fixed, so
+`Status` cannot be moved next to `Name`. The divider sits at 683px, **56% across
+the sheet**, and the only columns between `Name` and the divider are `Title`,
+`Firm`, `Email` and `LinkedIn`.
+
+That is the whole difficulty in one sentence: **the columns that prove
+preservation are exactly the columns that have to go for the ownership divider
+to be visible at rest.** Each of `09` §5's three approaches is a different way of
+paying that bill.
+
+**Why the crop stops being a compromise.** `09` §4 already assigns the
+preservation proof to the tab strip — *"`Contacts` sitting untouched beside
+`Blotter` says this is the sheet you already had"* — reinforced by the supporting
+paragraph and the three reassurance claims. If preservation is the tab strip's
+job, the grid only has to prove **ownership**, and cropping to the divider costs
+the section nothing it was relying on.
+
+Four reasons the crop won over the alternatives:
+
+1. it repeats the two precedents that already worked here — Film A dropping
+   eight hero columns to five, and mobile 01 translating the Gmail strip into a
+   phone inbox;
+2. it survives a screenshot, which is how this page argues and how Jon reviews;
+3. the divider is on screen at rest, which
+   `06-assumptions-and-open-questions.md` requires in as many words;
+4. `05-SECTION-5` §12 says *"do not scale the full spreadsheet until the text
+   becomes unreadable"* — re-composing at phone column widths is the sanctioned
+   move, and shrinking to 0.287 is the forbidden one.
+
+**Rejected, with reasons, both put to him:**
+
+- **Frozen name column and swipe.** All ten columns at 1:1 and genuinely what
+  you do in Sheets on a phone, but the divider is off screen at rest unless the
+  region starts scrolled, which then hides `Name`. It is also an interaction on
+  a page whose rule is that the argument survives a still frame: a screenshot of
+  it shows five manual columns and no Blotter. Kept as variant 3 of the review
+  build so the crop's cost is visible rather than asserted.
+- **A vertical card translation.** Fully legible and all ten field names land
+  naturally, but it stops looking like Google Sheets, which breaks
+  `04-SECTION-4` §12's recognisable-Sheets requirement and quietly undercuts
+  *No switching out of Google Sheets* — a ratified reassurance claim sitting
+  about 100px above it.
+
+### The reassurance row stacks on a phone
+
+Three claims across at sheet width is 116px per claim at 350. Jon asked to see
+it stacked. Provisional until he looks at it.
+
+### The ten field names move under the sheet
+
+`05-SECTION-5` §12 requires all ten field names survive any smaller-screen
+treatment. On desktop the two zone labels sit above the sheet, sized to the two
+zones' widths; on a phone those widths are 84px and 250px and the labels cannot
+hold that geometry, and `09` §4 gives the space directly above the sheet to the
+three stage labels.
+
+So the zone labels become two compact lines **beneath** the sheet, each naming
+its five fields in the ratified column order and keeping desktop's exact
+wording. That discharges §12 literally and explains the crop in the same breath.

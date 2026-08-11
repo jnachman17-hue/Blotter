@@ -59,7 +59,15 @@ export interface SheetWindowProps {
   selectedCell: string;
   /** Value shown in the formula bar. */
   formulaValue: string;
-  /** Column letters across the top. Pass the exact count the surface needs. */
+  /**
+   * Column letters across the top. Pass the exact count the surface needs.
+   *
+   * Pass an empty array to omit the strip entirely, exactly as `tabs` does, for
+   * a surface that composes its own. The phone sheet's swipe variant needs the
+   * letters to scroll with the grid they label, and only a surface owning both
+   * can arrange that. No existing caller passes an empty array, so every
+   * ratified composition renders byte-identically.
+   */
   columnLetters: string[];
   /**
    * Width per column, positionally matching `columnLetters`. Must be the same
@@ -164,24 +172,26 @@ export function SheetWindow({
       </div>
 
       {/* Column letters. The leading cell is the row-number gutter. */}
-      <div className="flex border-b border-sheet-grid bg-sheet-header text-[12px] text-ink-muted">
-        <div className="w-[43px] shrink-0 border-r border-sheet-grid" />
-        {columnLetters.map((letter, i) => {
-          const w = columnWidths?.[i];
-          return (
-            <div
-              key={letter}
-              className={cn(
-                "border-r border-sheet-grid py-1 text-center last:border-r-0",
-                typeof w === "string" ? w : w === undefined ? "flex-1" : "shrink-0",
-              )}
-              style={typeof w === "number" ? { width: w } : undefined}
-            >
-              {letter}
-            </div>
-          );
-        })}
-      </div>
+      {columnLetters.length > 0 && (
+        <div className="flex border-b border-sheet-grid bg-sheet-header text-[12px] text-ink-muted">
+          <div className="w-[43px] shrink-0 border-r border-sheet-grid" />
+          {columnLetters.map((letter, i) => {
+            const w = columnWidths?.[i];
+            return (
+              <div
+                key={letter}
+                className={cn(
+                  "border-r border-sheet-grid py-1 text-center last:border-r-0",
+                  typeof w === "string" ? w : w === undefined ? "flex-1" : "shrink-0",
+                )}
+                style={typeof w === "number" ? { width: w } : undefined}
+              >
+                {letter}
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {children}
 

@@ -249,3 +249,45 @@ branch and need no further action.
   composition resampled to gain four pixels.
 - **Five flex items** carried the default `min-width: auto` and could not shrink
   below their longest unbreakable line.
+
+## 12. Two of five rows in the Blotter tab are 50% too tall — CONFIRMED DEFECT
+
+**Status: confirmed defect, live on `blotterib.com` today, on both surfaces.
+Not fixed. Desktop does not change during stage 10.**
+
+Found on August 11, 2026 while building the phone crop, by measuring the live
+page rather than by looking at it.
+
+Natural row heights in the Section 4+5 `Blotter` tab, taken from the live DOM
+and divided back out of the ratified 0.9206 scale:
+
+| Row | Natural height |
+|---|---|
+| Sarah Chen | 40.5px |
+| **Marcus Lee** | **60px** |
+| **Priya Shah** | **60px** |
+| Daniel Kim | 40.5px |
+| Alex Morgan | 39.5px |
+
+**The cause, measured rather than guessed.** The `Call` column is 112px with
+24px of padding, so 88px of text width. `1/17 @ 2:00 PM` needs **94.1px** and
+`Completed 1/16` needs **91.8px** at 13px Arial. Both wrap to two lines, and
+those two contacts are the only two with a `Call` value. Every other cell in the
+grid is a single line. `Email` also overflows on two rows but is `truncate`d, so
+it clips rather than growing the row — which is exactly the behaviour `Call`
+should have.
+
+**Why it counts as a defect rather than a composition choice.** A Google Sheets
+row does not grow to fit its content; it clips at the cell boundary. This is the
+page's "reusable high-fidelity Google Sheets window" (`WS4-SPEC.md:644`), and two
+double-height rows in an otherwise uniform grid read as a rendering artefact
+rather than as a spreadsheet.
+
+**The fix, and it costs no ratified geometry.** Move 8px from `Email` to `Call`
+in `components/section-45/parts.tsx` — `Email` 196 to 188, `Call` 112 to 120.
+`Email` has 16.5px of slack it is already truncating away, `Call` is short by
+6.1px, and `SHEET_W` stays 1,221px, so **every ratified scale is unchanged to
+the pixel** and the desktop delta is three row heights returning to 40.5px.
+
+Not applied. It is a desktop-visible change and stage 10 forbids those; it wants
+a before-and-after height measurement of the whole section when it is done.

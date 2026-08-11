@@ -1,7 +1,9 @@
 # The page argument rework
 
 Date opened: August 10, 2026, session 6
-Status: **Diagnosed and agreed for mobile. Not built. Not applied to web.**
+Last updated: August 11, 2026, session 7
+Status: **Diagnosed and agreed for mobile. The sheet treatment that blocked it
+is settled (§5). Building. Not applied to web.**
 
 This is not a responsive-layout document. Everything else in stage 10 changes
 *how* a claim is presented; this changes *which claims the page makes and in
@@ -155,40 +157,85 @@ shorter than the current mobile page.
 
 ---
 
-## 5. The open question, and it is the next thing to solve
+## 5. The sheet on a phone — SETTLED, August 11, 2026
 
-**Nothing has been agreed about how the sheet renders on a phone.** Jon raised
-this explicitly and it is unresolved.
+**Jon ruled for the deliberate crop.** This section was the one thing blocking
+mobile 02 and it is no longer open. Full reasoning is in `04-decision-log.md`
+under session 7; the short form is below, because the constraint it turns on is
+not obvious and a later session will otherwise rediscover it the hard way.
 
-The sheet is ten columns at 1,221px natural. Scaled to a 350px phone it is
-0.287 and illegible — the scaffolding state it is in today. It is also now
-carrying more weight than before, because it is the *only* visual in the merged
-section and has to prove ownership and preservation at once.
+The sheet is ten columns at 1,221px natural in 13px Arial. Phone content width
+is 350px at a 390 viewport, 320px at 360, 280px at 320. Scale-to-fit is **0.287**
+and puts the type at 3.7px — the scaffolding state it was in. Holding 11px type
+affords about 412px of natural width, which is the gutter plus **three** of the
+current columns.
 
 Constraints that survive from the specs:
 
 - `05-SECTION-5` §12: all ten field names, the LinkedIn-to-Status divider, and
   the distinction between existing fields and the Blotter-maintained layer. A
   deliberate horizontal crop or a controlled internal scroll region is
-  explicitly permitted.
+  explicitly permitted, and scaling the full spreadsheet until the text becomes
+  unreadable is explicitly forbidden.
 - `04-SECTION-4` §12: recognisable Google Sheets context; no page-level
   horizontal scrolling where a crop or translation preserves meaning better.
 
-Approaches discussed but not chosen:
+### The constraint that decided it
 
-1. **Frozen name column, maintained fields swipe.** Swiping a sheet sideways is
-   what you actually do in Sheets on a phone, so it strengthens the
-   "recognisable Google Sheets context" §12 requires. **The trap:** the divider
-   is the whole point, so it must be visible at rest, not off-screen.
-2. **A deliberate crop** to fewer columns, with the field names listed
-   separately so all ten survive the §12 requirement.
-3. **A separately composed vertical translation** — one contact as a card
-   showing yours-versus-maintained, rather than a grid.
+`05-SECTION-5`'s amendment table lists as still binding *"the section 6 column
+order and the divider between LinkedIn and Status."* **Column order is fixed**,
+so `Status` cannot be moved beside `Name`. The divider sits at 683px, 56% across
+the sheet, and the only columns between `Name` and the divider are `Title`,
+`Firm`, `Email` and `LinkedIn`.
 
-Film A's own solution is worth reading before choosing: it dropped the hero's
-eight columns to five *because at phone size eight put the sheet type under
-6px*, and recorded that in `social/README.md`. The films have already solved a
-version of this problem.
+**The columns that prove preservation are exactly the columns that have to go
+for the ownership divider to be visible at rest.** Every approach below is a
+different way of paying that bill.
+
+### Why the crop costs the section nothing
+
+§4 of this document already assigns the preservation proof to the **tab strip** —
+`Contacts` sitting untouched beside `Blotter` — reinforced by the supporting
+paragraph and the three reassurance claims. If preservation is the tab strip's
+job, the grid only has to prove **ownership**, and cropping to the divider takes
+away nothing the section was relying on.
+
+The crop also repeats two precedents that already worked here: Film A dropped
+the hero's eight columns to five *because at phone size eight put the sheet type
+under 6px* (`social/README.md`), and mobile 01 translated the Gmail strip into a
+phone inbox rather than shrinking it.
+
+### Rejected, and why they are worth keeping on the record
+
+1. **Frozen name column, maintained fields swipe.** All ten columns at 1:1 and
+   genuinely what you do in Sheets on a phone. **The trap Jon named:** the
+   divider must be visible at rest, and here it is off screen unless the region
+   starts scrolled — which then hides `Name`. It is also an interaction on a
+   page whose rule is that the argument survives a still frame. Built as variant
+   3 of the review route so the crop's cost is visible rather than asserted.
+2. **A separately composed vertical translation** — one contact as a card
+   showing yours-versus-maintained. Fully legible, all ten names natural, but it
+   stops looking like Google Sheets, which breaks `04-SECTION-4` §12 and
+   undercuts *No switching out of Google Sheets*, a ratified reassurance claim
+   sitting about 100px above it.
+
+### What is still to ratify
+
+The approach is settled; the exact crop is not. Three variants go in front of
+Jon at real device width under `/review/sheet-mobile`, and the one he picks
+becomes the amendment to `05-SECTION-5` §12.
+
+### Two consequences of the crop
+
+- **The ten field names move beneath the sheet.** §12 requires all ten survive.
+  On desktop the zone labels sit above the sheet sized to the two zones' widths;
+  on a phone those widths are 84px and 250px, and §4 gives the space directly
+  above the sheet to the three stage labels. So the two zone labels become
+  compact lines *under* the sheet, each naming its five fields in ratified
+  column order, in desktop's exact wording.
+- **The maintained fill and the 3px divider border carry the whole ownership
+  claim at rest**, which is what makes the crop legible as an argument rather
+  than as a truncation.
 
 ---
 
