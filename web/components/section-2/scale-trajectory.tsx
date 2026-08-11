@@ -43,8 +43,24 @@ export const HEADLINE =
 export const QUALIFICATION =
   "* Representative workload from a high-intensity Summer Analyst 2027 recruiting cycle that resulted in a JPMorgan offer.";
 
+/**
+ * AMENDED by Jon, August 10, 2026. `02-SECTION-2` line 140 fixes this string
+ * verbatim and §5 requires exact copy, so this is an override and is recorded
+ * as one. Only the opening changes: `Estimated from` becomes `Hours saved
+ * estimated from`. Every other word is untouched.
+ *
+ * The reason is a consequence of the mobile build. §253 asks that the
+ * methodology sit "immediately beneath or adjacent" to the proof it explains,
+ * and §563 repeats it — on desktop it does, in the column under the `~60 hours`
+ * line. On a phone both footnotes now fold into one row further down the
+ * section, so the adjacency that told a reader *what* was estimated is gone.
+ * Naming it in the sentence restores that, and it is clearer on desktop too.
+ *
+ * It lands on both surfaces because the string is shared. Recorded in
+ * `08-desktop-changes-pending.md`.
+ */
 export const METHODOLOGY =
-  "Estimated from manual Gmail and Calendar logging, tracker updates, and recurring reconciliation across the case-study recruiting cycle.";
+  "Hours saved estimated from manual Gmail and Calendar logging, tracker updates, and recurring reconciliation across the case-study recruiting cycle.";
 
 /** Descending by volume, per Jon's reorder. Every mark is one real unit. */
 const METRICS = [

@@ -155,7 +155,31 @@ an origin, while stacked full width on a phone it has nothing to lead into and
 reads as a stray mark. **But he did not say he liked it on desktop either.**
 Ask before the next desktop pass.
 
-## 7. Five real links inside an illustrative spreadsheet — CONFIRMED DEFECT
+## 7. The methodology footnote gained four words — ALREADY APPLIED
+
+**Status: already applied to both surfaces. Do not apply again; do not revert
+without Jon.**
+
+`02-SECTION-2` line 140 fixes this string verbatim and §5 requires exact copy,
+so this is an override, taken by Jon on August 10, 2026:
+
+| Before | After |
+|---|---|
+| `Estimated from manual Gmail and Calendar logging, ...` | `Hours saved estimated from manual Gmail and Calendar logging, ...` |
+
+Only the opening changes. Every other word is untouched.
+
+**Why the mobile build caused it.** §253 asks the methodology to sit
+"immediately beneath or adjacent" to the proof it explains, and §563 repeats it.
+On desktop it does — it is in the column under the `~60 hours` line. On a phone
+both footnotes now fold into one disclosure further down the section, so the
+adjacency that told a reader *what* was estimated is gone. Naming it in the
+sentence restores that, and it is clearer on desktop too, which is why the
+shared string was changed rather than a mobile-only variant introduced.
+
+Desktop Section 2 is unchanged in height by it.
+
+## 8. Five real links inside an illustrative spreadsheet — CONFIRMED DEFECT
 
 **Status: confirmed defect on both surfaces. Queued for the Phase 6
 accessibility sweep, not fixed yet.**
@@ -182,7 +206,7 @@ It is listed here because the file is shared, so the change lands on desktop
 too — with zero visual delta, which is why it is safe to do in the sweep rather
 than in a desktop pass.
 
-## 8. Copy written for mobile that has not been ratified
+## 9. Copy written for mobile that has not been ratified
 
 **Status: unratified. Must go to Jon before public traffic if kept.**
 
@@ -196,7 +220,7 @@ the product cannot support.
 
 ---
 
-## 9. Things this session deliberately did **not** change on desktop
+## 10. Things this session deliberately did **not** change on desktop
 
 Recorded so the absence reads as a decision rather than an oversight.
 
@@ -210,7 +234,7 @@ Recorded so the absence reads as a decision rather than an oversight.
 - **The funnel**, including which film it plays. Film A stays.
 - **`page.tsx` section order.**
 
-## 10. Bugs the mobile build found that were latent on desktop — ALREADY FIXED
+## 11. Bugs the mobile build found that were latent on desktop — ALREADY FIXED
 
 Listed for the record; all three are already in `main`'s history on the `mobile`
 branch and need no further action.

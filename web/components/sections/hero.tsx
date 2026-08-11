@@ -261,18 +261,38 @@ export function Hero({
                 starts a line inside a 490px column where it has an origin,
                 while stacked full width it has nothing to lead into.
               */}
-              <p className="order-6 -mt-1 flex items-center gap-3 text-small leading-[1.5] text-ink-muted desk:order-none desk:mt-6">
+              <p className="order-6 -mt-1 text-center text-small leading-[1.5] text-ink-muted desk:order-none desk:mt-6 desk:text-left">
+                {/*
+                  Centred under the full-width button, with a 12px rule rather
+                  than the desktop 32px. Jon's call, August 10, 2026, and it is
+                  the arrangement that finally stops this line reading as an
+                  orphan: a caption centred beneath a full-width control belongs
+                  to that control, which is the one thing no amount of resizing
+                  achieved. The short rule is a lead-in at that scale rather
+                  than the "big dash" he rejected.
+
+                  The rule is *inline* rather than a flex sibling, and that is
+                  the detail that matters. At 390 this line wraps to two, and a
+                  flex row put the rule beside line one with nothing under it —
+                  the same stray-mark problem the Section 2 annotations had.
+                  Inline, it is simply the first thing on the first line, and a
+                  wrapped second line centres underneath as ordinary centred
+                  text.
+
+                  The page theme's "centre nothing" rule is about the hero's two
+                  competing axes — copy against an asymmetric visual — and does
+                  not reach a caption on a button that is itself full width.
+                  Desktop is untouched: left aligned, 32px rule.
+                */}
                 <span
                   aria-hidden="true"
-                  className="hidden h-px w-8 shrink-0 bg-ink-faint desk:block"
+                  className="mr-2.5 inline-block h-px w-3 align-middle bg-ink-faint desk:mr-3 desk:w-8"
                 />
-                <span>
-                  Built by a{" "}
-                  <span className="font-medium text-ink">
-                    former Goldman Sachs banker
-                  </span>{" "}
-                  for recruitment.
-                </span>
+                Built by a{" "}
+                <span className="font-medium text-ink">
+                  former Goldman Sachs banker
+                </span>{" "}
+                for recruitment.
               </p>
             </div>
           </div>
