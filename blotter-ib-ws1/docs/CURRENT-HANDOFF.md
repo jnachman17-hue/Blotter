@@ -193,8 +193,20 @@ is now 28.0s.
 
 ## 5. Things that will bite you
 
-**The dev server is how Jon reviews.** `pnpm --dir web dev`, then his phone at
-`http://<mac-lan-ip>:3000`. It died on him four times in session 6.
+**Jon reviews on the Vercel branch URL now, not the dev server.**
+
+```
+https://blotter-claude-git-mobile-jnachman17-hues-projects.vercel.app
+```
+
+Stable across pushes, public since August 11, 2026, and it survives the chat
+ending. Push to `mobile` and it updates. `07-infrastructure-runbook.md` has how
+protection was turned off and how to put it back.
+
+The dev server is still the fastest loop while building, and everything below
+still applies to it. It died four times in session 6 and once in session 7, and
+**it dies when the chat that started it ends**, which is what happened when a
+parallel chat owned it.
 
 - **`allowedDevOrigins` in `next.config.ts` must include the Mac's LAN address.**
   Next blocks cross-origin dev resources by default, so a wrong entry serves the
@@ -203,9 +215,11 @@ is now 28.0s.
   suspect this first if he says "it loads but nothing works".
 - **The address changes.** It moved from `192.168.1.64` to `192.168.68.63`
   inside one session.
-- **The durable fix Jon has not yet done:** Vercel → project → Settings →
-  Deployment Protection → Vercel Authentication → off for previews. That gives
-  the `mobile` branch a permanent URL. Ask once, do not nag.
+- **Done, August 11, 2026. Do not raise it again.** Vercel Authentication is off
+  for previews, so the `mobile` branch has a permanent URL. Jon could not reach
+  the dashboard control; it was done with `vercel api`, which uses the CLI's own
+  credentials. The Vercel MCP connector is authenticated to a different account
+  and 404s on this project, so reach for the CLI.
 
 **The Browser pane is a hidden document.** `visibilityState: "hidden"`, zero
 `requestAnimationFrame` ticks. **Scroll events do not fire, IntersectionObserver
@@ -285,7 +299,6 @@ dashes permitted in visible copy.
 - **The mobile sheet treatment** — `09` §5. Blocks mobile 02.
 - **A connection provider.** Closes the last unverified claim.
 - **The X account URL.** `X_URL` in `components/sections/faq-and-close.tsx`.
-- **Vercel preview protection**, so his review link stops dying.
 - **Whether the film earns its place in the funnel**, and **why the price screen
   loses people** — both n=1 questions waiting on traffic.
 - `web/app/layout.tsx` carries an em dash in the browser-tab title,
