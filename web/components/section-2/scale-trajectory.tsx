@@ -329,12 +329,18 @@ function ArgumentRow() {
         two-column row and the column edge is the boundary; stacking removed the
         column and left the number in open space.
 
-        A panel rather than a card: one hairline ring and the page's own quiet
-        surface, no shadow and no fill of its own. `02-SECTION-2` §8 keeps this
-        proof subordinate to the four figures and forbids a badge or a loud
-        highlight, so the box may enclose the figure but must not promote it.
+        **The ring is gone.** The first attempt drew a hairline outline and Jon
+        said it did not look great — correctly: an outlined rectangle around a
+        figure reads as a form field, and it was a shape this page does not use
+        anywhere else. This is the warm surface the three refusals already sit
+        on, with no border and no shadow, so the figure is held by a plane the
+        page already owns rather than by a box invented for it.
+
+        `02-SECTION-2` §8 keeps this proof subordinate to the four figures and
+        forbids a badge or a loud highlight, so the surface may enclose the
+        figure but must not promote it. A fill this quiet does not.
       */}
-      <div className="rounded-xl px-4 py-3.5 ring-1 ring-navy-900/[0.08] desk:rounded-none desk:p-0 desk:ring-0">
+      <div className="rounded-xl bg-[#fbf9f5] px-4 py-4 desk:rounded-none desk:bg-transparent desk:p-0">
         <div className="flex flex-col items-start gap-1.5 desk:flex-row desk:items-center desk:gap-3 desk:pt-1">
           <span className="font-display text-[1.75rem] leading-none font-semibold tracking-[-0.03em] tabular-nums text-navy-900 desk:text-[34px]">
             ~60 hours

@@ -43,9 +43,21 @@ import { CLOSING_HEADLINE, FAQ_TITLE, PRODUCT_FAQ } from "@/lib/closing-copy";
 /** §6's reading measure, centred inside the page box. */
 const FAQ_W = 960;
 
-/** Jon's, August 6, 2026. The X account does not exist yet. */
+/**
+ * Both accounts, supplied by Jon on August 11, 2026 for **both surfaces**.
+ *
+ * LinkedIn was already this exact URL and is unchanged. `X_URL` was `null`
+ * since August 6, when the account did not exist; setting it turns the
+ * placeholder below into a real link, which is a **desktop change** and the one
+ * deliberate exception to stage 10 leaving `blotterib.com` alone. Jon asked for
+ * it on both.
+ *
+ * He wrote the LinkedIn address with a trailing full stop. That is sentence
+ * punctuation rather than part of the slug — a company URL ending in `.` 404s —
+ * so it is dropped here.
+ */
 const LINKEDIN_URL = "https://www.linkedin.com/company/blotter";
-const X_URL: string | null = null;
+const X_URL: string | null = "https://x.com/blotterib";
 
 function XMark() {
   return (
@@ -86,8 +98,9 @@ function SocialLinks() {
       </li>
       <li>
         {/*
-          Placeholder until the account exists. Jon will supply the URL; set
-          `X_URL` and this becomes a link. It is deliberately not a dead `href`.
+          Live since August 11, 2026. The `null` branch is kept rather than
+          deleted: it is the only thing standing between a missing account and a
+          dead `href`, and it costs nothing to leave in place.
         */}
         {X_URL ? (
           <a
@@ -113,7 +126,7 @@ function SocialLinks() {
 export function FaqAndClose() {
   return (
     <>
-      <section id="faq" className="field-close pt-24 pb-24">
+      <section id="faq" className="field-close pt-14 pb-16 desk:pt-24 desk:pb-24">
         <PageBox>
         <SectionNumber n={5} />
           {/*

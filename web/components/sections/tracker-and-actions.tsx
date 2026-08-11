@@ -100,7 +100,7 @@ function Head({ h, sub, flip }: { h: string; sub: string; flip?: boolean }) {
 
 export function TrackerAndActions() {
   return (
-    <section className="field-settle pt-8 pb-28 desk:pt-24">
+    <section className="field-settle pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
         {/*
           Beat 1 — preservation. No eyebrow, per `05-SECTION-5` §3.

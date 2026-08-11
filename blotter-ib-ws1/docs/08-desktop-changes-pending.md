@@ -341,3 +341,24 @@ only the header's behaviour does.
   §8 forbids a badge or a loud highlight either way.
 - **The section CTA is left-aligned and full width on a phone.** Right alignment
   is a desktop two-column device and correct there. No desktop change.
+
+---
+
+## 15. Both social links are live — ALREADY APPLIED TO DESKTOP
+
+**Status: already applied to both surfaces on August 11, 2026. Do not apply
+again.**
+
+Jon supplied both URLs and asked for them on web and mobile, which makes this
+the one deliberate desktop change during stage 10.
+
+| | |
+|---|---|
+| LinkedIn | `https://www.linkedin.com/company/blotter` — already this, unchanged |
+| X | `https://x.com/blotterib` — was `null`, now live |
+
+Setting `X_URL` turns the dim placeholder mark into a real link on both
+surfaces. Desktop height is unaffected: 7,200px before and after.
+
+He wrote the LinkedIn address with a trailing full stop; that is sentence
+punctuation, not part of the slug, and a company URL ending in `.` 404s.

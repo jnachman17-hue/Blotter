@@ -55,7 +55,7 @@ const PROVIDER_LEAD = PROVIDER_BODY[0];
 
 export function DataAndPrivacy() {
   return (
-    <section id="privacy" className="field-document pt-24 pb-28">
+    <section id="privacy" className="field-document pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
         <SectionNumber n={4} />
         {/*

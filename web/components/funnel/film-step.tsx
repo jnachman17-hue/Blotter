@@ -87,7 +87,7 @@ export function FilmStep() {
       as deliberate for video in a way an inset rectangle does not. The copy
       keeps its gutters; only the film loses them.
     */
-    <div className="flex h-full flex-col items-center gap-6 pt-14 pb-8 desk:flex-row desk:gap-10 desk:p-10">
+    <div className="flex h-full flex-col items-center gap-4 pt-12 pb-6 desk:flex-row desk:gap-10 desk:p-10">
       {/*
         Sized by one rule in `globals.css` rather than by utilities here.
 
@@ -98,22 +98,28 @@ export function FilmStep() {
         the ratified 650 is computed from 520 rather than written down twice.
       */}
       <div
-        className="funnel-film-slot relative overflow-hidden rounded-lg bg-[#eef2f8]"
+        className="funnel-film-slot rounded-lg bg-[#eef2f8]"
         style={{ "--slot-w": `${SLOT_W}px` } as React.CSSProperties}
       >
         {/*
+          The frame keeps the film's 4:5 and the slot around it does the
+          cropping. The other way round renders the film smaller — see the note
+          on `.funnel-film-slot` in `globals.css`.
+
           Mounted only while this stage is on screen, so the film starts from
           its first frame every time the step is reached, including after a back
           navigation. It autoplays on load and runs 21.5 seconds.
         */}
-        <iframe
-          src="/film/blotter-film-a-4x5.html?bare=1"
-          title="How Blotter keeps a recruiting tracker current"
-          onLoad={() => setLoaded(true)}
-          className="absolute inset-0 h-full w-full border-0"
-          style={{ opacity: loaded ? 1 : 0, transition: "opacity 220ms ease-out" }}
-          scrolling="no"
-        />
+        <div className="funnel-film-frame">
+          <iframe
+            src="/film/blotter-film-a-4x5.html?bare=1"
+            title="How Blotter keeps a recruiting tracker current"
+            onLoad={() => setLoaded(true)}
+            className="absolute inset-0 h-full w-full border-0"
+            style={{ opacity: loaded ? 1 : 0, transition: "opacity 220ms ease-out" }}
+            scrolling="no"
+          />
+        </div>
       </div>
 
       <div className="flex w-full min-w-0 flex-col justify-center px-5 desk:flex-1 desk:px-0">
@@ -124,17 +130,17 @@ export function FilmStep() {
           availability signal, no claim the product cannot support. Bring these
           two lines to him before public traffic.
         */}
-        <h2 className="font-display max-w-[16ch] text-[1.625rem] leading-[1.2] font-bold tracking-[-0.022em] text-ink">
+        <h2 className="font-display max-w-[16ch] text-[1.375rem] leading-[1.2] font-bold tracking-[-0.022em] text-ink desk:text-[1.625rem]">
           This is what Blotter does.
         </h2>
-        <p className="mt-4 max-w-[34ch] text-body leading-[1.62] text-ink-read">
+        <p className="mt-3 max-w-[34ch] text-body leading-[1.55] text-ink-read desk:mt-4 desk:leading-[1.62]">
           One recruiting cycle, and a tracker that keeps up with it. Watch it or
           continue whenever you like.
         </p>
 
-        <div className="mt-6 w-full desk:mt-8 desk:max-w-[260px]">
+        <div className="mt-5 w-full desk:mt-8 desk:max-w-[260px]">
           <Primary onClick={next}>{CONTINUE}</Primary>
-          <div className="mt-4">
+          <div className="mt-3 desk:mt-4">
             <BackLink label={BACK} onClick={() => goTo("question_window")} />
           </div>
         </div>

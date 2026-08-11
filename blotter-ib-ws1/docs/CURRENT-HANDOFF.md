@@ -298,7 +298,6 @@ dashes permitted in visible copy.
 
 - **The mobile sheet treatment** — `09` §5. Blocks mobile 02.
 - **A connection provider.** Closes the last unverified claim.
-- **The X account URL.** `X_URL` in `components/sections/faq-and-close.tsx`.
 - **Whether the film earns its place in the funnel**, and **why the price screen
   loses people** — both n=1 questions waiting on traffic.
 - `web/app/layout.tsx` carries an em dash in the browser-tab title,

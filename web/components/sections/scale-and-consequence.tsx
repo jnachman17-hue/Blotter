@@ -111,7 +111,7 @@ function ConsequenceVisual() {
 
 export function ScaleAndConsequence() {
   return (
-    <section className="field-deep pt-24 pb-28">
+    <section className="field-deep pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
         <SectionNumber n={1} />
         <p className="flex items-start gap-3 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase">

@@ -76,7 +76,7 @@ export function Mobile02({
   variant?: PhoneSheetVariant;
 }) {
   return (
-    <section className="field-settle pt-16 pb-16 desk:hidden">
+    <section className="field-settle pt-14 pb-16 desk:hidden">
       <PageBox>
         <SectionNumber n={2} />
 

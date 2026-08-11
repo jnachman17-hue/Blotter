@@ -1519,3 +1519,80 @@ CTA did nothing, with no error that named the cause. The production build was
 already passing. `CURRENT-HANDOFF.md` warns that the dev server's Tailwind goes
 stale; this is the harsher version. **If the page stops responding and the build
 is clean, restart the dev server before debugging anything else.**
+
+### Both social accounts are live, on both surfaces
+
+Jon supplied them on August 11, 2026 for web and mobile. LinkedIn was already
+that exact URL and is unchanged; `X_URL` was `null` since August 6 and is now
+`https://x.com/blotterib`, which turns the dim placeholder into a real link.
+
+**This is a deliberate desktop change during stage 10**, the only one so far,
+because he asked for both surfaces. It costs no height: desktop measured 7,200px
+before and after.
+
+He wrote the LinkedIn address with a trailing full stop. That is sentence
+punctuation rather than part of the slug — a company URL ending in `.` 404s — so
+it is dropped. The `null` branch stays in the code: it is the only thing between
+a missing account and a dead `href`, and it costs nothing.
+
+This closes the `X_URL` item that has been open in `CURRENT-HANDOFF.md` §9.
+
+### The label buzz was a transition fighting a scroll handler
+
+Jon recorded it. The cause was mine and it is worth naming precisely, because it
+is a mistake that looks like a performance problem and is not.
+
+The label's `translateX` was in React state **and** had a 200ms CSS transition.
+So every scroll event moved the target, the transition started easing toward it,
+and the next event moved it again before the ease finished. The label never
+arrived. That is the buzz — not dropped frames, an easing curve chasing a thumb.
+
+**A transition is for a state change.** Position here is a continuous readout of
+the reader's finger, and the only correct response to it is to follow exactly.
+Position is now written straight to the element in the scroll handler, no easing
+and no React in the path, so the sheet and its labels move as one object.
+
+React still owns the two things that genuinely are discrete — which zone is
+ahead, and whether the region scrolls — and those keep their transitions,
+because a fade between two labels *is* a state change. The veil's opacity moved
+to the same treatment for the same reason.
+
+### The funnel fits one sheet, and the square was free
+
+Jon: the film is finally legible but the copy and `Continue` are below the fold,
+and *"we need all this present on one sheet. That's real important."*
+
+The film was the only element with real slack, and the 1:1 crop costs nothing:
+every visible element in Film A sits inside the square safe band, verified in
+`social/README.md`, which is why the mobile hero already crops it this way. At
+390 the slot goes from 487.5 tall to 390.
+
+**The trap, and it is not obvious.** Cropping the *iframe* to a square would
+have been worse than useless: the film fits itself to whichever of width or
+height is tighter, so a 390x390 frame renders it at 312x390 and letterboxes it
+again, **smaller than before**. The frame keeps its 4:5 and the box around it
+clips. That is the hero's technique and it is now shared.
+
+A `calc(100dvh - 330px)` cap makes the film give way rather than push `Continue`
+off screen. Measured: **390x390 at a 390x844 phone, 350x350 at 390x680**, with
+the rest of the step at about 331px, so it lands on one sheet at both.
+
+### The dead space was variance, not quantity
+
+Measured before: 152, 176, 96, 208, 208. Jon named the 208 and was right, but
+the reason it read as "weird" is that a page cannot have a rhythm made of five
+different numbers. Each section carried whatever its desktop padding happened to
+be, and the ones rebuilt for mobile had picked up their own values.
+
+**One rhythm, 56 above and 64 below, so every boundary is 120px.** After: 112,
+120, 120, 120, 120. Every section shrank — 84, 8, 24, 88 and 72 — for **276px
+reclaimed**, and every desktop value is preserved behind `desk:`.
+
+### The `~60 hours` ring is gone
+
+Jon's second look: the box "doesn't look great". Correct — an outlined rectangle
+around a figure reads as a form field, and it was a shape this page uses nowhere
+else. It is now the warm surface the three refusals already sit on, no border
+and no shadow, so the figure is held by a plane the page owns rather than by a
+box invented for it. `02-SECTION-2` §8 still forbids promoting this proof, and a
+fill this quiet does not.

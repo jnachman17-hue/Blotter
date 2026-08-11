@@ -38,7 +38,7 @@
 
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 import { Fit } from "@/components/layout/fit";
 import { SheetWindow } from "@/components/sheet/sheet-window";
@@ -311,71 +311,38 @@ const SPLIT_X = FULL_GUTTER + YOURS_W;
 const FROZEN_NAME_FILL = "#f6f8fb";
 
 /**
- * How far the reader has travelled, and which zone is ahead of them.
+ * Where the labels go, written straight to the DOM.
  *
- * `zone` drives two different things and they want opposite readings, which is
- * why it is computed from the **right edge** rather than from the middle. The
- * veil covers what is ahead, so it should take the colour of the zone the
- * reader is about to meet; the labels dim the one they have left. Right-edge
- * ownership gives both: the veil turns cream slightly before the divider
- * arrives, which is the point at which telling someone what is coming is
- * useful rather than redundant.
+ * **This is the fix for the buzz Jon recorded on August 11, 2026.** The first
+ * build put the label's `translateX` in React state and gave it a 200ms CSS
+ * transition. Both halves were wrong, and together they vibrate: the transition
+ * eases toward a target that the next scroll event moves again, so the label
+ * never arrives, and every event re-rendered the band on the way.
  *
- * `progress` is a **high-water mark**. Scrolling back does not put the veil
- * back, because a cue that repeats after it has been followed is nagging.
+ * A transition is for a **state change**. Position here is not a state change,
+ * it is a continuous readout of the reader's thumb, and the only correct
+ * response to it is to follow exactly. So position is written to the element
+ * directly in the scroll handler with no easing and no React in the path, and
+ * the sheet and its labels move as one object.
+ *
+ * React still owns the two things that really are discrete — which zone is
+ * ahead, and whether the region scrolls at all — and those keep their
+ * transitions, because a fade between two labels *is* a state change.
  */
-function useActiveZone(ref: React.RefObject<HTMLDivElement | null>) {
-  const [state, setState] = useState({
-    zone: "yours" as "yours" | "maintained",
-    progress: 0,
-    scrollable: false,
-    /** Visible window in content coordinates, so labels can ride it. */
-    left: 0,
-    width: 0,
-  });
-  const furthest = useRef(0);
-
-  const read = useCallback(() => {
-    const el = ref.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    const scrollable = max > 8;
-    const p = max > 0 ? Math.min(1, Math.max(0, el.scrollLeft / max)) : 1;
-    if (p > furthest.current) furthest.current = p;
-    const rightEdge = el.scrollLeft + el.clientWidth;
-    const zone: "yours" | "maintained" =
-      rightEdge <= SPLIT_X ? "yours" : "maintained";
-    setState((prev) =>
-      prev.zone === zone &&
-      prev.scrollable === scrollable &&
-      Math.abs(prev.progress - furthest.current) < 0.004 &&
-      Math.abs(prev.left - el.scrollLeft) < 1 &&
-      Math.abs(prev.width - el.clientWidth) < 1
-        ? prev
-        : {
-            zone,
-            progress: furthest.current,
-            scrollable,
-            left: el.scrollLeft,
-            width: el.clientWidth,
-          },
-    );
-  }, [ref]);
-
-  useEffect(() => {
-    read();
-    const el = ref.current;
-    if (!el) return;
-    el.addEventListener("scroll", read, { passive: true });
-    const ro = new ResizeObserver(read);
-    ro.observe(el);
-    return () => {
-      el.removeEventListener("scroll", read);
-      ro.disconnect();
-    };
-  }, [read, ref]);
-
-  return state;
+function place(
+  el: HTMLElement | null,
+  start: number,
+  end: number,
+  left: number,
+  width: number,
+) {
+  if (!el) return;
+  const from = Math.max(start, left);
+  const to = Math.min(end, left + width);
+  const min = left + 4;
+  const max = Math.max(min, left + width - LABEL_W - 4);
+  const x = Math.min(Math.max((from + to) / 2 - LABEL_W / 2, min), max);
+  el.style.transform = `translateX(${Math.round(x)}px)`;
 }
 
 /**
@@ -422,21 +389,21 @@ function ZoneLabel({
   sub,
   accent,
   tone,
-  x,
   active,
+  innerRef,
 }: {
   label: string;
   sub: string;
   accent: string;
   tone: string;
-  x: number;
   active: boolean;
+  innerRef: React.RefObject<HTMLDivElement | null>;
 }) {
   return (
     <div
+      ref={innerRef}
       className="zone-label absolute top-0 left-0 flex gap-2"
       style={{
-        transform: `translateX(${Math.round(x)}px)`,
         opacity: active ? 1 : 0,
         filter: active ? "blur(0px)" : "blur(2px)",
       }}
@@ -461,55 +428,8 @@ function ZoneLabel({
   );
 }
 
-/**
- * Centres each label on the visible slice of its own zone.
- *
- * The maths is one idea: intersect the zone with the window, take the midpoint,
- * subtract half the label. Clamped to the window so a label never walks off its
- * own edge when only a sliver of its zone is left, which is the moment it is
- * fading out and most likely to be noticed doing something wrong.
- */
+/** Fixed so `place` can centre without measuring, which would force layout. */
 const LABEL_W = 190;
-
-function ZoneBand({
-  zone,
-  left,
-  width,
-}: {
-  zone: "yours" | "maintained";
-  left: number;
-  width: number;
-}) {
-  function place(start: number, end: number) {
-    const from = Math.max(start, left);
-    const to = Math.min(end, left + width);
-    const mid = (from + to) / 2;
-    const min = left + 4;
-    const max = left + width - LABEL_W - 4;
-    return Math.min(Math.max(mid - LABEL_W / 2, min), Math.max(min, max));
-  }
-
-  return (
-    <div className="relative mb-3 h-[30px]">
-      <ZoneLabel
-        label={YOURS_LABEL}
-        sub={YOURS_SUB}
-        accent="var(--color-ink-faint, #a4a8ac)"
-        tone="var(--color-ink, #12233d)"
-        x={place(FULL_GUTTER, SPLIT_X)}
-        active={zone === "yours"}
-      />
-      <ZoneLabel
-        label={MAINT_LABEL}
-        sub={MAINT_SUB}
-        accent="var(--color-blotter-400, #d9b64a)"
-        tone="var(--color-blotter-700, #8a6d12)"
-        x={place(SPLIT_X, FULL_W)}
-        active={zone === "maintained"}
-      />
-    </div>
-  );
-}
 
 /**
  * The veil, and it is the whole swipe affordance.
@@ -553,21 +473,27 @@ const VEIL_RAMP =
   "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.30) 34%, rgba(0,0,0,0.92) 100%)";
 
 function Veil({
-  progress,
   ahead,
   show,
+  veilRef,
+  coachRef,
 }: {
-  progress: number;
   ahead: "yours" | "maintained";
   show: boolean;
+  veilRef: React.RefObject<HTMLDivElement | null>;
+  coachRef: React.RefObject<HTMLSpanElement | null>;
 }) {
-  /* Fully clear by 80% travelled: the last stretch needs no coaching. */
-  const veilOpacity = show ? Math.max(0, 1 - progress / 0.8) : 0;
-  /* The words go earlier than the veil. Once someone is moving they know. */
-  const coachOpacity = show ? Math.max(0, 1 - progress / 0.22) : 0;
+  /*
+    Opacity is written by the scroll handler, for the same reason the labels'
+    position is: it is a continuous readout, not a state change. Only the tint
+    comes through React, because which zone is ahead genuinely is one.
 
+    Clears by 80% travelled — the last stretch needs no coaching — and the words
+    go at 22%, because once someone is moving they already know.
+  */
   return (
     <div
+      ref={veilRef}
       aria-hidden="true"
       /*
         Starts below the label band rather than at the top of the scroller. The
@@ -579,7 +505,7 @@ function Veil({
         veil begins exactly where the grid does.
       */
       className="pointer-events-none absolute top-[52px] right-0 bottom-0 z-30 w-[64%]"
-      style={{ opacity: veilOpacity, transition: "opacity 220ms ease-out" }}
+      style={{ opacity: show ? 1 : 0 }}
     >
       <span
         className="absolute inset-0 backdrop-blur-[2.5px]"
@@ -593,8 +519,8 @@ function Veil({
         }}
       />
       <span
+        ref={coachRef}
         className="absolute top-1/2 right-3 flex -translate-y-1/2 items-center gap-2 rounded-full bg-white/80 py-1.5 pr-2.5 pl-3 text-[11px] font-semibold tracking-[0.1em] whitespace-nowrap text-navy-900 uppercase shadow-[0_1px_4px_rgba(20,24,31,0.12)]"
-        style={{ opacity: coachOpacity, transition: "opacity 220ms ease-out" }}
       >
         Swipe
         <span className="flex items-center gap-[3px]">
@@ -617,9 +543,62 @@ function Veil({
 }
 
 function SwipeSheet() {
-
   const scroller = useRef<HTMLDivElement>(null);
-  const { zone, progress, scrollable, left, width } = useActiveZone(scroller);
+  const yours = useRef<HTMLDivElement>(null);
+  const maintained = useRef<HTMLDivElement>(null);
+  const veil = useRef<HTMLDivElement>(null);
+  const coach = useRef<HTMLSpanElement>(null);
+
+  /* Only the discrete facts live in React. See `place` above. */
+  const [zone, setZone] = useState<"yours" | "maintained">("yours");
+  const [scrollable, setScrollable] = useState(false);
+  const furthest = useRef(0);
+
+  useLayoutEffect(() => {
+    const el = scroller.current;
+    if (!el) return;
+
+    function read() {
+      const box = scroller.current;
+      if (!box) return;
+      const left = box.scrollLeft;
+      const width = box.clientWidth;
+      const max = box.scrollWidth - width;
+
+      /* Continuous: straight to the element, no easing, no re-render. */
+      place(yours.current, FULL_GUTTER, SPLIT_X, left, width);
+      place(maintained.current, SPLIT_X, FULL_W, left, width);
+
+      const p = max > 0 ? Math.min(1, Math.max(0, left / max)) : 1;
+      if (p > furthest.current) furthest.current = p;
+      if (veil.current) {
+        veil.current.style.opacity = String(
+          Math.max(0, 1 - furthest.current / 0.8),
+        );
+      }
+      if (coach.current) {
+        coach.current.style.opacity = String(
+          Math.max(0, 1 - furthest.current / 0.22),
+        );
+      }
+
+      /* Discrete: React, and only on the crossing. */
+      const nextZone: "yours" | "maintained" =
+        left + width <= SPLIT_X ? "yours" : "maintained";
+      const nextScrollable = max > 8;
+      setZone((prev) => (prev === nextZone ? prev : nextZone));
+      setScrollable((prev) => (prev === nextScrollable ? prev : nextScrollable));
+    }
+
+    read();
+    el.addEventListener("scroll", read, { passive: true });
+    const ro = new ResizeObserver(read);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", read);
+      ro.disconnect();
+    };
+  }, []);
 
   return (
     <SheetWindow
@@ -639,7 +618,29 @@ function SwipeSheet() {
              travel across the divider. */
         >
           <div className="sheet-type text-[13px]" style={{ width: FULL_W }}>
-            <ZoneBand zone={zone} left={left} width={width} />
+            {/*
+              Both labels are always mounted and always positioned; only their
+              opacity says which one is speaking. Mounting on demand would mean
+              the incoming label has no position to fade in *at*.
+            */}
+            <div className="relative mb-3 h-[30px]">
+              <ZoneLabel
+                label={YOURS_LABEL}
+                sub={YOURS_SUB}
+                accent="var(--color-ink-faint, #a4a8ac)"
+                tone="var(--color-ink, #12233d)"
+                active={zone === "yours"}
+                innerRef={yours}
+              />
+              <ZoneLabel
+                label={MAINT_LABEL}
+                sub={MAINT_SUB}
+                accent="var(--color-blotter-400, #d9b64a)"
+                tone="var(--color-blotter-700, #8a6d12)"
+                active={zone === "maintained"}
+                innerRef={maintained}
+              />
+            </div>
 
             <div className="relative">
               {/* Letter strip, scrolling with the grid it labels. */}
@@ -761,7 +762,7 @@ function SwipeSheet() {
           </div>
         </div>
 
-        <Veil progress={progress} ahead={zone} show={scrollable} />
+        <Veil ahead={zone} show={scrollable} veilRef={veil} coachRef={coach} />
       </div>
     </SheetWindow>
   );

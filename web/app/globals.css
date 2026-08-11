@@ -235,8 +235,19 @@ body {
   the blur, which are decoration.
 */
 .zone-label {
+  /*
+    **No transition on `transform`, and that is the point.** The first build
+    eased position over 200ms while the scroll handler moved the target every
+    event, so the label chased a point that kept running and never settled —
+    which is the buzz Jon caught on August 11, 2026. Position is now written
+    directly by the handler and follows the thumb exactly.
+
+    Opacity and blur keep their easing, because the swap between the two labels
+    genuinely is a state change. Blur joins the fade: a plain cross-fade shows
+    both labels at once and reads as two objects overlapping, where blurring the
+    outgoing one lets the eye read a single label changing.
+  */
   transition:
-    transform 200ms cubic-bezier(0.23, 1, 0.32, 1),
     opacity 200ms cubic-bezier(0.23, 1, 0.32, 1),
     filter 200ms cubic-bezier(0.23, 1, 0.32, 1);
   will-change: transform, opacity;
@@ -244,7 +255,6 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .zone-label {
-    transition: opacity 200ms ease;
     filter: none !important;
   }
 }
@@ -324,14 +334,60 @@ body {
   `desk:` variants on one div to say what six lines of CSS say plainly.
 */
 .funnel-film-slot {
+  position: relative;
+  width: 100%;
+  /*
+    A 1:1 centre crop on a phone, the film's native 4:5 from `desk`.
+
+    Jon, August 11, 2026: the film is finally legible but the copy and
+    `Continue` are below the fold, and everything has to be on one sheet. The
+    film is the only element with real slack and the square is free — every
+    visible element in Film A sits inside the 1:1 safe band, verified in
+    `social/README.md`, which is why the mobile hero already crops it this way.
+    390 wide goes from 487.5 tall to 390, and nothing is lost.
+
+    **Cropping the container, not the frame.** A square *iframe* would be worse
+    than useless: the film fits itself to whichever of width or height is
+    tighter, so a 390x390 frame would render it at 312x390 and letterbox it
+    again, smaller than before. The frame stays 4:5 and this box clips it.
+
+    `100dvh - 330px` is the rest of the sheet — padding, heading, paragraph,
+    button, back link — so the film gives way rather than pushing `Continue`
+    off screen on a shorter device. `dvh`, because iOS Safari's `vh` is the
+    tallest the viewport ever gets and the cap has to hold with the address bar
+    showing, which is the case that broke twice already.
+  */
+  aspect-ratio: 1 / 1;
+  max-width: min(100%, calc(100dvh - 330px));
+  overflow: hidden;
+  /*
+    `flex: none` is the other bug fix. The slot is an item in a `flex-col`
+    container with `h-full`, and when the content is taller than the sheet the
+    item shrinks — **`flex-shrink` beats `aspect-ratio`**. That is what produced
+    the 48px black bars: the box kept its width, lost its height, and the film
+    letterboxed inside it.
+  */
+  flex: none;
+}
+
+.funnel-film-frame {
+  position: absolute;
+  left: 0;
   width: 100%;
   aspect-ratio: 1080 / 1350;
-  flex: none;
+  /* A 1:1 centre crop of a 4:5 canvas hides 12.5% at each end. */
+  top: -12.5%;
 }
 
 @media (min-width: 1180px) {
   .funnel-film-slot {
     width: var(--slot-w);
+    max-width: none;
+    aspect-ratio: 1080 / 1350;
+  }
+
+  .funnel-film-frame {
+    top: 0;
   }
 }
 
@@ -384,6 +440,17 @@ body {
 
 /*
   Section boundaries on a phone.
+
+  **One rhythm, 56 above and 64 below, so every boundary is 120px.** Jon
+  measured the old page as "weird dead space" and he was right, but the problem
+  was the variance rather than the amount: the gaps ran 96, 152, 176, 208, 208,
+  because each section carried whatever its desktop padding happened to be and
+  the ones rebuilt for mobile had picked up their own values. A page cannot have
+  a rhythm made of six different numbers.
+
+  208px is 31% of a 680px screen spent on nothing. The pass reclaims about 400px
+  and, more to the point, makes the interval the same every time — which is what
+  stops it reading as a mistake. Every desktop value is preserved behind `desk:`.
 
   The numerals stay exactly as Jon ratified them on August 10, 2026. What they
   lacked was an edge: on a phone the only thing separating two sections was
