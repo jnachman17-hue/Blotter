@@ -142,18 +142,21 @@ must match mobile exactly or the page contradicts itself between devices.
 **Why Jon rejected the total.** `01 / 05` read as a progress meter, and this
 page is an argument rather than a form.
 
-## 6. The rule before the authority line — MOBILE ONLY SO FAR
+## 6. The rule before the authority line — RESOLVED ON MOBILE, DESKTOP UNDECIDED
 
-**Status: hidden on mobile. Desktop unchanged and undecided.**
+**Status: settled for mobile. Desktop unchanged and never discussed.**
 
-`Built by a former Goldman Sachs banker for recruitment.` is preceded by a
-32px hairline. Jon called it "the big dash" and hid it below the breakpoint.
+`Built by a former Goldman Sachs banker for recruitment.` is preceded by a 32px
+hairline on desktop. Jon called it "the big dash", it was hidden below the
+breakpoint, and it then came back at **12px, centred under the full-width CTA**
+— the arrangement he asked for and the one that stopped the line reading as an
+orphan.
 
-The reasoning is genuinely width-dependent, so this is not automatically a
-desktop change: on desktop the line sits in a 490px column and the rule gives it
-an origin, while stacked full width on a phone it has nothing to lead into and
-reads as a stray mark. **But he did not say he liked it on desktop either.**
-Ask before the next desktop pass.
+So the mobile answer is not "no rule", it is "a shorter rule, centred". The
+desktop 32px rule is untouched and was never the thing he objected to; he was
+looking at a phone throughout. **Ask before the next desktop pass** rather than
+assuming the mobile judgement transfers — on desktop the line sits inside a
+490px column where a longer rule has an origin to start from.
 
 ## 7. The methodology footnote gained four words — ALREADY APPLIED
 
