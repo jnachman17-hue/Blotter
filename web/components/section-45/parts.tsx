@@ -270,7 +270,21 @@ export function BlotterTab() {
                 <div className="px-3 py-2.5" style={{ width: YOURS[2].w }}>{c.firm}</div>
                 <div className="truncate px-3 py-2.5 text-ink-muted" style={{ width: YOURS[3].w }}>{c.email}</div>
                 <div className="px-3 py-2.5" style={{ width: YOURS[4].w }}>
-                  <a href="https://www.linkedin.com" className="text-chip-replied-fg underline">Here</a>
+                  {/*
+                    Text, not an anchor. These are spreadsheet *content* in an
+                    illustrative asset, not navigation: five real anchors to
+                    linkedin.com sat in the tab order, a screen reader announced
+                    "link, Here" five times with no context, and they measured
+                    14x26 on desktop and 4x8 at 390 because the composition is
+                    scaled. `08-desktop-changes-pending.md` §8 confirmed the
+                    defect on both surfaces and queued the fix for this sweep.
+
+                    The blue and the underline stay, so the cell still reads as
+                    a spreadsheet hyperlink. **Zero visual delta on either
+                    surface** — which is why a shared file could be changed
+                    during a mobile-only stage.
+                  */}
+                  <span className="text-chip-replied-fg underline">Here</span>
                 </div>
                 <div className="border-l-[3px] border-l-blotter-400 px-2 py-2.5" style={{ width: MAINTAINED[0].w, background: MAINTAINED_FILL }}>
                   <StatusChip status={c.status} />

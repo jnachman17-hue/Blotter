@@ -109,7 +109,16 @@ export function SiteHeaderBar({
           "h-[60px]",
         )}
       >
-        <a href="#top" aria-label="Blotter, back to top" className="text-navy-900">
+        {/*
+          44px on a phone. The lockup is 22px tall and the anchor around it
+          measured 85x29, which is under the Phase 6 floor; the bar is 60px so
+          the height is free, and the mark itself does not change size.
+        */}
+        <a
+          href="#top"
+          aria-label="Blotter, back to top"
+          className="flex min-h-11 items-center text-navy-900 desk:min-h-0"
+        >
           <BlotterLockup size={22} />
         </a>
         {/* Desktop always carries it: four placements are ratified there and a

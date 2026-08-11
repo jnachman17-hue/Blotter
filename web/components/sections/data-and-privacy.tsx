@@ -148,9 +148,17 @@ export function DataAndPrivacy() {
           behind it carries most of what this section used to say.
         */}
         <p className="mt-8">
+          {/*
+            44px on a phone. It measured 170x18, the smallest remaining target
+            on the page after the footer rebuild, and it is the one link in the
+            section that a reader is most likely to actually want. The rule
+            stays exactly where it was — the box grows around the text rather
+            than the text growing — so nothing about the section's look changes
+            on either surface. Phase 6 sweep, August 11, 2026.
+          */}
           <Link
             href={POLICY_HREF}
-            className="text-small font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900"
+            className="inline-flex min-h-11 items-center text-small font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900 desk:min-h-0"
           >
             {POLICY_LINK_LABEL}
           </Link>

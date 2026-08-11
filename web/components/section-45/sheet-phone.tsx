@@ -494,7 +494,7 @@ function Veil({
         style={{ maskImage: VEIL_RAMP, WebkitMaskImage: VEIL_RAMP }}
       />
       <span
-        className="absolute inset-0"
+        className="swipe-veil-tint absolute inset-0"
         style={{
           background: `linear-gradient(to right, transparent 0%, ${VEIL_TINT[ahead]} 100%)`,
           transition: "background 300ms ease-out",
@@ -600,8 +600,26 @@ function SwipeSheet() {
       <ZoneBand zone={zone} />
 
       <div className="relative">
+        {/*
+          Focusable, named, and given a role.
+
+          The swipe is a thumb gesture, and a keyboard has no thumb. Without
+          this the maintained half of the sheet — the half the whole section
+          exists to show — is simply unreachable without a touchscreen. A
+          focusable scroll container gets arrow-key scrolling from the browser
+          for free, so the fix is a tab stop and a name rather than a key
+          handler of our own.
+
+          `role="region"` with a label so a screen reader announces what the
+          thing is before the reader starts arrowing through a spreadsheet, and
+          `tabIndex={0}` so it is reachable at all. Phase 6 sweep,
+          August 11, 2026.
+        */}
         <div
           ref={scroller}
+          tabIndex={0}
+          role="region"
+          aria-label="Your recruiting tracker, scroll sideways for the fields Blotter keeps current"
           className="overflow-x-auto overscroll-x-contain"
           /* The reader is meant to land on the manual zone, so no snapping:
              snap points would fight a gesture whose whole job is continuous

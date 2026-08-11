@@ -122,12 +122,18 @@ export function SheetGrid({
               >
                 {cell === null || cell === "" ? null : typeof cell === "string" ? (
                   col.kind === "link" ? (
-                    <a
-                      href="https://www.linkedin.com"
-                      className="text-chip-replied-fg underline"
-                    >
+                    /*
+                      Text, not an anchor. A `link` cell is spreadsheet
+                      *content* in an illustrative asset, not navigation, and a
+                      real `href` put phantom destinations in the tab order and
+                      made a screen reader announce "link, Here" with no
+                      context. `08-desktop-changes-pending.md` §8; fixed in the
+                      Phase 6 sweep, August 11, 2026, with zero visual delta on
+                      either surface.
+                    */
+                    <span className="text-chip-replied-fg underline">
                       {cell}
-                    </a>
+                    </span>
                   ) : (
                     cell
                   )

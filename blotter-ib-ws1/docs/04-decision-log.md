@@ -1662,3 +1662,59 @@ neither.
 `~60 hours` is a ratified figure with a methodology footnote attached, so
 dropping it from the phone would remove a claim from one surface — a `09`-level
 decision, not a styling one.
+
+### The blue seam was a broken colour handoff, caused by hiding Section 3
+
+Jon, August 11, 2026: a hard line between 01 and 02 and again between 02 and 03,
+*"like a blue square that cuts off, and then it goes to lighter blue"*, and new.
+
+The page's background is a **handoff chain**: each band starts on the exact
+colour the band above it ended on, which is what makes the seams invisible.
+`globals.css` says so in as many words.
+
+On a phone Section 3 is hidden — and Section 3's `field-rise` was the band that
+bridged `--field-b` to `--field-d`. Without it:
+
+- Section 2 ended on `b` and mobile 02 started on `d`;
+- mobile 02 ended on `e` and mobile 03 started on `d` again, stepping the colour
+  back **up**, which is the harder of the two edges and the one he described.
+
+It was not new — hiding Section 3 did that in the morning. What was new is that
+the spacing pass shortened every section, compressing the same mismatch into a
+shorter run, which turns a slow drift into an edge.
+
+**Mobile 02 takes `field-rise`.** It replaces Section 3 on the phone, so it
+takes Section 3's band: `b` to light to `d`. Verified by walking the chain in
+the DOM — b, d, e, f, no broken handoffs.
+
+### The Phase 6 accessibility sweep
+
+Last stage-10 item. Four things, all measured before and after.
+
+**The five phantom `Here` links are gone**, from both sources — `parts.tsx` and
+the shared `sheet-grid.tsx`, which had its own copy. They were real anchors to
+`linkedin.com` inside an illustrative spreadsheet: five phantom destinations in
+the tab order and five "link, Here" announcements with no context, at 14x26 on
+desktop and 4x8 at 390. Now text keeping the blue and the underline, so the cell
+still reads as a spreadsheet hyperlink. **Zero visual delta on either surface**,
+which is what made it safe to change a shared file during a mobile-only stage.
+Closes `08` §8.
+
+**The swipe is reachable without a touchscreen.** Jon: *"everybody has a touch
+screen."* Almost, but a keyboard has no thumb, and without this the maintained
+half of the sheet — the half the section exists to show — could not be reached
+at all without one. `tabIndex={0}`, `role="region"` and a label; a focusable
+scroll container gets arrow-key scrolling from the browser, so no key handler of
+our own is needed.
+
+**Two tap targets were still under 44px** after the footer rebuild: the header
+brand link at 85x29 and the privacy link at 170x18. Both now clear 44 on a
+phone with the box growing around the text rather than the text growing, so
+neither looks different on either surface.
+
+**Reduced motion.** Jon asked why it is wanted, and the honest answer is that it
+changes nothing for him or for almost anyone: it reads one operating-system
+setting a reader has to turn on deliberately, usually because motion makes them
+ill. It drops the blur and the veil's tint easing, which are decoration, and
+keeps every fade, which carries meaning. Reduced motion means less movement, not
+less information.

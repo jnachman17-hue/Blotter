@@ -253,9 +253,32 @@ body {
   will-change: transform, opacity;
 }
 
+/*
+  Reduced motion.
+
+  Jon asked why this is wanted, on August 11, 2026, and the answer is narrow:
+  **it changes nothing for him or for almost anyone.** It reads one operating
+  system setting that a reader has to turn on deliberately, usually because
+  motion makes them ill. Everyone who has not asked for it keeps every animation
+  exactly as built.
+
+  What it does here is drop the blur, which is decoration, and keep the fade,
+  which carries meaning — the label still tells you which zone you are in. The
+  swipe dots stop. Nothing that communicates is removed, because reduced motion
+  means *less movement*, not less information.
+*/
 @media (prefers-reduced-motion: reduce) {
   .zone-label {
     filter: none !important;
+  }
+
+  /*
+    The veil still recedes, because its opacity is the reader's own progress
+    made visible rather than an animation. What goes is the easing on the tint
+    swap, which is the only part of it that moves on its own.
+  */
+  .swipe-veil-tint {
+    transition: none !important;
   }
 }
 

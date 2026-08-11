@@ -76,7 +76,24 @@ export function Mobile02({
   variant?: PhoneSheetVariant;
 }) {
   return (
-    <section className="field-settle pt-14 pb-16 desk:hidden">
+    /*
+      `field-rise`, not `field-settle`, and it is a bug fix.
+
+      The page's background is a **handoff chain**: each band starts on the exact
+      colour the band above it ended on, which is what makes the seams
+      invisible. On a phone Section 3 is hidden, and Section 3 was the band that
+      bridged `--field-b` to `--field-d`. Without it the chain broke twice —
+      Section 2 ended on `b` while this section started on `d`, and this section
+      ended on `e` while the next one started on `d` again, which steps the
+      colour back *up*. Jon saw the second one as "a blue square that cuts off,
+      and then it goes to lighter blue", and it only became obvious once the
+      spacing pass shortened the sections and compressed the same mismatch into
+      a shorter run.
+
+      This section replaces Section 3 on the phone, so it takes Section 3's
+      band: `b` to light to `d`. The chain reads b → d → e → f again, unbroken.
+    */
+    <section className="field-rise pt-14 pb-16 desk:hidden">
       <PageBox>
         <SectionNumber n={2} />
 
