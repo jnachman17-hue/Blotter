@@ -33,7 +33,11 @@
 import Link from "next/link";
 
 import { PageBox } from "@/components/layout/page-box";
-import { ProcessingFlow, ServicePermissions } from "@/components/section-6/parts";
+import {
+  BroadPermissionDisclosure,
+  ProcessingFlow,
+  ServicePermissions,
+} from "@/components/section-6/parts";
 import {
   BROAD_BODY,
   BROAD_HEADING,
@@ -66,7 +70,21 @@ export function DataAndPrivacy() {
           <h2 className="font-display max-w-[15ch] min-w-0 flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink">
             {PRIVACY_TITLE}
           </h2>
-          <p className="max-w-[52ch] min-w-0 flex-1 text-body leading-[1.62] text-ink-muted desk:pt-1">
+          {/*
+            Desktop only, on Jon's call of August 10, 2026.
+
+            It is a throat-clear: "Here is exactly what Blotter checks, what it
+            reads, what it keeps, and what it never does" announces what is
+            coming rather than saying it. On a desktop it earns its place by
+            filling the right-hand column of the established two-column head. On
+            a phone it is 180px of prose standing between the reader and the
+            claim that actually answers them, in a section already carrying more
+            text than any other.
+
+            Ratified copy, so this is an override rather than an edit: the
+            string is untouched and still renders above `desk`.
+          */}
+          <p className="hidden max-w-[52ch] min-w-0 flex-1 text-body leading-[1.62] text-ink-muted desk:block desk:pt-1">
             {PRIVACY_OPENING}
           </p>
         </div>
@@ -105,14 +123,23 @@ export function DataAndPrivacy() {
           which is the section's one claim about a third party. Both are set as
           footnotes because that is their weight, not because they are fine print.
         */}
-        {/* One column on a phone. `06-SECTION-6` §16 allows one or two, and two
-            inside a 280px box leaves 108px per footnote — a measure no reader
-            gets through. Both footnotes survive in full and in order. */}
-        <div className="mt-14 grid gap-y-5 border-t border-rule pt-7 desk:grid-cols-2 desk:gap-x-16 desk:gap-y-0">
+        {/* Desktop: both footnotes side by side, exactly as ratified. */}
+        <div className="mt-14 hidden border-t border-rule pt-7 desk:grid desk:grid-cols-2 desk:gap-x-16">
           <p className="text-small leading-[1.6] text-ink-read">
             <span className="font-semibold text-ink">{BROAD_HEADING}.</span> {BROAD_BODY}
           </p>
           <p className="text-small leading-[1.6] text-ink-read">{PROVIDER_LEAD}</p>
+        </div>
+
+        {/*
+          Mobile: the broad-permission note folds and takes the Drive note in
+          with it, because they are the same argument. The provider sentence
+          does not fold — it is the page's one claim about a third party and the
+          only unverified thing on it, so it stays in plain sight.
+        */}
+        <div className="mt-12 desk:hidden">
+          <BroadPermissionDisclosure />
+          <p className="mt-6 text-small leading-[1.6] text-ink-read">{PROVIDER_LEAD}</p>
         </div>
 
         {/*

@@ -25,6 +25,7 @@ import { HeroFilm } from "@/components/hero/hero-film";
 import { HeroVisualModule, TOTAL_W } from "@/components/hero/hero-visual";
 import { Fit } from "@/components/layout/fit";
 import { PageBox } from "@/components/layout/page-box";
+import { cn } from "@/lib/cn";
 
 /**
  * Right-hand copy column. 490px sets the subhead in three lines and leaves the
@@ -34,7 +35,39 @@ import { PageBox } from "@/components/layout/page-box";
  */
 const RIGHT_COL_W = 490;
 
-export function Hero() {
+/**
+ * How much of the ratified supporting paragraph the phone shows.
+ *
+ * `full`  the ratified sentence, as a caption under the film
+ * `short` one condensed line — UNRATIFIED, see below
+ * `none`  nothing; the film carries it alone
+ *
+ * Desktop is unaffected by all three and always renders the ratified paragraph
+ * in its ratified position.
+ */
+export type HeroSupporting = "full" | "short" | "none";
+
+/**
+ * UNRATIFIED COPY. Written for the stage-10 comparison on August 10, 2026 and
+ * shown only below the desktop breakpoint.
+ *
+ * It is a condensation of the ratified sentence, not a new claim: same three
+ * facts — the sheet is yours already, the sources are Gmail and Calendar, the
+ * tracker stays current — with the consequence clause dropped because the film
+ * directly above has just shown it happening three times. Written to the page's
+ * standing rules: no dash, no availability signal, nothing the product cannot
+ * support.
+ *
+ * Bring it to Jon before public traffic if a variant using it is chosen.
+ */
+const SUPPORTING_SHORT =
+  "Blotter keeps the Google Sheet you already use current, from Gmail and Calendar.";
+
+export function Hero({
+  supporting = "full",
+}: {
+  supporting?: HeroSupporting;
+}) {
   return (
     <section className="pb-14">
       <PageBox>
@@ -89,10 +122,30 @@ export function Hero() {
                 become direct grid items and can be ordered independently; at
                 `desk` it becomes a block and the column reassembles.
               */}
-              <p className="order-3 text-lede leading-[1.6] text-ink-muted desk:order-none">
-                Blotter updates the Google Sheet you already use by reading
-                relevant recruiting activity from Gmail and Calendar, so you do
-                not miss follow-ups, coffee chats, or next steps.
+              {/*
+                Desktop always gets the ratified paragraph, in its ratified
+                place. On a phone it moves to a caption *under* the film and
+                above the CTA — hook, demonstration, explanation, action — and
+                `supporting` chooses how much of it survives there.
+              */}
+              <p
+                className={cn(
+                  // Phone: a caption under the film, set down a step from the
+                  // desktop lede so it reads as support rather than as a second
+                  // headline. Desktop: exactly the ratified treatment.
+                  "order-2 text-small leading-[1.55] text-ink-muted",
+                  "desk:order-none desk:text-lede desk:leading-[1.6]",
+                  supporting === "none" && "hidden desk:block",
+                )}
+              >
+                <span className={supporting === "short" ? "hidden desk:inline" : undefined}>
+                  Blotter updates the Google Sheet you already use by reading
+                  relevant recruiting activity from Gmail and Calendar, so you do
+                  not miss follow-ups, coffee chats, or next steps.
+                </span>
+                {supporting === "short" && (
+                  <span className="desk:hidden">{SUPPORTING_SHORT}</span>
+                )}
               </p>
 
               {/* Mobile only; the desktop hero keeps its ratified composition. */}
@@ -112,7 +165,7 @@ export function Hero() {
                 nothing. `StickyCta` watches `#hero-cta` to know when this
                 button has left the viewport and the bar should take over.
               */}
-              <div id="hero-cta" className="order-2 mt-7 desk:order-none">
+              <div id="hero-cta" className="order-3 mt-7 desk:order-none">
                 <CtaButton
                   location="hero"
                   size="large"

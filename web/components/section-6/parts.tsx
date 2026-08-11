@@ -44,6 +44,8 @@ import {
 } from "@/components/section-6/step-icons";
 import { cn } from "@/lib/cn";
 import {
+  BROAD_BODY,
+  BROAD_HEADING,
   PERMISSIONS,
   PROCESSING_STEPS,
   SHEETS_SCOPE_NOTE,
@@ -159,10 +161,24 @@ const MARKS: Record<string, React.ReactNode> = {
  * Only Sheets has one, because Sheets is the only service whose Google consent
  * screen names a different product than this page does. See `SHEETS_SCOPE_NOTE`.
  */
-function ServiceLists({ row }: { row: (typeof PERMISSIONS)[number] }) {
+function ServiceLists({
+  row,
+  scopeNote = false,
+}: {
+  row: (typeof PERMISSIONS)[number];
+  /**
+   * Desktop shows the Drive note in the Sheets column, where it sits beside the
+   * claims it qualifies. Mobile does not: inside a collapsed accordion it was
+   * behind a row labelled `Google Sheets`, which gives a reader no reason to
+   * open it — and the note exists precisely to stop them being surprised. On a
+   * phone it moves in with the broad-permission disclosure, under a title that
+   * says what is inside. Same argument, one place.
+   */
+  scopeNote?: boolean;
+}) {
   return (
     <>
-      {row.service === "Google Sheets" && (
+      {scopeNote && row.service === "Google Sheets" && (
         <p className="mb-4 text-small leading-[1.55] text-ink-muted">
           {SHEETS_SCOPE_NOTE}
         </p>
@@ -226,7 +242,7 @@ function ServiceColumns() {
             {row.service}
           </h3>
           <div className="mt-4">
-            <ServiceLists row={row} />
+            <ServiceLists row={row} scopeNote />
           </div>
         </div>
       ))}
@@ -258,53 +274,110 @@ function ServiceColumns() {
  * section. Calendar and Sheets are the reassuring ones, and reassurance can
  * wait to be asked for.
  *
- * ## Why the closed rows carry counts
+ * ## The counts came off
  *
- * `2 can · 3 cannot` tells the reader there is a real, enumerated answer
- * inside — and that most of it is a list of things Blotter will not do. A bare
- * service name would look like a marketing heading.
+ * The closed rows read `2 can · 3 cannot` in the first build. Jon's note was
+ * right: on a section about trust that reads like a spec sheet. The job the
+ * counts were doing — signalling that most of what is inside is a list of
+ * things Blotter will not do — is done better by one line above all three rows,
+ * where it is a sentence rather than arithmetic and where it is read before the
+ * first row instead of three times over.
  */
 function ServiceStack() {
   return (
-    <Accordion.Root
-      className="desk:hidden"
-      /* Gmail alone. `multiple` so opening Calendar does not shut it again —
-         these are three parallel facts, not one answer at a time. */
-      defaultValue={[PERMISSIONS[0].service]}
-      multiple
-    >
-      {PERMISSIONS.map((row) => (
-        <Accordion.Item
-          key={row.service}
-          value={row.service}
-          className="border-b border-rule last:border-b-0"
-        >
-          <Accordion.Header>
-            {/* `group` sits on the trigger, not the item: Base UI puts
-                `data-panel-open` on the trigger, and that is what
-                `DisclosureControl` reads to turn its plus into a minus. */}
-            <Accordion.Trigger className="group flex min-h-14 w-full cursor-pointer items-center gap-2.5 py-4 text-left">
-              {MARKS[row.service]}
-              <span className="text-body leading-[1.4] font-semibold text-ink">
-                {row.service}
-              </span>
-              <span className="ml-auto flex items-center gap-3">
-                <span className="text-micro tracking-[0.02em] text-ink-muted tabular-nums">
-                  {row.can.length} can · {row.cannot.length} cannot
+    <div className="desk:hidden">
+      <p className="mb-1 text-small leading-[1.55] text-ink-muted">
+        What each connection can and cannot do.
+      </p>
+      <Accordion.Root
+        /* Gmail alone. `multiple` so opening Calendar does not shut it again —
+           these are three parallel facts, not one answer at a time. */
+        defaultValue={[PERMISSIONS[0].service]}
+        multiple
+        className="border-t border-rule"
+      >
+        {PERMISSIONS.map((row) => (
+          <Accordion.Item
+            key={row.service}
+            value={row.service}
+            className="border-b border-rule"
+          >
+            <Accordion.Header>
+              {/* `group` sits on the trigger, not the item: Base UI puts
+                  `data-panel-open` on the trigger, and that is what
+                  `DisclosureControl` reads to turn its plus into a minus. */}
+              <Accordion.Trigger className="group flex min-h-14 w-full cursor-pointer items-center gap-2.5 py-4 text-left">
+                {MARKS[row.service]}
+                <span className="text-body leading-[1.4] font-semibold text-ink">
+                  {row.service}
                 </span>
-                <DisclosureControl />
-              </span>
-            </Accordion.Trigger>
-          </Accordion.Header>
-          {/* The same `.disclosure-panel` the FAQ uses, so both accordions on
-              this page open with one motion rather than two. */}
-          <Accordion.Panel hiddenUntilFound className="disclosure-panel">
-            <div className="pb-6">
-              <ServiceLists row={row} />
-            </div>
-          </Accordion.Panel>
-        </Accordion.Item>
-      ))}
+                <span className="ml-auto pl-4">
+                  <DisclosureControl />
+                </span>
+              </Accordion.Trigger>
+            </Accordion.Header>
+            {/* The same `.disclosure-panel` the FAQ uses, so both accordions on
+                this page open with one motion rather than two. */}
+            <Accordion.Panel hiddenUntilFound className="disclosure-panel">
+              <div className="pb-6">
+                <ServiceLists row={row} />
+              </div>
+            </Accordion.Panel>
+          </Accordion.Item>
+        ))}
+      </Accordion.Root>
+    </div>
+  );
+}
+
+/**
+ * The broad-permission disclosure, folded, and carrying the Drive note with it.
+ *
+ * ## Why it may fold but may not go
+ *
+ * Jon asked whether mobile needs this at all, or whether it could live behind
+ * the privacy link. It cannot: the handoff records that **the broad-permission
+ * disclosure may not leave the page**, and `06-SECTION-6` §9 fixes it below the
+ * permissions material while §18 bans hiding it. It is the only place the page
+ * reconciles Google's broad consent screen with the narrower processing claim.
+ *
+ * Folding is not hiding in the sense §18 means. A tap is not hover: it is
+ * keyboard-operable, and `hiddenUntilFound` means find-in-page opens it. The
+ * text is unshortened and in its ratified position.
+ *
+ * ## Why the Drive note joins it
+ *
+ * They are the same argument. The broad-permission note says Google's consent
+ * wording sounds wider than what Blotter does; the Drive note says Google's
+ * consent screen names Drive when Blotter touches one sheet. Putting them under
+ * one title a reader can act on — *why the permission sounds broader* — beats
+ * leaving the Drive fact inside a row labelled `Google Sheets`, which gives
+ * nobody a reason to open it.
+ *
+ * Desktop is unchanged: the two footnotes stay side by side and the Drive note
+ * stays in the Sheets column beside the claims it qualifies.
+ */
+export function BroadPermissionDisclosure() {
+  return (
+    <Accordion.Root className="border-t border-rule desk:hidden">
+      <Accordion.Item value="broad" className="border-b border-rule">
+        <Accordion.Header>
+          <Accordion.Trigger className="group flex min-h-14 w-full cursor-pointer items-start justify-between gap-6 py-4 text-left">
+            <span className="text-body leading-[1.5] font-medium text-ink">
+              {BROAD_HEADING}
+            </span>
+            <DisclosureControl />
+          </Accordion.Trigger>
+        </Accordion.Header>
+        <Accordion.Panel hiddenUntilFound className="disclosure-panel">
+          <div className="pb-6">
+            <p className="text-small leading-[1.6] text-ink-read">{BROAD_BODY}</p>
+            <p className="mt-4 text-small leading-[1.6] text-ink-read">
+              {SHEETS_SCOPE_NOTE}
+            </p>
+          </div>
+        </Accordion.Panel>
+      </Accordion.Item>
     </Accordion.Root>
   );
 }
