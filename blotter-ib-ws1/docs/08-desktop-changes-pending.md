@@ -155,7 +155,34 @@ an origin, while stacked full width on a phone it has nothing to lead into and
 reads as a stray mark. **But he did not say he liked it on desktop either.**
 Ask before the next desktop pass.
 
-## 7. Copy written for mobile that has not been ratified
+## 7. Five real links inside an illustrative spreadsheet — CONFIRMED DEFECT
+
+**Status: confirmed defect on both surfaces. Queued for the Phase 6
+accessibility sweep, not fixed yet.**
+
+`components/section-45/parts.tsx:234` renders each sheet row's LinkedIn cell as
+a genuine anchor to `https://www.linkedin.com`:
+
+```
+<a href="https://www.linkedin.com" className="text-chip-replied-fg underline">Here</a>
+```
+
+They are spreadsheet *content* in an illustrative asset, not navigation. Five of
+them sit in the tab order, a screen reader announces "link, Here" five times in
+a row with no context, and they measure **14 x 26px on desktop and 4 x 8px at
+390** because the whole composition is scaled to fit.
+
+**The fix is markup-only and changes nothing visually on either surface**:
+render them as text rather than as anchors, keeping the blue and the underline
+so the cell still reads as a spreadsheet hyperlink. That removes five phantom
+destinations from the tab order and five meaningless announcements from the
+screen-reader pass.
+
+It is listed here because the file is shared, so the change lands on desktop
+too — with zero visual delta, which is why it is safe to do in the sweep rather
+than in a desktop pass.
+
+## 8. Copy written for mobile that has not been ratified
 
 **Status: unratified. Must go to Jon before public traffic if kept.**
 
@@ -169,7 +196,7 @@ the product cannot support.
 
 ---
 
-## 8. Things this session deliberately did **not** change on desktop
+## 9. Things this session deliberately did **not** change on desktop
 
 Recorded so the absence reads as a decision rather than an oversight.
 
@@ -183,7 +210,7 @@ Recorded so the absence reads as a decision rather than an oversight.
 - **The funnel**, including which film it plays. Film A stays.
 - **`page.tsx` section order.**
 
-## 9. Bugs the mobile build found that were latent on desktop — ALREADY FIXED
+## 10. Bugs the mobile build found that were latent on desktop — ALREADY FIXED
 
 Listed for the record; all three are already in `main`'s history on the `mobile`
 branch and need no further action.

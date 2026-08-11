@@ -36,6 +36,7 @@ import { CtaButton } from "@/components/cta-button";
 import { DisclosureList } from "@/components/disclosure";
 import { PageBox } from "@/components/layout/page-box";
 import { SectionNumber } from "@/components/layout/section-number";
+import { cn } from "@/lib/cn";
 import { POLICY_HREF } from "@/lib/privacy-copy";
 import { CLOSING_HEADLINE, FAQ_TITLE, PRODUCT_FAQ } from "@/lib/closing-copy";
 
@@ -54,15 +55,28 @@ function XMark() {
   );
 }
 
+/**
+ * The marks are 15px glyphs. On a phone that is a 15px touch target, which is a
+ * third of the WS5 Phase 6 minimum and was the smallest interactive thing on
+ * the page — so each one gets a 44px box below the breakpoint while the glyph
+ * inside it stays exactly the size it was. Desktop keeps its tighter row: a
+ * pointer does not need 44px and the ratified footer spacing depends on it.
+ *
+ * The X placeholder takes the same box even though it is not interactive, so
+ * the two marks stay on one baseline.
+ */
+const SOCIAL_BOX =
+  "grid size-11 place-items-center desk:inline-flex desk:size-auto";
+
 function SocialLinks() {
   return (
-    <ul className="flex items-center gap-4">
+    <ul className="flex items-center gap-1 desk:gap-4">
       <li>
         <a
           href={LINKEDIN_URL}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex text-white/55 transition-colors duration-150 ease-out hover:text-white"
+          className={cn(SOCIAL_BOX, "text-white/55 transition-colors duration-150 ease-out hover:text-white")}
         >
           <span className="sr-only">Blotter on LinkedIn</span>
           <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
@@ -80,13 +94,13 @@ function SocialLinks() {
             href={X_URL}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex text-white/55 transition-colors duration-150 ease-out hover:text-white"
+            className={cn(SOCIAL_BOX, "text-white/55 transition-colors duration-150 ease-out hover:text-white")}
           >
             <span className="sr-only">Blotter on X</span>
             <XMark />
           </a>
         ) : (
-          <span className="inline-flex text-white/25">
+          <span className={cn(SOCIAL_BOX, "text-white/25")}>
             <span className="sr-only">Blotter on X, not yet available</span>
             <XMark />
           </span>
@@ -127,23 +141,73 @@ export function FaqAndClose() {
         a baseline rather than stacking into a panel, which is what keeps this a
         footer instead of the marketing block Jon cut.
       */}
-      <footer className="bg-closing pt-14 pb-12">
+      <footer className="bg-closing pt-12 pb-10 desk:pt-14 desk:pb-12">
         <PageBox>
-          <div className="flex items-end justify-between gap-12">
-            <p className="font-display max-w-[18ch] text-[1.625rem] leading-[1.22] font-bold tracking-[-0.02em] text-white">
+          {/*
+            Stacked on a phone, on the ratified baseline from `desk`.
+
+            Measured at 390 before this change and it was the worst thing on the
+            mobile page: the statement was 26px type wrapping inside a 187px
+            column, and `Try Blotter Now` was squeezed to 115px wide by 72px
+            tall — the label wrapping *inside its own pill*. Both are what a
+            two-column row does when it is given a phone and never told to stop
+            being a row.
+
+            `max-w-[18ch]` goes with it below the breakpoint. It exists to hold
+            the statement to two lines beside the button; with nothing beside it
+            the same rule just makes a narrow column in the middle of a wide
+            screen.
+          */}
+          <div className="flex flex-col items-start gap-7 desk:flex-row desk:items-end desk:justify-between desk:gap-12">
+            <p className="font-display text-[1.625rem] leading-[1.22] font-bold tracking-[-0.02em] text-white desk:max-w-[18ch]">
               {CLOSING_HEADLINE}
             </p>
-            <CtaButton location="final" tone="onDark" size="large" />
+            {/*
+              Full width on a phone. This is the page's last CTA and there is
+              nothing under it, so a pill sized to its label reads as an
+              afterthought at the exact moment the reader has finished the
+              argument.
+            */}
+            <CtaButton
+              location="final"
+              tone="onDark"
+              size="large"
+              full
+              className="min-h-[52px] desk:w-auto desk:min-h-11"
+            />
           </div>
 
-          <div className="mt-12 flex items-center justify-between gap-8 border-t border-white/12 pt-7">
-            <a href="#top" aria-label="Blotter, back to top" className="text-white">
+          {/*
+            The link row wraps rather than compressing. At 390 the brand, the
+            policy link and two social marks on one line left each of them
+            fighting for about 90px; on two lines each has the width it needs
+            and the row still reads as one footer.
+          */}
+          <div className="mt-10 flex flex-col gap-5 border-t border-white/12 pt-7 desk:mt-12 desk:flex-row desk:items-center desk:justify-between desk:gap-8">
+            {/*
+              44px on a phone, and `w-fit` so the target is the lockup rather
+              than the full row — a full-width invisible back-to-top sitting
+              directly above the privacy link is an accidental-tap waiting to
+              happen. The negative margin puts the row back on the baseline the
+              padding just moved it off.
+            */}
+            <a
+              href="#top"
+              aria-label="Blotter, back to top"
+              /* `desk:inline` restores the bare inline anchor this was before the
+                 mobile target box: `inline-flex` changes baseline alignment and
+                 took 3px off the desktop footer. */
+              className="-my-2 inline-flex min-h-11 w-fit items-center text-white desk:my-0 desk:inline desk:min-h-0"
+            >
               <BlotterLockup size={20} />
             </a>
-            <div className="flex items-center gap-8">
+            <div className="flex items-center justify-between gap-8 desk:justify-start">
               <a
                 href={POLICY_HREF}
-                className="text-small text-white/55 transition-colors duration-150 ease-out hover:text-white"
+                /* 44px target on a phone without a box around it: the padding
+                   is negative-margined back out so the row still sits on the
+                   baseline it did before. */
+                className="-my-3 py-3 text-small text-white/55 transition-colors duration-150 ease-out hover:text-white desk:my-0 desk:py-0"
               >
                 Privacy policy
               </a>
