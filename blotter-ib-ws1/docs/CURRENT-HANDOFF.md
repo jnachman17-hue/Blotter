@@ -1,11 +1,20 @@
 # Blotter IB - Current Handoff
 
 Date: August 11, 2026
-Status: **Stage 10 is complete and shipped. `main` is deployed and
-`blotterib.com` serves the mobile build.** Sessions 1 through 7 done.
-**Next: web reconciliation — `10-web-reconciliation.md` is the brief.**
+Status: **Wave 1 of web reconciliation is built and pushed to branch `web`,
+awaiting Jon's review.** Stage 10 shipped; `main` serves the mobile build.
+Sessions 1 through 8 done. `10-web-reconciliation.md` is the brief.
 
 The site is live, public, carrying real traffic, and has **one real lead**.
+
+**Wave 1's review URL:**
+
+```
+https://blotter-claude-git-web-jnachman17-hues-projects.vercel.app
+```
+
+Branch `web`, cut from `mobile` on August 11, 2026. Not merged to `main`.
+**Nothing in wave 1 is on `blotterib.com` yet.**
 
 ## 0. Act on these before anything else
 
@@ -22,6 +31,10 @@ the first reply of the session.
   `07-infrastructure-runbook.md` has the call and how to reverse it. **Do not
   ask him to do this in the dashboard; he cannot reach that control.**
 - The X account URL is set. `x.com/blotterib`, live on both surfaces.
+- **The connection provider is closed, August 11, 2026.** Jon ruled it stays
+  ambiguous exactly as it reads now: *"We don't have one yet and won't for a
+  while. Don't relitigate this."* It was carried as a due item for five sessions
+  and is no longer one. **Do not raise it again until a provider is selected.**
 
 ### Standing, and it governs every number you report
 
@@ -32,12 +45,9 @@ claims several people confirmed a beta spot. **The true number is zero, and
 
 ### Due before the domain is promoted anywhere
 
-The provider sentence — that the connection provider's Google application has
-passed CASA — is still **the one unverified claim on the page**, and no provider
-has been selected. §7 has the record.
-
-`noindex` and `app/robots.ts` must both be deleted at launch. Both are still in
-place and were deliberately untouched by the production ship.
+`noindex` and `app/robots.ts` must both be deleted at launch. Both verified
+still in place on August 11, 2026 — `app/layout.tsx:47` and `app/robots.ts` —
+and deliberately untouched by wave 1.
 
 ### Due if PostHog scopes are ever fixed
 
@@ -81,21 +91,35 @@ out to be wrong and was caught precisely because it had been written down.
 
 ## 3. Where to pick up
 
-**Web reconciliation. `10-web-reconciliation.md` §4 has the framework.**
+**Wave 1 is built and pushed. It needs Jon's eyes before anything else starts.**
 
-Three waves, ordered by risk rather than topic: the settled presentation sweep,
-then the argument, then the assets. **Wave 2 changes what sections exist and
-wave 3 changes what is inside them**, so any other order wastes work.
+The new desktop baseline is recorded in `10-web-reconciliation.md` §3 and the
+wave-1 delta against it is in §5. Desktop went **7,200 to 7,240** and every
+per-section delta decomposes into an intended change.
 
-**Before writing code, record a new desktop baseline.** Stage 10 was verified
-against a fixed one — 7,200px and six section heights, "all zeros" — and web
-work deliberately abandons it. §3 of the brief explains why the first act is
-recording a fresh one.
+### What is waiting on Jon, in the order it blocks work
 
-Jon's own framing of the first sitting: the simple sweep first, *"just adding in
-the section headers, the lines between them, and a bunch of other little
-formatting things we did"*, then the hero film, the persistent header, and
-consolidating the sections to match mobile.
+1. **Look at wave 1** on the branch URL, phone and laptop. The two things the
+   Browser pane could not verify and he can: **the desktop header's fill fading
+   in at 8px of scroll**, and whether the section hairlines earn their 25px.
+2. **Section 2's paragraph at 17px** — `08` §16. Applied on his wave-1
+   instruction but never ratified, and it is the one presentation call in the
+   wave he has not seen. One class reverts it.
+3. **`08` §6, the 32px rule before the authority line.** Genuinely undecided for
+   desktop and the entry says ask rather than assume.
+4. **`08` §9, the two unratified strings.** Ratify or replace.
+5. **`06`'s 481–1179 residual.** The header now tracks the column, which was the
+   visible half. Whether the 480px cap itself should grow for iPad landscape is
+   his, and it is not free.
+6. **The desktop hero as a film.** He parked it until after wave 1 and is
+   leaning yes. **Take it before planning wave 2** — see §9.
+
+### Then wave 2
+
+**`09-page-argument-rework.md` §8 is the ledger.** Rows 1, 2, 3 and 5 transfer;
+row 5 is the biggest. Section numbering (`08` §5) is now a wave-2 row because
+desktop's `01`–`05` cannot match the phone's until wave 2 rules on which
+sections exist.
 
 ---
 
@@ -153,6 +177,19 @@ time in session 7:
 `IntersectionObserver` never arrives, CSS transitions freeze at their start
 value, and `ResizeObserver` may not deliver on a resize — reload rather than
 resize. Verify geometry there; send anything motion-dependent to Jon's phone.
+
+**Wave 1 paid for ignoring that last sentence.** Measuring after a *resize*
+rather than a reload produced `hero +72.5, tracker +83.7, doc +219` — a
+confident, entirely wrong delta table in which the hero, which cannot change,
+appeared to have grown 72px. `Fit` measures with `useLayoutEffect` and a
+`ResizeObserver` and neither had re-run. **Reload at the target width and
+`await document.fonts.ready` before reading any geometry.** It also will not
+render a scrolled viewport — a screenshot after `scrollTo` came back blank.
+
+**Two files keep hand-written copies of the same data.** `web/public/film/`
+against `social/`, and now `components/section-45/sheet-phone.tsx`'s `FULL_COLS`
+against `parts.tsx`'s `YOURS`/`MAINTAINED`. Wave 1's row-height fix had to be
+applied twice. Both column lists now carry a comment naming the other.
 
 **Verify CSS against a production build, not the dev server.**
 
@@ -219,9 +256,16 @@ them.
 
 ## 9. Open and waiting on Jon
 
-- **A connection provider.** Closes the last unverified claim.
 - **Whether the desktop hero becomes a film**, and **which film belongs in the
   funnel.** `06` says these are one question across three slots, not two.
+  **Parked until after wave 1, and he is leaning yes.**
+
+  **This is not independent of wave 2, and that is new.** `09` §6's reason for
+  keeping desktop's Section 3 is that *"desktop has room and no hero film, so
+  the mechanism may still need its own section there."* A film hero deletes the
+  second clause: the film would demonstrate the mechanism on desktop exactly as
+  it does on the phone, and Section 3's survival becomes a live question rather
+  than a settled one. **Answer the hero before planning wave 2.**
 - **The Outstanding view is drawn three different ways** across film, desktop
   and mobile. `09` §8 row 8b.
 - **Whether the `impeccable` design hook should be silenced** on the Outstanding
@@ -281,7 +325,8 @@ while web reconciliation is in progress.
 | 4 | 7 | Sections 6 and 7, the footer, `/privacy` |
 | 5 | 8-9 | Funnel, Supabase, PostHog, live deploy on `blotterib.com` |
 | 6 | 10, part 1 | Responsive skeleton, Film C hero, mobile 01/04/05, the argument rework diagnosed |
-| **7** | **10, complete** | **Mobile 02 and 03, the swipe, the funnel sheet, the accessibility sweep, public previews, and the production ship** |
+| 7 | 10, complete | Mobile 02 and 03, the swipe, the funnel sheet, the accessibility sweep, public previews, and the production ship |
+| **8** | **Web reconciliation, wave 1** | **The persistent header, the 60px rows on both surfaces, desktop hairlines, Section 2's type, the header/column alignment. Branch `web`, not merged** |
 
 Full detail for 1 through 6 is in `04-decision-log.md`. Stack, credentials and
 deployment mechanics are in `07-infrastructure-runbook.md`.
