@@ -91,13 +91,13 @@ the ones that are desktop's to do.
 
 | From | What desktop owes | Note |
 |---|---|---|
-| `06` | **A browser window between 481 and 1179px shows a 480px phone column floating in it.** Measured live at 1100: five numerals, page box 480, Section 3 hidden | **Do this first.** It is the only row here a real visitor can hit today, and Jon hit it himself on a laptop. The breakpoint being width-based is right; the 480 cap below it is what is wrong at laptop widths |
 | `08` §13 | **The header CTA does not persist.** It is `position: sticky` inside the hero's 910px wrapper, so it leaves with the hero — on both surfaces. Ratified as persistent in `PLAN-AMENDMENTS`; never was | **Start here.** It is a defect, not a preference, and the one-line fix is moving `<SiteHeader />` out of the `field-open` wrapper |
 | `08` §5 | Section numerals `01`–`05` | Four build specs forbid an eyebrow and a numeral above a headline reads as one. Four overrides, or leave the two surfaces disagreeing |
 | `08` §16 | Section 2's supporting paragraph is 22px, the largest body text on the page | Jon raised this about both surfaces. Mobile is 17px |
 | new | Hairlines at section boundaries | Mobile got them in the spacing pass; they are what let the padding come down |
 | `08` §6 | The 32px rule before the authority line | Never discussed for desktop. Ask before assuming the mobile judgement transfers |
 | `08` §9 | Two unratified strings live on mobile | Must reach Jon before public traffic either way |
+| `06` | A window between 481 and 1179px shows a 480px column centred in it | **Polish, not a defect.** Width-based switching is correct and a maximised laptop gets desktop properly. The questionable range is 1024 to 1179 — iPad landscape and half-screen windows. Do it while desktop layout is open anyway, not first |
 
 **Already applied to desktop, do not redo:** `08` §1 (the Sheets scope note),
 §7 (the methodology footnote), §11 (three latent bugs), §15 (both social links),

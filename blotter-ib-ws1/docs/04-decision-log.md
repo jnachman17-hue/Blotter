@@ -1770,3 +1770,24 @@ Verified correct above the breakpoint: production at 1440 measures page box
 Logged in `06` and made the **first row of wave 1** in
 `10-web-reconciliation.md`, because it is the only item in the reconciliation
 inventory a real visitor can hit today.
+
+### Correction: the 481 to 1179px band is polish, not an emergency
+
+Jon checked and it was his own window: *"I was trying to open blotterib.com on a
+reduced window so it automatically adapted to mobile format. But when you expand
+the window it goes to web… I was wrong. You had it correct."*
+
+The diagnosis was right — width-based switching, his viewport under 1180 — but
+**the escalation was wrong.** The entry written an hour earlier called the band
+"the only item in the reconciliation inventory a real visitor can hit today" and
+made it the first row of wave 1. That framing came from believing he had hit it
+on a maximised window. He had not.
+
+What survives is a smaller, real observation: the 480px cap is defensible at
+iPad portrait's 768 and questionable from about 1024 to 1179, which is iPad
+landscape and a browser snapped to half a wide display. Low severity, nobody
+harmed, worth doing while desktop layout is open anyway.
+
+Demoted in `06` and moved out of the lead position in `10`'s wave 1, which goes
+back to the header defect — a measured fault on both surfaces rather than a
+question of taste at unusual widths.
