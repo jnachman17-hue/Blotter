@@ -2,8 +2,9 @@
 
 Date opened: August 10, 2026, session 6
 Last updated: August 11, 2026, session 7
-Status: **Diagnosed and agreed for mobile. The sheet treatment that blocked it
-is settled (§5). Building. Not applied to web.**
+Status: **Mobile 02 is built and ratified and is live on the phone page.**
+Mobile 03, the funnel and the accessibility sweep remain. **Nothing here has
+reached web** — §8 is the ledger of what it owes.
 
 This is not a responsive-layout document. Everything else in stage 10 changes
 *how* a claim is presented; this changes *which claims the page makes and in
@@ -106,7 +107,7 @@ and `Contacts` sitting untouched beside `Blotter` says *this is the sheet you
 already had*. Ownership and preservation are two readings of one picture, so
 they are one section.
 
-### It costs no new headline copy — REOPENED August 11, 2026
+### The headline — RATIFIED August 11, 2026: option C, both
 
 The original position: the merged section takes
 **`Keep the tracker you already built.`**, already ratified, already the right
@@ -153,8 +154,11 @@ preservation once, ownership once, and what Blotter actually does once:
 > Blotter creates a standardized recruiting view in a new tab and keeps the
 > changing activity current from Gmail and Calendar.
 
-**Unratified. C is the working position for the build so Jon can react to it in
-place; it is not decided.**
+**Ratified by Jon, August 11, 2026**, having seen it in place at device width.
+It overrides `03-SECTION-3` §5 and `05-SECTION-5` §4's exact-copy clauses, and
+both amendment tables carry it. Note what the override actually is: one ratified
+headline is **relocated** to a lower weight and one ratified sentence is
+**deleted**. No string is rewritten and none is invented.
 
 ### The mechanism is not restated at all — AMENDED August 11, 2026
 
@@ -215,12 +219,44 @@ shorter than the current mobile page.
 
 ---
 
-## 5. The sheet on a phone — SETTLED, August 11, 2026
+## 5. The sheet on a phone — RATIFIED, August 11, 2026: the swipe
 
-**Jon ruled for the deliberate crop.** This section was the one thing blocking
-mobile 02 and it is no longer open. Full reasoning is in `04-decision-log.md`
-under session 7; the short form is below, because the constraint it turns on is
-not obvious and a later session will otherwise rediscover it the hard way.
+**Ratified: the controlled internal scroll, with the gesture driving the
+explanation.** Jon approved it at device width on August 11, 2026 after
+comparing it against the crop inside the assembled section.
+
+**The crop was chosen first and then lost.** That sequence matters and is kept
+in full below, because the constraint the crop ran into is not obvious and a
+later session will otherwise rediscover it the hard way.
+
+**What the ratified treatment is.** All ten columns at full ratified width in a
+horizontal scroll region. `Name` frozen, and tinted as manual while frozen, so
+the column that travels with the reader stays visibly theirs rather than
+appearing to be maintained. The two zone labels ride the scroll at their full
+19px with their subtitles and bracket rules, exactly as desktop draws them. Each
+zone washes and names itself as the reader reaches it. A prompt says the object
+swipes, and fades once it has been swiped.
+
+**Whose idea, and why it beat the crop.** Jon's. The swipe had been rejected
+earlier the same day on the grounds that nothing told the reader to swipe and a
+still frame showed five manual columns and no Blotter. His answer fixed the
+actual defect rather than working around it: prompt the gesture, and let the
+gesture drive the explanation. That buys back the one thing the crop could not
+keep — the zone labels at full size over the columns they name — because at
+natural width the two zones are 640px and 538px and both labels fit as ratified.
+
+It is also the page's own device. From `social/README.md` on Film A's typing
+beat: *"The left is filled by the user. The right fills itself. The two gestures
+mirror, which makes the ownership split happen rather than get asserted by a
+word underneath the sheet."* This is that, driven by a thumb instead of a
+timeline.
+
+**What it costs, accepted knowingly:** the argument no longer survives a
+screenshot in full. Both washes are always painted and the manual label is on
+screen at rest, so a still frame states the half the reader can see rather than
+nothing — but a reader who scrolls past without swiping does not meet the
+maintained zone. That is a real override of the page's static-proof posture and
+Jon took it with the cost stated.
 
 The sheet is ten columns at 1,221px natural in 13px Arial. Phone content width
 is 350px at a 390 viewport, 320px at 360, 280px at 320. Scale-to-fit is **0.287**
@@ -378,8 +414,9 @@ Jon says was actually wrong.
 | 2 | The boundary line and the closing line are cut | *"Blotter keeps the logistics current"* and *"Blotter keeps the logistics synchronized"* are near-synonyms in one section, and `03-SECTION-3` line 341 shows the duplication was seen at ratification and mitigated with whitespace | **Yes, unchanged.** This is copy, not layout, and the whitespace mitigation is weak on desktop too |
 | 3 | The three refusals move to the ownership section | They are the ownership claim stated negatively. *"You write the messages"* and *"no generic mass AI outreach"* are one sentence facing two directions. Privacy is about what Blotter **reads**; these are about what it refuses to **write** | **Yes.** The argument for the move is not a space argument |
 | 4 | The three stage labels are cut outright | They caption a mechanism claim, and the visual beneath them proves ownership. Rejected on sight August 11, 2026. §4 | **Not applicable.** On desktop they sit inside the timeline they label, which is correct. Do not touch them |
-| 5 | The merged section's headline is reopened; C is the working position | The two headlines are two components of one claim, and the supporting paragraph's first sentence repeats the headline. §4 | **Yes, and this is the biggest one.** Whatever headline arrangement is chosen has to hold on both surfaces or the two pages make different claims |
-| 6 | The ten-column sheet becomes a phone treatment | Legibility. §5 | **No.** Pure responsive. Desktop keeps the full sheet |
+| 5 | The merged section takes **both** headlines — `Keep the tracker you already built.` as the headline, `You manage the relationships. Blotter maintains the moving parts.` as the deck — and the supporting paragraph's first sentence is cut | The two are two components of one claim, and the paragraph's opening repeated the headline two lines later. Ratified August 11, 2026. §4 | **Yes, and this is the biggest one.** The headline arrangement has to hold on both surfaces or the two pages make different claims. Desktop currently states the claim four times and this is the shape that fixes it |
+| 6 | The ten-column sheet becomes a swipe with the zones washing and naming themselves | Legibility, and the gesture enacts the ownership split rather than asserting it. §5 | **No, as a treatment.** Pure responsive; desktop keeps the full sheet at rest. **But look again at desktop's zone labels** — the phone build is what showed how much work they do, and desktop states the same split three more times in words it does not need |
+| 7 | The three reassurance claims stack | Three across at sheet width is 116px each at 350. Ratified August 11, 2026 | **No.** Pure responsive |
 
 **The principle, restated because it governs every row:** layout may diverge
 between devices. **The argument may not.** A row above that transfers and is not

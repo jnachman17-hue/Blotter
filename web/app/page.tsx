@@ -3,6 +3,7 @@ import { PageView } from "@/components/page-view";
 import { Hero } from "@/components/sections/hero";
 import { ScaleAndConsequence } from "@/components/sections/scale-and-consequence";
 import { HowBlotterWorks } from "@/components/sections/how-blotter-works";
+import { Mobile02 } from "@/components/section-45/mobile-02";
 import { TrackerAndActions } from "@/components/sections/tracker-and-actions";
 import { DataAndPrivacy } from "@/components/sections/data-and-privacy";
 import { FaqAndClose } from "@/components/sections/faq-and-close";
@@ -55,7 +56,19 @@ export default function Page() {
         </main>
       </div>
       <ScaleAndConsequence />
+      {/*
+        Section 3 is desktop-only from August 11, 2026, and `Mobile02` is the
+        phone's replacement for it plus beat 1 of the section below. Each
+        component owns its own visibility, so this list stays the reading order
+        on both surfaces:
+
+          desktop   1 hero · 2 scale · 3 how it works · 4+5 tracker · 6 · 7
+          phone     hero   · 01 scale · 02 your sheet  · 03 outstanding · 04 · 05
+
+        `09-page-argument-rework.md` §4 has why, and §8 has what web owes.
+      */}
       <HowBlotterWorks />
+      <Mobile02 />
       <TrackerAndActions />
       <DataAndPrivacy />
       <FaqAndClose />

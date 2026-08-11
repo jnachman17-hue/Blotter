@@ -99,20 +99,34 @@ function Head({ h, sub, flip }: { h: string; sub: string; flip?: boolean }) {
 
 export function TrackerAndActions() {
   return (
-    <section className="field-settle pt-24 pb-28">
+    <section className="field-settle pt-8 pb-28 desk:pt-24">
       <PageBox>
-        <SectionNumber n={3} />
-        {/* Beat 1 — preservation. No eyebrow, per `05-SECTION-5` §3. */}
-        <Head h={KEEP_H} sub={KEEP_SUB} />
-        <div className="mt-7">
-          <Reassurance />
-        </div>
-        <div className="mt-10">
-          <BlotterTab />
+        {/*
+          Beat 1 — preservation. No eyebrow, per `05-SECTION-5` §3.
+
+          **Desktop only from August 11, 2026.** On a phone this beat is
+          `components/section-45/mobile-02.tsx`, which merges it with Section
+          3's ownership claim and its refusals into one section. `09` §4.
+
+          The consequence for numbering: on a phone this element is section 03,
+          the Outstanding list, and mobile 02 is a separate block above it. So
+          the numeral moves down here with beat 2 rather than sitting at the top
+          of the section. Numbers render below the breakpoint only, so desktop
+          is unaffected either way.
+        */}
+        <div className="hidden desk:block">
+          <Head h={KEEP_H} sub={KEEP_SUB} />
+          <div className="mt-7">
+            <Reassurance />
+          </div>
+          <div className="mt-10">
+            <BlotterTab />
+          </div>
         </div>
 
         {/* Beat 2 — the action view. No eyebrow, per `04-SECTION-4` §4. */}
-        <div className="mt-24">
+        <SectionNumber n={3} />
+        <div className="desk:mt-24">
           <Head h={ACT_H} sub={ACT_SUB} flip />
         </div>
         <div className="mt-10">

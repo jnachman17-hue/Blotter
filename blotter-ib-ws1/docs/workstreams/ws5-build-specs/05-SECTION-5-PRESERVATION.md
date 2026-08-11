@@ -27,6 +27,29 @@
 > section 7 note that Alex Morgan's `Next move` is genuinely blank still holds —
 > the em-dash exception is scoped to the hero cell alone.
 
+> ---
+>
+> **Amended again by Jon, August 11, 2026, during the stage 10 mobile build.**
+> Reasoning in `04-decision-log.md` session 7 and `09-page-argument-rework.md`
+> §4 and §5. Scoped to the phone; desktop is untouched.
+>
+> | Item here | Amended to, below `--breakpoint-desk` only |
+> |---|---|
+> | **Section 12, responsive posture** | **Discharged. The phone treatment is a controlled internal scroll, which §12 permits by name.** All ten columns at full ratified width inside a horizontal scroll region; `Name` frozen; the two zone labels ride the scroll at their full size; each zone washes and names itself as the reader reaches it; a prompt says the object swipes. Nothing is scaled and nothing is dropped, so all ten field names, the LinkedIn-to-Status divider and the existing-versus-maintained distinction survive literally rather than by footnote. |
+> | Section 4, the reassurance strip | Stacks on a phone. Same glyphs, tints, order and copy; only the axis changes, and the hairline moves from between the columns to between the rows. |
+> | Section 4 copy, exact | One deletion. The supporting paragraph loses its first sentence, `Keep the Google Sheet and contacts you already built.`, because the merged section's headline says it two lines earlier. That sentence is row 4 of `09` §1's table of one claim stated four times. |
+> | Section 9, zone labels | Confirmed, and load-bearing on a phone. An earlier build replaced them with two text lines beneath the sheet; Jon rejected that on August 11 — a key is not a claim. The labels must sit over the columns they name. |
+> | Section 3 and 10, the merged section | Split on a phone. See `04-SECTION-4`. |
+>
+> **Rejected, and worth keeping:** a deliberate crop to `Name` ‖ `Status` ·
+> `Next move` · `Days` at re-composed phone widths. It was chosen first, built,
+> and lost to the swipe on review. It survives behind `/review/sheet-mobile`.
+> Its defect was structural rather than cosmetic: the column order is fixed, so
+> getting the divider on screen at rest costs the four columns between `Name`
+> and the divider, and with them the zone labels — a 94px manual zone cannot
+> hold `You add these`. The crop bought the divider by giving up the device that
+> explains what the divider means.
+
 Date ratified: August 1, 2026  
 Status: Ratified  
 Decision owner: Jon  

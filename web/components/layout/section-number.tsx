@@ -29,16 +29,25 @@
  * `08-desktop-changes-pending.md`, not in a quiet mobile edit.
  *
  * So: it renders, it is styled, and it is invisible until something sets
- * `data-section-numbers` on an ancestor. `/review/mobile` does. The live page
- * does not.
+ * `data-section-numbers` on an ancestor, and until the viewport is below
+ * `--breakpoint-desk`. `app/page.tsx` sets it; desktop stays unnumbered.
  */
 
-/** The rendered blocks a reader actually meets, in order. The hero is not one:
- *  it is the opening, not a place you navigate to. */
+/**
+ * The rendered blocks a reader actually meets, in order. The hero is not one:
+ * it is the opening, not a place you navigate to.
+ *
+ * **This is the phone's list**, which is the only surface that renders numbers.
+ * It changed on August 11, 2026 and the total did not: "How Blotter works" drops
+ * out, because `09-page-argument-rework.md` §4 deletes that section from the
+ * phone, and "Your tracker and your actions" splits in two, because its beat 1
+ * becomes the merged ownership section and its beat 2 becomes the Outstanding
+ * list. One out, one split, still five.
+ */
 export const NUMBERED_SECTIONS = [
   "The scale of a recruiting cycle",
-  "How Blotter works",
-  "Your tracker and your actions",
+  "Keep the tracker you already built",
+  "Know exactly what needs your attention",
   "How Blotter uses your data",
   "Questions",
 ] as const;

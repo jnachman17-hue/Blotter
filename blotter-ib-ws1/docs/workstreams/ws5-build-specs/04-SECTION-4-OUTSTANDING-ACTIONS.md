@@ -35,6 +35,17 @@
 > which still reconcile as 6 + 11 + 4 = 21; the Google Sheets chrome, which stays
 > exactly as the hero establishes it; and the static-screenshot rule.
 
+> ---
+>
+> **Amended again by Jon, August 11, 2026, during the stage 10 mobile build.**
+> Reasoning in `04-decision-log.md` session 7 and
+> `09-page-argument-rework.md` §4. Scoped to the phone; desktop is untouched.
+>
+> | Item here | Amended to, below `--breakpoint-desk` only |
+> |---|---|
+> | The August 5 merge of Sections 4 and 5 into one section with two beats | **Split again on a phone**, into two numbered sections: `02` carries preservation and ownership, `03` carries the Outstanding list and the CTA. The merge existed so a reader would not file three spreadsheet windows as one repeated idea; on a phone they are already screenfuls apart, and the two beats now make genuinely different claims. |
+> | Section 12, responsive posture | Still open. The Outstanding list has no phone treatment yet; it is the next stage-10 task and §12's preserve-list still governs it. |
+
 Date ratified: August 1, 2026  
 Status: Ratified  
 Decision owner: Jon  

@@ -26,8 +26,9 @@
  * stated four times, so cutting it here is the rework doing its job rather than
  * an incidental trim.
  *
- * **Unratified.** This arrangement is `09` §4's option C and Jon has not ruled
- * on it. It is built so he can react to it in place.
+ * **Ratified by Jon, August 11, 2026**, as `09` §4's option C, after seeing the
+ * whole section at device width. That makes it an override of `03-SECTION-3` §5
+ * and `05-SECTION-5` §4's exact-copy clauses; both amendment tables carry it.
  *
  * ## Order, and the one risk in it
  *
@@ -64,9 +65,18 @@ import { KEEP_H } from "@/components/sections/tracker-and-actions";
 const KEEP_SUB_TRIMMED =
   "Blotter creates a standardized recruiting view in a new tab and keeps the changing activity current from Gmail and Calendar.";
 
-export function Mobile02({ variant }: { variant: PhoneSheetVariant }) {
+/**
+ * `swipe` is ratified. Jon approved it on August 11, 2026 after comparing it
+ * against the crop at device width. The crop survives only behind
+ * `/review/sheet-mobile`, which is why the prop stays.
+ */
+export function Mobile02({
+  variant = "swipe",
+}: {
+  variant?: PhoneSheetVariant;
+}) {
   return (
-    <section className="field-settle pt-10 pb-16">
+    <section className="field-settle pt-16 pb-16 desk:hidden">
       <PageBox>
         <SectionNumber n={2} />
 

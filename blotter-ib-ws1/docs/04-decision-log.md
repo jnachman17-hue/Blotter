@@ -1199,3 +1199,57 @@ than presented as discharging `05-SECTION-5` §12.
 94px wide and cannot hold a label. So the crop bought the divider at rest by
 giving up the device that explains what the divider means. That cost was
 understated when the crop was chosen.
+
+### The swipe is ratified, and mobile 02 is live on the phone page
+
+**Jon, August 11, 2026, having seen the whole section at device width:**
+*"Swipe version looks really good. Approve and ratify it all."*
+
+**It is his design.** The swipe had been rejected earlier the same day — nothing
+told a reader to swipe, and a still frame showed five manual columns and no
+Blotter. His answer fixed the defect rather than working around it: prompt the
+gesture, and let the gesture drive the explanation. Each zone washes and names
+itself as the reader reaches it.
+
+That buys back the exact thing the crop could not keep. At natural width the two
+zones are 640px and 538px, so the two zone labels fit **as ratified**, at full
+size, over the columns they name. The crop had to shrink them and then, in its
+first build, degrade them into two text lines under the sheet — which Jon named
+immediately: a key is not a claim.
+
+It is also the page's own device. `social/README.md` on Film A's typing beat:
+*"The left is filled by the user. The right fills itself. The two gestures
+mirror, which makes the ownership split happen rather than get asserted by a
+word underneath the sheet."* This is that, driven by a thumb.
+
+**`Name` is frozen and keeps a manual tint while frozen.** Freezing it is what
+stops the maintained half being five anonymous rows. The tint is the part that
+matters to the argument: a frozen manual column sitting inside the cream
+maintained wash would say a manual field is maintained, which is the one thing
+this section exists to deny.
+
+**The cost, taken knowingly.** The argument no longer survives a screenshot in
+full. Both washes are always painted and the manual label is on screen at rest,
+so a still frame states the half the reader can see rather than nothing — but a
+reader who never swipes does not meet the maintained zone. That is a real
+override of the page's static-proof posture. The crop is kept behind
+`/review/sheet-mobile` so the decision is reversible, the same way `StickyCta`
+was kept.
+
+**Also ratified in the same breath**, because he saw all of it in place: option C
+for the headline, the stacked reassurance claims, the refusals resolving the
+section, and the section order.
+
+### What shipping it changed on the page
+
+- `how-blotter-works.tsx` is `hidden desk:block`. Section 3 does not exist below
+  the breakpoint.
+- `Mobile02` renders `desk:hidden`, between Section 3 and the merged section.
+- `tracker-and-actions.tsx` beat 1 is `hidden desk:block`, so on a phone that
+  element is only the Outstanding list, and its numeral moved down with beat 2.
+- `NUMBERED_SECTIONS` changed and the total did not. One section leaves the
+  phone, one splits in two, still five.
+
+**Desktop verified unchanged**: all six section heights identical before and
+after, document height 7,200px both times. The all-zeros result the handoff asks
+for, with no exceptions this time.

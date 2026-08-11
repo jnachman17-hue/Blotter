@@ -58,7 +58,19 @@ const SUPPORTING =
 
 export function HowBlotterWorks() {
   return (
-    <section className="field-rise pt-24 pb-28">
+    /*
+      Desktop only from August 11, 2026.
+
+      `09-page-argument-rework.md` §4: on a phone this section stops existing.
+      Its mechanism is demonstrated by the hero film, its headline becomes the
+      merged section's deck, its refusals move there too, and its boundary and
+      closing lines are cut as two of the four statements of one claim.
+
+      Hidden rather than deleted: desktop has room and no hero film, so the
+      mechanism may still need its own section there. `09` §6 and §8 row 1
+      forbid deleting it from desktop on the mobile reasoning.
+    */
+    <section className="field-rise hidden pt-24 pb-28 desk:block">
       <PageBox>
         <SectionNumber n={2} />
         {/* 1. Eyebrow */}
