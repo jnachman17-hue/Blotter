@@ -1791,3 +1791,86 @@ harmed, worth doing while desktop layout is open anyway.
 Demoted in `06` and moved out of the lead position in `10`'s wave 1, which goes
 back to the header defect — a measured fault on both surfaces rather than a
 question of taste at unusual widths.
+
+---
+
+## Session 8 — August 11, 2026. Web reconciliation, wave 1.
+
+### Three rulings that close or park standing questions
+
+**The connection provider stays ambiguous, and stops being a checklist item.**
+Jon: *"Connection provider is to be left in ambiguous terms as it currently is
+on privacy page. We don't have one yet and won't for a while. Don't relitigate
+this."*
+
+The reasoning matters more than the outcome here, because the outcome looks like
+inaction. The provider sentence has been carried as "the one unverified claim on
+the page" and surfaced in the §0 checklist of every handoff for five sessions.
+That was correct while a provider was thought to be imminent. It is not, and a
+blocker that cannot be cleared is not a blocker — it is a tax on every session's
+first reply. `06`'s row is marked closed with the revisit trigger moved to
+provider selection and nothing earlier.
+
+**The desktop hero as a film is parked until after wave 1, and Jon is leaning
+yes.** *"We are going to park film as hero and discuss that after wave one.
+Leaning towards yes."*
+
+**The lean is load-bearing for wave 2 and that is worth writing down now.**
+`09` §6 argues desktop should not delete Section 3 on mobile's reasoning,
+because *"desktop has room and no hero film, so the mechanism may still need its
+own section there."* That argument has two clauses and a film hero removes the
+second one. If the hero becomes Film C, the film demonstrates the mechanism on
+desktop exactly as it does on the phone, and Section 3's survival goes from
+settled to genuinely open. **Wave 2 must not be planned as though the hero
+question were independent of it.**
+
+**Section numbering moves from wave 1 to wave 2.** Jon, on being shown the
+collision: *"section numbering can't be wave 1 because we need to decide on new
+web sections. That makes sense."*
+
+`web/app/page.tsx` carries both reading orders in its own comment. Numbering
+desktop today lands `02` on "How Blotter works" and `03` on the merged tracker,
+against the phone's `02` "your sheet" and `03` "outstanding". `08` §5 requires
+the two match exactly or the page contradicts itself between devices, and they
+cannot match until wave 2 rules on which sections exist. Cost of getting it
+wrong: four spec overrides, spent twice.
+
+### Wave 1's instruction, and how it was read
+
+Jon: *"Go ahead and crank out as much of wave one as possible. Everywhere
+stylistically that mobile differs from web, make those changes to web where
+possible and where it makes sense. Complete wave 1 and leave unratified things
+that need discussing to me."*
+
+Read as: apply the settled rows, apply the mobile-to-web presentation sweep on
+judgement, and stop at anything that needs a ruling. Five rows applied, two left
+open, one moved to wave 2. The one judgement call taken without a ruling —
+Section 2's 22px paragraph — is flagged as unratified in `08` §16 with a
+one-class revert, because he raised that observation about both surfaces and it
+is about the page's type scale rather than about phone width.
+
+### Two documented claims that turned out to be wrong
+
+Both were caught because somebody had written down the reasoning, which is the
+third and fourth time that has paid for itself.
+
+**`08` §13's "one-line move" is one line plus two consequences.** Taking the
+header out of `field-open` drops the wrapper's painted box 60px and moves both
+of the hero's radial glows, which are anchored to that box — and it directly
+contradicts `page.tsx`'s own comment, which put the header inside the wrapper on
+purpose. Separately, a header that actually persists travels over every band
+below it carrying `backdrop-blur-md`, which is the smear `globals.css` already
+warns about for the phone. Both are recorded in `08` §13 with what was done.
+
+**`10` §5 called every wave-1 row "already decided and reasoned."** Two of them
+say in their own entries that the desktop half is Jon's call, and one row —
+`08` §12, a confirmed defect live on both surfaces — was missing from the table
+altogether and would have been skipped.
+
+### A hazard found while fixing §12
+
+`components/section-45/sheet-phone.tsx` keeps its own copy of the ten column
+widths, so the row-height fix had to be made twice. **This is the second
+hand-kept duplicate in the codebase**, after `web/public/film/` against
+`social/` — where the copy was right while its source was wrong for five days.
+Both lists now carry a doc comment naming the other.

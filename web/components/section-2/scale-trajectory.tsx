@@ -312,15 +312,26 @@ function ArgumentRow() {
 
             17px is `--text-lede`, the token this page already uses for
             subheads, so it still leads the body copy beneath it without
-            competing with the headline above. Desktop keeps 22px: there the
-            paragraph shares a row with the 60-hour figure and has a 600px
-            measure to fill, and it is not the largest thing in view.
+            competing with the headline above.
 
-            He observed the same is true on desktop. That is a desktop change
-            and stage 10 does not take those, so it is logged in
-            `08-desktop-changes-pending.md` rather than made here.
+            **Desktop joined it in wave 1, August 11, 2026.** Jon raised this
+            about both surfaces and the observation is about the type scale
+            rather than about the phone: this is the only run of body copy on
+            the page set above the lede token, and it is not a heading. The
+            desktop defence — that the paragraph shares a row with the 60-hour
+            figure, has a 600px measure and is not the largest thing in view —
+            explains why it is *less* obvious at 1440, not why it is right. The
+            page has one body scale and this was the one exception to it.
+
+            600px at 17px is roughly 70 characters, which is inside a
+            comfortable measure, so the column it fills does not need the extra
+            size to hold together.
+
+            **The one presentation call in wave 1 that Jon has not ratified**
+            (`08` §16 leaves it to him). It is one class away from reverting:
+            put `desk:text-[22px] desk:leading-[1.45]` back.
           */
-          "max-w-[600px] font-display text-lede leading-[1.5] tracking-[-0.012em] text-ink-muted desk:text-[22px] desk:leading-[1.45]"
+          "max-w-[600px] font-display text-lede leading-[1.5] tracking-[-0.012em] text-ink-muted desk:leading-[1.55]"
         }
       />
 

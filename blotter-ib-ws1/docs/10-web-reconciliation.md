@@ -62,6 +62,30 @@ the safety net that has held all session disappears silently.
 `CURRENT-HANDOFF.md` §6 has the other verifications that have earned their
 place. They all still apply.
 
+### The wave-1 baseline — RECORDED August 11, 2026
+
+Taken from a **production build** (`pnpm --dir web build` then `start`), not the
+dev server, because `globals.css` is the file wave 1 edits most and the dev
+server serves broken CSS silently after a syntax error.
+
+| Section | Class | Height | Top |
+|---|---|---|---|
+| 1 Hero | `main#top` / `section.pb-14` | 762.5 | 60 |
+| 2 Scale and consequence | `field-deep` | 1353.8 | 822.5 |
+| 3 How Blotter works | `field-rise` | 976.8 | 2176.3 |
+| 4+5 Tracker and actions | `field-settle` | 1850.6 | 3153.1 |
+| 6 Data and privacy | `field-document` | 1333.6 | 5003.7 |
+| 7 FAQ and close | `field-close` | 592 | 6337.3 |
+
+**Document height 7,200px.** Header `position: sticky`, 60px, document top 0.
+`body` padding-top `0px`. `Mobile02` measures 0 and is correctly absent.
+
+**Measured at both 1440 and 1200 and the two are byte-identical.** The page box
+is fixed above the breakpoint, so a single baseline covers the whole desktop
+range and there is no need to hold a second one. That was worth checking rather
+than assuming: wave 1 touches the header and the 481–1179 band, and a regression
+that only appeared near the breakpoint would be invisible at 1440.
+
 ---
 
 ## 4. The framework: three waves, ordered by risk
@@ -83,26 +107,64 @@ take several. Wave 3 depends on decisions that are still parked.
 
 ---
 
-## 5. Wave 1 — the sweep
+## 5. Wave 1 — the sweep. **BUILT August 11, 2026.**
 
-Every row is already decided and reasoned. Detail lives in
-`08-desktop-changes-pending.md`, which has seventeen numbered entries; these are
-the ones that are desktop's to do.
+Detail lives in `08-desktop-changes-pending.md`. Status as of the end of the
+wave-1 sitting:
 
-| From | What desktop owes | Note |
+| From | What desktop owed | Status |
 |---|---|---|
-| `08` §13 | **The header CTA does not persist.** It is `position: sticky` inside the hero's 910px wrapper, so it leaves with the hero — on both surfaces. Ratified as persistent in `PLAN-AMENDMENTS`; never was | **Start here.** It is a defect, not a preference, and the one-line fix is moving `<SiteHeader />` out of the `field-open` wrapper |
-| `08` §5 | Section numerals `01`–`05` | Four build specs forbid an eyebrow and a numeral above a headline reads as one. Four overrides, or leave the two surfaces disagreeing |
-| `08` §16 | Section 2's supporting paragraph is 22px, the largest body text on the page | Jon raised this about both surfaces. Mobile is 17px |
-| new | Hairlines at section boundaries | Mobile got them in the spacing pass; they are what let the padding come down |
-| `08` §6 | The 32px rule before the authority line | Never discussed for desktop. Ask before assuming the mobile judgement transfers |
-| `08` §9 | Two unratified strings live on mobile | Must reach Jon before public traffic either way |
-| `06` | A window between 481 and 1179px shows a 480px column centred in it | **Polish, not a defect.** Width-based switching is correct and a maximised laptop gets desktop properly. The questionable range is 1024 to 1179 — iPad landscape and half-screen windows. Do it while desktop layout is open anyway, not first |
+| `08` §13 | **The header CTA does not persist.** `position: sticky` inside the hero's wrapper, so it leaves with the hero — on both surfaces. Ratified as persistent in `PLAN-AMENDMENTS`; never was | **APPLIED.** Not the one-line move the entry promised — see `08` §13 for the two consequences it did not anticipate |
+| `08` §12 | Two of five `Blotter`-tab rows are 50% too tall, on both surfaces | **APPLIED.** **This row was missing from the original table** and would have been skipped. Had to be fixed twice: `sheet-phone.tsx` keeps a second copy of the column widths |
+| new | Hairlines at section boundaries | **APPLIED.** Desktop needed its own anchor — the phone draws them from `.section-number::before` and desktop has no numeral until wave 2 |
+| `08` §16 | Section 2's supporting paragraph is 22px, the largest body text on the page | **APPLIED, and unratified.** The one presentation call in wave 1 Jon has not seen. One class reverts it |
+| `06` | A window between 481 and 1179px shows a 480px column centred in it | **PARTLY APPLIED.** The header was not obeying the cap and that was the visible half of it. The column-width question itself is still Jon's — see below |
+| `08` §5 | Section numerals `01`–`05` | **MOVED TO WAVE 2** by Jon, August 11, 2026. Desktop's `01`–`05` would name different content than the phone's until wave 2 rules on which sections exist |
+| `08` §6 | The 32px rule before the authority line | **OPEN — needs Jon.** The entry says ask rather than assume, and it is right to: on desktop the line sits in a 490px column where a longer rule has an origin to start from, and the mobile answer (12px, centred under a full-width CTA) solves a problem desktop does not have |
+| `08` §9 | Two unratified strings live on mobile | **OPEN — needs Jon.** Neither has a desktop action pending. `SUPPORTING_SHORT` never renders above the breakpoint, and `What each connection can and cannot do.` replaced per-row counts that desktop's three-column layout still shows correctly. These are ratify-or-replace decisions about the phone |
+
+**Two rows in the original table were not "already decided and reasoned"** as
+this section claimed: `08` §16 and `08` §6 both say in their own entries that
+the desktop half is Jon's call. §16 was taken on his wave-1 instruction and is
+flagged as unratified; §6 is left for him.
 
 **Already applied to desktop, do not redo:** `08` §1 (the Sheets scope note),
 §7 (the methodology footnote), §11 (three latent bugs), §15 (both social links),
 and the phantom `Here` links, which the Phase 6 sweep fixed on both surfaces
 with zero visual delta.
+
+### The wave-1 delta, against the baseline in §3
+
+Production build, 1440, clean reload with fonts settled.
+
+| Section | Delta | Composed of |
+|---|---|---|
+| 1 Hero | **+0** | untouched, which is the proof that the `field-open` margin is exact |
+| 2 Scale | **−23.6** | +25 hairline, −48.6 from 22px to 17px |
+| 3 How it works | **+25** | hairline |
+| 4+5 Tracker | **−10.9** | +25 hairline, −35.9 from the `Call` column fix |
+| 6 Privacy | **+25** | hairline |
+| 7 FAQ | **+25** | hairline |
+
+**Document 7,200 to 7,240, +40.** Every delta decomposes into intended changes
+and nothing is unaccounted for.
+
+Also run: production build clean; lint at the one known pre-existing
+`analytics.ts` warning; **no horizontal scroll at 320, 390 and 430 with every
+script stripped**, served from the production build; the dash scan at one
+visible dash against a budget of two.
+
+### A measurement trap worth naming
+
+The first attempt at the delta table read `hero +72.5, tracker +83.7,
+doc +219` — a confidently wrong set of numbers produced by **resizing the
+viewport rather than reloading at the target width.** `Fit` measures with
+`useLayoutEffect` and a `ResizeObserver`, and the Browser pane is a hidden
+document where the observer may not deliver. `CURRENT-HANDOFF.md` §5 says
+"reload rather than resize" and this is what it costs to ignore it: the hero,
+which cannot change, appeared to have grown 72px.
+
+**Always reload at the target width, and await `document.fonts.ready`.**
 
 ---
 

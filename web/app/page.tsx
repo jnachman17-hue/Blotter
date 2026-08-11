@@ -47,12 +47,25 @@ export default function Page() {
     <div data-section-numbers="on">
       <PageView />
       {/*
-        The hero field carries the header too, so the page opens as one
-        continuous surface rather than a white bar sitting on a tinted
-        section. It resolves to white before Section 2 begins.
-      */}
-      <div className="field-open">
-        {/*
+        The header is a direct child of the page so that `position: sticky` has
+        the whole document to travel in.
+
+        **It used to sit inside `field-open` and that was the defect.** A sticky
+        element can only travel inside its parent's box, and `field-open` is the
+        hero's 910px wrapper, so the header pinned for 910px and then left with
+        the hero — on both surfaces, despite `PLAN-AMENDMENTS-2026-08-01.md`
+        ratifying it as persistent. `08-desktop-changes-pending.md` §13 has the
+        measurement.
+
+        **The comment this replaces was not wrong, and its intent is preserved.**
+        It read: "the hero field carries the header too, so the page opens as one
+        continuous surface rather than a white bar sitting on a tinted section."
+        That is still true — `.field-open` now pulls itself back up under the
+        header with a negative top margin, so the gradient box still begins at
+        document y=0 and the two radial glows stay anchored exactly where they
+        were ratified. The header paints over the top of the field rather than
+        beside it, and nothing about the hero moves.
+
         `SiteHeader` reads `?header=` for the stage-10 comparison, so it needs a
         boundary. The fallback is the header in its default mode, which means
         the bar is server-rendered and identical unless the parameter is
@@ -61,6 +74,7 @@ export default function Page() {
       <Suspense fallback={<SiteHeaderBar />}>
         <SiteHeader />
       </Suspense>
+      <div className="field-open">
         <main id="top">
           <Hero />
         </main>

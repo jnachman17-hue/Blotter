@@ -117,7 +117,38 @@ and is not to be touched.
 
 ## 5. Section numbering is on for mobile and off for desktop — DECIDED, HALF APPLIED
 
-**Status: decided and live on mobile. Desktop is the open half.**
+**Status: decided and live on mobile. Desktop is the open half, and Jon moved
+it out of wave 1 and into wave 2 on August 11, 2026.**
+
+### Why it cannot be done in the sweep — RULED August 11, 2026
+
+`10-web-reconciliation.md` §5 originally listed this as a wave-1 row. It is not
+one, and Jon agreed on sight: *"section numbering can't be wave 1 because we
+need to decide on new web sections."*
+
+`web/app/page.tsx`'s own comment carries both reading orders:
+
+```
+desktop   1 hero · 2 scale · 3 how it works · 4+5 tracker · 6 · 7
+phone     hero   · 01 scale · 02 your sheet  · 03 outstanding · 04 · 05
+```
+
+Number desktop today and the numerals land as `01` scale, `02` how-it-works,
+`03` tracker, `04` privacy, `05` FAQ — against mobile's `01` scale, `02` your
+sheet, `03` outstanding, `04` privacy, `05` FAQ. **`02` and `03` would name
+different content on the two surfaces**, which is exactly the contradiction the
+clause below exists to prevent. It cannot be made to match until wave 2 rules on
+whether desktop keeps Section 3 and how its 4+5 is composed.
+
+Cost of doing it early and then redoing it: four spec overrides, spent twice.
+
+**Consequence for the hairlines, and it is not obvious.** On mobile the boundary
+hairline is drawn from `.section-number::before` — deliberately, so it lands
+once per section even in the merged section. Desktop has no numeral and will not
+have one until wave 2, so **desktop's hairline needs its own anchor.** Wave 1
+adds `.field-*` section-boundary rules rather than reusing the numeral
+mechanism. When wave 2 turns numbering on, the two must be reconciled or a
+section gets two rules.
 
 Jon chose `01` on August 10, 2026, over `01 / 05` and over nothing, after
 comparing all three on his phone. It renders below `--breakpoint-desk` and not
@@ -250,10 +281,14 @@ branch and need no further action.
 - **Five flex items** carried the default `min-width: auto` and could not shrink
   below their longest unbreakable line.
 
-## 12. Two of five rows in the Blotter tab are 50% too tall — CONFIRMED DEFECT
+## 12. Two of five rows in the Blotter tab are 50% too tall — APPLIED
 
-**Status: confirmed defect, live on `blotterib.com` today, on both surfaces.
-Not fixed. Desktop does not change during stage 10.**
+**Status: APPLIED August 11, 2026, wave 1, on both surfaces.**
+
+**This entry was missing from `10-web-reconciliation.md` §5's wave-1 table** and
+from its already-applied list, so it would have been skipped. It is a confirmed
+defect that was deferred only because stage 10 forbade desktop-visible changes,
+and stage 10 is over. Added to the sweep on that basis.
 
 Found on August 11, 2026 while building the phone crop, by measuring the live
 page rather than by looking at it.
@@ -289,15 +324,45 @@ in `components/section-45/parts.tsx` — `Email` 196 to 188, `Call` 112 to 120.
 6.1px, and `SHEET_W` stays 1,221px, so **every ratified scale is unchanged to
 the pixel** and the desktop delta is three row heights returning to 40.5px.
 
-Not applied. It is a desktop-visible change and stage 10 forbids those; it wants
-a before-and-after height measurement of the whole section when it is done.
+### What it took, and the second copy nobody had noticed
+
+The desktop fix was exactly as specified: `Email` 196 to 188, `Call` 112 to 120
+in `components/section-45/parts.tsx`. `SHEET_W` held at 1,221px.
+
+**Then the phone still had the defect.** `components/section-45/sheet-phone.tsx`
+carries its own `FULL_COLS` list with the same ten columns at the same widths —
+**a hand-kept copy, exactly like `web/public/film/` against `social/`.** Nothing
+propagates. The fix had to be made twice, and a doc comment now says so on both
+lists.
+
+That is worth recording as a hazard in its own right: this is the second
+duplicated-source trap in this codebase, and the first one had a wrong copy live
+for five days.
+
+### Verification
+
+| | Before | After |
+|---|---|---|
+| Marcus Lee, natural | 60px | **40.5px** |
+| Priya Shah, natural | 60px | **40.5px** |
+| Sarah Chen / Daniel Kim | 40.5px | 40.5px |
+| Alex Morgan | 39.5px | 39.5px |
+| `SHEET_W` / `FULL_W` | 1,221px | **1,221px** |
+
+Desktop Section 4+5 is **35.9px** shorter, which is 2 rows x 19.5px x the
+ratified 0.9206 scale — the arithmetic closes exactly. Mobile 02 is **39px**
+shorter, the same two rows unscaled. Every ratified scale is untouched.
+
+Two `Email` cells now clip by 10px and 20px where they previously clipped by 2px
+and 12px. That is the trade the entry specified: `Email` gives up slack it was
+already truncating away, and clipping is what a spreadsheet cell does.
 
 ---
 
-## 13. The sticky header CTA is not sticky — CONFIRMED DEFECT
+## 13. The sticky header CTA is not sticky — APPLIED, both surfaces
 
-**Status: confirmed defect on both surfaces, live on `blotterib.com` today.
-Fixed on mobile only. Desktop does not change during stage 10.**
+**Status: APPLIED August 11, 2026, wave 1. Mobile was fixed in stage 10;
+desktop's half was taken in web reconciliation and is verified below.**
 
 Measured on August 11, 2026 at 1440 and at 390: at `scrollY` 2200 the header
 sat at document y=850 and was long off screen.
@@ -319,14 +384,64 @@ the intent is not in question — only the implementation.
 translucent fill under the existing blur so the bar has an edge against content
 moving beneath it.
 
-**The desktop fix, not applied:** move `<SiteHeader />` out of the `field-open`
-wrapper in `app/page.tsx` so its parent is the page rather than the hero. That
-is a one-line move and it fixes both surfaces at once — which is exactly why it
-is here rather than done. It changes what a desktop reader sees while scrolling,
-and stage 10 does not touch desktop.
+**The desktop fix as this entry originally specified it:** move `<SiteHeader />`
+out of the `field-open` wrapper in `app/page.tsx` so its parent is the page
+rather than the hero.
 
-**Measure before and after when it is taken.** Document height should not move;
-only the header's behaviour does.
+### What it actually took — APPLIED August 11, 2026
+
+**The move is necessary and it is not sufficient.** This entry called it "a
+one-line move"; it is one line plus two consequences the entry did not
+anticipate, both of which touch the ratified hero.
+
+**1. Taking a 60px child out of the wrapper drops the wrapper's painted box by
+60px.** `.field-open`'s two radial glows are anchored at `0% -10%` and
+`100% -12%` **of that box**, so the naive move slides both of them down 60px and
+recomposes a hero `10` §10 lists as deliberately unchanged. It also contradicts
+`app/page.tsx`'s own comment, which put the header inside the wrapper on purpose
+so the page would open as "one continuous surface rather than a white bar
+sitting on a tinted section". Two records in this repository, and nobody had
+reconciled them.
+
+*Fix:* `.field-open` takes `margin-top: calc(-1 * var(--header-h))` and
+`padding-top: var(--header-h)`, above the breakpoint only. Flow consumed is
+unchanged, the gradient box still starts at document y=0, and the header paints
+over the top of the field rather than beside it. **Desktop only** — below the
+breakpoint the header is already `fixed` and out of flow, and the same margin
+would slide the film up under the bar.
+
+**2. A header that genuinely persists travels over every band below it**, and it
+carries `backdrop-blur-md`. `globals.css` already says, about the phone, that
+blur over a page this light with nothing behind it reads as a smear; that is
+just as true at 1440, and this entry did not mention it.
+
+*Fix:* desktop gets the phone's translucent fill and 1px edge — **but gated on
+`data-elevated`, which arrives at 8px of scroll.** At rest both radial glows are
+at full strength in the top 60px and a 78% white veil across them would wash the
+corners of the ratified composition. The phone has no such constraint: its hero
+is a film that starts below the bar, which is why its fill is unconditional and
+desktop's is not. A new 8px threshold rather than reusing the existing
+`data-scrolled`, which fires at 240px and drives the phone's `shrink`
+comparison — sharing one attribute would have silently moved a shipped mobile
+behaviour to 8px.
+
+### Verification
+
+Production build, 1440.
+
+| | Before | After |
+|---|---|---|
+| Document height | 7,200 | **7,200** |
+| Six section heights | baseline | **all zeros** |
+| `.field-open` document top | 0 | **0** |
+| Header at `scrollY` 2200 | document y=850, off screen | **viewport y=0** |
+
+Pinned at viewport top 0 at `scrollY` 0, 900, 2200, 4000 and 6300.
+
+**Not yet seen on a real scroll.** The Browser pane is a hidden document, so
+scroll events do not fire and `data-elevated` never toggles there. `sticky` is
+pure CSS and is verified; **the fill's fade-in is for Jon to confirm on the
+branch URL.**
 
 ---
 
@@ -367,7 +482,8 @@ punctuation, not part of the slug, and a company URL ending in `.` 404s.
 
 ## 16. Section 2's supporting paragraph is the largest body text on the page
 
-**Status: decided for mobile, open for desktop. Jon raised it about both.**
+**Status: APPLIED to desktop August 11, 2026, wave 1 — and it is the one
+presentation call in wave 1 that Jon has not ratified. Revert is one class.**
 
 `A manual tracker changes only when you remember to update it…` is set at 22px
 in the display face. Jon, August 11, 2026: *"That paragraph is larger text than
@@ -385,6 +501,28 @@ call.
 
 `02-SECTION-2` fixes the copy, not its type scale, so changing it is
 presentation rather than an override.
+
+### Applied, and why, August 11, 2026
+
+Jon's wave-1 instruction was *"everywhere stylistically that mobile differs from
+web, make those changes to web where possible and where it makes sense"*, and
+this is the clearest case of it in the file: he raised the observation about
+**both** surfaces, and the observation is about the page's type scale rather
+than about phone width.
+
+The desktop defence explains why it is *less obvious* at 1440, not why it is
+right. The page has one body scale and this was its only exception — one run of
+body copy, set above the `--text-lede` token, that is not a heading.
+
+Desktop now takes `--text-lede` at 17px with leading loosened to 1.55 for the
+wider measure. 600px at 17px is roughly 70 characters, comfortably inside a good
+measure, so the column does not need the extra size to hold together.
+
+**Section 2 is 48.6px shorter for it.** That is the whole of the section's
+negative delta in wave 1.
+
+**Unratified.** `desk:text-[22px] desk:leading-[1.45]` back on the paragraph in
+`components/section-2/scale-trajectory.tsx` restores it exactly.
 
 ---
 

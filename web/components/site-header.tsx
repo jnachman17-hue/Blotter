@@ -25,10 +25,29 @@
  * bottom bar partly on the grounds that "the header CTA is the only persistent
  * one". It was not persistent anywhere.
  *
- * Fixed below the breakpoint only, because stage 10 does not touch desktop.
- * `position: fixed` rather than restructuring the DOM: moving the header out of
- * the hero wrapper would fix both surfaces at once, and desktop's half belongs
- * in `08` until Jon takes it.
+ * Fixed below the breakpoint in stage 10. **Desktop's half was taken in wave 1
+ * of web reconciliation, August 11, 2026**: `<SiteHeader />` moved out of the
+ * `field-open` wrapper in `app/page.tsx`, so `sticky` now has the document to
+ * travel in. `.field-open` pulls itself back up under it, so the ratified hero
+ * is unmoved.
+ *
+ * ## Why desktop's fill is gated on scroll and mobile's is not
+ *
+ * A header that genuinely persists passes over every band below it, and this
+ * bar carries `backdrop-blur-md`. Blur over a page this light with nothing
+ * behind it reads as a smear — `globals.css` says so about the phone and it is
+ * just as true at 1440. So desktop needs the fill and the 1px edge that mobile
+ * already has.
+ *
+ * **But it must not have them at rest.** The desktop hero is a ratified
+ * composition and its two radial glows are at full strength in the top 60px, so
+ * a 78% white veil across them at `scrollY` 0 would wash the corners of a
+ * picture `08` §10 lists as deliberately unchanged. The phone has no such
+ * constraint: its hero is a film that starts below the bar.
+ *
+ * Hence `data-elevated`, which appears at 8px of scroll — the fill arrives
+ * exactly when there is content underneath to separate from, and the hero at
+ * rest is pixel-identical to what was ratified.
  */
 
 import { useSearchParams } from "next/navigation";
@@ -91,15 +110,25 @@ export function SiteHeaderBar({
   mode?: HeaderMode;
 }) {
   const scrolled = useScrolledPast(240, mode === "shrink");
+  /*
+    Separate from `scrolled` on purpose. `data-scrolled` fires at 240px and
+    drives the phone's `shrink` comparison, which Jon ratified at that
+    threshold; this fires at 8px and drives nothing but the fill. Reusing one
+    attribute for both would have moved the shrink to 8px and quietly changed a
+    shipped mobile behaviour.
+  */
+  const elevated = useScrolledPast(8, true);
 
   return (
     <header
       data-header-mode={mode}
       {...(scrolled ? { "data-scrolled": "" } : {})}
+      {...(elevated ? { "data-elevated": "" } : {})}
       className={cn(
         "site-header z-40 backdrop-blur-md",
-        /* Fixed on a phone so it actually persists; the ratified desktop
-           behaviour is untouched and still scoped to the hero wrapper. */
+        /* Fixed on a phone, sticky on desktop — and since August 11, 2026 the
+           sticky one is a direct child of the page, so it travels the whole
+           document instead of the hero's 910px. */
         "fixed inset-x-0 top-0 desk:sticky",
       )}
     >
@@ -108,6 +137,24 @@ export function SiteHeaderBar({
           "site-header__bar mx-auto flex max-w-[1400px] items-center justify-between px-5 desk:px-6",
           "h-[60px]",
         )}
+        /*
+          Below the breakpoint the bar takes the page box's own ceiling rather
+          than 1400px. Wave 1, August 11, 2026.
+
+          `06`'s "481 to 1179px band" row is about the content column being
+          capped at 480 and centred in a wide window, which is correct and
+          ratified — a browser knows its width and nothing else, and 480 keeps a
+          tablet from getting a stretched phone layout. **But the header was not
+          obeying that cap.** At 1100px the column sat at 480 in the middle while
+          this bar spanned the full 1052, which put `Try Blotter Now` roughly
+          500px away from the content it belongs to. That gap is what read as
+          broken, rather than the column itself.
+
+          On any real phone the column already fills the screen, so nothing
+          moves at or below 480. Above the breakpoint the ratified 1400px bar is
+          untouched.
+        */
+        style={{ "--bar-mobile-max": "520px" } as React.CSSProperties}
       >
         {/*
           44px on a phone. The lockup is 22px tall and the anchor around it

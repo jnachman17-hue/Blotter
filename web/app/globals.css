@@ -459,6 +459,59 @@ body {
   .site-header[data-header-mode="shrink"][data-scrolled] .site-header__bar {
     height: 48px;
   }
+
+  /*
+    The bar tracks the content column instead of the window. See the note in
+    `components/site-header.tsx`: 520px is `PAGE_BOX_MOBILE_W` plus the two 20px
+    phone gutters, so the brand and the CTA land exactly on the column's edges.
+    No phone reaches this ceiling, so nothing below 480 moves.
+  */
+  .site-header__bar {
+    max-width: var(--bar-mobile-max);
+  }
+}
+
+/*
+  The persistent desktop header, wave 1 of web reconciliation, August 11, 2026.
+
+  `08` §13 called the desktop fix "a one-line move" — `<SiteHeader />` out of the
+  `field-open` wrapper — and that line is necessary but not sufficient. Making
+  the bar genuinely persistent means it now travels over `field-deep`, the two
+  sheet compositions and every band below, carrying `backdrop-blur-md` with
+  nothing behind it. That is the same smear the phone rule above exists to
+  prevent, and the entry did not anticipate it.
+
+  So desktop gets the phone's fill and edge — **but only once scrolled.** At
+  rest the top 60px of the hero is where both of `field-open`'s radial glows are
+  strongest, and a 78% white veil across them would recompose a hero that `08`
+  §10 lists as deliberately unchanged. The phone does not have this problem
+  because its hero is a film that begins below the bar.
+
+  `data-elevated` arrives at 8px. Fading it rather than snapping it, because
+  unlike the `shrink` height step this animates `background-color` and
+  `box-shadow` — both compositor-friendly, neither forces layout, and the
+  threshold is crossed at the very start of a scroll rather than in the middle
+  of one.
+*/
+@media (min-width: 1180px) {
+  .site-header {
+    background: transparent;
+    box-shadow: 0 1px 0 rgba(18, 35, 61, 0);
+    transition:
+      background-color 160ms ease-out,
+      box-shadow 160ms ease-out;
+  }
+
+  .site-header[data-elevated] {
+    background: color-mix(in srgb, var(--color-page) 78%, transparent);
+    box-shadow: 0 1px 0 rgba(18, 35, 61, 0.07);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header {
+      transition: none;
+    }
+  }
 }
 
 /*
@@ -488,6 +541,62 @@ body {
 @media (max-width: 1179px) {
   [data-section-numbers="on"] .section-number::before,
   [data-section-numbers="total"] .section-number::before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(
+      to right,
+      rgba(18, 35, 61, 0.16),
+      rgba(18, 35, 61, 0.05)
+    );
+  }
+}
+
+/*
+  The same boundary hairline, on desktop. Wave 1, August 11, 2026.
+
+  **Desktop needs its own anchor and this is the whole reason it is a separate
+  rule.** The phone draws its hairline from `.section-number::before`, which is
+  exact and lands once per section even in the merged section. Desktop has no
+  numeral — Jon moved numbering to wave 2 on August 11, 2026, because desktop's
+  `01`–`05` would name different content than the phone's until wave 2 rules on
+  which sections exist. So this hangs off the first `PageBox` in each of the
+  five banded sections instead.
+
+  `:first-of-type` matters: Section 7 carries two page boxes, the FAQ and the
+  closing block, and only the first is a section boundary.
+
+  The hero is excluded by construction — it is the opening rather than a place
+  the reader arrives at, and the header is its edge. Five rules for six
+  sections, which is one per boundary.
+
+  **Same 1px, same gradient, same 24px gap as the phone**, deliberately: Jon
+  asked for the mobile treatment on web, not for a desktop reinterpretation of
+  it.
+
+  **What is deliberately NOT copied.** On the phone the hairline paid for
+  itself — it bought an edge so the 120px boundary rhythm could come down from
+  as much as 208px. Desktop's padding is untouched here, so the rule costs 25px
+  per section rather than saving any. Reclaiming it from `desk:pt-24` is a
+  rhythm decision Jon has not taken and `06`'s "final complete-page rhythm" row
+  is still open, so the height is spent rather than borrowed and the delta is
+  reported.
+
+  **When wave 2 turns numbering on, reconcile the two.** A section that has both
+  a numeral and this rule draws two hairlines.
+*/
+@media (min-width: 1180px) {
+  .field-deep > .page-box:first-of-type > .page-box__inner::before,
+  /* `Mobile02` carries `field-rise` too — the phone's Section 3 slot in the
+     background handoff chain, so exactly one `field-rise` is visible per
+     surface. It is `desk:hidden`, so this rule can never paint on it inside a
+     `min-width` query, but an inert-but-wrong selector is a trap for wave 2,
+     which rewrites both of these sections. */
+  .field-rise:not(.desk\:hidden) > .page-box:first-of-type > .page-box__inner::before,
+  .field-settle > .page-box:first-of-type > .page-box__inner::before,
+  .field-document > .page-box:first-of-type > .page-box__inner::before,
+  .field-close > .page-box:first-of-type > .page-box__inner::before {
     content: "";
     display: block;
     height: 1px;
@@ -570,7 +679,33 @@ body {
   --field-f: #f2f1ee; /* Section 6 floor, handoff to Section 7 */
 }
 
-/* Hero: lightest and warmest band. */
+/*
+  Hero: lightest and warmest band.
+
+  **The negative top margin is what makes the persistent header free.** The
+  header left this wrapper on August 11, 2026 so that `position: sticky` had the
+  document to travel in rather than 910px of hero (`08` §13). Taking a 60px
+  child out of a wrapper would normally drop the wrapper's painted box by 60px,
+  which moves both radial glows — they are anchored at `0% -10%` and `100% -12%`
+  of *this box* — and recomposes a ratified hero for no reason.
+
+  So the wrapper pulls itself back up by exactly the header's height and pads
+  the space back. Flow consumed is unchanged (60 header, -60 margin, +60
+  padding), the gradient box still starts at document y=0, the glows sit where
+  they were ratified, and the hero's own content still begins at y=60. Document
+  height does not move.
+
+  **Desktop only.** Below the breakpoint the header is `position: fixed` and
+  already out of flow, with `body` reserving its 60px instead, so the same
+  margin here would slide the film up underneath the bar.
+*/
+@media (min-width: 1180px) {
+  .field-open {
+    margin-top: calc(-1 * var(--header-h));
+    padding-top: var(--header-h);
+  }
+}
+
 .field-open {
   background:
     radial-gradient(

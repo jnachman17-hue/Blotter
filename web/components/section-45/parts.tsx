@@ -35,11 +35,36 @@ import {
 
 /* ------------------------------------------------------------------ geometry */
 
+/**
+ * Column widths, and the 8px that moved on August 11, 2026.
+ *
+ * `Email` was 196 and `Call` was 112. Two of the five `Blotter`-tab rows —
+ * Marcus Lee and Priya Shah — measured 60px natural against 40.5px for the
+ * other three, and they are the only two contacts with a `Call` value.
+ * `1/17 @ 2:00 PM` needs 94.1px and `Completed 1/16` needs 91.8px at 13px
+ * Arial, against 88px of text width inside a 112px column with 24px of padding.
+ * Both wrapped to two lines. `Email` overflows on two rows as well but is
+ * `truncate`d, so it clips rather than growing the row — which is what `Call`
+ * should have been doing.
+ *
+ * A Google Sheets row does not grow to fit its content; it clips. Two
+ * double-height rows in an otherwise uniform grid read as a rendering artefact
+ * rather than as a spreadsheet, and this is the page's "reusable high-fidelity
+ * Google Sheets window" (`WS4-SPEC.md:644`). `08-desktop-changes-pending.md`
+ * §12 has the measurement.
+ *
+ * **`SHEET_W` is unchanged at 1,221px**, which is the reason this is safe:
+ * `Email` gives up 8 of the 16.5px it was already truncating away, `Call` is
+ * short by 6.1px and gains 8, and every ratified scale — hero 0.8502, Section 3
+ * 0.9607, Sections 4 and 5 0.9206 — holds to the pixel. The zone split moves
+ * from 683px to 675px, which is descriptive rather than ratified; both zone
+ * labels still fit at their full size.
+ */
 const YOURS = [
   { header: "Name", w: 112 },
   { header: "Title", w: 116 },
   { header: "Firm", w: 132 },
-  { header: "Email", w: 196 },
+  { header: "Email", w: 188 },
   { header: "LinkedIn", w: 84 },
 ];
 const MAINTAINED = [
@@ -47,7 +72,7 @@ const MAINTAINED = [
   { header: "Next move", w: 142 },
   { header: "Last contact", w: 104 },
   { header: "Days", w: 52 },
-  { header: "Call", w: 112 },
+  { header: "Call", w: 120 },
 ];
 const GUTTER = 43;
 const YOURS_W = YOURS.reduce((n, c) => n + c.w, 0);
