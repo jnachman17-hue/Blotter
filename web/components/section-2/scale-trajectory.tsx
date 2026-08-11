@@ -299,7 +299,30 @@ const ROW =
 function ArgumentRow() {
   return (
     <div className={`mt-12 ${ROW}`}>
-      <SupportingParagraph className="max-w-[600px] font-display text-[22px] leading-[1.45] tracking-[-0.012em] text-ink-muted" />
+      <SupportingParagraph
+        className={
+          /*
+            17px on a phone, the ratified 22px from `desk`.
+
+            Jon, August 11, 2026, and he found the thing that had been bothering
+            him: at 22px this was **the largest run of body text anywhere on the
+            page**, header excepted, and nothing else on either surface is set
+            that big. It read as important without being a heading, which is why
+            the section felt off.
+
+            17px is `--text-lede`, the token this page already uses for
+            subheads, so it still leads the body copy beneath it without
+            competing with the headline above. Desktop keeps 22px: there the
+            paragraph shares a row with the 60-hour figure and has a 600px
+            measure to fill, and it is not the largest thing in view.
+
+            He observed the same is true on desktop. That is a desktop change
+            and stage 10 does not take those, so it is logged in
+            `08-desktop-changes-pending.md` rather than made here.
+          */
+          "max-w-[600px] font-display text-lede leading-[1.5] tracking-[-0.012em] text-ink-muted desk:text-[22px] desk:leading-[1.45]"
+        }
+      />
 
       {/*
         Stacked on a phone, on the ratified baseline from `desk`.
@@ -319,33 +342,30 @@ function ArgumentRow() {
         the four volumes above it.
       */}
       {/*
-        Bounded on a phone, bare from `desk`.
+        No container, third attempt, and this one removes the problem instead of
+        restyling it.
 
-        Jon, August 11, 2026: the figure "just sort of seems floating there... it
-        needs something behind it". He is right, and the reason is structural
-        rather than decorative — this page's theme is a bounded-box layout, and
-        on a phone this was the only pulled-out figure on it with nothing holding
-        it. Desktop does not have the problem because the figure sits in a
-        two-column row and the column edge is the boundary; stacking removed the
-        column and left the number in open space.
+        A ring read as a form field; a filled panel read as a card the page does
+        not otherwise use. Jon on the second: "I hate that sixty hours box." The
+        mistake was mine in both cases — I kept trying to give the figure a
+        *shape*, when what it actually lacked was a **relationship**. It was
+        floating because nothing said it belonged to the paragraph above it.
 
-        **The ring is gone.** The first attempt drew a hairline outline and Jon
-        said it did not look great — correctly: an outlined rectangle around a
-        figure reads as a form field, and it was a shape this page does not use
-        anywhere else. This is the warm surface the three refusals already sit
-        on, with no border and no shadow, so the figure is held by a plane the
-        page already owns rather than by a box invented for it.
+        A hairline says that, and it is now the page's own language: the same
+        rule marks every section boundary on this surface. So the figure is the
+        paragraph's conclusion, joined to it by a rule, and the caption picks up
+        the 15px semibold the four volume labels took on the same day, so the
+        section has one voice for naming a quantity.
 
         `02-SECTION-2` §8 keeps this proof subordinate to the four figures and
-        forbids a badge or a loud highlight, so the surface may enclose the
-        figure but must not promote it. A fill this quiet does not.
+        forbids a badge or a loud highlight. A rule is neither.
       */}
-      <div className="rounded-xl bg-[#fbf9f5] px-4 py-4 desk:rounded-none desk:bg-transparent desk:p-0">
+      <div className="border-t border-navy-900/[0.12] pt-4 desk:border-0 desk:pt-0">
         <div className="flex flex-col items-start gap-1.5 desk:flex-row desk:items-center desk:gap-3 desk:pt-1">
           <span className="font-display text-[1.75rem] leading-none font-semibold tracking-[-0.03em] tabular-nums text-navy-900 desk:text-[34px]">
             ~60 hours
           </span>
-          <span className="text-small leading-[1.45] text-ink-muted">
+          <span className="text-[0.9375rem] leading-[1.45] font-semibold text-ink desk:text-small desk:font-normal desk:text-ink-muted">
             saved on manual tracker administration{" "}
             <span className="desk:block">over one recruiting cycle</span>
           </span>

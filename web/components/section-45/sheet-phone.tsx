@@ -311,98 +311,60 @@ const SPLIT_X = FULL_GUTTER + YOURS_W;
 const FROZEN_NAME_FILL = "#f6f8fb";
 
 /**
- * Where the labels go, written straight to the DOM.
+ * The label band does not move. That is the whole design.
  *
- * **This is the fix for the buzz Jon recorded on August 11, 2026.** The first
- * build put the label's `translateX` in React state and gave it a 200ms CSS
- * transition. Both halves were wrong, and together they vibrate: the transition
- * eases toward a target that the next scroll event moves again, so the label
- * never arrives, and every event re-rendered the band on the way.
+ * ## Why the first two attempts buzzed
  *
- * A transition is for a **state change**. Position here is not a state change,
- * it is a continuous readout of the reader's thumb, and the only correct
- * response to it is to follow exactly. So position is written to the element
- * directly in the scroll handler with no easing and no React in the path, and
- * the sheet and its labels move as one object.
+ * v1 put the label's `translateX` in React state with a 200ms transition, so
+ * every scroll event moved a target the ease had not reached. v2 removed the
+ * transition and wrote the transform directly, which was better and **still
+ * vibrated**, because the band was inside the scrolling content: the browser
+ * paints the content at its new offset, then a scroll handler runs and writes a
+ * counter-transform **one frame later**. The label is permanently a frame
+ * behind the sheet it sits on, and a one-frame positional lag at 60fps is
+ * exactly what a vibration is.
  *
- * React still owns the two things that really are discrete — which zone is
- * ahead, and whether the region scrolls at all — and those keep their
- * transitions, because a fade between two labels *is* a state change.
+ * There is no way to win that race from JavaScript. The fix is to stop running
+ * it.
+ *
+ * ## What replaces it, and it is Jon's, August 11, 2026
+ *
+ * > *"Can you just hold that entirely still as you scroll? And then once you
+ * > reach a certain threshold, we cross the line of status, then it just
+ * > switches to Blotter, and that stays in the centre up top."*
+ *
+ * The band moves **out of the scroll container** and sits in the sheet's own
+ * chrome, below the formula bar and above row 1, where it already appeared to
+ * be. Nothing counteracts anything: the element is not in the scrolling
+ * subtree, so it cannot lag it. Position is now static CSS with no JavaScript
+ * in the path at all.
+ *
+ * All that is left is a **crossfade on one threshold** — the divider passing
+ * the middle of the window, which is the point at which the reader is looking
+ * more at Blotter's columns than at their own. Discrete, so a transition is
+ * finally the right tool for it.
+ *
+ * The cost, and it is small: the label no longer points at the columns it names
+ * by sitting over them. The veil covers that — it takes the same zone's colour,
+ * so the two agree about where the reader is.
  */
-function place(
-  el: HTMLElement | null,
-  start: number,
-  end: number,
-  left: number,
-  width: number,
-) {
-  if (!el) return;
-  const from = Math.max(start, left);
-  const to = Math.min(end, left + width);
-  const min = left + 4;
-  const max = Math.max(min, left + width - LABEL_W - 4);
-  const x = Math.min(Math.max((from + to) / 2 - LABEL_W / 2, min), max);
-  el.style.transform = `translateX(${Math.round(x)}px)`;
-}
 
-/**
- * The two zone labels, travelling.
- *
- * Rebuilt August 11, 2026 on Jon's note that a 19px heading over a 12.5px
- * subtitle over an upside-down-U bracket "could use some serious UI
- * improvement". He is right, and the reason is that the old treatment was
- * solving a problem this version no longer has.
- *
- * **The bracket existed to bind a label to a span of columns.** Now the label
- * *rides* that span — it centres on whatever slice of its own zone is on
- * screen and moves as the reader moves — so the binding is done by position,
- * continuously, and a drawn bracket is a second answer to a question already
- * answered. It is cut. Three stacked elements become one small block, 64px of
- * furniture becomes about 30px, and the sheet gets the room back.
- *
- * What replaces it is the page's own eyebrow: a 2px vertical bar in the zone's
- * colour, which `scale-and-consequence.tsx` and `how-blotter-works.tsx` already
- * use to mark a line as a label. Nothing invented, and the two surfaces now
- * mark a label the same way.
- *
- * ## The motion, and why it is built this way
- *
- * - **`transform: translateX`, never `left`.** Position and opacity are the two
- *   properties that skip layout and paint; animating `left` on a scroll handler
- *   would repaint the sheet under it every frame.
- * - **Transitions, not keyframes.** A reader can reverse a swipe mid-gesture,
- *   and a transition retargets from where it is while a keyframe restarts from
- *   zero.
- * - **A 2px blur across the swap.** A plain cross-fade of two labels shows both
- *   at once and reads as two objects overlapping; blurring the outgoing one
- *   bridges the gap so the eye sees one label changing rather than two labels
- *   trading places.
- * - **`cubic-bezier(0.23, 1, 0.32, 1)` at 200ms.** The built-in easings are too
- *   soft to read at this size, and anything past 300ms on an element tied to a
- *   gesture feels like lag rather than polish.
- *
- * Reduced motion keeps the fade, which carries meaning, and drops the travel,
- * which is decoration — the label simply centres itself without sliding.
- */
 function ZoneLabel({
   label,
   sub,
   accent,
   tone,
   active,
-  innerRef,
 }: {
   label: string;
   sub: string;
   accent: string;
   tone: string;
   active: boolean;
-  innerRef: React.RefObject<HTMLDivElement | null>;
 }) {
   return (
     <div
-      ref={innerRef}
-      className="zone-label absolute top-0 left-0 flex gap-2"
+      className="zone-label absolute inset-0 flex items-center justify-center gap-2"
       style={{
         opacity: active ? 1 : 0,
         filter: active ? "blur(0px)" : "blur(2px)",
@@ -410,7 +372,7 @@ function ZoneLabel({
     >
       <span
         aria-hidden="true"
-        className="mt-[2px] w-[2px] shrink-0 self-stretch rounded-full"
+        className="h-[26px] w-[2px] shrink-0 rounded-full"
         style={{ background: accent }}
       />
       <span className="flex flex-col gap-[3px]">
@@ -428,8 +390,32 @@ function ZoneLabel({
   );
 }
 
-/** Fixed so `place` can centre without measuring, which would force layout. */
-const LABEL_W = 190;
+/**
+ * Both labels are always mounted in the same place; only opacity says which is
+ * speaking. Mounting on demand would give the incoming label nothing to fade
+ * in at, and would put a layout in the middle of a gesture.
+ */
+function ZoneBand({ zone }: { zone: "yours" | "maintained" }) {
+  return (
+    <div className="relative h-[38px] border-b border-sheet-grid bg-white">
+      <ZoneLabel
+        label={YOURS_LABEL}
+        sub={YOURS_SUB}
+        accent="var(--color-ink-faint, #a4a8ac)"
+        tone="var(--color-ink, #12233d)"
+        active={zone === "yours"}
+      />
+      <ZoneLabel
+        label={MAINT_LABEL}
+        sub={MAINT_SUB}
+        accent="var(--color-blotter-400, #d9b64a)"
+        tone="var(--color-blotter-700, #8a6d12)"
+        active={zone === "maintained"}
+      />
+    </div>
+  );
+}
+
 
 /**
  * The veil, and it is the whole swipe affordance.
@@ -496,15 +482,11 @@ function Veil({
       ref={veilRef}
       aria-hidden="true"
       /*
-        Starts below the label band rather than at the top of the scroller. The
-        veil's job is to obscure the columns the reader has not reached; the
-        label's job is to tell them what those columns are. Veiling the label
-        would mute the one element that answers the question the veil raises.
-
-        52px is the band's own height plus the scroller's top padding, so the
-        veil begins exactly where the grid does.
+        Full height of the scroll region now. The label band used to live inside
+        it and had to be spared; the band is outside the scroller since
+        August 11, 2026, so the veil can cover everything it is over.
       */
-      className="pointer-events-none absolute top-[52px] right-0 bottom-0 z-30 w-[64%]"
+      className="pointer-events-none absolute inset-y-0 right-0 z-30 w-[64%]"
       style={{ opacity: show ? 1 : 0 }}
     >
       <span
@@ -544,8 +526,6 @@ function Veil({
 
 function SwipeSheet() {
   const scroller = useRef<HTMLDivElement>(null);
-  const yours = useRef<HTMLDivElement>(null);
-  const maintained = useRef<HTMLDivElement>(null);
   const veil = useRef<HTMLDivElement>(null);
   const coach = useRef<HTMLSpanElement>(null);
 
@@ -565,10 +545,6 @@ function SwipeSheet() {
       const width = box.clientWidth;
       const max = box.scrollWidth - width;
 
-      /* Continuous: straight to the element, no easing, no re-render. */
-      place(yours.current, FULL_GUTTER, SPLIT_X, left, width);
-      place(maintained.current, SPLIT_X, FULL_W, left, width);
-
       const p = max > 0 ? Math.min(1, Math.max(0, left / max)) : 1;
       if (p > furthest.current) furthest.current = p;
       if (veil.current) {
@@ -582,9 +558,15 @@ function SwipeSheet() {
         );
       }
 
-      /* Discrete: React, and only on the crossing. */
+      /*
+        One threshold, and only on the crossing: the divider passing the middle
+        of the window. That is the point at which the reader is looking more at
+        Blotter's columns than at their own, which is what the label should be
+        naming. Jon's, and it replaces a right-edge test that switched as soon
+        as the divider was glimpsed.
+      */
       const nextZone: "yours" | "maintained" =
-        left + width <= SPLIT_X ? "yours" : "maintained";
+        left + width / 2 <= SPLIT_X ? "yours" : "maintained";
       const nextScrollable = max > 8;
       setZone((prev) => (prev === nextZone ? prev : nextZone));
       setScrollable((prev) => (prev === nextScrollable ? prev : nextScrollable));
@@ -609,39 +591,23 @@ function SwipeSheet() {
       menuCount={4}
       showSaveState={false}
     >
+      {/*
+        Outside the scroll container, deliberately. Inside it the band had to be
+        counter-transformed every frame and was always one frame behind the
+        sheet, which is what Jon saw as vibration. Out here it simply does not
+        move.
+      */}
+      <ZoneBand zone={zone} />
+
       <div className="relative">
         <div
           ref={scroller}
-          className="overflow-x-auto overscroll-x-contain pt-4"
+          className="overflow-x-auto overscroll-x-contain"
           /* The reader is meant to land on the manual zone, so no snapping:
              snap points would fight a gesture whose whole job is continuous
              travel across the divider. */
         >
           <div className="sheet-type text-[13px]" style={{ width: FULL_W }}>
-            {/*
-              Both labels are always mounted and always positioned; only their
-              opacity says which one is speaking. Mounting on demand would mean
-              the incoming label has no position to fade in *at*.
-            */}
-            <div className="relative mb-3 h-[30px]">
-              <ZoneLabel
-                label={YOURS_LABEL}
-                sub={YOURS_SUB}
-                accent="var(--color-ink-faint, #a4a8ac)"
-                tone="var(--color-ink, #12233d)"
-                active={zone === "yours"}
-                innerRef={yours}
-              />
-              <ZoneLabel
-                label={MAINT_LABEL}
-                sub={MAINT_SUB}
-                accent="var(--color-blotter-400, #d9b64a)"
-                tone="var(--color-blotter-700, #8a6d12)"
-                active={zone === "maintained"}
-                innerRef={maintained}
-              />
-            </div>
-
             <div className="relative">
               {/* Letter strip, scrolling with the grid it labels. */}
               <div className="flex border-b border-sheet-grid bg-sheet-header text-[12px] text-ink-muted">

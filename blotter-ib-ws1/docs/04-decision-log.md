@@ -1596,3 +1596,69 @@ else. It is now the warm surface the three refusals already sit on, no border
 and no shadow, so the figure is held by a plane the page owns rather than by a
 box invented for it. `02-SECTION-2` §8 still forbids promoting this proof, and a
 fill this quiet does not.
+
+### The label band stops moving, which is the only way to stop it buzzing
+
+Jon, August 11, 2026, after the second attempt: *"Can you just hold that
+entirely still as you scroll? And then once you reach a certain threshold, we
+cross the line of status, then it just switches to Blotter."*
+
+**He is right, and the reason the second fix was not enough is worth recording.**
+v1 eased a transform toward a target the scroll handler kept moving. v2 removed
+the easing and wrote the transform directly, which was better and still
+vibrated, because **the band was inside the scrolling content**: the browser
+paints the content at its new offset, then the handler runs and writes a
+counter-transform *one frame later*. The label is permanently one frame behind
+the sheet it sits on, and a one-frame positional lag at 60fps is what a
+vibration is. That race cannot be won from JavaScript.
+
+So the band moved **out of the scroll container**, into the sheet's chrome below
+the formula bar and above row 1 — where it already appeared to be. Nothing
+counteracts anything, position is static CSS, and no JavaScript touches it.
+Verified: the band's left edge reads 21.0px at every scroll position from 0 to
+the end.
+
+All that survives is a crossfade on **one threshold**, the divider passing the
+middle of the window, which is the point at which the reader is looking more at
+Blotter's columns than at their own. Discrete, so a transition is finally the
+right tool. It was a right-edge test before, which switched as soon as the
+divider was glimpsed.
+
+**The cost:** the label no longer points at its columns by sitting over them.
+The veil covers that, taking the same zone's colour, so the two agree.
+
+### Section 01's supporting paragraph was the biggest body text on the page
+
+Jon found what had been bothering him: at 22px, *"a manual tracker changes only
+when you remember to update it…"* was **the largest run of body text anywhere**,
+headings excepted, on either surface. It read as important without being a
+heading.
+
+It is `--text-lede`, 17px, on a phone — the token the page already uses for
+subheads, so it still leads the copy beneath without competing with the headline
+above. Desktop keeps 22px, where it shares a row with the 60-hour figure, has a
+600px measure to fill, and is not the largest thing in view.
+
+He noted the same is arguably true on desktop. That is a desktop change and
+stage 10 does not take them, so it is `08` §16 rather than a change here.
+
+### The `~60 hours` box is gone entirely, third attempt
+
+*"I hate that sixty hours box."* A ring read as a form field; a filled panel
+read as a card the page uses nowhere else.
+
+**The mistake was mine twice, and it was the same mistake:** I kept giving the
+figure a *shape*, when what it lacked was a *relationship*. It floated because
+nothing tied it to the paragraph it concludes.
+
+A hairline says that, and it is the page's own language now — the same rule
+marks every section boundary on this surface. The figure is the paragraph's
+conclusion, joined by a rule, and the caption takes the 15px semibold the four
+volume labels took the same day, so the section has one voice for naming a
+quantity. `02-SECTION-2` §8 forbids a badge or a loud highlight; a rule is
+neither.
+
+**If he still dislikes it, the next move is removal, and that is not mine.**
+`~60 hours` is a ratified figure with a methodology footnote attached, so
+dropping it from the phone would remove a claim from one surface — a `09`-level
+decision, not a styling one.

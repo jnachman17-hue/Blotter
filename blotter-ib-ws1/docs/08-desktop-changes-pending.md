@@ -362,3 +362,38 @@ surfaces. Desktop height is unaffected: 7,200px before and after.
 
 He wrote the LinkedIn address with a trailing full stop; that is sentence
 punctuation, not part of the slug, and a company URL ending in `.` 404s.
+
+---
+
+## 16. Section 2's supporting paragraph is the largest body text on the page
+
+**Status: decided for mobile, open for desktop. Jon raised it about both.**
+
+`A manual tracker changes only when you remember to update it…` is set at 22px
+in the display face. Jon, August 11, 2026: *"That paragraph is larger text than
+any other text paragraph throughout the entire page… There's not a single other
+part of this mobile website or web that has such big text that isn't in
+header."*
+
+He is right on both surfaces. It is the only run of body copy on the page set
+above the 17px lede token, and it is not a heading.
+
+**Mobile is now 17px** and desktop still 22px. Desktop has a defence mobile does
+not: the paragraph shares a row with the `~60 hours` figure, has a 600px measure
+to fill, and is not the largest thing in view. Whether that is enough is his
+call.
+
+`02-SECTION-2` fixes the copy, not its type scale, so changing it is
+presentation rather than an override.
+
+---
+
+## 17. The `~60 hours` figure has no container on mobile, and none on desktop
+
+**Status: mobile settled after three attempts. Desktop unchanged and correct.**
+
+Recorded so nobody adds a panel to desktop by symmetry. On desktop the figure
+sits in a two-column row and the column edge is its boundary, so the problem
+Jon reported — that it floats — genuinely does not exist there. On a phone the
+stack removed the column, and the fix is a hairline joining it to the paragraph
+it concludes rather than a box around it.
