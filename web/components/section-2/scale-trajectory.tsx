@@ -285,14 +285,30 @@ function ArgumentRow() {
     <div className={`mt-12 ${ROW}`}>
       <SupportingParagraph className="max-w-[600px] font-display text-[22px] leading-[1.45] tracking-[-0.012em] text-ink-muted" />
 
-      <div className="flex items-center gap-3 pt-1">
-        <span className="font-display text-[34px] leading-none font-semibold tracking-[-0.03em] tabular-nums text-navy-900">
+      {/*
+        Stacked on a phone, on the ratified baseline from `desk`.
+
+        Beside each other at 350px the phrase had about 190px, so it wrapped to
+        three ragged lines against a 34px numeral and read as text floating next
+        to a number rather than as one statement. Stacked, the numeral leads and
+        the phrase runs underneath as a normal sentence.
+
+        The forced break is desktop-only for the same reason: `desk:inline` on
+        the second clause makes it a block above the breakpoint, which is the
+        ratified two-line set, and lets it flow on a phone. The copy is
+        untouched either way.
+
+        28px rather than 34 on a phone, and navy rather than a ramp colour, so
+        it reads as the section's conclusion instead of a fifth metric next to
+        the four volumes above it.
+      */}
+      <div className="flex flex-col items-start gap-1.5 desk:flex-row desk:items-center desk:gap-3 desk:pt-1">
+        <span className="font-display text-[1.75rem] leading-none font-semibold tracking-[-0.03em] tabular-nums text-navy-900 desk:text-[34px]">
           ~60 hours
         </span>
         <span className="text-small leading-[1.45] text-ink-muted">
-          saved on manual tracker administration
-          <br />
-          over one recruiting cycle
+          saved on manual tracker administration{" "}
+          <span className="desk:block">over one recruiting cycle</span>
         </span>
       </div>
     </div>

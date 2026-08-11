@@ -241,19 +241,38 @@ export function Hero({
                 that is the arrangement, not the line. It is proof for the CTA
                 and it belongs under the CTA.
               */}
-              <p className="order-6 mt-5 flex items-center gap-3 text-micro leading-[1.5] text-ink-muted desk:order-none desk:mt-6 desk:text-small">
-                {/*
-                  The rule is desktop-only. Jon called it "the big dash" and he
-                  is right that at phone width it reads as a stray mark rather
-                  than as the lead-in to a credit: on desktop it starts a line
-                  that sits in a 490px column and the rule gives it an origin,
-                  while stacked full-width it has nothing to lead into.
-                */}
+              {/*
+                Third pass, and the diagnosis changed. Jon's first note was that
+                it looked identical to the supporting line; dropping it to 12px
+                grey fixed that and made it an orphan instead — a lone quiet
+                sentence 36px under the button with 56px of section padding
+                after it, belonging to nothing on either side.
+
+                So: attached rather than shrunk. It sits 12px under the CTA,
+                close enough to read as a caption on the button, and the
+                credential inside it takes ink weight so the line has a focal
+                point instead of being uniform grey. `text-small` rather than
+                `text-micro` — 12px is the size this page uses for methodology
+                notes, and this is its only piece of social proof.
+
+                It is still clearly subordinate to the supporting line above the
+                CTA, which is 16px in the darker reading grey. The rule stays
+                desktop-only: Jon called it "the big dash", and on desktop it
+                starts a line inside a 490px column where it has an origin,
+                while stacked full width it has nothing to lead into.
+              */}
+              <p className="order-6 -mt-1 flex items-center gap-3 text-small leading-[1.5] text-ink-muted desk:order-none desk:mt-6">
                 <span
                   aria-hidden="true"
                   className="hidden h-px w-8 shrink-0 bg-ink-faint desk:block"
                 />
-                Built by a former Goldman Sachs banker for recruitment.
+                <span>
+                  Built by a{" "}
+                  <span className="font-medium text-ink">
+                    former Goldman Sachs banker
+                  </span>{" "}
+                  for recruitment.
+                </span>
               </p>
             </div>
           </div>

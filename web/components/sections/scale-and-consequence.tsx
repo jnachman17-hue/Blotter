@@ -41,8 +41,23 @@ import {
 function ConsequenceVisual() {
   return (
     <div className="mt-14">
-      <p className="mb-3 flex items-center gap-3 text-[14px] font-medium text-navy-900">
-        <span aria-hidden="true" className="h-px w-6 shrink-0 bg-navy-400" />
+      {/*
+        The leader tick turns ninety degrees on a phone.
+
+        A 24px horizontal dash works on desktop because the annotation is one
+        line beside a wide asset and the dash points at it. At 350px both
+        annotations wrap to two lines, and a horizontal dash beside line one
+        with nothing under it reads as a stray mark rather than as a leader.
+
+        The vertical tick is the page's own idiom — the same 2px bar the eyebrow
+        uses, aligned to the cap height of the first line — so it stays put
+        however the text wraps and it is a mark this page already speaks.
+      */}
+      <p className="mb-3 flex items-start gap-3 text-[14px] font-medium text-navy-900 desk:items-center">
+        <span
+          aria-hidden="true"
+          className="mt-[0.32em] h-[0.9em] w-[2px] shrink-0 bg-navy-400 desk:mt-0 desk:h-px desk:w-6"
+        />
         One thread buried in 628 emails
       </p>
 
@@ -72,12 +87,23 @@ function ConsequenceVisual() {
         it wraps on a phone instead of holding 1124px open. It stays outside
         the email asset and covers nothing, per §15.
       */}
+      {/*
+        The same tick, and on a phone it moves to the front so both annotations
+        read from the same edge. Right-aligning this one is what made the pair
+        frame the asset diagonally on desktop; at 350px there is no diagonal to
+        make, and a right-aligned wrapped paragraph in a left-aligned section
+        just looks like a mistake. `order-first` handles it without duplicating
+        the copy.
+      */}
       <p
-        className="mt-3 flex items-center justify-end gap-3 text-[14px] font-medium text-navy-900"
+        className="mt-3 flex items-start gap-3 text-[14px] font-medium text-navy-900 desk:items-center desk:justify-end"
         style={{ maxWidth: PAGE_BOX_W }}
       >
         A stale tracker does not direct you back before the deadline passes
-        <span aria-hidden="true" className="h-px w-6 shrink-0 bg-navy-400" />
+        <span
+          aria-hidden="true"
+          className="order-first mt-[0.32em] h-[0.9em] w-[2px] shrink-0 bg-navy-400 desk:order-last desk:mt-0 desk:h-px desk:w-6"
+        />
       </p>
     </div>
   );
