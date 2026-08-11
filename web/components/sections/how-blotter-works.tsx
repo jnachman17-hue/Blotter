@@ -38,7 +38,18 @@ import { DayTimeline } from "@/components/section-3/day-timeline";
 
 const EYEBROW = "How Blotter works";
 
-const HEADLINE = "You manage the relationships. Blotter maintains the moving parts.";
+/**
+ * Exported because mobile 02 reuses it verbatim as its deck.
+ *
+ * `09-page-argument-rework.md` §4: this headline and
+ * `Keep the tracker you already built.` are two components of one claim, so the
+ * merged phone section carries both rather than picking one. Exported rather
+ * than copied, so the two surfaces cannot drift apart on a ratified string.
+ */
+export const SECTION_3_HEADLINE =
+  "You manage the relationships. Blotter maintains the moving parts.";
+
+const HEADLINE = SECTION_3_HEADLINE;
 
 const SUPPORTING =
   "Add the contacts you are networking with and keep the context that matters to you. Blotter uses relevant activity from Gmail and Calendar to keep each relationship’s status, last contact, scheduled calls, and next move current inside your Google Sheet.";

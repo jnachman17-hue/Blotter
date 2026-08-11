@@ -106,31 +106,89 @@ and `Contacts` sitting untouched beside `Blotter` says *this is the sheet you
 already had*. Ownership and preservation are two readings of one picture, so
 they are one section.
 
-### It costs no new headline copy
+### It costs no new headline copy — REOPENED August 11, 2026
 
-Section 3's headline is a compression of its own supporting paragraph — it
-previews a claim rather than adding one. So the merged section takes
-**`Keep the tracker you already built.`**, which is already ratified, already
-the right opener because it kills the switching-cost objection first, and the
-ownership claim is carried by the supporting paragraph, the divider and the
-refusals.
+The original position: the merged section takes
+**`Keep the tracker you already built.`**, already ratified, already the right
+opener because it kills the switching-cost objection first, with the ownership
+claim carried by the supporting paragraph, the divider and the refusals.
+**A headline is deleted rather than invented**, which is a safer override than
+new copy.
 
-**A headline is deleted rather than invented.** That is a safer override than
-new copy and it is the reason this rework does not need a copywriting pass.
+**Jon reopened this on August 11, 2026** and the observation is right:
 
-### The mechanism stays a claim, not a second demonstration
+> *`You manage the relationships. Blotter maintains the moving parts.` and
+> `Keep the tracker you already built.` are two components of the same thing.
+> Need to think about which one we use, or a hybrid, for the new section.*
 
-The hero film demonstrates it. The Friday timeline's three stage labels are
-already ratified and are the mechanism in its most compressed form:
+That is exactly what §3's inventory says — C is ownership, D is preservation,
+and they collapse because one sheet proves both. If the merged section proves
+both, a headline stating only preservation **under-claims its own picture**,
+and the divider is mostly proving the half the headline does not say. The §1
+fault again, in miniature.
 
-> `RECRUITING HAPPENS HERE` → `BLOTTER KEEPS IT CURRENT` → `YOUR TRACKER STAYS CURRENT`
+**There is also a duplicate hiding inside the section.** The supporting
+paragraph opens *"Keep the Google Sheet and contacts you already built"*, which
+is `Keep the tracker you already built.` said twice in two consecutive lines.
+That sentence is row 4 of §1's table — one of the four statements of the claim —
+and merging the sections puts it directly under a headline that already says it.
 
-Three labels, roughly 80px, placed directly above the sheet. A *stated claim*
-under a *proved one* is a caption; a second demonstration of an already
-demonstrated thing is the redundancy being removed.
+#### The candidates
 
-Shrinking the timeline instead was rejected: legible or small, pick one — the
-same trap `components/layout/fit.tsx` documents.
+| | Headline | What it costs |
+|---|---|---|
+| A | `Keep the tracker you already built.` alone | preservation only; ownership goes unclaimed above its own visual |
+| B | `You manage the relationships. Blotter maintains the moving parts.` alone | ownership only; preservation leans entirely on the tab strip and the reassurance claims |
+| C | **Both. A as the headline, B as the deck beneath it, and the first sentence of the supporting paragraph cut** | two ratified strings, nothing invented, nothing repeated |
+| D | A new compressed hybrid | invented copy, a copywriting pass and a fresh ratification |
+
+**C is the recommendation.** It answers the observation literally — they are two
+components of one thing, so use both, in the order the picture proves them:
+preservation from the tab strip, then ownership from the divider. Every string
+stays verbatim and the only edit is a deletion. The section then states
+preservation once, ownership once, and what Blotter actually does once:
+
+> **Keep the tracker you already built.**
+> *You manage the relationships. Blotter maintains the moving parts.*
+> Blotter creates a standardized recruiting view in a new tab and keeps the
+> changing activity current from Gmail and Calendar.
+
+**Unratified. C is the working position for the build so Jon can react to it in
+place; it is not decided.**
+
+### The mechanism is not restated at all — AMENDED August 11, 2026
+
+**Superseded. Jon ruled the three stage labels are cut from mobile outright.**
+
+The original position, kept for the record: the hero film demonstrates the
+mechanism, so the Friday timeline's three ratified stage labels —
+`RECRUITING HAPPENS HERE` → `BLOTTER KEEPS IT CURRENT` →
+`YOUR TRACKER STAYS CURRENT` — would survive as a compressed line of roughly
+80px directly above the sheet, on the argument that *a stated claim under a
+proved one is a caption*.
+
+**Built and rejected on sight, August 11, 2026.** Jon's words: it *"makes no
+sense"* there, and it does not.
+
+The reasoning was wrong in a way worth naming, because it is the same error this
+whole document exists to remove. The labels are not above the thing that proves
+them: the film is about 1,100px earlier and what sits directly beneath them is a
+picture of the **ownership split**. So they caption a claim the visual below
+them does not make — *words over a visual that proves something else*, which is
+precisely the §1 fault, reintroduced in a new place by the fix for it.
+
+They came out of the section being deleted and were parked in the nearest
+available one. That is not a reason to keep them.
+
+**Nothing is lost.** The supporting paragraph already carries the claim in
+words: *"keeps the changing activity current from Gmail and Calendar."*
+
+Considered and not chosen: moving them under the hero film, where the caption
+argument would be literally true. Available later if the mechanism ever reads as
+under-stated on the phone.
+
+Shrinking the timeline instead was rejected earlier and stays rejected: legible
+or small, pick one — the same trap `components/layout/fit.tsx` documents.
 
 ### The refusals move to the ownership section
 
@@ -292,3 +350,42 @@ amendment table when the work is done.
 
 None of these has been applied. This document is the record of the decision, not
 of the work.
+
+---
+
+## 8. The web ledger — every argument change, why, and what web owes
+
+**Jon's instruction, August 11, 2026:**
+
+> *We are making these changes to mobile because I realized they are repetitive
+> and don't actually match the visuals they have associated with them on web, so
+> the essence of these changes will need to move over to web as well. We need to
+> document all changes made and why, and then park those and come back to them
+> when we go back and update web after completing mobile.*
+
+So this is the running list. **Every argument-level change made on the phone
+gets a row here at the moment it is made**, whether or not it transfers. A row
+that says "does not transfer" is as useful as one that does — it stops a later
+session applying a mobile decision to desktop on mobile reasoning.
+
+This is not `08-desktop-changes-pending.md`. That file is presentation and
+defects. This is **what the page claims and in what order**, which is the thing
+Jon says was actually wrong.
+
+| # | Change on mobile | Why | Web owes |
+|---|---|---|---|
+| 1 | Section 3 stops existing; its claim, visual and copy are redistributed | Three consecutive headlines stated one claim, and Section 3's visual proved the mechanism while its words claimed ownership | **The fault, yes. The deletion, no.** Desktop has room and no hero film, so the mechanism may still need its own section there. §6 |
+| 2 | The boundary line and the closing line are cut | *"Blotter keeps the logistics current"* and *"Blotter keeps the logistics synchronized"* are near-synonyms in one section, and `03-SECTION-3` line 341 shows the duplication was seen at ratification and mitigated with whitespace | **Yes, unchanged.** This is copy, not layout, and the whitespace mitigation is weak on desktop too |
+| 3 | The three refusals move to the ownership section | They are the ownership claim stated negatively. *"You write the messages"* and *"no generic mass AI outreach"* are one sentence facing two directions. Privacy is about what Blotter **reads**; these are about what it refuses to **write** | **Yes.** The argument for the move is not a space argument |
+| 4 | The three stage labels are cut outright | They caption a mechanism claim, and the visual beneath them proves ownership. Rejected on sight August 11, 2026. §4 | **Not applicable.** On desktop they sit inside the timeline they label, which is correct. Do not touch them |
+| 5 | The merged section's headline is reopened; C is the working position | The two headlines are two components of one claim, and the supporting paragraph's first sentence repeats the headline. §4 | **Yes, and this is the biggest one.** Whatever headline arrangement is chosen has to hold on both surfaces or the two pages make different claims |
+| 6 | The ten-column sheet becomes a phone treatment | Legibility. §5 | **No.** Pure responsive. Desktop keeps the full sheet |
+
+**The principle, restated because it governs every row:** layout may diverge
+between devices. **The argument may not.** A row above that transfers and is not
+applied is a content fork, and that is worse debt than the section-numbering
+mismatch already accepted in `08-desktop-changes-pending.md` §5.
+
+**Where the work lands:** amendments to `03-SECTION-3`, `04-SECTION-4` and
+`05-SECTION-5`, since that is where ratified copy lives. Not before mobile is
+finished.

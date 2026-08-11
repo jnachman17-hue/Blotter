@@ -165,6 +165,33 @@ export const BADGES = BOUNDARIES.map((b) => b.label);
   boundary line or the bottom of the closing line. Ratified by Jon,
   August 5, 2026.
 */
+/**
+ * The three refusals alone, without the boundary and closing lines.
+ *
+ * Mobile 02 takes the refusals and cuts the two statements — they are two of the
+ * four duplicate statements of the ownership claim that
+ * `09-page-argument-rework.md` §1 catalogues. Desktop still renders `Facing()`
+ * below with all three parts, unchanged.
+ */
+export function RefusalPanel({ className }: { className?: string }) {
+  return (
+    <ul
+      className={cn(
+        "flex flex-col rounded-xl bg-[#fbf9f5] px-5 py-2 ring-1 ring-navy-900/[0.07]",
+        className,
+      )}
+    >
+      {BOUNDARIES.map((item, i) => (
+        <BoundaryRow
+          key={item.label}
+          item={item}
+          last={i === BOUNDARIES.length - 1}
+        />
+      ))}
+    </ul>
+  );
+}
+
 function BoundaryRow({ item, last }: { item: Boundary; last: boolean }) {
   return (
     <li

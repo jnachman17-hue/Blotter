@@ -169,6 +169,45 @@ export function Reassurance() {
   );
 }
 
+/**
+ * The same three claims, stacked, for a phone.
+ *
+ * Three across at sheet width is 116px per claim at 350, which wraps every
+ * label to three lines. Jon asked on August 11, 2026 to see them stacked.
+ *
+ * Same glyphs, same tints, same order, same copy — only the axis changes, so
+ * the claim and its evidence are untouched. The hairline moves from between the
+ * columns to between the rows for the same reason: it is what separates three
+ * statements from one paragraph.
+ */
+export function ReassuranceStack() {
+  return (
+    <ul className="flex flex-col">
+      {CLAIMS.map((c, i) => (
+        <li
+          key={c.label}
+          className={cn(
+            "flex items-center gap-3 py-2",
+            i > 0 && "border-t border-navy-900/[0.10]",
+          )}
+        >
+          <span
+            className="grid size-8 shrink-0 place-items-center rounded-lg"
+            style={{ background: c.tint }}
+          >
+            <Mark tint={c.tint} strike={c.strike}>
+              {c.art}
+            </Mark>
+          </span>
+          <span className="text-[14.5px] leading-snug font-medium text-navy-900">
+            {c.label}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 /* ------------------------------------------------ beat 1 · the Blotter tab */
 
 /**

@@ -40,8 +40,8 @@ import { cn } from "@/lib/cn";
 
 /* ------------------------------------------------------------- exact copy */
 
-const KEEP_H = "Keep the tracker you already built.";
-const KEEP_SUB =
+export const KEEP_H = "Keep the tracker you already built.";
+export const KEEP_SUB =
   "Keep the Google Sheet and contacts you already built. Blotter creates a standardized recruiting view in a new tab and keeps the changing activity current from Gmail and Calendar.";
 
 const ACT_H = "Know exactly what needs your attention.";

@@ -1133,3 +1133,69 @@ three stage labels.
 So the zone labels become two compact lines **beneath** the sheet, each naming
 its five fields in the ratified column order and keeping desktop's exact
 wording. That discharges §12 literally and explains the crop in the same breath.
+
+### The three stage labels are cut from mobile
+
+**Ruled by Jon, August 11, 2026, on sight.** They were built above the phone
+sheet per `09` §4 and he rejected them immediately: they *"make no sense"*
+there.
+
+He is right, and the failure is instructive rather than cosmetic. `09` §4 had
+argued the labels survive because *a stated claim under a proved one is a
+caption*. But they are not above the thing that proves them — the hero film is
+1,100px earlier — and what sits directly beneath them is a picture of the
+ownership split. So they caption a claim the visual below them does not make.
+**That is the §1 fault of the whole rework, reintroduced by the fix for it.**
+
+They came out of the section being deleted and were parked in the nearest
+available one, which is not a reason. The claim survives in words in the
+supporting paragraph. Recorded in the web ledger as not transferring: on desktop
+they sit inside the timeline they label, which is correct.
+
+### The merged section's headline is reopened
+
+**Jon, August 11, 2026:** `You manage the relationships. Blotter maintains the
+moving parts.` and `Keep the tracker you already built.` are *"two components of
+the same thing"*, and which one the merged section takes, or whether it takes a
+hybrid, is undecided.
+
+The observation matches `09` §3's own inventory — C is ownership, D is
+preservation, and they collapse because one sheet proves both. So a headline
+stating only preservation under-claims its own picture.
+
+Building on option C as a working position, unratified: both ratified strings,
+`Keep the tracker you already built.` as the headline and `You manage the
+relationships. Blotter maintains the moving parts.` as the deck, with the
+supporting paragraph's first sentence cut because it repeats the headline almost
+word for word. Nothing invented; the only edit is a deletion. Candidates and
+reasoning in `09` §4.
+
+### Every argument change is now logged for web, as it is made
+
+**Jon's instruction, August 11, 2026.** The mobile consolidation is happening
+because the sections are repetitive and their visuals do not match their
+headlines *on web too*, so the essence of every change has to reach desktop.
+Each one is to be written down with its reasoning at the moment it is made,
+parked, and worked through after mobile is finished.
+
+`09` §8 is that ledger. It is deliberately separate from
+`08-desktop-changes-pending.md`: 08 is presentation and defects, 09 §8 is what
+the page claims and in what order, which is the thing he says was actually
+wrong. Rows that do **not** transfer are recorded too, so a later session does
+not apply a mobile decision to desktop on mobile reasoning.
+
+### The zone labels degraded into a legend, and that was a real loss
+
+Noticed by Jon, August 11, 2026, unprompted. Desktop states the ownership split
+**spatially** — two headings sized to their zones, each with a bracket rule
+spanning the columns it names, sitting on top of them. The label points at its
+own columns.
+
+The first phone crop replaced that with two text lines beneath the sheet. That
+is a key, not a claim, and it should have been flagged as a downgrade rather
+than presented as discharging `05-SECTION-5` §12.
+
+**The underlying cause is the crop itself.** After cropping, the manual zone is
+94px wide and cannot hold a label. So the crop bought the divider at rest by
+giving up the device that explains what the divider means. That cost was
+understated when the crop was chosen.
