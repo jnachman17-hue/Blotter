@@ -1427,3 +1427,95 @@ broken.
 
 The run wrote one lead. It is `is_internal = true` and `real_leads` still reads
 **1**, which is the one real lead and unchanged.
+
+### Seven mobile changes, August 11, 2026
+
+**The film's black bars, diagnosed properly.** They would not reproduce at
+390x844 and reproduce every time at **390x680**, which is the same phone with
+Safari's address bar showing. Measured there: the slot came out 337x300, an
+aspect of 1.125 against the 0.8 it asks for, the film rendering 240x300 inside
+it, 48px of black either side.
+
+**The cause is flex, not the film.** The slot is an item in a `flex-col`
+container with `h-full`, and when the step's content is taller than the sheet
+the item shrinks — **`flex-shrink` beats `aspect-ratio`**. The box keeps its
+width, loses its height, and the film, which fits to whichever ratio is tighter,
+letterboxes horizontally.
+
+Three fixes, all of them earning their place. `flex: none` makes the squash
+impossible. The `62dvh * 0.8` cap is gone: it bought "no scrolling" the sheet
+gives up anyway, and at 680px tall it was capping the **width** at 337, which is
+why full-bleed never reached his device. And `body.bare` no longer paints black,
+so any future mismatch reads as a soft inset rather than as bars.
+
+Result at 390x680: slot 390x487.5 at exactly 0.8, film filling it. The film is
+**62% wider than what he was looking at**.
+
+**The sticky header was never sticky, on either surface.** At `scrollY` 2200 it
+sat at document y=850, long gone. It is `position: sticky`, but its parent is
+the hero's 910px `field-open` wrapper and a sticky element cannot leave its
+parent's box. Jon asked for a header that follows the page; it was supposed to
+already. Fixed below the breakpoint with `position: fixed`; **desktop's half is
+a confirmed defect for `08`**, and it makes `08` §2's own reasoning wrong, since
+that argued against the bottom bar partly because "the header CTA is the only
+persistent one".
+
+Both modes built for comparison at `?header=shrink`. Height only: the CTA must
+not move, because it is a target the reader may already be reaching for.
+
+**The zone labels travel, and lost the bracket.** Jon: the 19px heading over a
+12.5px subtitle over an upside-down-U bracket "could use some serious UI
+improvement". The insight that made it easy: **the bracket existed to bind a
+label to a span of columns, and the label now rides that span** — it centres on
+whatever slice of its zone is on screen. Position does the binding
+continuously, so a drawn bracket is a second answer to a settled question. Three
+stacked elements become one, 64px becomes 30px, and the marker is the page's own
+2px eyebrow bar rather than an invented shape.
+
+Motion per `emil-design-eng`: transform and opacity only, transitions rather
+than keyframes so a reversed swipe retargets instead of restarting, and a 2px
+blur across the swap because a plain cross-fade shows two labels overlapping
+where blur lets the eye read one label changing. 200ms on
+`cubic-bezier(0.23, 1, 0.32, 1)`. Reduced motion keeps the fade and drops the
+travel.
+
+The veil starts below the label band rather than at the top of the scroller. It
+obscures the columns the reader has not reached; the label answers the question
+that raises, and veiling it would mute the answer.
+
+**The disclosure control moved onto the group header.** Jon: a full-width
+`Show fewer` row "makes no sense at all". Correct, and the reason is that a row
+in a spreadsheet is a record, and that one was a control wearing a record's
+clothes. The plus now sits beside the count and the header is the trigger, which
+is what Section 6 already does. The list contains only actions, in either state.
+
+**The section CTA was floating and is kept.** Right alignment is a device for a
+two-column composition; with one column it reads as an element that missed its
+anchor. Now on the section's left axis, full-width button, closer to the sheet.
+
+Jon left cutting it open and it is kept, for a reason worth recording: dropping
+it would mean `cta_location = "actions"` never fires from a phone, which
+silently costs the comparative metric that says where mobile readers convert
+against where desktop readers do. The header CTA doubling it is the arrangement
+he already accepted in the hero.
+
+**`~60 hours` is bounded on a phone.** His note: it "just sort of seems floating
+there". Structural rather than decorative — this page's theme is a bounded-box
+layout and on a phone this was the only pulled-out figure with nothing holding
+it. Desktop does not have the problem because the figure sits in a two-column
+row and the column edge is the boundary. A ring and quiet surface, no shadow and
+no fill: `02-SECTION-2` §8 keeps this proof subordinate and forbids a badge, so
+the box may enclose the figure but must not promote it.
+
+**Section boundaries get a hairline.** The numerals are unchanged, as he asked.
+What they lacked was an edge: whitespace and a field tint too subtle to read at
+phone brightness were the only things separating two sections. Drawn from the
+numeral rather than the section so it lands once per section, including the
+merged section where the numeral sits below a desktop-only beat.
+
+**A trap that cost twenty minutes.** After a CSS syntax error the dev server
+kept serving the broken stylesheet and the page stopped hydrating — clicking a
+CTA did nothing, with no error that named the cause. The production build was
+already passing. `CURRENT-HANDOFF.md` warns that the dev server's Tailwind goes
+stale; this is the harsher version. **If the page stops responding and the build
+is clean, restart the dev server before debugging anything else.**

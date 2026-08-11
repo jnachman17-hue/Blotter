@@ -1,4 +1,6 @@
-import { SiteHeader } from "@/components/site-header";
+import { Suspense } from "react";
+
+import { SiteHeader, SiteHeaderBar } from "@/components/site-header";
 import { PageView } from "@/components/page-view";
 import { Hero } from "@/components/sections/hero";
 import { ScaleAndConsequence } from "@/components/sections/scale-and-consequence";
@@ -50,7 +52,15 @@ export default function Page() {
         section. It resolves to white before Section 2 begins.
       */}
       <div className="field-open">
+        {/*
+        `SiteHeader` reads `?header=` for the stage-10 comparison, so it needs a
+        boundary. The fallback is the header in its default mode, which means
+        the bar is server-rendered and identical unless the parameter is
+        present — no gap, no shift, and the page stays static.
+      */}
+      <Suspense fallback={<SiteHeaderBar />}>
         <SiteHeader />
+      </Suspense>
         <main id="top">
           <Hero />
         </main>

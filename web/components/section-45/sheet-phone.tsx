@@ -291,7 +291,6 @@ const FULL_COLS = [
 ];
 const FULL_W = FULL_GUTTER + FULL_COLS.reduce((n, c) => n + c.w, 0);
 const YOURS_W = FULL_COLS.slice(0, 5).reduce((n, c) => n + c.w, 0);
-const MAINT_W = FULL_COLS.slice(5).reduce((n, c) => n + c.w, 0);
 /** Where the divider sits in natural coordinates. */
 const SPLIT_X = FULL_GUTTER + YOURS_W;
 
@@ -330,6 +329,9 @@ function useActiveZone(ref: React.RefObject<HTMLDivElement | null>) {
     zone: "yours" as "yours" | "maintained",
     progress: 0,
     scrollable: false,
+    /** Visible window in content coordinates, so labels can ride it. */
+    left: 0,
+    width: 0,
   });
   const furthest = useRef(0);
 
@@ -346,9 +348,17 @@ function useActiveZone(ref: React.RefObject<HTMLDivElement | null>) {
     setState((prev) =>
       prev.zone === zone &&
       prev.scrollable === scrollable &&
-      Math.abs(prev.progress - furthest.current) < 0.004
+      Math.abs(prev.progress - furthest.current) < 0.004 &&
+      Math.abs(prev.left - el.scrollLeft) < 1 &&
+      Math.abs(prev.width - el.clientWidth) < 1
         ? prev
-        : { zone, progress: furthest.current, scrollable },
+        : {
+            zone,
+            progress: furthest.current,
+            scrollable,
+            left: el.scrollLeft,
+            width: el.clientWidth,
+          },
     );
   }, [ref]);
 
@@ -369,41 +379,134 @@ function useActiveZone(ref: React.RefObject<HTMLDivElement | null>) {
 }
 
 /**
- * The two zone labels at their full ratified size, riding the scroll.
+ * The two zone labels, travelling.
  *
- * This is desktop's own composition — a heading and subtitle sized to the zone,
- * over a bracket rule spanning its columns — reachable on a phone because the
- * sheet is at 1:1 rather than scaled. The label is `sticky` so it stays on
- * screen while any part of its zone is, instead of sliding away at the moment
- * the reader is reading the columns it names.
+ * Rebuilt August 11, 2026 on Jon's note that a 19px heading over a 12.5px
+ * subtitle over an upside-down-U bracket "could use some serious UI
+ * improvement". He is right, and the reason is that the old treatment was
+ * solving a problem this version no longer has.
+ *
+ * **The bracket existed to bind a label to a span of columns.** Now the label
+ * *rides* that span — it centres on whatever slice of its own zone is on
+ * screen and moves as the reader moves — so the binding is done by position,
+ * continuously, and a drawn bracket is a second answer to a question already
+ * answered. It is cut. Three stacked elements become one small block, 64px of
+ * furniture becomes about 30px, and the sheet gets the room back.
+ *
+ * What replaces it is the page's own eyebrow: a 2px vertical bar in the zone's
+ * colour, which `scale-and-consequence.tsx` and `how-blotter-works.tsx` already
+ * use to mark a line as a label. Nothing invented, and the two surfaces now
+ * mark a label the same way.
+ *
+ * ## The motion, and why it is built this way
+ *
+ * - **`transform: translateX`, never `left`.** Position and opacity are the two
+ *   properties that skip layout and paint; animating `left` on a scroll handler
+ *   would repaint the sheet under it every frame.
+ * - **Transitions, not keyframes.** A reader can reverse a swipe mid-gesture,
+ *   and a transition retargets from where it is while a keyframe restarts from
+ *   zero.
+ * - **A 2px blur across the swap.** A plain cross-fade of two labels shows both
+ *   at once and reads as two objects overlapping; blurring the outgoing one
+ *   bridges the gap so the eye sees one label changing rather than two labels
+ *   trading places.
+ * - **`cubic-bezier(0.23, 1, 0.32, 1)` at 200ms.** The built-in easings are too
+ *   soft to read at this size, and anything past 300ms on an element tied to a
+ *   gesture feels like lag rather than polish.
+ *
+ * Reduced motion keeps the fade, which carries meaning, and drops the travel,
+ * which is decoration — the label simply centres itself without sliding.
  */
-function ZoneBand({ zone }: { zone: "yours" | "maintained" }) {
+function ZoneLabel({
+  label,
+  sub,
+  accent,
+  tone,
+  x,
+  active,
+}: {
+  label: string;
+  sub: string;
+  accent: string;
+  tone: string;
+  x: number;
+  active: boolean;
+}) {
   return (
-    <div className="mb-3 flex items-end" style={{ paddingLeft: FULL_GUTTER }}>
-      <div style={{ width: YOURS_W }}>
-        <div
-          className="sticky left-0 transition-opacity duration-300"
-          style={{ opacity: zone === "yours" ? 1 : 0.4 }}
+    <div
+      className="zone-label absolute top-0 left-0 flex gap-2"
+      style={{
+        transform: `translateX(${Math.round(x)}px)`,
+        opacity: active ? 1 : 0,
+        filter: active ? "blur(0px)" : "blur(2px)",
+      }}
+    >
+      <span
+        aria-hidden="true"
+        className="mt-[2px] w-[2px] shrink-0 self-stretch rounded-full"
+        style={{ background: accent }}
+      />
+      <span className="flex flex-col gap-[3px]">
+        <span
+          className="text-[12.5px] leading-none font-semibold tracking-[-0.005em] whitespace-nowrap"
+          style={{ color: tone }}
         >
-          <p className="font-display text-[19px] leading-none font-bold tracking-[-0.01em] text-ink">
-            {YOURS_LABEL}
-          </p>
-          <p className="mt-1.5 text-[12.5px] text-ink-muted">{YOURS_SUB}</p>
-        </div>
-        <div className="mt-3 h-[10px] border-x-2 border-t-2 border-ink-faint" />
-      </div>
-      <div style={{ width: MAINT_W }}>
-        <div
-          className="sticky left-0 transition-opacity duration-300"
-          style={{ opacity: zone === "maintained" ? 1 : 0.4 }}
-        >
-          <p className="font-display text-[19px] leading-none font-bold tracking-[-0.01em] text-blotter-700">
-            {MAINT_LABEL}
-          </p>
-          <p className="mt-1.5 text-[12.5px] text-blotter-700/75">{MAINT_SUB}</p>
-        </div>
-        <div className="mt-3 h-[10px] border-x-2 border-t-2 border-blotter-400" />
-      </div>
+          {label}
+        </span>
+        <span className="text-[11px] leading-none whitespace-nowrap text-ink-muted">
+          {sub}
+        </span>
+      </span>
+    </div>
+  );
+}
+
+/**
+ * Centres each label on the visible slice of its own zone.
+ *
+ * The maths is one idea: intersect the zone with the window, take the midpoint,
+ * subtract half the label. Clamped to the window so a label never walks off its
+ * own edge when only a sliver of its zone is left, which is the moment it is
+ * fading out and most likely to be noticed doing something wrong.
+ */
+const LABEL_W = 190;
+
+function ZoneBand({
+  zone,
+  left,
+  width,
+}: {
+  zone: "yours" | "maintained";
+  left: number;
+  width: number;
+}) {
+  function place(start: number, end: number) {
+    const from = Math.max(start, left);
+    const to = Math.min(end, left + width);
+    const mid = (from + to) / 2;
+    const min = left + 4;
+    const max = left + width - LABEL_W - 4;
+    return Math.min(Math.max(mid - LABEL_W / 2, min), Math.max(min, max));
+  }
+
+  return (
+    <div className="relative mb-3 h-[30px]">
+      <ZoneLabel
+        label={YOURS_LABEL}
+        sub={YOURS_SUB}
+        accent="var(--color-ink-faint, #a4a8ac)"
+        tone="var(--color-ink, #12233d)"
+        x={place(FULL_GUTTER, SPLIT_X)}
+        active={zone === "yours"}
+      />
+      <ZoneLabel
+        label={MAINT_LABEL}
+        sub={MAINT_SUB}
+        accent="var(--color-blotter-400, #d9b64a)"
+        tone="var(--color-blotter-700, #8a6d12)"
+        x={place(SPLIT_X, FULL_W)}
+        active={zone === "maintained"}
+      />
     </div>
   );
 }
@@ -466,7 +569,16 @@ function Veil({
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-y-0 right-0 z-30 w-[64%]"
+      /*
+        Starts below the label band rather than at the top of the scroller. The
+        veil's job is to obscure the columns the reader has not reached; the
+        label's job is to tell them what those columns are. Veiling the label
+        would mute the one element that answers the question the veil raises.
+
+        52px is the band's own height plus the scroller's top padding, so the
+        veil begins exactly where the grid does.
+      */
+      className="pointer-events-none absolute top-[52px] right-0 bottom-0 z-30 w-[64%]"
       style={{ opacity: veilOpacity, transition: "opacity 220ms ease-out" }}
     >
       <span
@@ -507,7 +619,7 @@ function Veil({
 function SwipeSheet() {
 
   const scroller = useRef<HTMLDivElement>(null);
-  const { zone, progress, scrollable } = useActiveZone(scroller);
+  const { zone, progress, scrollable, left, width } = useActiveZone(scroller);
 
   return (
     <SheetWindow
@@ -527,7 +639,7 @@ function SwipeSheet() {
              travel across the divider. */
         >
           <div className="sheet-type text-[13px]" style={{ width: FULL_W }}>
-            <ZoneBand zone={zone} />
+            <ZoneBand zone={zone} left={left} width={width} />
 
             <div className="relative">
               {/* Letter strip, scrolling with the grid it labels. */}

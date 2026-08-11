@@ -144,10 +144,27 @@ export function TrackerAndActions() {
         </div>
 
         {/*
-          The page's second primary CTA. Right-aligned to sit under beat 2's
-          flipped headline rather than restarting the section's left axis.
+          The page's second primary CTA. Right-aligned on desktop to sit under
+          beat 2's flipped headline rather than restarting the section's left
+          axis.
+
+          **On a phone it was floating**, which was Jon's word for it on
+          August 11, 2026, and right: right-alignment is a device for a
+          two-column composition, and with one column it reads as an element
+          that missed its anchor. It now sits on the section's own left axis
+          with a full-width button, the same treatment the closing block got
+          when the footer was rebuilt, and closer to the sheet so it belongs to
+          the list above it rather than trailing after it.
+
+          **Kept rather than cut**, which Jon left open. Two reasons. It is the
+          conversion moment — the button directly under the list of things you
+          owe — and cutting it would mean `cta_location = "actions"` never fires
+          from a phone, which silently costs the one comparative metric that
+          says where mobile readers convert against where desktop readers do.
+          The header CTA doubling it is the same arrangement he already accepted
+          in the hero.
         */}
-        <div className="mt-14 flex flex-col items-end gap-4">
+        <div className="mt-9 flex flex-col items-stretch gap-4 desk:mt-14 desk:items-end">
           <p className="font-display text-[1.375rem] leading-[1.35] font-semibold tracking-[-0.015em] text-navy-900">
             {CTA_LINE}
           </p>

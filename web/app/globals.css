@@ -176,6 +176,8 @@
   "white and very light blue-gray". A dark mode would falsify the assets.
 */
 :root {
+  /* The fixed mobile header's height, so the page can reserve it. */
+  --header-h: 60px;
   color-scheme: light;
 }
 
@@ -219,6 +221,32 @@ body {
 */
 .section-number {
   display: none;
+}
+
+/*
+  The travelling zone labels.
+
+  Transform and opacity only, so the sheet underneath is never repainted while
+  the label moves. Blur joins the fade across the swap: a plain cross-fade shows
+  both labels at once and reads as two objects overlapping, where blurring the
+  outgoing one lets the eye read a single label changing.
+
+  Reduced motion keeps the fade, which carries meaning, and drops the travel and
+  the blur, which are decoration.
+*/
+.zone-label {
+  transition:
+    transform 200ms cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 200ms cubic-bezier(0.23, 1, 0.32, 1),
+    filter 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zone-label {
+    transition: opacity 200ms ease;
+    filter: none !important;
+  }
 }
 
 /*
@@ -267,30 +295,120 @@ body {
   aspect ratio derives the height on both surfaces: 520 x 1350/1080 is exactly
   the ratified 650, so there is one number here rather than two that can drift.
 
-  `62dvh` caps the film so the copy and both controls still fit a phone screen
-  without the sheet having to scroll to reach `Continue`. `dvh` rather than
-  `vh`, because iOS Safari's `vh` is the tallest the viewport ever gets and the
-  cap has to hold while the address bar is showing.
+  ## `flex: none` is the bug fix, not a tidy-up
 
-  A rule rather than utilities on the element: the phone cap has to switch off
-  above the breakpoint, which an inline style cannot express, and doing it in
-  Tailwind takes four arbitrary `desk:` variants on one div to say what six
-  lines of CSS say plainly.
+  Jon reported black bars beside the film on a real phone and they would not
+  reproduce at 390x844. They reproduce at 390x680, which is the same phone with
+  Safari's address bar showing. Measured there: the slot came out **337 x 300**,
+  an aspect of 1.125 against the 0.8 it asks for, with the film rendering
+  240 x 300 inside it and 48px of fill either side.
 
-  Verified against a production build, both surfaces: 520 x 650 at 1440, and the
-  full sheet width at 390.
+  The cause is flex, not the film. The slot is an item in a `flex-col` container
+  with `h-full`; when the step's content is taller than the sheet, the item
+  shrinks, and **`flex-shrink` beats `aspect-ratio`**. The box keeps its width,
+  loses its height, and the film — which fits to whichever of width or height is
+  the tighter ratio — letterboxes horizontally. `flex: none` on both surfaces
+  makes that impossible; the sheet scrolls instead, which it is already built to
+  do.
+
+  ## The height cap is gone
+
+  It was `min(100%, calc(62dvh * 0.8))`, meant to keep the copy and both
+  controls on screen without scrolling. The sheet scrolls anyway, so it bought
+  nothing — and at 680px tall it was also capping the **width** at 337, which is
+  why the full-bleed change never reached Jon's device. Removing it is what
+  makes full-bleed real.
+
+  A rule rather than utilities on the element: this is four declarations that
+  switch at the breakpoint, and doing it in Tailwind takes four arbitrary
+  `desk:` variants on one div to say what six lines of CSS say plainly.
 */
 .funnel-film-slot {
   width: 100%;
-  max-width: min(100%, calc(62dvh * 0.8));
   aspect-ratio: 1080 / 1350;
+  flex: none;
 }
 
 @media (min-width: 1180px) {
   .funnel-film-slot {
     width: var(--slot-w);
-    max-width: none;
-    flex: none;
+  }
+}
+
+/*
+  The fixed mobile header.
+
+  `position: fixed` below the breakpoint, because the sticky version could only
+  travel inside the hero wrapper it sits in and left the page after 910px. See
+  `components/site-header.tsx` for the measurement and why desktop is untouched.
+
+  Fixed takes the header out of flow, so the page owes it 60px of top padding
+  that sticky used to reserve for free.
+
+  A translucent fill under the blur, not blur alone. Backdrop blur over a page
+  this light reads as a smear with nothing to separate the bar from the content
+  travelling under it; the fill is what makes the edge legible.
+*/
+@media (max-width: 1179px) {
+  body {
+    padding-top: var(--header-h);
+  }
+
+  .site-header {
+    background: color-mix(in srgb, var(--color-page) 78%, transparent);
+    box-shadow: 0 1px 0 rgba(18, 35, 61, 0.07);
+  }
+
+  /*
+    `shrink` mode. The bar gives up 12px once the hero is behind the reader, on
+    the argument that a header earns less of a short screen the further in you
+    are. Height only: the CTA inside it must not move, because it is a target
+    the reader may already be reaching for.
+
+    Transition on height rather than transform because the bar has to keep its
+    hit area honest at every frame — an element that only looks shorter while
+    still catching taps at its old size is worse than one that does not move.
+  */
+  .site-header__bar {
+    transition: height 180ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .site-header[data-header-mode="shrink"][data-scrolled] .site-header__bar {
+    height: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header__bar {
+    transition: none;
+  }
+}
+
+/*
+  Section boundaries on a phone.
+
+  The numerals stay exactly as Jon ratified them on August 10, 2026. What they
+  lacked was an edge: on a phone the only thing separating two sections was
+  whitespace and a field tint too subtle to read at phone brightness, so the
+  page ran together. A hairline directly above the numeral gives the boundary
+  something to be, and costs about 20px.
+
+  Drawn from the numeral rather than the section so it lands in exactly one
+  place per section, including the merged section where the numeral sits below
+  a desktop-only beat.
+*/
+@media (max-width: 1179px) {
+  [data-section-numbers="on"] .section-number::before,
+  [data-section-numbers="total"] .section-number::before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(
+      to right,
+      rgba(18, 35, 61, 0.16),
+      rgba(18, 35, 61, 0.05)
+    );
   }
 }
 

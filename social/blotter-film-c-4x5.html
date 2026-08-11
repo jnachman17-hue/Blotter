@@ -202,7 +202,12 @@ body{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:18px;padding:20px;overflow:hidden;-webkit-font-smoothing:antialiased;
 }
-body.bare{background:#000;gap:0;padding:0}
+/* Transparent, not black. Embedded, any gap between the film and its slot
+   should read as the host's own background rather than as letterbox bars.
+   Jon saw black bars in the funnel on August 11, 2026; the cause was the
+   slot losing its aspect ratio, but the reason it looked broken rather
+   than merely inset was this fill. Fixed at both ends. */
+body.bare{background:transparent;gap:0;padding:0}
 body.bare .chrome{display:none}
 .stagehold{flex:none;overflow:hidden}
 .stagewrap{width:1080px;height:1350px;transform-origin:top left}

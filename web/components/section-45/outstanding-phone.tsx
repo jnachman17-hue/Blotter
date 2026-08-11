@@ -46,6 +46,14 @@
  * because Base UI closes siblings by default and opening `Follow-ups due`
  * should not shut `Replies owed`. Each group owns its own state.
  *
+ * **The control lives on the group header, not on a row of its own.** The first
+ * build gave `Show fewer` a full-width row inside the list, and Jon's note was
+ * that it "makes no sense" sitting there — correctly, because a row in a
+ * spreadsheet is a record, and that one was a control wearing a record's
+ * clothes. Putting the plus beside the count makes the header the thing you
+ * tap, which is what Section 6 already does, and the list contains only
+ * actions in either state.
+ *
  * The first row of every group stays outside the panel and always visible.
  * §12's readable explanatory row from each category is a hard requirement, and
  * it must not depend on a tap.
@@ -128,65 +136,70 @@ export function OutstandingPhone() {
                 headers rather than cards. The count is the completeness claim
                 per group and it is never behind the disclosure.
               */}
-              <div
-                className="flex items-center justify-between border-b border-sheet-grid px-3 py-2"
-                style={{ background: g.tint, borderLeft: `4px solid ${g.rule}` }}
-              >
-                <span className="flex items-center gap-2 text-[13.5px] font-bold text-ink">
-                  <span
-                    aria-hidden="true"
-                    className="size-[7px] shrink-0 rounded-full"
-                    style={{ background: g.rule }}
-                  />
-                  {g.label}
-                </span>
-                <span
-                  className="text-[15px] font-bold tabular-nums"
-                  style={{ color: g.rule }}
-                >
-                  {g.count}
-                </span>
-              </div>
-
-              <Row row={first} />
-
-              {rest.length > 0 && (
-                <Accordion.Root>
-                  <Accordion.Item value={g.label}>
-                    <Accordion.Header>
-                      <Accordion.Trigger
-                        className={cn(
-                          "group flex w-full cursor-pointer items-center justify-between gap-4",
-                          "border-b border-sheet-grid px-3 text-left",
-                          /* 44px, the target floor the footer rebuild set. */
-                          "min-h-11 py-2",
-                          "transition-colors duration-150 ease-out hover:bg-sheet-header",
-                        )}
-                      >
-                        <span className="text-[12.5px] font-medium text-navy-700">
-                          <span className="group-data-[panel-open]:hidden">
-                            Show {rest.length} more
-                          </span>
-                          <span className="hidden group-data-[panel-open]:inline">
-                            Show fewer
-                          </span>
+              <Accordion.Root>
+                <Accordion.Item value={g.label}>
+                  <Accordion.Header>
+                    <Accordion.Trigger
+                      disabled={rest.length === 0}
+                      className={cn(
+                        "group flex w-full items-center justify-between gap-3",
+                        "border-b border-sheet-grid px-3 text-left",
+                        /* 44px, the target floor the footer rebuild set. */
+                        "min-h-11 py-2",
+                        rest.length > 0 && "cursor-pointer",
+                      )}
+                      style={{
+                        background: g.tint,
+                        borderLeft: `4px solid ${g.rule}`,
+                      }}
+                    >
+                      <span className="flex items-center gap-2 text-[13.5px] font-bold text-ink">
+                        <span
+                          aria-hidden="true"
+                          className="size-[7px] shrink-0 rounded-full"
+                          style={{ background: g.rule }}
+                        />
+                        {g.label}
+                      </span>
+                      <span className="flex items-center gap-2.5">
+                        <span
+                          className="text-[15px] font-bold tabular-nums"
+                          style={{ color: g.rule }}
+                        >
+                          {g.count}
                         </span>
-                        <DisclosureControl />
-                      </Accordion.Trigger>
-                    </Accordion.Header>
-                    {/*
-                      `hiddenUntilFound` so find-in-page lands on a closed row
-                      and opens it. It matters here: someone scanning for a name
-                      should not have to open three groups to learn it is listed.
-                    */}
-                    <Accordion.Panel hiddenUntilFound className="disclosure-panel">
-                      {rest.map((row) => (
-                        <Row key={row.who} row={row} />
-                      ))}
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                </Accordion.Root>
-              )}
+                        {rest.length > 0 && (
+                          <>
+                            {/*
+                              Named for a screen reader, which cannot see that
+                              the plus belongs to the count beside it.
+                            */}
+                            <span className="sr-only">
+                              Show the other {rest.length} in {g.label}
+                            </span>
+                            <DisclosureControl />
+                          </>
+                        )}
+                      </span>
+                    </Accordion.Trigger>
+                  </Accordion.Header>
+
+                  {/* Always open. §12 requires a readable row per category and
+                      it must not depend on a tap. */}
+                  <Row row={first} />
+
+                  {/*
+                    `hiddenUntilFound` so find-in-page lands on a closed group
+                    and opens it. It matters here: someone scanning for a name
+                    should not have to open three groups to learn it is listed.
+                  */}
+                  <Accordion.Panel hiddenUntilFound className="disclosure-panel">
+                    {rest.map((row) => (
+                      <Row key={row.who} row={row} />
+                    ))}
+                  </Accordion.Panel>
+                </Accordion.Item>
+              </Accordion.Root>
             </div>
           );
         })}

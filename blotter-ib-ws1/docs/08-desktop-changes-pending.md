@@ -291,3 +291,53 @@ the pixel** and the desktop delta is three row heights returning to 40.5px.
 
 Not applied. It is a desktop-visible change and stage 10 forbids those; it wants
 a before-and-after height measurement of the whole section when it is done.
+
+---
+
+## 13. The sticky header CTA is not sticky — CONFIRMED DEFECT
+
+**Status: confirmed defect on both surfaces, live on `blotterib.com` today.
+Fixed on mobile only. Desktop does not change during stage 10.**
+
+Measured on August 11, 2026 at 1440 and at 390: at `scrollY` 2200 the header
+sat at document y=850 and was long off screen.
+
+It **is** `position: sticky`. Its parent is the hero's `field-open` wrapper,
+which is 910px tall, and a sticky element can only travel inside its parent's
+box. So it pins for 910px and then leaves with the hero — on both surfaces.
+
+**This makes §2 of this file wrong.** That entry argued the mobile bottom bar
+was unnecessary partly on the grounds that *"the header CTA is the only
+persistent one."* It was not persistent anywhere. The conclusion may still be
+right, but the reason given for it was false and should not be reused.
+
+`PLAN-AMENDMENTS-2026-08-01.md` ratified *"Retain the sticky-header CTA"*, so
+the intent is not in question — only the implementation.
+
+**The mobile fix, applied:** `position: fixed` below `--breakpoint-desk`, with
+`body { padding-top: 60px }` replacing the space `sticky` used to reserve, and a
+translucent fill under the existing blur so the bar has an edge against content
+moving beneath it.
+
+**The desktop fix, not applied:** move `<SiteHeader />` out of the `field-open`
+wrapper in `app/page.tsx` so its parent is the page rather than the hero. That
+is a one-line move and it fixes both surfaces at once — which is exactly why it
+is here rather than done. It changes what a desktop reader sees while scrolling,
+and stage 10 does not touch desktop.
+
+**Measure before and after when it is taken.** Document height should not move;
+only the header's behaviour does.
+
+---
+
+## 14. Two mobile fixes whose reasoning is not mobile-only
+
+**Status: decided for mobile. Worth reconsidering on desktop, not defects.**
+
+- **`~60 hours` is bounded on a phone.** Jon: it "just sort of seems floating
+  there". On desktop the figure sits in a two-column row and the column edge is
+  its boundary, so the problem genuinely does not exist there. Listed only so a
+  later session does not add the panel to desktop by symmetry. `02-SECTION-2`
+  §8 forbids a badge or a loud highlight either way.
+- **The section CTA is left-aligned and full width on a phone.** Right alignment
+  is a desktop two-column device and correct there. No desktop change.

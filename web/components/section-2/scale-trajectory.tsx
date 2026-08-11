@@ -318,14 +318,32 @@ function ArgumentRow() {
         it reads as the section's conclusion instead of a fifth metric next to
         the four volumes above it.
       */}
-      <div className="flex flex-col items-start gap-1.5 desk:flex-row desk:items-center desk:gap-3 desk:pt-1">
-        <span className="font-display text-[1.75rem] leading-none font-semibold tracking-[-0.03em] tabular-nums text-navy-900 desk:text-[34px]">
-          ~60 hours
-        </span>
-        <span className="text-small leading-[1.45] text-ink-muted">
-          saved on manual tracker administration{" "}
-          <span className="desk:block">over one recruiting cycle</span>
-        </span>
+      {/*
+        Bounded on a phone, bare from `desk`.
+
+        Jon, August 11, 2026: the figure "just sort of seems floating there... it
+        needs something behind it". He is right, and the reason is structural
+        rather than decorative — this page's theme is a bounded-box layout, and
+        on a phone this was the only pulled-out figure on it with nothing holding
+        it. Desktop does not have the problem because the figure sits in a
+        two-column row and the column edge is the boundary; stacking removed the
+        column and left the number in open space.
+
+        A panel rather than a card: one hairline ring and the page's own quiet
+        surface, no shadow and no fill of its own. `02-SECTION-2` §8 keeps this
+        proof subordinate to the four figures and forbids a badge or a loud
+        highlight, so the box may enclose the figure but must not promote it.
+      */}
+      <div className="rounded-xl px-4 py-3.5 ring-1 ring-navy-900/[0.08] desk:rounded-none desk:p-0 desk:ring-0">
+        <div className="flex flex-col items-start gap-1.5 desk:flex-row desk:items-center desk:gap-3 desk:pt-1">
+          <span className="font-display text-[1.75rem] leading-none font-semibold tracking-[-0.03em] tabular-nums text-navy-900 desk:text-[34px]">
+            ~60 hours
+          </span>
+          <span className="text-small leading-[1.45] text-ink-muted">
+            saved on manual tracker administration{" "}
+            <span className="desk:block">over one recruiting cycle</span>
+          </span>
+        </div>
       </div>
     </div>
   );

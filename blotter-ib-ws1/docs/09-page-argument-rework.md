@@ -421,6 +421,11 @@ Jon says was actually wrong.
 | 8b | **OPEN — the Outstanding view is drawn three different ways.** Film A cuts each group to one row plus `+N more`; desktop shows all 21 as three columns; mobile shows all 21 with the tail behind a disclosure | Nobody chose this. Each surface solved its own space problem and the three answers drifted apart. Jon raised it on August 11, 2026 | **Yes, and it is the one row here that is still a question rather than a decision.** The film is the surface out of step: it is the only one that says there are actions you cannot see, which is the claim `04-SECTION-4` §7 exists to deny. Settle it during reconciliation, and the answer has to name a single rule that all three obey |
 | 9 | The funnel becomes a full-screen sheet | The 960px card collapsed to `100vw - 32px` while its steps were still composed for 960 | **No.** Pure responsive. The card is right on a desktop and the August 6 reasoning is unchanged |
 
+**Not in this table, deliberately:** the sticky-header defect, the `~60 hours`
+panel, the section hairlines and the travelling zone labels. Every one of those
+is *how* a claim is presented, which is `08`'s file, not this one. This table is
+only for what the page claims and in what order.
+
 **The principle, restated because it governs every row:** layout may diverge
 between devices. **The argument may not.** A row above that transfers and is not
 applied is a content fork, and that is worse debt than the section-numbering
