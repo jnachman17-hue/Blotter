@@ -30,6 +30,7 @@
  */
 
 import { PageBox } from "@/components/layout/page-box";
+import { SectionNumber } from "@/components/layout/section-number";
 import { BoundaryBlock } from "@/components/section-3/boundary-block";
 import { DayTimeline } from "@/components/section-3/day-timeline";
 
@@ -37,7 +38,18 @@ import { DayTimeline } from "@/components/section-3/day-timeline";
 
 const EYEBROW = "How Blotter works";
 
-const HEADLINE = "You manage the relationships. Blotter maintains the moving parts.";
+/**
+ * Exported because mobile 02 reuses it verbatim as its deck.
+ *
+ * `09-page-argument-rework.md` §4: this headline and
+ * `Keep the tracker you already built.` are two components of one claim, so the
+ * merged phone section carries both rather than picking one. Exported rather
+ * than copied, so the two surfaces cannot drift apart on a ratified string.
+ */
+export const SECTION_3_HEADLINE =
+  "You manage the relationships. Blotter maintains the moving parts.";
+
+const HEADLINE = SECTION_3_HEADLINE;
 
 const SUPPORTING =
   "Add the contacts you are networking with and keep the context that matters to you. Blotter uses relevant activity from Gmail and Calendar to keep each relationship’s status, last contact, scheduled calls, and next move current inside your Google Sheet.";
@@ -46,8 +58,21 @@ const SUPPORTING =
 
 export function HowBlotterWorks() {
   return (
-    <section className="field-rise pt-24 pb-28">
+    /*
+      Desktop only from August 11, 2026.
+
+      `09-page-argument-rework.md` §4: on a phone this section stops existing.
+      Its mechanism is demonstrated by the hero film, its headline becomes the
+      merged section's deck, its refusals move there too, and its boundary and
+      closing lines are cut as two of the four statements of one claim.
+
+      Hidden rather than deleted: desktop has room and no hero film, so the
+      mechanism may still need its own section there. `09` §6 and §8 row 1
+      forbid deleting it from desktop on the mobile reasoning.
+    */
+    <section className="field-rise hidden pt-24 pb-28 desk:block">
       <PageBox>
+        <SectionNumber n={2} />
         {/* 1. Eyebrow */}
         <p className="flex items-start gap-3 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase">
           <span
@@ -64,11 +89,21 @@ export function HowBlotterWorks() {
           bounding box as the visual below it. The page theme fixes that nothing
           is centred, and the hero established the same two-column reading.
         */}
-        <div className="mt-6 flex items-start gap-16">
-          <h2 className="font-display max-w-[15ch] flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink">
+        {/*
+          Stacked on a phone, the ratified side-by-side from `desk`. Headline
+          then copy is the same reading order the row already has, so nothing
+          about the argument changes — only the axis.
+
+          `min-w-0` is the bug fix rather than the layout: a flex item defaults
+          to `min-width: auto` and will not shrink below its own longest
+          unbreakable line, which is what held this row open past a 320px
+          viewport.
+        */}
+        <div className="mt-6 flex flex-col gap-4 desk:flex-row desk:items-start desk:gap-16">
+          <h2 className="font-display max-w-[15ch] min-w-0 flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink">
             {HEADLINE}
           </h2>
-          <p className="max-w-[52ch] flex-1 pt-1 text-body leading-[1.62] text-ink-muted">
+          <p className="max-w-[52ch] min-w-0 flex-1 text-body leading-[1.62] text-ink-muted desk:pt-1">
             {SUPPORTING}
           </p>
         </div>

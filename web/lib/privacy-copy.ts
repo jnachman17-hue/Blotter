@@ -120,6 +120,32 @@ export const PERMISSIONS: ServicePermission[] = [
 
 export const PERMISSION_COLUMNS = ["Service", "Can do", "Cannot do"] as const;
 
+/**
+ * New copy, August 10, 2026, added by Jon's decision. Section 6 was the only
+ * surface not stating this and the other three already did.
+ *
+ * Sheets access is granted through Drive: `drive.file` is the per-file scope,
+ * and Google's consent screen therefore shows a **Drive** permission, not a
+ * Sheets one. `/privacy` prints Google's own wording beside the scope, and
+ * Film B shows Google's Drive card followed immediately by Blotter's card
+ * naming the one tracker file. Section 6 said only "Google Sheets", so a reader
+ * who trusted it and then met a Drive consent screen would feel misled at the
+ * exact moment they were being asked to trust.
+ *
+ * **The heading and the mark stay Sheets**, and that is Jon's call, made on the
+ * better argument: a Drive *icon* implies the whole Drive, which is the
+ * opposite of what `drive.file` grants. The icon should name what Blotter
+ * touches — one sheet — and the words should carry the plumbing. The accurate
+ * version is also the narrower and more reassuring one, which is why stating it
+ * costs nothing: "Google Sheets" sounds like every sheet you own, and this is
+ * one file you pick.
+ *
+ * If the connection provider is ever chosen and its consent screen differs from
+ * this, the sentence is wrong and must change with it.
+ */
+export const SHEETS_SCOPE_NOTE =
+  "Granted through Google Drive, limited to the one file you connect.";
+
 /* --------------------------------------------- 5. broad Google-permission notice */
 
 /**

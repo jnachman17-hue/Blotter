@@ -34,6 +34,22 @@
   --text-h2: 2.125rem; /* 34px  section headlines */
   --text-display: 2.5rem; /* 40px  hero headline */
 
+  /*
+    The one breakpoint.
+
+    Above it the desktop page renders exactly as ratified and untouched; below
+    it the mobile layout takes over. It is set at the width the desktop layout
+    actually needs — the 1124px page box plus its 48px of gutter, plus a little
+    — rather than at a conventional device size, because below 1172px the
+    desktop composition cannot lay out without either overflowing or scaling
+    into illegibility.
+
+    Named `desk` rather than reusing Tailwind's `lg` or `xl` so a section can
+    never pick it up by accident: `desk:` means "the ratified desktop page",
+    and everything unprefixed is the phone.
+  */
+  --breakpoint-desk: 1180px;
+
   /* Page */
   --color-page: #ffffff;
   --color-ink: #14181f;
@@ -160,6 +176,8 @@
   "white and very light blue-gray". A dark mode would falsify the assets.
 */
 :root {
+  /* The fixed mobile header's height, so the page can reserve it. */
+  --header-h: 60px;
   color-scheme: light;
 }
 
@@ -167,6 +185,363 @@ body {
   background: var(--color-page);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
+}
+
+/*
+  The page box's two ceilings.
+
+  Both widths are set as custom properties by `PageBox` so `page-box.tsx` stays
+  the single source of truth for the numbers; only the breakpoint lives here,
+  because a media query is the one thing a component cannot express inline.
+
+  Mobile-first: the phone ceiling is the default and the desktop ceiling is the
+  override, which is the direction that fails safe. A new section that forgets
+  the desktop rule renders narrow, not broken.
+*/
+.page-box__inner {
+  max-width: var(--page-box-mobile-w);
+}
+
+@media (min-width: 1180px) {
+  .page-box__inner {
+    max-width: var(--page-box-w);
+  }
+}
+
+/*
+  Section numbering, a prototype and off by default.
+
+  The numerals render into every section's markup but are invisible unless an
+  ancestor carries `data-section-numbers`. `/review/mobile` sets it; the live
+  page does not, so the page a visitor sees is unaffected by their presence.
+
+  Turning it on for real means overriding four build specs that forbid an
+  eyebrow, and a numeral above a headline reads as one. See
+  `components/layout/section-number.tsx`.
+*/
+.section-number {
+  display: none;
+}
+
+/*
+  The travelling zone labels.
+
+  Transform and opacity only, so the sheet underneath is never repainted while
+  the label moves. Blur joins the fade across the swap: a plain cross-fade shows
+  both labels at once and reads as two objects overlapping, where blurring the
+  outgoing one lets the eye read a single label changing.
+
+  Reduced motion keeps the fade, which carries meaning, and drops the travel and
+  the blur, which are decoration.
+*/
+.zone-label {
+  /*
+    **No transition on `transform`, and that is the point.** The first build
+    eased position over 200ms while the scroll handler moved the target every
+    event, so the label chased a point that kept running and never settled —
+    which is the buzz Jon caught on August 11, 2026. Position is now written
+    directly by the handler and follows the thumb exactly.
+
+    Opacity and blur keep their easing, because the swap between the two labels
+    genuinely is a state change. Blur joins the fade: a plain cross-fade shows
+    both labels at once and reads as two objects overlapping, where blurring the
+    outgoing one lets the eye read a single label changing.
+  */
+  transition:
+    opacity 200ms cubic-bezier(0.23, 1, 0.32, 1),
+    filter 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, opacity;
+}
+
+/*
+  Reduced motion.
+
+  Jon asked why this is wanted, on August 11, 2026, and the answer is narrow:
+  **it changes nothing for him or for almost anyone.** It reads one operating
+  system setting that a reader has to turn on deliberately, usually because
+  motion makes them ill. Everyone who has not asked for it keeps every animation
+  exactly as built.
+
+  What it does here is drop the blur, which is decoration, and keep the fade,
+  which carries meaning — the label still tells you which zone you are in. The
+  swipe dots stop. Nothing that communicates is removed, because reduced motion
+  means *less movement*, not less information.
+*/
+@media (prefers-reduced-motion: reduce) {
+  .zone-label {
+    filter: none !important;
+  }
+
+  /*
+    The veil still recedes, because its opacity is the reader's own progress
+    made visible rather than an animation. What goes is the easing on the tint
+    swap, which is the only part of it that moves on its own.
+  */
+  .swipe-veil-tint {
+    transition: none !important;
+  }
+}
+
+/*
+  The swipe coach's three dots.
+
+  They travel rather than pulse, because the gesture being taught is travel.
+  Staggered so the group reads left to right, which is the direction of the
+  swipe; a synchronous blink would say "tap".
+
+  Decoration only. Nothing depends on it and reduced motion stops it dead
+  rather than slowing it, since a slow crawl is more distracting than none.
+*/
+@keyframes swipe-dot {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(2px);
+  }
+}
+
+.swipe-dot {
+  animation: swipe-dot 1.3s ease-in-out infinite;
+}
+.swipe-dot:nth-child(2) {
+  animation-delay: 0.14s;
+}
+.swipe-dot:nth-child(3) {
+  animation-delay: 0.28s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swipe-dot {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/*
+  The funnel's film slot.
+
+  Full width on a phone, the ratified 520px from the desktop breakpoint. The
+  aspect ratio derives the height on both surfaces: 520 x 1350/1080 is exactly
+  the ratified 650, so there is one number here rather than two that can drift.
+
+  ## `flex: none` is the bug fix, not a tidy-up
+
+  Jon reported black bars beside the film on a real phone and they would not
+  reproduce at 390x844. They reproduce at 390x680, which is the same phone with
+  Safari's address bar showing. Measured there: the slot came out **337 x 300**,
+  an aspect of 1.125 against the 0.8 it asks for, with the film rendering
+  240 x 300 inside it and 48px of fill either side.
+
+  The cause is flex, not the film. The slot is an item in a `flex-col` container
+  with `h-full`; when the step's content is taller than the sheet, the item
+  shrinks, and **`flex-shrink` beats `aspect-ratio`**. The box keeps its width,
+  loses its height, and the film — which fits to whichever of width or height is
+  the tighter ratio — letterboxes horizontally. `flex: none` on both surfaces
+  makes that impossible; the sheet scrolls instead, which it is already built to
+  do.
+
+  ## The height cap is gone
+
+  It was `min(100%, calc(62dvh * 0.8))`, meant to keep the copy and both
+  controls on screen without scrolling. The sheet scrolls anyway, so it bought
+  nothing — and at 680px tall it was also capping the **width** at 337, which is
+  why the full-bleed change never reached Jon's device. Removing it is what
+  makes full-bleed real.
+
+  A rule rather than utilities on the element: this is four declarations that
+  switch at the breakpoint, and doing it in Tailwind takes four arbitrary
+  `desk:` variants on one div to say what six lines of CSS say plainly.
+*/
+.funnel-film-slot {
+  position: relative;
+  width: 100%;
+  /*
+    A 1:1 centre crop on a phone, the film's native 4:5 from `desk`.
+
+    Jon, August 11, 2026: the film is finally legible but the copy and
+    `Continue` are below the fold, and everything has to be on one sheet. The
+    film is the only element with real slack and the square is free — every
+    visible element in Film A sits inside the 1:1 safe band, verified in
+    `social/README.md`, which is why the mobile hero already crops it this way.
+    390 wide goes from 487.5 tall to 390, and nothing is lost.
+
+    **Cropping the container, not the frame.** A square *iframe* would be worse
+    than useless: the film fits itself to whichever of width or height is
+    tighter, so a 390x390 frame would render it at 312x390 and letterbox it
+    again, smaller than before. The frame stays 4:5 and this box clips it.
+
+    `100dvh - 330px` is the rest of the sheet — padding, heading, paragraph,
+    button, back link — so the film gives way rather than pushing `Continue`
+    off screen on a shorter device. `dvh`, because iOS Safari's `vh` is the
+    tallest the viewport ever gets and the cap has to hold with the address bar
+    showing, which is the case that broke twice already.
+  */
+  aspect-ratio: 1 / 1;
+  max-width: min(100%, calc(100dvh - 330px));
+  overflow: hidden;
+  /*
+    `flex: none` is the other bug fix. The slot is an item in a `flex-col`
+    container with `h-full`, and when the content is taller than the sheet the
+    item shrinks — **`flex-shrink` beats `aspect-ratio`**. That is what produced
+    the 48px black bars: the box kept its width, lost its height, and the film
+    letterboxed inside it.
+  */
+  flex: none;
+}
+
+.funnel-film-frame {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1080 / 1350;
+  /* A 1:1 centre crop of a 4:5 canvas hides 12.5% at each end. */
+  top: -12.5%;
+}
+
+@media (min-width: 1180px) {
+  .funnel-film-slot {
+    width: var(--slot-w);
+    max-width: none;
+    aspect-ratio: 1080 / 1350;
+  }
+
+  .funnel-film-frame {
+    top: 0;
+  }
+}
+
+/*
+  The fixed mobile header.
+
+  `position: fixed` below the breakpoint, because the sticky version could only
+  travel inside the hero wrapper it sits in and left the page after 910px. See
+  `components/site-header.tsx` for the measurement and why desktop is untouched.
+
+  Fixed takes the header out of flow, so the page owes it 60px of top padding
+  that sticky used to reserve for free.
+
+  A translucent fill under the blur, not blur alone. Backdrop blur over a page
+  this light reads as a smear with nothing to separate the bar from the content
+  travelling under it; the fill is what makes the edge legible.
+*/
+@media (max-width: 1179px) {
+  body {
+    padding-top: var(--header-h);
+  }
+
+  .site-header {
+    background: color-mix(in srgb, var(--color-page) 78%, transparent);
+    box-shadow: 0 1px 0 rgba(18, 35, 61, 0.07);
+  }
+
+  /*
+    `shrink` mode. The bar gives up 12px once the hero is behind the reader, on
+    the argument that a header earns less of a short screen the further in you
+    are. Height only: the CTA inside it must not move, because it is a target
+    the reader may already be reaching for.
+
+    **It snaps rather than tweens, and that is the fix rather than a
+    compromise.** The first build transitioned `height` over 180ms, which the
+    design hook flagged and was right to: animating a layout property forces
+    layout on every frame, and this one fires *during a scroll*, which is
+    exactly when the main thread has none to spare. `transform: scaleY` is the
+    usual escape and is wrong here — it would leave the bar catching taps at a
+    size it no longer looks, and this bar's content is entirely tap target.
+
+    So it changes once, at the threshold, with no interpolation. A 12px step
+    that happens while the reader is already moving reads as responsive; the
+    tween was the only thing that could have read as jank.
+  */
+  .site-header[data-header-mode="shrink"][data-scrolled] .site-header__bar {
+    height: 48px;
+  }
+}
+
+/*
+  Section boundaries on a phone.
+
+  **One rhythm, 56 above and 64 below, so every boundary is 120px.** Jon
+  measured the old page as "weird dead space" and he was right, but the problem
+  was the variance rather than the amount: the gaps ran 96, 152, 176, 208, 208,
+  because each section carried whatever its desktop padding happened to be and
+  the ones rebuilt for mobile had picked up their own values. A page cannot have
+  a rhythm made of six different numbers.
+
+  208px is 31% of a 680px screen spent on nothing. The pass reclaims about 400px
+  and, more to the point, makes the interval the same every time — which is what
+  stops it reading as a mistake. Every desktop value is preserved behind `desk:`.
+
+  The numerals stay exactly as Jon ratified them on August 10, 2026. What they
+  lacked was an edge: on a phone the only thing separating two sections was
+  whitespace and a field tint too subtle to read at phone brightness, so the
+  page ran together. A hairline directly above the numeral gives the boundary
+  something to be, and costs about 20px.
+
+  Drawn from the numeral rather than the section so it lands in exactly one
+  place per section, including the merged section where the numeral sits below
+  a desktop-only beat.
+*/
+@media (max-width: 1179px) {
+  [data-section-numbers="on"] .section-number::before,
+  [data-section-numbers="total"] .section-number::before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(
+      to right,
+      rgba(18, 35, 61, 0.16),
+      rgba(18, 35, 61, 0.05)
+    );
+  }
+}
+
+/*
+  Mobile only, and deliberately.
+
+  Jon chose `01` on August 10, 2026 after comparing it against `01 / 05` and
+  against nothing. It is on below the desktop breakpoint and off above it, which
+  means the two surfaces currently disagree about whether this page has numbered
+  sections. That is a known cost, not an oversight: turning it on for desktop
+  overrides four build specs that forbid an eyebrow, and stage 10 does not touch
+  desktop. `08-desktop-changes-pending.md` carries the decision.
+*/
+@media (max-width: 1179px) {
+  [data-section-numbers="on"] .section-number,
+  [data-section-numbers="total"] .section-number {
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* `01` alone, versus `01 / 05` — the second tells a phone reader how much page
+   is left, which is the thing a scrollbar gives desktop for free. Jon chose the
+   bare numeral: the total read as a progress meter on a page that is an
+   argument rather than a form. */
+[data-section-numbers="on"] .section-number__total {
+  display: none;
+}
+
+/*
+  Mobile type scale.
+
+  Only two tokens move. Same faces, same weights, same colours, same copy —
+  40px and 34px are sized for a 1124px column and on a 390px phone they spend
+  the whole first screenful before the reader has seen anything else.
+
+  Everything below `--text-h2` holds at its desktop size. Body copy in
+  particular must never go under 16px: iOS auto-zooms any input smaller than
+  that, which throws the funnel's email step sideways on focus.
+*/
+@media (max-width: 1179px) {
+  :root {
+    --text-display: 2rem; /* 40px -> 32px */
+    --text-h2: 1.625rem; /* 34px -> 26px */
+  }
 }
 
 /*

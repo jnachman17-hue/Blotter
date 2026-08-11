@@ -27,7 +27,21 @@ export const CANONICAL_EVENTS = [
 export type CanonicalEvent = (typeof CANONICAL_EVENTS)[number];
 
 /** The four ratified CTA origins. `header` was added in PLAN-AMENDMENTS-2026-08-01. */
-export type CtaLocation = "header" | "hero" | "actions" | "final";
+/**
+ * `sticky` is a fifth placement, added August 10, 2026 for the mobile build and
+ * approved by Jon. `PLAN-AMENDMENTS-2026-08-01.md` records four; this
+ * supersedes that count and nothing else about it — all five still enter the
+ * same canonical funnel.
+ *
+ * **It adds a property value, not a tenth event.** `cta_location` is a property
+ * of `funnel_started`, so the frozen nine are untouched and every ratified rate
+ * keeps its denominator. A funnel split by `cta_location` simply gains a row.
+ *
+ * It exists only below the desktop breakpoint, so any `sticky` in the data is
+ * by definition a small-screen visitor — which makes it the cleanest read we
+ * have on whether mobile converts differently.
+ */
+export type CtaLocation = "header" | "hero" | "actions" | "final" | "sticky";
 
 export type RecruitingTrack =
   | "Investment Banking"

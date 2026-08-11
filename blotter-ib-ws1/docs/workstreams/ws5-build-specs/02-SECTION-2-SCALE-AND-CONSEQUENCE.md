@@ -32,6 +32,16 @@
 > component is parked and unrendered. `Summer 2028` also remains a funnel
 > recruiting-window option in `WS3-SPEC.md`, which this ruling did not touch.
 
+> **Amended by Jon, August 11, 2026, during the stage 10 mobile build.**
+>
+> | Item here | Amended to, below `--breakpoint-desk` only |
+> |---|---|
+> | The four volume figures and their labels | Rebalanced. The numeral drops 2rem to 1.75rem and the label rises from 13.5px muted to 15px semibold in full ink, so the pair reads as one phrase — *628 recruiting emails* — rather than a figure with a caption. Jon's note: the numerals were "doing too much of the work". |
+>
+> Presentation only. Every figure, every label and every count is unchanged, and
+> the section fixes the values rather than their type scale, so this amends no
+> clause. Recorded because mobile 01 was ratified on August 10, 2026.
+
 Date ratified: July 31, 2026  
 Date amended: August 5, 2026  
 Status: Ratified, amended in part  

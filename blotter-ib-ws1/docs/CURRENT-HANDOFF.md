@@ -1,16 +1,12 @@
 # Blotter IB - Current Handoff
 
 Date: August 10, 2026
-Status: WS5 active. Sessions 1 through 5 complete. Stages 1 through 9 done
-apart from responsive and accessibility.
+Status: WS5 active. Sessions 1 through 6 complete. **Stage 10, the mobile
+build, is roughly two-thirds done and the work is on the `mobile` branch.**
 
 **The site is live at `blotterib.com`, public, carrying real traffic, and has
-one real lead.** Lead storage and analytics are provisioned, connected and
-verified in production. All seven landing-page sections and the canonical funnel
-are built and ratified.
-
-**Stage 10 is next and it is the mobile build.** The page is desktop-only at a
-fixed 1,124px. See section 1.
+one real lead.** Production is still session 5's build: **nothing from session 6
+has been deployed.** `main` has no mobile work in it at all.
 
 ## 0. Act on these before anything else
 
@@ -20,431 +16,346 @@ the first reply of the session.
 ### Done, do not repeat
 
 Jon flagged his desktop and phone as internal on both live hostnames on
-August 10, and applied the host and person filters to his `Canonical Funnel`
-insight. The numbers now match. **Do not ask him to do this again**, and do not
-re-explain the internal flag unless a new hostname appears.
+August 10 and applied the host and person filters to his `Canonical Funnel`
+insight. **Do not ask him to do this again.**
 
-### Due if PostHog scopes are ever fixed
-
-`insight:write` and `person:write` were granted on August 10 but did not
-register; both still return 403. If they start working, flag the fourteen
-internal persons listed in `07-infrastructure-runbook.md` so the timestamp
-cutoff stops being needed. Low priority.
+`social/blotter-film-c-4x5.html` has had `inline-fonts.sh` run on it. Do not run
+it again.
 
 ### Standing, and it governs every number you report
 
 **Never read `leads`; read `real_leads`.** Never report a PostHog figure without
-the three filters in the runbook. Unfiltered, the funnel claims three people
-confirmed a beta spot. The true number is zero.
+the three filters in `07-infrastructure-runbook.md`. Unfiltered, the funnel
+claims three people confirmed a beta spot. The true number is zero.
 
 ### Due before the domain is promoted anywhere
 
 The provider sentence — that the connection provider's Google application has
-passed CASA — is the one unverified claim on the page, and no provider has been
-selected. Section 6's present tense is deliberate and ratified; this sentence is
-not the same thing, because it is a specific security credential attributed to a
-third party. Section 6 of this file has the full record.
+passed CASA — is still the one unverified claim on the page, and no provider has
+been selected. Section 6 of this file has the record. **Finishing mobile removes
+the last technical blocker to promoting this on Reddit, X or LinkedIn, so this
+gate is closer than it was.**
 
-## 1. How this project is built
+`noindex` and `app/robots.ts` also still have to be deleted at launch.
 
-Jon ruled on August 4, 2026 that the landing page is built in this repository
-rather than in Lovable. The Lovable project `Blotter Foundation` and its commits
-are abandoned. No Lovable code was ported. The GitHub specifications were always
-the source of truth; only the executor changed.
+### Due if PostHog scopes are ever fixed
 
-`WS5-SPEC.md` carries a notice naming the three passages that are stale as a
-result: the Lovable project state, the file-upload protocol, and the plan-only
-intake sequence. Everything else in it is binding.
+`insight:write` and `person:write` returned 403 on August 10. Low priority.
 
-## 2. How sessions work
+---
+
+## 1. Read these, in this order
+
+1. `CLAUDE.md` at the repository root — the working agreement.
+2. **This file.**
+3. **`09-page-argument-rework.md`** — new this session, and the most important
+   thing to understand. The page's argument has a real fault; it is diagnosed,
+   the mobile fix is agreed, and it is not built.
+4. `08-desktop-changes-pending.md` — new this session. Everything the mobile
+   build decided that desktop still has to do.
+5. `06-assumptions-and-open-questions.md` — the responsive rows, plus the film
+   decisions parked this session.
+6. `07-infrastructure-runbook.md` before touching any data.
+
+---
+
+## 2. The documentation system. Follow it or the next session loses the thread.
+
+Jon's instruction, August 10, 2026: keep using this, in these files, at the
+moment a thing is noticed rather than at the end.
+
+| When you notice… | Write it to | With |
+|---|---|---|
+| An unsettled question that needs a decision later | `06-assumptions-and-open-questions.md` | a row, a working position, why it is unresolved, and a **revisit trigger** |
+| Something decided for mobile that **desktop must also do** | `08-desktop-changes-pending.md` | a status of Decided / Confirmed defect / Already applied, and the reasoning |
+| An argument- or structure-level change | `09-page-argument-rework.md` | what transfers to web and what does not, and why |
+| A ruling Jon has made, with reasoning | `04-decision-log.md` | the reasoning, not just the outcome |
+| Anything that changes what a spec says | the amendment table at the top of the relevant build spec | the clause number superseded |
+
+**This matters most for web.** Jon repeatedly says "I actually meant when it
+changes on the web" — those go to `08` or `09` immediately, not into a mental
+note. Several rows in both files exist only because they were written the moment
+he said them.
+
+**Things he has explicitly asked be parked so they force a return:**
+
+- which film belongs in the funnel — `06`
+- whether the desktop hero becomes a film — `06`
+- whether the three films should share one status-change treatment — `06`
+- whether Film B's consent-screen treatment changes — `06`
+- section numbering on desktop — `08` §5
+- the hero rule on desktop — `08` §6
+- the five phantom `Here` links — `08` §8
+- the whole argument rework — `09`
+
+---
+
+## 3. Where to pick up
+
+**Mobile 02, the merged section.** `09-page-argument-rework.md` §4 has the
+agreed architecture. §5 has the one thing still unsolved and it is the next
+decision to make with Jon:
+
+> **How does a ten-column, 1,221px spreadsheet render on a 350px phone?**
+
+Nothing has been agreed. Three approaches are written up in §5 with their
+constraints. Film A already solved a version of this — it dropped eight columns
+to five because at phone size eight put the sheet type under 6px — and
+`social/README.md` records how.
+
+Do not build the merged section until that is settled. Everything else about
+mobile 02 is decided.
+
+After that: **mobile 03** (the Outstanding list, which `04-SECTION-4` §12 says
+may reduce to three groups and one readable row each), then **the funnel** as a
+full-screen sheet, then **the Phase 6 accessibility sweep**.
+
+---
+
+## 4. What session 6 shipped
+
+Seventeen commits on `mobile`. In order of how much they matter.
+
+### The responsive skeleton
+
+The page was a fixed 1,124px at every viewport and overflowed sideways on every
+phone. It now has:
+
+- **one breakpoint, `desk` at 1180px.** Above it the desktop page is
+  byte-identical to before. Below it is the mobile build. `desk:` in a class
+  means "the ratified desktop page"; unprefixed means the phone.
+- **a page box that is a ceiling, not a fixed width** — up to 1124 on desktop,
+  up to 480 below the breakpoint so a tablet gets a centred phone-shaped column
+  rather than a stretched one.
+- **a mobile type scale.** Only two tokens move: display 40→32, h2 34→26. Body
+  holds at 16 because iOS zooms any input under it.
+- **`components/layout/fit.tsx`**, shared by every fixed-width composition.
+  **Read its doc comment before touching any of them** — it documents the
+  first-paint trap that cost half a session.
+
+**Verified: no horizontal scroll at 320, 360, 375, 390, 430, 768, 1024, 1180 or
+1440, with JavaScript enabled and with every script tag stripped.**
+
+### Section 1, the hero
+
+**Film C is the mobile hero.** 11 seconds, three beats, looping, shown as a 1:1
+centre crop inset at ~350px. The desktop sheet-and-cues composition is untouched
+above the breakpoint. Two heroes, each right for its device.
+
+Order on a phone: eyebrow, headline, film, one-line supporting copy, CTA, credit
+line. The CTA clears the fold at 390x844.
+
+**No sticky bottom bar.** Jon approved one and then chose against it having seen
+all three arrangements. `StickyCta` and `cta_location = "sticky"` are kept so it
+is reversible; nothing mounts it.
+
+### Section 01 (mobile numbering), the scale section — ratified
+
+The month-by-month trajectory is desktop-only. On a phone the four volumes are
+**packed mark blocks with no time axis** — all 745 marks, one per unit, eight
+rows of seventy-nine for the 628 emails. Jon's idea and better than the three
+alternatives offered.
+
+The Gmail strip is **rebuilt as a phone inbox**, five two-line rows, the subject
+rendering in full. Both footnotes fold into one disclosure.
+
+### Section 04, data and privacy — ratified
+
+**2,693px → 1,900px at 390.** Nothing withdrawn. Calendar and Sheets fold,
+Gmail stays open. Both footnotes fold into one row of fine print about the
+Google connection.
+
+`SHEETS_SCOPE_NOTE` is new copy on **both** surfaces: *Granted through Google
+Drive, limited to the one file you connect.* The heading and mark stay
+`Google Sheets` on Jon's argument that a Drive icon implies the whole Drive.
+
+### Section 05 and the closing block
+
+The footer was the worst thing on the mobile page — 26px type in a 187px column
+and a CTA squeezed to 115x72 with its label wrapping inside the pill. Rebuilt
+stacked. **Every footer target now clears 44px**, where three of four missed.
+
+### Section numbering
+
+`01` through `05` above each section headline, **mobile only**. Jon chose the
+bare numeral over `01 / 05`. Desktop is unnumbered, so the two surfaces disagree
+about whether this page has numbered sections — a known cost recorded in `08` §5.
+
+### The films
+
+Film C was built in a parallel chat to a brief written here, fonts inlined, and
+copied to `web/public/film/`. Film B was revised in a second parallel chat and
+is now 28.0s.
+
+**`web/public/film/` is a manual copy of `social/`. Nothing propagates.**
+
+---
+
+## 5. Things that will bite you
+
+**Jon reviews on the Vercel branch URL now, not the dev server.**
+
+```
+https://blotter-claude-git-mobile-jnachman17-hues-projects.vercel.app
+```
+
+Stable across pushes, public since August 11, 2026, and it survives the chat
+ending. Push to `mobile` and it updates. `07-infrastructure-runbook.md` has how
+protection was turned off and how to put it back.
+
+The dev server is still the fastest loop while building, and everything below
+still applies to it. It died four times in session 6 and once in session 7, and
+**it dies when the chat that started it ends**, which is what happened when a
+parallel chat owned it.
+
+- **`allowedDevOrigins` in `next.config.ts` must include the Mac's LAN address.**
+  Next blocks cross-origin dev resources by default, so a wrong entry serves the
+  HTML and refuses every client chunk: the page renders and nothing works.
+  Wildcards for both private ranges are in place, but the failure is silent, so
+  suspect this first if he says "it loads but nothing works".
+- **The address changes.** It moved from `192.168.1.64` to `192.168.68.63`
+  inside one session.
+- **Done, August 11, 2026. Do not raise it again.** Vercel Authentication is off
+  for previews, so the `mobile` branch has a permanent URL. Jon could not reach
+  the dashboard control; it was done with `vercel api`, which uses the CLI's own
+  credentials. The Vercel MCP connector is authenticated to a different account
+  and 404s on this project, so reach for the CLI.
+
+**The Browser pane is a hidden document.** `visibilityState: "hidden"`, zero
+`requestAnimationFrame` ticks. **Scroll events do not fire, IntersectionObserver
+callbacks never arrive, and CSS transitions freeze at their start value.**
+Anything time- or paint-driven reads as broken when it is fine. Verify state and
+geometry there; send anything motion-dependent to Jon's phone.
+
+**The dev server's Tailwind CSS goes stale.** A utility used in exactly one new
+file may not be emitted until a restart. Verify CSS against the production
+build, not the dev server. This produced two false bug reports in session 6.
+
+**Never `git stash` while parallel chats hold uncommitted work.** Doing it in
+session 6 swept a film chat's files for a minute.
+
+**Importing a value from a `"use client"` module into a server component** gives
+you a client reference rather than the value. A computed-key spread built from
+one renders no attribute at all, silently.
+
+---
+
+## 6. Verification that has earned its place
+
+Run these, not a glance:
+
+- **no horizontal scroll with scripts stripped** — fetch the served HTML, remove
+  every `<script>`, lay it out at 320 through 1440. This catches the first-paint
+  overflow that a hydrated test cannot see.
+- **desktop deltas against a baseline** — measure every section's height before
+  and after. The expected result today is all zeros except Section 6's +50px,
+  which is the Drive line. Anything else is a regression.
+- the copy diff against both build specs, read out of the live DOM;
+- the dash scan — exactly two dashes permitted in visible copy;
+- the production build and lint. Lint has one known pre-existing warning in
+  `analytics.ts`;
+- the service-key-not-in-HTML check after any change to `supabase-admin.ts` or
+  the lead route.
+
+---
+
+## 7. The one unverified claim on the page
+
+Section 6 says: `Blotter connects to Google through an established connection
+provider whose Google application has passed Google's CASA security assessment.`
+
+Jon ruled this in; it supersedes `06-SECTION-6` §13 and §18. **No provider is
+selected, so the sentence is true of no actual arrangement.** Nylas claims
+Tier 3, not Tier 2, so no tier may be stated; and on a shared provider
+application Google's consent screen reads the provider's name, not Blotter's,
+which is an open product decision.
+
+On mobile it now sits inside the folded fine-print row rather than in the open —
+deliberately. Being unverified argues for less prominence, not more.
+
+---
+
+## 8. Decisions that are settled. Do not reopen without Jon.
+
+**a.** The brand identity, the page theme, the bounded-box layout, the status
+chip colours, the date formats, the maintained-zone row tint.
+
+**b. Section 6's present tense.** The demand test needs it. That argument was
+made, rejected, and the rejection was correct.
+
+**c.** Alex Morgan's em dash and the Section 6 §10 sentence are the only two
+dashes permitted in visible copy.
+
+**d. The mobile CTA arrangement** — header button and hero button, no bottom bar.
+
+**e. Section numbering on mobile** — `01`, not `01 / 05`.
+
+**f. Film A stays in the funnel** on every device, for now.
+
+---
+
+## 9. Open and waiting on Jon
+
+- **The mobile sheet treatment** — `09` §5. Blocks mobile 02.
+- **A connection provider.** Closes the last unverified claim.
+- **Whether the film earns its place in the funnel**, and **why the price screen
+  loses people** — both n=1 questions waiting on traffic.
+- `web/app/layout.tsx` carries an em dash in the browser-tab title,
+  contradicting the standing rule. **Flagged in six sessions now**, unchanged
+  without instruction.
+
+---
+
+## 10. How sessions work
 
 One session equals one chat. A session ends when the work is committed and
 pushed, this file is rewritten, and the assistant states explicitly that the
 session is complete.
 
-A new chat begins by reading `CLAUDE.md` and this file. Within a session, work
-proceeds by stage checkpoint: name the stage, name the controlling
-specification, state the stop condition, build, review, approve.
+Within a session, work proceeds by checkpoint: name the stage, name the
+controlling specification, state the stop condition, build, review, approve.
 
-**One repository, one builder — with two recorded exceptions.** Session 3 ran
-two side chats in parallel, both safe because their files were isolated and
-neither was allowed to commit: the social-media asset kit in
-`web/public/brand/`, and a `social/` directory for a launch animation. If you
-run a parallel chat, the rules are: it edits only its own directory, it treats
-`web/lib/brand.ts` and `web/components/brand/` as read-only, it never runs
-`git add`/`commit`/`push`, and it never starts a dev server.
+**Jon reviews by looking, not by reading.** Build it, put it on his phone at a
+real device width, let him react. Prose descriptions of breakpoints do not work.
+Where an answer is not obvious, build the variants behind a temporary route
+under `/review/` and let him flip between them —
+`.claude/skills/prototype/PICKER.md` has the picker, and note that its
+bottom-centre anchor collides with anything fixed to the bottom of the page.
+
+**He rejects at least one ratified asset or presentation rule per section, and
+has in every session.** That is the process working, not a problem.
+
+### Parallel chats
+
+**A second chat cannot build the web version while mobile is in progress.** The
+collision is total: `hero.tsx`, `tracker-and-actions.tsx`,
+`scale-trajectory.tsx`, `privacy-copy.ts` — every file a web build would touch is
+the same file the mobile build is editing, because the whole premise is one
+component with two layouts.
+
+**A documentation chat can run in parallel** — one that only writes
+`blotter-ib-ws1/docs/` and the build specs, turning `09` and `08` into spec
+amendments. Zero collision with `web/`.
+
+The film chats are the precedent for how to do this: own one directory, treat
+everything else as read-only, never run `git add`/`commit`/`push`, never start a
+dev server.
+
+---
+
+## 11. Sessions 1 through 5
 
 | Session | Stages | Deliverable |
 |---|---|---|
-| 1 (complete) | 1-4 | Spec fixes, scaffold, foundation, SheetWindow |
-| 2 (complete) | 5 | Hero, page theme, Section 2, desktop |
-| 3 (complete) | 6 | Brand identity, Section 3, Sections 4+5 merged, desktop |
-| 4 (complete) | 7 | Sections 6 and 7, the footer, the privacy policy page |
-| 5 (complete) | 8-9 | Funnel, Supabase, PostHog, repo move, live deploy on `blotterib.com` |
-| 6 | 10 | **Responsive and accessibility. Start here.** |
-
-## 3. Technical stack, ratified by Jon August 4, 2026
-
-| Layer | Choice |
-|---|---|
-| Framework | Next.js 16 App Router, TypeScript |
-| Styling | Tailwind v4 with CSS custom properties |
-| UI primitives | Base UI 1.6.0 — **installed and in use**, both accordions |
-| Funnel state | zustand |
-| Variants | clsx and cva |
-| Hosting | Vercel Hobby, **public** — production cannot be protected on this plan |
-| Lead storage | Supabase, US region — **live**, see `07-infrastructure-runbook.md` |
-| Analytics | PostHog US Cloud behind the adapter — **live**, project `546166` |
-
-Application root: `web/`. Run with `pnpm --dir web dev`.
-
-Secrets live in `web/.env.local` (gitignored). Never print a value.
-
-## 4. Completed in sessions 1 through 3
-
-Session 1: specification reconciliation, the Next.js scaffold, the foundation
-(design tokens, the nine-event analytics adapter with per-visitor suppression,
-the typed funnel store, the CTA component carrying all four origins, the sticky
-header), and the `SheetWindow` primitive with its comparison surface at
-`/review/sheet`.
-
-Session 2: the hero at its ratified geometry, the page theme, and Section 2 as a
-volume trajectory built from 745 real marks. Both align to one bounding box,
-`PAGE_BOX_W` = 1124px. **Every section inherits it. Do not introduce a second
-page width.**
-
-Session 3: the brand identity (`Ledger B`, Schibsted Grotesk 700 at -0.035em,
-navy alone — yellow and cream are semantic on this page and unavailable to the
-identity), Section 3 as one Friday in three moments, and Sections 4 and 5 merged
-into one section with two beats sharing a tab strip.
-
-Full detail for all three is in `04-decision-log.md`.
-
-## 5. Completed in session 4 (Sections 6 and 7, the privacy policy)
-
-### Section 6, `How Blotter uses your data`
-
-**Three builds.** The first was rejected as "a blob of unformatted information
-that no reader would ever read", the second as chaotic. The second diagnosis was
-the useful one and it was Jon's: the section stacked six different layout
-languages, each defensible against its own spec clause, and arranging spec
-blocks is not designing a section.
-
-The reference settled it. Shortwave — a Gmail app on restricted scopes facing
-the same Google review — carries **none** of this on its marketing site. It is a
-docs page: eleven headed sections, prose only, no tables, no cards. The serious
-version of this surface is a small section plus a real page behind it.
-
-Section 6 is now three parts, one layout language, **1,284px** — down from
-3,083:
-
-- **the claim**, one paragraph a step above reading size. No block, no rule, no
-  display weight: both earlier builds set it as a large bold line under the
-  section head, which is the definition of a subheader;
-- **the flow**, four steps drawn horizontally with four marks and a hairline
-  connector, sitting on the gradient with no panel. The second beat is the
-  exclusion, so it carries the struck mark and a muted ring — colour does the
-  branching a fork diagram would have to draw;
-- **three service columns**, the permissions matrix turned ninety degrees and
-  stripped of all chrome. Same exact content, three short lists instead of one
-  wide grid.
-
-Then two footnotes — the broad-permission disclosure, which may not leave the
-page, and the provider sentence — and the link.
-
-`SheetsMark` was added to `components/google-marks.tsx` and is the same glyph the
-`SheetWindow` chrome draws. The four flow marks are in
-`components/section-6/step-icons.tsx`.
-
-**Everything else moved to `/privacy` and nothing was withdrawn:** retention,
-deletion, all nine commitments, the provider's supporting paragraph and its
-heading, the seven privacy questions, plus the four processing steps in prose
-and the broad-permission explanation. The copy verification diffs both surfaces
-together for exactly that reason.
-
-Section 6's ground is **warm paper**, chosen from three live variants. Continuing
-the page gradient made the boundary with Sections 4-5 vanish, which is what
-`06-SECTION-6` §3 exists to prevent. The band starts on `--field-e` and rests on
-the new `--field-f`.
-
-### Section 7, and the page's first footer
-
-The five-question FAQ passed review unchanged.
-
-The large centred navy closing panel was cut. In its place is a compact footer:
-the exact closing headline set left, the final CTA opposite it, then the brand,
-a privacy-policy link and social links. The supporting and reassurance lines are
-gone. The navy ground survives — `--color-closing`, reserved since session 2 and
-finally used.
-
-LinkedIn is `https://www.linkedin.com/company/blotter`. **The X account does not
-exist yet.** Its mark renders as a non-interactive placeholder; set `X_URL` in
-`components/sections/faq-and-close.tsx` when Jon supplies it.
-
-### The privacy policy page, `/privacy`
-
-No specification ratifies any policy text. Jon ruled a hybrid: conventional
-structure, written broadly, language to be drafted and ratified by him later.
-
-It is deliberately plain: paragraph text, no visual design, per his instruction
-that the back page does not need to be pretty. It is now the section's real
-body, and Section 6 is its front door.
-
-**Structure may be conventional; facts may not be invented.** It shipped with
-every unknown as a visible `[ to be confirmed: … ]` marker rather than a
-plausible guess. Jon answered all of them on August 6, 2026, so the markers and
-the component that drew them are gone, and the page now states only settled
-facts: effective August 6 2026, entity Blotter with no published address,
-`blotterib@gmail.com`, US-only processing, 18+, PostHog for analytics, Supabase
-for hosting and database, Stripe for payments, data kept while the account
-exists and deleted with it, and no Blotter-held certification or audit.
-
-**The Google scopes are stated with Google's own consent wording beside each**,
-so a reader can check the page against the screen they are looking at:
-`gmail.readonly`, `calendar.events.readonly`, and `drive.file`.
-
-`drive.file` is a decision, not a detail. The `spreadsheets` scope grants every
-sheet in the account and would contradict the ratified claim that Blotter cannot
-reach unrelated files. **If the build ever reaches for `spreadsheets`, the page
-becomes false.**
-
-### Section 2
-
-The methodology footnote reads `Summer Analyst 2027`, was `2028`. Nothing else
-changed. The year inside the parked Goldman email asset and the `Summer 2028`
-funnel option are deliberately untouched.
-
-### Verification
-
-Production build passes. Typecheck clean. Lint clean apart from the pre-existing
-`analytics.ts` warning. Page is 7,953px, no horizontal scroll at 1440.
-
-Every backtick-quoted string in both build specs was extracted and diffed
-against the rendered DOM of both pages together, proving the consolidation is a
-relocation and not a deletion. Two dashes in visible copy, both permitted.
-Accordion semantics asserted in the DOM.
-
-## 5b. Completed in session 5 (the funnel, the infrastructure, launch)
-
-### The CTA label changed
-
-**`Try Blotter Now`**, not `See how Blotter works`. The old label promised a
-demonstration and the funnel kept that promise with the three-frame product
-experience; Jon cut the frames, so the label had to go too. Supersedes WS4 and
-`07-SECTION-7` §9. One string, `CTA_LABEL` in `cta-button.tsx`, all four
-placements.
-
-### The funnel, built
-
-Everything WS3 and WS4 specify **except** the three-frame product experience,
-which is replaced by Film A from the parallel `social/` chat.
-
-`question_track → question_window → film → email → price → checkout → confirmed`
-
-**A modal card, not a route**, fixed at 960x730 for every screen. The film sets
-the size because it needs the most room; every other step centres a 460px column
-inside it. Do not let the card resize between steps — Jon rejected that
-explicitly.
-
-`product_experience_completed` keeps its place in the frozen nine and now fires
-when the film step is left. Not renumbered, not repurposed.
-
-`Other` on both questions is a text field with typing required, captured as
-`recruiting_track_other` / `recruiting_window_other` in both the event
-properties and the lead record.
-
-Unratified copy lives in two places and is flagged in code: the film step's two
-lines, and `PRICE_DELIVERY` plus the checkout description.
-
-### Infrastructure, live
-
-Supabase for leads, PostHog for analytics, both US region, both verified in
-production. **`07-infrastructure-runbook.md` is the operational reference** —
-credentials, query patterns, migrations, the internal flag, and the filters that
-make a reported number true. Read it before touching data.
-
-### The repo moved and the site launched
-
-`github.com/jnachman17-hue/Blotter-Claude`, private, not a fork. `origin` points
-there. `blotterib.com` is live and public.
-
-### What the first real traffic said
-
-Eleven external visitors, eight page views, **one real lead**: a Columbia
-address, Management Consulting, desktop. Zero external visitors have reached
-`checkout_started`.
-
-That one session: landed, clicked the CTA **nine seconds later**, spent 4.5
-minutes on the questions, **skipped the film after 8 seconds**, submitted a real
-`.edu` address, saw `$9.99 / month`, and left **seven minutes later** without
-clicking through to payment.
-
-n=1, so hold it lightly. But it is the only evidence that exists, and it says
-the hero converts, the film is not earning its 21.5 seconds, and the price is
-where the decision happens.
-
-## 5c. Stage 10, and what the next session is for
-
-**The mobile build.** The page is desktop-only at a fixed `PAGE_BOX_W` of
-1,124px. On a phone it overflows sideways.
-
-This is not cosmetic. Mobile and desktop split evenly among identified visitors,
-and anything Jon pushes on Reddit, X or LinkedIn lands majority-mobile. Sending
-social traffic to this page today wastes the test.
-
-What has to survive the translation, in rough order of difficulty:
-
-- **the hero**, whose composition depends on the cue column sitting beside the
-  sheet at a fixed width;
-- **Sections 4 and 5**, a ten-column Google Sheets window and a 21-row action
-  view. `05-SECTION-5` §16 and `04-SECTION-4` require all fields and all three
-  groups survive;
-- **Section 2's** volume trajectory, built from 745 marks across a wide field;
-- **Section 6's** four-across flow and three service columns —
-  `06-SECTION-6` §16 says the permissions matrix becomes three sequential
-  service blocks rather than a compressed table, and that no claim may be
-  weakened or hidden;
-- **the funnel card**, currently a fixed 960x730. The film is 4:5, which is
-  native phone shape and should be an advantage here rather than a problem;
-- **44px touch targets**, visible focus, and reduced-motion, per WS5 Phase 6.
-
-`06-assumptions-and-open-questions.md` carries a per-section responsive row for
-every one of these, each written when that section was ratified. They are the
-brief.
-
-## 6. The one unverified claim on the page. Read this before touching it.
-
-Section 6 says: `Blotter connects to Google through an established connection
-provider whose Google application has passed Google's CASA security assessment.`
-
-Jon ruled this in and it supersedes `06-SECTION-6` §13 and §18, which forbid
-implying CASA completion without evidence. **No provider is selected, so the
-sentence is true of no actual arrangement.** Two research findings from this
-session that the final wording has to survive:
-
-- Nylas's public claim for its shared Google application is **Tier 3** CASA, not
-  Tier 2. Do not state a tier: it would be wrong for Nylas and unknown for
-  anyone else.
-- On the Nylas shared application the Google consent screen reads **`Nylas`**,
-  not `Blotter`. Blotter's own name there requires Blotter's own Google
-  application — and then the CASA assessment is Blotter's to pass, not the
-  provider's, and this sentence is false as written. **That is a product
-  decision, not a copy decision, and it is open.**
-
-Three gates in `06-assumptions-and-open-questions.md` carry this.
-
-## 7. Decisions that are settled. Do not reopen without Jon.
-
-Full reasoning is in `04-decision-log.md`.
-
-**a. The brand identity** — mark, wordmark, navy-only colour.
-
-**b. Maintained-zone row tint.** Header band alone in the hero and Section 3.
-The merged Section 4+5 is the deliberate exception.
-
-**c. Status chip colours**, from the ratified hero asset.
-
-**d. Alex Morgan's em dash**, and now **the Section 6 §10 sentence**. Those two
-are the only dashes permitted in visible copy anywhere on the page.
-
-**e. Date formats** `1/16/26`, `1/17 @ 2:00 PM`, `Completed 1/16`.
-
-**f. The page theme and the bounded-box layout**, now including `--field-f` and
-Section 6's warm-paper ground.
-
-**g. Every amendment stamped at the top of `01-HERO`, `02-SECTION-2`,
-`03-SECTION-3`, `04-SECTION-4`, `05-SECTION-5`, `06-SECTION-6` and
-`07-SECTION-7`.** All seven build specs now carry amendment tables.
-
-## 8. Open, flagged to Jon, not answered
-
-- **The X account URL.** The footer renders the mark as a non-link placeholder
-  until it exists. Set `X_URL` in `components/sections/faq-and-close.tsx`.
-- **Whether the film earns its place in the funnel.** The one real visitor gave
-  it 8 seconds of 21.5. Jon asked about gating it and that was ruled out. The
-  open question is whether it should be shorter, or replaced, or moved.
-- **The price screen is where the one real visitor stopped**, for seven minutes.
-  Nothing has been decided about it. It is the most interesting open question
-  the data has produced.
-- **Consent-screen identity**, above. Product decision, open.
-- **Section 3's boundary box gradient.** Blue-to-cream inside it, echoing the
-  sheet header band. Approved in principle, queued, not built.
-- **The messy-spreadsheet concept**, parked. The rear sheet rendered as the
-  stale, unformatted spreadsheet the reader actually has. Jon's idea.
-- **`web/app/layout.tsx` page title** carries an em dash in the browser tab,
-  contradicting the standing rule. Session-1 code, flagged five times now,
-  unchanged without instruction.
-- **A launch animation** for social, roughly ten seconds, in a separate chat
-  under `social/`.
-
-## 9. Waiting on Jon
-
-- **PostHog `insight:write` and `person:write`** — granted August 10 but not
-  registered. Low priority; see section 0.
-- **A connection provider**, which is what closes the last unverified claim.
-
-## 10. Deployment rule, superseded August 10, 2026
-
-The old rule said keep it private, do not route `blotterib.com`, do not route
-public traffic. **Jon overrode all three explicitly** and the site is live and
-public. Record, not debate: he was told the claim gates had not passed and
-decided to launch anyway, which is his call to make.
-
-What survives unchanged, and is not his to waive casually:
-
-- no real OAuth, no real Gmail, Calendar or Sheets integration;
-- no real payment collection and no card fields anywhere;
-- `noindex` and `app/robots.ts` stay until he says launch. Production cannot be
-  password-protected on Vercel Hobby, so they are the only thing keeping the
-  page out of search.
-
-**The demand-test framing is ratified and is not a claims problem.** Section 6
-states the product works in the present tense because that is the instrument.
-Do not propose hedging it; that argument was made, rejected, and the rejection
-was correct. The privacy policy is where the truth about present-day collection
-lives, in article 03.
-
-## 11. Things worth knowing before you start
-
-**Jon rejects at least one ratified asset or presentation rule per section, and
-has in every session.** The pattern that works: build the ratified content,
-then build live side-by-side variants behind a temporary route under `/review/`,
-let him flip between them, delete the losers and the route. Prose descriptions
-do not work. Show, do not describe. `/review/section-6` was built and deleted
-in session 4; `.claude/skills/prototype/PICKER.md` has the picker, verbatim.
-
-**He thinks in screenshots and live pages, not descriptions.** For the mobile
-build this matters more than usual: build it, put it in front of him at real
-device widths, and let him react. Do not write paragraphs about breakpoints.
-
-**Verification that has caught real bugs**, worth repeating each session: the
-copy diff against both build specs read out of the live DOM, the dash scan
-(exactly two permitted), the production build, and the service-key-not-in-HTML
-check.
-
-**The Browser pane's screenshots return blank in this environment.** Its DOM
-tools work fine — `read_page`, `javascript_tool`, console and network all
-behave. For images, drive headless Chrome over the DevTools protocol:
-`Page.captureScreenshot` with a `clip` rectangle is the only reliable way to
-frame a section 5,000px down the page, since the Chrome CLI only captures from
-the top of the document. A working script was used this session and is not
-committed; rebuild it in the scratchpad if you need it.
-
-**Another chat's `next dev` may already hold `web/`.** Next refuses a second
-instance in the same directory, so `preview_start` dies immediately. The running
-server serves the same source — point the browser at it rather than killing
-someone else's process.
-
-`web/components/section-2/gmail-message.tsx` is a complete, verified translation
-of the exact Goldman Sachs asset at its native 1180 by 560 and is currently
-unused. Jon parked it in case a later section wants it. Do not delete it as dead
-code.
-
-`SheetWindow`: an empty `tabs` array omits the tab strip, and `columnWidths`
-accepts numbers as well as Tailwind utilities. Use numbers for any width
-computed at runtime — a template-built `w-[123px]` never reaches the Tailwind
-compiler and the column-letter strip silently stops aligning.
-
-The `impeccable` design hook flags the prototype picker's `width` transition on
-every review route. It is a false positive documented in `PICKER.md`. No
-suppression has been added, in this session or the last.
+| 1 | 1-4 | Spec fixes, scaffold, foundation, `SheetWindow` |
+| 2 | 5 | Hero, page theme, Section 2, desktop |
+| 3 | 6 | Brand identity, Section 3, Sections 4+5 merged |
+| 4 | 7 | Sections 6 and 7, the footer, `/privacy` |
+| 5 | 8-9 | Funnel, Supabase, PostHog, live deploy on `blotterib.com` |
+| **6** | **10, part 1** | **Responsive skeleton, mobile hero with Film C, mobile 01, 04 and 05, the argument rework diagnosed** |
+
+Full detail for 1 through 5 is in `04-decision-log.md`. The technical stack,
+credentials and deployment mechanics are in `07-infrastructure-runbook.md`.
+
+Application root: `web/`. Run with `pnpm --dir web dev`. Secrets live in
+`web/.env.local`, gitignored. Never print a value.

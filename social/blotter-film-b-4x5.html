@@ -137,7 +137,12 @@ body{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:18px;padding:20px;overflow:hidden;-webkit-font-smoothing:antialiased;
 }
-body.bare{background:#000;gap:0;padding:0}
+/* Transparent, not black. Embedded, any gap between the film and its slot
+   should read as the host's own background rather than as letterbox bars.
+   Jon saw black bars in the funnel on August 11, 2026; the cause was the
+   slot losing its aspect ratio, but the reason it looked broken rather
+   than merely inset was this fill. Fixed at both ends. */
+body.bare{background:transparent;gap:0;padding:0}
 body.bare .chrome{display:none}
 .stagehold{flex:none;overflow:hidden}
 .stagewrap{width:1080px;height:1350px;transform-origin:top left}
@@ -194,8 +199,8 @@ body.bare .chrome{display:none}
   margin:28px auto 0;border:1px solid var(--sheet-border);border-radius:999px;
   padding:11px 26px;width:max-content;font-size:26px;color:#3c4043;
 }
-.gacct .av{width:36px;height:36px;border-radius:50%;background:#5f6b7a;color:#fff;
-  font-size:15px;font-weight:500;display:grid;place-items:center;font-family:var(--sans)}
+.gacct .av{width:36px;height:36px;border-radius:50%;background:#9aa0a6;
+  display:grid;place-items:center}
 .gsub{margin-top:38px;font-size:26px;color:#5f6368}
 .grow{display:flex;align-items:center;gap:22px;margin-top:26px}
 .grow .gi{width:40px;flex:none;display:flex;justify-content:center}
@@ -227,29 +232,73 @@ body.bare .chrome{display:none}
   pass. This is the intelligence demonstration and the privacy story in the same
   gesture, which is why it is worth seven seconds.
 */
-.stream{width:900px;margin:0 auto}
+/*
+  A real Gmail inbox, not an approximation. Every value below comes from
+  `components/section-2/gmail-inbox-strip.tsx`, the page's own verified Gmail
+  surface: the #f6f8fc read ground, the #e8eaed and #f1f3f4 rules, the #5f6368
+  checkbox, the star, unread as bold-on-white, and the chrome bar with its mail
+  count. Jon asked for the actual inbox and named Section 2 as the reference, so
+  this reproduces it rather than inventing a list of cards.
+
+  `03-SECTION-3` s17 bans full Gmail screens on page surfaces. Jon's August 5
+  video override covers this class of rule, and it is video only; the page bans
+  are untouched.
+
+  Tracked rows keep Gmail's own unread styling and gain a navy outline. The
+  outline is Blotter's mark on the row rather than a Gmail affordance: a label
+  chip would look more native but would imply Blotter writes labels into your
+  mail, which is a write action we do not claim.
+*/
+.inbox{
+  width:940px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;
+  border:1px solid var(--sheet-border);font-family:var(--gmail-type);
+  box-shadow:0 2px 6px rgba(60,64,67,.15),0 18px 52px -14px rgba(60,64,67,.28);
+}
+.ibar{display:flex;align-items:center;gap:14px;height:74px;padding:0 28px;
+  border-bottom:1px solid #e8eaed}
+.ibar .mail{font-size:26px;letter-spacing:-.2px;color:#5f6368}
+.ibar .tag{border-radius:5px;background:#e8eaed;color:#444746;font-size:20px;padding:5px 12px}
+.ibar .count{margin-left:auto;font-size:22px;color:#5f6368}
+
 .srow{
-  display:flex;align-items:center;gap:20px;height:88px;padding:0 26px;
-  border-radius:12px;background:#fff;border:1px solid var(--sheet-border);
-  margin-bottom:12px;font-family:var(--gmail-type);
+  display:flex;align-items:center;gap:20px;height:82px;padding:0 28px;
+  border-bottom:1px solid #e8eaed;background:#fff;position:relative;
   will-change:opacity,transform;
 }
-.srow .who{width:250px;flex:none;font-size:25px;color:var(--ink);
+.srow:last-child{border-bottom:0}
+.srow .cb{width:22px;height:22px;flex:none;border-radius:3px;border:3px solid #5f6368}
+.srow .star{flex:none;font-size:25px;color:#9aa0a6;line-height:1}
+.srow .who{width:250px;flex:none;font-size:25px;color:#1f1f1f;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.srow .subj{flex:1;font-size:24px;color:var(--ink-muted);
+.srow .subj{flex:1;min-width:0;font-size:25px;color:#1f1f1f;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.srow .tag{
-  flex:none;font-family:var(--sans);font-size:20px;padding:7px 16px;
-  border-radius:999px;white-space:nowrap;
+.srow .when{flex:none;font-size:22px;color:#1f1f1f}
+
+/*
+  Tracked rows carry Gmail's own unread styling: bold, on white, against the
+  read ground everything else sits on. That is Gmail's real distinction and it
+  is already doing the work.
+
+  A navy outline was tried and cut. Gmail has no such affordance, so it read as
+  a foreign object, and nesting a rounded rectangle inside a row that already
+  has borders is two shapes fighting. The headline carries the meaning; the
+  visual only has to separate.
+
+  `m` swaps in the Ledger B mark at the row's right edge for comparison. It is a
+  positive signal that names Blotter rather than just implying difference. Both
+  are honest; neither invents a Gmail control.
+*/
+.srow.on .who,.srow.on .subj,.srow.on .when{font-weight:bold}
+.srow .bmark{
+  flex:none;width:26px;display:none;color:var(--navy-500);
 }
-/* Neutral elevation, the same grey every other surface in this file uses,
-   sampled from the ratified Sheets and Gmail assets. A navy-tinted shadow was
-   inconsistent with them and read as a glow rather than as lift. */
-.srow.on{border-color:var(--navy-400);box-shadow:0 2px 10px rgba(60,64,67,.13)}
-.srow.on .tag{background:var(--chip-replied-bg);color:var(--chip-replied-fg)}
-.srow.off{background:#f4f6f9;border-color:#e6e9ee}
-.srow.off .who,.srow.off .subj{color:var(--ink-faint)}
-.srow.off .tag{color:var(--ink-faint)}
+body.mark .srow.on .bmark{display:block}
+.srow.off .bmark{visibility:hidden}
+/* Untracked: Gmail's own read styling, dimmed further. */
+.srow.off{background:#f6f8fc;border-bottom-color:#f1f3f4}
+.srow.off .who,.srow.off .subj,.srow.off .when{color:#9aa0a6}
+.srow.off .star{color:#dadce0}
+.srow.off .cb{border-color:#bdc1c6}
 
 /* ============================================================== the sheet == */
 .sheet{
@@ -313,6 +362,7 @@ body.bare .chrome{display:none}
 .chip[data-s="No reply"]{background:var(--chip-noreply-bg);color:var(--chip-noreply-fg)}
 .chip[data-s="Sent"]{background:var(--chip-sent-bg);color:var(--chip-sent-fg)}
 .kv{will-change:opacity,transform}
+.dash{display:block;width:100%;text-align:center;color:var(--ink-faint)}
 
 /* The reply that causes the derivation. It sits above the sheet rather than on
    it: the space between the headline block and the sheet is empty at this beat,
@@ -323,6 +373,7 @@ body.bare .chrome{display:none}
   padding:16px 22px;font-family:var(--gmail-type);
   box-shadow:0 2px 10px rgba(60,64,67,.16);will-change:opacity,transform;
 }
+.cue .muted{display:flex;opacity:.4;filter:grayscale(1)}
 .cue .ct{font-size:24px;color:var(--ink)}
 .cue .cs{font-size:20px;color:var(--ink-faint);margin-left:4px}
 
@@ -362,19 +413,46 @@ body.bare .chrome{display:none}
 /* ========================================================= 6. BOUNDARY ==== */
 /* 03-SECTION-3 s5, all four strings verbatim. Not optional in B: a film that
    shows an engine reading your email needs the refusals. */
-.bound{width:1000px;margin:0 auto;text-align:center}
+/*
+  The three refusals, in the landing page's own treatment.
+
+  `components/section-3/boundary-block.tsx` stacks them in a warm panel with a
+  tinted tile per statement and a hairline between. Jon ratified that on August
+  5, 2026 after rejecting pills outright: its header records "§11 restrained
+  outlined-pill or compact-label treatment — overruled. He rejected the pills
+  outright." This film had drifted back to pills. Returning to the ratified form
+  is also simply cleaner and far more legible at phone size.
+
+  Each glyph draws the thing being refused and strikes it through. The strike is
+  one warm clay across all three so the negation reads as a single idea, and the
+  tile tints do the varying. Values lifted from the component: strike #b4705a,
+  stroke #1b3050, tints #e6edf8, #f7f1e4, #ececed.
+
+  The ChatGPT mark on the third is Jon's instruction, reaffirmed after the
+  concerns were put to him twice. It overrides `03-SECTION-3` §17's "provider
+  references" exclusion and puts a third party's trademark in a negative
+  comparative position. Both were raised and waived. Recorded, not re-argued.
+  The strike is not decoration there: without it the mark reads as an
+  integration rather than a refusal, which is the opposite claim.
+*/
+/* Wide enough, and set small enough, that the first ratified sentence holds one
+   line. It orphaned "messages." at 42px in an 820px measure. */
+.bound{width:940px;margin:0 auto}
 .boundline{
-  font-family:var(--display);font-weight:700;font-size:42px;line-height:1.24;
-  letter-spacing:-0.02em;color:var(--navy-900);
+  font-family:var(--display);font-weight:700;font-size:38px;line-height:1.28;
+  letter-spacing:-0.02em;color:var(--navy-900);text-align:center;
 }
-/* One row, never wrapped: three refusals stacked two-and-one read as an
-   afterthought rather than as a set. */
-.badges{display:flex;justify-content:center;gap:16px;margin-top:48px;flex-wrap:nowrap}
+.badges{
+  margin-top:46px;border-radius:16px;background:#fbf9f5;
+  box-shadow:inset 0 0 0 1px rgba(18,35,61,.07);padding:8px 34px;
+}
 .badge{
-  font-size:23px;padding:15px 26px;border-radius:999px;
-  border:1px solid var(--navy-400);color:var(--navy-800);background:rgba(255,255,255,.6);
-  white-space:nowrap;will-change:opacity,transform;
+  display:flex;align-items:center;gap:22px;padding:22px 0;
+  border-bottom:1px solid rgba(18,35,61,.08);will-change:opacity,transform;
 }
+.badge:last-child{border-bottom:0}
+.badge .tile{width:66px;height:66px;flex:none;border-radius:15px;display:grid;place-items:center}
+.badge .lab{font-size:30px;line-height:1.3;color:var(--navy-900)}
 
 /* ---------------------------------------------------------------- end card */
 .endcard{position:absolute;inset:0;background:var(--navy-900);
@@ -423,6 +501,9 @@ body.bare .chrome{display:none}
     <div class="line" id="tDer">
       <div class="l1">One reply.<br><span class="soft">Four fields.</span></div>
     </div>
+    <div class="line" id="tSame">
+      <div class="l1">A meeting does<br><span class="soft">exactly the same thing.</span></div>
+    </div>
     <div class="line" id="tTime">
       <div class="l1">Nothing arrives.<br><span class="soft">The tracker moves anyway.</span></div>
     </div>
@@ -449,7 +530,18 @@ body.bare .chrome{display:none}
           </svg>
         </div>
         <div class="gtitle"><b>Blotter</b> wants access to your Google Account</div>
-        <div class="gacct"><span class="av">JN</span><span>you@gmail.com</span></div>
+        <!-- A neutral silhouette, no name. Initials on a placeholder domain read
+             as a specific person's account, which this is not. The sheet keeps
+             its JN because hero-reference-v1.png draws it and that is ratified;
+             the two surfaces never appear together. -->
+        <div class="gacct">
+          <span class="av">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+              <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z"/>
+            </svg>
+          </span>
+          <span>you@gmail.com</span>
+        </div>
         <div class="gsub">This will allow Blotter to:</div>
         <div class="grow">
           <span class="gi">
@@ -482,16 +574,31 @@ body.bare .chrome{display:none}
           </span>
           <span class="gt">Google Calendar</span>
         </div>
+        <!--
+          Google Drive, not Google Sheets, and this is a correctness point Jon
+          raised. Sheets access is granted through Drive: `drive.file` is the
+          per-file scope, "only the specific Google Drive files that you use
+          with this app". The Sheets-specific scope grants ALL spreadsheets,
+          which is broader and a worse story. A consent screen that said Sheets
+          would not be the screen a user actually sees, which is the only reason
+          to show it at all.
+
+          It is also what makes the two-card sequence work: Google says Drive,
+          which sounds like the whole Drive, and Blotter answers in the next
+          breath with the one file.
+        -->
         <div class="grow">
           <span class="gi">
-            <span style="display:grid;place-items:center;width:26px;height:26px;border-radius:5px;background:var(--sheet-green)">
-              <svg width="13" height="16" viewBox="0 0 15 19" fill="none" aria-hidden="true">
-                <path d="M9 0H1.5A1.5 1.5 0 0 0 0 1.5v16A1.5 1.5 0 0 0 1.5 19h12a1.5 1.5 0 0 0 1.5-1.5V6L9 0Z" fill="#fff" fill-opacity=".25"/>
-                <path d="M3.5 8.5h8v6h-8v-6Zm1 1.5v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Zm-3.5 2v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Z" fill="#fff"/>
-              </svg>
-            </span>
+            <svg width="30" height="27" viewBox="0 0 87.3 78" aria-hidden="true">
+              <path d="M6.6 66.85 10.45 73.5c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+              <path d="M43.65 25 29.9 1.2c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44A9.06 9.06 0 0 0 0 53h27.45z" fill="#00ac47"/>
+              <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75L86.1 57.4c.8-1.4 1.2-2.95 1.2-4.5H59.85l5.85 11.5z" fill="#ea4335"/>
+              <path d="M43.65 25 57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
+              <path d="M59.85 53H27.45L13.7 76.8c1.35.8 2.9 1.2 4.5 1.2h50.9c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/>
+              <path d="M73.4 26.5 60.7 4.5c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25l16.2 28h27.4c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
+            </svg>
           </span>
-          <span class="gt">Google Sheets</span>
+          <span class="gt">Google Drive</span>
         </div>
         <div class="gbtns"><span class="gbtn ghost">Cancel</span><span class="gbtn solid">Continue</span></div>
       </div>
@@ -501,6 +608,25 @@ body.bare .chrome{display:none}
     <div class="obj" id="oBlotter">
       <div class="bcard">
         <div class="bhead">What that means</div>
+        <!--
+          Three rows, one shape: what it touches, then what it does not.
+
+          Jon's note, and he was right on all three counts. The blue second line
+          appeared on Gmail alone, which read as inconsistent formatting; the
+          registers were mixed, two permission statements and one benefit claim;
+          and the third was named Sheets when the permission is really Drive.
+          Giving every row the same grammar fixes all three at once, and the
+          repeated "Nothing else in your ___" becomes a rhythm rather than a
+          one-off reassurance.
+
+          The Drive row keeps "Google Sheets" in it, per Jon, so the landing
+          page's language survives in the same breath that corrects the scope.
+
+          CLAIM GATE: these are specific scope commitments. 06-SECTION-6 lists
+          unrelated-Drive-access among the claims that must match actual
+          implementation truth before public traffic. `drive.file` genuinely is
+          per-file, so this is accurate today, but the build has to honour it.
+        -->
         <div class="brow" id="bRow0">
           <span class="bi">
             <svg width="32" height="24" viewBox="0 0 24 18" aria-hidden="true">
@@ -511,8 +637,8 @@ body.bare .chrome{display:none}
               <path d="M0 2.45v3.82l4.91 3.68V1.64L2.95.98C1.73.07 0 .93 0 2.45Z" fill="#C5221F"/>
             </svg>
           </span>
-          <span class="bt">Recruiting email from the contacts you add.
-            <span class="no">Nothing else.</span></span>
+          <span class="bt">Mail from the contacts you add.
+            <span class="no">Nothing else in your inbox.</span></span>
         </div>
         <div class="brow" id="bRow1">
           <span class="bi">
@@ -530,29 +656,65 @@ body.bare .chrome{display:none}
               </g>
             </svg>
           </span>
-          <span class="bt">Calendar events with those contacts.</span>
+          <span class="bt">Events with those contacts.
+            <span class="no">Nothing else in your calendar.</span></span>
         </div>
         <div class="brow" id="bRow2">
           <span class="bi">
-            <span style="display:grid;place-items:center;width:28px;height:28px;border-radius:6px;background:var(--sheet-green)">
-              <svg width="14" height="18" viewBox="0 0 15 19" fill="none" aria-hidden="true">
-                <path d="M9 0H1.5A1.5 1.5 0 0 0 0 1.5v16A1.5 1.5 0 0 0 1.5 19h12a1.5 1.5 0 0 0 1.5-1.5V6L9 0Z" fill="#fff" fill-opacity=".25"/>
-                <path d="M3.5 8.5h8v6h-8v-6Zm1 1.5v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Zm-3.5 2v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Z" fill="#fff"/>
-              </svg>
-            </span>
+            <svg width="30" height="27" viewBox="0 0 87.3 78" aria-hidden="true">
+              <path d="M6.6 66.85 10.45 73.5c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+              <path d="M43.65 25 29.9 1.2c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44A9.06 9.06 0 0 0 0 53h27.45z" fill="#00ac47"/>
+              <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75L86.1 57.4c.8-1.4 1.2-2.95 1.2-4.5H59.85l5.85 11.5z" fill="#ea4335"/>
+              <path d="M43.65 25 57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
+              <path d="M59.85 53H27.45L13.7 76.8c1.35.8 2.9 1.2 4.5 1.2h50.9c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/>
+              <path d="M73.4 26.5 60.7 4.5c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25l16.2 28h27.4c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
+            </svg>
           </span>
-          <span class="bt">Your recruiting tracker, kept current.</span>
+          <span class="bt">The one Google Sheets tracker file you connect.
+            <span class="no">Nothing else in your Drive.</span></span>
         </div>
       </div>
     </div>
 
     <!-- 2. Recognition -->
-    <div class="obj" id="oStream"><div class="stream" id="stream"></div></div>
+    <div class="obj" id="oStream">
+      <div class="inbox">
+        <div class="ibar">
+          <svg width="30" height="23" viewBox="0 0 24 18" aria-hidden="true">
+            <path d="M1.64 18h3.27V9.95L0 6.27v10.09C0 17.27.73 18 1.64 18Z" fill="#4285F4"/>
+            <path d="M19.09 18h3.27c.9 0 1.64-.73 1.64-1.64V6.27l-4.91 3.68V18Z" fill="#34A853"/>
+            <path d="M19.09 1.64v8.31L24 6.27V2.45c0-1.52-1.73-2.38-2.95-1.47l-1.96 1.47Z" fill="#FBBC04"/>
+            <path d="M4.91 9.95V1.64L12 6.95l7.09-5.31v8.31L12 15.27 4.91 9.95Z" fill="#EA4335"/>
+            <path d="M0 2.45v3.82l4.91 3.68V1.64L2.95.98C1.73.07 0 .93 0 2.45Z" fill="#C5221F"/>
+          </svg>
+          <span class="mail">Mail</span>
+          <span class="tag">Inbox</span>
+          <span class="count">22,844</span>
+        </div>
+        <div id="stream"></div>
+      </div>
+    </div>
 
     <!-- 3 and 4. The sheet -->
     <div class="obj" id="oSheet">
      <div class="sheetwrap">
-      <div class="cue" id="cue">
+      <!--
+        Three cues, one slot. Each replaces the last rather than stacking:
+        three at once competes for the frame and none of them owns its moment.
+
+        These are SECTION_3_MOMENTS from lib/sheet-data.ts, the three ratified
+        moments of January 16 and deliberately one of each trigger type. Order
+        is Sarah, Priya, Daniel rather than Section 3's order, because a page is
+        scanned and a film is built: two things arrive and move the sheet, then
+        nothing arrives and it moves anyway.
+
+        Daniel's Gmail mark is muted rather than absent, exactly as
+        day-timeline.tsx does it. The thread is a Gmail thread so the slot names
+        it; the muting carries the fact that nothing arrived in it. A
+        full-strength mark would imply Gmail signalled something, and Gmail
+        signalling nothing is the whole point of that row.
+      -->
+      <div class="cue" id="cueSarah">
         <svg width="30" height="23" viewBox="0 0 24 18" aria-hidden="true">
           <path d="M1.64 18h3.27V9.95L0 6.27v10.09C0 17.27.73 18 1.64 18Z" fill="#4285F4"/>
           <path d="M19.09 18h3.27c.9 0 1.64-.73 1.64-1.64V6.27l-4.91 3.68V18Z" fill="#34A853"/>
@@ -561,6 +723,32 @@ body.bare .chrome{display:none}
           <path d="M0 2.45v3.82l4.91 3.68V1.64L2.95.98C1.73.07 0 .93 0 2.45Z" fill="#C5221F"/>
         </svg>
         <span class="ct">Sarah Chen replied</span><span class="cs">10:42 AM</span>
+      </div>
+      <div class="cue" id="cuePriya">
+        <svg width="26" height="26" viewBox="0 0 20 20" aria-hidden="true">
+          <g clip-path="url(#calB)">
+            <rect width="20" height="20" fill="#4285F4"/>
+            <rect x="15.6" width="4.4" height="4.4" fill="#1967D2"/>
+            <rect x="15.6" y="4.4" width="4.4" height="11.2" fill="#FBBC04"/>
+            <rect y="15.6" width="4.4" height="4.4" fill="#188038"/>
+            <rect x="4.4" y="15.6" width="11.2" height="4.4" fill="#34A853"/>
+            <rect x="15.6" y="15.6" width="4.4" height="4.4" fill="#EA4335"/>
+            <rect x="4.4" y="4.4" width="11.2" height="11.2" fill="#ffffff"/>
+            <text x="10" y="13.6" text-anchor="middle" font-size="9.4" font-weight="500"
+                  fill="#4285F4" font-family="Arial, Helvetica, sans-serif">31</text>
+          </g>
+        </svg>
+        <span class="ct">Coffee chat with Priya Shah</span><span class="cs">2:00 PM</span>
+      </div>
+      <div class="cue" id="cueDaniel">
+        <span class="muted"><svg width="30" height="23" viewBox="0 0 24 18" aria-hidden="true">
+          <path d="M1.64 18h3.27V9.95L0 6.27v10.09C0 17.27.73 18 1.64 18Z" fill="#4285F4"/>
+          <path d="M19.09 18h3.27c.9 0 1.64-.73 1.64-1.64V6.27l-4.91 3.68V18Z" fill="#34A853"/>
+          <path d="M19.09 1.64v8.31L24 6.27V2.45c0-1.52-1.73-2.38-2.95-1.47l-1.96 1.47Z" fill="#FBBC04"/>
+          <path d="M4.91 9.95V1.64L12 6.95l7.09-5.31v8.31L12 15.27 4.91 9.95Z" fill="#EA4335"/>
+          <path d="M0 2.45v3.82l4.91 3.68V1.64L2.95.98C1.73.07 0 .93 0 2.45Z" fill="#C5221F"/>
+        </svg></span>
+        <span class="ct">No reply for 5 days</span><span class="cs">Last contact Jan 11</span>
       </div>
       <div class="sheet">
         <div class="titlebar">
@@ -640,18 +828,27 @@ body.bare .chrome{display:none}
      </div>
     </div>
 
-    <!-- 6. Boundary. 03-SECTION-3 s5, verbatim. -->
-    <div class="obj" id="oBound">
-      <div class="bound">
-        <div class="boundline">You choose the people and write the messages.<br>
-          <span style="color:var(--navy-400)">Blotter keeps the logistics current.</span></div>
-        <div class="badges">
-          <span class="badge" id="bg0">No technical-prep content</span>
-          <span class="badge" id="bg1">No generic mass AI outreach</span>
-          <span class="badge" id="bg2">No AI slop</span>
-        </div>
-      </div>
-    </div>
+    <!--
+      THE BOUNDARY BEAT WAS CUT, by Jon, and the reasoning is worth keeping.
+
+      It carried `03-SECTION-3` s5's line and all three refusals, and an earlier
+      version of this file argued it was mandatory here: a film that shows an
+      engine reading your email needs the refusals or it reads as AI doing your
+      networking.
+
+      That over-indexed. The permissions card is already three refusals —
+      "Nothing else in your inbox / calendar / Drive" — and every Next move on
+      screen is a prompt rather than a draft: Reply to Sarah, Send thank-you,
+      Bump thread. Nothing in the film depicts writing. And closing on a list of
+      things the product does not do is a downbeat ending that delays the mark.
+
+      Residual, recorded rather than hidden: nothing in B now states explicitly
+      that Blotter does not write outreach. Section 3 carries that on the page.
+
+      To restore it, the treatment is `components/section-3/boundary-block.tsx`
+      and the styles are still in this file's stylesheet under "the three
+      refusals".
+    -->
   </div>
 
   <!-- =========================================================== end card -->
@@ -680,11 +877,12 @@ body.bare .chrome{display:none}
 
 <div class="chrome">
   <button id="play">Pause</button>
-  <input type="range" id="scrub" min="0" max="34500" value="0" step="1">
-  <span class="t" id="clock">0.00 / 34.50</span>
+  <input type="range" id="scrub" min="0" max="28000" value="0" step="1">
+  <span class="t" id="clock">0.00 / 28.00</span>
   <button id="btn11">1:1 guide</button>
   <button id="btnFit">True size</button>
-  <span class="hint">space play &middot; arrows step &middot; c clean &middot; r restart</span>
+  <button id="btnMark">Mark</button>
+  <span class="hint">space play &middot; arrows step &middot; m mark &middot; c clean &middot; r restart</span>
 </div>
 
 <script>
@@ -714,13 +912,17 @@ const ROWS = [
   { name:"Sarah Chen", status:"Replied",        next:"Reply to Sarah",     last:"1/16/26", days:"0",
     before:{ status:"Sent", next:"", last:"1/14/26", days:"2" } },
   { name:"Marcus Lee", status:"Call scheduled", next:"Attend coffee chat", last:"1/15/26", days:"1" },
-  { name:"Priya Shah", status:"Call completed", next:"Send thank-you",     last:"1/16/26", days:"0" },
+  /* Priya's prior state is demo texture, not ratified: the vocabulary is the
+     ratified status set, but "Call scheduled" for her before the 2:00 PM chat
+     is inferred. Her AFTER state is exact, from SECTION_3_MOMENTS. */
+  { name:"Priya Shah", status:"Call completed", next:"Send thank-you",     last:"1/16/26", days:"0",
+    before:{ status:"Call scheduled", next:"Attend coffee chat", last:"1/12/26", days:"4" } },
   { name:"Daniel Kim", status:"No reply",       next:"Bump thread",        last:"1/11/26", days:"5",
     /* Daniel is the time beat: nothing arrives and his row moves regardless. */
     before:{ status:"Sent", next:"", last:"1/11/26", days:"0" } },
   { name:"Alex Morgan",status:"Sent",           next:"",                   last:"1/16/26", days:"0" },
 ];
-const SARAH = 0, DANIEL = 3;
+const SARAH = 0, PRIYA = 2, DANIEL = 3;
 
 /* Recognition stream. The five tracked contacts are canonical; the untracked
    senders are texture and exist to be ignored, which is the point of the beat.
@@ -742,13 +944,13 @@ const SARAH = 0, DANIEL = 3;
    pushed the list four pixels past the 1:1 safe band. Seven also ends the beat
    on a tracked contact, which is the note to leave it on. */
 const STREAM = [
-  { who:"Sarah Chen",    subj:"Re: Coffee chat availability", on:true  },
-  { who:"Campus Events", subj:"Spring career fair reminder",  on:false },
-  { who:"Career Center", subj:"Resume workshop signup",       on:false },
-  { who:"Mom",           subj:"Sunday dinner?",               on:false },
-  { who:"Priya Shah",    subj:"Re: Thank you",                on:true  },
-  { who:"Newsletter",    subj:"This week in markets",         on:false },
-  { who:"Marcus Lee",    subj:"Re: 15 minutes this week?",    on:true  },
+  { who:"Sarah Chen",    subj:"Re: Coffee chat availability", when:"10:42 AM", on:true  },
+  { who:"Campus Events", subj:"Spring career fair reminder",  when:"10:20 AM", on:false },
+  { who:"Career Center", subj:"Resume workshop signup",       when:"9:51 AM",  on:false },
+  { who:"Mom",           subj:"Sunday dinner?",               when:"9:14 AM",  on:false },
+  { who:"Priya Shah",    subj:"Re: Thank you",                when:"8:47 AM",  on:true  },
+  { who:"Newsletter",    subj:"This week in markets",         when:"7:30 AM",  on:false },
+  { who:"Marcus Lee",    subj:"Re: 15 minutes this week?",    when:"7:02 AM",  on:true  },
 ];
 
 /* All seven stay on screen: they fit, and a list that scrolls away mid-beat
@@ -818,7 +1020,17 @@ const flashEls = [...$("tracker").querySelectorAll(".flash")];
   STREAM.forEach((m, i) => {
     const d = document.createElement("div");
     d.className = "srow";
-    d.innerHTML = `<span class="who"></span><span class="subj"></span><span class="tag"></span>`;
+    d.innerHTML = '<span class="cb"></span><span class="star">\u2606</span>'
+                + '<span class="who"></span><span class="subj"></span><span class="when"></span>'
+                + '<span class="bmark">'
+                + '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+                + '<rect x="3.2" y="2.8" width="3.4" height="8.4" rx="1.1"/>'
+                + '<rect x="3.2" y="12.8" width="3.4" height="8.4" rx="1.1"/>'
+                + '<path fill-rule="evenodd" d="M7.5 2.8H14.2a4.2 4.2 0 0 1 0 8.4H7.5Z'
+                + 'M11.8 5.6H13.4a1.4 1.4 0 0 1 0 2.8H11.8a1.4 1.4 0 0 1 0-2.8Z'
+                + 'M7.5 12.8H16.4a4.2 4.2 0 0 1 0 8.4H7.5Z'
+                + 'M11.8 15.6H14.8a1.4 1.4 0 0 1 0 2.8H11.8a1.4 1.4 0 0 1 0-2.8Z"/>'
+                + '</svg></span>';
     el.appendChild(d);
   });
 })();
@@ -833,46 +1045,63 @@ function cellText(r, key, useBefore){
    TIMELINE
    ========================================================================= */
 
-const DUR = 34.5;
+const DUR = 28.0;
 
 const P = {
+  /*
+    Twenty-eight seconds. Jon's third pass on pacing:
+
+      The inbox goes faster still. Rows land every 0.30s now: the beat is a
+      pattern, tracked against not-tracked, and the pattern is readable long
+      before the seventh row arrives.
+
+      The permissions card gets longer. It is the only screen in the film with
+      three separate things to read, and it was the one place the reader was
+      behind rather than ahead. The card now holds for about two and a half
+      seconds after its last row lands.
+
+      The boundary beat is gone entirely. See the note in the markup.
+
+    Daniel's day count is still the longest hold in the film, and still should be.
+  */
+
   /* 1. CONNECT */
-  connIn:[0.30,0.80], connOut:[6.05,6.35],
-  gIn:[0.55,1.10],  gOut:[3.05,3.35],
-  bIn:[3.30,3.85],  bOut:[6.05,6.35],
-  bRowFrom:3.95, bRowStep:0.32, bRowDur:0.36,
+  connIn:[0.30,0.75], connOut:[7.00,7.30],
+  gIn:[0.50,1.00],  gOut:[2.75,3.05],
+  bIn:[3.00,3.50],  bOut:[7.00,7.30],
+  bRowFrom:3.60, bRowStep:0.30, bRowDur:0.34,
 
   /* 2. RECOGNITION */
-  recIn:[6.55,7.05], recOut:[13.20,13.50],
-  streamFrom:7.05, streamStep:0.70, streamDur:0.34,
-  streamOut:[13.10,13.50],
+  recIn:[7.45,7.85], recOut:[11.10,11.40],
+  streamFrom:7.90, streamStep:0.30, streamDur:0.26,
+  streamOut:[11.00,11.40],
 
-  /* 3. DERIVATION */
-  derIn:[13.75,14.25], derOut:[20.05,20.35],
-  sheetIn:[13.60,14.15],
-  cueIn:[14.55,15.05],
-  fieldFrom:15.35, fieldStep:0.34, fieldDur:0.42,
-  cueOut:[17.60,17.95],
+  /* 3. DERIVATION. Sarah's reply, and the four fields it moves. */
+  sheetIn:[11.40,11.85],
+  derIn:[11.50,11.95], derOut:[14.80,15.05],
+  cueSarah:[12.10,12.50], cueSarahOut:[14.65,14.95],
+  fieldFrom:12.70, fieldStep:0.24, fieldDur:0.32,
 
-  /* 4. TIME */
-  timeIn:[20.50,21.00], timeOut:[25.55,25.85],
-  daysFrom:21.15, daysTo:23.55,
+  /* 3b. The same thing, from Calendar. */
+  sameIn:[15.15,15.55], sameOut:[17.30,17.55],
+  cuePriya:[15.37,15.77], cuePriyaOut:[17.15,17.45],
+  priyaFill:[16.00,16.35],
 
-  /* 5. THE LIST */
-  swap:[25.85,26.45],
-  counts:[26.40,27.45],
-  listIn:[26.65,27.15], listOut:[29.55,29.80],
+  /* 4. TIME. Nothing arrives and the sheet moves regardless. */
+  timeIn:[17.65,18.05], timeOut:[21.10,21.35],
+  cueDaniel:[17.87,18.27], cueDanielOut:[20.90,21.25],
+  daysFrom:18.40, daysTo:20.10,
 
-  /* 6. BOUNDARY. The sheet clears first: each beat owns the frame, and a
-     boundary statement printed over a live spreadsheet reads as a caption on
-     the sheet rather than as a statement about the product. */
-  sheetOut:[29.80,30.20],
-  boundIn:[30.15,30.65], boundOut:[32.55,32.85],
-  badgeFrom:30.80, badgeStep:0.24, badgeDur:0.34,
+  /* 5. THE LIST, straight into the mark. */
+  swap:[21.35,21.90],
+  counts:[21.85,22.80],
+  listIn:[22.05,22.50], listOut:[25.05,25.30],
+  sheetOut:[25.30,25.65],
 
-  /* 7. MARK */
-  card:[32.85,33.20], cardCopy:[33.20,33.60], cardOff:[34.25,34.50],
-  reset:33.75,
+  /* 6. MARK */
+  card:[25.65,26.00], cardCopy:[26.00,26.40], cardOff:[27.75,28.00],
+  /* the stage silently returns to frame 0 here, under full navy coverage */
+  reset:27.20,
 };
 
 const cl = u => u < 0 ? 0 : u > 1 ? 1 : u;
@@ -884,19 +1113,26 @@ function setLine(el, v, rise){
   el.style.opacity = v;
   el.style.transform = `translateY(${(1-v) * (rise===undefined?14:rise)}px)`;
 }
-function setObj(el, v, rise){
+/*
+  Objects cross-fade in place. They used to rise as they arrived, which meant the
+  outgoing object sank while the incoming one climbed past it, and at this scale
+  that read as a glitch rather than as a transition. These are whole scenes
+  replacing each other, not elements settling into a layout: a cut wants a
+  dissolve, not travel.
+*/
+function setObj(el, v){
   el.style.opacity = v;
-  el.style.transform = `translateY(${(1-v) * (rise===undefined?18:rise)}px)`;
   el.style.pointerEvents = "none";
 }
 
 const els = {
   conn:$("tConn"), rec:$("tRec"), der:$("tDer"), time:$("tTime"), list:$("tList"),
   google:$("oGoogle"), blotter:$("oBlotter"), stream:$("oStream"),
-  sheet:$("oSheet"), bound:$("oBound"),
+  sheet:$("oSheet"),
   bRows:[$("bRow0"),$("bRow1"),$("bRow2")],
-  badges:[$("bg0"),$("bg1"),$("bg2")],
-  cue:$("cue"), tracker:$("tracker"), oa:$("oa"),
+  same:$("tSame"),
+  cueSarah:$("cueSarah"), cuePriya:$("cuePriya"), cueDaniel:$("cueDaniel"),
+  tracker:$("tracker"), oa:$("oa"),
   letters:$("letters"), lettersOA:$("lettersOA"),
   tabB:$("tabBlotter"), tabC:$("tabContacts"),
   fCell:$("fCell"), fVal:$("fVal"), oaTotal:$("oaTotal"),
@@ -926,6 +1162,7 @@ function render(T){
   setLine(els.conn, band(t, P.connIn, P.connOut));
   setLine(els.rec,  band(t, P.recIn,  P.recOut));
   setLine(els.der,  band(t, P.derIn,  P.derOut));
+  setLine(els.same, band(t, P.sameIn, P.sameOut));
   setLine(els.time, band(t, P.timeIn, P.timeOut));
   setLine(els.list, band(t, P.listIn, P.listOut));
 
@@ -952,9 +1189,9 @@ function render(T){
     el.style.opacity = v * (1 - gone) * (m.on ? 1 : 0.55);
     el.style.transform = `translateY(${(1-v)*16 - gone*40}px)`;
     el.className = "srow " + (m.on ? "on" : "off");
-    el.children[0].textContent = m.who;
-    el.children[1].textContent = m.subj;
-    el.children[2].textContent = m.on ? "In your tracker" : "Not read";
+    el.querySelector(".who").textContent = m.who;
+    el.querySelector(".subj").textContent = m.subj;
+    el.querySelector(".when").textContent = m.when;
   });
 
   /* ---------------------------------------------------------- 3 and 4. sheet */
@@ -973,6 +1210,8 @@ function render(T){
       if (ri === SARAH) {
         const k = kept++;
         after = t >= P.fieldFrom + k * P.fieldStep + P.fieldDur * 0.5;
+      } else if (ri === PRIYA) {
+        after = t >= P.priyaFill[1];   /* the calendar event lands */
       } else if (ri === DANIEL) {
         after = t >= P.daysTo - 0.15;  /* Daniel resolves at the end of the climb */
       } else {
@@ -989,6 +1228,20 @@ function render(T){
 
       if (col.chip) {
         kv.innerHTML = v ? `<span class="chip" data-s="${v}">${v}${CARET}</span>` : "";
+      } else if (col.key === "next" && !v) {
+        /*
+          The em dash, muted and centred, exactly as hero-reference-v1.png draws
+          it for Alex Morgan. Jon reinstated it on August 5, 2026, overriding the
+          01-HERO s6 genuinely-blank rule for that cell.
+
+          It matters more here than anywhere. This film's whole subject is cells
+          being filled by cues, so an empty Next move reads as "not computed
+          yet" rather than "computed, and there is nothing to do". The dash is
+          the difference between a pending cell and a settled one, and every row
+          whose status is `Sent` is in that state: Alex throughout, Sarah and
+          Daniel before their cues land.
+        */
+        kv.innerHTML = '<span class="dash">&mdash;</span>';
       } else {
         kv.textContent = v || "";
       }
@@ -1001,7 +1254,9 @@ function render(T){
     f.style.opacity = u > 0 && u < 1 ? Math.sin(Math.PI * u) * 0.85 : 0;
   });
 
-  setObj(els.cue, band(t, P.cueIn, P.cueOut), 10);
+  setObj(els.cueSarah,  band(t, P.cueSarah,  P.cueSarahOut));
+  setObj(els.cuePriya,  band(t, P.cuePriya,  P.cuePriyaOut));
+  setObj(els.cueDaniel, band(t, P.cueDaniel, P.cueDanielOut));
 
   const onOA = t >= P.swap[0] + 0.30;
   els.fCell.textContent = onOA ? "A1" : "B2";
@@ -1016,21 +1271,11 @@ function render(T){
   els.letters.style.display = showOA ? "none" : "";
   els.lettersOA.style.display = showOA ? "" : "none";
   els.tabB.childNodes[0].nodeValue = onOA ? "Outstanding" : "Blotter";
-  els.sheet.style.transform =
-    `translateY(${(1-sheetV)*18}px) scale(${1 - (1 - OA_FIT) * sw})`;
+  els.sheet.style.transform = `scale(${1 - (1 - OA_FIT) * sw})`;
 
   const cu = seg(t, P.counts);
   countEls.forEach(n => n.textContent = Math.round(+n.dataset.to * cu));
   els.oaTotal.textContent = Math.round(21 * cu);
-
-  /* -------------------------------------------------------- 6. the boundary */
-  setObj(els.bound, band(t, P.boundIn, P.boundOut));
-  els.badges.forEach((b, i) => {
-    const a = P.badgeFrom + i * P.badgeStep;
-    const v = seg(t, [a, a + P.badgeDur]);
-    b.style.opacity = v;
-    b.style.transform = `translateY(${(1-v)*12}px)`;
-  });
 
   /* -------------------------------------------------------------- end card */
   const up = seg(T, P.card), off = seg(T, P.cardOff);
@@ -1064,7 +1309,14 @@ let trueSize = false;
 function fit(){
   const wrap = $("stagewrap"), hold = $("stagehold");
   const pad = document.body.classList.contains("bare") ? 0 : 96;
-  const k = trueSize ? 1 : Math.min(1, (innerWidth - 40) / 1080, (innerHeight - pad) / 1350);
+  const bare = document.body.classList.contains("bare");
+  /* The horizontal inset is the preview chrome's, exactly like `pad`, and it
+     has to disappear in bare mode for the same reason. Left un-guarded it
+     costs 40px of an embedded frame: at the funnel's 350px slot on a phone
+     that is 11% of the width, spent on letterbox. Fixed August 11, 2026;
+     `web/public/film/` already carried the guard and this is the source
+     catching up, so a future re-copy cannot reintroduce it. */
+  const k = trueSize ? 1 : Math.min(1, (innerWidth - (bare ? 0 : 40)) / 1080, (innerHeight - pad) / 1350);
   wrap.style.transform = `scale(${k})`;
   hold.style.width = (1080 * k) + "px";
   hold.style.height = (1350 * k) + "px";
@@ -1072,6 +1324,10 @@ function fit(){
 addEventListener("resize", fit);
 $("btnFit").addEventListener("click", () => { trueSize = !trueSize; fit(); });
 $("btn11").addEventListener("click", () => $("crop11").classList.toggle("on"));
+$("btnMark").addEventListener("click", () => {
+  document.body.classList.toggle("mark");
+  window.renderAt(11.5);
+});
 
 addEventListener("keydown", e => {
   const step = 1 / 30;
@@ -1082,6 +1338,7 @@ addEventListener("keydown", e => {
   else if (e.key === "c") { document.body.classList.toggle("bare"); fit(); }
   else if (e.key === "f") { trueSize = !trueSize; fit(); }
   else if (e.key === "1") { $("crop11").classList.toggle("on"); }
+  else if (e.key === "m") { document.body.classList.toggle("mark"); }
 });
 
 /* Deterministic single-frame access, for capture and inspection. render is a

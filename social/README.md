@@ -9,7 +9,7 @@ Nothing here touches `web/`. Nothing here is committed by this session.
 | File | State |
 |---|---|
 | `blotter-film-a-4x5.html` | **Current.** Film A, the launch post. 1080 x 1350, 21.5s, seamless loop. |
-| `blotter-film-b-4x5.html` | **Current.** Film B, the explainer. 1080 x 1350, 34.5s, seamless loop. |
+| `blotter-film-b-4x5.html` | **Current.** Film B, the explainer. 1080 x 1350, 28.0s, seamless loop. |
 | `blotter-launch-4x5.html` | Superseded first cut, 12s. Kept only for comparison. |
 | `inline-fonts.sh` | Embeds Schibsted Grotesk, Geist, Geist Mono and Roboto as base64. |
 
@@ -24,6 +24,7 @@ Nothing here touches `web/`. Nothing here is committed by this session.
 | `c` | hide the controls, for recording |
 | `f` | true 1080px size instead of fit-to-window |
 | `1` | show the 1:1 safe band |
+| `m` | Film B only: toggle the Ledger B mark on tracked inbox rows |
 
 `?t=7.2` opens paused on one frame. `window.renderAt(seconds)` draws any frame
 deterministically, which is what a capture script would drive.
@@ -35,7 +36,7 @@ Three films, three jobs. One cannot do all of them.
 | | Job | Length | State |
 |---|---|---|---|
 | **A** | The launch post. Hello world, day one. | 21.5s | **Built** |
-| **B** | The explainer. Shows the connection and the mechanism properly. | 34.5s | **Built** |
+| **B** | The explainer. Shows the connection and the mechanism properly. | 28.0s | **Built** |
 | **C** | The silence cut. One idea, no setup, for replies and Reddit. | 6 to 8s | Next |
 
 ## Film B, the explainer
@@ -46,17 +47,122 @@ which is what makes the beat order inevitable rather than arbitrary:
 1. How does it get my data? -> the connection
 2. Does it read my whole inbox? -> recognition, and the answer is no
 3. How does it fill the cells? -> derivation
-4. What will it not do? -> the three ratified refusals
 
 | | Beat | What happens |
 |---|---|---|
-| 0.0 to 6.4 | **Connect** | *Connect it once. That is the whole setup.* Google's consent screen, then Blotter's card saying what it actually means. |
-| 6.5 to 13.5 | **Recognition** | *It only reads mail from the people you track.* Seven messages arrive; tracked senders light up, everyone else greys out and is marked not read. |
-| 13.7 to 20.4 | **Derivation** | *One reply. Four fields.* Sarah replies at 10:42 and Status, Next move, Last contact and Days each land in turn, flashing as they do. |
-| 20.5 to 25.9 | **Time** | *Nothing arrives. The tracker moves anyway.* Daniel's Days climbs to 5 with no message from him at any point. |
-| 26.0 to 29.8 | **The list** | *Everything you owe. One list. Nothing slips through the cracks.* 21 outstanding actions, 6 / 11 / 4. |
-| 30.2 to 32.9 | **Boundary** | The ratified line plus all three refusals. |
-| 32.9 to 34.5 | **Mark** | Navy, Ledger B, wordmark, the chosen closing line. |
+| 0.0 to 7.3 | **Connect** | *Connect it once. That is the whole setup.* Google's consent screen, then Blotter's card saying what it actually means. The card holds about 2.5s after its last row lands. |
+| 7.5 to 11.4 | **Recognition** | *It only reads mail from the people you track.* Seven messages arrive; tracked senders stay bold on white, everyone else drops to Gmail's read styling. |
+| 11.5 to 15.1 | **Derivation** | *One reply. Four fields.* Sarah's Gmail cue, then Status, Next move, Last contact and Days each land in turn, flashing as they do. |
+| 15.2 to 17.6 | **The same, from Calendar** | *A meeting does exactly the same thing.* Priya's Calendar cue, and her row follows. |
+| 17.7 to 21.4 | **Time** | *Nothing arrives. The tracker moves anyway.* Daniel's cue with the muted Gmail mark, and his Days climbs to 5 with no message from him at any point. |
+| 21.4 to 25.3 | **The list** | *Everything you owe. One list. Nothing slips through the cracks.* 21 outstanding actions, 6 / 11 / 4. |
+| 25.7 to 28.0 | **Mark** | Navy, Ledger B, wordmark, the chosen closing line. |
+
+### The boundary beat was cut
+
+Jon's call, and he was right. An earlier version of this file argued it was
+mandatory: a film that shows an engine reading your email needs the refusals or
+it reads as AI doing your networking.
+
+That over-indexed. The permissions card is **already** three refusals — *Nothing
+else in your inbox / calendar / Drive* — and every Next move on screen is a
+prompt rather than a draft: Reply to Sarah, Send thank-you, Bump thread. Nothing
+in the film depicts writing. And closing on a list of things the product does not
+do is a downbeat ending that delays the mark.
+
+**Residual, recorded rather than hidden:** nothing in B now states explicitly
+that Blotter does not write outreach. Section 3 carries that on the page. It is
+a known tradeoff.
+
+The treatment survives in `components/section-3/boundary-block.tsx`, and its
+styles are still in this file's stylesheet, so restoring it is cheap.
+
+### Pacing
+
+Three passes, ending at 28 seconds.
+
+- **The inbox.** Rows arrived every 0.70s and the list took 4.9s to fill. Now
+  0.30s and 2.1s. The beat is a pattern, tracked against not-tracked, and it is
+  readable long before the seventh row arrives.
+- **The permissions card.** The only screen with three separate things to read,
+  and the one place the reader was behind rather than ahead. It now holds about
+  2.5s after its last row lands.
+- **The three cues.** Sarah 6.4s to 3.55, Priya 3.3 to 2.4, Daniel 5.4 to 3.7.
+  A chip changing is legible in well under a second and the reader gets ahead of
+  it, so the holds were dead air.
+
+Daniel's day count keeps the longest single hold in the film. It is the
+emotional core rather than a cell update, and the one stretch where the reader
+should be ahead of nothing.
+
+### The three refusals, kept for reference
+
+Returned to the landing page's own treatment. `boundary-block.tsx` stacks them
+in a warm panel with a tinted tile per statement and a hairline between, and its
+header records that Jon ratified exactly that on August 5, 2026 after rejecting
+pills outright: *"§11 restrained outlined-pill or compact-label treatment —
+overruled. He rejected the pills outright."* This film had drifted back to
+pills; it now matches, which is also cleaner and far more legible at phone size.
+
+Each glyph draws the thing being refused and strikes it through: a page of study
+material, the same message stacked over and over, and the ChatGPT knot. The
+strike is one warm clay across all three so the negation reads as a single idea,
+and the tile tints do the varying. Values lifted from the component.
+
+The ChatGPT mark is Jon's instruction, reaffirmed after the concerns were put to
+him twice. It overrides `03-SECTION-3` §17's "provider references" exclusion and
+places a third party's trademark in a negative comparative position. Both were
+raised and waived. Recorded, not re-argued. The strike is not decoration there:
+without it the mark reads as an integration rather than a refusal.
+
+### The three cues
+
+`SECTION_3_MOMENTS` in `lib/sheet-data.ts` already fixes the three ratified
+moments of January 16, deliberately one of each trigger type: a Gmail reply, a
+Calendar event, and nothing at all. B uses all three, replacing each other in
+one slot above the sheet rather than stacking, so each owns its moment.
+
+Order is Sarah, Priya, Daniel rather than Section 3's order. A page is scanned
+and a film is built: two things arrive and move the sheet, then nothing arrives
+and it moves anyway.
+
+Daniel's Gmail mark is muted rather than absent, exactly as `day-timeline.tsx`
+does it, and for the reason recorded there: the thread is a Gmail thread so the
+slot names it, and the muting carries the fact that nothing arrived in it. A
+full-strength mark would imply Gmail signalled something, and Gmail signalling
+nothing is the whole point of that row.
+
+### The Gmail inbox
+
+Rebuilt against `components/section-2/gmail-inbox-strip.tsx`, the page's own
+verified Gmail surface, rather than approximated: the `#f6f8fc` read ground, the
+`#e8eaed` and `#f1f3f4` rules, the `#5f6368` checkbox, the star, unread as
+bold-on-white, and the chrome bar with its mail count.
+
+Tracked rows carry **Gmail's own unread styling** — bold, on white, against the
+read ground everything else sits on. That is Gmail's real distinction and it is
+already doing the work.
+
+A navy outline was tried and cut on Jon's note. Gmail has no such affordance, so
+it read as a foreign object, and nesting a rounded rectangle inside a row that
+already has borders is two shapes fighting. The headline carries the meaning;
+the visual only has to separate.
+
+Press `m` to swap in the **Ledger B mark** at the row's right edge — a positive
+signal that names Blotter rather than only implying difference. Both are honest
+and neither invents a Gmail control. Jon was weighing the two; the dim-only
+version is the current default.
+
+**Objects cross-fade in place.** They used to rise as they arrived, which meant
+the outgoing object sank while the incoming one climbed past it, and at this
+scale that read as a glitch. These are whole scenes replacing each other, not
+elements settling into a layout: a cut wants a dissolve, not travel.
+
+**Every `Sent` row shows the em dash** in Next move, muted and centred, exactly
+as `hero-reference-v1.png` draws it for Alex Morgan. It matters more here than
+anywhere: this film's subject is cells being filled by cues, so an empty Next
+move reads as "not computed yet" rather than "computed, and there is nothing to
+do". That covers Alex throughout, and Sarah and Daniel before their cues land.
 
 **Each beat owns the frame.** Fitting a message stream and a readable
 spreadsheet on a 4:5 canvas at once pushes the sheet type under 7px on a phone,
@@ -77,6 +183,45 @@ consent surface and names the three products, and the plain-language
 description of what is actually accessed is carried by the Blotter card that
 follows. That split is the whole point of showing both.
 
+**Google Drive, not Google Sheets**, on the consent card. Jon raised this and he
+is right: Sheets access is granted through Drive, and `drive.file` is the
+per-file scope, *"only the specific Google Drive files that you use with this
+app"*. The Sheets-specific scope grants **all** spreadsheets, which is broader
+and a worse story. A consent screen saying Sheets would not be the screen a user
+actually sees, which is the only reason to show one.
+
+It is also what makes the sequence pay off: Google says Drive, which sounds like
+the whole Drive, and Blotter answers in the next breath with the one file. Jon's
+copy keeps "Google Sheets" in that answer, so the landing page's language
+survives in the same breath that corrects the scope.
+
+**The permissions card gives all three rows one shape**: what it touches, then
+what it does not. Jon's note, and he was right on all three counts — the blue
+second line appeared on Gmail alone, the registers were mixed (two permission
+statements and one benefit claim), and the third was named Sheets when the
+permission is Drive. One grammar fixes all three, and the repeated *"Nothing
+else in your ___"* becomes a rhythm.
+
+| | | |
+|---|---|---|
+| Gmail | Mail from the contacts you add. | **Nothing else in your inbox.** |
+| Calendar | Events with those contacts. | **Nothing else in your calendar.** |
+| Drive | The one Google Sheets tracker file you connect. | **Nothing else in your Drive.** |
+
+**CLAIM GATE.** These are specific scope commitments. `06-SECTION-6` lists
+unrelated-Drive-access among the claims that must match actual implementation
+truth before public traffic. `drive.file` genuinely is per-file, so this is
+accurate today, but the build has to honour it.
+
+The account row uses a **neutral grey silhouette and no name**. Initials on a
+placeholder domain read as a specific person's account. The sheet keeps its `JN`
+because `hero-reference-v1.png` draws it and that is ratified; the two surfaces
+never appear together.
+
+The Google Drive mark is hand-drawn here, the same way `google-marks.tsx`
+hand-draws Gmail and Calendar. Jon attached an official SVG but it did not reach
+disk; swap it in whenever it does.
+
 **Daniel Kim is deliberately absent from the recognition stream.** He is a
 tracked contact, so showing him greyed and "not read" would say Blotter ignores
 his mail, which is the opposite of true and would wreck the time beat that
@@ -93,10 +238,10 @@ the vertical space.
 
 ### Verification run on Film B
 
-- All 1036 frames rendered, no runtime errors.
+- All 841 frames rendered, no runtime errors.
 - Loop seam frame-identical apart from a float rounding on the lockup scale at
   opacity zero.
-- Every visible element stays inside the 1:1 safe band, `y 137` to `1200`
+- Every visible element stays inside the 1:1 safe band, `y 150` to `1214`
   against a band of `135` to `1215`.
 
 ## Film A, the twenty-one and a half seconds

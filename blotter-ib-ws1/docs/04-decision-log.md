@@ -968,3 +968,753 @@ Zero external visitors have reached `checkout_started`.
 - Gating the film behind full playback.
 - Deployment protection as a sequencing plan. Not available on Hobby.
 - Dropping internal traffic rather than marking it.
+
+---
+
+## Session 6 — August 10, 2026. Stage 10, the mobile build.
+
+Seventeen commits on the `mobile` branch. Nothing deployed; `blotterib.com` is
+still session 5's build.
+
+### The page was desktop-only and it is not any more
+
+A fixed 1,124px page box at every viewport meant every section stuck out 749px
+past the right edge of a 375px phone. One breakpoint, `desk` at 1180px, now
+separates the ratified desktop page from a real mobile build. The box became a
+ceiling rather than a fixed number, two type tokens move below it, and a shared
+`Fit` primitive replaced four hard-coded scale calculations.
+
+**Desktop is byte-identical.** Verified by measuring every section's height
+before and after: all zeros except Section 6's +50px, which is one new sentence.
+
+### Film C is the mobile hero
+
+The desktop hero's mechanism *is* its sideways relationship — activity right,
+connector, the row it changed left. A phone has no "beside", and shrinking the
+1322px composition lands it at 0.265 with sheet type under 4px.
+
+Film C was briefed and built in a parallel chat: 11 seconds, three beats, no end
+card, looping, shown as a 1:1 centre crop. Its three beats are Section 3's three
+ratified moments, so it cannot contradict the page — a property held on purpose.
+
+**Two heroes, each right for its device.** Whether desktop should also become a
+film is parked in `06-assumptions-and-open-questions.md`.
+
+### Jon's translation of the volume chart beat all three I proposed
+
+The desktop diagram spends 236 of 1120px on a label column and the rest on ten
+month columns; at 350px that is 24.5px per month and the four figures land at
+12.5px. He proposed dropping the time axis entirely and packing the marks.
+
+All 745 marks survive, one per unit, in about 90px. `02-SECTION-2` §15 permits a
+separately composed translation and its do-not-reopen list does not include the
+trajectory. The cost, which he accepted, is the January–February pivot band.
+
+### The sticky bottom CTA was approved and then rejected
+
+He approved a fifth CTA placement in the morning and chose against it the same
+day having compared all three arrangements on his phone. It cost 85px of every
+screenful, and the doubling it existed to solve read as persistence rather than
+as a mistake once he saw it in place. The component and the enum value are kept
+so the decision is reversible.
+
+**The pattern worth remembering:** three live arrangements behind a picker
+settled in one look what two rounds of argument had not.
+
+### Section numbering, mobile only
+
+`01` through `05` above each section headline. He chose the bare numeral over
+`01 / 05`, which read as a progress meter on a page that is an argument rather
+than a form. Desktop stays unnumbered — four build specs forbid an eyebrow and a
+numeral above a headline reads as one.
+
+### The page's argument has a real fault, and he found it
+
+Reading the live desktop page he noticed three consecutive headlines saying the
+same thing, with visuals that did not match their headlines.
+
+The ownership claim is stated **four times**, three of them inside Section 3, and
+`03-SECTION-3` line 341 shows the duplication was seen at ratification and
+mitigated with whitespace — which is the one thing a phone has none of.
+
+Worse, the words and pictures are crossed between two sections: Section 3 argues
+ownership and demonstrates mechanism; Section 4+5 argues preservation and
+demonstrates ownership.
+
+**He ruled it be fixed on both surfaces**, mobile first, with the decisions
+carried to web in web-appropriate ways. The full diagnosis, the agreed mobile
+architecture and the porting rules are in `09-page-argument-rework.md`.
+
+### Rejected during this session
+
+- Scaling every composition down to fit the phone. It lands near 0.29 — a page
+  that fits and cannot be read, and it passes a naive overflow check.
+- Putting the hero eyebrow in the sticky header. 79 characters of tracked
+  uppercase needs about 630px against roughly 265px of usable bar.
+- Moving the authority line above the film as a byline. It only dangled because
+  the arrangement being tested had removed the button beneath it.
+- Merging the Drive note into the broad-permission disclosure. That note is
+  about one row, not about Google's wording in general.
+- Cutting the broad-permission disclosure from mobile. It may not leave the
+  page; folding it is a defensible reading of §18, removing it is not.
+
+## Session 7 — August 11, 2026. Stage 10 continued, mobile 02.
+
+### The sheet on a phone: a deliberate crop
+
+**Ruled by Jon, August 11, 2026, unblocking mobile 02.** `09-page-argument-rework.md`
+§5 listed three approaches and nothing was agreed. He chose the crop.
+
+The arithmetic that framed the choice. The Blotter tab is 1,221px natural — a
+43px gutter, five `yours` columns at 640px and five maintained at 538px — set in
+13px Arial. Phone content width is 350px at a 390 viewport, 320px at 360, 280px
+at 320. Scale-to-fit is **0.287**, which puts the sheet type at 3.7px. Holding
+11px type affords roughly 412px of natural width, which is the gutter plus
+**three of the current columns**.
+
+**The constraint that actually decided it, and it was not in `09`.**
+`05-SECTION-5`'s amendment table lists as still binding *"the section 6 column
+order and the divider between LinkedIn and Status."* Column order is fixed, so
+`Status` cannot be moved next to `Name`. The divider sits at 683px, **56% across
+the sheet**, and the only columns between `Name` and the divider are `Title`,
+`Firm`, `Email` and `LinkedIn`.
+
+That is the whole difficulty in one sentence: **the columns that prove
+preservation are exactly the columns that have to go for the ownership divider
+to be visible at rest.** Each of `09` §5's three approaches is a different way of
+paying that bill.
+
+**Why the crop stops being a compromise.** `09` §4 already assigns the
+preservation proof to the tab strip — *"`Contacts` sitting untouched beside
+`Blotter` says this is the sheet you already had"* — reinforced by the supporting
+paragraph and the three reassurance claims. If preservation is the tab strip's
+job, the grid only has to prove **ownership**, and cropping to the divider costs
+the section nothing it was relying on.
+
+Four reasons the crop won over the alternatives:
+
+1. it repeats the two precedents that already worked here — Film A dropping
+   eight hero columns to five, and mobile 01 translating the Gmail strip into a
+   phone inbox;
+2. it survives a screenshot, which is how this page argues and how Jon reviews;
+3. the divider is on screen at rest, which
+   `06-assumptions-and-open-questions.md` requires in as many words;
+4. `05-SECTION-5` §12 says *"do not scale the full spreadsheet until the text
+   becomes unreadable"* — re-composing at phone column widths is the sanctioned
+   move, and shrinking to 0.287 is the forbidden one.
+
+**Rejected, with reasons, both put to him:**
+
+- **Frozen name column and swipe.** All ten columns at 1:1 and genuinely what
+  you do in Sheets on a phone, but the divider is off screen at rest unless the
+  region starts scrolled, which then hides `Name`. It is also an interaction on
+  a page whose rule is that the argument survives a still frame: a screenshot of
+  it shows five manual columns and no Blotter. Kept as variant 3 of the review
+  build so the crop's cost is visible rather than asserted.
+- **A vertical card translation.** Fully legible and all ten field names land
+  naturally, but it stops looking like Google Sheets, which breaks
+  `04-SECTION-4` §12's recognisable-Sheets requirement and quietly undercuts
+  *No switching out of Google Sheets* — a ratified reassurance claim sitting
+  about 100px above it.
+
+### The reassurance row stacks on a phone
+
+Three claims across at sheet width is 116px per claim at 350. Jon asked to see
+it stacked. Provisional until he looks at it.
+
+### The ten field names move under the sheet
+
+`05-SECTION-5` §12 requires all ten field names survive any smaller-screen
+treatment. On desktop the two zone labels sit above the sheet, sized to the two
+zones' widths; on a phone those widths are 84px and 250px and the labels cannot
+hold that geometry, and `09` §4 gives the space directly above the sheet to the
+three stage labels.
+
+So the zone labels become two compact lines **beneath** the sheet, each naming
+its five fields in the ratified column order and keeping desktop's exact
+wording. That discharges §12 literally and explains the crop in the same breath.
+
+### The three stage labels are cut from mobile
+
+**Ruled by Jon, August 11, 2026, on sight.** They were built above the phone
+sheet per `09` §4 and he rejected them immediately: they *"make no sense"*
+there.
+
+He is right, and the failure is instructive rather than cosmetic. `09` §4 had
+argued the labels survive because *a stated claim under a proved one is a
+caption*. But they are not above the thing that proves them — the hero film is
+1,100px earlier — and what sits directly beneath them is a picture of the
+ownership split. So they caption a claim the visual below them does not make.
+**That is the §1 fault of the whole rework, reintroduced by the fix for it.**
+
+They came out of the section being deleted and were parked in the nearest
+available one, which is not a reason. The claim survives in words in the
+supporting paragraph. Recorded in the web ledger as not transferring: on desktop
+they sit inside the timeline they label, which is correct.
+
+### The merged section's headline is reopened
+
+**Jon, August 11, 2026:** `You manage the relationships. Blotter maintains the
+moving parts.` and `Keep the tracker you already built.` are *"two components of
+the same thing"*, and which one the merged section takes, or whether it takes a
+hybrid, is undecided.
+
+The observation matches `09` §3's own inventory — C is ownership, D is
+preservation, and they collapse because one sheet proves both. So a headline
+stating only preservation under-claims its own picture.
+
+Building on option C as a working position, unratified: both ratified strings,
+`Keep the tracker you already built.` as the headline and `You manage the
+relationships. Blotter maintains the moving parts.` as the deck, with the
+supporting paragraph's first sentence cut because it repeats the headline almost
+word for word. Nothing invented; the only edit is a deletion. Candidates and
+reasoning in `09` §4.
+
+### Every argument change is now logged for web, as it is made
+
+**Jon's instruction, August 11, 2026.** The mobile consolidation is happening
+because the sections are repetitive and their visuals do not match their
+headlines *on web too*, so the essence of every change has to reach desktop.
+Each one is to be written down with its reasoning at the moment it is made,
+parked, and worked through after mobile is finished.
+
+`09` §8 is that ledger. It is deliberately separate from
+`08-desktop-changes-pending.md`: 08 is presentation and defects, 09 §8 is what
+the page claims and in what order, which is the thing he says was actually
+wrong. Rows that do **not** transfer are recorded too, so a later session does
+not apply a mobile decision to desktop on mobile reasoning.
+
+### The zone labels degraded into a legend, and that was a real loss
+
+Noticed by Jon, August 11, 2026, unprompted. Desktop states the ownership split
+**spatially** — two headings sized to their zones, each with a bracket rule
+spanning the columns it names, sitting on top of them. The label points at its
+own columns.
+
+The first phone crop replaced that with two text lines beneath the sheet. That
+is a key, not a claim, and it should have been flagged as a downgrade rather
+than presented as discharging `05-SECTION-5` §12.
+
+**The underlying cause is the crop itself.** After cropping, the manual zone is
+94px wide and cannot hold a label. So the crop bought the divider at rest by
+giving up the device that explains what the divider means. That cost was
+understated when the crop was chosen.
+
+### The swipe is ratified, and mobile 02 is live on the phone page
+
+**Jon, August 11, 2026, having seen the whole section at device width:**
+*"Swipe version looks really good. Approve and ratify it all."*
+
+**It is his design.** The swipe had been rejected earlier the same day — nothing
+told a reader to swipe, and a still frame showed five manual columns and no
+Blotter. His answer fixed the defect rather than working around it: prompt the
+gesture, and let the gesture drive the explanation. Each zone washes and names
+itself as the reader reaches it.
+
+That buys back the exact thing the crop could not keep. At natural width the two
+zones are 640px and 538px, so the two zone labels fit **as ratified**, at full
+size, over the columns they name. The crop had to shrink them and then, in its
+first build, degrade them into two text lines under the sheet — which Jon named
+immediately: a key is not a claim.
+
+It is also the page's own device. `social/README.md` on Film A's typing beat:
+*"The left is filled by the user. The right fills itself. The two gestures
+mirror, which makes the ownership split happen rather than get asserted by a
+word underneath the sheet."* This is that, driven by a thumb.
+
+**`Name` is frozen and keeps a manual tint while frozen.** Freezing it is what
+stops the maintained half being five anonymous rows. The tint is the part that
+matters to the argument: a frozen manual column sitting inside the cream
+maintained wash would say a manual field is maintained, which is the one thing
+this section exists to deny.
+
+**The cost, taken knowingly.** The argument no longer survives a screenshot in
+full. Both washes are always painted and the manual label is on screen at rest,
+so a still frame states the half the reader can see rather than nothing — but a
+reader who never swipes does not meet the maintained zone. That is a real
+override of the page's static-proof posture. The crop is kept behind
+`/review/sheet-mobile` so the decision is reversible, the same way `StickyCta`
+was kept.
+
+**Also ratified in the same breath**, because he saw all of it in place: option C
+for the headline, the stacked reassurance claims, the refusals resolving the
+section, and the section order.
+
+### What shipping it changed on the page
+
+- `how-blotter-works.tsx` is `hidden desk:block`. Section 3 does not exist below
+  the breakpoint.
+- `Mobile02` renders `desk:hidden`, between Section 3 and the merged section.
+- `tracker-and-actions.tsx` beat 1 is `hidden desk:block`, so on a phone that
+  element is only the Outstanding list, and its numeral moved down with beat 2.
+- `NUMBERED_SECTIONS` changed and the total did not. One section leaves the
+  phone, one splits in two, still five.
+
+**Desktop verified unchanged**: all six section heights identical before and
+after, document height 7,200px both times. The all-zeros result the handoff asks
+for, with no exceptions this time.
+
+### Mobile 03 takes the films' Outstanding list, not the desktop one
+
+**Jon, August 11, 2026:** use *"that version of know what needs your
+attention"* from the films, *"instead of this, like, long, mini row version
+that's used for the desktop web screen"*.
+
+He is right, and the desktop composition is the reason. Desktop runs the three
+groups as **columns**, which is exactly what lets all 21 actions fit in thirteen
+rows. A phone has no room for three columns, so `Fit` was scaling that
+composition to about 0.29 and every name in it was under 4px.
+
+`social/blotter-film-a-4x5.html` already sets the same data as a **vertical
+list**: a title bar with the total, one header row naming the columns, then each
+group announced by a tinted header carrying its coloured rule, its dot and its
+count, with its rows beneath. **That is `04-SECTION-4` §7's own structure** and
+the shape the discarded PNG drew, so this is a return to the spec rather than a
+departure from it, and §12's preserve-list is satisfied literally.
+
+**One thing from the film is deliberately not reproduced.** The film ends each
+group with a `+N more` row. Jon overruled exactly those rows on August 5, 2026:
+the section promises *"one current view of every action you owe"*, and four of
+the discarded asset's six rows were labels announcing that the content was not
+visible. The phone has the vertical room the three-column desktop layout did
+not, so all 21 are listed.
+
+That is a conflict between two of his own rulings rather than between a ruling
+and a spec, so both are built and both are behind the picker: **All 21** and
+**Cut**. The conflict is named on the review page itself rather than resolved
+quietly.
+
+### The funnel is a full-screen sheet below the breakpoint
+
+The card is right on a desktop and wrong on a phone. At 390 the fixed 960px
+collapsed to `100vw - 32px` while every step inside was still composed for 960,
+and the film alone is a 520px slot, so content overflowed a container that
+clips. A modal that is almost the whole screen but not quite also reads as a
+mistake rather than as a choice.
+
+The August 6 reasoning survives the translation intact: the card is one fixed
+size that never changes between steps, and on a phone the *screen* is that size.
+
+Three details that are decisions rather than mechanics:
+
+- **`100dvh`, not `100vh`.** iOS Safari's `vh` is the tallest the viewport ever
+  gets, so a `100vh` sheet puts its own footer under the address bar. That is
+  where `Continue` lives.
+- **The sheet scrolls.** The film step plus its copy and both controls is taller
+  than a phone, and a sheet that clips its own CTA converts nobody.
+- **The film step stacks, film first.** It is what the reader came to see. The
+  slot is capped at `62dvh * 0.8` so the copy and controls still fit, landing
+  about 350x437 at a 390x844 phone.
+
+**Verified against a production build**: the desktop dialog is still exactly
+960x730 and its film slot exactly 520x650.
+
+### A measurement error worth recording, because it nearly became a fix
+
+The desktop film slot was measured at 0x0 and diagnosed as a stale-Tailwind
+failure of the kind `CURRENT-HANDOFF.md` warns about. **It was neither.** The
+query had selected the *first* iframe whose `src` contained `film`, and that is
+the hero's Film C, which sits inside a `desk:hidden` container and is therefore
+correctly 0x0 at 1440. Scoping the query to the dialog showed 520x650 all along.
+
+The lesson is narrow and practical: **this page now has two film iframes**, one
+in the hero and one in the funnel, and any measurement of either has to say
+which. Comments written on the false diagnosis have been corrected rather than
+left standing.
+
+### The swipe cue became a veil
+
+**Jon's design, August 11, 2026**, replacing the pill that said `Swipe`. His
+note: the cue has to coach the gesture, not label it. Grey out what is ahead,
+ramp it darker toward the right edge, blur mildly behind it, and let it clear as
+the reader travels; the same on the maintained side in cream.
+
+Built as one mechanic. The veil is anchored to the viewport rather than the
+content, so it recedes rather than slides. Its tint takes the colour of the zone
+at the reader's right edge, so it announces what is coming rather than
+describing what is already there. `SWIPE ••• →` rides it, with the dots
+travelling left to right because the gesture being taught is travel. Progress is
+a high-water mark: a cue that repeats after it has been followed is nagging.
+
+**The one decision inside his idea**, put to him and confirmed: the veil covers
+only what is *ahead*, not the visible area. Blurring what someone is reading
+fights the reason the swipe beat the crop — nothing shrunk, nothing dropped,
+every field legible.
+
+**It recovers a cost.** `09` §5 recorded that the swipe gives up the still frame.
+Veiling forward means a screenshot now shows a sharp, readable manual zone with
+an obviously unfinished right edge, which reads as *there is more* rather than
+as *this is all there is*. Better than the flat wash it replaces.
+
+The two wash strengths built earlier the same day are superseded and deleted.
+
+### Mobile 03 collapses to disclosures, and it does not reopen August 5
+
+Jon: the 21-row list is *"three thumbs of scroll"*, and could the Section 6
+disclosure work here. It can, and it beats the film's `+N more`.
+
+**It satisfies the August 5 ruling rather than overriding it.** He rejected
+`+5 more` because the section promises *"one current view of every action you
+owe"* and four of the discarded asset's six rows were **labels announcing that
+the content was not visible**. `Show 5 more` is not that label. It is a control
+that delivers them — a dead sign against a working door, which is exactly the
+distinction his objection turned on.
+
+About 950px to roughly 400px. Each group keeps its count and its first row in
+the open, because §12 requires a readable explanatory row per category and that
+must not depend on a tap. One accordion per group, so opening `Follow-ups due`
+does not shut `Replies owed`. `hiddenUntilFound`, so find-in-page opens a closed
+group rather than missing the name inside it.
+
+`Cut` is deleted. The comparison it existed for is settled.
+
+### Section 01's figures gave weight back to their labels
+
+Jon: the numerals are *"doing too much of the work"* and the labels need to be
+bigger or bolder. Numeral 2rem to 1.75rem, label 13.5px muted to 15px semibold
+in full ink, so the pair reads as one phrase — *628 recruiting emails* — rather
+than a figure with a caption under it.
+
+Not underlined, which he offered as an alternative. An underline on a phrase
+that is not a link is a promise the page does not keep.
+
+`02-SECTION-2` fixes the figures and the copy, not their type scale, so this is
+presentation rather than an override. Recorded because mobile 01 was ratified on
+August 10.
+
+### The film's letterbox bug was in the source, not the copy
+
+Jon reported black bars beside the funnel film and asked for a fix in both
+places. **The bars did not reproduce**: measured live at 390, the slot is
+350x437.5, the film fills it at k=0.3237, `bare` is applied, no bars. The copy
+in `web/public/film/` had already been guarded when it was made.
+
+**`social/` had not.** Both current films there still subtracted 40 horizontal
+pixels in bare mode — the preview chrome's inset, which `pad` already zeroes for
+the vertical. At the funnel's slot that is 11% of the width spent on letterbox.
+Fixed in `blotter-film-a` and `blotter-film-b`; `blotter-film-c` was already
+correct, and `blotter-launch` is the superseded cut and was left alone.
+
+**The real point is the trap, not the pixels.** The two directories are kept by
+hand and nothing propagates, so the copy was right and its source was wrong, and
+the next re-copy would have walked the fix back in silence. They now match.
+
+Separately, and this is what actually addresses "the video is very hard to see":
+the film is full-bleed on a phone. It had 20px gutters, which is 11% of a 390px
+screen spent on margin around the one thing the step exists to show. 350 to 390
+wide, and edge to edge reads as deliberate for video.
+
+### Analytics: all nine events verified from a phone-width session
+
+Asked for by Jon. Driven end to end at 390 on an internal-flagged browser,
+`page_viewed` through `beta_spot_confirmed`, and read back out of PostHog.
+
+- **All nine fire, in order, one per visitor.** The suppression in
+  `lib/analytics.ts` is working: exactly one of each per `distinct_id`.
+- **All nine carry `$host`.** That matters more than it sounds — the runbook's
+  canonical filter keys on `$host`, so an event without it would be silently
+  absent from every number. None is.
+- No mobile change touched event logic. `film-step.tsx` and `funnel.tsx` were
+  edited for layout only, and `cta_location = actions` still fires on a phone
+  because the CTA sits outside the desktop-only wrapper.
+
+**One trap worth recording.** A first query five seconds after the run reported
+`price_viewed` and `payment_option_clicked` missing. They were not missing;
+PostHog had not finished ingesting, and events do not become queryable in
+timestamp order. **Wait a minute before believing a negative result**, and
+confirm against an all-time query for the event name before calling anything
+broken.
+
+The run wrote one lead. It is `is_internal = true` and `real_leads` still reads
+**1**, which is the one real lead and unchanged.
+
+### Seven mobile changes, August 11, 2026
+
+**The film's black bars, diagnosed properly.** They would not reproduce at
+390x844 and reproduce every time at **390x680**, which is the same phone with
+Safari's address bar showing. Measured there: the slot came out 337x300, an
+aspect of 1.125 against the 0.8 it asks for, the film rendering 240x300 inside
+it, 48px of black either side.
+
+**The cause is flex, not the film.** The slot is an item in a `flex-col`
+container with `h-full`, and when the step's content is taller than the sheet
+the item shrinks — **`flex-shrink` beats `aspect-ratio`**. The box keeps its
+width, loses its height, and the film, which fits to whichever ratio is tighter,
+letterboxes horizontally.
+
+Three fixes, all of them earning their place. `flex: none` makes the squash
+impossible. The `62dvh * 0.8` cap is gone: it bought "no scrolling" the sheet
+gives up anyway, and at 680px tall it was capping the **width** at 337, which is
+why full-bleed never reached his device. And `body.bare` no longer paints black,
+so any future mismatch reads as a soft inset rather than as bars.
+
+Result at 390x680: slot 390x487.5 at exactly 0.8, film filling it. The film is
+**62% wider than what he was looking at**.
+
+**The sticky header was never sticky, on either surface.** At `scrollY` 2200 it
+sat at document y=850, long gone. It is `position: sticky`, but its parent is
+the hero's 910px `field-open` wrapper and a sticky element cannot leave its
+parent's box. Jon asked for a header that follows the page; it was supposed to
+already. Fixed below the breakpoint with `position: fixed`; **desktop's half is
+a confirmed defect for `08`**, and it makes `08` §2's own reasoning wrong, since
+that argued against the bottom bar partly because "the header CTA is the only
+persistent one".
+
+Both modes built for comparison at `?header=shrink`. Height only: the CTA must
+not move, because it is a target the reader may already be reaching for.
+
+**The zone labels travel, and lost the bracket.** Jon: the 19px heading over a
+12.5px subtitle over an upside-down-U bracket "could use some serious UI
+improvement". The insight that made it easy: **the bracket existed to bind a
+label to a span of columns, and the label now rides that span** — it centres on
+whatever slice of its zone is on screen. Position does the binding
+continuously, so a drawn bracket is a second answer to a settled question. Three
+stacked elements become one, 64px becomes 30px, and the marker is the page's own
+2px eyebrow bar rather than an invented shape.
+
+Motion per `emil-design-eng`: transform and opacity only, transitions rather
+than keyframes so a reversed swipe retargets instead of restarting, and a 2px
+blur across the swap because a plain cross-fade shows two labels overlapping
+where blur lets the eye read one label changing. 200ms on
+`cubic-bezier(0.23, 1, 0.32, 1)`. Reduced motion keeps the fade and drops the
+travel.
+
+The veil starts below the label band rather than at the top of the scroller. It
+obscures the columns the reader has not reached; the label answers the question
+that raises, and veiling it would mute the answer.
+
+**The disclosure control moved onto the group header.** Jon: a full-width
+`Show fewer` row "makes no sense at all". Correct, and the reason is that a row
+in a spreadsheet is a record, and that one was a control wearing a record's
+clothes. The plus now sits beside the count and the header is the trigger, which
+is what Section 6 already does. The list contains only actions, in either state.
+
+**The section CTA was floating and is kept.** Right alignment is a device for a
+two-column composition; with one column it reads as an element that missed its
+anchor. Now on the section's left axis, full-width button, closer to the sheet.
+
+Jon left cutting it open and it is kept, for a reason worth recording: dropping
+it would mean `cta_location = "actions"` never fires from a phone, which
+silently costs the comparative metric that says where mobile readers convert
+against where desktop readers do. The header CTA doubling it is the arrangement
+he already accepted in the hero.
+
+**`~60 hours` is bounded on a phone.** His note: it "just sort of seems floating
+there". Structural rather than decorative — this page's theme is a bounded-box
+layout and on a phone this was the only pulled-out figure with nothing holding
+it. Desktop does not have the problem because the figure sits in a two-column
+row and the column edge is the boundary. A ring and quiet surface, no shadow and
+no fill: `02-SECTION-2` §8 keeps this proof subordinate and forbids a badge, so
+the box may enclose the figure but must not promote it.
+
+**Section boundaries get a hairline.** The numerals are unchanged, as he asked.
+What they lacked was an edge: whitespace and a field tint too subtle to read at
+phone brightness were the only things separating two sections. Drawn from the
+numeral rather than the section so it lands once per section, including the
+merged section where the numeral sits below a desktop-only beat.
+
+**A trap that cost twenty minutes.** After a CSS syntax error the dev server
+kept serving the broken stylesheet and the page stopped hydrating — clicking a
+CTA did nothing, with no error that named the cause. The production build was
+already passing. `CURRENT-HANDOFF.md` warns that the dev server's Tailwind goes
+stale; this is the harsher version. **If the page stops responding and the build
+is clean, restart the dev server before debugging anything else.**
+
+### Both social accounts are live, on both surfaces
+
+Jon supplied them on August 11, 2026 for web and mobile. LinkedIn was already
+that exact URL and is unchanged; `X_URL` was `null` since August 6 and is now
+`https://x.com/blotterib`, which turns the dim placeholder into a real link.
+
+**This is a deliberate desktop change during stage 10**, the only one so far,
+because he asked for both surfaces. It costs no height: desktop measured 7,200px
+before and after.
+
+He wrote the LinkedIn address with a trailing full stop. That is sentence
+punctuation rather than part of the slug — a company URL ending in `.` 404s — so
+it is dropped. The `null` branch stays in the code: it is the only thing between
+a missing account and a dead `href`, and it costs nothing.
+
+This closes the `X_URL` item that has been open in `CURRENT-HANDOFF.md` §9.
+
+### The label buzz was a transition fighting a scroll handler
+
+Jon recorded it. The cause was mine and it is worth naming precisely, because it
+is a mistake that looks like a performance problem and is not.
+
+The label's `translateX` was in React state **and** had a 200ms CSS transition.
+So every scroll event moved the target, the transition started easing toward it,
+and the next event moved it again before the ease finished. The label never
+arrived. That is the buzz — not dropped frames, an easing curve chasing a thumb.
+
+**A transition is for a state change.** Position here is a continuous readout of
+the reader's finger, and the only correct response to it is to follow exactly.
+Position is now written straight to the element in the scroll handler, no easing
+and no React in the path, so the sheet and its labels move as one object.
+
+React still owns the two things that genuinely are discrete — which zone is
+ahead, and whether the region scrolls — and those keep their transitions,
+because a fade between two labels *is* a state change. The veil's opacity moved
+to the same treatment for the same reason.
+
+### The funnel fits one sheet, and the square was free
+
+Jon: the film is finally legible but the copy and `Continue` are below the fold,
+and *"we need all this present on one sheet. That's real important."*
+
+The film was the only element with real slack, and the 1:1 crop costs nothing:
+every visible element in Film A sits inside the square safe band, verified in
+`social/README.md`, which is why the mobile hero already crops it this way. At
+390 the slot goes from 487.5 tall to 390.
+
+**The trap, and it is not obvious.** Cropping the *iframe* to a square would
+have been worse than useless: the film fits itself to whichever of width or
+height is tighter, so a 390x390 frame renders it at 312x390 and letterboxes it
+again, **smaller than before**. The frame keeps its 4:5 and the box around it
+clips. That is the hero's technique and it is now shared.
+
+A `calc(100dvh - 330px)` cap makes the film give way rather than push `Continue`
+off screen. Measured: **390x390 at a 390x844 phone, 350x350 at 390x680**, with
+the rest of the step at about 331px, so it lands on one sheet at both.
+
+### The dead space was variance, not quantity
+
+Measured before: 152, 176, 96, 208, 208. Jon named the 208 and was right, but
+the reason it read as "weird" is that a page cannot have a rhythm made of five
+different numbers. Each section carried whatever its desktop padding happened to
+be, and the ones rebuilt for mobile had picked up their own values.
+
+**One rhythm, 56 above and 64 below, so every boundary is 120px.** After: 112,
+120, 120, 120, 120. Every section shrank — 84, 8, 24, 88 and 72 — for **276px
+reclaimed**, and every desktop value is preserved behind `desk:`.
+
+### The `~60 hours` ring is gone
+
+Jon's second look: the box "doesn't look great". Correct — an outlined rectangle
+around a figure reads as a form field, and it was a shape this page uses nowhere
+else. It is now the warm surface the three refusals already sit on, no border
+and no shadow, so the figure is held by a plane the page owns rather than by a
+box invented for it. `02-SECTION-2` §8 still forbids promoting this proof, and a
+fill this quiet does not.
+
+### The label band stops moving, which is the only way to stop it buzzing
+
+Jon, August 11, 2026, after the second attempt: *"Can you just hold that
+entirely still as you scroll? And then once you reach a certain threshold, we
+cross the line of status, then it just switches to Blotter."*
+
+**He is right, and the reason the second fix was not enough is worth recording.**
+v1 eased a transform toward a target the scroll handler kept moving. v2 removed
+the easing and wrote the transform directly, which was better and still
+vibrated, because **the band was inside the scrolling content**: the browser
+paints the content at its new offset, then the handler runs and writes a
+counter-transform *one frame later*. The label is permanently one frame behind
+the sheet it sits on, and a one-frame positional lag at 60fps is what a
+vibration is. That race cannot be won from JavaScript.
+
+So the band moved **out of the scroll container**, into the sheet's chrome below
+the formula bar and above row 1 — where it already appeared to be. Nothing
+counteracts anything, position is static CSS, and no JavaScript touches it.
+Verified: the band's left edge reads 21.0px at every scroll position from 0 to
+the end.
+
+All that survives is a crossfade on **one threshold**, the divider passing the
+middle of the window, which is the point at which the reader is looking more at
+Blotter's columns than at their own. Discrete, so a transition is finally the
+right tool. It was a right-edge test before, which switched as soon as the
+divider was glimpsed.
+
+**The cost:** the label no longer points at its columns by sitting over them.
+The veil covers that, taking the same zone's colour, so the two agree.
+
+### Section 01's supporting paragraph was the biggest body text on the page
+
+Jon found what had been bothering him: at 22px, *"a manual tracker changes only
+when you remember to update it…"* was **the largest run of body text anywhere**,
+headings excepted, on either surface. It read as important without being a
+heading.
+
+It is `--text-lede`, 17px, on a phone — the token the page already uses for
+subheads, so it still leads the copy beneath without competing with the headline
+above. Desktop keeps 22px, where it shares a row with the 60-hour figure, has a
+600px measure to fill, and is not the largest thing in view.
+
+He noted the same is arguably true on desktop. That is a desktop change and
+stage 10 does not take them, so it is `08` §16 rather than a change here.
+
+### The `~60 hours` box is gone entirely, third attempt
+
+*"I hate that sixty hours box."* A ring read as a form field; a filled panel
+read as a card the page uses nowhere else.
+
+**The mistake was mine twice, and it was the same mistake:** I kept giving the
+figure a *shape*, when what it lacked was a *relationship*. It floated because
+nothing tied it to the paragraph it concludes.
+
+A hairline says that, and it is the page's own language now — the same rule
+marks every section boundary on this surface. The figure is the paragraph's
+conclusion, joined by a rule, and the caption takes the 15px semibold the four
+volume labels took the same day, so the section has one voice for naming a
+quantity. `02-SECTION-2` §8 forbids a badge or a loud highlight; a rule is
+neither.
+
+**If he still dislikes it, the next move is removal, and that is not mine.**
+`~60 hours` is a ratified figure with a methodology footnote attached, so
+dropping it from the phone would remove a claim from one surface — a `09`-level
+decision, not a styling one.
+
+### The blue seam was a broken colour handoff, caused by hiding Section 3
+
+Jon, August 11, 2026: a hard line between 01 and 02 and again between 02 and 03,
+*"like a blue square that cuts off, and then it goes to lighter blue"*, and new.
+
+The page's background is a **handoff chain**: each band starts on the exact
+colour the band above it ended on, which is what makes the seams invisible.
+`globals.css` says so in as many words.
+
+On a phone Section 3 is hidden — and Section 3's `field-rise` was the band that
+bridged `--field-b` to `--field-d`. Without it:
+
+- Section 2 ended on `b` and mobile 02 started on `d`;
+- mobile 02 ended on `e` and mobile 03 started on `d` again, stepping the colour
+  back **up**, which is the harder of the two edges and the one he described.
+
+It was not new — hiding Section 3 did that in the morning. What was new is that
+the spacing pass shortened every section, compressing the same mismatch into a
+shorter run, which turns a slow drift into an edge.
+
+**Mobile 02 takes `field-rise`.** It replaces Section 3 on the phone, so it
+takes Section 3's band: `b` to light to `d`. Verified by walking the chain in
+the DOM — b, d, e, f, no broken handoffs.
+
+### The Phase 6 accessibility sweep
+
+Last stage-10 item. Four things, all measured before and after.
+
+**The five phantom `Here` links are gone**, from both sources — `parts.tsx` and
+the shared `sheet-grid.tsx`, which had its own copy. They were real anchors to
+`linkedin.com` inside an illustrative spreadsheet: five phantom destinations in
+the tab order and five "link, Here" announcements with no context, at 14x26 on
+desktop and 4x8 at 390. Now text keeping the blue and the underline, so the cell
+still reads as a spreadsheet hyperlink. **Zero visual delta on either surface**,
+which is what made it safe to change a shared file during a mobile-only stage.
+Closes `08` §8.
+
+**The swipe is reachable without a touchscreen.** Jon: *"everybody has a touch
+screen."* Almost, but a keyboard has no thumb, and without this the maintained
+half of the sheet — the half the section exists to show — could not be reached
+at all without one. `tabIndex={0}`, `role="region"` and a label; a focusable
+scroll container gets arrow-key scrolling from the browser, so no key handler of
+our own is needed.
+
+**Two tap targets were still under 44px** after the footer rebuild: the header
+brand link at 85x29 and the privacy link at 170x18. Both now clear 44 on a
+phone with the box growing around the text rather than the text growing, so
+neither looks different on either surface.
+
+**Reduced motion.** Jon asked why it is wanted, and the honest answer is that it
+changes nothing for him or for almost anyone: it reads one operating-system
+setting a reader has to turn on deliberately, usually because motion makes them
+ill. It drops the blur and the veil's tint easing, which are decoration, and
+keeps every fade, which carries meaning. Reduced motion means less movement, not
+less information.

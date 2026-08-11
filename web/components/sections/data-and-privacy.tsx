@@ -33,7 +33,12 @@
 import Link from "next/link";
 
 import { PageBox } from "@/components/layout/page-box";
-import { ProcessingFlow, ServicePermissions } from "@/components/section-6/parts";
+import { SectionNumber } from "@/components/layout/section-number";
+import {
+  ConnectionFinePrint,
+  ProcessingFlow,
+  ServicePermissions,
+} from "@/components/section-6/parts";
 import {
   BROAD_BODY,
   BROAD_HEADING,
@@ -50,19 +55,38 @@ const PROVIDER_LEAD = PROVIDER_BODY[0];
 
 export function DataAndPrivacy() {
   return (
-    <section id="privacy" className="field-document pt-24 pb-28">
+    <section id="privacy" className="field-document pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
+        <SectionNumber n={4} />
         {/*
           Head. The page's established two-column opening — headline left,
           supporting copy right — which Sections 3, 4 and 5 all use. Section 6
           had been the only one stacking them, which is part of why it never
           looked like it belonged to this page. No eyebrow: §5 removes it.
         */}
-        <div className="flex items-start gap-16">
-          <h2 className="font-display max-w-[15ch] flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink">
+        {/* Stacked on a phone, the ratified side-by-side from `desk`. See the
+            note on the same row in `how-blotter-works.tsx` for why `min-w-0`
+            is here. `06-SECTION-6` §16 requires one column on mobile, so this
+            row is the first of that section's clauses to be discharged. */}
+        <div className="flex flex-col gap-4 desk:flex-row desk:items-start desk:gap-16">
+          <h2 className="font-display max-w-[15ch] min-w-0 flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink">
             {PRIVACY_TITLE}
           </h2>
-          <p className="max-w-[52ch] flex-1 pt-1 text-body leading-[1.62] text-ink-muted">
+          {/*
+            Desktop only, on Jon's call of August 10, 2026.
+
+            It is a throat-clear: "Here is exactly what Blotter checks, what it
+            reads, what it keeps, and what it never does" announces what is
+            coming rather than saying it. On a desktop it earns its place by
+            filling the right-hand column of the established two-column head. On
+            a phone it is 180px of prose standing between the reader and the
+            claim that actually answers them, in a section already carrying more
+            text than any other.
+
+            Ratified copy, so this is an override rather than an edit: the
+            string is untouched and still renders above `desk`.
+          */}
+          <p className="hidden max-w-[52ch] min-w-0 flex-1 text-body leading-[1.62] text-ink-muted desk:block desk:pt-1">
             {PRIVACY_OPENING}
           </p>
         </div>
@@ -101,7 +125,8 @@ export function DataAndPrivacy() {
           which is the section's one claim about a third party. Both are set as
           footnotes because that is their weight, not because they are fine print.
         */}
-        <div className="mt-14 grid grid-cols-2 gap-x-16 border-t border-rule pt-7">
+        {/* Desktop: both footnotes side by side, exactly as ratified. */}
+        <div className="mt-14 hidden border-t border-rule pt-7 desk:grid desk:grid-cols-2 desk:gap-x-16">
           <p className="text-small leading-[1.6] text-ink-read">
             <span className="font-semibold text-ink">{BROAD_HEADING}.</span> {BROAD_BODY}
           </p>
@@ -109,13 +134,31 @@ export function DataAndPrivacy() {
         </div>
 
         {/*
+          Mobile: both footnotes fold into one row of fine print about the
+          Google connection. Nothing leaves the page — see `ConnectionFinePrint`
+          for why the provider sentence in particular belongs behind the tap
+          rather than in front of it.
+        */}
+        <div className="mt-12 desk:hidden">
+          <ConnectionFinePrint providerLead={PROVIDER_LEAD} />
+        </div>
+
+        {/*
           The link, and it is now load-bearing rather than courtesy: the page
           behind it carries most of what this section used to say.
         */}
         <p className="mt-8">
+          {/*
+            44px on a phone. It measured 170x18, the smallest remaining target
+            on the page after the footer rebuild, and it is the one link in the
+            section that a reader is most likely to actually want. The rule
+            stays exactly where it was — the box grows around the text rather
+            than the text growing — so nothing about the section's look changes
+            on either surface. Phase 6 sweep, August 11, 2026.
+          */}
           <Link
             href={POLICY_HREF}
-            className="text-small font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900"
+            className="inline-flex min-h-11 items-center text-small font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900 desk:min-h-0"
           >
             {POLICY_LINK_LABEL}
           </Link>

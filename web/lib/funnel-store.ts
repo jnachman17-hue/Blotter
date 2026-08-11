@@ -98,9 +98,10 @@ export const useFunnel = create<FunnelState>((set) => ({
   ...initial,
 
   /**
-   * All four CTAs enter this one funnel. The originating location is captured
-   * once and persists for the whole run, so `funnel_started` and every later
-   * event carry the same origin.
+   * All five CTAs enter this one funnel — the fifth being the mobile sticky
+   * bar, added August 10, 2026. The originating location is captured once and
+   * persists for the whole run, so `funnel_started` and every later event
+   * carry the same origin.
    */
   open: (from) =>
     set((s) => ({

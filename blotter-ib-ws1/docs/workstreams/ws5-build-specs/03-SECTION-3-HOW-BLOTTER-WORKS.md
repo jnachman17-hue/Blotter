@@ -32,6 +32,22 @@
 > robot, sparkle, circuit and wand iconography, section 15's static-screenshot
 > rule, and the absence of a CTA.
 
+> ---
+>
+> **Amended again by Jon, August 11, 2026, during the stage 10 mobile build.**
+> Reasoning in `04-decision-log.md` session 7 and
+> `09-page-argument-rework.md` §4. **Every row below is scoped to the phone.
+> Desktop is untouched and must stay so until the stage-10 build is finished** —
+> `09` §8 is the ledger of what desktop then owes and why.
+>
+> | Item here | Amended to, below `--breakpoint-desk` only |
+> |---|---|
+> | Section 4, the section itself | **It stops existing on a phone.** The hero film demonstrates the mechanism 1,100px earlier using these same three ratified moments, so a second demonstration is redundancy. `components/sections/how-blotter-works.tsx` renders `hidden desk:block`. |
+> | Section 5, the headline, verbatim | Relocated. `You manage the relationships. Blotter maintains the moving parts.` becomes the **deck** of the merged section, at reduced weight. Not rewritten; moved. |
+> | Section 5, the boundary line and the closing line, verbatim | **Cut.** `Blotter keeps the logistics current` and `Blotter keeps the logistics synchronized` are near-synonyms in one section. Section 341 of this spec shows the duplication was seen at ratification and mitigated with whitespace, which is the one resource a phone has none of. |
+> | Section 5 and 8, the three stage labels | **Cut.** Built above the phone sheet and rejected on sight: they caption a mechanism claim while the visual beneath them proves ownership. On desktop they stay inside the timeline they label, which is correct. |
+> | Section 11 and 12, badge placement | The three refusals relocate to the merged ownership section. They are the ownership claim stated negatively; privacy is about what Blotter reads, these are about what it refuses to write. |
+
 Date ratified: July 31, 2026  
 Status: Ratified  
 Decision owner: Jon  

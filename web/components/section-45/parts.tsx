@@ -22,9 +22,7 @@
 
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
-
-import { PAGE_BOX_W } from "@/components/layout/page-box";
+import { Fit } from "@/components/layout/fit";
 import { SheetWindow } from "@/components/sheet/sheet-window";
 import { StatusChip } from "@/components/sheet/status-chip";
 import { cn } from "@/lib/cn";
@@ -73,22 +71,15 @@ const TABS_OUT = [{ label: "Contacts" }, { label: "Blotter" }, { label: "Outstan
 
 /* ------------------------------------------------------------------- helpers */
 
-/** Scales a composition built at its natural width into the page box. */
-export function Fit({ width, children }: { width: number; children: React.ReactNode }) {
-  const scale = PAGE_BOX_W / width;
-  const inner = useRef<HTMLDivElement>(null);
-  const [h, setH] = useState(0);
-  useLayoutEffect(() => {
-    if (inner.current) setH(inner.current.offsetHeight * scale);
-  }, [scale, children]);
-  return (
-    <div style={{ width: PAGE_BOX_W, height: h || undefined }}>
-      <div ref={inner} style={{ width, transform: `scale(${scale})`, transformOrigin: "top left" }}>
-        {children}
-      </div>
-    </div>
-  );
-}
+/*
+ * `Fit` used to live here, hard-coded to `PAGE_BOX_W`, which is why this
+ * section was 1124px wide inside a 375px phone. It now measures the width it
+ * is given and is shared with the hero and Section 3 —
+ * `components/layout/fit.tsx`. On desktop the measurement is 1124px, so this
+ * section's scale is unchanged to the pixel. Re-exported because the two beats
+ * below and `tracker-and-actions.tsx` import it from here.
+ */
+export { Fit };
 
 function Gut({ n }: { n: number }) {
   return (
@@ -178,6 +169,45 @@ export function Reassurance() {
   );
 }
 
+/**
+ * The same three claims, stacked, for a phone.
+ *
+ * Three across at sheet width is 116px per claim at 350, which wraps every
+ * label to three lines. Jon asked on August 11, 2026 to see them stacked.
+ *
+ * Same glyphs, same tints, same order, same copy — only the axis changes, so
+ * the claim and its evidence are untouched. The hairline moves from between the
+ * columns to between the rows for the same reason: it is what separates three
+ * statements from one paragraph.
+ */
+export function ReassuranceStack() {
+  return (
+    <ul className="flex flex-col">
+      {CLAIMS.map((c, i) => (
+        <li
+          key={c.label}
+          className={cn(
+            "flex items-center gap-3 py-2",
+            i > 0 && "border-t border-navy-900/[0.10]",
+          )}
+        >
+          <span
+            className="grid size-8 shrink-0 place-items-center rounded-lg"
+            style={{ background: c.tint }}
+          >
+            <Mark tint={c.tint} strike={c.strike}>
+              {c.art}
+            </Mark>
+          </span>
+          <span className="text-[14.5px] leading-snug font-medium text-navy-900">
+            {c.label}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 /* ------------------------------------------------ beat 1 · the Blotter tab */
 
 /**
@@ -240,7 +270,21 @@ export function BlotterTab() {
                 <div className="px-3 py-2.5" style={{ width: YOURS[2].w }}>{c.firm}</div>
                 <div className="truncate px-3 py-2.5 text-ink-muted" style={{ width: YOURS[3].w }}>{c.email}</div>
                 <div className="px-3 py-2.5" style={{ width: YOURS[4].w }}>
-                  <a href="https://www.linkedin.com" className="text-chip-replied-fg underline">Here</a>
+                  {/*
+                    Text, not an anchor. These are spreadsheet *content* in an
+                    illustrative asset, not navigation: five real anchors to
+                    linkedin.com sat in the tab order, a screen reader announced
+                    "link, Here" five times with no context, and they measured
+                    14x26 on desktop and 4x8 at 390 because the composition is
+                    scaled. `08-desktop-changes-pending.md` §8 confirmed the
+                    defect on both surfaces and queued the fix for this sweep.
+
+                    The blue and the underline stay, so the cell still reads as
+                    a spreadsheet hyperlink. **Zero visual delta on either
+                    surface** — which is why a shared file could be changed
+                    during a mobile-only stage.
+                  */}
+                  <span className="text-chip-replied-fg underline">Here</span>
                 </div>
                 <div className="border-l-[3px] border-l-blotter-400 px-2 py-2.5" style={{ width: MAINTAINED[0].w, background: MAINTAINED_FILL }}>
                   <StatusChip status={c.status} />

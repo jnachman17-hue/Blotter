@@ -463,13 +463,45 @@ export function Funnel() {
     <Dialog.Root open={stage !== "closed"} onOpenChange={(next) => !next && close()}>
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-50 bg-ink/45 backdrop-blur-[2px]" />
+        {/*
+          A full-screen sheet on a phone, the ratified 960x730 card from `desk`.
+
+          The card is the right shape on a desktop and the wrong one on a phone.
+          At 390 the fixed width collapsed to `100vw - 32px` while every step
+          inside was still composed for 960, and the film alone is a 520px slot,
+          so the content overflowed a container that clips. A modal that is
+          almost the whole screen but not quite also reads as a mistake rather
+          than as a choice.
+
+          What the comment above says about the card is unchanged and still
+          governs desktop: one fixed size, never resizing between steps, the
+          film setting that size. On a phone the *screen* is the stage and it
+          also never changes size, so the reasoning survives the translation.
+
+          `100dvh` rather than `100vh`: iOS Safari's `vh` is the tallest the
+          viewport ever gets, so with the address bar showing, a `100vh` sheet
+          puts its own footer under the browser chrome. That is where the
+          `Continue` button lives.
+
+          It scrolls vertically, because the film step plus its copy and buttons
+          is taller than a phone and a sheet that clips its own CTA converts
+          nobody.
+        */}
         <Dialog.Popup
-          style={{ width: CARD_W, height: CARD_H }}
           className={cn(
-            "fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2",
-            "max-h-[94vh] max-w-[calc(100vw-32px)] overflow-hidden",
-            "rounded-xl bg-surface-quiet shadow-[0_24px_60px_rgba(20,24,31,0.22)]",
+            "fixed z-50 overflow-y-auto overscroll-contain bg-surface-quiet",
+            "inset-0 h-[100dvh] w-screen",
+            "desk:top-1/2 desk:left-1/2 desk:h-[var(--funnel-h)] desk:w-[var(--funnel-w)]",
+            "desk:inset-auto desk:-translate-x-1/2 desk:-translate-y-1/2",
+            "desk:max-h-[94vh] desk:max-w-[calc(100vw-32px)] desk:overflow-hidden",
+            "desk:rounded-xl desk:shadow-[0_24px_60px_rgba(20,24,31,0.22)]",
           )}
+          style={
+            {
+              "--funnel-w": `${CARD_W}px`,
+              "--funnel-h": `${CARD_H}px`,
+            } as React.CSSProperties
+          }
         >
           {/* Every screen is visibly titled; this names the dialog itself. */}
           <Dialog.Title className="sr-only">Try Blotter</Dialog.Title>
@@ -484,7 +516,14 @@ export function Funnel() {
 
           <Dialog.Close
             aria-label="Close"
-            className="absolute top-4 right-4 grid size-8 place-items-center rounded-full text-ink-muted transition-colors duration-150 ease-out hover:bg-ink/5 hover:text-ink"
+            className={cn(
+              "absolute right-3 z-10 grid place-items-center rounded-full",
+              "text-ink-muted transition-colors duration-150 ease-out hover:bg-ink/5 hover:text-ink",
+              /* 44px on a phone, per the target rule the footer rebuild set,
+                 and below the status bar rather than under it. */
+              "size-11 top-[max(0.75rem,env(safe-area-inset-top))]",
+              "desk:top-4 desk:right-4 desk:size-8",
+            )}
           >
             <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
               <path

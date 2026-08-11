@@ -13,6 +13,7 @@ learn how to reach it.
 |---|---|---|
 | Site | `blotterib.com` and `www.blotterib.com` | Live, public, `noindex` |
 | Preview URL | `blotter-claude.vercel.app` | Live, public, same deployment |
+| Branch review URL | `blotter-claude-git-mobile-jnachman17-hues-projects.vercel.app` | Live, public, tracks the `mobile` branch head |
 | Repo | `github.com/jnachman17-hue/Blotter-Claude` | Private, personal, **not** a fork |
 | Host | Vercel, team `jnachman17-hue's projects`, Hobby | Auto-deploys on push to `main` |
 | Leads | Supabase, US region | `leads` table, `real_leads` view |
@@ -127,6 +128,51 @@ the timestamp cutoff above exists at all.
 ## Deployment
 
 Push to `main` and Vercel builds. Root directory is `web`.
+
+**Every branch gets a preview, and previews are public as of August 11, 2026.**
+Pushing any branch produces a deployment, and Vercel aliases the branch head to
+
+```
+https://blotter-claude-git-<branch>-jnachman17-hues-projects.vercel.app
+```
+
+which is stable across pushes. That is the review link. It replaced the dev
+server, which died four times in session 6 and again in session 7.
+
+### How preview protection was turned off, and how to put it back
+
+Vercel Authentication was on with `deploymentType: all_except_custom_domains`,
+which is why `blotterib.com` was public and every preview URL 302'd to
+`vercel.com/sso-api`. Jon could not reach the dashboard control and authorised
+the change on August 11, 2026.
+
+The dashboard is not the only way. **`vercel api` makes authenticated calls with
+the CLI's own credentials**, so no token is ever read or handled:
+
+```
+echo '{"ssoProtection": null}' | vercel api \
+  "/v9/projects/prj_E6AwlNkKRJExQhIFJFxEpdrIVqWX?teamId=team_4xVAEsxQQQJGwkd6mabjRXO5" \
+  -X PATCH --input - --raw
+```
+
+To restore it, send `{"ssoProtection": {"deploymentType": "all_except_custom_domains"}}`.
+
+**The Vercel MCP connector cannot see this project.** It lists the team and
+returns an empty project array, and every project call 404s, so it is
+authenticated to a different account. Use the CLI.
+
+### What being public costs, and what it does not
+
+- **Production is unaffected.** `ssoProtection` never applied to custom domains,
+  so `blotterib.com` was already public and nothing about it changed. Verified
+  200 before and after.
+- **`noindex` still applies**, because it is in the application code rather than
+  a platform setting. A public preview is unlisted, not indexed.
+- **Analytics are already safe.** The canonical filter in this file restricts to
+  `blotterib.com` and `www.blotterib.com`, so a branch host is excluded from
+  every number by construction. It is a **fifth origin** for the
+  `?blotter_internal=1` flag, which is per origin; flagging it is optional
+  precisely because the host filter already drops it.
 
 **Production cannot be protected on Hobby.** Vercel Authentication and password
 protection for production deployments are Pro features; the API returns

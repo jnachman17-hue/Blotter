@@ -34,7 +34,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 
 import { CalendarMark, GmailMark } from "@/components/google-marks";
-import { PAGE_BOX_W } from "@/components/layout/page-box";
+import { useFit } from "@/components/layout/fit";
 import { StatusChip } from "@/components/sheet/status-chip";
 import { cn } from "@/lib/cn";
 import { SECTION_3_MOMENTS, type DayMoment } from "@/lib/sheet-data";
@@ -177,7 +177,15 @@ const STAGE_LABELS = [
 /* ------------------------------------------------------------------ the day */
 
 export function DayTimeline() {
-  const scale = PAGE_BOX_W / NATURAL_W;
+  /*
+    Scaled to the width this is given rather than to a hard-coded `PAGE_BOX_W`.
+    On desktop the page box hands it 1124px and the scale resolves to the
+    ratified 0.96 exactly; below the breakpoint it shrinks instead of pushing
+    the page sideways. See `components/layout/fit.tsx` — the shrink is
+    scaffolding, and this section's real mobile treatment is three stacked
+    moments sharing one continuous vertical rail.
+  */
+  const { outer, inner, scale, height, toNatural } = useFit(NATURAL_W);
 
   /*
     The rail is measured from the first dot's centre to the last dot's, not
@@ -185,30 +193,45 @@ export function DayTimeline() {
     carries the header, so any fixed value overshoots one end and falls short at
     the other.
   */
-  const inner = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const dots = useRef<(HTMLSpanElement | null)[]>([]);
-  const [height, setHeight] = useState(0);
   const [rail, setRail] = useState<{ top: number; height: number } | null>(null);
 
   useLayoutEffect(() => {
-    if (inner.current) setHeight(inner.current.offsetHeight * scale);
     if (!track.current) return;
+    /*
+      `getBoundingClientRect` inside the scaled subtree returns post-transform
+      screen pixels, but `rail` is applied back inside that same subtree, where
+      the coordinate space is pre-transform. `toNatural` is the divide.
+
+      This was always wrong and never visible: at the fixed 0.96 the rail sat
+      4% short of the last dot. Letting the scale move exposes it — at phone
+      width the rail would stop a third of the way down.
+    */
     const base = track.current.getBoundingClientRect().top;
     const centres = dots.current
       .filter(Boolean)
       .map((d) => d!.getBoundingClientRect())
-      .map((r) => r.top - base + r.height / 2);
+      .map((r) => toNatural(r.top - base + r.height / 2));
     if (centres.length > 1) {
       setRail({
         top: centres[0],
         height: centres[centres.length - 1] - centres[0],
       });
     }
-  }, [scale]);
+  }, [scale, toNatural]);
 
+  /*
+    `overflow-hidden` for the same reason `Fit` carries it: the server renders
+    the desktop scale, so without the clip this composition pushes the document
+    sideways on a phone until hydration corrects it.
+  */
   return (
-    <div style={{ width: PAGE_BOX_W, height: height || undefined }}>
+    <div
+      ref={outer}
+      className="w-full overflow-hidden"
+      style={{ height: height || undefined }}
+    >
       <div
         ref={inner}
         style={{

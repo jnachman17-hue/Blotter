@@ -21,9 +21,14 @@
  * this section carries `field-deep`.
  */
 
+import { Fit } from "@/components/layout/fit";
+import { SectionNumber } from "@/components/layout/section-number";
 import { PageBox, PAGE_BOX_W } from "@/components/layout/page-box";
 import { EYEBROW, ScaleTrajectory } from "@/components/section-2/scale-trajectory";
-import { GmailInboxStrip } from "@/components/section-2/gmail-inbox-strip";
+import {
+  GmailInboxPhone,
+  GmailInboxStrip,
+} from "@/components/section-2/gmail-inbox-strip";
 
 /**
  * The consequence visual and its two annotations, sections 10 and 11.
@@ -36,19 +41,69 @@ import { GmailInboxStrip } from "@/components/section-2/gmail-inbox-strip";
 function ConsequenceVisual() {
   return (
     <div className="mt-14">
-      <p className="mb-3 flex items-center gap-3 text-[14px] font-medium text-navy-900">
-        <span aria-hidden="true" className="h-px w-6 shrink-0 bg-navy-400" />
+      {/*
+        The leader tick turns ninety degrees on a phone.
+
+        A 24px horizontal dash works on desktop because the annotation is one
+        line beside a wide asset and the dash points at it. At 350px both
+        annotations wrap to two lines, and a horizontal dash beside line one
+        with nothing under it reads as a stray mark rather than as a leader.
+
+        The vertical tick is the page's own idiom — the same 2px bar the eyebrow
+        uses, aligned to the cap height of the first line — so it stays put
+        however the text wraps and it is a mark this page already speaks.
+      */}
+      <p className="mb-3 flex items-start gap-3 text-[14px] font-medium text-navy-900 desk:items-center">
+        <span
+          aria-hidden="true"
+          className="mt-[0.32em] h-[0.9em] w-[2px] shrink-0 bg-navy-400 desk:mt-0 desk:h-px desk:w-6"
+        />
         One thread buried in 628 emails
       </p>
 
-      <GmailInboxStrip width={PAGE_BOX_W} />
+      {/*
+        The strip is a Gmail surface built at page-box width. `Fit` scales it
+        into whatever width it is given, which on desktop is 1124px and so
+        leaves the ratified composition untouched.
 
+        `02-SECTION-2` §15 permits proportional scaling, a controlled crop, or a
+        separately composed translation on smaller screens, and none of them is
+        chosen yet — this is the placeholder that stops the section pushing the
+        page sideways in the meantime.
+      */}
+      {/* Desktop: the ratified strip, scaled into the page box. */}
+      <div className="hidden desk:block">
+        <Fit width={PAGE_BOX_W}>
+          <GmailInboxStrip width={PAGE_BOX_W} />
+        </Fit>
+      </div>
+      {/* Phone: the same five rows as a phone inbox. See `GmailInboxPhone`. */}
+      <div className="desk:hidden">
+        <GmailInboxPhone />
+      </div>
+
+      {/*
+        The annotation is bounded by the page box rather than pinned to it, so
+        it wraps on a phone instead of holding 1124px open. It stays outside
+        the email asset and covers nothing, per §15.
+      */}
+      {/*
+        The same tick, and on a phone it moves to the front so both annotations
+        read from the same edge. Right-aligning this one is what made the pair
+        frame the asset diagonally on desktop; at 350px there is no diagonal to
+        make, and a right-aligned wrapped paragraph in a left-aligned section
+        just looks like a mistake. `order-first` handles it without duplicating
+        the copy.
+      */}
       <p
-        className="mt-3 flex items-center justify-end gap-3 text-[14px] font-medium text-navy-900"
-        style={{ width: PAGE_BOX_W }}
+        className="mt-3 flex items-start gap-3 text-[14px] font-medium text-navy-900 desk:items-center desk:justify-end"
+        style={{ maxWidth: PAGE_BOX_W }}
       >
         A stale tracker does not direct you back before the deadline passes
-        <span aria-hidden="true" className="h-px w-6 shrink-0 bg-navy-400" />
+        <span
+          aria-hidden="true"
+          className="order-first mt-[0.32em] h-[0.9em] w-[2px] shrink-0 bg-navy-400 desk:order-last desk:mt-0 desk:h-px desk:w-6"
+        />
       </p>
     </div>
   );
@@ -56,8 +111,9 @@ function ConsequenceVisual() {
 
 export function ScaleAndConsequence() {
   return (
-    <section className="field-deep pt-24 pb-28">
+    <section className="field-deep pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
+        <SectionNumber n={1} />
         <p className="flex items-start gap-3 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase">
           <span
             aria-hidden="true"

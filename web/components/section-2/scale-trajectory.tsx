@@ -27,6 +27,13 @@
  * appear, which section 12 forbids.
  */
 
+"use client";
+
+import { Accordion } from "@base-ui/react/accordion";
+
+import { DisclosureControl } from "@/components/disclosure";
+import { Fit } from "@/components/layout/fit";
+
 /* ------------------------------------------------------------------- copy */
 
 export const EYEBROW = "The scale of a recruiting cycle";
@@ -36,8 +43,24 @@ export const HEADLINE =
 export const QUALIFICATION =
   "* Representative workload from a high-intensity Summer Analyst 2027 recruiting cycle that resulted in a JPMorgan offer.";
 
+/**
+ * AMENDED by Jon, August 10, 2026. `02-SECTION-2` line 140 fixes this string
+ * verbatim and §5 requires exact copy, so this is an override and is recorded
+ * as one. Only the opening changes: `Estimated from` becomes `Hours saved
+ * estimated from`. Every other word is untouched.
+ *
+ * The reason is a consequence of the mobile build. §253 asks that the
+ * methodology sit "immediately beneath or adjacent" to the proof it explains,
+ * and §563 repeats it — on desktop it does, in the column under the `~60 hours`
+ * line. On a phone both footnotes now fold into one row further down the
+ * section, so the adjacency that told a reader *what* was estimated is gone.
+ * Naming it in the sentence restores that, and it is clearer on desktop too.
+ *
+ * It lands on both surfaces because the string is shared. Recorded in
+ * `08-desktop-changes-pending.md`.
+ */
 export const METHODOLOGY =
-  "Estimated from manual Gmail and Calendar logging, tracker updates, and recurring reconciliation across the case-study recruiting cycle.";
+  "Hours saved estimated from manual Gmail and Calendar logging, tracker updates, and recurring reconciliation across the case-study recruiting cycle.";
 
 /** Descending by volume, per Jon's reorder. Every mark is one real unit. */
 const METRICS = [
@@ -186,6 +209,8 @@ const BAND_H = 54;
 const SLOT = CHART_W / MONTHS.length;
 const LABEL_W = 236;
 const GUTTER = 32;
+/** The diagram's full natural width. `Fit` scales it as one object. */
+const CHART_TOTAL_W = LABEL_W + GUTTER + CHART_W;
 
 /** Smooth line through the top of each month's pile. */
 function smoothPath(points: readonly (readonly [number, number])[]) {
@@ -251,8 +276,15 @@ function TrajectoryBand({ metric, last }: { metric: Metric; last: boolean }) {
 
 /* ------------------------------------------------------- argument and notes */
 
-/** Shared column geometry, so the two rows below the diagram line up exactly. */
-const ROW = "grid grid-cols-[minmax(0,1fr)_460px] items-start gap-x-16";
+/**
+ * Shared column geometry, so the two rows below the diagram line up exactly.
+ *
+ * One column on a phone; the ratified two-column split from the desktop
+ * breakpoint. The 460px track is fixed and a fixed track cannot narrow, so
+ * below `desk` it held the row open past the viewport on its own.
+ */
+const ROW =
+  "grid gap-y-8 items-start desk:grid-cols-[minmax(0,1fr)_460px] desk:gap-x-16";
 
 /**
  * The argument and its proof, side by side.
@@ -267,17 +299,77 @@ const ROW = "grid grid-cols-[minmax(0,1fr)_460px] items-start gap-x-16";
 function ArgumentRow() {
   return (
     <div className={`mt-12 ${ROW}`}>
-      <SupportingParagraph className="max-w-[600px] font-display text-[22px] leading-[1.45] tracking-[-0.012em] text-ink-muted" />
+      <SupportingParagraph
+        className={
+          /*
+            17px on a phone, the ratified 22px from `desk`.
 
-      <div className="flex items-center gap-3 pt-1">
-        <span className="font-display text-[34px] leading-none font-semibold tracking-[-0.03em] tabular-nums text-navy-900">
-          ~60 hours
-        </span>
-        <span className="text-small leading-[1.45] text-ink-muted">
-          saved on manual tracker administration
-          <br />
-          over one recruiting cycle
-        </span>
+            Jon, August 11, 2026, and he found the thing that had been bothering
+            him: at 22px this was **the largest run of body text anywhere on the
+            page**, header excepted, and nothing else on either surface is set
+            that big. It read as important without being a heading, which is why
+            the section felt off.
+
+            17px is `--text-lede`, the token this page already uses for
+            subheads, so it still leads the body copy beneath it without
+            competing with the headline above. Desktop keeps 22px: there the
+            paragraph shares a row with the 60-hour figure and has a 600px
+            measure to fill, and it is not the largest thing in view.
+
+            He observed the same is true on desktop. That is a desktop change
+            and stage 10 does not take those, so it is logged in
+            `08-desktop-changes-pending.md` rather than made here.
+          */
+          "max-w-[600px] font-display text-lede leading-[1.5] tracking-[-0.012em] text-ink-muted desk:text-[22px] desk:leading-[1.45]"
+        }
+      />
+
+      {/*
+        Stacked on a phone, on the ratified baseline from `desk`.
+
+        Beside each other at 350px the phrase had about 190px, so it wrapped to
+        three ragged lines against a 34px numeral and read as text floating next
+        to a number rather than as one statement. Stacked, the numeral leads and
+        the phrase runs underneath as a normal sentence.
+
+        The forced break is desktop-only for the same reason: `desk:inline` on
+        the second clause makes it a block above the breakpoint, which is the
+        ratified two-line set, and lets it flow on a phone. The copy is
+        untouched either way.
+
+        28px rather than 34 on a phone, and navy rather than a ramp colour, so
+        it reads as the section's conclusion instead of a fifth metric next to
+        the four volumes above it.
+      */}
+      {/*
+        No container, third attempt, and this one removes the problem instead of
+        restyling it.
+
+        A ring read as a form field; a filled panel read as a card the page does
+        not otherwise use. Jon on the second: "I hate that sixty hours box." The
+        mistake was mine in both cases — I kept trying to give the figure a
+        *shape*, when what it actually lacked was a **relationship**. It was
+        floating because nothing said it belonged to the paragraph above it.
+
+        A hairline says that, and it is now the page's own language: the same
+        rule marks every section boundary on this surface. So the figure is the
+        paragraph's conclusion, joined to it by a rule, and the caption picks up
+        the 15px semibold the four volume labels took on the same day, so the
+        section has one voice for naming a quantity.
+
+        `02-SECTION-2` §8 keeps this proof subordinate to the four figures and
+        forbids a badge or a loud highlight. A rule is neither.
+      */}
+      <div className="border-t border-navy-900/[0.12] pt-4 desk:border-0 desk:pt-0">
+        <div className="flex flex-col items-start gap-1.5 desk:flex-row desk:items-center desk:gap-3 desk:pt-1">
+          <span className="font-display text-[1.75rem] leading-none font-semibold tracking-[-0.03em] tabular-nums text-navy-900 desk:text-[34px]">
+            ~60 hours
+          </span>
+          <span className="text-[0.9375rem] leading-[1.45] font-semibold text-ink desk:text-small desk:font-normal desk:text-ink-muted">
+            saved on manual tracker administration{" "}
+            <span className="desk:block">over one recruiting cycle</span>
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -295,13 +387,204 @@ function ArgumentRow() {
  */
 function FootnoteStrip() {
   return (
-    <div className={`mt-10 border-t border-ink/10 pt-5 ${ROW}`}>
-      <p className="max-w-[540px] text-micro leading-[1.6] text-ink-faint">
-        {QUALIFICATION}
-      </p>
-      <p className="max-w-[440px] text-micro leading-[1.6] text-ink-faint">
-        {METHODOLOGY}
-      </p>
+    <>
+      {/* Desktop: both notes side by side, exactly as ratified. */}
+      <div className={`mt-10 hidden border-t border-ink/10 pt-5 desk:grid ${ROW}`}>
+        <p className="max-w-[540px] text-micro leading-[1.6] text-ink-faint">
+          {QUALIFICATION}
+        </p>
+        <p className="max-w-[440px] text-micro leading-[1.6] text-ink-faint">
+          {METHODOLOGY}
+        </p>
+      </div>
+
+      {/*
+        Mobile: one folded row.
+
+        Both notes are claim-safety text and neither may be cut — together they
+        are what stops 628 and `~60 hours` being read as audited figures rather
+        than as a representative reconstruction, and there is an open claim gate
+        on exactly that in `06-assumptions-and-open-questions.md`. Stacked they
+        are about 90px of 12px grey type nobody reads; behind one row that names
+        what is inside, a reader who wants the provenance can find it and a
+        reader who does not is not made to scroll past it.
+
+        The asterisk stays on the qualification, so the marker under the diagram
+        still has something to refer to.
+      */}
+      <div className="mt-10 desk:hidden">
+        <MethodDisclosure />
+      </div>
+    </>
+  );
+}
+
+function MethodDisclosure() {
+  return (
+    <Accordion.Root className="border-t border-ink/10">
+      <Accordion.Item value="method" className="border-b border-ink/10">
+        <Accordion.Header>
+          <Accordion.Trigger className="group flex min-h-14 w-full cursor-pointer items-center justify-between gap-6 py-4 text-left">
+            <span className="text-small leading-[1.5] font-medium text-ink-muted">
+              Where these numbers come from
+            </span>
+            <DisclosureControl />
+          </Accordion.Trigger>
+        </Accordion.Header>
+        <Accordion.Panel hiddenUntilFound className="disclosure-panel">
+          <div className="pb-5">
+            <p className="text-micro leading-[1.6] text-ink-faint">{QUALIFICATION}</p>
+            <p className="mt-3 text-micro leading-[1.6] text-ink-faint">{METHODOLOGY}</p>
+          </div>
+        </Accordion.Panel>
+      </Accordion.Item>
+    </Accordion.Root>
+  );
+}
+
+
+/* -------------------------------------------------------------- mobile blocks */
+
+/**
+ * The four volumes as packed blocks, with no month axis. Mobile only.
+ *
+ * ## Jon's idea, and it is better than the three I proposed
+ *
+ * The desktop diagram spends 236 of its 1120px on a label column beside each
+ * band, and gives the remaining 852 to ten month columns. Scaled to a 350px
+ * phone that is 74px of label and **24.5px per month**, which no mark field
+ * and no month name survives — the four figures themselves ended up at 12.5px,
+ * and they are the argument.
+ *
+ * Dropping the time axis is what unlocks it. With no months, the marks pack
+ * across the full width: 628 dots become eight rows of seventy-nine and stand
+ * 35px tall. All 745 marks survive, still one to one with their counts, in
+ * about 90px of actual marks.
+ *
+ * `02-SECTION-2` §15 permits "a separately composed responsive translation" and
+ * its do-not-reopen list is the figures, the exact copy, the exact email
+ * content, one email only, no second spreadsheet, and the consequence-first
+ * job. **The trajectory is not on that list.** Every figure is preserved
+ * exactly, which is what the list protects.
+ *
+ * ## What it costs
+ *
+ * The January and February pivot band — the two months marked identically as
+ * the cycle's hinge, Jon's own addition of August 5, 2026 — has no time axis to
+ * live on and does not survive here. He accepted that on August 10 rather than
+ * add copy to replace it. Desktop keeps it.
+ *
+ * ## The size ramp still earns its place
+ *
+ * 3px dots against 11px bars is what stops a 19 vanishing beside a 628 while
+ * every mark stays one real unit. Without it the applications block would be a
+ * single thin line next to a dense field, which is true and reads as "this one
+ * does not matter". The numerals carry the real magnitude, which is the same
+ * division of labour the desktop diagram uses.
+ *
+ * Each mark sits centred in a `pitch x pitch` cell and the row wraps, so the
+ * density is exactly the desktop density at any width, with no measurement.
+ */
+function MarkBlock({ metric }: { metric: Metric }) {
+  const cells = Array.from({ length: metric.count });
+  return (
+    <ul
+      aria-hidden="true"
+      className="flex flex-wrap"
+      /* One cell per unit. Wrapping does the packing, so this is correct at
+         320, 390 and 430 without measuring anything. */
+    >
+      {cells.map((_, i) => (
+        <li
+          key={i}
+          className="grid shrink-0 place-items-center"
+          style={{ width: metric.pitch, height: metric.pitch }}
+        >
+          <BlockMark metric={metric} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** The same four shapes the diagram draws, as elements rather than SVG. */
+function BlockMark({ metric }: { metric: Metric }) {
+  const s = metric.size;
+  if (metric.mark === "dot") {
+    return (
+      <span
+        className="block rounded-full"
+        style={{ width: s, height: s, background: metric.ink, opacity: 0.72 }}
+      />
+    );
+  }
+  if (metric.mark === "square") {
+    return (
+      <span
+        className="block rounded-[1px]"
+        style={{ width: s, height: s, background: metric.ink, opacity: 0.72 }}
+      />
+    );
+  }
+  if (metric.mark === "ring") {
+    return (
+      <span
+        className="block rounded-full"
+        style={{
+          width: s,
+          height: s,
+          border: `1.6px solid ${metric.ink}`,
+          opacity: 0.8,
+        }}
+      />
+    );
+  }
+  return (
+    <span
+      className="block rounded-[0.8px]"
+      style={{ width: s, height: s / 3, background: metric.ink, opacity: 0.78 }}
+    />
+  );
+}
+
+function VolumeBlocks() {
+  return (
+    <div className="mt-8 space-y-7 desk:hidden">
+      {METRICS.map((m) => (
+        <div key={m.label}>
+          {/*
+            Numeral and label share one line. Stacking them costs about 18px a
+            block for no gain — the label is short enough to sit on the numeral's
+            baseline, and four blocks of two lines each reads as a list of
+            headings rather than as four quantities.
+
+            **Rebalanced August 11, 2026, on Jon's note** that the numerals were
+            "doing too much of the work" and the labels needed to be bigger or
+            bolder. The numeral came down 2rem to 1.75rem and the label went up
+            13.5px muted to 15px semibold in full ink. The pair now reads as one
+            phrase — *628 recruiting emails* — rather than as a figure with a
+            caption under it, which is what "628" alone was becoming.
+
+            Not underlined, which he offered as an alternative. An underline on
+            a phrase that is not a link is a promise the page does not keep, and
+            there are already five real underlines in the sheet asset.
+          */}
+          <p className="flex items-baseline gap-2.5">
+            <span
+              className="font-display text-[1.75rem] leading-none font-semibold tracking-[-0.03em] tabular-nums"
+              style={{ color: m.ink }}
+            >
+              {m.value}
+            </span>
+            <span className="text-[0.9375rem] leading-none font-semibold text-ink">
+              {m.label}
+            </span>
+          </p>
+          <div className="mt-3">
+            <MarkBlock metric={m} />
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -315,7 +598,29 @@ export function ScaleTrajectory() {
         {HEADLINE}
       </h2>
 
-      <div className="mt-10">
+      <VolumeBlocks />
+
+      {/*
+        The diagram is one fixed 1120px composition — the label column, the
+        gutter and the ten month slots all depend on each other, so it scales
+        as one object rather than reflowing piecemeal.
+
+        Scaffolding, and specifically the thing this section must replace:
+        `perRow` on each band is a real parameter, so the mark field can be
+        rebuilt to reflow at phone width instead of shrinking. `02-SECTION-2`
+        §15 leaves the choice open between proportional scaling, a controlled
+        crop and a separate translation, and the reflow is the one that keeps
+        every mark one-to-one with its count.
+      */}
+      {/*
+        The `mt-10` sits outside `Fit`, not inside it. `Fit` clips, and a
+        clipping box is a new block formatting context, so a top margin on its
+        first child is trapped inside a box whose height is set explicitly —
+        the 40px simply disappears and the section comes up short on desktop.
+      */}
+      <div className="mt-10 hidden desk:block">
+      <Fit width={CHART_TOTAL_W}>
+        <div style={{ width: CHART_TOTAL_W }}>
         {/* Months read first, at the top, before the four shapes. */}
         <div className="flex gap-8 pb-2">
           <div className="shrink-0" style={{ width: LABEL_W }} />
@@ -368,11 +673,13 @@ export function ScaleTrajectory() {
         </div>
 
         {/* The asterisk's anchor, at the foot of the block it qualifies. */}
-        <div className="mt-2 flex justify-end" style={{ width: LABEL_W + GUTTER + CHART_W }}>
+        <div className="mt-2 flex justify-end" style={{ width: CHART_TOTAL_W }}>
           <span className="text-small leading-none text-ink-muted" aria-hidden="true">
             *
           </span>
         </div>
+        </div>
+      </Fit>
       </div>
 
       <ArgumentRow />

@@ -30,6 +30,8 @@
 
 import { CtaButton } from "@/components/cta-button";
 import { PageBox } from "@/components/layout/page-box";
+import { SectionNumber } from "@/components/layout/section-number";
+import { OutstandingPhone } from "@/components/section-45/outstanding-phone";
 import {
   BlotterTab,
   OutstandingTab,
@@ -39,8 +41,8 @@ import { cn } from "@/lib/cn";
 
 /* ------------------------------------------------------------- exact copy */
 
-const KEEP_H = "Keep the tracker you already built.";
-const KEEP_SUB =
+export const KEEP_H = "Keep the tracker you already built.";
+export const KEEP_SUB =
   "Keep the Google Sheet and contacts you already built. Blotter creates a standardized recruiting view in a new tab and keeps the changing activity current from Gmail and Calendar.";
 
 const ACT_H = "Know exactly what needs your attention.";
@@ -56,22 +58,40 @@ function Head({ h, sub, flip }: { h: string; sub: string; flip?: boolean }) {
   const title = (
     <h2
       className={cn(
-        "font-display max-w-[16ch] flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink",
-        flip && "text-right",
+        "font-display max-w-[16ch] min-w-0 flex-1 text-h2 leading-[1.12] font-bold tracking-[-0.02em] text-ink",
+        /* The mirroring is what stops the two beats reading as one long
+           column, and a phone has no second column to mirror into. Right
+           alignment on a stacked headline just reads as a mistake. */
+        flip && "desk:text-right",
       )}
     >
       {h}
     </h2>
   );
   const body = (
-    <p className="max-w-[52ch] flex-1 pt-1 text-body leading-[1.62] text-ink-muted">
+    <p className="max-w-[52ch] min-w-0 flex-1 text-body leading-[1.62] text-ink-muted desk:pt-1">
       {sub}
     </p>
   );
   return (
-    <div className="flex items-start gap-16">
-      {flip ? body : title}
-      {flip ? title : body}
+    /*
+      Stacked on a phone, the ratified side-by-side from `desk`.
+
+      `desk:flex-row-reverse` rather than reordering the children, so on a
+      phone both beats read headline-then-copy in DOM order. Beat 2's mirroring
+      is a desktop composition device; inverting the reading order on a phone
+      would put the supporting line above the headline it supports, and screen
+      readers would follow it. See the note on `min-w-0` in
+      `how-blotter-works.tsx`.
+    */
+    <div
+      className={cn(
+        "flex flex-col gap-4 desk:items-start desk:gap-16",
+        flip ? "desk:flex-row-reverse" : "desk:flex-row",
+      )}
+    >
+      {title}
+      {body}
     </div>
   );
 }
@@ -80,30 +100,71 @@ function Head({ h, sub, flip }: { h: string; sub: string; flip?: boolean }) {
 
 export function TrackerAndActions() {
   return (
-    <section className="field-settle pt-24 pb-28">
+    <section className="field-settle pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
-        {/* Beat 1 — preservation. No eyebrow, per `05-SECTION-5` §3. */}
-        <Head h={KEEP_H} sub={KEEP_SUB} />
-        <div className="mt-7">
-          <Reassurance />
-        </div>
-        <div className="mt-10">
-          <BlotterTab />
+        {/*
+          Beat 1 — preservation. No eyebrow, per `05-SECTION-5` §3.
+
+          **Desktop only from August 11, 2026.** On a phone this beat is
+          `components/section-45/mobile-02.tsx`, which merges it with Section
+          3's ownership claim and its refusals into one section. `09` §4.
+
+          The consequence for numbering: on a phone this element is section 03,
+          the Outstanding list, and mobile 02 is a separate block above it. So
+          the numeral moves down here with beat 2 rather than sitting at the top
+          of the section. Numbers render below the breakpoint only, so desktop
+          is unaffected either way.
+        */}
+        <div className="hidden desk:block">
+          <Head h={KEEP_H} sub={KEEP_SUB} />
+          <div className="mt-7">
+            <Reassurance />
+          </div>
+          <div className="mt-10">
+            <BlotterTab />
+          </div>
         </div>
 
         {/* Beat 2 — the action view. No eyebrow, per `04-SECTION-4` §4. */}
-        <div className="mt-24">
+        <SectionNumber n={3} />
+        <div className="desk:mt-24">
           <Head h={ACT_H} sub={ACT_SUB} flip />
         </div>
-        <div className="mt-10">
+        {/*
+          Desktop keeps the three-column composition, which is what lets all 21
+          actions land in thirteen rows. A phone has no room for three columns,
+          so it takes the films' vertical list of the same data —
+          `components/section-45/outstanding-phone.tsx` has the full reasoning.
+        */}
+        <div className="mt-10 hidden desk:block">
           <OutstandingTab />
+        </div>
+        <div className="mt-8 desk:hidden">
+          <OutstandingPhone />
         </div>
 
         {/*
-          The page's second primary CTA. Right-aligned to sit under beat 2's
-          flipped headline rather than restarting the section's left axis.
+          The page's second primary CTA. Right-aligned on desktop to sit under
+          beat 2's flipped headline rather than restarting the section's left
+          axis.
+
+          **On a phone it was floating**, which was Jon's word for it on
+          August 11, 2026, and right: right-alignment is a device for a
+          two-column composition, and with one column it reads as an element
+          that missed its anchor. It now sits on the section's own left axis
+          with a full-width button, the same treatment the closing block got
+          when the footer was rebuilt, and closer to the sheet so it belongs to
+          the list above it rather than trailing after it.
+
+          **Kept rather than cut**, which Jon left open. Two reasons. It is the
+          conversion moment — the button directly under the list of things you
+          owe — and cutting it would mean `cta_location = "actions"` never fires
+          from a phone, which silently costs the one comparative metric that
+          says where mobile readers convert against where desktop readers do.
+          The header CTA doubling it is the same arrangement he already accepted
+          in the hero.
         */}
-        <div className="mt-14 flex flex-col items-end gap-4">
+        <div className="mt-9 flex flex-col items-stretch gap-4 desk:mt-14 desk:items-end">
           <p className="font-display text-[1.375rem] leading-[1.35] font-semibold tracking-[-0.015em] text-navy-900">
             {CTA_LINE}
           </p>
