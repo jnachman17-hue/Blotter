@@ -207,6 +207,33 @@ body {
 }
 
 /*
+  Section numbering, a prototype and off by default.
+
+  The numerals render into every section's markup but are invisible unless an
+  ancestor carries `data-section-numbers`. `/review/mobile` sets it; the live
+  page does not, so the page a visitor sees is unaffected by their presence.
+
+  Turning it on for real means overriding four build specs that forbid an
+  eyebrow, and a numeral above a headline reads as one. See
+  `components/layout/section-number.tsx`.
+*/
+.section-number {
+  display: none;
+}
+
+[data-section-numbers="on"] .section-number,
+[data-section-numbers="total"] .section-number {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+/* `01` alone, versus `01 / 05` — the second tells a phone reader how much page
+   is left, which is the thing a scrollbar gives desktop for free. */
+[data-section-numbers="on"] .section-number__total {
+  display: none;
+}
+
+/*
   Mobile type scale.
 
   Only two tokens move. Same faces, same weights, same colours, same copy —

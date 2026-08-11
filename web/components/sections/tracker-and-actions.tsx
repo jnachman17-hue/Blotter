@@ -30,6 +30,7 @@
 
 import { CtaButton } from "@/components/cta-button";
 import { PageBox } from "@/components/layout/page-box";
+import { SectionNumber } from "@/components/layout/section-number";
 import {
   BlotterTab,
   OutstandingTab,
@@ -100,6 +101,7 @@ export function TrackerAndActions() {
   return (
     <section className="field-settle pt-24 pb-28">
       <PageBox>
+        <SectionNumber n={3} />
         {/* Beat 1 — preservation. No eyebrow, per `05-SECTION-5` §3. */}
         <Head h={KEEP_H} sub={KEEP_SUB} />
         <div className="mt-7">

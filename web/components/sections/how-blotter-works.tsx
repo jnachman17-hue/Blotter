@@ -30,6 +30,7 @@
  */
 
 import { PageBox } from "@/components/layout/page-box";
+import { SectionNumber } from "@/components/layout/section-number";
 import { BoundaryBlock } from "@/components/section-3/boundary-block";
 import { DayTimeline } from "@/components/section-3/day-timeline";
 
@@ -48,6 +49,7 @@ export function HowBlotterWorks() {
   return (
     <section className="field-rise pt-24 pb-28">
       <PageBox>
+        <SectionNumber n={2} />
         {/* 1. Eyebrow */}
         <p className="flex items-start gap-3 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase">
           <span

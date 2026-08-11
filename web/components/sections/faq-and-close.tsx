@@ -35,6 +35,7 @@ import { BlotterLockup } from "@/components/brand/blotter-mark";
 import { CtaButton } from "@/components/cta-button";
 import { DisclosureList } from "@/components/disclosure";
 import { PageBox } from "@/components/layout/page-box";
+import { SectionNumber } from "@/components/layout/section-number";
 import { POLICY_HREF } from "@/lib/privacy-copy";
 import { CLOSING_HEADLINE, FAQ_TITLE, PRODUCT_FAQ } from "@/lib/closing-copy";
 
@@ -100,6 +101,7 @@ export function FaqAndClose() {
     <>
       <section id="faq" className="field-close pt-24 pb-24">
         <PageBox>
+        <SectionNumber n={5} />
           {/*
             §4 allows the title and nothing else above the rows: no eyebrow, no
             supporting paragraph, no introductory copy.

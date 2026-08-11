@@ -22,6 +22,7 @@
  */
 
 import { Fit } from "@/components/layout/fit";
+import { SectionNumber } from "@/components/layout/section-number";
 import { PageBox, PAGE_BOX_W } from "@/components/layout/page-box";
 import { EYEBROW, ScaleTrajectory } from "@/components/section-2/scale-trajectory";
 import { GmailInboxStrip } from "@/components/section-2/gmail-inbox-strip";
@@ -76,6 +77,7 @@ export function ScaleAndConsequence() {
   return (
     <section className="field-deep pt-24 pb-28">
       <PageBox>
+        <SectionNumber n={1} />
         <p className="flex items-start gap-3 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase">
           <span
             aria-hidden="true"
