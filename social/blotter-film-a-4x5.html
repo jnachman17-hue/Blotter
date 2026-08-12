@@ -116,7 +116,9 @@
   --navy-900:#12233d; --navy-800:#1b3050; --navy-500:#40608c; --navy-400:#647fa6;
   --ink:#14181f; --ink-muted:#5f6368; --ink-faint:#a4a8ac;
   --blotter-100:#f7f2e8; --blotter-200:#f3e6c6;
-  --blotter-400:#d9b64a; --blotter-700:#8a6d12;
+  /* -500 added August 12, 2026 with the sweep, at the value Film C and the web
+     hero already carry, so the three films share the mark exactly. */
+  --blotter-400:#d9b64a; --blotter-500:#c9a227; --blotter-700:#8a6d12;
   --manual-100:#edf2f8; --manual-row:#ffffff;
   --sheet-border:#dadce0; --sheet-grid:#e8eaed;
   --sheet-header:#f8f9fa; --sheet-chrome:#ffffff; --sheet-green:#0f9d58;
@@ -365,6 +367,51 @@ body.bare .chrome{display:none}
 .chip[data-s="No reply"]{background:var(--chip-noreply-bg);color:var(--chip-noreply-fg)}
 .chip[data-s="Sent"]{background:var(--chip-sent-bg);color:var(--chip-sent-fg)}
 .kv{will-change:opacity,transform}
+
+/* ----------------------------------------------------------------- the sweep */
+/*
+  Ported from blotter-film-web-hero.html and blotter-film-c-4x5.html on
+  August 12, 2026. The mark the other two films already use for a status change:
+  a band travelling the maintained block of ONE row, so the moment lands on a
+  row you can identify rather than washing the whole zone at once.
+
+  IT RIDES THE FILL BEAT, not the reveal, and that is a correction to the re-cut
+  brief rather than a preference. Through the window the brief proposed
+  (10.20-11.10) the maintained cells are covered by `.wash.kept` at opacity 1,
+  so a sweep there is painted under an opaque overlay and cannot be seen.
+  `P.fillFrom` is where a row's maintained values actually arrive, which is also
+  the moment the sweep marks in C and the hero. Ruled by Jon, August 12, 2026.
+
+  Two absolutes, and they are the reason this file draws the sweep at all:
+
+    - IT NEVER CROSSES THE OWNERSHIP SPLIT. It spans the maintained block only,
+      from the split to the sheet's edge. `left` and `width` are written from
+      MANUAL_W and KEPT_W in the script and never typed here, so a column-width
+      change cannot push it into Name or Firm. The August 12 rename moved both
+      of those widths; this is exactly the failure that derivation prevents.
+
+    - IT LEAVES NOTHING BEHIND. The opacity envelope returns to 0 and the row
+      carries no badge, outline or residue — only the settled fill.
+
+  The layer is a SIBLING of the washes, not a child of each row. `.row` is not
+  positioned, and positioning it would lift every row above the absolutely
+  positioned washes and break the typing beat that depends on being covered.
+
+  Direction is the hero's default, `sweep=in`: anchored at the sheet's right
+  edge, travelling toward the split, leading edge leftmost.
+
+  The leading edge is `--blotter-700` rather than `-500` for the reason Film C
+  records — at this scale the mid tone goes washy and the edge is the part that
+  has to read as a moving object. Wash and edge, same family, two steps apart.
+  5px here against Film C's 6px: C's sheet content is 36px to this film's 24px,
+  so 5px lands at the same effective weight on a 375px display.
+*/
+.sweeplayer{position:absolute;pointer-events:none}
+.sweeprow{position:absolute;left:0;right:0;overflow:hidden}
+.rowsweep{position:absolute;right:0;top:0;bottom:0;width:0;
+  background:rgba(201,162,39,.17);will-change:width,opacity}
+.rowsweep .lead{position:absolute;left:0;top:0;bottom:0;width:5px;
+  background:var(--blotter-700)}
 
 /* ------------------------------------------------------------ zone washes */
 /*
@@ -662,6 +709,10 @@ body.bare .chrome{display:none}
         <div class="washcap manual" id="washManualTxt">You add the contacts.</div>
         <div class="washcap kept" id="washKeptTxt">Blotter fills in the rest.</div>
         <div class="selbox" id="selbox"></div>
+        <!-- Last of the positioned siblings on purpose: the sweep has to paint
+             above the kept wash it is clearing, and paint order here is DOM
+             order. -->
+        <div class="sweeplayer" id="sweeps"></div>
       </div>
 
       <div class="body oa" id="oa">
@@ -998,6 +1049,27 @@ const GRID_H   = HDR_H + ROWS.length * ROW_H;
   });
 })();
 
+/* One sweep per row, laid out from the same derived geometry the washes use.
+   `GUT_W + MANUAL_W` IS the ownership split, so the layer begins exactly on the
+   rule and can never start left of it whatever the column widths become. */
+const rowSweeps = [];
+(function sweeps(){
+  const layer = $("sweeps");
+  layer.style.left   = (GUT_W + MANUAL_W) + "px";
+  layer.style.width  = KEPT_W + "px";
+  layer.style.top    = HDR_H + "px";
+  layer.style.height = (ROWS.length * ROW_H) + "px";
+  ROWS.forEach((_, ri) => {
+    const w = document.createElement("div");
+    w.className = "sweeprow";
+    w.style.top = (ri * ROW_H) + "px";
+    w.style.height = ROW_H + "px";
+    w.innerHTML = '<div class="rowsweep"><span class="lead"></span></div>';
+    layer.appendChild(w);
+    rowSweeps.push(w.firstElementChild);
+  });
+})();
+
 /* torrent pools. Sixteen rows and eight chips are reused for 628 and 68
    arrivals: only about ten are ever on screen and the point is the rate. */
 const MROW_H = 66, MROW_POOL = 12;
@@ -1058,7 +1130,13 @@ const P = {
   /* BLOTTER keeps them current. The right side mirrors the left exactly. */
   reveal:[10.20,10.80],         /* cream header band, and the kept wash appears */
   kCapIn:[10.55,10.90], kCapOut:[11.15,11.45],
-  fillFrom:11.25, fillStep:0.22, fillDur:0.44,
+  /* The fill is also the sweep: five rows, top to bottom, 220ms apart. The
+     brief asked for 120ms in a window of its own, but the stagger that reads as
+     "one row at a time" is already here, and a second sequence beside it would
+     be two clocks on the same gesture. `sweepFade` is the tail that guarantees
+     the band leaves nothing behind; the last one is clear at 12.69, before
+     keptBar at 12.65 has finished drawing. */
+  fillFrom:11.25, fillStep:0.22, fillDur:0.44, sweepFade:0.12,
   keptBar:[12.65,13.10],
   tabIn:[10.40,10.90],
   /* The sources line is the mechanism claim and it was reading as a footnote.
@@ -1297,6 +1375,27 @@ function render(T){
       const chip = kv.querySelector(".chip");
       if (chip) chip.style.transform = `scale(${0.90 + 0.10*v})`;
     });
+  });
+
+  /* ------------------------------------------------------------ the sweeps */
+  /*
+    One per row, riding that row's own fill, so the band crosses the maintained
+    block while the values write themselves — the same reading as C and the
+    hero, where a value flips as the leading edge reaches it.
+
+    Width is a fraction of KEPT_W and the bar is anchored at the sheet's right
+    edge, so it grows toward the split and stops on it. It cannot reach the
+    manual zone: KEPT_W is the whole of its travel.
+
+    The width is forced back to 0 once the fade-out completes, which matters
+    only for scrubbing backwards — by then the opacity is already 0.
+  */
+  rowSweeps.forEach((s, ri) => {
+    const a    = P.fillFrom + ri * P.fillStep;
+    const out  = [a + P.fillDur, a + P.fillDur + P.sweepFade];
+    const done = seg(t, out) >= 1 ? 0 : 1;
+    s.style.width   = (seg(t, [a, a + P.fillDur]) * done * KEPT_W) + "px";
+    s.style.opacity = band(t, [a, a + 0.06], out);
   });
 
   /* The right wash mirrors the left, and that mirroring is the argument: one

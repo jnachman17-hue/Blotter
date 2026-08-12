@@ -150,13 +150,54 @@ export const CHECKOUT_SUMMARY = [
 export const PAY_CARD = "Pay with card";
 export const PAY_APPLE = "Apple Pay";
 
+/* ------------------------------------------------------- the waitlist branch */
+
+/**
+ * The second outcome on the price screen. Jon's decision, August 12, 2026.
+ *
+ * ## Why it exists
+ *
+ * Before this, declining the price was indistinguishable from not wanting the
+ * product. Most of this test's traffic is pre-season — recruiting for a class
+ * whose networking has not started — so "no" mostly meant "not in August", and
+ * the funnel had no way to say so. This captures that population as its own
+ * measured outcome instead of losing it.
+ *
+ * ## Why it is subordinate, and it must stay that way
+ *
+ * `Continue to payment` is the primary and this is a text button beneath it.
+ * If the two ever read as equal choices the cheap one wins, the payment signal
+ * collapses, and the test stops measuring willingness to pay — which is the
+ * only thing it exists to measure. **Do not promote this to a second
+ * `Primary`.**
+ *
+ * ## What it does not say
+ *
+ * The price screen still does not disclose that nothing is charged on any path.
+ * Revealing that here would turn `Continue to payment` into a waitlist signup
+ * too, and collapse the two outcomes back into one. The no-charge fact stays
+ * where it has always been: after the click.
+ */
+export const WAITLIST_CTA = "Join the waitlist instead";
+
+export const WAITLIST_EYEBROW = "You are on the waitlist";
+export const WAITLIST_TITLE = "You are on the Blotter waitlist.";
+export const WAITLIST_SUPPORTING =
+  "Blotter is opening to a limited first cohort of approximately 300 people in Fall 2026. We will email you when access opens, at the recruiting email you provided.";
+export const WAITLIST_CONFIRMATION = "Nothing is owed and nothing has been charged.";
+export const WAITLIST_BUTTON = "Return to Blotter";
+
 /* ------------------------------------------------------- the terminal state */
 
 /** The first and only point at which availability is disclosed. */
 export const DONE_EYEBROW = "Your spot is confirmed";
 export const DONE_TITLE = "You are in the first Blotter cohort.";
+/* `Your place on the waitlist` since August 12, 2026, one word added on Jon's
+   instruction: a visitor who clicks pay should see that they are on the same
+   waitlist, not a different and unexplained thing. Both terminal states now
+   name the same list and the same cohort. */
 export const DONE_SUPPORTING =
-  "Blotter is opening to a limited first cohort of approximately 300 people in Fall 2026. Your place is tied to the recruiting email you provided.";
+  "Blotter is opening to a limited first cohort of approximately 300 people in Fall 2026. Your place on the waitlist is tied to the recruiting email you provided.";
 export const DONE_CHARGE = "You have not been charged.";
 export const DONE_CONFIRMATION = "We will email you with access details and next steps.";
 export const DONE_BUTTON = "Return to Blotter";

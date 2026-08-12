@@ -2777,3 +2777,64 @@ description of a live system and each gate has to be answered on its merits.
 
 The CASA sentence and the consent-screen row keep their own triggers, which
 already read *on provider selection*, and are unaffected.
+
+### The waitlist branch, August 12, 2026
+
+**Jon's decision.** A second outcome on the price screen, for the visitor who
+wants the product but not in August.
+
+**The defect it answers.** `checkout_started` fires on the price screen's own
+button and had fired **zero times against four email captures** — nobody was
+pressing `Continue to payment` at all. Most of this test's traffic is
+pre-season, so declining was a decision about the calendar rather than about
+the product, and **the funnel could not tell those two apart.** Every "no" was
+recorded identically whether it meant "I don't want this" or "not yet".
+
+**Why it is subordinate, and it must stay so.** `Continue to payment` is the
+`Primary`; the waitlist is an underlined text button beneath it. If they ever
+read as equal choices the cheaper one wins, and the test stops measuring
+willingness to pay — the only thing it exists to measure.
+
+**What the price screen still does not say.** That nothing is charged on any
+path. Disclosing it there would turn `Continue to payment` into a waitlist
+signup too and collapse the two outcomes into one. It stays after the click,
+where it has always been.
+
+**`waitlist` is a rank, not a screen in the payment path.** `Continue to
+payment` goes from `price` straight to `checkout` exactly as before. Jon read
+the first description of this as an interstitial screen and pushed back
+correctly; the confusion was that `FUNNEL_STAGES` does two jobs, listing the
+screens and supplying the rank order for `furthest_stage`.
+
+It ranks **below** `checkout` because everyone who clicks pay is also on the
+waitlist, so checkout is strictly the further outcome. Ranking it above would
+record a visitor who did both as having merely joined a list.
+
+**The tenth event.** `waitlist_joined`, which amends WS3's frozen nine-event
+contract with Jon's approval. It alters none of the nine and
+`checkout_started / page_viewed` keeps both its terms, so no historical figure
+changes meaning. **It must not be added as a step in the canonical funnel**: a
+PostHog funnel is an ordered sequence, and `waitlist_joined` and
+`checkout_started` are mutually exclusive branches off `price_viewed`, so
+inserting it would drive every step after it to zero. Its own insight,
+`price_viewed -> waitlist_joined`, read beside the canonical funnel.
+
+**`DONE_SUPPORTING` gains one word** — `Your place on the waitlist` — so the
+paid path names the same list rather than an unexplained second thing.
+
+**Verified by clicking through a production build**, not by reading the code:
+the price screen shows the new billing line and the subordinate button; the
+waitlist terminal state renders eyebrow, title, supporting, confirmation and
+return; and the lead row was written as `waitlist` at index 6. The test row was
+flagged internal by `?blotter_internal=1`, `real_leads` stayed at **4**
+throughout, and the row was deleted afterwards.
+
+**One defect the click-through caught that reading would not:** the lead was
+POSTed twice per click, because `joinWaitlist` and `WaitlistStep`'s mount effect
+both called `syncLead`. Harmless — the route upserts — but a wasted round trip.
+`joinWaitlist` no longer writes; the terminal step does, matching
+`ConfirmedStep`.
+
+`supabase/006-restamp-stage-index.sql` restamps the five internal rows sitting
+at the old `confirmed` index. **Checked before writing it: no real lead sits
+above index 4**, so it touches nothing that counts.

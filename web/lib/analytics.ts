@@ -11,7 +11,32 @@
 
 import { isInternalVisitor } from "./internal-visitor";
 
-/** The complete canonical event set. There is no separate `cta_clicked` event. */
+/**
+ * The complete canonical event set. There is no separate `cta_clicked` event.
+ *
+ * ## `waitlist_joined` is a tenth event, added August 12, 2026
+ *
+ * **This amends WS3's frozen nine-event contract**, approved by Jon. Recorded
+ * here rather than only in the log, because the freeze exists to stop exactly
+ * this happening by accident.
+ *
+ * What justifies it: the contract is frozen to protect the comparability of
+ * the nine, and this alters none of them. **`checkout_started / page_viewed`,
+ * the primary comparative metric, keeps its numerator and its denominator.**
+ * The tenth event fires only on a branch that did not previously exist, so no
+ * historical figure changes meaning.
+ *
+ * Why it could not be avoided: without it the waitlist branch is invisible in
+ * PostHog and recoverable only by reading Supabase, which is not where funnel
+ * questions get answered.
+ *
+ * **It is not a funnel step.** A PostHog funnel is an ordered sequence, and
+ * `waitlist_joined` and `checkout_started` are mutually exclusive branches off
+ * `price_viewed` — a visitor does exactly one. Inserting it into the canonical
+ * funnel would drive every step after it to zero. It belongs in its own
+ * insight, `price_viewed -> waitlist_joined`, which is what
+ * `07-infrastructure-runbook.md` now says.
+ */
 export const CANONICAL_EVENTS = [
   "page_viewed",
   "funnel_started",
@@ -22,6 +47,7 @@ export const CANONICAL_EVENTS = [
   "checkout_started",
   "payment_option_clicked",
   "beta_spot_confirmed",
+  "waitlist_joined",
 ] as const;
 
 export type CanonicalEvent = (typeof CANONICAL_EVENTS)[number];
