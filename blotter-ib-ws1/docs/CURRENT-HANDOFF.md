@@ -57,11 +57,44 @@ CTA or the final one. At n=2 that is not proof, but it is the only placement
 signal this test has produced and it should not be thrown away by a change to
 the hero CTA made on other grounds.
 
-### Due before the domain is promoted anywhere
+### Indexing is ON as of August 11, 2026. This is no longer a due item.
 
-`noindex` and `app/robots.ts` must both be deleted at launch. Both verified
-still in place on August 11, 2026 — `app/layout.tsx:47` and `app/robots.ts` —
-and deliberately untouched by wave 1.
+`app/robots.ts` is deleted and `robots` is `{ index: true, follow: true }`.
+
+**Jon challenged the noindex rule and was right to.** It came from a WS5 line —
+*"private and unpublished throughout, keep the page out of indexes until the
+final simultaneous-launch authorization"* — written when this was a private
+build with no domain and no traffic. He is now promoting; the premise expired
+and nobody had re-examined it.
+
+**The argument that carried it was not the one he gave.** More cold search
+traffic is close to worthless here: a new domain with no backlinks ranks for
+nothing for months. What decided it is **recall** — someone reads a Reddit
+post, does not click, and searches "Blotter IB" three days later. Unindexed
+they found nothing, and that is the highest-intent search this test can
+receive, on an audience the promotion already paid to reach.
+
+Accepted knowingly: search results and caches are durable where a link is not,
+and Section 6 states what Blotter reads, retains and cannot touch for a system
+that does not exist.
+
+### The share card exists now, and it did not before
+
+Production served a `<meta name="description">` and **nothing else** — no
+`og:image`, no `og:title`, no `twitter:card`. Every link posted to Reddit, X or
+LinkedIn would have rendered as a bare URL, on the one channel this test
+depends on. Found while checking the indexing question, which was the smaller
+of the two.
+
+`app/opengraph-image.tsx` generates it at 1200x630 from the page's own strings,
+so it cannot drift from the page it previews. **Satori cannot read WOFF2**, and
+every face here is WOFF2 under a build-hashed name, so the two faces it needs
+are committed as TTF in `app/_og-fonts/`.
+
+**One deviation, flagged not smuggled:** the card's eyebrow is shortened to
+`Recruiting tracker for investment banking`. `01-HERO`'s ratified string is 79
+characters and needs about 950px beside the wordmark in 1040px of usable width.
+No claim changes; a qualifier and a second audience are dropped.
 
 ### Due if PostHog scopes are ever fixed
 
