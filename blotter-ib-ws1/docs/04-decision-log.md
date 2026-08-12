@@ -2346,3 +2346,58 @@ Removed. It read `you@university.edu`, and Jon caught that it prompts the wrong
 address: Blotter connects to the account you actually recruit from, which is
 almost always personal rather than institutional. **A hint that contradicts the
 product is worse than no hint.** The field is now unhinted.
+
+### The hero top block goes to review, August 11, 2026
+
+Five compositions behind `/review/hero`, plus what is live. Desktop only; the
+phone hero is settled and not in question.
+
+**The measured problem.** 248px between header and film: eyebrow 35, headline
+85, paragraph 82, CTA 44, authority line 20. **The hero spent twice as much
+vertical space on supporting apparatus as on its own claim**, and the right
+column at 180px was more than twice the headline's 85, so the two-column
+composition never resolved and left a 95px void under the headline.
+
+**Three sources converged on something neither Jon nor I had proposed.** Evil
+Martians studied 100 devtool landing pages: the vast majority centre the hero,
+side-by-side reads as "classic SaaS", and **social proof belongs after the hero,
+not inside it**. Linear's hero is a headline, one 12-word subheadline and a CTA,
+with no paragraph. `design-taste-frontend` independently caps a hero at four
+text elements and bans a tagline under the CTAs.
+
+This hero had five elements, and the fifth was the authority line — the thing
+called an orphan in three separate reviews and re-sited twice. **Its problem was
+never where it sat inside the hero; it was that it was in the hero at all.**
+Every variant moves it below the film, held constant so the comparison has one
+variable. `AuthorityLine` is exported, so restoring it is one line.
+
+Also held constant: the 30-word paragraph drops to the phone's ratified 13-word
+line, which Jon had already asked for and which both the skill and the research
+cap at about 20.
+
+**Where the spec governed over the skill**, surfaced rather than split per
+`CLAUDE.md`: the skill bans em-dashes outright and `CURRENT-HANDOFF` §8c permits
+exactly two as do-not-reopen; the skill bans div-built product UI as fake
+screenshots, and the sheet is a ratified asset while the hero is now an animated
+product UI, which the same research names the strongest hero treatment
+available. The spec wins both.
+
+**One tension left open for Jon rather than ruled on.** The page theme's "centre
+nothing" rule and the skill's anti-centre bias both point away from variant A,
+while the category research points hard toward it. A is built so the argument
+can be had against something real — and rendering it is itself evidence: centred
+copy over a left-weighted film visibly reproduces the two-axis problem the rule
+was written to prevent.
+
+| | |
+|---|---|
+| A | Centred, the devtool default |
+| B | Two columns, resolved so they end together |
+| C | Text block, then the CTA on its own full-width row |
+| D | No subhead at all; the film carries it |
+| E | Left-weighted, built from the film's own composition |
+
+**E is the one that answers the observation that opened this.** The film's
+weight sits left and its right is empty except when a cue is present, so the
+empty right above rhymes with the empty right below. It keeps centre-nothing and
+pushes it further instead of abandoning it.

@@ -22,6 +22,7 @@
 
 import { CtaButton } from "@/components/cta-button";
 import { HeroFilm, HeroFilmDesk } from "@/components/hero/hero-film";
+import { AuthorityLine, HeroTop, type HeroTopVariant } from "@/components/hero/hero-top";
 import { PageBox } from "@/components/layout/page-box";
 import { cn } from "@/lib/cn";
 
@@ -79,8 +80,19 @@ const SUPPORTING_SHORT =
 export function Hero({
   supporting = "short",
   heroCta = true,
+  top = "current",
 }: {
   supporting?: HeroSupporting;
+  /**
+   * Which desktop top-block composition to render above the film.
+   *
+   * `current` is what is live. The lettered variants are the August 11, 2026
+   * redesign review and are **desktop only** — below the breakpoint every one
+   * of them renders the ratified phone hero untouched, because the phone's
+   * fold was solved separately in stage 10 and is not in question.
+   * `/review/hero` compares them.
+   */
+  top?: HeroTopVariant;
   /**
    * Whether the in-flow hero button renders on a phone. Desktop always has it.
    *
@@ -133,6 +145,13 @@ export function Hero({
   return (
     <section className="pb-14">
       <PageBox>
+        {/*
+          A variant replaces the ratified block **above the breakpoint only**.
+          The phone keeps the composition ratified in stage 10 in every case,
+          so nothing below `desk` is under review here.
+        */}
+        {top !== "current" && <HeroTop variant={top} />}
+        <div className={top === "current" ? undefined : "desk:hidden"}>
           {/* Eyebrow, on the shared left edge. Desktop always renders it here;
               on a phone `eyebrow` may move it below the film or drop it. */}
           <p
@@ -351,7 +370,23 @@ export function Hero({
             it — the film never touches the left three columns for eleven
             seconds, which proves the same split without captioning it.
           */}
+        </div>
           <HeroFilmDesk />
+          {/*
+            The credibility line, below the film on every variant.
+
+            It has been called an orphan in three reviews and re-sited twice
+            inside the hero. The reason it kept failing is that it was in the
+            hero at all: the Evil Martians study of 100 devtool pages puts
+            social proof after the hero, and `design-taste-frontend` caps the
+            hero at four text elements and bans a tagline under the CTAs. This
+            was the fifth element. `components/hero/hero-top.tsx` has the note.
+          */}
+          {top !== "current" && (
+            <div className="mt-5 hidden desk:block">
+              <AuthorityLine />
+            </div>
+          )}
       </PageBox>
     </section>
   );
