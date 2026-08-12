@@ -309,7 +309,7 @@ body.bare .chrome{display:none}
 
 /* ============================================================= the sheet == */
 .sheet{
-  position:absolute;left:40px;top:438px;width:1000px;
+  position:absolute;left:29px;top:438px;width:1022px;
   font-family:var(--sheet-type);color:var(--ink);
   background:var(--sheet-chrome);border:1px solid var(--sheet-border);
   border-radius:16px;overflow:hidden;
@@ -491,7 +491,7 @@ body.bare .chrome{display:none}
          formula bar cannot contradict a frame it is not part of. -->
     <div class="fbar">
       <div class="fcell"><span>A2</span><span class="caret">&#9662;</span></div>
-      <div class="fval"><span class="fx">fx</span><span>Sarah Chen</span></div>
+      <div class="fval"><span class="fx">fx</span><span>Jamie Diamond</span></div>
     </div>
 
     <div class="letters" id="letters"></div>
@@ -539,10 +539,10 @@ body.bare .chrome{display:none}
    ========================================================================= */
 
 const COLS = [
-  { key:"name",   head:"Name",      w:234, kept:false },
-  { key:"status", head:"Status",    w:272, kept:true, chip:true },
-  { key:"next",   head:"Next move", w:322, kept:true },
-  { key:"days",   head:"Days",      w:122, kept:true, num:true },
+  { key:"name",   head:"Name",      w:278, kept:false },
+  { key:"status", head:"Status",    w:264, kept:true, chip:true },
+  { key:"next",   head:"Next move", w:318, kept:true },
+  { key:"days",   head:"Days",      w:112, kept:true, num:true },
 ];
 const LETTERS = ["A","B","C","D"];
 const GUT_W = 48;
@@ -593,9 +593,9 @@ const ROWS = [
 */
 const MOMENTS = [
   { id:"sarah",  row:0, source:"gmail",
-    stamp:"10:42 AM", substamp:"Gmail",           trigger:"Sarah Chen replied" },
+    stamp:"10:42 AM", substamp:"Gmail",           trigger:"Jamie Diamond replied" },
   { id:"priya",  row:2, source:"calendar",
-    stamp:"2:00 PM",  substamp:"Calendar",        trigger:"Coffee chat with Priya Shah" },
+    stamp:"2:00 PM",  substamp:"Calendar",        trigger:"Coffee chat with Ken Molise" },
   { id:"daniel", row:3, source:"muted",
     stamp:"Day 5",    substamp:"No new activity", trigger:"No reply for 5 days" },
 ];
