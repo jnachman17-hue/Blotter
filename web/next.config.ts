@@ -30,6 +30,59 @@ const nextConfig: NextConfig = {
     "192.168.68.63",
     "192.168.1.64",
   ],
+
+  /*
+    SECURITY HEADERS.
+
+    Production returned none of these. Vercel supplies
+    `strict-transport-security` and the http -> https redirect on its own, and
+    those are left alone deliberately: adding `includeSubDomains` or `preload`
+    to HSTS is a durable, hard-to-reverse commitment, and this is a demand test
+    that may not keep the domain.
+
+    **There is deliberately no Content-Security-Policy here.** A real one is the
+    single most valuable header this site could add, and it is also the one that
+    breaks a page silently if it is wrong: `posthog-js` loads further script from
+    PostHog's asset host at runtime, Next injects inline bootstrap script, and
+    the three films are inline-script documents in same-origin iframes. Writing
+    that policy needs a pass with the browser console open, verifying each of
+    those still works. It is worth doing and it is not a change to make blind.
+
+    The four below carry no such risk.
+
+    `X-Frame-Options: SAMEORIGIN` — the page was framable by any origin. The
+    films are framed by our own pages, which SAMEORIGIN still permits; nothing
+    third-party embeds this site.
+
+    `X-Content-Type-Options: nosniff` — matters here more than on a typical app,
+    because `public/` serves standalone HTML documents.
+
+    `Referrer-Policy: strict-origin-when-cross-origin` — the browser default in
+    current versions, stated explicitly so it does not depend on the visitor's
+    browser. It keeps the path out of outbound referrers.
+
+    `Permissions-Policy` — camera, microphone and geolocation are never used by
+    anything on this page, and `browsing-topics` opts out of an advertising API
+    that is on by default. Payment is deliberately NOT disabled: the price
+    screen is copy today, but disabling it would quietly block a future
+    Apple Pay integration for a reason nobody would remember.
+  */
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

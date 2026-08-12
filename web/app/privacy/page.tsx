@@ -33,9 +33,22 @@
  * analytics are being collected now. Everything after article 03 describes the
  * launch. **If what is collected changes, article 03 changes first.**
  *
- * Publication gate: `noindex` here and in `app/robots.ts`. Note that production
- * cannot be password-protected on Vercel's Hobby plan, so the live URL is
- * public rather than merely unlisted.
+ * Indexing. This page still sets `robots: { index: false, follow: false }`
+ * below, and that is now the only thing holding it back: `app/robots.ts` was
+ * deleted on August 11, 2026 and `app/layout.tsx` opened the site to indexing
+ * site-wide. The reference to a robots file in this comment was stale and is
+ * corrected here.
+ *
+ * ⚠ OPEN QUESTION FOR JON, raised August 12, 2026. The `noindex` on this page
+ * and on `/contact` predates that change and looks like an oversight rather
+ * than a decision — the runbook's "Indexing was turned on" section discusses
+ * only the `/review/*` routes. A privacy policy that search cannot reach, on an
+ * indexed site that collects email addresses and links here from a live form,
+ * is worth a deliberate ruling either way. **Left as it is, because publication
+ * posture is your call, not a defect to quietly fix.**
+ *
+ * Production cannot be password-protected on Vercel's Hobby plan, so the live
+ * URL is public rather than merely unlisted.
  */
 
 import type { Metadata } from "next";
@@ -63,6 +76,15 @@ export const metadata: Metadata = {
 
 /** Set by Jon on August 6, 2026. Bump when the policy is materially revised. */
 const EFFECTIVE_DATE = "August 6, 2026";
+
+/**
+ * Split from `EFFECTIVE_DATE` on August 12, 2026, when article 03 gained the
+ * contact-form paragraph. The page has always rendered two labels — "Effective
+ * date" and "Last updated" — from one constant, so revising the text forced a
+ * choice between restating when the policy took effect (it did not change) and
+ * leaving a revision date that was wrong. Two constants is the honest answer.
+ */
+const LAST_UPDATED = "August 12, 2026";
 
 /**
  * The Google authorisation scopes Blotter requests, with the exact wording
@@ -177,7 +199,7 @@ export default function PrivacyPolicyPage() {
         <p className="mt-4 text-small text-ink-muted">
           Effective date {EFFECTIVE_DATE}
           <span className="mx-2 text-ink-faint">/</span>
-          Last updated {EFFECTIVE_DATE}
+          Last updated {LAST_UPDATED}
         </p>
 
         {/*
@@ -267,7 +289,7 @@ export default function PrivacyPolicyPage() {
               access to your Google account.
             </p>
             <p>
-              Two things do happen now.
+              Three things do happen now.
             </p>
             <p>
               <strong className="font-semibold text-ink">If you give us your email address</strong>{" "}
@@ -282,6 +304,28 @@ export default function PrivacyPolicyPage() {
               flow were reached, your device and browser type, approximate location derived
               from your IP address, and where you arrived from. Your email address is never
               attached to this usage data.
+            </p>
+            {/*
+              Added August 12, 2026. The contact form shipped on August 11 and
+              this article did not move with it, which broke the standing rule
+              at the top of this file: if what is collected changes, article 03
+              changes first. The form's own footnote tells readers this policy
+              covers what happens to their address, so until this paragraph
+              existed that was a promise the page did not keep.
+
+              ⚠ NOT YET RATIFIED BY JON. Every other substantive sentence in
+              this policy is his wording or imported from `lib/privacy-copy.ts`.
+              This one states only what `app/api/contact/route.ts` and
+              `supabase/004-contact-messages.sql` actually do — the columns are
+              email, name, message, source_path, session_id, visitor_id — but
+              the words are unreviewed and he should confirm them.
+            */}
+            <p>
+              <strong className="font-semibold text-ink">If you send us a message</strong>{" "}
+              using the contact form, we store the message, the address you gave us to reply
+              to, your name if you chose to give one, and which page you were on when you
+              wrote. It is stored in the same database, run by Supabase in the United States,
+              and it is used to answer you and for nothing else.
             </p>
             <p>
               No payment has been taken from anyone and no card details are collected

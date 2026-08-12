@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { guardWrite } from "@/lib/request-guard";
 import { supabaseAdmin, supabaseConfigured } from "@/lib/supabase-admin";
 
 /**
@@ -50,6 +51,17 @@ function member(value: unknown, allowed: Set<string>): string | null {
 }
 
 export async function POST(request: Request) {
+  /* Entry checks before the body is read at all. A rejection here is never a
+     real visitor — the funnel posts same-origin JSON — so refusing outright
+     does not violate the "never block the funnel" rule above. */
+  const rejected = guardWrite(request);
+  if (rejected) {
+    return NextResponse.json(
+      { stored: false, reason: rejected },
+      { status: rejected === "payload_too_large" ? 413 : 415 },
+    );
+  }
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();
@@ -71,9 +83,13 @@ export async function POST(request: Request) {
     recruiting_track_other: text(body.recruiting_track_other),
     recruiting_window_other: text(body.recruiting_window_other),
     surface_variant: "spreadsheet",
+    /* `sticky` is the fifth placement, added for the mobile build and ratified
+       in `lib/analytics.ts` (`CtaLocation`). It was missing here, so every lead
+       originating from the mobile sticky CTA was stored with a null origin —
+       silently, because `member` drops an unknown value rather than failing. */
     cta_location: member(
       body.cta_location,
-      new Set(["header", "hero", "actions", "final"]),
+      new Set(["header", "hero", "actions", "final", "sticky"]),
     ),
     session_id: text(body.session_id, 64),
     visitor_id: text(body.visitor_id, 64),
