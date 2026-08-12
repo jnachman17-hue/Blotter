@@ -50,7 +50,7 @@
     6.4 - 10.6  BLOTTER   The maintained zone arrives and every row writes
                           itself. Relevant activity from Gmail and Calendar.
 
-   10.6 - 13.4  SILENCE   Everything dims but Daniel Kim, and then nothing
+   10.6 - 13.4  SILENCE   Everything dims but Larry Sync, and then nothing
                           moves at all for nearly two seconds. In a film that
                           opened on a torrent, the stillness is the argument.
 
@@ -90,7 +90,7 @@
   on screen is a prompt to the user and no drafted message appears. "Relevant"
   stays in the Gmail line, because Blotter reads recruiting mail from the
   people the user tracks and any copy implying broader inbox access is wrong.
-  No em dashes in spoken copy; Alex Morgan's Next move cell keeps the one
+  No em dashes in spoken copy; Jerome Bowel's Next move cell keeps the one
   ratified exception.
 
   ---------------------------------------------------------------------------
@@ -340,8 +340,9 @@ body.bare .chrome{display:none}
   background:var(--sheet-header);color:var(--ink-muted);font-size:18px;
   display:flex;align-items:center;justify-content:center}
 /* Widths and padding solved against the longest real value in each column at
-   24px Arial: "Morgan Stanley", "Attend coffee chat", "Alex Morgan", and the
-   "Call completed" chip. Nothing clips. */
+   24px Arial: "Goldman Sachs", "Attend coffee chat", "Jamie Diamond", and the
+   "Call completed" chip. Nothing clips. Re-measured after the August 12, 2026
+   rename; see the note on COLS for the numbers. */
 .cell{padding:0 13px;font-size:24px;color:var(--ink);white-space:nowrap;
   overflow:hidden;display:flex;align-items:center;height:74px}
 .cell.num{justify-content:flex-end}
@@ -570,7 +571,7 @@ body.bare .chrome{display:none}
 
     <!-- 4. SILENCE. Reframed: not "you cannot know", but "you cannot keep knowing". -->
     <div class="line" id="tAnswer">
-      <div class="l1">Daniel Kim.<br><span class="soft">Five days of silence.</span></div>
+      <div class="l1">Larry Sync.<br><span class="soft">Five days of silence.</span></div>
       <div class="l2">Blotter is the only one still counting.</div>
     </div>
 
@@ -640,7 +641,7 @@ body.bare .chrome{display:none}
 
       <div class="fbar">
         <div class="fcell"><span id="fCell">A2</span><span class="caret">&#9662;</span></div>
-        <div class="fval"><span class="fx">fx</span><span id="fVal">Sarah Chen</span></div>
+        <div class="fval"><span class="fx">fx</span><span id="fVal">Jamie Diamond</span></div>
       </div>
 
       <!-- Two strips: the Outstanding view has three columns, the tracker five,
@@ -678,8 +679,8 @@ body.bare .chrome{display:none}
           <span class="cnt" data-to="6" style="color:var(--group-replies)">0</span>
         </div>
         <div class="oarow">
-          <div class="c who">Sarah Chen</div><div class="c act">Reply to Sarah</div>
-          <div class="c why">Sarah replied Jan 16 at 10:42 AM</div>
+          <div class="c who">Jamie Diamond</div><div class="c act">Reply to Jamie</div>
+          <div class="c why">Jamie replied Jan 16 at 10:42 AM</div>
         </div>
         <div class="oarow more"><div class="c">+5 more replies owed</div></div>
         <div class="grouphead" data-g="followups">
@@ -687,7 +688,7 @@ body.bare .chrome{display:none}
           <span class="cnt" data-to="11" style="color:var(--blotter-700)">0</span>
         </div>
         <div class="oarow">
-          <div class="c who">Daniel Kim</div><div class="c act">Bump thread</div>
+          <div class="c who">Larry Sync</div><div class="c act">Bump thread</div>
           <div class="c why">No reply for 5 days</div>
         </div>
         <div class="oarow more"><div class="c">+10 more follow-ups due</div></div>
@@ -696,7 +697,7 @@ body.bare .chrome{display:none}
           <span class="cnt" data-to="4" style="color:var(--group-thanks)">0</span>
         </div>
         <div class="oarow">
-          <div class="c who">Priya Shah</div><div class="c act">Send thank-you</div>
+          <div class="c who">Ken Molise</div><div class="c act">Send thank-you</div>
           <div class="c why">Coffee chat completed Jan 16</div>
         </div>
         <div class="oarow more"><div class="c">+3 more thank-you notes</div></div>
@@ -766,9 +767,26 @@ body.bare .chrome{display:none}
    Nothing here may be edited without a ruling.
    ========================================================================= */
 
+/*
+  Name 180 -> 196, Firm 216 -> 200, August 12, 2026, with the rename.
+
+  THE PAIR SUMS TO ZERO and that is the point: MANUAL_W stays 396, so the
+  ownership split, both washes and the two underlines below the sheet do not
+  move. Widening Name alone would drag the one boundary this film exists to
+  draw.
+
+  Measured at the film's own 24px Arial, content box = w - 26 of padding:
+
+    Name  196   "Jamie Diamond"  166.7 + 26 = 192.7    3.3 slack
+    Firm  200   "Goldman Sachs"  170.8 + 26 = 196.8    3.2 slack
+
+  At 180 the Name box was 154 and `Jamie Diamond` needed 166.7, so it clipped —
+  silently, because .cell is nowrap + overflow:hidden. The same rename cost the
+  web app a wrapped row (Name 112 -> 120, Firm 132 -> 124, c892d73).
+*/
 const COLS = [
-  { key:"name",   head:"Name",      w:180, kept:false },
-  { key:"firm",   head:"Firm",      w:216, kept:false },
+  { key:"name",   head:"Name",      w:196, kept:false },
+  { key:"firm",   head:"Firm",      w:200, kept:false },
   { key:"status", head:"Status",    w:214, kept:true, chip:true },
   { key:"next",   head:"Next move", w:252, kept:true },
   { key:"days",   head:"Days",      w:94,  kept:true, num:true },
@@ -776,16 +794,30 @@ const COLS = [
 const LETTERS = ["A","B","C","D","E"];
 const SPLIT = COLS.findIndex(c => c.kept);
 
+/*
+  Renamed August 12, 2026 on Jon's ruling, from web/lib/sheet-data.ts. The five
+  are NEAR-MISS PARODIES of finance figures — deliberately not the real names,
+  because a real identifiable person in commercial material is a
+  right-of-publicity question a near-miss does not raise. `Bowel` and `Sync` are
+  intentional. Do not "correct" them to the real spellings.
+
+  Firms track the parodied figure so the joke resolves; Carlyle is where Powell
+  actually was before the Fed.
+*/
 const ROWS = [
-  { name:"Sarah Chen", firm:"JPMorgan",       status:"Replied",        next:"Reply to Sarah",     days:"0" },
-  { name:"Marcus Lee", firm:"Evercore",       status:"Call scheduled", next:"Attend coffee chat", days:"1" },
-  { name:"Priya Shah", firm:"Lazard",         status:"Call completed", next:"Send thank-you",     days:"0" },
-  { name:"Daniel Kim", firm:"Morgan Stanley", status:"No reply",       next:"Bump thread",        days:"5" },
-  /* Alex Morgan's Next move keeps the em dash: ruled by Jon August 5, 2026 and
-     the only cell anywhere permitted one. */
-  { name:"Alex Morgan",firm:"Centerview",     status:"Sent",           next:{dash:true},          days:"0" },
+  { name:"Jamie Diamond", firm:"JPMorgan",      status:"Replied",        next:"Reply to Jamie",     days:"0" },
+  { name:"David Salmon",  firm:"Goldman Sachs", status:"Call scheduled", next:"Attend coffee chat", days:"1" },
+  { name:"Ken Molise",    firm:"Moelis & Co",   status:"Call completed", next:"Send thank-you",     days:"0" },
+  { name:"Larry Sync",    firm:"BlackRock",     status:"No reply",       next:"Bump thread",        days:"5" },
+  /* Row 5's Next move keeps the em dash: ruled by Jon August 5, 2026 and the
+     only cell anywhere permitted one. The row was Alex Morgan when that ruling
+     was made and is Jerome Bowel since the August 12 rename; the ruling is
+     about the cell, not the occupant. */
+  { name:"Jerome Bowel",  firm:"Carlyle",       status:"Sent",           next:{dash:true},          days:"0" },
 ];
-const DANIEL = 3;
+/* Row index of the contact the SILENCE beat isolates. Renamed with its
+   occupant on August 12, 2026 — was DANIEL, for Daniel Kim. */
+const LARRY = 3;
 
 /* -------------------------------------------------------------- torrent text */
 /*
@@ -795,7 +827,7 @@ const DANIEL = 3;
   canonical contacts appear among the senders. No bank logo anywhere.
 */
 const SENDERS = [
-  "Sarah Chen","Marcus Lee","Priya Shah","Daniel Kim","Alex Morgan",
+  "Jamie Diamond","David Salmon","Ken Molise","Larry Sync","Jerome Bowel",
   "Jordan Ellis","Nina Patel","Tom Reyes","Grace Liu","Omar Haddad",
   "Ben Carter","Sofia Rossi","Wes Nakamura","Hana Kim","Luis Ortega","Iris Delgado",
 ];
@@ -1284,14 +1316,14 @@ function render(T){
   els.washKTxt.style.height = (GRID_H - HDR_H) + "px";
 
   /* The formula bar follows the sheet's own state: an empty cell before
-     anything is typed, then Sarah Chen's name, then her status once Blotter
-     has written it, then the Outstanding view's own A1. */
+     anything is typed, then Jamie Diamond's name, then that row's status once
+     Blotter has written it, then the Outstanding view's own A1. */
   const hasState = t >= P.fillFrom + 0.30;
   const hasName  = t >= P.typeFrom + 0.20;
   const onOA     = t >= P.swap[0] + 0.30;
   els.fCell.textContent = onOA ? "A1" : hasState ? "C2" : "A2";
   els.fVal.textContent  = onOA ? "Outstanding actions"
-                        : hasState ? "Replied" : hasName ? "Sarah Chen" : "";
+                        : hasState ? "Replied" : hasName ? "Jamie Diamond" : "";
 
   /* ------------------------------------------------------ ownership labels */
   /* Each underline is now the CONCLUSION of its zone's gesture rather than a
@@ -1319,11 +1351,11 @@ function render(T){
   els.tabC.classList.toggle("on", tb <= 0.6);
   els.tabB.childNodes[0].nodeValue = onOA ? "Outstanding" : "Blotter";
 
-  /* --------------------------------------------------- isolate Daniel Kim */
+  /* --------------------------------------------------- isolate Larry Sync */
   /* From here to the swap NOTHING ELSE MOVES. The stillness is the argument. */
   const dm = seg(t, P.dim) * (1 - seg(t, P.swap));
   rowEls.forEach((row, ri) => {
-    row.style.opacity = ri === DANIEL ? 1 : (1 - dm * 0.80);
+    row.style.opacity = ri === LARRY ? 1 : (1 - dm * 0.80);
   });
 
   /* ------------------------------------- tracker becomes Outstanding */
