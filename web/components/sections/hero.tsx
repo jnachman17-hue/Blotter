@@ -282,11 +282,24 @@ export function Hero({
                   The page theme's "centre nothing" rule is about the hero's two
                   competing axes — copy against an asymmetric visual — and does
                   not reach a caption on a button that is itself full width.
-                  Desktop is untouched: left aligned, 32px rule.
+
+                  **Desktop's rule came down to 12px on August 11, 2026**, wave
+                  1. `08-desktop-changes-pending.md` §6 left this open, on the
+                  argument that desktop's 490px column gives a longer rule an
+                  origin to start from that a stacked phone layout does not.
+                  Jon ruled against it: *"Keep it as is on mobile, for web make
+                  the dash before it shorter. Simply like a normal - kinda
+                  similar to how it is on mobile."*
+
+                  So the two surfaces now share one 12px rule and differ only in
+                  alignment — centred under the full-width phone CTA, left
+                  aligned in the desktop column. The "big dash" he objected to
+                  is gone from both. Having an origin to start from was a reason
+                  a longer rule *could* work, not a reason it should.
                 */}
                 <span
                   aria-hidden="true"
-                  className="mr-2.5 inline-block h-px w-3 align-middle bg-ink-faint desk:mr-3 desk:w-8"
+                  className="mr-2.5 inline-block h-px w-3 align-middle bg-ink-faint desk:mr-3"
                 />
                 Built by a{" "}
                 <span className="font-medium text-ink">

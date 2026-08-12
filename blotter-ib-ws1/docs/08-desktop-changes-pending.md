@@ -173,9 +173,30 @@ must match mobile exactly or the page contradicts itself between devices.
 **Why Jon rejected the total.** `01 / 05` read as a progress meter, and this
 page is an argument rather than a form.
 
-## 6. The rule before the authority line — RESOLVED ON MOBILE, DESKTOP UNDECIDED
+## 6. The rule before the authority line — RESOLVED, both surfaces
 
-**Status: settled for mobile. Desktop unchanged and never discussed.**
+**Status: APPLIED August 11, 2026, wave 1. Mobile unchanged; desktop's rule
+comes down from 32px to 12px.**
+
+### Jon's ruling, August 11, 2026
+
+> *"Keep it as is on mobile, for web make the dash before it shorter. Simply
+> like a normal - kinda similar to how it is on mobile."*
+
+**The argument this entry made for keeping 32px was wrong in an instructive
+way.** It reasoned that desktop has a defence the phone lacks — the line sits
+inside a 490px column where a longer rule has an origin to start from. That is
+a reason a long rule *can* work there, not a reason it should. Jon's objection
+was never that the dash had nowhere to start; it was that it was a big dash. A
+490px column does not make a 32px dash less big, it only makes it less awkward.
+
+The two surfaces now share one 12px rule and differ only in alignment: centred
+beneath the full-width CTA on a phone, left aligned in the column on desktop.
+The change is `desk:w-8` removed from the rule span in
+`components/sections/hero.tsx`; `desk:mr-3` stays, so the gap after the rule is
+12px on desktop and 10px on the phone.
+
+### The original entry, kept for the record
 
 `Built by a former Goldman Sachs banker for recruitment.` is preceded by a 32px
 hairline on desktop. Jon called it "the big dash", it was hidden below the
@@ -482,8 +503,8 @@ punctuation, not part of the slug, and a company URL ending in `.` 404s.
 
 ## 16. Section 2's supporting paragraph is the largest body text on the page
 
-**Status: APPLIED to desktop August 11, 2026, wave 1 — and it is the one
-presentation call in wave 1 that Jon has not ratified. Revert is one class.**
+**Status: APPLIED to desktop August 11, 2026, wave 1, and RATIFIED by Jon the
+same day — *"I'm okay with the section 2 paragraph shortening."* Closed.**
 
 `A manual tracker changes only when you remember to update it…` is set at 22px
 in the display face. Jon, August 11, 2026: *"That paragraph is larger text than
@@ -521,8 +542,10 @@ measure, so the column does not need the extra size to hold together.
 **Section 2 is 48.6px shorter for it.** That is the whole of the section's
 negative delta in wave 1.
 
-**Unratified.** `desk:text-[22px] desk:leading-[1.45]` back on the paragraph in
-`components/section-2/scale-trajectory.tsx` restores it exactly.
+**Ratified by Jon, August 11, 2026**, having seen it in place on the branch
+URL. This entry is closed. To revert it would take
+`desk:text-[22px] desk:leading-[1.45]` back on the paragraph in
+`components/section-2/scale-trajectory.tsx`, but there is no reason to.
 
 ---
 

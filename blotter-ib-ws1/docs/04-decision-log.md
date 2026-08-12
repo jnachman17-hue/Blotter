@@ -1874,3 +1874,28 @@ widths, so the row-height fix had to be made twice. **This is the second
 hand-kept duplicate in the codebase**, after `web/public/film/` against
 `social/` — where the copy was right while its source was wrong for five days.
 Both lists now carry a doc comment naming the other.
+
+### Two wave-1 ratifications, August 11, 2026
+
+**Section 2's supporting paragraph stays at 17px on desktop.** Jon, seeing it in
+place: *"I'm okay with the section 2 paragraph shortening."* `08` §16 closed.
+
+**The authority line's rule comes down to 12px on desktop.** Jon: *"Keep it as
+is on mobile, for web make the dash before it shorter. Simply like a normal -
+kinda similar to how it is on mobile."*
+
+The reasoning is worth keeping because **the recorded argument for the opposite
+was wrong, and it was wrong in a way that recurs.** `08` §6 had reasoned that
+desktop could keep 32px because the line sits in a 490px column where a long
+rule has an origin to start from, while a stacked phone layout gives it nothing
+to lead into. That is a reason a long rule *can* work there. It is not a reason
+it should. Jon's objection was never that the dash had nowhere to start — it was
+that it was a big dash, and a wider column does not make a 32px dash smaller,
+only less awkward.
+
+The pattern to watch: an entry finds a structural difference between the two
+surfaces and treats it as a justification for the divergence, when the
+difference only explains why the fault is *less visible* on one of them. `08`
+§16 was the same shape — desktop's 600px measure and the adjacent 60-hour figure
+explained why 22px was less obviously wrong, not why it was right. Both entries
+were written carefully and both reached the wrong conclusion by the same route.

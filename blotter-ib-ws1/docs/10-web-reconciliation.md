@@ -117,16 +117,17 @@ wave-1 sitting:
 | `08` §13 | **The header CTA does not persist.** `position: sticky` inside the hero's wrapper, so it leaves with the hero — on both surfaces. Ratified as persistent in `PLAN-AMENDMENTS`; never was | **APPLIED.** Not the one-line move the entry promised — see `08` §13 for the two consequences it did not anticipate |
 | `08` §12 | Two of five `Blotter`-tab rows are 50% too tall, on both surfaces | **APPLIED.** **This row was missing from the original table** and would have been skipped. Had to be fixed twice: `sheet-phone.tsx` keeps a second copy of the column widths |
 | new | Hairlines at section boundaries | **APPLIED.** Desktop needed its own anchor — the phone draws them from `.section-number::before` and desktop has no numeral until wave 2 |
-| `08` §16 | Section 2's supporting paragraph is 22px, the largest body text on the page | **APPLIED, and unratified.** The one presentation call in wave 1 Jon has not seen. One class reverts it |
+| `08` §16 | Section 2's supporting paragraph is 22px, the largest body text on the page | **APPLIED and RATIFIED** by Jon, August 11, 2026 |
+| `08` §6 | The 32px rule before the authority line | **APPLIED and RATIFIED.** Jon: keep the phone as is, shorten the web dash to match. Both surfaces now carry one 12px rule and differ only in alignment. The entry's argument for keeping 32px on desktop — that a 490px column gives a long rule an origin — was a reason it *could* work, not a reason it should |
 | `06` | A window between 481 and 1179px shows a 480px column centred in it | **PARTLY APPLIED.** The header was not obeying the cap and that was the visible half of it. The column-width question itself is still Jon's — see below |
 | `08` §5 | Section numerals `01`–`05` | **MOVED TO WAVE 2** by Jon, August 11, 2026. Desktop's `01`–`05` would name different content than the phone's until wave 2 rules on which sections exist |
-| `08` §6 | The 32px rule before the authority line | **OPEN — needs Jon.** The entry says ask rather than assume, and it is right to: on desktop the line sits in a 490px column where a longer rule has an origin to start from, and the mobile answer (12px, centred under a full-width CTA) solves a problem desktop does not have |
 | `08` §9 | Two unratified strings live on mobile | **OPEN — needs Jon.** Neither has a desktop action pending. `SUPPORTING_SHORT` never renders above the breakpoint, and `What each connection can and cannot do.` replaced per-row counts that desktop's three-column layout still shows correctly. These are ratify-or-replace decisions about the phone |
 
 **Two rows in the original table were not "already decided and reasoned"** as
 this section claimed: `08` §16 and `08` §6 both say in their own entries that
-the desktop half is Jon's call. §16 was taken on his wave-1 instruction and is
-flagged as unratified; §6 is left for him.
+the desktop half is Jon's call. Both were put to him during the wave-1 sitting
+and both are now ratified — §16 as built, §6 against the reasoning the entry
+had recorded.
 
 **Already applied to desktop, do not redo:** `08` §1 (the Sheets scope note),
 §7 (the methodology footnote), §11 (three latent bugs), §15 (both social links),
