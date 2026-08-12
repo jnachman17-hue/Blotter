@@ -116,3 +116,77 @@ export function HeroFilm() {
     </div>
   );
 }
+
+/* ------------------------------------------------------- the desktop hero */
+
+/** The web hero film's native canvas. `TOTAL_W` x `SHEET_H` from `hero-visual.tsx`. */
+const DESK_W = 1322;
+const DESK_H = 432.5;
+
+/**
+ * **16px of headroom, and it is a fix rather than padding.**
+ *
+ * The film draws the sheet's drop shadow inside its own stage, but the stage is
+ * exactly the canvas, so the shadow is cut off at the bottom edge. Giving the
+ * iframe 16px more height than the canvas lets the film's own `fit()` centre a
+ * 1:1 render inside it with 8px to spare above and below, which is where the
+ * shadow goes. Flagged by the film session; Jon approved the 16px on August 11,
+ * 2026.
+ */
+const DESK_SHADOW_ROOM = 16;
+
+const DESK_SRC = "/film/blotter-film-web-hero.html?bare=1";
+
+/**
+ * The held frame, as a still.
+ *
+ * `11.4s` is inside the film's final rest, after Daniel's row has landed and
+ * while nothing is moving. Every row is in its end state and the silence cue is
+ * still plugged into the sheet, so the still carries the whole argument — which
+ * is exactly what a static substitute has to do, and it is the same choice
+ * `STILL_SRC` makes for the phone at 9.0s.
+ */
+const DESK_STILL_SRC = "/film/blotter-film-web-hero.html?bare=1&t=11.4";
+
+/**
+ * The desktop hero.
+ *
+ * **This replaces the ratified static composition**, `HeroVisualModule`, from
+ * August 11, 2026. Jon: *"Yes. I do wanna do a video asset for the hero on
+ * web."* The film's held final frame *is* the new static hero — reduced motion,
+ * a failed load and a screenshot all get the same picture — which is why the
+ * film has no wipe-back and stops rather than looping.
+ *
+ * **The hero's ownership labels go with it, and they go by construction.**
+ * `YOU add the contacts` and `BLOTTER keeps them current` were drawn by
+ * `HeroVisualModule`, which is no longer rendered anywhere. Jon ruled them out
+ * on August 11 — they sat below the sheet in 13px centred type on a page whose
+ * theme rule is to centre nothing, and the film proves the same split by never
+ * touching the left three columns for its whole eleven seconds.
+ *
+ * `hero-visual.tsx` is kept, not deleted: `PAGE_BOX_W` is derived from its
+ * `TOTAL_W` and `VISUAL_SCALE`, so the file still defines the page's width.
+ *
+ * Not lazy, unlike the phone's. This is the first thing above the fold on the
+ * surface that renders it, so there is nothing to defer.
+ */
+export function HeroFilmDesk() {
+  const reduced = usePrefersReducedMotion();
+
+  return (
+    <div className="mt-8 hidden desk:block">
+      <div
+        className="relative w-full"
+        style={{ aspectRatio: `${DESK_W} / ${DESK_H + DESK_SHADOW_ROOM}` }}
+      >
+        <iframe
+          key={reduced ? "still" : "film"}
+          src={reduced ? DESK_STILL_SRC : DESK_SRC}
+          title="A recruiting tracker updating itself: an email arrives, a meeting completes, and a contact goes quiet"
+          scrolling="no"
+          className="absolute inset-0 h-full w-full border-0"
+        />
+      </div>
+    </div>
+  );
+}

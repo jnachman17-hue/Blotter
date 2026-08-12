@@ -21,9 +21,7 @@
  */
 
 import { CtaButton } from "@/components/cta-button";
-import { HeroFilm } from "@/components/hero/hero-film";
-import { HeroVisualModule, TOTAL_W } from "@/components/hero/hero-visual";
-import { Fit } from "@/components/layout/fit";
+import { HeroFilm, HeroFilmDesk } from "@/components/hero/hero-film";
 import { PageBox } from "@/components/layout/page-box";
 import { cn } from "@/lib/cn";
 
@@ -311,23 +309,24 @@ export function Hero({
           </div>
 
           {/*
-            `Fit` rather than `HeroVisual`, so the module is scaled to the
-            width it is actually given. On desktop that is the 1124px page box
-            and the scale resolves to the ratified 0.85 exactly. The fitting
-            lives here rather than inside `hero-visual.tsx` because that file
-            defines the constants `PAGE_BOX_W` is derived from and must not
-            import back from `components/layout/`.
+            **The desktop hero is a film from August 11, 2026.**
 
-            Desktop only. Below the breakpoint this composition shrinks to
-            0.265 and its sheet type falls under 4px, so `HeroFilm` replaces it
-            outright rather than resizing it — the first section of the mobile
-            build to stop being scaffolding and become a real translation.
+            It was `Fit` wrapping `HeroVisualModule` — the ratified sheet, three
+            activity cues and their connectors, scaled to the 1124px page box at
+            0.8502. Jon: *"Yes. I do wanna do a video asset for the hero on
+            web."* The film's held final frame is that composition's successor,
+            and it is what reduced motion, a failed load and a screenshot all
+            get, so nothing is lost by a reader who never sees it move.
+
+            `hero-visual.tsx` stays in the tree even though nothing renders it:
+            `PAGE_BOX_W` is derived from its `TOTAL_W` and `VISUAL_SCALE`, so it
+            still defines the width of every section on this page.
+
+            The hero's two ownership labels went with it, which is how Jon ruled
+            it — the film never touches the left three columns for eleven
+            seconds, which proves the same split without captioning it.
           */}
-          <div className="mt-8 hidden desk:block">
-            <Fit width={TOTAL_W}>
-              <HeroVisualModule />
-            </Fit>
-          </div>
+          <HeroFilmDesk />
       </PageBox>
     </section>
   );

@@ -212,10 +212,26 @@ export const HERO_CUES: ActivityCue[] = [
     targetRow: 0,
   },
   {
+    /*
+      Priya, not Marcus, and `Jan 16 · 11:00 AM`. Changed August 11, 2026 so
+      the page agrees with `blotter-film-web-hero.html`, which is now the
+      desktop hero. Jon: *"Make it match the film."*
+
+      **This is the second of `01-HERO` §7's three ratified cues to be
+      overridden by Jon**, after the third was swapped from Alex Morgan on
+      August 5. Stated plainly so a later session reading the spec does not
+      conclude the page has drifted.
+
+      The film's calendar beat moves *one* contact through the transition —
+      Priya goes `Call scheduled` to `Call completed` and `Attend coffee chat`
+      to `Send thank-you` — where the old static hero showed Marcus and Priya
+      frozen either side of it. Marcus keeps his forward-looking
+      `1/17 @ 2:00 PM` and never moves, in the film and here.
+    */
     source: "calendar",
-    primary: "Coffee chat with Marcus Lee",
-    timestamp: "Jan 17 · 2:00 PM",
-    targetRow: 1,
+    primary: "Coffee chat with Priya Shah",
+    timestamp: "Jan 16 · 11:00 AM",
+    targetRow: 2,
   },
   {
     /*

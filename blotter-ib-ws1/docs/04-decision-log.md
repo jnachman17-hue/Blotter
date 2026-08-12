@@ -2068,3 +2068,63 @@ one rhythm rather than a strip above and a stack below.
 ignored — the panel keeps its warm fill, its ring and its coloured tiles, about
 500px of spreadsheet separates them, and **the phone stays stacked**, which is
 the surface the row was actually about.
+
+### The desktop hero becomes a film, August 11, 2026
+
+Built by a separate chat against `11-web-hero-film-brief.md`, reviewed here, and
+installed. `social/blotter-film-web-hero.html`, copied by hand into
+`web/public/film/` — nothing propagates between the two.
+
+**Reviewed before installing.** Held frame matches `HERO_ROWS` on all forty
+cells; opening state exact; the cue holds its fixed slot with a single-elbow
+connector and a node on the sheet's right edge; Marcus and Alex never move.
+
+Two calls the film session made where the brief left room, both better reasoned
+than the guidance they replaced:
+
+- **2.5px line, sized against the zone-split rule rather than the old hairline.**
+  The split is a 2px border, 1.70px at 0.8502. A 3px connector would render
+  2.55px — heavier than the ownership boundary, inverting the hierarchy between
+  a transient annotation and the composition's most important permanent line.
+- **`?sweep=in` as the default.** Film C's line arrives from above, so an
+  outward sweep does not contradict the arrival. This one arrives from the
+  right, so `out` runs back against the direction the information came from.
+
+**Two defects their frame-by-frame checking caught that looking would not.**
+Header cells were clipping the `Days` header, and **`fit()` returns a negative
+scale in a zero-size viewport**, rendering the film mirrored and upside-down.
+The second is not hypothetical: `hero-film.tsx` deliberately embeds a lazy
+iframe inside a `desk:hidden` wrapper, which is exactly that. **Film C carries
+the same latent expression and was correctly left alone** — it is a shipped
+asset and re-cutting it is Jon's call.
+
+### Two rulings taken while installing it
+
+**The page matches the film, not the other way round.** Jon: *"Make it match
+the film."* `HERO_CUES`'s second entry becomes `Coffee chat with Priya Shah`,
+`Jan 16 · 11:00 AM`, targeting row 2. **That is the second of `01-HERO` §7's
+three ratified cues Jon has overridden**, after the third was swapped from Alex
+Morgan on August 5.
+
+**16px of iframe headroom for the drop shadow.** The film draws the sheet's
+shadow inside a stage that is exactly the canvas, so it was cut off at the
+bottom edge. The iframe is now 16px taller than the canvas and the film's own
+`fit()` centres a 1:1 render inside it, leaving 8px above and below.
+
+### What the swap deleted for free
+
+`HeroVisualModule` is no longer rendered anywhere, so **the hero's ownership
+labels are gone by construction** rather than by a separate edit. Verified: zero
+occurrences of either string in the hero at 1440.
+
+`hero-visual.tsx` stays in the tree regardless — `PAGE_BOX_W` is derived from
+its `TOTAL_W` and `VISUAL_SCALE`, so it still defines the width of every section
+on the page.
+
+### Still outstanding, and worth a decision
+
+`FILM-C.md` records that file as 114KB. **It is 298KB.** A nested comment in its
+font block closes early, so all four faces inline rather than the two its notes
+describe — roughly 140KB of fonts nothing on screen draws, in the asset every
+phone visitor fetches above the fold. One character to fix, 47% smaller. Not
+touched: it is a shipped, ratified asset.
