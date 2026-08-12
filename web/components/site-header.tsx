@@ -121,6 +121,29 @@ function useScrolledPast(px: number, enabled: boolean) {
  */
 export type HeaderTagline = "off" | "persist" | "scroll";
 
+/*
+  RATIFIED August 11, 2026: `persist`, left. Jon, having compared all four
+  combinations on the whole page: *"Left persists it is."*
+
+  **Left, on measurement rather than taste.** At 1440 the page's content runs
+  158 to 1282 and the lockup sits at 44. Centred, the tagline ran 382 to 1058 —
+  aligned with the content, the lockup and the headline all at once, which is to
+  say with nothing. It sat on the viewport's centre axis, and no other element
+  on this page uses that axis. Beside the lockup it is a descriptor on a
+  wordmark, which is a relationship rather than a coincidence.
+
+  **Persist was Jon's call against my recommendation, and his argument is the
+  better one for this page.** Mine was that the bar already gains a fill and an
+  edge on scroll, so adding a permanent 630px line makes the scrolled bar
+  heavier than the resting bar, which is backwards. His is that Blotter is
+  unknown and about to be promoted cold, so a descriptor that survives at any
+  scroll depth is doing a functional job rather than decorating. For a known
+  brand I would still fade it. This is not a known brand.
+
+  The defaults below are the shipped state, so `app/page.tsx` and its Suspense
+  fallback both inherit it. `/review/hero` overrides to keep the comparison.
+*/
+
 /**
  * Where the tagline sits in the bar.
  *
@@ -146,7 +169,7 @@ const TAGLINE_TYPE =
 export function SiteHeaderBar({
   mobileCta = true,
   mode = "full",
-  tagline = "off",
+  tagline = "persist",
   taglineAlign = "left",
 }: {
   mobileCta?: boolean;

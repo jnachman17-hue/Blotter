@@ -2483,3 +2483,48 @@ than adding a second scroll listener.
 Variants A through H all survive in `components/hero/hero-top.tsx`. Only the
 harness narrowed; `Hero` still takes `top`, so any of them is one string away
 from being back in front of him.
+
+### The hero redesign is applied, August 11, 2026
+
+**Layout G, tagline left, tagline persists.** Jon: *"Left persists it is."*
+Live on the branch.
+
+**Left was decided on measurement.** At 1440 the page's content runs 158 to
+1282 and the lockup sits at 44. Centred, the tagline ran 382 to 1058 — aligned
+with the content, the lockup and the headline all at once, which is to say with
+nothing, since it sat on the viewport centre axis and no other element on this
+page uses that axis. Beside the lockup it is a descriptor on a wordmark.
+
+**Persist was Jon's call against my recommendation and his argument is better
+for this page.** Mine: the bar already gains a fill and an edge on scroll, so a
+permanent 630px line makes the scrolled bar heavier than the resting bar, which
+is backwards. His: Blotter is unknown and about to be promoted cold, so a
+descriptor surviving at any scroll depth does a functional job rather than
+decorating. For a known brand I would still fade it. This is not one.
+
+### What it measures
+
+| | Before | After |
+|---|---|---|
+| Hero section | 729.8 | **658.3** |
+| Film foot | 689.8 | **622.1** |
+| Authority line foot | in the hero | **662.3**, below the film |
+| Document | 6,687 | **6,615** |
+
+**The whole hero, film and credibility line now clear a 700px viewport** with
+38px to spare, against a film that was being cut off before any of this started.
+
+Verified: exactly one visible eyebrow, in the header bar, none in the hero.
+Mobile unchanged at 7,093.8px of sections, eyebrow and authority line both still
+in the phone hero where stage 10 ratified them, no horizontal scroll. The
+footer's link row now wraps to three lines on a phone because Contact and the
+address joined it; every target still clears 44px.
+
+**The stopgap retired itself.** The `desk:` gap trims taken earlier to buy the
+fold are all inside the `current` block, which is now `desk:hidden`. They are
+inert on the live page rather than needing to be unpicked, which is what the
+note on them predicted.
+
+Variants A through H all survive in `components/hero/hero-top.tsx` and
+`/review/hero` still compares the four tagline combinations against what
+shipped. Nothing is deleted; `Hero` still takes `top`.

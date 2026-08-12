@@ -81,7 +81,7 @@ export default function Page() {
       </Suspense>
       <div className="field-open">
         <main id="top">
-          <Hero />
+          <Hero top="g" />
         </main>
       </div>
       <ScaleAndConsequence />
