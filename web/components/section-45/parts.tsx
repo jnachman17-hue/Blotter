@@ -236,13 +236,45 @@ export function ReassuranceStack() {
 /* ------------------------------------------------ beat 1 · the Blotter tab */
 
 /**
- * The two zone claims, at real size.
+ * How this section names its two zones. Three treatments, August 11, 2026.
  *
- * The hero states the same split in 13px underlines beneath the sheet. Jon
- * ruled on August 5, 2026 that this section has to be far louder, because the
- * split is the whole point of the beat rather than a caption on it.
+ * ## Why the ratified one is being replaced
+ *
+ * Jon, seeing it at width: *"terrible UI that isn't presented well is hard to
+ * read."* He had already used that judgement to cut the hero's version of the
+ * same device, and the two cannot be defended differently.
+ *
+ * **The measured reason it fails, which is not the one first offered.** The
+ * labels do not sit above the columns they name. They sit above the whole
+ * Google Sheets *window* — and between the label and the first cell there is a
+ * title bar, a menu row, a formula bar and a row of column letters, roughly
+ * 100px of unrelated chrome. A 1px bracket with 10px end ticks is being asked
+ * to reach across all of that. It cannot, so the label floats and reads as
+ * page furniture rather than as part of the object.
+ *
+ * That is why moving the label *inside* the sheet is the fix, and why
+ * restyling the bracket would not have been.
+ *
+ * ## The second reason, which is the rework's own argument
+ *
+ * After `09` §4's headline arrangement lands, this section carries the deck
+ * *"You manage the relationships. Blotter maintains the moving parts."* one
+ * section-width above the sheet. That is what `You add these` and
+ * `Blotter keeps these current` say. The supporting paragraph ends *"from Gmail
+ * and Calendar"*, which is what the right-hand sublabel says. **The labels
+ * became a restatement of the sentences directly above them**, which is the
+ * fault this whole rework exists to remove.
+ *
+ * | | |
+ * |---|---|
+ * | `none` | No labels. The `blotter-100` header band, the 3px divider and the deck carry the split |
+ * | `banner` | A merged banner row **inside** the sheet, directly above the column headers, filled with each zone's own colour |
+ * | `banner-sub` | The same, keeping the two subtitles |
+ * | `above` | The ratified treatment, kept so the review route can show what was replaced |
  */
-function ZoneLabels() {
+export type ZoneTreatment = "none" | "banner" | "banner-sub" | "above";
+
+function ZoneLabelsAbove() {
   return (
     <div className="mb-4 flex items-end" style={{ paddingLeft: GUTTER }}>
       <div style={{ width: YOURS_W }}>
@@ -259,21 +291,79 @@ function ZoneLabels() {
   );
 }
 
-export function BlotterTab() {
+/**
+ * The merged banner row.
+ *
+ * Two merged cells above the column headers, each filled with its own zone's
+ * colour and carrying that zone's name. This is what a person actually does in
+ * Sheets to label a column group, so it costs nothing in
+ * `04-SECTION-4` §12's "recognisable Google Sheets context" — it adds to it.
+ *
+ * It takes row number 1 and the headers become row 2, exactly as a real merged
+ * banner would, which is why `BlotterTab` moves its selected cell to `F3`.
+ *
+ * The 3px `blotter-400` divider runs through the banner as well as the header
+ * row, so the ownership boundary is now a single unbroken vertical from the top
+ * of the grid to the bottom rather than starting one row down.
+ */
+function ZoneBanner({ withSub }: { withSub: boolean }) {
+  return (
+    <div className="flex border-b border-sheet-grid font-semibold">
+      <Gut n={1} />
+      <div
+        className={cn("bg-manual-100 px-3", withSub ? "py-2" : "py-2.5")}
+        style={{ width: YOURS_W }}
+      >
+        <span className="font-display text-[15px] leading-tight font-bold tracking-[-0.01em] text-ink">
+          You add these
+        </span>
+        {withSub && (
+          <span className="ml-2 text-[12px] font-normal text-ink-muted">
+            The contacts and context you choose
+          </span>
+        )}
+      </div>
+      <div
+        className={cn(
+          "border-l-[3px] border-l-blotter-400 bg-blotter-100 px-3",
+          withSub ? "py-2" : "py-2.5",
+        )}
+        style={{ width: MAINT_W }}
+      >
+        <span className="font-display text-[15px] leading-tight font-bold tracking-[-0.01em] text-blotter-700">
+          Blotter keeps these current
+        </span>
+        {withSub && (
+          <span className="ml-2 text-[12px] font-normal text-blotter-700/75">
+            Updated from Gmail and Calendar
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export function BlotterTab({ zones = "none" }: { zones?: ZoneTreatment }) {
+  const banner = zones === "banner" || zones === "banner-sub";
+  /* The banner takes row 1, so every row below it shifts by one and the
+     formula bar has to follow. Sarah Chen's status is the ratified selection. */
+  const rowOffset = banner ? 1 : 0;
+
   return (
     <Fit width={SHEET_W}>
       <div style={{ width: SHEET_W }}>
-        <ZoneLabels />
+        {zones === "above" && <ZoneLabelsAbove />}
         <SheetWindow
-          selectedCell="F2"
+          selectedCell={banner ? "F3" : "F2"}
           formulaValue="Replied"
           columnLetters={LETTERS}
           columnWidths={[...YOURS, ...MAINTAINED].map((c) => c.w)}
           tabs={TABS_BLOTTER}
         >
           <div className="sheet-type text-[13px]">
+            {banner && <ZoneBanner withSub={zones === "banner-sub"} />}
             <div className="flex border-b border-sheet-grid font-semibold text-ink">
-              <Gut n={1} />
+              <Gut n={1 + rowOffset} />
               {YOURS.map((c) => (
                 <div key={c.header} className="bg-manual-100 px-3 py-2.5" style={{ width: c.w }}>{c.header}</div>
               ))}
@@ -289,7 +379,7 @@ export function BlotterTab() {
             </div>
             {TRACKER_CONTACTS.map((c, r) => (
               <div key={c.name} className="flex border-b border-sheet-grid last:border-b-0">
-                <Gut n={r + 2} />
+                <Gut n={r + 2 + rowOffset} />
                 <div className="px-3 py-2.5 font-medium text-ink" style={{ width: YOURS[0].w }}>{c.name}</div>
                 <div className="px-3 py-2.5 text-ink-muted italic" style={{ width: YOURS[1].w }}>{c.title}</div>
                 <div className="px-3 py-2.5" style={{ width: YOURS[2].w }}>{c.firm}</div>

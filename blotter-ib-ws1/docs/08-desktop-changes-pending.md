@@ -117,8 +117,17 @@ and is not to be touched.
 
 ## 5. Section numbering is on for mobile and off for desktop — DECIDED, HALF APPLIED
 
-**Status: decided and live on mobile. Desktop is the open half, and Jon moved
-it out of wave 1 and into wave 2 on August 11, 2026.**
+**Status: APPLIED to both surfaces, August 11, 2026, wave 2. Closed.**
+
+The condition this entry set has been met. Numbering could not go to desktop
+until the two surfaces had the same sections; cutting Section 3 and splitting
+4+5 made them match, and the media query came off the same day. Both surfaces
+now render `01`–`05` against the same five blocks, and the boundary hairline is
+drawn from the numeral at every width — the separate desktop rule wave 1 added
+is deleted rather than left to draw a second line per section.
+
+The four eyebrow overrides are spent: `04-SECTION-4` §101 and §351,
+`05-SECTION-5` §74 and §253, `06-SECTION-6` §157, `07-SECTION-7` §85 and §269.
 
 ### Why it cannot be done in the sweep — RULED August 11, 2026
 

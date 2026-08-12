@@ -4,8 +4,7 @@ import { SiteHeader, SiteHeaderBar } from "@/components/site-header";
 import { PageView } from "@/components/page-view";
 import { Hero } from "@/components/sections/hero";
 import { ScaleAndConsequence } from "@/components/sections/scale-and-consequence";
-import { HowBlotterWorks } from "@/components/sections/how-blotter-works";
-import { Mobile02 } from "@/components/section-45/mobile-02";
+import { Ownership } from "@/components/sections/ownership";
 import { TrackerAndActions } from "@/components/sections/tracker-and-actions";
 import { DataAndPrivacy } from "@/components/sections/data-and-privacy";
 import { FaqAndClose } from "@/components/sections/faq-and-close";
@@ -16,12 +15,15 @@ import { Funnel } from "@/components/funnel/funnel";
  *
  * Section order is fixed by WS4-SPEC and LOVABLE-PROJECT-KNOWLEDGE:
  *   1 Hero
- *   2 Scale and consequence
- *   3 How Blotter works
- *   4+5 Tracker and actions      (merged by Jon August 5, 2026;
- *                                CTA, cta_location = actions)
- *   6 How Blotter uses your data
- *   7 FAQ and final CTA          (CTA, cta_location = final)
+ *   2 Scale and consequence          renders as `01`
+ *   3 Keep the tracker you built     renders as `02`
+ *   4 Outstanding actions            renders as `03`; CTA, cta_location = actions
+ *   5 How Blotter uses your data     renders as `04`
+ *   6 FAQ and final CTA              renders as `05`; CTA, cta_location = final
+ *
+ * **Section 3, "How Blotter works", was cut on August 11, 2026** and Section
+ * 4+5's two beats became two sections. Both surfaces now render the same five
+ * numbered blocks in the same order. `09-page-argument-rework.md` §8 has why.
  *
  * Sections land here one checkpoint at a time.
  *
@@ -38,9 +40,12 @@ import { Funnel } from "@/components/funnel/funnel";
  * decision can be reversed without touching the analytics contract. Nothing
  * fires it today.
  *
- * **Section numbering is on, below the desktop breakpoint only.** `01` rather
- * than `01 / 05`. See `components/layout/section-number.tsx` for what it costs
- * and `08-desktop-changes-pending.md` for the desktop half of the decision.
+ * **Section numbering is on, at every width, from August 11, 2026.** `01`
+ * rather than `01 / 05`. It was phone-only through stage 10 because desktop's
+ * sections did not yet match the phone's; cutting Section 3 and splitting 4+5
+ * made them match, which is what `08-desktop-changes-pending.md` §5 said had to
+ * be true first. Turning it on overrides four build specs that forbid an
+ * eyebrow — `components/layout/section-number.tsx` lists the clauses.
  */
 export default function Page() {
   return (
@@ -81,18 +86,22 @@ export default function Page() {
       </div>
       <ScaleAndConsequence />
       {/*
-        Section 3 is desktop-only from August 11, 2026, and `Mobile02` is the
-        phone's replacement for it plus beat 1 of the section below. Each
-        component owns its own visibility, so this list stays the reading order
-        on both surfaces:
+        **The two surfaces now read the same list**, as of August 11, 2026:
 
-          desktop   1 hero · 2 scale · 3 how it works · 4+5 tracker · 6 · 7
-          phone     hero   · 01 scale · 02 your sheet  · 03 outstanding · 04 · 05
+          both   hero · 01 scale · 02 your sheet · 03 outstanding · 04 · 05
 
-        `09-page-argument-rework.md` §4 has why, and §8 has what web owes.
+        Section 3, "How Blotter works", is gone from both. It went from the
+        phone in stage 10 because the hero film demonstrated the mechanism;
+        Jon cut it from desktop once the desktop hero became a film too, which
+        removed the only reason `09` §6 had given for keeping it —
+        *"desktop has room and no hero film"*.
+
+        `components/sections/how-blotter-works.tsx` is retained but rendered
+        nowhere. It holds `SECTION_3_HEADLINE`, which is now section 02's deck,
+        and the Friday timeline, which is the one ratified asset the cut
+        retires. Deleting the file would throw both away for no gain.
       */}
-      <HowBlotterWorks />
-      <Mobile02 />
+      <Ownership />
       <TrackerAndActions />
       <DataAndPrivacy />
       <FaqAndClose />

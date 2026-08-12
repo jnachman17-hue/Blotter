@@ -22,7 +22,7 @@ import { useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
 
 import { PageBox } from "@/components/layout/page-box";
-import { Mobile02 } from "@/components/section-45/mobile-02";
+import { Ownership } from "@/components/sections/ownership";
 import { type PhoneSheetVariant } from "@/components/section-45/sheet-phone";
 
 import { Picker } from "./picker";
@@ -71,7 +71,7 @@ export function Stage() {
       </div>
 
       {/* Keyed so switching re-mounts and the sheet re-measures cleanly. */}
-      <Mobile02 key={active.key} variant={active.key} />
+      <Ownership key={active.key} variant={active.key} />
 
       <div className="pb-40">
         <PageBox>

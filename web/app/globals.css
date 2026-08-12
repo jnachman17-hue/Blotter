@@ -538,93 +538,48 @@ body {
   place per section, including the merged section where the numeral sits below
   a desktop-only beat.
 */
-@media (max-width: 1179px) {
-  [data-section-numbers="on"] .section-number::before,
-  [data-section-numbers="total"] .section-number::before {
-    content: "";
-    display: block;
-    height: 1px;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(
-      to right,
-      rgba(18, 35, 61, 0.16),
-      rgba(18, 35, 61, 0.05)
-    );
-  }
+[data-section-numbers="on"] .section-number::before,
+[data-section-numbers="total"] .section-number::before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(
+    to right,
+    rgba(18, 35, 61, 0.16),
+    rgba(18, 35, 61, 0.05)
+  );
 }
 
 /*
-  The same boundary hairline, on desktop. Wave 1, August 11, 2026.
-
-  **Desktop needs its own anchor and this is the whole reason it is a separate
-  rule.** The phone draws its hairline from `.section-number::before`, which is
-  exact and lands once per section even in the merged section. Desktop has no
-  numeral — Jon moved numbering to wave 2 on August 11, 2026, because desktop's
-  `01`–`05` would name different content than the phone's until wave 2 rules on
-  which sections exist. So this hangs off the first `PageBox` in each of the
-  five banded sections instead.
-
-  `:first-of-type` matters: Section 7 carries two page boxes, the FAQ and the
-  closing block, and only the first is a section boundary.
-
-  The hero is excluded by construction — it is the opening rather than a place
-  the reader arrives at, and the header is its edge. Five rules for six
-  sections, which is one per boundary.
-
-  **Same 1px, same gradient, same 24px gap as the phone**, deliberately: Jon
-  asked for the mobile treatment on web, not for a desktop reinterpretation of
-  it.
-
-  **What is deliberately NOT copied.** On the phone the hairline paid for
-  itself — it bought an edge so the 120px boundary rhythm could come down from
-  as much as 208px. Desktop's padding is untouched here, so the rule costs 25px
-  per section rather than saving any. Reclaiming it from `desk:pt-24` is a
-  rhythm decision Jon has not taken and `06`'s "final complete-page rhythm" row
-  is still open, so the height is spent rather than borrowed and the delta is
-  reported.
-
-  **When wave 2 turns numbering on, reconcile the two.** A section that has both
-  a numeral and this rule draws two hairlines.
-*/
-@media (min-width: 1180px) {
-  .field-deep > .page-box:first-of-type > .page-box__inner::before,
-  /* `Mobile02` carries `field-rise` too — the phone's Section 3 slot in the
-     background handoff chain, so exactly one `field-rise` is visible per
-     surface. It is `desk:hidden`, so this rule can never paint on it inside a
-     `min-width` query, but an inert-but-wrong selector is a trap for wave 2,
-     which rewrites both of these sections. */
-  .field-rise:not(.desk\:hidden) > .page-box:first-of-type > .page-box__inner::before,
-  .field-settle > .page-box:first-of-type > .page-box__inner::before,
-  .field-document > .page-box:first-of-type > .page-box__inner::before,
-  .field-close > .page-box:first-of-type > .page-box__inner::before {
-    content: "";
-    display: block;
-    height: 1px;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(
-      to right,
-      rgba(18, 35, 61, 0.16),
-      rgba(18, 35, 61, 0.05)
-    );
-  }
-}
-
-/*
-  Mobile only, and deliberately.
+  Numbered sections, both surfaces, from August 11, 2026.
 
   Jon chose `01` on August 10, 2026 after comparing it against `01 / 05` and
-  against nothing. It is on below the desktop breakpoint and off above it, which
-  means the two surfaces currently disagree about whether this page has numbered
-  sections. That is a known cost, not an oversight: turning it on for desktop
-  overrides four build specs that forbid an eyebrow, and stage 10 does not touch
-  desktop. `08-desktop-changes-pending.md` carries the decision.
+  against nothing, and it ran phone-only through stage 10.
+
+  **It could not go to desktop until the two surfaces had the same sections**,
+  which `08-desktop-changes-pending.md` §5 states as the condition: the
+  numbering must match the phone exactly or the page contradicts itself between
+  devices. Through stage 10 it could not match — desktop carried a Section 3
+  the phone did not, and carried the phone's `02` and `03` as two beats of one
+  section, so desktop's numerals would have landed on different content.
+  Cutting Section 3 and splitting 4+5 removed both mismatches, and this rule
+  lost its media query the same day.
+
+  The cost, paid knowingly: four build specs forbid an eyebrow and a numeral
+  above a headline reads as one. `04-SECTION-4` §101 and §351, `05-SECTION-5`
+  §74 and §253, `06-SECTION-6` §157, `07-SECTION-7` §85 and §269.
+
+  **The hairline above the numeral is the section boundary**, and drawing it
+  from the numeral is what keeps it to exactly one per section. Wave 1 gave
+  desktop a separate rule hung off each section's first `PageBox`, because
+  desktop had no numeral to hang it from; that rule is deleted now rather than
+  left to fire alongside this one and draw two lines per section.
 */
-@media (max-width: 1179px) {
-  [data-section-numbers="on"] .section-number,
-  [data-section-numbers="total"] .section-number {
-    display: block;
-    margin-bottom: 0.75rem;
-  }
+[data-section-numbers="on"] .section-number,
+[data-section-numbers="total"] .section-number {
+  display: block;
+  margin-bottom: 0.75rem;
 }
 
 /* `01` alone, versus `01 / 05` — the second tells a phone reader how much page
