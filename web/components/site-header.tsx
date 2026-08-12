@@ -121,14 +121,38 @@ function useScrolledPast(px: number, enabled: boolean) {
  */
 export type HeaderTagline = "off" | "persist" | "scroll";
 
+/**
+ * Where the tagline sits in the bar.
+ *
+ * `left` groups it with the lockup, which is what a descriptor is: it belongs
+ * to the wordmark. `center` puts it on the page's own centre axis, independent
+ * of both the brand and the CTA, which reads as a statement about the page
+ * rather than a label on the brand.
+ *
+ * Centred is absolutely positioned rather than a third flex child, because
+ * `justify-between` across three items centres it between the lockup and the
+ * button, not in the bar. Those differ by about 30px here, and the whole point
+ * of the option is that it lands on the page's axis.
+ */
+export type HeaderTaglineAlign = "left" | "center";
+
+/** Ratified, `01-HERO`. One copy, so the two placements cannot drift. */
+const TAGLINE =
+  "The smart recruiting tracker for investment banking and high-finance networking";
+
+const TAGLINE_TYPE =
+  "text-eyebrow leading-none font-medium tracking-[0.1em] text-navy-500 uppercase whitespace-nowrap";
+
 export function SiteHeaderBar({
   mobileCta = true,
   mode = "full",
   tagline = "off",
+  taglineAlign = "left",
 }: {
   mobileCta?: boolean;
   mode?: HeaderMode;
   tagline?: HeaderTagline;
+  taglineAlign?: HeaderTaglineAlign;
 }) {
   const scrolled = useScrolledPast(240, mode === "shrink");
   /*
@@ -156,7 +180,7 @@ export function SiteHeaderBar({
     >
       <div
         className={cn(
-          "site-header__bar mx-auto flex max-w-[1400px] items-center justify-between px-5 desk:px-6",
+          "site-header__bar relative mx-auto flex max-w-[1400px] items-center justify-between px-5 desk:px-6",
           "h-[60px]",
         )}
         /*
@@ -199,19 +223,29 @@ export function SiteHeaderBar({
           >
             <BlotterLockup size={22} />
           </a>
-          {tagline !== "off" && (
+          {tagline !== "off" && taglineAlign === "left" && (
             <>
               <span
                 aria-hidden="true"
                 className="site-header__tagline hidden h-3.5 w-px bg-navy-900/15 desk:block"
               />
-              <p className="site-header__tagline hidden text-eyebrow leading-none font-medium tracking-[0.1em] text-navy-500 uppercase desk:block">
-                The smart recruiting tracker for investment banking and
-                high-finance networking
+              <p className={cn(TAGLINE_TYPE, "site-header__tagline hidden desk:block")}>
+                {TAGLINE}
               </p>
             </>
           )}
         </div>
+
+        {tagline !== "off" && taglineAlign === "center" && (
+          <p
+            className={cn(
+              TAGLINE_TYPE,
+              "site-header__tagline pointer-events-none absolute left-1/2 hidden -translate-x-1/2 desk:block",
+            )}
+          >
+            {TAGLINE}
+          </p>
+        )}
         {/* Desktop always carries it: four placements are ratified there and a
             desktop reader can see the whole page at once. */}
         <div className={mobileCta ? undefined : "hidden desk:block"}>

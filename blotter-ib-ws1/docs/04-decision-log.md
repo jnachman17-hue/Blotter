@@ -2446,3 +2446,40 @@ Worth recording that his instinct about A was two separate objections. *"Half
 the hero visual film is out of view"* is a height problem, and the header
 eyebrow removes it. *"Too AI-SaaS"* is a taste problem, and H exists so that is
 the only thing left to judge.
+
+### Layout G is chosen, August 11, 2026
+
+Jon: *"I'm going to go with G and im leaning towards persists as opposed to
+fade."* The hero becomes headline left, subhead right, CTA on its own row, with
+the tagline in the header bar.
+
+**Not yet applied to the live page.** The tagline's placement is still open, so
+`app/page.tsx` keeps the current hero until it is settled. Applying G and then
+moving the tagline afterwards would change two things at once, and the whole
+value of this route has been changing one.
+
+### The review route becomes the real page
+
+Jon: *"show this more page content below so I can scroll more to get the feel."*
+
+Right, and the reason is worth recording: **a persistent tagline is not a
+top-of-page question.** What it actually raises is what the bar feels like at
+section 04, with three sections of reading behind you. A hero stub cannot answer
+that, and neither can a screenshot. So `/review/hero` now mounts the whole page
+— real header, real sections, real footer — with the controls floating at the
+bottom so the page reads from its first pixel as it will ship.
+
+Four combinations on two axes: **left or centred**, **persists or fades**.
+
+Centred is absolutely positioned rather than a third flex child. Under
+`justify-between` a third item centres between the lockup and the button, not in
+the bar, and those differ by about 30px here — which defeats the point of the
+option, since what it is for is landing on the page's own axis.
+
+Both behaviours verified by forcing `data-elevated`: `persist` holds at 1.0,
+`scroll` goes 1.0 to 0. The fade rides the header's existing 8px flag rather
+than adding a second scroll listener.
+
+Variants A through H all survive in `components/hero/hero-top.tsx`. Only the
+harness narrowed; `Hero` still takes `top`, so any of them is one string away
+from being back in front of him.

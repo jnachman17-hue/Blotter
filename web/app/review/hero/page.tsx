@@ -3,32 +3,27 @@ import { Suspense } from "react";
 import { Stage } from "./stage";
 
 /**
- * Internal review surface for the hero's top block, above the film.
+ * The header tagline, on the whole page.
  *
- * Jon, August 11, 2026: *"we're gonna actually need to research sites that we
- * like, lean on skills, and try and redesign this top part quite a bit
- * better."*
+ * Layout G is chosen (Jon, August 11, 2026). What is left is the tagline: left
+ * beside the lockup or centred on the page axis, and persisting or fading once
+ * you scroll.
  *
- * Six options: what is live, plus five compositions. Every variant is desktop
- * only — the phone hero was settled in stage 10 and is not in question.
+ * **This route renders the real page**, not a hero stub, because Jon asked to
+ * scroll it — and because a persistent tagline is not a top-of-page question.
+ * The thing worth judging is what the bar feels like at section 04.
  *
- * Two things are held constant across all five so the comparison has one
- * variable: the supporting paragraph drops to the phone's ratified 13-word
- * line, and the authority line moves below the film. Both are argued in
- * `components/hero/hero-top.tsx`.
- *
- * Review at 1440 and again at a laptop height. Keys 1 to 6 and the arrows
- * switch; `?v=` holds the selection across a reload.
+ * Controls float at the bottom, so the page reads from its first pixel exactly
+ * as it will ship. `?v=` holds the combination across a reload.
  */
 export const metadata = { robots: { index: false, follow: false } };
 
 export default function HeroReviewPage() {
   return (
-    <main>
-      {/* `Stage` reads `?v=` through `useSearchParams`, which needs a boundary. */}
-      <Suspense>
-        <Stage />
-      </Suspense>
-    </main>
+    /* No wrapper element: `Stage` now renders the real page, which owns its
+       own `<main id="top">`. Wrapping it in another would nest two. */
+    <Suspense>
+      <Stage />
+    </Suspense>
   );
 }
