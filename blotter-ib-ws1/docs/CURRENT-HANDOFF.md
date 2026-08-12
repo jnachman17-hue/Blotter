@@ -5,7 +5,7 @@ Status: **Wave 1 of web reconciliation is built and pushed to branch `web`,
 awaiting Jon's review.** Stage 10 shipped; `main` serves the mobile build.
 Sessions 1 through 8 done. `10-web-reconciliation.md` is the brief.
 
-The site is live, public, carrying real traffic, and has **one real lead**.
+The site is live, public, carrying real traffic, and has **two real leads**.
 
 **Wave 1's review URL:**
 
@@ -40,8 +40,22 @@ the first reply of the session.
 
 **Never read `leads`; read `real_leads`.** Never report a PostHog figure without
 the three filters in `07-infrastructure-runbook.md`. Unfiltered, the funnel
-claims several people confirmed a beta spot. **The true number is zero, and
-`real_leads` is 1.**
+claims several people confirmed a beta spot. **The true number is zero.**
+
+**`real_leads` is 2 as of August 11, 2026**, up from 1. The `leads` table holds
+8 rows, **6 of them internal** — which is the whole reason the view exists.
+
+Both real leads are worth knowing rather than just counting:
+
+| | |
+|---|---|
+| Furthest stage | `email`, both. Neither reached checkout |
+| CTA clicked | **`hero`, both** |
+
+Two out of two came from the hero button rather than the header, the actions
+CTA or the final one. At n=2 that is not proof, but it is the only placement
+signal this test has produced and it should not be thrown away by a change to
+the hero CTA made on other grounds.
 
 ### Due before the domain is promoted anywhere
 

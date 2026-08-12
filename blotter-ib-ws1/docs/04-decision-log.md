@@ -2528,3 +2528,57 @@ note on them predicted.
 Variants A through H all survive in `components/hero/hero-top.tsx` and
 `/review/hero` still compares the four tagline combinations against what
 shipped. Nothing is deleted; `Hero` still takes `top`.
+
+### Four rulings and a second lead, August 11, 2026
+
+**A second real lead arrived.** `real_leads` is 2, not the 1 every handoff has
+carried. The `leads` table holds 8 rows and **6 are internal**, which is the
+view earning its keep.
+
+**Both real leads clicked `cta_location = hero`**, and both stopped at
+`furthest_stage = email`. Two out of two on the hero button is the only CTA
+placement signal this test has produced.
+
+**The CTA label stays until about 150 visitors.** 3 conversions out of 27 has a
+95% confidence interval of roughly **2% to 29%** — a range that contains both
+"this button is excellent" and "this button is broken". Changing a ratified
+string on that is acting on noise, and it destroys the baseline needed to tell
+whether the change helped.
+
+**A tension worth recording rather than resolving.** There is a real argument
+against *"Try Blotter Now"* that owes nothing to the data: it promises a product
+that does not exist, and a visitor who clicks expecting to use something gets a
+form, a film and a price. That is a better candidate for **0 checkout starts**
+than for the 27 to 3. But the labels that would honestly describe the funnel —
+waitlist, early access, request access — are **forbidden by `07-SECTION-7` §13
+and the standing no-availability-signal rule.** The honest label for this funnel
+is prohibited by the page's own copy rules. Jon's to revisit, not mine.
+
+**The funnel film stays.** Both real leads completed the film step and both
+submitted email after it; the single drop happened *before* it. Deleting it also
+breaks `product_experience_completed`, one of the nine canonical events, which
+would throw away comparability with the little data there is. The redundancy
+with the hero film is real and worsening, but it is a quality problem rather
+than a measured one, and it is reversible.
+
+**The Outstanding view stays, and I could not do better.** Three columns is what
+fits 21 actions into thirteen rows. Every alternative is taller, smaller, or
+breaks something ratified — hiding rows breaks the all-21 rule, and dropping the
+spreadsheet frame breaks the authenticity the section rests on. It is long
+because 21 items is long.
+
+**The hero line loses its tail, on Jon's delegation.** It read *"…current, from
+Gmail and Calendar."* The fault was grammatical — "keeps X current, from Y"
+leaves *from* modifying nothing — and every repair is clumsier. **Cut rather
+than repaired, because the film directly beneath it carries the Gmail mark, the
+Calendar mark and the muted Gmail mark.** The sources are shown forty pixels
+below where the tail said them, which is the fault this rework exists to remove.
+Both surfaces, since the argument is identical on the phone and the two may not
+make different claims.
+
+**It also fixed a duplicate I had introduced.** The string was declared twice,
+`SUPPORTING_SHORT` in `hero.tsx` and `SUBHEAD` in `hero-top.tsx`, and neither
+could import the other because the dependency runs one way. It now lives in
+`lib/hero-copy.ts`. That is the third hand-kept duplicate in this codebase after
+`web/public/film/` and `sheet-phone.tsx`'s column widths, and the first one I
+created myself.

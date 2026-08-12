@@ -23,6 +23,7 @@
 import { CtaButton } from "@/components/cta-button";
 import { HeroFilm, HeroFilmDesk } from "@/components/hero/hero-film";
 import { AuthorityLine, HeroTop, type HeroTopVariant } from "@/components/hero/hero-top";
+import { HERO_SUPPORTING_SHORT } from "@/lib/hero-copy";
 import { PageBox } from "@/components/layout/page-box";
 import { cn } from "@/lib/cn";
 
@@ -60,22 +61,6 @@ export type HeroSupporting = "full" | "short" | "none";
  * all fit above the fold on a 390x844 phone, so the hero CTA lands just under
  * it. That is what the CTA-arrangement picker settles.
  */
-
-/**
- * UNRATIFIED COPY. Written for the stage-10 comparison on August 10, 2026 and
- * shown only below the desktop breakpoint.
- *
- * It is a condensation of the ratified sentence, not a new claim: same three
- * facts — the sheet is yours already, the sources are Gmail and Calendar, the
- * tracker stays current — with the consequence clause dropped because the film
- * directly above has just shown it happening three times. Written to the page's
- * standing rules: no dash, no availability signal, nothing the product cannot
- * support.
- *
- * Bring it to Jon before public traffic if a variant using it is chosen.
- */
-const SUPPORTING_SHORT =
-  "Blotter keeps the Google Sheet you already use current, from Gmail and Calendar.";
 
 export function Hero({
   supporting = "short",
@@ -231,7 +216,7 @@ export function Hero({
                   not miss follow-ups, coffee chats, or next steps.
                 </span>
                 {supporting === "short" && (
-                  <span className="desk:hidden">{SUPPORTING_SHORT}</span>
+                  <span className="desk:hidden">{HERO_SUPPORTING_SHORT}</span>
                 )}
               </p>
 

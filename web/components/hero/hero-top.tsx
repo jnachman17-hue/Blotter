@@ -54,27 +54,13 @@
 
 import { CtaButton } from "@/components/cta-button";
 import { cn } from "@/lib/cn";
+import { HERO_SUPPORTING_SHORT } from "@/lib/hero-copy";
 
 export type HeroTopVariant = "current" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h";
 
 /** Ratified, `01-HERO`. */
 const EYEBROW =
   "The smart recruiting tracker for investment banking and high-finance networking";
-
-/**
- * The phone's short supporting line, ratified by Jon on August 11, 2026, reused
- * here rather than writing new copy.
- *
- * 13 words. The desktop paragraph it replaces is 30, and both the skill and the
- * category research cap hero subtext at about 20. It is also the line Jon
- * already said he wanted on desktop: *"We might even make desktop version have
- * less text too."*
- *
- * His open note stands and is not resolved here: *"maybe there is a slightly
- * better way to say it than '… , from Gmail and Calendar'."*
- */
-const SUBHEAD =
-  "Blotter keeps the Google Sheet you already use current, from Gmail and Calendar.";
 
 function Eyebrow({ center = false }: { center?: boolean }) {
   return (
@@ -164,7 +150,7 @@ function VariantA() {
         <Headline center />
       </div>
       <p className="mx-auto mt-5 max-w-[46ch] text-lede leading-[1.55] text-ink-muted">
-        {SUBHEAD}
+        {HERO_SUPPORTING_SHORT}
       </p>
       <div className="mt-7 flex justify-center">
         <CtaButton location="hero" />
@@ -190,7 +176,7 @@ function VariantB() {
         <Headline />
         <div>
           <p className="max-w-[44ch] text-lede leading-[1.55] text-ink-muted">
-            {SUBHEAD}
+            {HERO_SUPPORTING_SHORT}
           </p>
           <div className="mt-5">
             <CtaButton location="hero" />
@@ -217,7 +203,7 @@ function VariantC() {
       <div className="mt-5 grid items-start gap-x-16 gap-y-4 desk:grid-cols-[minmax(0,1fr)_420px]">
         <Headline />
         <p className="max-w-[44ch] text-lede leading-[1.55] text-ink-muted desk:pt-2">
-          {SUBHEAD}
+          {HERO_SUPPORTING_SHORT}
         </p>
       </div>
       <div className="mt-7">
@@ -277,7 +263,7 @@ function VariantE() {
         <Headline />
       </div>
       <p className="mt-5 max-w-[42ch] text-lede leading-[1.55] text-ink-muted">
-        {SUBHEAD}
+        {HERO_SUPPORTING_SHORT}
       </p>
       <div className="mt-7">
         <CtaButton location="hero" />
@@ -330,7 +316,7 @@ function VariantF() {
     <div className="pt-2">
       <Headline />
       <p className="mt-5 max-w-[440px] text-lede leading-[1.55] text-ink-muted">
-        {SUBHEAD}
+        {HERO_SUPPORTING_SHORT}
       </p>
       <div className="mt-7">
         <CtaButton location="hero" />
@@ -360,7 +346,7 @@ function VariantG() {
       <div className="grid items-start gap-x-16 gap-y-4 desk:grid-cols-[minmax(0,1fr)_420px]">
         <Headline />
         <p className="max-w-[44ch] text-lede leading-[1.55] text-ink-muted desk:pt-2">
-          {SUBHEAD}
+          {HERO_SUPPORTING_SHORT}
         </p>
       </div>
       <div className="mt-7">
@@ -388,7 +374,7 @@ function VariantH() {
     <div className="pt-2 text-center">
       <Headline center />
       <p className="mx-auto mt-5 max-w-[46ch] text-lede leading-[1.55] text-ink-muted">
-        {SUBHEAD}
+        {HERO_SUPPORTING_SHORT}
       </p>
       <div className="mt-7 flex justify-center">
         <CtaButton location="hero" />
