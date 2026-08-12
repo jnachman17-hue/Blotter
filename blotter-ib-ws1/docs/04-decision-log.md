@@ -2627,3 +2627,153 @@ status-change treatment"* was to be revisited *before any two films appear on
 the same surface.* The hero film shipped to desktop the same day Film A was
 still in the funnel. The condition was met by the work in progress, which is
 the one case a revisit trigger cannot catch by itself.
+
+---
+
+## Session 9 — August 12, 2026
+
+### `+N more` is fine. The Outstanding view stops being three questions.
+
+**Jon, August 12, 2026:** *"+N more is fine. We literally have this on
+mobile."*
+
+This closes `06`'s row on the Outstanding view being drawn three different
+ways, and it closes it by rejecting the premise rather than by picking one of
+the three.
+
+**The premise that failed.** `09` §8 row 8b and `06`'s row both held that Film
+A was "the surface out of step", because it is the only one that tells a viewer
+there are actions they cannot see — which `04-SECTION-4` §7 exists to deny. The
+supporting distinction, drawn on August 5 and repeated since, was that Jon had
+rejected *a label announcing that content was not visible* while permitting *a
+disclosure that delivers it*. On that reading the phone's `Show N more` is a
+control and the film's `+N more` is a claim, and they are different objects.
+
+**Jon's answer is that a viewer does not experience that difference.** Both
+surfaces tell a reader there is more than is shown. The phone lets them open it
+because a phone can; a film cannot be clicked. That is a property of the medium,
+not a divergence in the argument, and the rule in `10` §2 governs the argument.
+
+Worth recording that the distinction was not wrong, only irrelevant — it
+correctly describes two different mechanisms and was then used to grade one of
+them as a fault. **A difference that is real and that nobody experiences is not
+a defect**, and three documents carried it as one for two sessions.
+
+**Consequence:** no film is re-cut on these grounds, and `+N more` survives as a
+legitimate treatment wherever space forces it.
+
+### The three films already share their status-change fill. The row overstated it.
+
+Checked rather than inherited, because `06`'s row proposed a fix — *"align the
+fill value, which differs by two steps of the yellow family between B and C —
+one token per film"* — and that fix was quoted into session 9's opening
+without anyone confirming it.
+
+**All four films resolve a changed cell to the identical token.** Verified by
+reading the built assets in `social/`:
+
+```
+.hrow .kept{background:var(--blotter-100)}    A, B, C and the web hero, identical
+```
+
+`--blotter-100` is `#f7f2e8` in every one of the four. **The resting state of a
+maintained cell is already one value across the whole system**, which is the
+part a viewer is left looking at.
+
+What differs is the **transient** mark, and it differs by mechanism rather than
+by an unaligned token:
+
+| Film | The moving mark | Token |
+|---|---|---|
+| A | the maintained zone washes in, `color-mix` from `--manual-row` toward the resting fill | resolves to `--blotter-100` |
+| B | a `.flash` behind each derived cell | `--blotter-200` |
+| C, web hero | a sweep bar with a brighter leading edge, documented in the source as a 17% tint | `--blotter-500`, edge `--blotter-700` |
+
+So the only genuinely divergent token in the set is Film B's flash, and **Film B
+does not appear anywhere on the site.** Of the two films a desktop visitor
+actually sees, the colours already agree and only the motion differs.
+
+**The row's proposed fix would therefore have changed nothing a visitor sees**,
+at the cost of touching two shipped assets. `06`'s row is corrected rather than
+deleted, because the reasoning it recorded is what made the error checkable.
+
+The general failure mode, which is the third instance of it in this project: an
+entry proposed a remedy in the same breath as the diagnosis, and the remedy was
+then carried forward as established while the diagnosis was still a claim.
+
+### Film A stays in the funnel, August 12, 2026
+
+**Jon: *"I agree I think leave film A in the funnel for now."*** Confirming the
+working position rather than overturning it, and the evidence has strengthened
+since it was written: `real_leads` is now 4 and **all four completed the film
+step and submitted email after it.** No lead has ever dropped at the film.
+
+Changing it would cost a ratified funnel step, the `product_experience_completed`
+comparability, and asset production, against a redundancy that is a taste
+concern with nothing measured behind it. The reopening trigger stays what `06`
+already says: watch-time data showing drop-off at that step specifically.
+
+### `real_leads` is 4, and PostHog agrees with it
+
+Read August 12, 2026, per the runbook. Every handoff through session 8 carries
+2; three arrived since, all within about eight hours.
+
+| created_at (UTC) | furthest_stage | cta_location | track | window |
+|---|---|---|---|---|
+| Aug 7 21:54 | email | hero | Management Consulting | Other |
+| Aug 12 05:20 | email | hero | Investment Banking | Summer 2028 |
+| Aug 12 12:32 | email | header | Investment Banking | Other |
+| Aug 12 13:33 | email | hero | Investment Banking | Full-time |
+
+**Two things worth recording.**
+
+**The two systems agree.** Jon's PostHog read was 5 `email_submitted` less one
+for himself; `real_leads` is 4. That is worth stating because it rules something
+out: the `visitor_id = "anonymous"` collision the audit found (`13` §1 item 5)
+**does not appear to have destroyed any lead**, which it would have shown up as
+a shortfall on exactly this comparison.
+
+**The recruiting-window spread does not support "most people are Summer 2028"**
+at the deep end of the funnel. One of four is Summer 2028; one is **Full-time**,
+which is in season right now. It may well hold for the seven who completed a
+profile, which is PostHog data and not visible here. **It does not hold for the
+four who went furthest.** n=4, so this settles nothing — but the claim should
+not be carried as established.
+
+`cta_location` is now 3 hero, 1 header. The hero button remains the only CTA
+placement signal this test has produced.
+
+### The Section 6 claim gates are closed, August 12, 2026
+
+**Jon: *"We are not serving a real product right now and you can't pay for it.
+I think everything is fine as is and we explain data to how we technically
+expect it."***
+
+Five gates closed on one ruling: unmatched-message filtering, full-body
+non-retention, deletion and revocation, retention and subprocessors, and
+unrelated Drive access. Each carried a trigger reading *before public release*
+or *before public traffic*, and both conditions passed without the gates being
+answered.
+
+**The reasoning, which is the part that has to survive.** These gates were
+written on the assumption that Section 6 describes a live system. It does not.
+Nothing connects to Google, no OAuth exists, no data is processed, and no
+payment can be taken — so the section describes **the design of a product being
+tested for demand**, at the level of technical expectation, and no reader can be
+harmed by a retention period that governs nothing yet.
+
+**What closing them costs, stated so this is a knowing position rather than an
+inherited one.** The site is indexed and about to be promoted, and Section 6 is
+in the present tense — itself a do-not-reopen decision (`CURRENT-HANDOFF` §7b)
+*because the demand test needs it*. So a reader can encounter present-tense
+security claims about a system that does not exist. Jon has weighed that against
+the fact that nobody can transact, and ruled. **These gates do not reopen on
+traffic volume.** They reopen when the product becomes real.
+
+**New trigger for all five, replacing "before public traffic":** on selection of
+a connection provider, or on any implementation of the Google connection,
+whichever comes first. At that point every sentence in Section 6 becomes a
+description of a live system and each gate has to be answered on its merits.
+
+The CASA sentence and the consent-screen row keep their own triggers, which
+already read *on provider selection*, and are unaffected.
