@@ -2943,3 +2943,66 @@ five rows, traced to the `visitor_id = "anonymous"` collision the audit fixed
 hours later. Recorded in `07` as a standing cross-check.
 
 Nothing is blocking. The next session is promotion.
+
+### The platform page is scrapped, August 12, 2026
+
+**Jon's ruling.** *"We're scrapping the platform page… We are not testing two
+different products in synchronization with one another as part of validation.
+So we are no longer comparing platform versus spreadsheet version. We're just
+doing spreadsheet version, which is what we built."*
+
+**Round one becomes a single-surface demand test.** Workstream 7 is cancelled;
+Workstream 8 becomes the launch and interpretation of one page.
+
+#### How this surfaced, which is the part worth keeping
+
+It was not found by reviewing strategy. It was found because a session was asked
+whether to hand promotion to a new chat, checked whether the governing document
+was adequate for that chat, and **read `02-strategy-and-test.md` for the first
+time in nine sessions.** It said, in three Confirmed places, that the
+spreadsheet page must not launch publicly before a matched platform page
+existed.
+
+The document was not wrong when it was written. It had simply been overtaken
+and never revisited, while nine sessions of work were planned against a
+`CURRENT-HANDOFF` that never mentioned it. **A governing document nobody reads
+does not govern; it ambushes.**
+
+The rule this earns: **when a session's work is about to change category** —
+build to promotion, design to strategy — **re-read the document that governs the
+new category before planning, not after.**
+
+#### What was reconciled
+
+`02` carries the amendment at the top and in seven sections: the round-one
+question, the test mechanism, the workstream sequence, four constraint rows, the
+traffic gates and the open strategic item. `00-START-HERE` §14's traffic hold is
+withdrawn. `01`'s platform architecture section is marked scrapped. `WS3-SPEC`
+carries the amendment and its two comparability clauses are struck.
+
+`06` closes four rows: the unmatched-launch row opened this morning, and the
+three WS7 questions that can now never be asked.
+
+#### What was deliberately not relaxed
+
+**The funnel, the event set, the properties, the metric hierarchy, the read
+rules and the thresholds all stand unchanged.** They were written to make two
+pages comparable. They are also the only thing making one page's numbers mean
+anything — against themselves over time, and against the thresholds
+precommitted in `WS3-SPEC.md` before any data existed.
+
+There is a real temptation, once a comparison disappears, to treat the
+measurement design as similarly provisional. It is the opposite: with one arm
+there is nothing to check the instrument against, so the instrument matters
+more, not less.
+
+#### Two things this leaves genuinely open
+
+1. **Traffic composition now decides the answer.** With two arms, sending the
+   wrong audience damaged both equally and the comparison survived it. With one,
+   the audience *is* the result. August traffic is largely pre-season, which is
+   what the Fall 2026 disclosure and the waitlist branch were built to handle.
+2. **No kill condition has ever been written**, and it is now the only gate in
+   `02` nobody has discharged. **A single-arm test with no precommitted failure
+   threshold is one that can always be argued to have nearly worked.** Flagged,
+   not decided.

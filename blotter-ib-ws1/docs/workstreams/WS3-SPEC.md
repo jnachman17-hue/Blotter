@@ -12,7 +12,14 @@ This is the permanent cumulative record of Workstream 3. It defines the matched 
 
 ## Scope and boundary
 
-Round one compares one macro variable:
+**AMENDED August 12, 2026: the platform page is scrapped and round one has one
+arm.** The comparison below is withdrawn. **Everything else in this
+specification stands** — the funnel, the event set, the properties, the metric
+hierarchy, the read rules and the thresholds. They were written to make two
+pages comparable and they are also what makes one page's numbers mean anything.
+Do not relax them because the second arm is gone.
+
+*Superseded.* Round one compares one macro variable:
 
 - spreadsheet-native surface;
 - standalone platform surface.
@@ -84,7 +91,7 @@ Confirmed constraints:
 - no unnecessary tutorial burden;
 - the surface must be shown clearly enough to support an informed continuation decision;
 - Gmail, Google Sheets, and Calendar must be understandable as the engine maintaining live recruiting state;
-- spreadsheet and platform experiences must remain comparable in duration and interaction burden.
+- ~~spreadsheet and platform experiences must remain comparable in duration and interaction burden.~~ **MOOT August 12, 2026** — no platform experience exists.
 
 The earlier concept of a teaser before email and a second experience after email is rejected.
 
@@ -380,7 +387,7 @@ Workstream 4 must preserve:
 - the canonical funnel sequence;
 - one product experience before email capture;
 - the 15 to 20 second maximum experience burden;
-- comparable spreadsheet and platform interaction burden;
+- ~~comparable spreadsheet and platform interaction burden;~~ **MOOT August 12, 2026**
 - transparent email capture without simulated OAuth;
 - Gmail, Sheets, and Calendar as the visible product engine;
 - price only inside the funnel;

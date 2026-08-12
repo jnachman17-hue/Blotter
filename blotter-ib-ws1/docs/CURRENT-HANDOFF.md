@@ -139,22 +139,19 @@ running top to bottom, matching Film C and the web hero.
 
 **This is the session's work and none of it is drafted.**
 
-### Read this before anything else in this section
+### The matched-launch constraint is gone
 
-**`02-strategy-and-test.md` forbids promoting this page alone**, in three
-Confirmed places: line 40, line 93 and line 101's traffic gate. Round one is a
-**matched test of two surfaces** — spreadsheet-native against standalone
-platform — and **the platform page is Workstream 7 and does not exist.**
+**Jon scrapped the platform page on August 12, 2026.** Round one is a
+single-surface demand test. `02-strategy-and-test.md` used to forbid promoting
+this page alone; it is amended at the top and in seven sections, and `00`, `01`
+and `WS3-SPEC` carry the same change. Workstream 7 is cancelled.
 
-The stated reason for simultaneity is the exact confounder Jon identified on
-August 12: *"different launch weeks would confound results with
-recruiting-cycle timing."*
+**Promotion is unblocked. There is no gate left**, except a project-level kill
+condition that was never written — see §8.
 
-**This is not an instruction to stop.** The gate was already crossed — the site
-is live, indexed and carrying traffic, and Jon overrode the domain hold
-knowingly. But promotion is a different act from being live: it spends the
-sample deliberately. `06` carries the row and the three legitimate ways out.
-**Get the ruling before anything is published**, not before drafting.
+**What did not change:** the funnel, the event set, the properties and the read
+rules in `WS3-SPEC.md`. They stand exactly as they are. With only one arm there
+is nothing to check the instrument against, so it matters more, not less.
 
 What exists to post: the live page, three films (`A` 21.5s funnel, `B` 37.8s
 unused, `C` 11s mobile hero), the web hero film, the launch film, and a share

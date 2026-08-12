@@ -35,7 +35,13 @@ The prior line, `You keep your record. Blotter keeps the state alive.`, is rejec
 
 It tracks, computes, and prompts. Nothing else.
 
-## Product architecture, platform version
+## Product architecture, platform version — SCRAPPED August 12, 2026
+
+**The platform version is not being built or tested.** Jon's ruling: round one
+tests the spreadsheet-native surface alone. Everything in this section is a
+record of a proposition that was never resolved and is no longer being pursued.
+It is kept for provenance, not as a plan. See the amendment atop
+`02-strategy-and-test.md`.
 
 Working concept only. Not current build scope.
 

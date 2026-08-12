@@ -16,7 +16,7 @@ The immediate objective is to test whether meaningful demand exists before build
 4. Workstream 4: spreadsheet landing-page content and experience design. Complete.
 5. Workstream 5: build specifications, visual references, Lovable implementation, instrumentation, and private verification. Active.
 6. Workstream 6: acquisition preparation and research.
-7. Workstream 7: platform-page proposition, design, and matched build.
+7. Workstream 7: **CANCELLED August 12, 2026.** The platform page is scrapped; see the amendment atop `02-strategy-and-test.md`.
 8. Workstream 8: final analytics verification and simultaneous launch.
 9. Use market evidence to continue, revise, retest, or stop investment.
 10. Do not build meaningful backend functionality until market evidence guides it.
@@ -156,7 +156,7 @@ In human terms:
 11. select and connect analytics;
 12. complete responsive, accessibility, privacy, claim, lead, and event QA;
 13. keep the project private and unpublished;
-14. do not launch traffic until the platform page and final matched test are ready.
+14. ~~do not launch traffic until the platform page and final matched test are ready.~~ **WITHDRAWN August 12, 2026** — the platform page is scrapped and the site has been live since August 7 and indexed since August 11. Promotion is unblocked.
 
 ## Exact next action
 

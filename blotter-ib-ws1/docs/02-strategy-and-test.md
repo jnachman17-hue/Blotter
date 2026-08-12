@@ -1,6 +1,41 @@
 # Strategy and test design
 
-Date last updated: July 30, 2026
+Date last updated: **August 12, 2026**
+
+> ## AMENDMENT, August 12, 2026: the platform page is scrapped
+>
+> **Jon's ruling.** *"We're scrapping the platform page… We are not testing two
+> different products in synchronization with one another as part of validation.
+> So we are no longer comparing platform versus spreadsheet version. We're just
+> doing spreadsheet version, which is what we built."*
+>
+> **Round one is now a single-surface demand test.** The macro variable it was
+> designed to test — spreadsheet-native against standalone platform — is
+> withdrawn, not deferred. Workstream 7 is cancelled and Workstream 8 becomes
+> the launch of one page.
+>
+> **What this releases.** Every constraint below that exists to protect
+> comparability between two pages is moot: matched simultaneous launch, the
+> traffic gate requiring both pages ready, comparable interaction burden across
+> surfaces, and the prohibition on promoting the spreadsheet page alone. **The
+> page may be promoted now.**
+>
+> **What this does not release, and it matters more than what it does.** The
+> canonical funnel, the event set and its definitions, the single price at a
+> single stage, and the read rules **all still stand.** They were written to
+> make two pages comparable, but they are also what makes *this* page's numbers
+> mean anything at all — comparable against itself over time, and against the
+> thresholds precommitted in `WS3-SPEC.md`. Losing the second arm is not licence
+> to start changing the instrument.
+>
+> **What is lost, stated honestly so nobody later thinks it was answered.** The
+> surface question is now untested and unanswered. Round one produces a demand
+> number for a spreadsheet-native product and says nothing about whether a
+> standalone platform would have done better. If that question ever matters, it
+> is a new test, not a reinterpretation of this one.
+>
+> Sections below are amended in place. Superseded text is struck through in
+> prose rather than deleted, so the original design stays legible.
 
 This file governs validation strategy and test structure. Detailed workstream outputs live in `docs/workstreams/`. Page-copy and page-design questions remain outside this file unless they materially affect test validity.
 
@@ -17,27 +52,34 @@ Confirmed consequences:
 - Landing-page content and experience design precede Lovable implementation.
 - Features shown in the test are hypotheses, not commitments to build.
 
-## Round-one question
+## Round-one question — AMENDED August 12, 2026
 
-Round one tests one macro variable:
+**Round one asks whether anyone wants a spreadsheet-native recruiting tracker
+enough to commit money for it.** One surface, one price, one funnel.
 
-- spreadsheet-native product surface;
-- standalone platform product surface.
+*Superseded:* round one tested one macro variable, spreadsheet-native product
+surface against standalone platform product surface. **That comparison is
+withdrawn.** It is not primarily a feature, price, plan, or headline test —
+that part still holds.
 
-It is not primarily a feature, price, plan, or headline test.
+## Test mechanism — AMENDED August 12, 2026
 
-## Matched test mechanism
+**One landing page**, `blotterib.com`, using:
 
-Two landing pages use:
+- the canonical funnel;
+- the canonical event set, now ten events after `waitlist_joined` was added on
+  August 12, 2026;
+- the ratified event definitions and properties;
+- one price at one stage.
 
-- the same canonical funnel;
-- the same event set;
-- the same event definitions and properties;
-- the same price at the same stage;
-- comparable interaction burden;
-- roughly simultaneous launch timing.
+*Superseded:* two landing pages held to matched funnel, event set, definitions,
+price, interaction burden and **roughly simultaneous launch timing**, with the
+spreadsheet page forbidden from launching before the platform page was ready.
+**All six matching requirements are moot** — there is no second page to match.
 
-The spreadsheet page is designed and built first, but it does not launch publicly before the matched platform page is ready.
+**The funnel and event definitions are not moot.** They are the instrument, and
+the thresholds in `WS3-SPEC.md` are written against them. Changing an event's
+meaning now silently invalidates every number collected since August 7, 2026.
 
 Detailed confirmed funnel and analytics architecture are in:
 
@@ -51,8 +93,8 @@ Detailed confirmed funnel and analytics architecture are in:
 4. **Workstream 4: Spreadsheet landing-page content and experience design.** Resolve page narrative, section architecture, near-final copy, proof devices, product visuals, integration explanation, privacy treatment, FAQ, CTA placement, demo data, and visual requirements.
 5. **Workstream 5: Spreadsheet-page Lovable implementation and private deployment.** Build the defined page, implement interactions and analytics, test responsiveness, privately deploy, and verify events by hand.
 6. **Workstream 6: Acquisition preparation and research.** Prepare paid and organic channels, audience targeting, account seeding, traffic plan, and testing identity.
-7. **Workstream 7: Platform-page proposition, design, and matched build.** Define the platform argument, preserve the matched structure and event set, build the platform page, and privately verify it.
-8. **Workstream 8: Final verification and simultaneous launch.** Confirm comparability, verify analytics again, launch both versions at roughly the same time, and interpret results under the prewritten read rules.
+7. **Workstream 7: CANCELLED August 12, 2026.** Was: platform-page proposition, design and matched build. The platform page is scrapped and the surface comparison is withdrawn. **Nothing in WS7 transfers.**
+8. **Workstream 8: Acquisition and interpretation.** Was: final verification and simultaneous launch of both versions. Now: promote the single page, verify analytics against live traffic, and interpret results under the prewritten read rules in `WS3-SPEC.md`. **The read rules and thresholds are unchanged** — losing the second arm does not license rewriting them after the fact.
 
 ## Workstream documentation requirement
 
@@ -83,27 +125,34 @@ Lovable may refine spacing, proportions, typography, responsiveness, polish, and
 
 | Constraint | Status | Reason |
 |---|---|---|
-| Both pages fire the identical canonical event set. | Confirmed | Different measurement would invalidate comparison. |
-| Both pages use the same canonical funnel. | Confirmed | Alternative conversion paths would confound the surface test. |
+| ~~Both pages fire the identical canonical event set.~~ **MOOT August 12, 2026** | Withdrawn with the platform page | There is no second page. **The event set itself still stands** — it is what makes this page's numbers comparable against themselves over time. |
+| ~~Both pages use the same canonical funnel.~~ **MOOT August 12, 2026** | Withdrawn with the platform page | The funnel stands on its own merits; only the cross-page requirement is gone. |
 | Multiple CTAs may exist, but all enter the same funnel. | Confirmed | Placement can be diagnosed through `cta_location` without creating different offers. |
 | Price appears only inside the funnel after product experience and email capture. | Confirmed | Round one does not test price and should not let price dominate first impressions. |
 | One product and one monthly price are shown. | Confirmed | No plan selection or price A/B test in round one. |
 | Payment-choice click is the strongest commercial-demand signal. | Confirmed | It follows informed price and checkout exposure. |
 | No card-entry form, payment credentials, or money are collected. | Confirmed | The test stops at payment-method choice. |
-| Spreadsheet page is built first, but both pages launch at roughly the same time. | Confirmed | Different launch weeks would confound results with recruiting-cycle timing. |
-| Status vocabulary may differ only if genuinely necessary. | Confirmed | This does not relax event parity. |
+| ~~Spreadsheet page is built first, but both pages launch at roughly the same time.~~ **MOOT August 12, 2026** | Withdrawn with the platform page | **This was the clause blocking promotion.** Its reasoning was real — recruiting-cycle timing genuinely confounds a two-arm comparison run in different weeks — but there is no longer a second arm to confound. **Timing still affects what the numbers mean for this page**, which is a read-rules problem rather than a launch-gate one: August traffic is largely pre-season. |
+| ~~Status vocabulary may differ only if genuinely necessary.~~ **MOOT August 12, 2026** | Withdrawn with the platform page | Concerned parity between two surfaces. |
 | No em dashes or en dashes in visible page copy. | Confirmed | Owner style rule. |
 
 ## Traffic gates
 
-Before public traffic:
+**AMENDED August 12, 2026.** Two gates are withdrawn with the platform page and
+the rest are **already discharged** — the site has been live since August 7,
+2026 and indexed since August 11.
 
-- both matched pages are ready;
-- read rules are written;
-- analytics is implemented and verified by hand;
-- the exact monthly price is selected or deliberately resolved through the approved implementation sequence;
-- page and funnel comparability are checked;
-- any required project-level kill condition is settled.
+| Gate | State |
+|---|---|
+| ~~both matched pages are ready~~ | **Withdrawn.** No second page |
+| read rules are written | Discharged. `WS3-SPEC.md` |
+| analytics implemented and verified by hand | Discharged, and re-verified against live traffic on August 12 |
+| the exact monthly price is selected | Discharged. `$9.99 / month` |
+| ~~page and funnel comparability are checked~~ | **Withdrawn.** Nothing to compare against |
+| any required project-level kill condition is settled | **Still open.** No kill condition has been written. It is not a blocker Jon has chosen to honour, but it is the one gate on this list nobody has discharged |
+
+**So there is no gate left standing between here and promotion**, other than a
+kill condition that was never written.
 
 ## Channels
 
@@ -115,6 +164,26 @@ Social account seeding remains exempt from the research-before-spend rule becaus
 
 If validation justifies backend development, Gmail capture is expected to use an intermediary such as Nylas or Unipile. Real OAuth implementation and permission-willingness testing are not part of the mandatory round-one funnel.
 
-## Open strategic item
+## Open strategic item — CLOSED August 12, 2026
 
-The standalone platform page argument remains unresolved. It may be based on additional capability, cleaner interface preference, or another proposition. Resolve this honestly in Workstream 7 rather than assuming the platform must win through capability breadth.
+*Was:* the standalone platform page argument remains unresolved; resolve it
+honestly in Workstream 7 rather than assuming the platform must win through
+capability breadth.
+
+**Closed by the platform page being scrapped.** The question was never answered
+and is now not being asked. If a platform proposition is ever revisited it
+starts from nothing — there is no partial answer banked here.
+
+## The open strategic item that replaces it
+
+**Round one now has one arm, so its result has nothing to be read against
+except its own precommitted thresholds.** That raises the stakes on two things
+that were previously cushioned by the comparison:
+
+1. **Traffic composition decides the answer.** With two arms, sending the wrong
+   audience hurt both equally and the comparison survived. With one arm, the
+   audience *is* the result. August traffic is largely pre-season, which is why
+   the Fall 2026 disclosure and the waitlist branch were added on August 12.
+2. **The kill condition was never written**, and it is now the only unfired
+   gate in this file. A single-arm test with no precommitted failure threshold
+   is a test that can always be argued to have nearly worked.
