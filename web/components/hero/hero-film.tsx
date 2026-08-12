@@ -44,11 +44,10 @@
  * is in the viewport.
  */
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 
 import { HeroVisualModule } from "@/components/hero/hero-visual";
 import { Fit } from "@/components/layout/fit";
-import { cn } from "@/lib/cn";
 
 /** Native canvas. Both built films share it. */
 const FILM_W = 1080;
@@ -141,133 +140,60 @@ const DESK_SHADOW_ROOM = 16;
 
 const DESK_SRC = "/film/blotter-film-web-hero.html?bare=1";
 
-/** The film's own length, plus a beat so the fade starts after it has settled. */
-const DESK_SETTLE_MS = 11_500 + 500;
-
 /**
- * How long the settled composition rests before the film runs again.
+ * The desktop hero: the film, looping.
  *
- * Long enough to be read rather than glimpsed — the whole point of settling on
- * it is that it is the frame that carries the argument on its own.
- */
-const DESK_REST_MS = 4_000;
-
-/**
- * The desktop hero: the film, then the ratified static composition.
+ * **It loops indefinitely, as of August 11, 2026.** The first build played once
+ * and froze on its last frame; the second played once and cross-faded into the
+ * static composition, rested, and replayed. Jon rejected both, the second
+ * emphatically:
  *
- * **The film plays once and then dissolves into `HeroVisualModule`.** Jon,
- * seeing the first build, which simply froze on the film's last frame:
+ * > *"It's either it's the film, and it goes to the static permanently, or it's
+ * > the film, and it indefinitely loops. And I'm in favor of it indefinitely
+ * > looping like we do on mobile… I don't know why the hell you tried to take a
+ * > middle ground that just makes it worse."*
  *
- * > *"it pauses on the static frame of no reply for five days, but that
- * > connecting to Daniel, which I just don't understand why this is where the
- * > static pauses… this is like a frozen frame that shows one out of three
- * > cues, this literally makes no sense. So either we need it to revert back to
- * > a hero visual that you can actually read statically, or just have it
- * > repeat."*
+ * He is right, and the middle ground was a workaround for a defect rather than
+ * a design. **The real fault was in the film**, which had no way back to its
+ * opening state, and the embed was papering over that with a cross-fade. The
+ * fix belonged one level down.
  *
- * He is right, and the reason is structural rather than a matter of taste. The
- * film shows **one cue at a time in a fixed slot** — that design is what makes
- * the connector a straight elbow instead of a curve, and it is why the cards
- * cannot collide. But it means no frame of the film ever contains more than one
- * cue, so no frame of it can stand in for a composition whose whole argument is
- * *three* pieces of activity landing on three different rows. A film that plays
- * once cannot rest on a frame of itself.
+ * `blotter-film-web-hero.html` now carries Film C's wipe: a pale bar travels up
+ * through the grid and hands each row back **whole** as its centre passes, then
+ * eight tenths of a second at rest before the cycle restarts. Verified
+ * frame-exact — the rendered state at `t = 0` and at `t = DUR` is identical
+ * property for property, so there is no seam to hide and nothing for this
+ * component to do but mount it.
  *
- * **It replays, as of August 11, 2026.** Jon, having seen it settle once:
- * *"is it better if it collapses to the static version or if it just replays,
- * like the mobile version? I'm starting to lean more towards replay."*
- *
- * **The settle is what makes the replay possible**, so both survive rather than
- * one replacing the other. This film has no wipe-back — Film C loops seamlessly
- * because a pale bar runs up the grid and hands every row back to its opening
- * state, and this one was built to stop. Wrapping it would hard-cut three rows
- * and a cue card in a single frame, which reads as a glitch.
- *
- * So the cycle is: film, dissolve to the settled composition, rest on it, then
- * dissolve back and run again. **The iframe is remounted while the static layer
- * is fully opaque**, so the restart happens behind a picture and there is no
- * seam to see. The thing that would otherwise be a hard cut is covered by the
- * only frame on the page that reads as an argument on its own.
- *
- * It also gives the cycle something the phone's loop does not have: four
- * seconds where the hero is a legible still rather than a moving one.
- *
- * **Reduced motion gets the settled composition and stops there.** No film is
- * mounted, no timer runs, nothing cycles. That reader gets the ratified static
- * hero and nothing else, which is the correct reading of the preference — and
- * it is why the settle had to exist before the replay could.
- *
- * The ownership labels stay off throughout — `HeroVisualModule` defaults
- * `labels` to false, which is Jon's August 11 ruling.
- *
- * Both layers sit in one box at the film's aspect, so every dissolve is a
- * cross-fade in place with nothing moving. The static module is 1322 x 432.5
- * without its label block, which is the film's canvas exactly, so both render
- * at the same scale with the same 8px of shadow room.
+ * **Reduced motion still gets the static composition and no film at all.** An
+ * indefinite loop is precisely what that preference exists to refuse, and the
+ * ratified `HeroVisualModule` is the right thing to show instead — three cues,
+ * every row current, readable standing still. Its ownership labels stay off,
+ * per Jon's August 11 ruling.
  */
 export function HeroFilmDesk() {
   const reduced = usePrefersReducedMotion();
-  const [settled, setSettled] = useState(false);
-  /* Bumped to remount the iframe, which is how the film restarts. It only ever
-     changes while `settled` is true, so the remount is hidden behind the static
-     layer and the reload flash is never on screen. */
-  const [run, setRun] = useState(0);
-
-  useEffect(() => {
-    if (reduced) return;
-
-    /* One cycle: play, settle, rest, then restart behind the settled frame. */
-    const toSettle = window.setTimeout(() => setSettled(true), DESK_SETTLE_MS);
-    const toReplay = window.setTimeout(() => {
-      setRun((n) => n + 1);
-      setSettled(false);
-    }, DESK_SETTLE_MS + DESK_REST_MS);
-
-    return () => {
-      window.clearTimeout(toSettle);
-      window.clearTimeout(toReplay);
-    };
-    /* `run` restarts the cycle: the effect tears down and re-arms both timers
-       each time the film is remounted. */
-  }, [reduced, run]);
-
-  /* Reduced motion never mounts the iframe at all: there is no point fetching
-     a 94KB film to cross-fade away from a reader who asked not to see it. */
-  const showFilm = !reduced;
-  const showStatic = reduced || settled;
 
   return (
-    <div className="mt-8 hidden desk:block">
+    <div className="mt-4 hidden desk:block">
       <div
         className="relative w-full"
         style={{ aspectRatio: `${DESK_W} / ${DESK_H + DESK_SHADOW_ROOM}` }}
       >
-        {showFilm && (
+        {reduced ? (
+          <div className="absolute inset-0 grid place-items-center">
+            <Fit width={DESK_W}>
+              <HeroVisualModule />
+            </Fit>
+          </div>
+        ) : (
           <iframe
-            key={run}
             src={DESK_SRC}
             title="A recruiting tracker updating itself: an email arrives, a meeting completes, and a contact goes quiet"
             scrolling="no"
-            aria-hidden={settled}
-            className={cn(
-              "absolute inset-0 h-full w-full border-0",
-              "transition-opacity duration-700 ease-out motion-reduce:transition-none",
-              settled ? "opacity-0" : "opacity-100",
-            )}
+            className="absolute inset-0 h-full w-full border-0"
           />
         )}
-        <div
-          aria-hidden={!showStatic}
-          className={cn(
-            "absolute inset-0 grid place-items-center",
-            "transition-opacity duration-700 ease-out motion-reduce:transition-none",
-            showStatic ? "opacity-100" : "opacity-0",
-          )}
-        >
-          <Fit width={DESK_W}>
-            <HeroVisualModule />
-          </Fit>
-        </div>
       </div>
     </div>
   );

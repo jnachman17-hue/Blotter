@@ -105,13 +105,38 @@ export function Hero({
     </>
   );
 
+/*
+  DESKTOP VERTICAL TRIM, August 11, 2026, and it is a stopgap.
+
+  Jon, on a MacBook: *"the bottom of the visual film is just barely cut off, and
+  I don't want it to be cut off at all… we need to remove a little bit of room
+  from the top part of the web version."*
+
+  Measured at 1512 x 862 before the trim: the film's foot sat at 725.8px, which
+  clears that viewport and does not clear a 13-inch one. The height is set by
+  the **right column**, not the headline — paragraph, CTA and authority line
+  come to 197.8px against the headline's 84.8 — so the gaps inside that column
+  are where the space is.
+
+  Four `desk:` gaps come down by 4 to 8px each and the film's own top margin
+  comes down with them, for about 36px. Every mobile value is untouched: each
+  change is `desk:`-scoped, and the phone's fold was solved separately in stage
+  10.
+
+  **This buys the fold and nothing else.** Jon has already said the whole block
+  above the film wants redesigning — *"we're gonna actually need to research
+  sites that we like, lean on skills, and try and redesign this top part quite a
+  bit better"* — and asked for that to be its own piece of work. Trimming
+  gaps is not that. When the redesign happens these values are the first thing
+  it should throw away.
+*/
   return (
     <section className="pb-14">
       <PageBox>
           {/* Eyebrow, on the shared left edge. Desktop always renders it here;
               on a phone `eyebrow` may move it below the film or drop it. */}
           <p
-            className="flex items-start gap-3 pt-6 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase"
+            className="flex items-start gap-3 pt-6 desk:pt-4 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase"
           >
             {eyebrowLine}
           </p>
@@ -124,7 +149,7 @@ export function Hero({
             sideways on its own, independently of the visual below.
           */}
           <div
-            className="mt-5 grid items-start gap-x-10 gap-y-4 desk:gap-y-6 desk:[grid-template-columns:minmax(0,1fr)_var(--hero-right-col)]"
+            className="mt-5 desk:mt-4 grid items-start gap-x-10 gap-y-4 desk:gap-y-6 desk:[grid-template-columns:minmax(0,1fr)_var(--hero-right-col)]"
             style={{ "--hero-right-col": `${RIGHT_COL_W}px` } as React.CSSProperties}
           >
             {/*
@@ -212,7 +237,7 @@ export function Hero({
               <div
                 id="hero-cta"
                 className={cn(
-                  "order-3 mt-5 desk:order-none desk:mt-7 desk:block",
+                  "order-3 mt-5 desk:order-none desk:mt-5 desk:block",
                   !heroCta && "hidden",
                 )}
               >
@@ -259,7 +284,7 @@ export function Hero({
                 starts a line inside a 490px column where it has an origin,
                 while stacked full width it has nothing to lead into.
               */}
-              <p className="order-6 -mt-1 text-center text-small leading-[1.5] text-ink-muted desk:order-none desk:mt-6 desk:text-left">
+              <p className="order-6 -mt-1 text-center text-small leading-[1.5] text-ink-muted desk:order-none desk:mt-4 desk:text-left">
                 {/*
                   Centred under the full-width button, with a 12px rule rather
                   than the desktop 32px. Jon's call, August 10, 2026, and it is

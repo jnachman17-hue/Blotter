@@ -2280,3 +2280,69 @@ footer rendered `href="mailto:function(){throw Error(...)}"`. **A broken
 `mailto` renders as perfectly ordinary underlined text**, so a screenshot would
 never have shown it; it was found by reading the served DOM. The constant now
 lives in `lib/contact.ts`, which has no `"use client"`.
+
+### The hero film loops, August 11, 2026 — and the middle ground was a mistake
+
+Jon: *"It's either it's the film, and it goes to the static permanently, or it's
+the film, and it indefinitely loops. And I'm in favor of it indefinitely looping
+like we do on mobile… I don't know why the hell you tried to take a middle
+ground that just makes it worse."*
+
+He is right, and it is worth naming the error precisely because it is a kind
+that recurs. **The film had no way back to its opening state, and instead of
+fixing that I built a workaround one level up** — the embed cross-faded to the
+static composition, rested, and remounted the iframe behind it. That hid the
+seam rather than removing it, and it produced a third behaviour neither of the
+two he had offered. A defect in an asset had been converted into a feature of
+the page.
+
+The fix belonged in the film. **Film C's wipe is now ported into
+`blotter-film-web-hero.html`**, read from the source rather than reinvented:
+
+- `WIPE = [11.50, 12.20]`, `WIPE_H = 120`, `DUR` 11.50 to 13.00.
+- `wipeAt(row)` places each row's hand-back at the instant the bar's centre
+  crosses it, computed from the **built grid** (`offsetTop`, `offsetHeight`) so
+  a row-height change cannot desynchronise a revert from the bar causing it.
+- `mix()` gains a `retreat` term, so a cell advances under the sweep and
+  retreats under the wipe — `cl(advance - retreat)`, exactly Film C's shape.
+- The silence cue gains `out:[11.50,11.90]`. It had `out:null` because the film
+  used to hold on it; a cue still on screen at `DUR` makes the seam impossible.
+- `render()` wraps with `((t % DUR) + DUR) % DUR` instead of clamping, and the
+  driver wraps instead of stopping.
+
+**Verified frame-exact rather than assumed.** Calling `render(0)` and
+`render(13.0)` and diffing every cell opacity, card opacity and the wipe's own
+transform: identical. `render(13.5)` equals `render(0.5)`. There is no seam.
+
+One bug caught before it ran: `WIPE_TRAVEL` referenced `WIPE_H` about 5,000
+characters before `WIPE_H` was declared — a temporal dead zone that would have
+thrown on load. The geometry block moved below the timing constants.
+
+The embed is now four lines of iframe. **Reduced motion still gets
+`HeroVisualModule` and no film**, which is what that preference exists to
+refuse.
+
+### The desktop fold, and what it is not
+
+Jon, on a MacBook: *"the bottom of the visual film is just barely cut off… we
+need to remove a little bit of room from the top part."*
+
+Measured at 1512 x 862: the film's foot sat at 725.8px. **The height is set by
+the right column, not the headline** — paragraph, CTA and authority line come to
+197.8px against the headline's 84.8 — so the gaps inside that column are where
+the space was. Four `desk:` gaps and the film's top margin came down by 4 to 8px
+each, about 36px, putting the foot at 689.8 and clearing a 700px viewport, which
+is a 13-inch MacBook with a bookmarks bar. Every mobile value is untouched.
+
+**This buys the fold and nothing else, and it is explicitly a stopgap.** Jon has
+already scoped the real work: *"we're gonna actually need to research sites that
+we like, lean on skills, and try and redesign this top part quite a bit
+better."* When that happens these trimmed values are the first thing it should
+throw away.
+
+### The contact form's placeholder
+
+Removed. It read `you@university.edu`, and Jon caught that it prompts the wrong
+address: Blotter connects to the account you actually recruit from, which is
+almost always personal rather than institutional. **A hint that contradicts the
+product is worse than no hint.** The field is now unhinted.

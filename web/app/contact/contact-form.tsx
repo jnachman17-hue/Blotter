@@ -138,7 +138,10 @@ export function ContactForm() {
           type="email"
           required
           autoComplete="email"
-          placeholder="you@university.edu"
+          /* No placeholder. It used to read `you@university.edu`, which
+             prompts exactly the wrong address: Blotter connects to the account
+             you actually recruit from, which is almost always a personal one.
+             A hint that contradicts the product is worse than no hint. */
           className={FIELD}
         />
       </div>

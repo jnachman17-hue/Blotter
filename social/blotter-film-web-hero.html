@@ -511,6 +511,24 @@ body.bare .field{display:none}
   header band above it is already painted in, for the same reason.
 */
 .sweepwrap{position:absolute;top:0;bottom:0;overflow:hidden;pointer-events:none}
+/*
+  The wipe bar. A pale band that travels up through the grid at the end of the
+  cycle and hands each row back to its opening state as it passes.
+
+  Film C's device, ported. It is deliberately not the Blotter yellow: the yellow
+  means "Blotter maintains this", and this bar is the film resetting itself
+  rather than anything the product does. A soft neutral says housekeeping.
+*/
+.wipe{
+  position:absolute; left:0; right:0; top:0; height:120px;
+  pointer-events:none; opacity:0; will-change:transform,opacity;
+  background:linear-gradient(to top,
+    rgba(255,255,255,0) 0%,
+    rgba(238,242,248,0.92) 38%,
+    rgba(238,242,248,0.92) 62%,
+    rgba(255,255,255,0) 100%);
+}
+#grid{ position:relative; }
 .rowsweep{position:absolute;top:0;bottom:0;width:0;
   background:rgba(201,162,39,.17);will-change:width,opacity}
 .rowsweep .lead{position:absolute;top:0;bottom:0;width:3px;
@@ -932,7 +950,52 @@ applySweepMode();
    is identical to playing forward and `?t=` is reproducible.
    ========================================================================= */
 
-const DUR = 11.50;
+const DUR = 13.00;
+
+/*
+  THE WIPE, added August 11, 2026.
+
+  The film used to play once and stop, and the embed cross-faded to the static
+  hero. Jon rejected that outright: *"It's either it's the film, and it goes to
+  the static permanently, or it's the film, and it indefinitely loops. And I'm
+  in favor of it indefinitely looping like we do on mobile."*
+
+  So this is Film C's device, ported rather than reinvented — `FILM-C.md` calls
+  it a pale sweep that runs back across the grid and returns the three rows to
+  their opening state. Here it travels up through the grid, and each row is
+  handed back **whole** at the instant the bar's centre reaches it, which is
+  what keeps a row from ever being half of one state and half of the other.
+
+  Both ends of the cycle are exactly zero, so the seam is frame-identical
+  rather than nearly so.
+
+    9.84 - 11.50  STILL    nothing on the canvas changes. The beat.
+   11.50 - 12.20  WIPE     the bar travels up; rows hand back as it passes.
+   12.20 - 13.00  AT REST  identical to 0.00 - 1.20.
+*/
+const WIPE = [11.50, 12.20];
+
+/** Height of the wipe bar, and how sharply a row hands back behind it. */
+const WIPE_H = 120;
+const WIPE_RAMP = 0.14;
+
+/*
+  The wipe bar and the geometry that drives it.
+
+  Measured from the built grid rather than assumed, so a row-height change
+  cannot desynchronise a row's revert from the bar that is supposed to cause it.
+  `GRID_H + WIPE_H` is the full travel: the bar starts entirely below the grid
+  and finishes entirely above it, so every row is crossed exactly once.
+*/
+const wipeEl = document.createElement("div");
+wipeEl.className = "wipe";
+$("grid").appendChild(wipeEl);
+
+const GRID_H = $("grid").offsetHeight;
+const WIPE_TRAVEL = GRID_H + WIPE_H;
+const ROW_MID_LOCAL = rowEls.map(el => el.offsetTop + el.offsetHeight / 2);
+const wipeAt = r => (GRID_H + WIPE_H / 2 - ROW_MID_LOCAL[r]) / WIPE_TRAVEL;
+
 
 /*
   Per beat: the card arrives, the connector draws itself down the corridor and
@@ -955,7 +1018,12 @@ const BEATS = [
   { /* Calendar */ card:[4.14,4.46], wire:[4.52,5.10], node:[5.06,5.26],
                    sweep:[5.38,6.10], sweepOut:[6.10,6.34], out:[6.52,6.98] },
   { /* Silence  */ card:[7.14,7.54], wire:[7.62,8.32], node:[8.28,8.52],
-                   sweep:[8.68,9.58], sweepOut:[9.58,9.84], out:null },
+                   sweep:[8.68,9.58], sweepOut:[9.58,9.84],
+                   /* Was `null` — the silence cue used to stay because the film
+                      held on it. It has to leave for the loop to seam, and it
+                      leaves with the wipe rather than before it, so the last
+                      thing to go is the thing the beat is about. */
+                   out:[11.50,11.90] },
 ];
 
 /* Everything after 9.84 is stillness: not one property on the canvas changes
@@ -970,8 +1038,8 @@ const band = (t,i,o) => o ? Math.min(seg(t,i), 1 - seg(t,o)) : seg(t,i);
 
 /*
   How far a cell has moved from its opening value to its ratified one. It
-  advances when the sweep's leading edge reaches it and it never retreats,
-  because this film does not wipe back.
+  advances when the sweep's leading edge reaches it, and it retreats when the
+  wipe bar passes back over it in the other direction.
 */
 const FLIP_DUR = 0.26;
 
@@ -990,11 +1058,19 @@ function mix(t, beat, key){
   const u  = sweepMode === "out" ? FLIP_X[key] / SWEEP_W
                                  : (SWEEP_W - FLIP_X[key]) / SWEEP_W;
   const at = B.sweep[0] + (B.sweep[1] - B.sweep[0]) * u;
-  return seg(t, [at, at + FLIP_DUR]);
+  const advance = seg(t, [at, at + FLIP_DUR]);
+
+  /* The row is handed back whole, when the wipe bar's centre reaches it.
+     Every cell in the row shares this instant. */
+  const w0 = WIPE[0] + (WIPE[1] - WIPE[0]) * wipeAt(CUES[beat].row);
+  const retreat = seg(t, [w0, w0 + WIPE_RAMP]);
+  return cl(advance - retreat);
 }
 
 function render(t){
-  const T = t < 0 ? 0 : t > DUR ? DUR : t;
+  /* Wrapped rather than clamped: the film loops, so there is no end to hold at
+     and `?t=` stays deterministic for any value. */
+  const T = ((t % DUR) + DUR) % DUR;
 
   /* ------------------------------------------------- cue cards and wires */
   BEATS.forEach((B, i) => {
@@ -1060,6 +1136,11 @@ function render(t){
   fbar.va.style.transform = `translateY(${(1-fo) * -6}px)`;
   fbar.vb.style.opacity = fn;
   fbar.vb.style.transform = `translateY(${(1-fn) * 6}px)`;
+
+  /* ---------------------------------------------------------------- the wipe */
+  const wv = seg(T, WIPE);
+  wipeEl.style.opacity = band(T, [WIPE[0], WIPE[0] + 0.10], [WIPE[1] - 0.14, WIPE[1]]);
+  wipeEl.style.transform = `translateY(${GRID_H - wv * WIPE_TRAVEL}px)`;
 }
 
 /* =========================================================================
@@ -1075,9 +1156,9 @@ scrub.max = Math.round(DUR * 1000);
 
 function frame(now){
   if (playing) {
-    t = Math.min(t + (now - last) / 1000, DUR);
+    t += (now - last) / 1000;
+    if (t >= DUR) t -= DUR;
     scrub.value = Math.round(t * 1000);
-    if (t >= DUR) { playing = false; play.textContent = "Play"; }
   }
   last = now;
   render(t);
@@ -1089,7 +1170,6 @@ scrub.addEventListener("input", () => {
   playing = false; play.textContent = "Play"; t = +scrub.value / 1000;
 });
 play.addEventListener("click", () => {
-  if (!playing && t >= DUR) t = 0;
   playing = !playing; play.textContent = playing ? "Pause" : "Play";
 });
 
