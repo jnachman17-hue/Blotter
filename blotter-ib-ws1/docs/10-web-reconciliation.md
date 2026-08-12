@@ -73,7 +73,59 @@ the safety net that has held all session disappears silently.
 `CURRENT-HANDOFF.md` §6 has the other verifications that have earned their
 place. They all still apply.
 
-### The wave-1 baseline — RECORDED August 11, 2026
+### The live baseline — RECORDED August 12, 2026. **Use this one.**
+
+Taken from **`https://blotterib.com` itself**, reloaded at each width with
+`document.fonts.ready` awaited, after session 9 merged. This supersedes the
+wave-1 baseline below for every purpose.
+
+**Desktop, 1440**
+
+| Section | Band | Height | Top |
+|---|---|---|---|
+| 01 Hero | `section.pb-14` | 658.3 | 60 |
+| 02 Scale and consequence | `field-deep` | 1016.2 | 718.3 |
+| 03 Ownership | `field-rise` | 918.3 | 1734.5 |
+| 04 Outstanding | `field-settle` | 1120.9 | 2652.8 |
+| 05 Data and privacy | `field-document` | 1471.9 | 3773.7 |
+| FAQ and close | `field-close` | 761.0 | 5245.6 |
+
+**Document 6,277px.** Header `sticky`, 60px. `body` padding-top `0`. No
+horizontal scroll.
+
+**Phone, 390**
+
+| Section | Band | Height |
+|---|---|---|
+| 01 Hero | `section.pb-14` | 849.8 |
+| 02 | `field-deep` | 1064.9 |
+| 03 | `field-rise` | 1041.4 |
+| 04 | `field-settle` | 965.9 |
+| 05 | `field-document` | 1881.0 |
+| FAQ and close | `field-close` | 860.5 |
+
+**Document 7,144px.** No horizontal scroll.
+
+#### Why this had to be re-recorded, and what it cost
+
+**The wave-1 baseline below went stale the same day it was written and nobody
+noticed for a session and a half.** After it was taken, session 8 cut Section 3,
+cut Section 2's consequence visual, brought the FAQ onto the page axis and
+rebuilt the hero — roughly 900px of intended change, none of it re-recorded.
+
+So through the whole of session 9 the safety net was **not armed**. The
+practice is that every delta must decompose into an intended change with
+nothing left over; against a reference 900px adrift, no delta decomposes and a
+40px regression would have been invisible.
+
+One real defect was caught anyway — `Jamie Diamond` wrapping a row from 37.3px
+to 55.2px, worth −18px — but only because that measurement happened to be taken
+immediately before and after within one sitting. **That is luck, not method.**
+
+**Re-record this table after any structural change**, not at the end of a
+session. A baseline is only worth what its currency is.
+
+### The wave-1 baseline — RECORDED August 11, 2026. **Superseded, kept for provenance.**
 
 Taken from a **production build** (`pnpm --dir web build` then `start`), not the
 dev server, because `globals.css` is the file wave 1 edits most and the dev

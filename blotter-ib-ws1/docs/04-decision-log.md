@@ -2898,3 +2898,48 @@ Nothing would have failed and nothing would have logged.
 
 That is the fourth hand-kept duplicate to bite this project and the second time
 the divergence was the *served* copy being correct while the source was not.
+
+### Session 9 closes, August 12, 2026
+
+Merged to `main` and live. Verified on `blotterib.com` after deploy: `Jamie
+Diamond` in the served HTML, **zero** occurrences of any old name, both new
+funnel strings in the bundle, Film C's cue updated, and Film A's `?bare=1`
+handler present.
+
+**A fresh baseline is recorded in `10` §3**, taken from production at 1440 and
+390. Desktop 6,277px, phone 7,144px, with per-section heights for both.
+
+The old baseline had been stale since the day it was written — session 8 cut
+Section 3 and Section 2's visual, moved the FAQ and rebuilt the hero, none of it
+re-recorded. **So through the whole of session 9 the delta check was not armed.**
+The one real regression it should have caught, a row growing 37.3px to 55.2px,
+was caught only because that measurement happened to be taken twice in one
+sitting. That is luck rather than method, and the entry in `10` says so.
+
+#### What session 9 got wrong, collected
+
+Worth keeping together, because three of the four are the same mistake.
+
+1. **"Collision is structurally impossible."** It was procedurally prevented by
+   a rule in a document, and `git add -A` walked straight through it.
+2. **The film-colour fix proposed in `06`.** Quoted forward as established when
+   it was an unverified claim; all four films already shared the fill.
+3. **Three scripted measurements of film geometry, two of which said text fitted
+   when it visibly did not.** Jon found every real clipping defect by looking.
+4. **A "still broken" verification that was reading a stale build.**
+
+Items 2, 3 and 4 are one failure: **trusting a derived reading over the artefact
+itself.** The correction is in `CURRENT-HANDOFF` §5 — for film geometry, render
+and look.
+
+#### The state handed to session 10
+
+`real_leads` 5, all at `email`. Zero checkout starts ever. Zero waitlist joins,
+because the branch shipped the same day. 47 page views under the canonical
+filters.
+
+**One lead is permanently lost** — six filtered `email_submitted` events against
+five rows, traced to the `visitor_id = "anonymous"` collision the audit fixed
+hours later. Recorded in `07` as a standing cross-check.
+
+Nothing is blocking. The next session is promotion.

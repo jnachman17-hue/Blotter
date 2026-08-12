@@ -70,8 +70,26 @@ Authentication -> Users is always empty and is not where leads live.
 | `002-furthest-stage-index.sql` | Stopped `furthest_stage` regressing on out-of-order writes |
 | `003-mark-internal-leads.sql` | `is_internal` column and the `real_leads` view |
 | `004-contact-messages.sql` | The `contact_messages` table, RLS on with no policies, and the `real_contact_messages` view. **Applied by Jon on August 11, 2026** |
+| `CHECK-view-security.sql` | Read-only. Four checks behind `005`. Not a migration |
+| `005-lock-down-views.sql` | `security_invoker` on both views, and revokes `anon`/`authenticated` on all four objects. **Applied by Jon on August 12, 2026** |
+| `006-restamp-stage-index.sql` | Restamps `furthest_stage_index` after `waitlist` was inserted into the stage order: `confirmed` 7 to 8, `checkout` 6 to 7. **Applied by Jon on August 12, 2026** — verified, six rows now read `confirmed` at 8 and the check returns no rows |
 
-Write the next one as `005-`. Never edit an applied file.
+Write the next one as `007-`. Never edit an applied file.
+
+### The stage order, and why it is written down here
+
+`lib/funnel-store.ts` holds it and a stage's index is its position:
+
+```
+0 closed · 1 question_track · 2 question_window · 3 film
+4 email · 5 price · 6 waitlist · 7 checkout · 8 confirmed
+```
+
+`waitlist` was inserted at 6 on August 12, 2026, which is what `006` exists to
+reconcile. **Inserting another stage means another restamp.** Migration 002's
+trigger keeps the highest index a row has ever seen, so it will silently refuse
+a stage that ranks lower than one already recorded — correct behaviour, and the
+reason a renumbering has to be applied to stored rows rather than assumed.
 
 **Read `real_contact_messages`, never `contact_messages`**, for exactly the
 reason `real_leads` exists: Jon's own tests carry `is_internal` and the view
@@ -117,6 +135,39 @@ picker cannot express in hours.
 
 The permanent fix is `person:write`: flag the fourteen internal persons directly
 and the date filter stops being necessary.
+
+### The tenth event, and where it must not go
+
+`waitlist_joined` was added on August 12, 2026, amending WS3's frozen nine.
+
+**It must not be a step in the canonical funnel.** A PostHog funnel is an
+ordered sequence, and `waitlist_joined` and `checkout_started` are mutually
+exclusive branches off `price_viewed` — a visitor does exactly one. Inserting it
+between them drives every later step to zero and destroys `checkout_started`,
+the primary comparative metric.
+
+It lives in its own saved insight, **`Waitlist Branch`**: `price_viewed` then
+`waitlist_joined`, one-hour conversion window, with the three filters above.
+Read it beside the canonical funnel, not inside it.
+
+### Two cross-checks that have earned their place
+
+**PostHog against Supabase.** Filtered `email_submitted` should equal
+`real_leads`. On August 12, 2026 it read **6 against 5**, and the missing one
+was traced to a specific event at 04:30 UTC with no row at any timestamp. Cause:
+the `visitor_id = "anonymous"` collision the security audit fixed the same
+morning — storage-blocked visitors shared one upsert key and overwrote each
+other. **A real lead was permanently lost.** The fix shipped hours later and
+the next capture stored correctly. Run this comparison whenever the numbers are
+about to be relied on.
+
+**The upsert makes "no new row" the correct result for a returning tester.**
+`leads` is keyed on `visitor_id`, so a browser that has been through the funnel
+before updates its existing row rather than adding one. Combined with 002's
+trigger, a tester already at `confirmed` can never show `furthest_stage:
+waitlist` — the trigger refuses to lower it. Both are working as designed and
+both look like failures. Use a fresh incognito profile with
+`?blotter_internal=1` to test a stage from a clean identity.
 
 ## The internal-visitor flag
 
