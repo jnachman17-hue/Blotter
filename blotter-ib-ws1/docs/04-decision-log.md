@@ -2582,3 +2582,48 @@ could import the other because the dependency runs one way. It now lives in
 `lib/hero-copy.ts`. That is the third hand-kept duplicate in this codebase after
 `web/public/film/` and `sheet-phone.tsx`'s column widths, and the first one I
 created myself.
+
+### Eyebrows stay as the specs prescribe, August 11, 2026
+
+Jon, having compared all three states on the whole page: *"Keep as spec for
+eyebrows. I think its okay to have in some sections and not in others as it is
+currently."*
+
+Section 01 only. Both alternatives were spec overrides in opposite directions —
+`all` would have overridden the four clauses forbidding an eyebrow, `none`
+would have overridden `02-SECTION-2`'s exact-copy requirement — and neither
+earned it.
+
+Worth recording that the question only existed because of **an error in my own
+audit.** I reported two sections carrying eyebrows and called the split
+arbitrary. The second hit was a `Can do` column heading inside Section 04's
+permissions list. One section has an eyebrow, and that is exactly what five
+specs between them prescribe. The state Jon has now ratified is the state the
+specs already described.
+
+The variants survive behind `/review/page-refresh` and the markup ships hidden,
+so reversing costs one attribute.
+
+### Session 8 closes: the documentation reconciled
+
+`08-desktop-changes-pending.md` and `09-page-argument-rework.md` are **closed**.
+Every row in both is applied and live. They are records now, not work lists, and
+carry a header saying so. New unsettled items go to `06`; new rulings go here.
+
+`06` was reconciled row by row. Seven rows resolved this session were still
+marked open, two rows had triggers that can no longer fire, and one row —
+the privacy-policy language — **had been outstanding for five sessions after Jon
+finished it on August 6.** That is a failure mode of the file rather than of the
+work: a row nobody re-reads stays open forever, and the checklist at the top of
+every handoff kept surfacing a question that had an answer.
+
+`07-infrastructure-runbook.md` gained the contact-messages table and view,
+migration 004, the indexing change, the share card's WOFF2 constraint, and the
+branch state.
+
+**One row's trigger fired during the session and nobody noticed until the
+reconciliation pass:** *"whether the three films should share one
+status-change treatment"* was to be revisited *before any two films appear on
+the same surface.* The hero film shipped to desktop the same day Film A was
+still in the funnel. The condition was met by the work in progress, which is
+the one case a revisit trigger cannot catch by itself.

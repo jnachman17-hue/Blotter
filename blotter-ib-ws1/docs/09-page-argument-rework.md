@@ -2,11 +2,24 @@
 
 Date opened: August 10, 2026, session 6
 Last updated: August 11, 2026, session 7
-Status: **Rows 1, 2, 3 and 5 are applied on both surfaces as of August 11,
-2026.** Section 3 is cut from desktop, Section 4+5 is split in two, the refusals
-have moved, the headline arrangement is in place, and both surfaces render the
-same five numbered sections. §8 is the ledger; row 8b, the Outstanding view, is
-the one row still open.
+Status: **CLOSED, August 11, 2026. Every transferring row is applied and live.**
+
+Section 3 is cut from both surfaces. Section 4+5 is split into an ownership
+section and an Outstanding section. The headline arrangement, the deck and the
+deleted duplicate sentence are on both surfaces. The refusals moved twice — into
+the ownership section per row 3, then out again to a page-level position before
+the closing CTA when Jon reframed them as a statement about what the product is
+not. Both surfaces render the same five numbered sections for the first time.
+
+**Row 8b, the Outstanding view, is half settled.** Desktop and mobile stay as
+they are and both obey the rule; Film A is the only surface that breaks it, and
+it may leave the site without a re-cut if the funnel swaps films.
+`06-assumptions-and-open-questions.md` carries the live version of that row.
+
+**The one thing this document did not anticipate:** it argued desktop should
+keep Section 3 because "desktop has room and no hero film". The desktop hero
+became a film the same week, which removed the second clause and made the
+deletion correct on this document's own reasoning.
 
 This is not a responsive-layout document. Everything else in stage 10 changes
 *how* a claim is presented; this changes *which claims the page makes and in

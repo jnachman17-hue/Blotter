@@ -1,7 +1,24 @@
-# Desktop changes decided in the mobile build, not yet applied
+# Desktop changes decided in the mobile build
 
 Date opened: August 10, 2026, session 6
-Status: **Open. Nothing here has been applied to the desktop page.**
+Date closed: **August 11, 2026, session 8**
+Status: **CLOSED. Every row is applied and live on `blotterib.com`.**
+
+**This file is now a record, not a work list.** It was the wave-1 inventory and
+it has been worked through in full. Nothing here is outstanding. Individual
+entries carry their own APPLIED / RATIFIED markers and the reasoning for each,
+including three cases where the entry's own recorded argument turned out to be
+wrong and was overturned on measurement:
+
+| Entry | What the entry got wrong |
+|---|---|
+| §13 header | Called the fix "a one-line move". It is one line plus two consequences that touch the ratified hero |
+| §16 Section 2 type | Argued desktop's 600px measure justified 22px. That explains why it was less obvious, not why it was right |
+| §6 authority rule | Argued a 490px column gives a long rule an origin. A reason it *can* work, not a reason it should |
+
+**Do not add new rows here.** The file it hands off to is
+`06-assumptions-and-open-questions.md` for anything unsettled, and
+`04-decision-log.md` for anything ruled.
 
 ## What this file is for
 

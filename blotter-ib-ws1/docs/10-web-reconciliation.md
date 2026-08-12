@@ -1,7 +1,18 @@
 # Web reconciliation — the brief
 
 Date opened: August 11, 2026, end of session 7
-Status: **Nothing started. This is the plan, not a record of work.**
+Status: **Waves 1 and 2 complete and live. Wave 3 is partly done.**
+
+| Wave | State |
+|---|---|
+| 1 · the sweep | **Complete.** Every row applied; `08` is closed |
+| 2 · the argument | **Complete.** Section 3 cut, 4+5 split, numbering on both surfaces, refusals relocated; `09` is closed |
+| 3 · the assets | **Partly done.** The desktop hero film is built, installed and looping. The funnel film is unresolved and is now the most urgent open question, because two films appear on desktop for the first time |
+
+Everything shipped to `blotterib.com` on August 11, 2026. The three-wave
+framework below held: nothing in wave 2 invalidated wave 1, and the hero film
+in wave 3 turned out to *decide* a wave 2 question rather than depend on one,
+which is the single thing the ordering did not predict.
 
 Stage 10 is finished and shipped. `blotterib.com` now serves a real mobile page
 below 1180px and the ratified desktop page above it. **Those two pages do not

@@ -11,12 +11,13 @@ learn how to reach it.
 
 | Thing | Where | State |
 |---|---|---|
-| Site | `blotterib.com` and `www.blotterib.com` | Live, public, `noindex` |
+| Site | `blotterib.com` and `www.blotterib.com` | Live, public, **indexed** |
 | Preview URL | `blotter-claude.vercel.app` | Live, public, same deployment |
 | Branch review URL | `blotter-claude-git-mobile-jnachman17-hues-projects.vercel.app` | Live, public, tracks the `mobile` branch head |
 | Repo | `github.com/jnachman17-hue/Blotter-Claude` | Private, personal, **not** a fork |
 | Host | Vercel, team `jnachman17-hue's projects`, Hobby | Auto-deploys on push to `main` |
 | Leads | Supabase, US region | `leads` table, `real_leads` view |
+| Contact messages | Supabase, US region | `contact_messages` table, `real_contact_messages` view |
 | Analytics | PostHog US Cloud, project `546166` | Nine canonical events |
 
 `org-fork` (`Jon-sOrg/Blotter-Claude`) is a stale remote. Do not push to it.
@@ -68,8 +69,14 @@ Authentication -> Users is always empty and is not where leads live.
 | `001-leads.sql` | The table, RLS on with no policies, unique index on `visitor_id` |
 | `002-furthest-stage-index.sql` | Stopped `furthest_stage` regressing on out-of-order writes |
 | `003-mark-internal-leads.sql` | `is_internal` column and the `real_leads` view |
+| `004-contact-messages.sql` | The `contact_messages` table, RLS on with no policies, and the `real_contact_messages` view. **Applied by Jon on August 11, 2026** |
 
-Write the next one as `004-`. Never edit an applied file.
+Write the next one as `005-`. Never edit an applied file.
+
+**Read `real_contact_messages`, never `contact_messages`**, for exactly the
+reason `real_leads` exists: Jon's own tests carry `is_internal` and the view
+drops them. A deploy-verification row was written on August 11 and is flagged
+internal; it can be deleted whenever.
 
 ## Querying PostHog
 
@@ -139,6 +146,14 @@ https://blotter-claude-git-<branch>-jnachman17-hues-projects.vercel.app
 which is stable across pushes. That is the review link. It replaced the dev
 server, which died four times in session 6 and again in session 7.
 
+### Branches, as of August 11, 2026
+
+**`main` is the only live branch and everything is merged into it.** `web`
+carried waves 1 and 2 and was merged on August 11; `mobile` is 25 commits
+behind and is dead. Both are safe to delete and are kept only as history.
+
+Push to `main` and production deploys. Expect roughly 60 to 90 seconds.
+
 ### How preview protection was turned off, and how to put it back
 
 Vercel Authentication was on with `deploymentType: all_except_custom_domains`,
@@ -179,8 +194,35 @@ protection for production deployments are Pro features; the API returns
 `invalid_sso_protection`. The live URL is genuinely public rather than unlisted,
 and `noindex` plus `app/robots.ts` are the only things keeping it out of search.
 
-Delete `app/robots.ts` at launch. A site nobody may index is a site nobody can
-find.
+### Indexing was turned on, August 11, 2026
+
+**`app/robots.ts` is deleted and `app/layout.tsx` sets `robots: { index: true,
+follow: true }`.** `https://blotterib.com/robots.txt` returns 404 by design.
+
+Jon challenged the noindex rule and the premise had expired: it came from a WS5
+line about keeping a *private, unpublished* build out of indexes, written before
+there was a domain or any traffic. The argument that carried the change is
+**recall** rather than cold search — someone reads a post, does not click, and
+searches "Blotter IB" days later. Unindexed they found nothing.
+
+**The `/review/*` routes now rely on their own metadata.** Each sets
+`robots: { index: false, follow: false }` in its own `page.tsx`. Before this
+change the site-wide rule covered them; it no longer does. **If a new review
+route is added, it must set that itself or it will be indexed.**
+
+### The share card
+
+`app/opengraph-image.tsx` generates a 1200x630 PNG at build. Before August 11
+the site served a `<meta name="description">` and nothing else, so every link
+posted anywhere rendered as a bare URL.
+
+Two things a later session needs to know:
+
+- **Satori cannot read WOFF2.** Every face here is WOFF2 under a `next/font`
+  content hash that changes per build, so the card's fonts are committed as TTF
+  in `web/app/_og-fonts/`. Do not delete that directory.
+- **Platforms cache previews hard.** After changing the card, re-scrape through
+  LinkedIn's Post Inspector or the change will not show for weeks.
 
 ## Verification commands that have earned their place
 

@@ -1,51 +1,59 @@
 # Blotter IB - Current Handoff
 
-Date: August 11, 2026
-Status: **Wave 1 of web reconciliation is built and pushed to branch `web`,
-awaiting Jon's review.** Stage 10 shipped; `main` serves the mobile build.
-Sessions 1 through 8 done. `10-web-reconciliation.md` is the brief.
+Date: August 11, 2026, end of session 8
+Status: **Web reconciliation waves 1 and 2 are complete, merged and live on
+`blotterib.com`. The site is indexed.** Sessions 1 through 8 done.
 
-The site is live, public, carrying real traffic, and has **two real leads**.
+The site is live, public, **indexed by search engines**, carrying real traffic,
+and has **two real leads**.
 
-**Wave 1's review URL:**
+`main` is the only branch that matters. Everything is merged; nothing is
+waiting on a branch.
 
-```
-https://blotter-claude-git-web-jnachman17-hues-projects.vercel.app
-```
-
-Branch `web`, cut from `mobile` on August 11, 2026. Not merged to `main`.
-**Nothing in wave 1 is on `blotterib.com` yet.**
+---
 
 ## 0. Act on these before anything else
 
 **A checklist, not background.** Work out whether any item is due and say so in
 the first reply of the session.
 
-### Done, do not repeat
+### Due now
 
-- Jon's desktop and phone are flagged internal on both live hostnames. **Do not
-  ask him to do this again.**
+- **A security audit is running in a separate chat**, briefed by
+  `12-security-audit-brief.md` and handed off on August 11, 2026. **Ask Jon
+  whether it has reported before starting anything else.** It is read-only and
+  cannot have touched the repository, but its findings may outrank design work,
+  and it was told to list every test row it wrote so they can be deleted.
+- **Two films now appear on desktop.** `06`'s row on the three films sharing
+  one status-change treatment carried the revisit trigger *"before any two
+  films appear on the same surface"*, and that condition shipped. See §4.
+
+### Done, do not repeat, do not ask about
+
+- Jon's desktop and phone are flagged internal on both live hostnames.
 - `inline-fonts.sh` has been run on `social/blotter-film-c-4x5.html`.
-- **Vercel preview protection is off**, as of August 11, 2026. Every branch gets
-  a public URL. Done with `vercel api`, not the dashboard —
-  `07-infrastructure-runbook.md` has the call and how to reverse it. **Do not
-  ask him to do this in the dashboard; he cannot reach that control.**
-- The X account URL is set. `x.com/blotterib`, live on both surfaces.
-- **The connection provider is closed, August 11, 2026.** Jon ruled it stays
-  ambiguous exactly as it reads now: *"We don't have one yet and won't for a
-  while. Don't relitigate this."* It was carried as a due item for five sessions
-  and is no longer one. **Do not raise it again until a provider is selected.**
+- **Vercel preview protection is off.** Every branch gets a public URL.
+  `07-infrastructure-runbook.md` has the call and how to reverse it. **Jon
+  cannot reach that dashboard control; do not ask him to.**
+- The X account URL is set, `x.com/blotterib`.
+- **The connection provider is closed.** Jon: *"We don't have one yet and won't
+  for a while. Don't relitigate this."* Not a due item until a provider exists.
+- **Indexing is on and `app/robots.ts` is deleted.** This was a due item for
+  eight sessions and is discharged.
+- **`/privacy` is finished.** Jon answered every `[ to be confirmed ]` slot on
+  August 6, 2026. `06` carried it as outstanding for five sessions after it was
+  done; it no longer does.
 
 ### Standing, and it governs every number you report
 
-**Never read `leads`; read `real_leads`.** Never report a PostHog figure without
-the three filters in `07-infrastructure-runbook.md`. Unfiltered, the funnel
-claims several people confirmed a beta spot. **The true number is zero.**
+**Never read `leads`; read `real_leads`. Never read `contact_messages`; read
+`real_contact_messages`.** Never report a PostHog figure without the three
+filters in `07-infrastructure-runbook.md`.
 
-**`real_leads` is 2 as of August 11, 2026**, up from 1. The `leads` table holds
-8 rows, **6 of them internal** — which is the whole reason the view exists.
+**`real_leads` is 2** as of August 11, 2026. The `leads` table holds 8 rows and
+**6 are internal** — the view is doing real work.
 
-Both real leads are worth knowing rather than just counting:
+Both real leads are worth more than the count:
 
 | | |
 |---|---|
@@ -53,48 +61,9 @@ Both real leads are worth knowing rather than just counting:
 | CTA clicked | **`hero`, both** |
 
 Two out of two came from the hero button rather than the header, the actions
-CTA or the final one. At n=2 that is not proof, but it is the only placement
-signal this test has produced and it should not be thrown away by a change to
-the hero CTA made on other grounds.
-
-### Indexing is ON as of August 11, 2026. This is no longer a due item.
-
-`app/robots.ts` is deleted and `robots` is `{ index: true, follow: true }`.
-
-**Jon challenged the noindex rule and was right to.** It came from a WS5 line —
-*"private and unpublished throughout, keep the page out of indexes until the
-final simultaneous-launch authorization"* — written when this was a private
-build with no domain and no traffic. He is now promoting; the premise expired
-and nobody had re-examined it.
-
-**The argument that carried it was not the one he gave.** More cold search
-traffic is close to worthless here: a new domain with no backlinks ranks for
-nothing for months. What decided it is **recall** — someone reads a Reddit
-post, does not click, and searches "Blotter IB" three days later. Unindexed
-they found nothing, and that is the highest-intent search this test can
-receive, on an audience the promotion already paid to reach.
-
-Accepted knowingly: search results and caches are durable where a link is not,
-and Section 6 states what Blotter reads, retains and cannot touch for a system
-that does not exist.
-
-### The share card exists now, and it did not before
-
-Production served a `<meta name="description">` and **nothing else** — no
-`og:image`, no `og:title`, no `twitter:card`. Every link posted to Reddit, X or
-LinkedIn would have rendered as a bare URL, on the one channel this test
-depends on. Found while checking the indexing question, which was the smaller
-of the two.
-
-`app/opengraph-image.tsx` generates it at 1200x630 from the page's own strings,
-so it cannot drift from the page it previews. **Satori cannot read WOFF2**, and
-every face here is WOFF2 under a build-hashed name, so the two faces it needs
-are committed as TTF in `app/_og-fonts/`.
-
-**One deviation, flagged not smuggled:** the card's eyebrow is shortened to
-`Recruiting tracker for investment banking`. `01-HERO`'s ratified string is 79
-characters and needs about 950px beside the wordmark in 1040px of usable width.
-No claim changes; a qualifier and a second audience are dropped.
+CTA or the final one. At n=2 that proves nothing, but it is the only CTA
+placement signal this test has produced, and it should not be discarded by a
+change to the hero CTA made on other grounds.
 
 ### Due if PostHog scopes are ever fixed
 
@@ -104,229 +73,229 @@ No claim changes; a qualifier and a second audience are dropped.
 
 ## 1. Read these, in this order
 
-1. `CLAUDE.md` at the repository root — the working agreement.
+1. `CLAUDE.md` at the repository root — the working agreement. **The specs
+   govern; skills serve them; surface conflicts rather than splitting them.**
 2. **This file.**
-3. **`10-web-reconciliation.md`** — the brief for the work that comes next. It
-   has the three-wave framework, the full inventory, and the traps.
-4. `09-page-argument-rework.md` — the argument fault, the mobile fix, and §8's
-   ledger of what web owes.
-5. `08-desktop-changes-pending.md` — seventeen entries, each Decided, Confirmed
-   defect, or Already applied.
-6. `06-assumptions-and-open-questions.md` — everything parked, with triggers.
-7. `07-infrastructure-runbook.md` before touching any data.
+3. `04-decision-log.md` — **session 8's entries are long and carry the
+   reasoning for everything below.** Read the August 11 entries at minimum.
+4. `06-assumptions-and-open-questions.md` — everything unsettled, each with a
+   revisit trigger. **This is now the live work list.**
+5. `07-infrastructure-runbook.md` — before touching any data, and before
+   assuming anything about deployment, indexing or the share card.
+6. `10-web-reconciliation.md` — the three-wave framework and what remains of
+   wave 3.
+7. `12-security-audit-brief.md` — what the audit was asked to check.
+
+**Closed, read only for history:** `08-desktop-changes-pending.md` (every row
+applied), `09-page-argument-rework.md` (every transferring row applied),
+`11-web-hero-film-brief.md` (the film is built and installed).
 
 ---
 
 ## 2. The documentation system. Follow it or the next session loses the thread.
 
-Jon's instruction, and it has held for two sessions: keep using this, in these
+Jon's instruction, and it has held for three sessions: keep using this, in these
 files, **at the moment a thing is noticed rather than at the end.**
 
 | When you notice… | Write it to | With |
 |---|---|---|
 | An unsettled question needing a decision later | `06-assumptions-and-open-questions.md` | a row, a working position, why it is unresolved, and a **revisit trigger** |
-| Something decided that **desktop must also do** | `08-desktop-changes-pending.md` | Decided / Confirmed defect / Already applied, and the reasoning |
-| An argument- or structure-level change | `09-page-argument-rework.md` | what transfers to web and what does not, and why |
 | A ruling Jon has made | `04-decision-log.md` | the reasoning, not just the outcome |
 | Anything that changes what a spec says | the amendment table atop that build spec | the clause number superseded |
 
-**Write the reasoning, not the outcome.** Several entries exist only because
-somebody wrote down *why* — and three times in session 7 that reasoning turned
-out to be wrong and was caught precisely because it had been written down.
+`08` and `09` are closed. Do not add rows to them.
+
+**Write the reasoning, not the outcome.** In session 8 this paid for itself
+five times: three entries in `08` recorded arguments that turned out to be wrong
+and were caught only because they had been written down, and two claims in `10`
+were falsified the same way. An entry that says what was decided but not why
+cannot be checked.
 
 ---
 
-## 3. Where to pick up
+## 3. What session 8 shipped
 
-**Wave 1 is built and pushed. It needs Jon's eyes before anything else starts.**
+Twenty-six commits, merged to `main`, live. `04-decision-log.md` has the
+reasoning for each; this is the inventory.
 
-The new desktop baseline is recorded in `10-web-reconciliation.md` §3 and the
-wave-1 delta against it is in §5. Desktop went **7,200 to 7,240** and every
-per-section delta decomposes into an intended change.
+### The page a desktop visitor now gets
 
-### What is waiting on Jon, in the order it blocks work
+- **A persistent header** carrying the brand, the page tagline and the CTA. It
+  never persisted before, on either surface — it was `position: sticky` inside
+  the hero's wrapper and left with the hero.
+- **The hero is a film**, looping. Film C's wipe was ported into it so it
+  returns to its opening state frame-exactly.
+- **Hero layout G**: headline left, one short line right, CTA on its own row.
+  The eyebrow moved into the header bar, which bought 51px.
+- **The credibility line sits below the film**, not orphaned inside the hero.
+- **Five sections numbered `01`–`05`**, matching the phone for the first time.
+- **Section 3 is cut** and Section 4+5 is split into ownership and Outstanding.
+- **The refusals** are a page-level statement before the closing CTA.
+- **Section 6 permissions collapse** on both surfaces.
+- **Section 2's consequence visual is cut** — it claimed deadline tracking the
+  product does not do.
+- **The FAQ is on the page axis**, so every headline starts at 158.
+- **A contact page and form**, with the address in the footer.
+- **A share card**, and **indexing on**.
 
-1. **Look at wave 1** on the branch URL, phone and laptop. The two things the
-   Browser pane could not verify and he can: **the desktop header's fill fading
-   in at 8px of scroll**, and whether the section hairlines earn their 25px.
-2. **Section 2's paragraph at 17px** — `08` §16. Applied on his wave-1
-   instruction but never ratified, and it is the one presentation call in the
-   wave he has not seen. One class reverts it.
-3. **`08` §6, the 32px rule before the authority line.** Genuinely undecided for
-   desktop and the entry says ask rather than assume.
-4. **`08` §9, the two unratified strings.** Ratify or replace.
-5. **`06`'s 481–1179 residual.** The header now tracks the column, which was the
-   visible half. Whether the 480px cap itself should grow for iPad landscape is
-   his, and it is not free.
-6. **The desktop hero as a film.** He parked it until after wave 1 and is
-   leaning yes. **Take it before planning wave 2** — see §9.
+### Fixes worth remembering
 
-### Then wave 2
-
-**`09-page-argument-rework.md` §8 is the ledger.** Rows 1, 2, 3 and 5 transfer;
-row 5 is the biggest. Section numbering (`08` §5) is now a wave-2 row because
-desktop's `01`–`05` cannot match the phone's until wave 2 rules on which
-sections exist.
+- **Film C went 290KB to 113KB.** A comment closed early and inlined two font
+  faces the film never draws, in the asset every phone visitor fetches above
+  the fold.
+- **Two 60px rows** in the Blotter tab, on both surfaces, back to 40.5px.
+- **A dead `mailto`** in the footer: a constant exported from a `"use client"`
+  module renders as a client-reference stub in server markup, and **a broken
+  mailto looks exactly like a working one.** Found by reading served HTML.
 
 ---
 
-## 4. What stage 10 shipped
+## 4. Where to pick up
 
-Thirty commits across sessions 6 and 7, now merged to `main` and live.
+### First: two films on one surface
 
-### The page a phone gets
+`06`'s row on the three films sharing one status-change treatment carried the
+trigger *"before any two films appear on the same surface."* **That happened on
+August 11.** Desktop now has the hero film above the fold and Film A inside the
+funnel. A visitor who clicks the hero CTA sees two films inside a minute, both
+showing Sarah Chen replying, with different status-change treatments.
 
-- **A responsive skeleton.** One breakpoint, `desk` at 1180px. Above it the
-  desktop page is byte-identical to before; below it is the mobile build. A page
-  box that is a ceiling rather than a fixed width.
-- **Film C as the hero**, 11 seconds, a 1:1 centre crop.
-- **Five rebuilt sections**, numbered `01`–`05`.
-- **The argument rework.** Section 3 stops existing on the phone; its headline
-  becomes the merged section's deck, its refusals move there, its boundary and
-  closing lines are cut. One claim, stated once.
-- **The swipe sheet.** All ten columns at full width in a scroll region, `Name`
-  frozen and tinted as manual, a veil over what is ahead that recedes as you
-  travel and takes the colour of the zone you are about to reach, and a label
-  band pinned in the sheet's chrome that crossfades on one threshold.
-- **The Outstanding list** as the films' vertical structure with the tail of
-  each group behind a `Show N more` disclosure.
-- **The funnel as a full-screen sheet**, film 1:1 cropped, everything on one
-  screen at any phone height.
-- **A header CTA that actually persists** — it never did, on either surface.
-- **One spacing rhythm**, 120px per boundary, 276px reclaimed.
-- **The Phase 6 accessibility sweep.**
+Jon has never accepted the current position on this, and it is no longer
+hypothetical. It is entangled with **which film belongs in the funnel**, which
+`06` says is one question across three slots rather than three questions.
 
-### What desktop got, deliberately almost nothing
+The working position, on evidence: **Film A stays for now.** Both real leads
+completed the film step and both submitted email after it; the one drop happened
+before it. Deleting the step also breaks `product_experience_completed`, one of
+the nine canonical events. But the hero film changed the calculus — the funnel
+no longer needs to prove the mechanism, because the hero just did.
 
-The X link, which Jon asked for on both surfaces, and the phantom `Here` links
-becoming text, which has zero visual delta. Everything else is scoped below the
-breakpoint. **Desktop measured 7,200px with zero per-section deltas immediately
-before the merge.**
+### Then, in rough order
+
+1. **The security audit's findings**, once Fable reports.
+2. **The CTA label**, at about 150 clean visitors. 3 of 27 has a confidence
+   interval of roughly 2% to 29%; nothing can be concluded yet. **There is a
+   real argument against "Try Blotter Now" that owes nothing to the data** — it
+   promises a product that does not exist — but the labels that would honestly
+   describe the funnel are forbidden by `07-SECTION-7` §13 and the
+   no-availability rule. That tension is Jon's to resolve.
+3. **Final complete-page rhythm** — `06` has carried this row since the
+   beginning and it wants one assembled review now the sections are settled.
+4. **Promotion**, which is Jon's, and the reason everything above is live.
+
+### Settled this session, do not reopen without Jon
+
+- **Eyebrows stay as the specs prescribe**: Section 01 only. Jon, August 11:
+  *"I think it's okay to have in some sections and not in others as it is
+  currently."* `/review/page-refresh` keeps the alternatives.
+- The Outstanding view's presentation. Jon asked for a better idea; there is not
+  one that keeps all 21 visible without breaking the Sheets frame.
+- The funnel film step exists. *Which* film is open; whether to have one is not.
 
 ---
 
 ## 5. Things that will bite you
 
-`10-web-reconciliation.md` §8 carries the full list. The four that cost the most
-time in session 7:
-
-- **The dev server serves broken CSS after a syntax error and the page stops
-  hydrating.** Clicks do nothing, nothing names the cause, and the production
-  build passes. **Restart before debugging anything else.**
-- **Two film iframes now exist.** Any measurement must say which; the naive
-  query returns the hero, which is correctly 0x0 above the breakpoint. This
-  produced a confident, entirely wrong bug diagnosis.
-- **`web/public/film/` is a hand-kept copy of `social/`.** Nothing propagates.
-- **The background is a handoff chain.** Each band starts on the colour the band
-  above ended on. Hiding a section breaks it and shows as a hard line.
-
 **The Browser pane is a hidden document.** Scroll events do not fire,
 `IntersectionObserver` never arrives, CSS transitions freeze at their start
-value, and `ResizeObserver` may not deliver on a resize — reload rather than
-resize. Verify geometry there; send anything motion-dependent to Jon's phone.
+value, `ResizeObserver` may not deliver on a resize, and **it will not render a
+scrolled viewport** — a screenshot after `scrollTo` comes back blank.
 
-**Wave 1 paid for ignoring that last sentence.** Measuring after a *resize*
-rather than a reload produced `hero +72.5, tracker +83.7, doc +219` — a
-confident, entirely wrong delta table in which the hero, which cannot change,
-appeared to have grown 72px. `Fit` measures with `useLayoutEffect` and a
-`ResizeObserver` and neither had re-run. **Reload at the target width and
-`await document.fonts.ready` before reading any geometry.** It also will not
-render a scrolled viewport — a screenshot after `scrollTo` came back blank.
+**Reload at the target width and `await document.fonts.ready` before reading
+any geometry.** Measuring after a *resize* produced `hero +72.5, doc +219` in
+session 8: a confident, entirely wrong delta table in which the hero, which
+cannot change, appeared to have grown 72px.
 
-**Two files keep hand-written copies of the same data.** `web/public/film/`
-against `social/`, and now `components/section-45/sheet-phone.tsx`'s `FULL_COLS`
-against `parts.tsx`'s `YOURS`/`MAINTAINED`. Wave 1's row-height fix had to be
-applied twice. Both column lists now carry a comment naming the other.
+**Three hand-kept duplicates exist.** `web/public/film/` against `social/`;
+`sheet-phone.tsx`'s `FULL_COLS` against `parts.tsx`'s column widths; and
+`app/_og-fonts/` against the WOFF2 faces `next/font` serves. Nothing
+propagates. The row-height fix in session 8 had to be applied twice.
 
-**Verify CSS against a production build, not the dev server.**
+**Satori cannot read WOFF2**, which is why `_og-fonts/` exists. Do not delete
+it.
+
+**A constant exported from a `"use client"` module is a stub in server markup.**
+It compiles, it type-checks, and it renders as a broken value.
+
+**The background is a handoff chain.** Each band opens on the colour the band
+above closed on. `Mobile02`'s `field-rise` and the desktop ownership section are
+the same band by design.
+
+**Verify CSS against a production build, not the dev server.** The dev server
+serves broken CSS after a syntax error and the page stops hydrating with no
+error naming the cause.
+
+**Never `git stash` while a parallel chat holds uncommitted work.**
 
 ---
 
 ## 6. Verification that has earned its place
 
-- **desktop deltas against a baseline** — record a new one first, then expect
-  exactly the intended change and nothing else;
-- **no horizontal scroll with scripts stripped**, at 320, 390 and 430, served
-  from a production build;
-- the copy diff against the build specs, read out of the live DOM;
-- the dash scan — exactly two dashes permitted in visible copy;
-- the production build and lint. Lint has one known pre-existing warning in
-  `analytics.ts`;
-- the service-key-not-in-HTML check after any change to `supabase-admin.ts` or
-  the lead route;
-- **tap targets and phantom links** — both were clean at the end of stage 10 and
-  a desktop pass can reintroduce either.
+- **Desktop deltas against a baseline**, reloaded not resized, fonts settled.
+  Every delta should decompose into an intended change with nothing left over.
+- **No horizontal scroll at 320, 390 and 430 with every script stripped**, from
+  a production build. `curl` the page, strip `<script>`, add a `<base href>`,
+  serve it from `web/public/`, measure, then delete it.
+- The dash scan — at most two dashes in visible copy.
+- The production build and lint. **Lint has one known pre-existing warning in
+  `analytics.ts`**; anything else is yours.
+- The service-key-not-in-served-HTML check after any change to
+  `supabase-admin.ts` or either API route.
+- `real_leads` and `real_contact_messages` counts before and after any internal
+  run.
 
 ---
 
-## 7. The one unverified claim on the page
-
-Section 6 says: `Blotter connects to Google through an established connection
-provider whose Google application has passed Google's CASA security assessment.`
-
-Jon ruled this in; it supersedes `06-SECTION-6` §13 and §18. **No provider is
-selected, so the sentence is true of no actual arrangement.** Nylas claims
-Tier 3, not Tier 2, so no tier may be stated; and on a shared provider
-application Google's consent screen reads the provider's name, not Blotter's.
-
-On mobile it sits inside the folded fine-print row rather than in the open,
-deliberately: being unverified argues for less prominence, not more.
-
----
-
-## 8. Decisions that are settled. Do not reopen without Jon.
+## 7. Decisions that are settled. Do not reopen without Jon.
 
 **a.** Brand identity, page theme, bounded-box layout, status chip colours, date
 formats, maintained-zone row tint.
 
-**b. Section 6's present tense.** The demand test needs it. That argument was
-made, rejected, and the rejection was correct.
+**b. Section 6's present tense.** The demand test needs it.
 
 **c.** Alex Morgan's em dash and the Section 6 §10 sentence are the only two
-dashes permitted in visible copy.
+dashes permitted in visible copy. **The `design-taste-frontend` skill bans em
+dashes outright; the spec governs and wins.**
 
-**d. The mobile CTA arrangement** — header button and hero button, no bottom bar.
+**d. The mobile CTA arrangement** — header button and hero button, no bottom
+bar.
 
-**e. Section numbering on mobile** — `01`, not `01 / 05`.
+**e. Hero layout G**, the tagline in the header, left-aligned and persistent.
 
-**f. The mobile sheet is the swipe**, not the crop. The crop survives behind
-`/review/sheet-mobile` and `05-SECTION-5`'s amendment table records why it lost.
+**f. The mobile sheet is the swipe**, not the crop.
 
-**g. Mobile 02's headline arrangement** — `09` §4 option C, both strings, the
-second as a deck.
+**g. Mobile 02's headline arrangement** — both strings, the second as a deck.
 
-**h. Mobile 03 lists all 21 actions** with the tail disclosed. A disclosure is
-not the `+N more` label Jon overruled on August 5; it is a control that delivers
-them.
+**h. All 21 outstanding actions are shown**, on both surfaces, with no `+N more`
+label.
+
+**i. The connection provider stays ambiguous.**
+
+**j. Section eyebrows follow the specs** — Section 01 only.
 
 ---
 
-## 9. Open and waiting on Jon
+## 8. Open and waiting on Jon
 
-- **Whether the desktop hero becomes a film**, and **which film belongs in the
-  funnel.** `06` says these are one question across three slots, not two.
-  **Parked until after wave 1, and he is leaning yes.**
-
-  **This is not independent of wave 2, and that is new.** `09` §6's reason for
-  keeping desktop's Section 3 is that *"desktop has room and no hero film, so
-  the mechanism may still need its own section there."* A film hero deletes the
-  second clause: the film would demonstrate the mechanism on desktop exactly as
-  it does on the phone, and Section 3's survival becomes a live question rather
-  than a settled one. **Answer the hero before planning wave 2.**
-- **The Outstanding view is drawn three different ways** across film, desktop
-  and mobile. `09` §8 row 8b.
+- **Which film plays in the funnel**, and whether the three films share one
+  status-change treatment. §4. **Most urgent.**
+- **The CTA label**, at ~150 visitors.
 - **Whether the `impeccable` design hook should be silenced** on the Outstanding
   group headers. `04-SECTION-4` §9 requires that coloured left rule verbatim, so
-  the code stays either way; the hook will keep firing until he says.
-- **Whether the header shrinks on scroll.** Both are built; `?header=shrink`
-  shows the variant. He has seen full height and not objected, which is being
-  read as a choice unless he says otherwise.
-- `web/app/layout.tsx` carries an em dash in the browser-tab title,
-  contradicting the standing rule. **Flagged in seven sessions now.**
+  the code stays either way.
+- **Whether the header shrinks on scroll.** Built; `?header=shrink` shows it. He
+  has seen full height and not objected.
+- **`web/app/layout.tsx` carries an em dash in the browser-tab title**,
+  contradicting the standing rule. **Flagged in eight sessions now.**
+- The claim gates in `06` describing a product that does not exist:
+  unmatched-message filtering, full-body non-retention, deletion and revocation,
+  retention and subprocessors, unrelated Drive access. These were acceptable
+  while the site was unlisted. **It is now indexed and being promoted**, which
+  is a different posture, and Jon should choose it rather than inherit it.
 
 ---
 
-## 10. How sessions work
+## 9. How sessions work
 
 One session equals one chat. A session ends when the work is committed and
 pushed, this file is rewritten, and the assistant states explicitly that the
@@ -335,34 +304,42 @@ session is complete.
 Within a session, work proceeds by checkpoint: name the stage, name the
 controlling specification, state the stop condition, build, review, approve.
 
-**Jon reviews by looking, not by reading.** Build it, put it on his phone at a
-real device width, let him react. Prose descriptions of breakpoints do not work.
-Where an answer is not obvious, build the variants behind a temporary route
-under `/review/` and let him flip between them —
-`.claude/skills/prototype/PICKER.md` has the picker.
+**Jon reviews by looking, not by reading.** Build it, put it in front of him at
+a real width, let him react. Prose about breakpoints does not work. Where an
+answer is not obvious, build the variants behind a temporary route under
+`/review/` and let him flip between them.
 
-**His review link is the Vercel branch URL**, not the dev server:
-
-```
-https://blotter-claude-git-<branch>-jnachman17-hues-projects.vercel.app
-```
-
-Public, stable across pushes, and it survives the chat ending.
+**Review routes must set their own `robots: { index: false }`.** The site-wide
+rule that used to cover them is gone.
 
 **He rejects at least one ratified asset or presentation rule per section, and
-has in every session.** That is the process working. Three times in session 7 he
-rejected something and was right for a reason better than the one offered.
+has in every session.** That is the process working. In session 8 he overturned
+the settle-then-replay hero, the text-slide share card, the left-weighted hero
+variant, and the noindex rule — and he was right every time, twice for better
+reasons than the ones offered to him.
+
+**Live review URLs**, all public and stable:
+
+```
+https://blotterib.com                          the page
+https://blotterib.com/review/page-refresh      section eyebrows, three ways
+https://blotterib.com/review/hero              the header tagline, four ways
+https://blotterib.com/review/ownership         section 02 zone labels, four ways
+https://blotterib.com/review/sheet-mobile      the phone sheet, swipe against crop
+```
 
 ### Parallel chats
 
 **A film chat can run alongside**, owning `social/` only — never `git add`,
-`commit` or `push`, never a dev server. **A documentation chat can run
-alongside**, owning `blotter-ib-ws1/docs/` only. Nothing else may touch `web/`
-while web reconciliation is in progress.
+`commit` or `push`, never a dev server. This has worked four times.
+**A documentation chat can run alongside**, owning `blotter-ib-ws1/docs/` only.
+**A read-only audit chat can run alongside**, as the security audit does.
+
+Nothing else may touch `web/`.
 
 ---
 
-## 11. Sessions 1 through 7
+## 10. Sessions 1 through 8
 
 | Session | Stages | Deliverable |
 |---|---|---|
@@ -371,12 +348,13 @@ while web reconciliation is in progress.
 | 3 | 6 | Brand identity, Section 3, Sections 4+5 merged |
 | 4 | 7 | Sections 6 and 7, the footer, `/privacy` |
 | 5 | 8-9 | Funnel, Supabase, PostHog, live deploy on `blotterib.com` |
-| 6 | 10, part 1 | Responsive skeleton, Film C hero, mobile 01/04/05, the argument rework diagnosed |
-| 7 | 10, complete | Mobile 02 and 03, the swipe, the funnel sheet, the accessibility sweep, public previews, and the production ship |
-| **8** | **Web reconciliation, wave 1** | **The persistent header, the 60px rows on both surfaces, desktop hairlines, Section 2's type, the header/column alignment. Branch `web`, not merged** |
+| 6 | 10, part 1 | Responsive skeleton, Film C hero, mobile 01/04/05 |
+| 7 | 10, complete | Mobile 02 and 03, the swipe, the funnel sheet, the accessibility sweep, the production ship |
+| **8** | **Web reconciliation** | **Waves 1 and 2, the hero film and redesign, the contact page, the share card, indexing on. Merged and live** |
 
-Full detail for 1 through 6 is in `04-decision-log.md`. Stack, credentials and
-deployment mechanics are in `07-infrastructure-runbook.md`.
+Full detail is in `04-decision-log.md`. Stack, credentials and deployment
+mechanics are in `07-infrastructure-runbook.md`.
 
-Application root: `web/`. Run with `pnpm --dir web dev`. Secrets live in
-`web/.env.local`, gitignored. **Never print a value.**
+Application root: `web/`. Run with `pnpm --dir web dev`, or build and start for
+anything CSS-sensitive. Secrets live in `web/.env.local`, gitignored. **Never
+print a value.**
