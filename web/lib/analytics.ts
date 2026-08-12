@@ -180,6 +180,22 @@ function readId(storage: Storage, key: string): string {
   return next;
 }
 
+/**
+ * Identifiers for a browser that refuses storage.
+ *
+ * This used to return the constant `"anonymous"`, and that was a real bug
+ * rather than a cosmetic one: `visitor_id` is the conflict key that
+ * `/api/lead` upserts on, so every storage-blocked visitor wrote onto the same
+ * row and overwrote the previous one's email. Private browsing is not a rare
+ * case, and the rows lost that way were silently lost.
+ *
+ * A per-load random pair fixes it. It is not durable — a refresh produces a new
+ * identity, so these visitors cannot be deduplicated across sessions — but a
+ * duplicate row is a far smaller error than a destroyed one, and the constant
+ * was also a publicly known key anyone could post to.
+ */
+let volatileIds: { visitor_id: string; session_id: string } | null = null;
+
 export function getIdentifiers(): { visitor_id: string; session_id: string } {
   if (typeof window === "undefined") {
     return { visitor_id: "ssr", session_id: "ssr" };
@@ -190,7 +206,11 @@ export function getIdentifiers(): { visitor_id: string; session_id: string } {
       session_id: readId(window.sessionStorage, SESSION_KEY),
     };
   } catch {
-    return { visitor_id: "anonymous", session_id: "anonymous" };
+    volatileIds ??= {
+      visitor_id: crypto.randomUUID(),
+      session_id: crypto.randomUUID(),
+    };
+    return volatileIds;
   }
 }
 

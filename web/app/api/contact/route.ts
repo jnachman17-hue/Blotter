@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { guardWrite } from "@/lib/request-guard";
 import { supabaseAdmin, supabaseConfigured } from "@/lib/supabase-admin";
 
 /**
@@ -56,6 +57,16 @@ function text(value: unknown, max: number): string | null {
 }
 
 export async function POST(request: Request) {
+  /* Entry checks before the body is read at all. The form posts same-origin
+     JSON, so nothing rejected here is a reader losing a message. */
+  const rejected = guardWrite(request);
+  if (rejected) {
+    return NextResponse.json(
+      { sent: false, reason: rejected },
+      { status: rejected === "payload_too_large" ? 413 : 415 },
+    );
+  }
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();
@@ -69,7 +80,11 @@ export async function POST(request: Request) {
     success and tune around it.
   */
   if (text(body.website, 200) !== null) {
-    return NextResponse.json({ sent: true });
+    /* The response body must match a real success exactly. It used to return
+       `{sent: true}` while a stored message returns `{sent: true, stored:
+       true}`, so a bot could read the difference and tune around the trap —
+       which is precisely what answering 200 was meant to prevent. */
+    return NextResponse.json({ sent: true, stored: true });
   }
 
   const email = text(body.email, 254);

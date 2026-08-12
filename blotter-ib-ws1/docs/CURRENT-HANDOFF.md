@@ -19,11 +19,28 @@ the first reply of the session.
 
 ### Due now
 
-- **A security audit is running in a separate chat**, briefed by
-  `12-security-audit-brief.md` and handed off on August 11, 2026. **Ask Jon
-  whether it has reported before starting anything else.** It is read-only and
-  cannot have touched the repository, but its findings may outrank design work,
-  and it was told to list every test row it wrote so they can be deleted.
+- **The security audit has reported.** Findings, fixes and the remaining work
+  are in `13-security-audit-findings.md`. **Read that before starting design
+  work** — it carries six items only Jon can do, and one of them is live.
+
+  The short version: the site is sound on secrets, analytics privacy and input
+  handling. The real finding is that **anyone can write unlimited fake leads
+  that read as completed funnels**, straight into `real_leads`. Until a Vercel
+  rate-limit rule exists, **the lead count cannot be fully trusted** — sanity
+  check it before any decision rests on it.
+
+  Code fixes are on branch `security-audit-fixes-2026-08-12`, deliberately not
+  merged: the header and API-guard changes were never run, so the branch's
+  preview URL is the verification step. `13` §5 has the merge command.
+
+  Still open by choice, do not treat as oversights: no Content-Security-Policy,
+  no film-iframe sandboxing (attempted, breaks the films, reverted), and
+  `is_internal` still client-asserted. Reasoning for each is in `13` §4.
+
+  Jon's outstanding items, in `13` §2: delete the audit's 5 test rows, run
+  `supabase/005-lock-down-views.sql`, delete three published Goldman Sachs
+  reference files, clear `web/.next/dev`, add the Vercel rate limit, and ratify
+  the new privacy-policy paragraph.
 - **Two films now appear on desktop.** `06`'s row on the three films sharing
   one status-change treatment carried the revisit trigger *"before any two
   films appear on the same surface"*, and that condition shipped. See §4.
