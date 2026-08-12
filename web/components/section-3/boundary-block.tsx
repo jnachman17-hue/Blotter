@@ -173,11 +173,47 @@ export const BADGES = BOUNDARIES.map((b) => b.label);
  * `09-page-argument-rework.md` §1 catalogues. Desktop still renders `Facing()`
  * below with all three parts, unchanged.
  */
+/**
+ * The three refusals.
+ *
+ * **Three across from the desktop breakpoint, stacked on a phone.** Changed
+ * August 11, 2026 on Jon's note about the desktop rendering: *"that looks
+ * awful expanded."*
+ *
+ * He is right, and the reason is that the panel was written for a phone and
+ * then inherited by a section that is 1,124px wide. Three labels of 11 to 26
+ * characters, each given its own full-width row with a divider under it, put
+ * roughly 900px of empty warm panel to the right of `No AI slop` and made the
+ * block about 150px tall to carry nine words. A stacked list is right when the
+ * column is 350px and absurd when it is 1,124.
+ *
+ * Across, the panel is one 56px band, each refusal gets an equal third, and the
+ * dividers turn ninety degrees into the gaps between them.
+ *
+ * **It also bookends the sheet**, which is a gain rather than a coincidence:
+ * the three reassurance claims already run three-across immediately above the
+ * sheet, so the section now reads claims → picture → refusals in one rhythm
+ * instead of a strip above and a stack below.
+ *
+ * ## The risk this runs, and why it is acceptable
+ *
+ * `06-assumptions-and-open-questions.md` carries a row warning that the
+ * reassurance claims and the refusals could converge into "two three-item lists
+ * with a mark each". Matching their orientation moves toward that.
+ *
+ * Three things keep them distinct, and all three are load-bearing rather than
+ * incidental: this panel has a warm fill and a ring where the reassurance strip
+ * has neither; its marks are coloured tiles where the strip's are bare glyphs;
+ * and about 500px of Google Sheets sits between them. The convergence the row
+ * fears is a *phone* problem, where the two lists are 200px apart in one
+ * column — and on a phone this stays stacked, so nothing there changes.
+ */
 export function RefusalPanel({ className }: { className?: string }) {
   return (
     <ul
       className={cn(
         "flex flex-col rounded-xl bg-[#fbf9f5] px-5 py-2 ring-1 ring-navy-900/[0.07]",
+        "desk:flex-row desk:items-stretch desk:px-2 desk:py-0",
         className,
       )}
     >
@@ -197,7 +233,10 @@ function BoundaryRow({ item, last }: { item: Boundary; last: boolean }) {
     <li
       className={cn(
         "flex items-center gap-3.5 py-2",
-        !last && "border-b border-navy-900/[0.08]",
+        /* The divider turns ninety degrees with the list. `last` drops it at
+           the end of the row as well as the end of the stack. */
+        !last && "border-b border-navy-900/[0.08] desk:border-b-0 desk:border-r",
+        "desk:flex-1 desk:justify-center desk:py-4",
       )}
     >
       <span

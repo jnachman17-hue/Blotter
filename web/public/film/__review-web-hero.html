@@ -1,0 +1,1195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blotter — the web hero film (1322 x 432.5)</title>
+
+<!--
+  THE WEB HERO FILM. 1322 x 432.5, 11.50 seconds, plays once and HOLDS.
+
+  It replaces the static composition `web/components/hero/hero-visual.tsx` draws
+  as the hero of the desktop landing page. Self-contained: open with file://,
+  fonts inlined, no network. `?bare=1` strips the controls, `?t=11.5` renders
+  one frame deterministically, `?sweep=in|out` picks the sweep direction.
+
+  ---------------------------------------------------------------------------
+  WHAT IT IS
+
+  A recruiting tracker in a Google Sheet maintaining itself. Three pieces of
+  activity arrive one at a time — an email reply, a completed meeting, and then
+  nothing at all for five days — and each rewrites the right-hand half of one
+  row while the left-hand half is never touched.
+
+  It sits directly under the ratified headline "Your networking keeps moving.
+  Your tracker does not." and answers that headline and nothing else. No intro
+  card, no end card, no wordmark, no closing line. EVERY FRAME IS PRODUCT.
+
+  It does NOT loop and it does NOT wipe back. Film C's wipe returns every row
+  to its opening state so its loop seams frame-exactly; here the resting frame
+  would be the tracker before anything arrived, which is the worst possible
+  still under a headline about stale trackers. This film holds on its end state,
+  which is `HERO_ROWS` exactly, and that held frame is what the page serves as
+  its static hero.
+
+  ---------------------------------------------------------------------------
+  THE ELEVEN AND A HALF SECONDS
+
+     0.00 -  1.20  AT REST    The tracker before anything has arrived.
+
+     1.20 -  3.98  GMAIL      "Sarah Chen replied", Jan 16 10:42 AM. The cue
+                              plugs into row 2 and four cells move: Sent ->
+                              Replied, Next move fills to Reply to Sarah,
+                              1/13/26 -> 1/16/26, Days 3 -> 0. Then the cue and
+                              its line LEAVE.
+
+     4.14 -  6.98  CALENDAR   "Coffee chat with Priya Shah", Jan 16 11:00 AM.
+                              Five cells: Call scheduled -> Call completed,
+                              Attend coffee chat -> Send thank-you, 1/15/26 ->
+                              1/16/26, Days 1 -> 0, and the scheduled call
+                              becomes Completed 1/16. The cue leaves.
+
+     7.14 - 11.50  SILENCE    "No reply for 5 days", Day 5 - No new activity,
+                              with the muted Gmail mark. NOTHING ARRIVES and the
+                              row moves anyway: Sent -> No reply, Next move
+                              fills to Bump thread, Days 4 -> 5 — while LAST
+                              CONTACT SITS AT 1/11/26 AND DOES NOT MOVE. Then
+                              1.66 measured seconds in which nothing on the
+                              canvas changes at all, and the film holds there
+                              with this cue, its line and its node still on
+                              screen.
+
+  Beat order builds. Two beats where activity arrives, then one where nothing
+  does and the tracker moves anyway. The third is the differentiator, so the
+  film ends on it and it gets the most time: 4.36s against 2.78 and 2.84.
+
+  ---------------------------------------------------------------------------
+  THE FROZEN CELL IS THE SILENCE BEAT
+
+  On a phone the silence beat had to be argued with a counter alone, because
+  `Last contact` was not on screen. Here it is on screen, one column to the left
+  of `Days`, and you can watch Days climb to 5 while Last contact sits perfectly
+  still right beside it. A CELL VISIBLY NOT CHANGING IS THE EVIDENCE THAT
+  NOTHING ARRIVED.
+
+  It is frozen structurally rather than by timing: Daniel's row carries no
+  `to.last` value at all, so there is no second value in that cell for any
+  code path to reach. The sweep passes straight over it and it does not move.
+
+  Daniel opening on the grey `Sent` pill is Jon's override from an earlier Film
+  C cut, recorded in `social/FILM-C.md`. A row that already reads `No reply`
+  was already correct before the beat, so the beat would only increment a digit.
+
+  ---------------------------------------------------------------------------
+  THE CUE PLUGS STRAIGHT INTO THE SHEET
+
+  `01-HERO` section 12 removes the vertical Blotter engine, the central
+  processor box and the cue-to-engine-to-sheet flow from the hero, and section
+  9 forbids oversized arrowheads, animated particles, glowing tubes and a
+  spiderweb of lines. Nothing sits between the cue and the sheet.
+
+  Sections 7 and 9 give the device instead, and `hero-visual.tsx` draws it:
+
+      one direct connector per cue, landing on that row's maintained block,
+      closed by a small endpoint node.
+
+  ONE FIXED SLOT. The cue card sits at x 1086, top level with the top of the
+  sheet window, and every cue appears in that identical position. Cues do not
+  accumulate: cue one arrives, its line draws, its row updates, and the whole
+  cue and its line leave before cue two arrives.
+
+  An earlier design stacked the cards down the right at their rows' heights.
+  Priya and Daniel are adjacent rows 43.5px apart against a 50px card, so they
+  overlap; the current static hero curves its connectors specifically to solve
+  that collision. A fixed slot removes the problem instead of solving it, and
+  it is what buys the straight line below.
+
+  ONE RIGHT ANGLE. The line leaves the underside of the card, drops straight
+  down at x 1109 — which is the centre of the card's source mark, so the
+  vertical needs no routing — turns once to the left, and runs into the target
+  row, closing on a round node at x 1006, the sheet's right edge. Only the
+  length of the vertical drop changes between cues. Mitred corner, no curve, no
+  second elbow, no arrowhead.
+
+  THE THIRD CUE STAYS. After Daniel's row updates, his card, its line and its
+  node remain and the film holds there. That is not an addition — render Film C
+  at t=9.0 and the silence cue is still present with every row settled.
+
+  ---------------------------------------------------------------------------
+  WHERE THE GEOMETRY CAME FROM
+
+  Every number below was measured off the LIVE rendering of `hero-visual.tsx`,
+  not computed from its constants, because the eight columns are flex items
+  that shrink by a pixel in total to fit a 1004px content box inside a 1006px
+  window. The arithmetic and the rendering therefore disagree by fractions of a
+  pixel, and the connectors and the sweep depend on the rendering.
+
+    sheet window        1006 x 432.5      grid top      127
+    row height          43.5              last row      42.5 (no bottom border)
+    row centres         192.25  235.75  279.25  322.75  365.75
+    row gutter          43                manual zone   372 (108+126+138)
+    maintained zone     590 (132+156+112+56+134)
+    ownership split     x 415.539         maintained block ends x 1005
+    corridor            80                cue column    236, x 1086 to 1322
+    cue card            236 x 50          source mark centre  x 1109
+    node                x 1006, on the sheet's right edge
+
+  The split's rendered x is 415.539 rather than the 415 the arithmetic gives.
+  The sweep is driven from the measured value, so it starts under the 2px rule
+  the header band already draws and never enters the manual zone.
+
+  Alex Morgan's row centre is 365.75 rather than the 366.25 the row-centre
+  formula gives, because the last row drops its bottom border. He carries no
+  cue, so nothing depends on it.
+
+  ---------------------------------------------------------------------------
+  THE SWEEP, AND THE A/B
+
+  When a cue lands, the changed cells fill with the Blotter yellow. Two rules
+  survive from Film C verbatim:
+
+    1. THE SWEEP NEVER CROSSES THE OWNERSHIP SPLIT. Running a Blotter fill
+       across `Name` would say Blotter writes the name, which is the one thing
+       the ownership split exists to deny.
+    2. THE SWEEP LEAVES NOTHING BEHIND. Once it has passed, the row carries no
+       badge, tint or marker. Blotter is claimed once and never by a mark on a
+       row.
+
+  The direction is Jon's to choose and both are built.
+
+    ?sweep=in   (default)  the fill enters at the row's right edge, where the
+                           line landed, runs right to left, and halts dead on
+                           the ownership split.
+    ?sweep=out             Film C's direction. The fill starts at the split and
+                           runs left to right to the row's right edge.
+
+  `in` is the default because this film's line arrives from the RIGHT. Film C's
+  arrives from above, so its outward sweep does not contradict the arrival; here
+  an outward sweep would run back against the direction the information came
+  from, and the eye has to jump from the node to the far side of the sheet and
+  travel back. `in` is one uninterrupted gesture — down, left, into the row,
+  across — that arrests on the ownership rule. A fill that STOPS on a line reads
+  as a boundary more strongly than one that starts there, and the boundary is
+  the most important claim in this composition.
+
+  The honest argument for `out` is recorded in `social/FILM-WEB-HERO.md`: it
+  lands the cells in reading order. Press `s` to swap live.
+
+  ---------------------------------------------------------------------------
+  LINE WEIGHT
+
+  Film C strokes 8px with an 18px node at 0.30 scale. The static hero strokes
+  1.25px with an r2.75 node at 0.85. Both are right and the difference is
+  entirely scale. This film renders at 0.8502, so Film C's numbers would be
+  enormous and the hero's are too faint for something that draws itself.
+
+  2.5px stroke, r5 node, both in `--blotter-500`, with the sweep's leading edge
+  in `--blotter-700`. Tuned at the rendered 1124px width; the reasoning is in
+  `social/FILM-WEB-HERO.md`.
+
+  ---------------------------------------------------------------------------
+  CLAIM SAFETY
+
+  No price, no availability, no beta, no launch date, no cohort language. No
+  outreach is written or drafted: every `Next move` on screen is a prompt to the
+  user and no drafted message appears. Nothing depicts a sweep across an inbox.
+  No credential field appears at any size in any frame. No bank logo appears.
+
+  ---------------------------------------------------------------------------
+  CONTROLS, not part of the film
+
+    space  play / pause        c  hide the controls, for recording
+    arrows step one frame      f  true 1322px size instead of fit-to-window
+    r      restart             s  swap the sweep direction
+-->
+
+<style id="brand-fonts">
+/* Inlined by social/inline-fonts.sh. Same faces as the landing page. */
+/*
+   THREE OF THE FOUR INLINED FACES ARE STRIPPED, which is the one way this file
+   diverges from `inline-fonts.sh`'s output. It is Film C's decision applied
+   here, and the arithmetic is starker: this film has no wordmark and no end
+   card, so nothing uses Schibsted Grotesk; no Gmail inbox surface, so nothing
+   uses Roboto; and no figures set in the page's mono, so nothing uses Geist
+   Mono. Together they were about 140KB of a 232KB file. The sheet is pinned to
+   Arial, a system face, so the ONE face this film actually draws is Geist, in
+   the cue card. THE FILE IS NOW 96KB, of which 39KB is that one face.
+
+   To get any of them back: reset this block to the placeholder the script looks
+   for, re-run `./inline-fonts.sh blotter-film-web-hero.html`, then delete again
+   whatever the edit did not in fact need. Do not run the script against any
+   other file in this directory.
+
+   Note for whoever maintains Film C: its own font block reads
+   `/* ... Reset the block to /* Inlined by ... */`, and because CSS comments do
+   not nest, that inner `*/` CLOSES the comment. All four faces are live in that
+   file rather than the two its notes describe, which is why it is 298KB on disk
+   against the 114KB `FILM-C.md` records. Not touched by this session.
+*/
+@font-face{font-family:"Geist";font-style:normal;font-weight:100 900;font-display:block;src:url(data:font/woff2;base64,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) format("woff2")}
+</style>
+
+<style>
+/* ------------------------------------------------------------------ tokens */
+/* Sampled from web/app/globals.css. Retune there, not here. */
+:root{
+  --ink:#14181f; --ink-muted:#5f6368; --ink-faint:#a4a8ac;
+  --blotter-100:#f7f2e8; --blotter-200:#f3e6c6;
+  --blotter-400:#d9b64a; --blotter-500:#c9a227; --blotter-700:#8a6d12;
+  --manual-100:#edf2f8; --manual-row:#ffffff;
+  --sheet-border:#dadce0; --sheet-grid:#e8eaed;
+  --sheet-header:#f8f9fa; --sheet-chrome:#ffffff; --sheet-green:#0f9d58;
+  --chip-replied-bg:#d7e7fb;   --chip-replied-fg:#1a56a8;
+  --chip-scheduled-bg:#e5ddf7; --chip-scheduled-fg:#5b3fa8;
+  --chip-completed-bg:#d7f0dd; --chip-completed-fg:#1e6b34;
+  --chip-noreply-bg:#fbeacb;   --chip-noreply-fg:#8a5a00;
+  --chip-sent-bg:#e8eaed;      --chip-sent-fg:#5f6368;
+
+  --sans:"Geist","Geist Fallback",ui-sans-serif,system-ui,sans-serif;
+  --sheet-type:Arial,Helvetica,sans-serif;
+}
+
+/* -------------------------------------------------------------------- shell */
+/*
+  `line-height:1.5` is load-bearing, not a default. Tailwind's preflight sets it
+  on `html`, and every unprefixed size in `sheet-window.tsx` and `sheet-grid.tsx`
+  inherits it. It is what makes the grid rows come out at 43.5px and the chrome
+  stack come out at 127px without a single height being declared anywhere.
+*/
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:#0d1117;color:#c9d1d9;font-family:var(--sans);line-height:1.5;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:18px;padding:20px;overflow:hidden;-webkit-font-smoothing:antialiased;
+}
+
+/*
+  BARE IS TRANSPARENT, and that is the difference from Film C.
+
+  Film C is the mobile hero, inset in a rounded card with its own ring, so it
+  paints its own ground. This film replaces `HeroVisualModule`, which is a
+  transparent object sitting directly on the page's `.field-open` gradient. A
+  ground of its own would put a second field inside the page's field and make
+  the iframe's edges visible. Transparent means the film is indistinguishable
+  from the static composition it replaces.
+*/
+body.bare{background:transparent;gap:0;padding:0;display:block;overflow:visible}
+body.bare .chrome{display:none}
+body.bare .stagehold{margin:0}
+
+.stagehold{flex:none;overflow:hidden}
+.stagewrap{width:1322px;height:432.5px;transform-origin:top left}
+
+/*
+  THE CANVAS IS EXACTLY 1322 x 432.5, which is `TOTAL_W` by `SHEET_H`.
+
+  The stage does NOT clip. The sheet's ratified drop shadow, `0 8px 28px -8px`,
+  extends about 14px below the sheet's own box, and the sheet is the full height
+  of the canvas — so in the real page that shadow paints outside this box, onto
+  `.field-open`. Clipping it here would put the sheet on a hard edge. The film
+  paints it and lets the host decide; see `social/FILM-WEB-HERO.md` for the
+  bleed the iframe wants if the shadow is to survive intact.
+*/
+.stage{position:relative;width:1322px;height:432.5px;overflow:visible}
+
+/*
+  Standalone viewing only, and off in bare mode. This is NOT `.field-open`: the
+  page's two radial glows are anchored to the whole hero wrapper rather than to
+  this 432.5px slice, so reproducing them here would be wrong. It is a neutral
+  approximation of the ground the composition sits on, so the file is legible
+  when opened on its own.
+*/
+.field{position:absolute;left:-60px;right:-60px;top:-90px;bottom:-90px;
+  background:linear-gradient(180deg,#f8fafd 0%,#f2f6fb 100%);z-index:0}
+body.bare .field{display:none}
+
+/* ========================================================== the cue slot === */
+/*
+  ONE FIXED SLOT. `activity-cue.tsx`, reproduced to the pixel: 236px wide,
+  8px radius, `px-3 py-2`, a 13px/17px semibold primary line over an 11.5px/15px
+  timestamp, and the ratified two-layer shadow. It measures 236 x 50 on the live
+  page and it measures 236 x 50 here.
+
+  Top at y 0, level with the top of the sheet window, per the brief. The 20px
+  mark column is fixed width so the connector's x cannot move between a 20px
+  Gmail mark and a 19px Calendar one.
+*/
+.card{position:absolute;left:1086px;top:0;width:236px;z-index:6;
+  display:flex;align-items:center;gap:10px;
+  padding:8px 12px;border:1px solid var(--sheet-border);border-radius:8px;
+  background:var(--sheet-chrome);
+  box-shadow:0 1px 2px rgba(60,64,67,.12),0 4px 12px -6px rgba(60,64,67,.22);
+  opacity:0;will-change:opacity,transform}
+.cmark{width:20px;flex:none;display:flex;align-items:center;justify-content:center}
+.cmark svg{display:block}
+/*
+  The muted Gmail mark, drawn exactly as `section-3/day-timeline.tsx` draws it:
+  opacity 40%, grayscale. The thread is a Gmail thread so the slot names it, and
+  the muting carries the fact that nothing arrived in it. A full-strength mark
+  would imply Gmail signalled something, and Gmail signalling nothing is the
+  entire point of that row. Not struck, not absent.
+
+  This is the opposite of `HERO_CUES`, deliberately: the static hero keeps
+  Daniel at full strength because muting there depends on Section 3's
+  `NO NEW ACTIVITY` stamp to be legible. This film carries that stamp, so the
+  Section 3 treatment is the correct one here.
+*/
+.cmark.muted{opacity:.40;filter:grayscale(1)}
+.ctext{min-width:0}
+.cprimary{display:block;font-size:13px;line-height:17px;font-weight:600;
+  color:var(--ink);white-space:nowrap}
+.cstamp{display:block;font-size:11.5px;line-height:15px;
+  color:var(--ink-muted);white-space:nowrap}
+
+/* ======================================================== the connector ==== */
+/*
+  One L per cue: down the corridor from the card's source mark, one right angle,
+  into the row, closed by a round node on the sheet's right edge. `overflow:
+  visible` so the node is never clipped by the svg box.
+
+  `--blotter-500` rather than the static hero's `--blotter-400`, and the same
+  step Film C took for the same reason: `-400` is tuned to be a hairline the eye
+  finds only when it looks for it, which is right for a still and wrong for a
+  line that has to be watched arriving.
+*/
+.wires{position:absolute;left:0;top:0;z-index:5;overflow:visible;
+  pointer-events:none}
+.wire{fill:none;stroke:var(--blotter-500);stroke-width:2.5;
+  stroke-linejoin:miter;stroke-linecap:butt}
+.wnode{fill:var(--blotter-500)}
+
+/* ============================================================= the sheet == */
+/*
+  `sheet-window.tsx` and `sheet-grid.tsx`, reproduced. Arial rather than the
+  page font, exactly as `.sheet-type` pins it: `hero-reference-v1.png` is set in
+  Arial, so pinning it keeps the primitive faithful and insulated from page-theme
+  changes.
+*/
+/*
+  `font-size:16px` is the page's base, which is what `SheetWindow` inherits —
+  it declares no size of its own and only `SheetGrid` sets `text-[15px]`. That
+  distinction is worth a quarter of a pixel and it is not academic: the star
+  beside the document title carries no size class either, so its line box is
+  16 x 1.5 = 24 rather than the title's 19 x 1.25 = 23.75, and the star is the
+  taller of the two. Scoping 19px to the container instead of to the title text
+  makes the whole sheet 432.25 tall and puts every row centre a quarter pixel
+  above where `hero-visual.tsx` asserts its connector endpoints.
+*/
+.sheet{position:absolute;left:0;top:0;width:1006px;z-index:2;
+  font-family:var(--sheet-type);color:var(--ink);font-size:16px;
+  background:var(--sheet-chrome);border:1px solid var(--sheet-border);
+  border-radius:12px;overflow:hidden;
+  box-shadow:0 1px 3px rgba(60,64,67,.15),0 8px 28px -8px rgba(60,64,67,.25)}
+
+.titlebar{display:flex;align-items:center;gap:12px;padding:12px 16px 0}
+.gicon{width:32px;height:32px;flex:none;border-radius:6px;
+  background:var(--sheet-green);display:grid;place-items:center}
+.tmeta{flex:1;min-width:0}
+.tname{display:flex;align-items:center;gap:8px}
+.tname .ttl{font-size:19px;line-height:1.25}
+.tname .star{color:var(--ink-faint)}
+.menus{margin-top:2px;display:flex;gap:12px;font-size:13px;color:var(--ink-muted)}
+.saved{flex:none;font-size:13px;color:var(--ink-muted)}
+.share{flex:none;border-radius:999px;background:var(--chip-replied-bg);
+  color:var(--chip-replied-fg);font-size:14px;padding:6px 16px}
+.avatar{flex:none;width:32px;height:32px;border-radius:50%;background:#5f6b7a;
+  color:#fff;font-size:12px;font-weight:500;display:grid;place-items:center}
+
+.fbar{margin-top:8px;display:flex;align-items:stretch;font-size:13px;
+  border-top:1px solid var(--sheet-grid);border-bottom:1px solid var(--sheet-grid)}
+.fcell{width:100px;flex:none;border-right:1px solid var(--sheet-grid);
+  padding:6px 12px;display:flex;align-items:center;justify-content:space-between}
+.fcell .caret{color:var(--ink-faint)}
+.fval{flex:1;padding:6px 12px;display:flex;align-items:center;gap:8px;position:relative}
+.fval .fx{font-style:italic;color:var(--ink-faint)}
+/*
+  The formula bar tracks the cell it points at.
+
+  `hero-visual.tsx` selects D2 with the bar reading `Replied`, which is Sarah
+  Chen's Status cell — the exact cell the first beat moves. Holding it static
+  would put `Replied` on screen for 2.4 seconds while the cell itself still
+  reads `Sent`: a frame that contradicts itself. So the bar flips on the same
+  instant the chip does, and the held final frame carries D2 / `Replied`,
+  identical to the ratified static hero it replaces.
+
+  Film C froze its bar at A2 / `Sarah Chen` instead, for two reasons that do not
+  apply here: a manual field cannot contradict a frame it is not part of, and it
+  is one fewer thing animating at the loop seam. This film has no seam, and at
+  1124px the bar is legible rather than shape-only. Reverting to A2 is two
+  values in `SHEET` below.
+*/
+.fstack{position:relative;display:inline-block;min-width:70px;height:19.5px}
+.fstack .va,.fstack .vb{position:absolute;left:0;top:0;white-space:nowrap;
+  will-change:opacity,transform}
+
+.letters{display:flex;background:var(--sheet-header);
+  border-bottom:1px solid var(--sheet-grid);font-size:12px;color:var(--ink-muted)}
+.letters .gut{width:43px;flex:none;border-right:1px solid var(--sheet-grid)}
+.letters .col{border-right:1px solid var(--sheet-grid);text-align:center;padding:4px 0}
+.letters .col:last-child{border-right:0}
+
+.tabs{display:flex;align-items:center;gap:4px;padding:8px 12px;
+  border-top:1px solid var(--sheet-grid);font-size:13px}
+.tabs .sym{padding:0 6px;color:var(--ink-muted)}
+.tab{border-radius:4px;padding:4px 12px;color:var(--ink-muted);white-space:nowrap}
+.tab.on{background:var(--chip-replied-bg);color:var(--chip-replied-fg);font-weight:500}
+.tab .tcaret{margin-left:4px;opacity:.6}
+
+/* the grid ---------------------------------------------------------------- */
+/*
+  The columns are flex items that DO shrink. Their nominal widths sum to 1005
+  against a 1004px content box, so the browser takes a pixel back across the
+  eight of them and every column boundary lands on a fraction. That is what the
+  live page renders, and reproducing the rendering rather than the arithmetic is
+  what keeps the split, the sweep and the connectors on the same geometry the
+  page has already been approved at.
+*/
+.grid{position:relative;font-size:15px}
+.row{display:flex;border-bottom:1px solid var(--sheet-grid);position:relative}
+.row:last-child{border-bottom:0}
+.gut{width:43px;flex:none;border-right:1px solid var(--sheet-grid);
+  background:var(--sheet-header);padding:10px 0;text-align:center;
+  font-size:12px;color:var(--ink-muted)}
+.cell{padding:10px 12px;white-space:nowrap;overflow:hidden;position:relative;
+  background:var(--manual-row)}
+/*
+  HEADER CELLS DO NOT CLIP, and that is `sheet-grid.tsx`'s behaviour rather than
+  an oversight here. `overflow-hidden` is on the data cells alone. It matters
+  for exactly one cell: `Days` is a 56px column carrying a 15px semibold header
+  against 24px of padding, so the word is wider than its box and overflows —
+  leftward, because the column is right-aligned, into `Last contact`'s padding,
+  where there is room. Clipping it instead eats the `D`.
+*/
+.hrow .cell{overflow:visible}
+.cell.chipcell{padding:10px 8px}
+.cell.num{text-align:right}
+.cell.ital{font-style:italic;color:var(--ink-muted)}
+/* The ratified zone boundary: Name, Title and Firm are yours; the five columns
+   to the right of this rule are the ones Blotter keeps current. */
+.cell.split{border-left:2px solid var(--sheet-border)}
+.hrow .cell{font-weight:600}
+.hrow .manual{background:var(--manual-100)}
+/* 01-HERO section 8 as amended by Jon on August 5, 2026: the header band alone
+   carries the maintained zone. Data rows stay plain white. */
+.hrow .kept{background:var(--blotter-100)}
+.dash{display:block;text-align:center;color:var(--ink-faint)}
+
+.chip{display:inline-flex;align-items:center;gap:3px;border-radius:999px;
+  padding:3px 7px;font-size:12.5px;line-height:1;white-space:nowrap;
+  vertical-align:middle}
+.chip svg{flex:none;opacity:.6}
+.chip[data-s="Replied"]{background:var(--chip-replied-bg);color:var(--chip-replied-fg)}
+.chip[data-s="Call scheduled"]{background:var(--chip-scheduled-bg);color:var(--chip-scheduled-fg)}
+.chip[data-s="Call completed"]{background:var(--chip-completed-bg);color:var(--chip-completed-fg)}
+.chip[data-s="No reply"]{background:var(--chip-noreply-bg);color:var(--chip-noreply-fg)}
+.chip[data-s="Sent"]{background:var(--chip-sent-bg);color:var(--chip-sent-fg)}
+
+/*
+  A cell that changes holds both values stacked and REPLACES one with the other,
+  so the column geometry cannot shift on the frame the value lands. The two never
+  overlap: Film C's first build let them cross-fade and "Attend coffee chat"
+  sitting on top of "Send thank-you" is a smear rather than a transition.
+*/
+.stack{position:relative;display:block;height:22.5px}
+.va,.vb{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;
+  height:22.5px;will-change:opacity,transform}
+.cell.num .va,.cell.num .vb{justify-content:flex-end}
+
+/*
+  THE SWEEP. The moment arriving along the row it changes. Transient, and it is
+  not a badge — nothing is left behind on the row once it has passed.
+
+  It spans the maintained block only, from the ownership split to the sheet's
+  right edge, and `left` and `width` are written from the measured column
+  geometry in the script rather than typed here, so a width change cannot
+  silently move it into the manual zone.
+
+  The leading edge is `--blotter-700` rather than `-500`: the wash is a 17% tint
+  and the edge is the part that has to read as a moving object, so wash and edge
+  are the same family two steps apart. `--blotter-100` is what the maintained
+  header band above it is already painted in, for the same reason.
+*/
+.sweepwrap{position:absolute;top:0;bottom:0;overflow:hidden;pointer-events:none}
+.rowsweep{position:absolute;top:0;bottom:0;width:0;
+  background:rgba(201,162,39,.17);will-change:width,opacity}
+.rowsweep .lead{position:absolute;top:0;bottom:0;width:3px;
+  background:var(--blotter-700)}
+
+/* ------------------------------------------------------------- controls */
+.chrome{display:flex;align-items:center;gap:12px;font-size:13px;flex:none}
+.chrome button{font:inherit;background:#21262d;color:#c9d1d9;border:1px solid #30363d;
+  border-radius:7px;padding:7px 12px;cursor:pointer}
+.chrome button:hover{background:#30363d}
+.chrome input[type=range]{width:380px;accent-color:#d9b64a}
+.chrome .t{font-family:ui-monospace,monospace;color:#8b949e;min-width:112px}
+.chrome .hint{color:#6e7681}
+</style>
+</head>
+
+<body>
+<div class="stagehold" id="stagehold">
+<div class="stagewrap" id="stagewrap">
+<div class="stage" id="stage">
+  <div class="field"></div>
+
+  <!-- One shared clip path for the Calendar mark. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs><clipPath id="calr"><rect width="20" height="20" rx="2.4"/></clipPath></defs>
+  </svg>
+
+  <!-- ============================================================ sheet -->
+  <div class="sheet" id="sheet">
+    <div class="titlebar">
+      <span class="gicon">
+        <svg width="15" height="19" viewBox="0 0 15 19" fill="none" aria-hidden="true">
+          <path d="M9 0H1.5A1.5 1.5 0 0 0 0 1.5v16A1.5 1.5 0 0 0 1.5 19h12a1.5 1.5 0 0 0 1.5-1.5V6L9 0Z" fill="#fff" fill-opacity=".25"/>
+          <path d="M3.5 8.5h8v6h-8v-6Zm1 1.5v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Zm-3.5 2v1h2.5v-1H4.5Zm3.5 0v1h2.5v-1H8Z" fill="#fff"/>
+        </svg>
+      </span>
+      <div class="tmeta">
+        <div class="tname"><span class="ttl">IB Recruiting Tracker</span><span class="star">&#9734;</span></div>
+        <div class="menus"><span>File</span><span>Edit</span><span>View</span><span>Insert</span><span>Format</span><span>Data</span><span>Tools</span><span>Extensions</span><span>Help</span></div>
+      </div>
+      <span class="saved">All changes saved in Drive</span>
+      <span class="share">Share</span>
+      <span class="avatar">JN</span>
+    </div>
+
+    <div class="fbar">
+      <div class="fcell"><span id="fcellref">D2</span><span class="caret">&#9662;</span></div>
+      <div class="fval"><span class="fx">fx</span><span class="fstack" id="fstack"></span></div>
+    </div>
+
+    <div class="letters" id="letters"></div>
+    <div class="grid" id="grid"></div>
+
+    <div class="tabs">
+      <span class="sym">+</span><span class="sym">&#9776;</span>
+      <span class="tab">Contacts</span>
+      <span class="tab on">Blotter<span class="tcaret">&#9662;</span></span>
+    </div>
+  </div>
+
+  <!-- ======================================================== connector -->
+  <svg class="wires" id="wires" width="1322" height="432.5"
+       viewBox="0 0 1322 432.5" aria-hidden="true"></svg>
+
+  <!-- ========================================================= cue slot -->
+  <div id="cards"></div>
+</div>
+</div>
+</div>
+
+<div class="chrome">
+  <button id="play">Pause</button>
+  <input type="range" id="scrub" min="0" max="11500" value="0" step="1">
+  <span class="t" id="clock">0.00 / 11.50</span>
+  <button id="btnG">Gmail</button>
+  <button id="btnC">Calendar</button>
+  <button id="btnS">Silence</button>
+  <button id="btnH">Hold</button>
+  <button id="btnSweep">Sweep: in</button>
+  <button id="btnFit">True size</button>
+  <span class="hint">space play &middot; arrows step &middot; s swap sweep &middot; c clean &middot; f true size &middot; r restart</span>
+</div>
+
+<script>
+"use strict";
+
+/* =========================================================================
+   CANONICAL DATA. Nothing here may be edited without a ruling.
+
+   The `to` values are the ratified end state and are `HERO_ROWS` in
+   `web/lib/sheet-data.ts` exactly, so the film converges on the hero sheet
+   rather than on something adjacent — which is what makes it structurally
+   unable to contradict the page it becomes the hero of.
+
+   The opening values are Jon's, from the brief: Sarah at Sent / blank /
+   1/13/26 / 3, Priya at Call scheduled / Attend coffee chat / 1/15/26 / 1 /
+   1/16 @ 11:00 AM, Daniel at Sent / blank / 1/11/26 / 4.
+
+   MARCUS LEE AND ALEX MORGAN NEVER MOVE. They are their ratified rows at every
+   frame and they are there so the sheet reads as a tracker rather than as a
+   three-row demonstration. Marcus holds a FUTURE scheduled call throughout,
+   which is deliberate: it shows the tracker carrying forward-looking state.
+   Two rows reading `Call scheduled` at the open is correct and intended — one
+   of them resolves during the film and the other does not.
+
+   Alex Morgan's `Next move` em dash is the single ratified exception to the
+   genuinely-blank rule, scoped to that one cell, reinstated by Jon on
+   August 5, 2026 and implemented as `{ dash: true }` in `sheet-grid.tsx`.
+   ========================================================================= */
+
+const COLS = [
+  { key:"name",   head:"Name",         w:108, kept:false },
+  { key:"title",  head:"Title",        w:126, kept:false, ital:true },
+  { key:"firm",   head:"Firm",         w:138, kept:false },
+  { key:"status", head:"Status",       w:132, kept:true, chip:true },
+  { key:"next",   head:"Next move",    w:156, kept:true },
+  { key:"last",   head:"Last contact", w:112, kept:true },
+  { key:"days",   head:"Days",         w:56,  kept:true, num:true },
+  { key:"call",   head:"Call",         w:134, kept:true },
+];
+const LETTERS = ["A","B","C","D","E","F","G","H"];
+const SPLIT_I = COLS.findIndex(c => c.kept);   /* 3 */
+
+const ROWS = [
+  { name:"Sarah Chen", title:"Associate", firm:"JPMorgan",
+    status:"Sent", next:"", last:"1/13/26", days:"3", call:"",
+    to:{ status:"Replied", next:"Reply to Sarah", last:"1/16/26", days:"0" } },
+
+  { name:"Marcus Lee", title:"Analyst", firm:"Evercore",
+    status:"Call scheduled", next:"Attend coffee chat", last:"1/15/26",
+    days:"1", call:"1/17 @ 2:00 PM" },
+
+  { name:"Priya Shah", title:"Vice President", firm:"Lazard",
+    status:"Call scheduled", next:"Attend coffee chat", last:"1/15/26",
+    days:"1", call:"1/16 @ 11:00 AM",
+    to:{ status:"Call completed", next:"Send thank-you", last:"1/16/26",
+         days:"0", call:"Completed 1/16" } },
+
+  /*
+     THE FROZEN CELL. `to` deliberately carries no `last`, so Daniel's
+     `Last contact` cell is built as plain static text and there is no second
+     value in it for any code path to reach. It reads 1/11/26 on every frame of
+     the film, including while `Days` climbs from 4 to 5 in the column beside
+     it. A cell visibly not changing is the evidence that nothing arrived.
+
+     Daniel opens at Days 4 against a last contact of 1/11/26 while the other
+     rows are consistent with a current date of 1/16/26. That one-day looseness
+     is inherited from Film C and deliberately kept: it is what lets Days
+     visibly climb while Last contact stays frozen. Do not reconcile it.
+  */
+  { name:"Daniel Kim", title:"Associate", firm:"Morgan Stanley",
+    status:"Sent", next:"", last:"1/11/26", days:"4", call:"",
+    to:{ status:"No reply", next:"Bump thread", days:"5" } },
+
+  { name:"Alex Morgan", title:"Analyst", firm:"Centerview",
+    status:"Sent", next:{dash:true}, last:"1/16/26", days:"0", call:"" },
+];
+
+/*
+  The three cues, in this order, each in the one fixed slot.
+
+  Beat 2 IS PRIYA, and that is an override rather than a mistake. `HERO_CUES` in
+  `sheet-data.ts` currently reads `Coffee chat with Marcus Lee` targeting row 1;
+  Jon ruled on August 11, 2026 that this film agrees with Film C, whose calendar
+  beat is Priya, and that the page data will be updated to match this film
+  afterwards.
+
+  Its stamp is `Jan 16 - 11:00 AM`, given explicitly in the brief. That is a
+  third value for this moment — `SECTION_3_MOMENTS` says 2:00 PM and `HERO_CUES`
+  says Jan 17 - 2:00 PM for Marcus — and it is the only one of the three that is
+  internally consistent, because Priya's opening `Call` cell reads
+  `1/16 @ 11:00 AM` and a 2:00 PM stamp would contradict it inside one frame.
+*/
+const CUES = [
+  { id:"sarah",  row:0, source:"gmail",
+    primary:"Sarah Chen replied",          stamp:"Jan 16 · 10:42 AM" },
+  { id:"priya",  row:2, source:"calendar",
+    primary:"Coffee chat with Priya Shah", stamp:"Jan 16 · 11:00 AM" },
+  { id:"daniel", row:3, source:"muted",
+    primary:"No reply for 5 days",         stamp:"Day 5 · No new activity" },
+];
+
+/* The selected cell and its two formula-bar values. D2 is Sarah Chen's Status
+   cell, which is what the first beat moves. Set both to the same string, and
+   `fcellref` to A2, to freeze the bar the way Film C does. */
+const SHEET = { ref:"D2", formulaFrom:"Sent", formulaTo:"Replied" };
+
+/* =========================================================================
+   MARKS, verbatim from web/components/google-marks.tsx
+   ========================================================================= */
+
+const GMAIL_SVG = '<svg width="20" height="15" viewBox="0 0 24 18" aria-hidden="true">'
+  + '<path d="M1.64 18h3.27V9.95L0 6.27v10.09C0 17.27.73 18 1.64 18Z" fill="#4285F4"/>'
+  + '<path d="M19.09 18h3.27c.9 0 1.64-.73 1.64-1.64V6.27l-4.91 3.68V18Z" fill="#34A853"/>'
+  + '<path d="M19.09 1.64v8.31L24 6.27V2.45c0-1.52-1.73-2.38-2.95-1.47l-1.96 1.47Z" fill="#FBBC04"/>'
+  + '<path d="M4.91 9.95V1.64L12 6.95l7.09-5.31v8.31L12 15.27 4.91 9.95Z" fill="#EA4335"/>'
+  + '<path d="M0 2.45v3.82l4.91 3.68V1.64L2.95.98C1.73.07 0 .93 0 2.45Z" fill="#C5221F"/></svg>';
+
+const CAL_SVG = '<svg width="19" height="19" viewBox="0 0 20 20" aria-hidden="true">'
+  + '<g clip-path="url(#calr)">'
+  + '<rect width="20" height="20" fill="#4285F4"/>'
+  + '<rect x="15.6" width="4.4" height="4.4" fill="#1967D2"/>'
+  + '<rect x="15.6" y="4.4" width="4.4" height="11.2" fill="#FBBC04"/>'
+  + '<rect y="15.6" width="4.4" height="4.4" fill="#188038"/>'
+  + '<rect x="4.4" y="15.6" width="11.2" height="4.4" fill="#34A853"/>'
+  + '<rect x="15.6" y="15.6" width="4.4" height="4.4" fill="#EA4335"/>'
+  + '<rect x="4.4" y="4.4" width="11.2" height="11.2" fill="#ffffff"/>'
+  + '<text x="10" y="13.6" text-anchor="middle" font-size="9.4" font-weight="500"'
+  + ' fill="#4285F4" font-family="Arial, Helvetica, sans-serif">31</text>'
+  + '</g></svg>';
+
+const CARET = '<svg width="7" height="4.5" viewBox="0 0 8 5"><path d="M0 0h8L4 5z" fill="currentColor"/></svg>';
+
+/* =========================================================================
+   BUILD
+   ========================================================================= */
+
+const $ = id => document.getElementById(id);
+const params = new URLSearchParams(location.search);
+
+/* `?sweep=out` picks Film C's direction. Anything else, including nothing, is
+   `in`. See the header comment for why `in` is the default. */
+let sweepMode = params.get("sweep") === "out" ? "out" : "in";
+
+(function letters(){
+  $("letters").innerHTML = '<div class="gut"></div>' + COLS.map((c,i) =>
+    `<div class="col" style="width:${c.w}px">${LETTERS[i]}</div>`).join("");
+})();
+
+function valueHTML(col, v){
+  if (v === "" || v === null || v === undefined) return "";
+  if (v && v.dash) return '<span class="dash">—</span>';
+  if (col.chip) return `<span class="chip" data-s="${v}">${v}${CARET}</span>`;
+  return v;
+}
+
+const flips  = [];      /* flips[r][key] = {va, vb, cell} for every moving cell */
+const rowEls = [];
+const rowSweeps = [];
+const sweepWraps = [];
+
+(function grid(){
+  const el = $("grid");
+
+  const h = document.createElement("div");
+  h.className = "row hrow";
+  h.innerHTML = '<div class="gut">1</div>' + COLS.map((c,i) => {
+    const cls = ["cell", c.kept ? "kept" : "manual", i===SPLIT_I ? "split" : "",
+                 c.num ? "num" : "", c.chip ? "chipcell" : ""].join(" ");
+    return `<div class="${cls}" style="width:${c.w}px">${c.head}</div>`;
+  }).join("");
+  el.appendChild(h);
+
+  ROWS.forEach((r, ri) => {
+    const row = document.createElement("div");
+    row.className = "row";
+    const f = {};
+    row.innerHTML = '<div class="gut">' + (ri+2) + '</div>' + COLS.map((c,i) => {
+      const cls = ["cell", i===SPLIT_I ? "split" : "", c.num ? "num" : "",
+                   c.chip ? "chipcell" : "", c.ital ? "ital" : ""].join(" ");
+      /* A cell only becomes a stack if this row's `to` names it. Daniel's
+         `last` is absent from his `to`, so it is built as static text. */
+      const moves = r.to && r.to[c.key] !== undefined;
+      const inner = moves
+        ? `<span class="stack" data-k="${c.key}">`
+            + `<span class="va">${valueHTML(c, r[c.key])}</span>`
+            + `<span class="vb">${valueHTML(c, r.to[c.key])}</span>`
+          + `</span>`
+        : valueHTML(c, r[c.key]);
+      return `<div class="${cls}" style="width:${c.w}px">${inner}</div>`;
+    }).join("")
+      + '<div class="sweepwrap"><div class="rowsweep"><span class="lead"></span></div></div>';
+    el.appendChild(row);
+
+    [...row.querySelectorAll(".stack")].forEach(s => {
+      f[s.dataset.k] = { va:s.querySelector(".va"), vb:s.querySelector(".vb"),
+                         cell:s.parentElement };
+    });
+    flips.push(f);
+    rowEls.push(row);
+    rowSweeps.push(row.querySelector(".rowsweep"));
+    sweepWraps.push(row.querySelector(".sweepwrap"));
+  });
+})();
+
+(function formulaBar(){
+  $("fcellref").textContent = SHEET.ref;
+  $("fstack").innerHTML = `<span class="va">${SHEET.formulaFrom}</span>`
+                        + `<span class="vb">${SHEET.formulaTo}</span>`;
+})();
+const fbar = { va:$("fstack").querySelector(".va"), vb:$("fstack").querySelector(".vb") };
+
+(function cards(){
+  $("cards").innerHTML = CUES.map(c => {
+    const mark = c.source === "calendar" ? CAL_SVG : GMAIL_SVG;
+    const cls  = c.source === "muted" ? "cmark muted" : "cmark";
+    return `<div class="card" id="card-${c.id}">`
+      + `<span class="${cls}">${mark}</span>`
+      + `<span class="ctext">`
+      +   `<span class="cprimary">${c.primary}</span>`
+      +   `<span class="cstamp">${c.stamp}</span>`
+      + `</span></div>`;
+  }).join("");
+})();
+const cardEls = CUES.map(c => $("card-" + c.id));
+
+/* =========================================================================
+   MEASURED GEOMETRY
+
+   Read off the built DOM rather than typed, for the reason the header comment
+   gives: the eight columns shrink by a pixel in total to fit the sheet's
+   content box, so every boundary lands on a fraction and the arithmetic in the
+   build spec is half a pixel out. The connectors and the sweep are driven from
+   what is actually painted.
+   ========================================================================= */
+
+/*
+  Two coordinate spaces, and conflating them is a one-pixel bug.
+
+  The connector lives in the svg, which spans the STAGE. The sweep lives inside
+  a row, whose origin is a pixel to the right of the stage's because the sheet
+  has a 1px border. Measuring the split against the stage and then writing it as
+  the sweep's `left` puts the wash a pixel clear of the very rule it is supposed
+  to begin on. So `pxIn` takes the element to measure against.
+
+  Both divide out whatever scale the stage is currently under, so a measurement
+  is a canvas measurement whether or not `fit()` has run yet.
+*/
+const STAGE_K = (() => { const b = $("stage").getBoundingClientRect();
+                         return b.width / 1322 || 1; })();
+const pxIn = (el, origin) => {
+  const o = origin.getBoundingClientRect(), b = el.getBoundingClientRect();
+  return { x:(b.left-o.left)/STAGE_K, y:(b.top-o.top)/STAGE_K,
+           w:b.width/STAGE_K, h:b.height/STAGE_K };
+};
+const px = el => pxIn(el, $("stage"));
+
+/* Row centres, in canvas coordinates — what the connector endpoints need. */
+const ROW_MID = rowEls.map(el => { const b = px(el); return b.y + b.h / 2; });
+
+/* The ownership split and the right edge of the maintained block, measured off
+   the header row's own cells so the sweep can never drift from the rule, and in
+   GRID coordinates because that is the space the sweep is positioned in. */
+const hdrRow   = $("grid").firstElementChild;
+const hdrCells = [...hdrRow.querySelectorAll(".cell")];
+const SPLIT_X  = pxIn(hdrCells[SPLIT_I], hdrRow).x;
+const KEPT_END = (() => { const b = pxIn(hdrCells[COLS.length-1], hdrRow);
+                          return b.x + b.w; })();
+const SWEEP_W  = KEPT_END - SPLIT_X;
+
+/* The same two edges in canvas coordinates, for the record and for the
+   verification pass. The sweep must never go left of `SPLIT_CANVAS`. */
+const SPLIT_CANVAS = px(hdrCells[SPLIT_I]).x;
+
+/* Where each maintained column's content sits inside the sweep, as an x offset
+   from the split. A value flips when the leading edge is 35% into its own
+   column, or 52% into `Days`, which is right-aligned and so has its content at
+   the far end. Same anchor in both sweep directions; only the progress that
+   reaches it is measured from the other side. */
+const FLIP_X = {};
+COLS.forEach(c => {
+  if (!c.kept) return;
+  const b = pxIn(hdrCells[COLS.indexOf(c)], hdrRow);
+  FLIP_X[c.key] = (b.x - SPLIT_X) + b.w * (c.num ? 0.52 : 0.35);
+});
+
+/* The connector. One L per cue: down the corridor at the centre of the card's
+   source mark, one right angle, into the row, closed on the sheet's edge. */
+const CARD_BOTTOM = px(cardEls[0]).y + px(cardEls[0]).h;      /* 50 */
+const STEM_X      = (() => { const b = px(cardEls[0].firstElementChild);
+                             return b.x + b.w / 2; })();       /* 1109 */
+const SHEET_EDGE  = (() => { const b = px($("sheet")); return b.x + b.w; })(); /* 1006 */
+
+const NODE_R = 5;
+
+const wires = CUES.map(c => {
+  const ry = ROW_MID[c.row];
+  const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  p.setAttribute("class", "wire");
+  p.setAttribute("d", `M ${STEM_X} ${CARD_BOTTOM} L ${STEM_X} ${ry} L ${SHEET_EDGE} ${ry}`);
+  const n = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  n.setAttribute("class", "wnode");
+  n.setAttribute("cx", SHEET_EDGE); n.setAttribute("cy", ry); n.setAttribute("r", NODE_R);
+  const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  g.appendChild(p); g.appendChild(n);
+  $("wires").appendChild(g);
+  const len = p.getTotalLength();
+  p.style.strokeDasharray = len;
+  return { g, path:p, node:n, len };
+});
+
+/* Everything the composition was actually laid out at, in canvas coordinates,
+   so a verification pass reads the film's own measurements rather than
+   re-deriving them and agreeing with itself. */
+window.GEOMETRY = {
+  splitCanvasX: SPLIT_CANVAS, splitGridX: SPLIT_X,
+  keptEndGridX: KEPT_END, sweepW: SWEEP_W,
+  rowMid: ROW_MID, cardBottom: CARD_BOTTOM, stemX: STEM_X,
+  sheetEdge: SHEET_EDGE, nodeR: NODE_R, flipX: FLIP_X, dur: 11.50,
+};
+
+/* The sweep spans the maintained block exactly, and which end it grows from is
+   the A/B. Applied on mode change rather than per frame. */
+function applySweepMode(){
+  sweepWraps.forEach(w => { w.style.left = SPLIT_X + "px"; w.style.width = SWEEP_W + "px"; });
+  rowSweeps.forEach(s => {
+    const lead = s.querySelector(".lead");
+    if (sweepMode === "out") { s.style.left = "0px";  s.style.right = "auto";
+                               lead.style.right = "0px"; lead.style.left = "auto"; }
+    else                     { s.style.left = "auto"; s.style.right = "0px";
+                               lead.style.left = "0px";  lead.style.right = "auto"; }
+  });
+  const b = $("btnSweep"); if (b) b.textContent = "Sweep: " + sweepMode;
+}
+applySweepMode();
+
+/* =========================================================================
+   TIMELINE. Every visible property is a pure function of t, so scrubbing back
+   is identical to playing forward and `?t=` is reproducible.
+   ========================================================================= */
+
+const DUR = 11.50;
+
+/*
+  Per beat: the card arrives, the connector draws itself down the corridor and
+  closes on its node, a sweep runs the row that changes, and — for the first two
+  beats only — the whole cue and its line leave.
+
+  Film C's rhythm is 2.40 / 2.28 / 3.84 with 1.60s of stillness at the end. Its
+  20-millisecond beat boundaries leave no room for an exit, which this film
+  needs because the cards share one slot and must not coexist. So each beat is
+  given the exit time it needs and the total runs longer: 2.78 / 2.84 / 4.36,
+  with the silence beat still comfortably the longest and its 1.60s of complete
+  stillness intact (1.66s measured).
+
+  `out` is absent from the third beat. That cue, its line and its node stay, and
+  the film holds there — which is what Film C already does at t=9.0.
+*/
+const BEATS = [
+  { /* Gmail    */ card:[1.20,1.52], wire:[1.58,2.10], node:[2.06,2.26],
+                   sweep:[2.38,3.10], sweepOut:[3.10,3.34], out:[3.52,3.98] },
+  { /* Calendar */ card:[4.14,4.46], wire:[4.52,5.10], node:[5.06,5.26],
+                   sweep:[5.38,6.10], sweepOut:[6.10,6.34], out:[6.52,6.98] },
+  { /* Silence  */ card:[7.14,7.54], wire:[7.62,8.32], node:[8.28,8.52],
+                   sweep:[8.68,9.58], sweepOut:[9.58,9.84], out:null },
+];
+
+/* Everything after 9.84 is stillness: not one property on the canvas changes
+   between there and the hold. That is the beat, and it is why the film is
+   eleven and a half seconds rather than nine and a half. */
+const STILL_FROM = 9.84;
+
+const cl = u => u < 0 ? 0 : u > 1 ? 1 : u;
+const ss = u => { u = cl(u); return u*u*(3-2*u); };
+const seg = (t,[a,b]) => ss((t-a)/(b-a));
+const band = (t,i,o) => o ? Math.min(seg(t,i), 1 - seg(t,o)) : seg(t,i);
+
+/*
+  How far a cell has moved from its opening value to its ratified one. It
+  advances when the sweep's leading edge reaches it and it never retreats,
+  because this film does not wipe back.
+*/
+const FLIP_DUR = 0.26;
+
+/* A cell REPLACES its value. The old one is gone before the new one starts,
+   with a beat of empty cell between them, which is also what a spreadsheet
+   cell actually does. */
+const outOpacity = m => 1 - ss(m / 0.42);
+const inOpacity  = m => ss((m - 0.52) / 0.48);
+
+function mix(t, beat, key){
+  const B = BEATS[beat];
+  /* In `out` the edge starts at the split, so a column's progress is its
+     distance from the split. In `in` the edge starts at the sheet's right edge,
+     so it is the distance back from there. Same anchor, measured from the end
+     the edge actually comes from. */
+  const u  = sweepMode === "out" ? FLIP_X[key] / SWEEP_W
+                                 : (SWEEP_W - FLIP_X[key]) / SWEEP_W;
+  const at = B.sweep[0] + (B.sweep[1] - B.sweep[0]) * u;
+  return seg(t, [at, at + FLIP_DUR]);
+}
+
+function render(t){
+  const T = t < 0 ? 0 : t > DUR ? DUR : t;
+
+  /* ------------------------------------------------- cue cards and wires */
+  BEATS.forEach((B, i) => {
+    const live = band(T, B.card, B.out);
+    cardEls[i].style.opacity = live;
+    cardEls[i].style.transform = `translateY(${(1-live) * 6}px)`;
+
+    const w = wires[i];
+    /* The line draws itself from the card down to the sheet, one continuous
+       stroke through its single right angle. */
+    const drawn = seg(T, B.wire);
+    w.path.style.strokeDashoffset = w.len * (1 - drawn);
+
+    /* The node closes the connector where it meets the sheet, the way the
+       hero's does. It overshoots by a tenth on arrival and settles, so the line
+       reads as landing rather than as having always been there. */
+    const n = seg(T, B.node);
+    w.node.style.opacity = n;
+    const s = n * (1.10 - 0.10 * ss(cl((n - 0.6) / 0.4)));
+    w.node.setAttribute("transform",
+      `translate(${SHEET_EDGE} ${ROW_MID[CUES[i].row]}) scale(${s}) translate(${-SHEET_EDGE} ${-ROW_MID[CUES[i].row]})`);
+
+    w.g.style.opacity = B.out ? (1 - seg(T, B.out)) : 1;
+  });
+
+  /* ------------------------------------------------------------ the sweeps */
+  const swept   = ROWS.map(() => 0);
+  const sweptOp = ROWS.map(() => 0);
+  BEATS.forEach((B, i) => {
+    const r = CUES[i].row;
+    swept[r]   = seg(T, B.sweep) * (seg(T, B.sweepOut) < 1 ? 1 : 0);
+    sweptOp[r] = band(T, [B.sweep[0], B.sweep[0] + 0.06], B.sweepOut);
+  });
+  rowSweeps.forEach((s, r) => {
+    s.style.width = (swept[r] * SWEEP_W) + "px";
+    s.style.opacity = sweptOp[r];
+  });
+
+  /* --------------------------------------------------------- the cell moves */
+  BEATS.forEach((B, i) => {
+    const f = flips[CUES[i].row];
+    for (const key in f) {
+      const m = mix(T, i, key);
+      const c = f[key];
+      const o = outOpacity(m), n = inOpacity(m);
+      c.va.style.opacity = o;
+      c.va.style.transform = `translateY(${(1-o) * -6}px)`;
+      c.vb.style.opacity = n;
+      c.vb.style.transform = `translateY(${(1-n) * 6}px)`;
+      /* A short breath on the cell that just moved, in the same yellow. It
+         rises with the value and is gone well before the beat ends, so NOTHING
+         IS LEFT MARKING THE ROW. */
+      const heat = Math.sin(cl(m) * Math.PI) * 0.16;
+      c.cell.style.background = heat > 0.001
+        ? `rgba(201,162,39,${heat.toFixed(4)})` : "";
+    }
+  });
+
+  /* The formula bar moves with the cell it points at, on the same instant. */
+  const fm = mix(T, 0, "status");
+  const fo = outOpacity(fm), fn = inOpacity(fm);
+  fbar.va.style.opacity = fo;
+  fbar.va.style.transform = `translateY(${(1-fo) * -6}px)`;
+  fbar.vb.style.opacity = fn;
+  fbar.vb.style.transform = `translateY(${(1-fn) * 6}px)`;
+}
+
+/* =========================================================================
+   DRIVER
+
+   The film plays once and holds. `t` is clamped at DUR rather than wrapped:
+   there is no loop and no seam to make frame-exact.
+   ========================================================================= */
+
+let playing = true, t = 0, last = performance.now();
+const scrub = $("scrub"), clock = $("clock"), play = $("play");
+scrub.max = Math.round(DUR * 1000);
+
+function frame(now){
+  if (playing) {
+    t = Math.min(t + (now - last) / 1000, DUR);
+    scrub.value = Math.round(t * 1000);
+    if (t >= DUR) { playing = false; play.textContent = "Play"; }
+  }
+  last = now;
+  render(t);
+  clock.textContent = t.toFixed(2) + " / " + DUR.toFixed(2);
+  requestAnimationFrame(frame);
+}
+
+scrub.addEventListener("input", () => {
+  playing = false; play.textContent = "Play"; t = +scrub.value / 1000;
+});
+play.addEventListener("click", () => {
+  if (!playing && t >= DUR) t = 0;
+  playing = !playing; play.textContent = playing ? "Pause" : "Play";
+});
+
+let trueSize = false;
+let lastK = 1;
+function fit(){
+  const wrap = $("stagewrap"), hold = $("stagehold");
+  const bare = document.body.classList.contains("bare");
+  const pad = bare ? 0 : 110;
+  const availW = innerWidth  - (bare ? 0 : 40);
+  const availH = innerHeight - pad;
+  /*
+    A DEGENERATE VIEWPORT MUST NOT PRODUCE A NEGATIVE SCALE, and this is not a
+    hypothetical. An iframe inside a `display:none` subtree reports `innerWidth`
+    and `innerHeight` of 0 — which is exactly the pattern `hero-film.tsx` uses to
+    keep the mobile film off desktop, `loading="lazy"` inside a `desk:hidden`
+    wrapper. `Math.min(1, 0/1322, -110/432.5)` is `-0.254`, and a negative scale
+    is a 180-degree rotation plus a mirror, not a small film. The frame would
+    then paint the composition upside-down and backwards until something
+    happened to fire a resize.
+
+    So the last good scale is held until the viewport actually has a size, and
+    the resize that gives it one does the fitting. Caught by the verification
+    pass reading nonsense geometry out of a backgrounded tab.
+  */
+  const k = trueSize ? 1
+    : (availW > 0 && availH > 0)
+      ? Math.min(1, availW / 1322, availH / 432.5)
+      : lastK;
+  lastK = k;
+  wrap.style.transform = `scale(${k})`;
+  hold.style.width  = (1322 * k) + "px";
+  hold.style.height = (432.5 * k) + "px";
+}
+addEventListener("resize", fit);
+
+function swapSweep(){
+  sweepMode = sweepMode === "out" ? "in" : "out";
+  applySweepMode();
+  render(t);
+}
+
+$("btnFit").addEventListener("click", () => { trueSize = !trueSize; fit(); });
+$("btnSweep").addEventListener("click", swapSweep);
+$("btnG").addEventListener("click", () => window.renderAt(2.90));
+$("btnC").addEventListener("click", () => window.renderAt(5.90));
+$("btnS").addEventListener("click", () => window.renderAt(9.20));
+$("btnH").addEventListener("click", () => window.renderAt(DUR));
+
+addEventListener("keydown", e => {
+  const step = 1 / 30;
+  if (e.code === "Space") { e.preventDefault(); play.click(); }
+  else if (e.key === "ArrowRight") { window.renderAt(Math.min(t + step, DUR)); }
+  else if (e.key === "ArrowLeft")  { window.renderAt(Math.max(t - step, 0)); }
+  else if (e.key === "r") { t = 0; playing = true; play.textContent = "Pause"; last = performance.now(); }
+  else if (e.key === "s") { swapSweep(); }
+  else if (e.key === "c") { document.body.classList.toggle("bare"); fit(); }
+  else if (e.key === "f") { trueSize = !trueSize; fit(); }
+});
+
+/*
+  Deterministic single-frame access, for capture and for inspecting a beat.
+  `render` is a pure function of t, so this gives exactly the frame the player
+  would show. Exposed because requestAnimationFrame is throttled in a background
+  tab and any capture tool would otherwise read a stale frame.
+*/
+window.renderAt = function (sec) {
+  playing = false; play.textContent = "Play";
+  t = Math.max(0, Math.min(DUR, sec));
+  scrub.value = Math.round(t * 1000);
+  render(t);
+  clock.textContent = t.toFixed(2) + " / " + DUR.toFixed(2);
+  return t;
+};
+
+/*
+  Embedded use.
+
+    ?bare=1        strips the controls and the ground so the film sits in the
+                   page as an asset rather than as a player
+    ?t=11.5        opens on one frame, deterministically. Any t from 9.84 to
+                   11.50 is the held frame; 11.5 is the canonical still.
+    ?sweep=in|out  the A/B, handled above
+
+  All three compose.
+*/
+if (params.get("bare") !== null) document.body.classList.add("bare");
+const q = params.get("t");
+
+fit();
+if (q !== null) {
+  window.renderAt(+q);
+} else if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  /* A reader who has asked for reduced motion gets the held frame rather than
+     the film, even if the host forgot to serve them the still. `hero-film.tsx`
+     does this by swapping the src; this is the same answer from the other end,
+     and it costs nothing when the host has already handled it. */
+  window.renderAt(DUR);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

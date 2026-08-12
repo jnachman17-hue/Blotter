@@ -2024,3 +2024,47 @@ Outstanding keeps `field-settle`, and the chain is undisturbed. The
 `desk:hidden` / `desk:block` pair can collapse into one shared component.
 
 Mobile built the slot the desktop cut needs. Nothing has to be invented.
+
+### Section 02's sheet and refusals, August 11, 2026
+
+**The zone treatment is `banner-sub`, provisionally.** Jon: *"I don't love the
+new way of doing it. So if I had to pick, it would be c banner plus sub. But is
+there a cleaner way to do this? I don't know… I honestly make this change, and
+then we'll ratify it. I don't think it looks great, but we're gonna do it."*
+
+Recorded as a **provisional default rather than a ratification**, because he
+said so. `/review/ownership` keeps all four live.
+
+**The manual zone gets a fill, and it is the change that was actually missing.**
+Jon: *"rows three through seven on the You add side should be highlighted in a
+lighter gray than row two."*
+
+He found a real asymmetry rather than a preference. The maintained half was a
+zone — cream in the header, carried down every data cell. The manual half was a
+tinted header sitting on five white rows, so **below the header band the left
+side stopped existing as a region**, and a split that is supposed to be two
+areas was being carried by one row.
+
+The value is derived rather than picked. `blotter-100` sits 8/13/23 below white
+and `MAINTAINED_FILL` sits 2/5/13 below it, about 45% of the header's distance
+from white. `manual-100` is 18/13/7 below white; 45% of that is 8/6/3, or
+**#f7f9fc**. Both zones now recede from their headers by the same proportion in
+their own hues, which is what stops either half looking heavier.
+
+**The refusals go three-across on desktop.** Jon: *"that looks awful expanded…
+just figure it out. so bad expanded."*
+
+The panel was written for a phone and inherited by a 1,124px section. Three
+labels of 11 to 26 characters, each on its own full-width row with a divider
+under it, left about 900px of empty warm panel beside `No AI slop` and spent
+150px of height on nine words. Across, it is one 56px band with the dividers
+turned ninety degrees.
+
+**It also bookends the sheet**, which is a gain: the reassurance claims already
+run three-across above it, so the section reads claims → picture → refusals in
+one rhythm rather than a strip above and a stack below.
+
+`06`'s row warning that the two lists could converge is answered rather than
+ignored — the panel keeps its warm fill, its ring and its coloured tiles, about
+500px of spreadsheet separates them, and **the phone stays stacked**, which is
+the surface the row was actually about.

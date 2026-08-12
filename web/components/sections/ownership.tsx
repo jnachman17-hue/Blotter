@@ -133,7 +133,7 @@ function DesktopHead() {
 
 export function Ownership({
   variant = "swipe",
-  zones = "none",
+  zones = "banner-sub",
 }: {
   /** Phone sheet treatment. `swipe` is ratified; the crop survives behind
       `/review/sheet-mobile`, which is why the prop stays. */

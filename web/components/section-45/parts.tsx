@@ -91,6 +91,31 @@ const LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
  */
 const MAINTAINED_FILL = "#fdfaf2";
 
+/**
+ * The manual fill, added August 11, 2026 on Jon's note.
+ *
+ * Until now only the maintained half was a *zone*: cream in the header and
+ * carried down every data cell. The manual half was a tinted header sitting on
+ * five white rows, so below the header band the left side stopped existing as
+ * a region and the split was asserted by one row rather than by two areas.
+ *
+ * Jon, seeing the banner variant: *"rows three through seven on the You add
+ * side should be highlighted in a lighter gray than row two… a light gray fill
+ * on all the cells on the left hand side below where the content is, but in a
+ * lighter shade than up at top."*
+ *
+ * **The value is derived rather than picked.** The maintained side already
+ * fixes the relationship between a zone's header and its body: `blotter-100`
+ * (#f7f2e8) sits 8/13/23 below white, and `MAINTAINED_FILL` sits 2/5/13 below
+ * it — about 45% of the header's distance from white. `manual-100` (#edf2f8)
+ * is 18/13/7 below white, and 45% of that is 8/6/3, which is #f7f9fc.
+ *
+ * So the two zones now recede from their headers by the same proportion, in
+ * their own hues. Matching the *ratio* rather than eyeballing a grey is what
+ * keeps neither half looking heavier than the other.
+ */
+const MANUAL_FILL = "#f7f9fc";
+
 const TABS_BLOTTER = [{ label: "Contacts" }, { label: "Blotter", active: true }, { label: "Outstanding" }];
 const TABS_OUT = [{ label: "Contacts" }, { label: "Blotter" }, { label: "Outstanding", active: true }];
 
@@ -380,11 +405,11 @@ export function BlotterTab({ zones = "none" }: { zones?: ZoneTreatment }) {
             {TRACKER_CONTACTS.map((c, r) => (
               <div key={c.name} className="flex border-b border-sheet-grid last:border-b-0">
                 <Gut n={r + 2 + rowOffset} />
-                <div className="px-3 py-2.5 font-medium text-ink" style={{ width: YOURS[0].w }}>{c.name}</div>
-                <div className="px-3 py-2.5 text-ink-muted italic" style={{ width: YOURS[1].w }}>{c.title}</div>
-                <div className="px-3 py-2.5" style={{ width: YOURS[2].w }}>{c.firm}</div>
-                <div className="truncate px-3 py-2.5 text-ink-muted" style={{ width: YOURS[3].w }}>{c.email}</div>
-                <div className="px-3 py-2.5" style={{ width: YOURS[4].w }}>
+                <div className="px-3 py-2.5 font-medium text-ink" style={{ width: YOURS[0].w, background: MANUAL_FILL }}>{c.name}</div>
+                <div className="px-3 py-2.5 text-ink-muted italic" style={{ width: YOURS[1].w, background: MANUAL_FILL }}>{c.title}</div>
+                <div className="px-3 py-2.5" style={{ width: YOURS[2].w, background: MANUAL_FILL }}>{c.firm}</div>
+                <div className="truncate px-3 py-2.5 text-ink-muted" style={{ width: YOURS[3].w, background: MANUAL_FILL }}>{c.email}</div>
+                <div className="px-3 py-2.5" style={{ width: YOURS[4].w, background: MANUAL_FILL }}>
                   {/*
                     Text, not an anchor. These are spreadsheet *content* in an
                     illustrative asset, not navigation: five real anchors to
