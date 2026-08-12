@@ -139,6 +139,23 @@ running top to bottom, matching Film C and the web hero.
 
 **This is the session's work and none of it is drafted.**
 
+### Read this before anything else in this section
+
+**`02-strategy-and-test.md` forbids promoting this page alone**, in three
+Confirmed places: line 40, line 93 and line 101's traffic gate. Round one is a
+**matched test of two surfaces** — spreadsheet-native against standalone
+platform — and **the platform page is Workstream 7 and does not exist.**
+
+The stated reason for simultaneity is the exact confounder Jon identified on
+August 12: *"different launch weeks would confound results with
+recruiting-cycle timing."*
+
+**This is not an instruction to stop.** The gate was already crossed — the site
+is live, indexed and carrying traffic, and Jon overrode the domain hold
+knowingly. But promotion is a different act from being live: it spends the
+sample deliberately. `06` carries the row and the three legitimate ways out.
+**Get the ruling before anything is published**, not before drafting.
+
 What exists to post: the live page, three films (`A` 21.5s funnel, `B` 37.8s
 unused, `C` 11s mobile hero), the web hero film, the launch film, and a share
 card that renders on every link.
