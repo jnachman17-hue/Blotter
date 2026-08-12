@@ -144,17 +144,18 @@ delete from public.contact_messages where email like 'audit-%@blotterib.com';
 
 ### 2. Check and lock the database views — Supabase, 5 minutes
 
-Open `supabase/005-lock-down-views.sql`. **Run part 1 first** — it is four
-read-only queries that tell you whether the problem is real. Copy the results
-somewhere.
+Two files, in order. Paste each one whole into Supabase → SQL Editor → Run.
 
-What you are looking for in the first query: a column called `reloptions`. If
-it says `security_invoker=true`, there was never a problem. If it is empty or
-says `NULL`, the problem is real.
+**First** `supabase/CHECK-view-security.sql`. Read-only, changes nothing.
+It returns four rows. In the two `view` rows, look at `options`: if it contains
+`security_invoker=true` there was never a problem. If it is `NULL` or empty, the
+problem is real. `anon_grants` should read 0 on every row.
 
-Then run part 2, which is the fix. It is safe either way — if the problem was
-not real, part 2 changes nothing that matters. It does **not** affect the
-website; the site uses a different key that is unaffected.
+**Then** `supabase/005-lock-down-views.sql`, which is the fix. Safe to run
+either way — every statement is idempotent, and none of them touches the key the
+website uses, so the site keeps working regardless.
+
+Re-run the check afterwards to confirm.
 
 ### 3. Delete the fake Goldman Sachs pages — your terminal, 10 seconds
 
