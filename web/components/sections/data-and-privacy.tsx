@@ -34,6 +34,7 @@ import Link from "next/link";
 
 import { PageBox } from "@/components/layout/page-box";
 import { SectionNumber } from "@/components/layout/section-number";
+import { SectionEyebrow, TRIAL_EYEBROWS } from "@/components/layout/section-eyebrow";
 import {
   ConnectionFinePrint,
   ProcessingFlow,
@@ -58,6 +59,7 @@ export function DataAndPrivacy() {
     <section id="privacy" className="field-document pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
         <SectionNumber n={4} />
+        <SectionEyebrow>{TRIAL_EYEBROWS.privacy}</SectionEyebrow>
         {/*
           Head. The page's established two-column opening — headline left,
           supporting copy right — which Sections 3, 4 and 5 all use. Section 6

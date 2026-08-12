@@ -83,6 +83,7 @@
  */
 
 import { SectionNumber } from "@/components/layout/section-number";
+import { SectionEyebrow, TRIAL_EYEBROWS } from "@/components/layout/section-eyebrow";
 import { PageBox } from "@/components/layout/page-box";
 import { BlotterTab, Reassurance, ReassuranceStack } from "@/components/section-45/parts";
 import type { ZoneTreatment } from "@/components/section-45/parts";
@@ -150,6 +151,7 @@ export function Ownership({
     <section className="field-rise pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
         <SectionNumber n={2} />
+        <SectionEyebrow>{TRIAL_EYEBROWS.ownership}</SectionEyebrow>
 
         {/* ------------------------------------------------------ desktop */}
         <div className="hidden desk:block">

@@ -37,6 +37,7 @@ import { DisclosureList } from "@/components/disclosure";
 import { RefusalPanel } from "@/components/section-3/boundary-block";
 import { PageBox } from "@/components/layout/page-box";
 import { SectionNumber } from "@/components/layout/section-number";
+import { SectionEyebrow, TRIAL_EYEBROWS } from "@/components/layout/section-eyebrow";
 import { cn } from "@/lib/cn";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { POLICY_HREF } from "@/lib/privacy-copy";
@@ -145,7 +146,18 @@ export function FaqAndClose() {
             §4 allows the title and nothing else above the rows: no eyebrow, no
             supporting paragraph, no introductory copy.
           */}
-          <div className="mx-auto" style={{ maxWidth: FAQ_W }}>
+          {/*
+            **On the page axis from August 11, 2026.** This was `mx-auto`,
+            which centred the 960px measure inside the 1124px box and started
+            its headline at 240 while every other section on the page starts at
+            158. Invisible while the hero was doing its own thing; once Jon
+            chose a left-aligned hero it was the only centred block left.
+
+            The 960px reading measure is kept — that is a legibility decision
+            and a good one. Only the centring goes.
+          */}
+          <SectionEyebrow>{TRIAL_EYEBROWS.faq}</SectionEyebrow>
+          <div style={{ maxWidth: FAQ_W }}>
             <h2 className="font-display text-h2 leading-[1.14] font-bold tracking-[-0.02em] text-ink">
               {FAQ_TITLE}
             </h2>

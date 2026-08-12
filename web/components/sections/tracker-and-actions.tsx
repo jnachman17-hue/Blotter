@@ -31,6 +31,7 @@
 import { CtaButton } from "@/components/cta-button";
 import { PageBox } from "@/components/layout/page-box";
 import { SectionNumber } from "@/components/layout/section-number";
+import { SectionEyebrow, TRIAL_EYEBROWS } from "@/components/layout/section-eyebrow";
 import { OutstandingPhone } from "@/components/section-45/outstanding-phone";
 /* `BlotterTab` and `Reassurance` left with the preservation beat on August 11,
    2026 — see `components/sections/ownership.tsx`. */
@@ -120,6 +121,7 @@ export function TrackerAndActions() {
           partner above it is decoration.
         */}
         <SectionNumber n={3} />
+        <SectionEyebrow>{TRIAL_EYEBROWS.outstanding}</SectionEyebrow>
         <Head h={ACT_H} sub={ACT_SUB} />
         {/*
           Desktop keeps the three-column composition, which is what lets all 21

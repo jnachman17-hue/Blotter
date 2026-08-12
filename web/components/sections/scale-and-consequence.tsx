@@ -30,7 +30,7 @@ export function ScaleAndConsequence() {
     <section className="field-deep pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
         <SectionNumber n={1} />
-        <p className="flex items-start gap-3 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase">
+        <p className="section-eyebrow flex items-start gap-3 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase">
           <span
             aria-hidden="true"
             className="mt-[0.35em] h-[0.9em] w-[2px] shrink-0 bg-navy-500"

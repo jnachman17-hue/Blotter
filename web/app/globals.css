@@ -581,6 +581,34 @@ body {
 }
 
 /*
+  Section eyebrows, under comparison August 11, 2026.
+
+  Three states, set by `data-section-eyebrows` on the page root:
+
+    `spec`  what the build specs prescribe: Section 01 only. The default, and
+            the state the page shipped in.
+    `all`   every section labelled. Overrides the four clauses that forbid an
+            eyebrow, the same four already overridden to turn numbering on.
+    `none`  no section labelled. Overrides `02-SECTION-2`'s exact-copy
+            requirement for its eyebrow.
+
+  Both alternatives are overrides in opposite directions, which is why this is
+  a comparison rather than a cleanup. `components/layout/section-eyebrow.tsx`
+  has the clause list.
+
+  The extra eyebrows ship in the markup and are hidden, the same way the
+  section numerals did before they were turned on. Nothing renders them unless
+  an ancestor asks.
+*/
+[data-section-eyebrows="all"] .section-eyebrow--extra {
+  display: flex;
+}
+
+[data-section-eyebrows="none"] .section-eyebrow {
+  display: none;
+}
+
+/*
   Numbered sections, both surfaces, from August 11, 2026.
 
   Jon chose `01` on August 10, 2026 after comparing it against `01 / 05` and
