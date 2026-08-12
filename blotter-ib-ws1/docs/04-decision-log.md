@@ -1899,3 +1899,43 @@ difference only explains why the fault is *less visible* on one of them. `08`
 §16 was the same shape — desktop's 600px measure and the adjacent 60-hour figure
 explained why 22px was less obviously wrong, not why it was right. Both entries
 were written carefully and both reached the wrong conclusion by the same route.
+
+### The web hero film: two decisions and one override, August 11, 2026
+
+**The new film agrees with Film C, not with the current static hero.** Jon:
+*"Let's make the new to be produced hero video agree with film C."*
+
+**This is an override of a ratified cue list and it should not be applied
+quietly.** `01-HERO` §7 fixes the three hero cues, and `HERO_CUES` in
+`web/lib/sheet-data.ts` implements them. The second cue reads
+`Coffee chat with Marcus Lee`, `Jan 17 · 2:00 PM`, targeting row 1. Film C's
+calendar beat is **Priya Shah**, moving `Call scheduled` to `Call completed`
+and `Attend coffee chat` to `Send thank-you`. Agreeing with Film C moves the
+cue to row 2 and rewrites its copy.
+
+Jon already overrode the third entry of the same list on August 5, 2026,
+swapping `Email sent to Alex Morgan` for `No reply for 5 days`. This is the
+second entry of three. **After this, two of the three ratified hero cues are
+Jon's overrides rather than `01-HERO` §7's.** Worth stating plainly so a later
+session does not read the spec and think the page has drifted.
+
+The knock-on: in the current static hero, Marcus sits at `Call scheduled` and
+Priya at `Call completed` — two contacts frozen either side of one transition.
+If Priya now *makes* that transition, her opening state becomes Marcus's
+current one, and the two rows both read `Call scheduled` before the beat. That
+is realistic rather than a problem, but it has to be specified rather than
+discovered.
+
+**The film plays once and holds. Loop is the fallback.** Jon: *"We'll try first
+with held. If it doesn't work we will loop it."*
+
+Film C cannot simply be retimed for this. It ends with a **wipe back** — a pale
+bar runs up the grid and returns every row to its opening state so the loop
+seams frame-exactly. Its resting frame is therefore the tracker *before*
+anything arrived, which is the worst available still for a hero under a
+headline about stale trackers. **The web film must have no wipe-back**, and its
+final frame must be the fully-updated tracker.
+
+`components/hero/hero-film.tsx` shows this is cheap: Film C exposes `?t=` as a
+deterministic frame render, and the mobile hero already uses `?t=9.0` for its
+reduced-motion still. The web film must expose the same parameter.
