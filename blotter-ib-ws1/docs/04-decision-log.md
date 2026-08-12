@@ -1939,3 +1939,47 @@ final frame must be the fully-updated tracker.
 `components/hero/hero-film.tsx` shows this is cheap: Film C exposes `?t=` as a
 deterministic frame render, and the mobile hero already uses `?t=9.0` for its
 reduced-motion still. The web film must expose the same parameter.
+
+### The web hero film: the connector, the sweep, and a question it opened
+
+**The connector points at the row. Approved as a deliberate deviation from Film
+C, August 11, 2026.**
+
+Film C's line does not point at a row — it drops into the sheet's top-left
+corner, and the row sweep alone identifies which row moved. Verified by
+rendering `?bare=1&t=9.0`, which is the frame the mobile hero already serves
+under reduced motion.
+
+**Jon's reason for the difference, and it is the right one:** *"Didn't have
+mobile version point to row because no space and reduced columns make it easy
+to track."* Four columns on a phone make a corner plug unambiguous. Eight
+columns across 1,322px do not, and a reader would hunt for what changed. So the
+web film uses the **desktop hero's** ratified device — `01-HERO` §7 and §9's
+"one direct connector per cue, landing on that row's maintained block, closed by
+a small endpoint node" — with Film C's one-at-a-time timing.
+
+**The card sits in one fixed slot.** Jon's design, and it replaced a worse one.
+The card enters right of the sheet, its top level with the sheet's top. A cream
+line drops from it, turns one right angle left, and lands on the target row with
+a node. The row updates, the cue leaves, and the next arrives in the identical
+slot with a different drop length.
+
+The idea it replaced was cue cards accumulating down the right at their rows'
+heights. That collides: Priya and Daniel are adjacent rows 43.5px apart and the
+cards are 56 to 63px tall, so they overlap by about 13px. Today's hero curves
+its connectors precisely to solve that collision. **A fixed slot dissolves it
+rather than solving it** — cards never coexist.
+
+**The last cue stays, and this is Film C's behaviour rather than an addition.**
+At `t=9.0` Film C still shows Daniel's card, its line and its node, with every
+row updated and nothing moving. The web film holds there.
+
+**Sweep direction goes to A/B.** The line now arrives from the right, so the
+fill has a direction to pick. Right-to-left enters where the data arrived and
+halts on the ownership split; left-to-right is Film C's own direction, starting
+at the split. Jon: *"This is less logical and intuitive from a mechanism
+standpoint, but from a visual standpoint it makes more sense. I'm not sure
+though. Maybe have it make both version… so I can see both."*
+
+**Built as both, behind a URL parameter, decided on looking.** It does not block
+the build. Either way the sweep never crosses into Name, Title or Firm.
