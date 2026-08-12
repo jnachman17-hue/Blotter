@@ -70,6 +70,12 @@ import {
   Q1_TITLE,
   Q2_TITLE,
   TRACKS,
+  WAITLIST_BUTTON,
+  WAITLIST_CONFIRMATION,
+  WAITLIST_CTA,
+  WAITLIST_EYEBROW,
+  WAITLIST_SUPPORTING,
+  WAITLIST_TITLE,
   WINDOWS,
 } from "@/lib/funnel-copy";
 import { track, type PaymentMethod } from "@/lib/analytics";
@@ -322,6 +328,20 @@ function PriceStep() {
     syncLead(useFunnel.getState());
   }
 
+  /* The second outcome. It is terminal — it does not lead to checkout, and a
+     visitor who takes it never fires `checkout_started`, which is what keeps
+     the two branches countable against each other. */
+  function joinWaitlist() {
+    track("waitlist_joined", { price: 9.99, billing_period: "monthly" });
+    goTo("waitlist");
+    /* No `syncLead` here on purpose: `WaitlistStep` writes on mount, the same
+       way `ConfirmedStep` does. `next()` above needs its own call because
+       `CheckoutStep` is not terminal and writes nothing. Calling both wrote the
+       row twice — verified in the browser, two POSTs to /api/lead for one
+       click. Harmless, since the route upserts on `visitor_id`, but it is a
+       wasted round trip on a screen the visitor is about to leave. */
+  }
+
   return (
     <Column>
       <div className="flex items-center gap-2.5">
@@ -356,6 +376,28 @@ function PriceStep() {
       <div className="mt-6">
         <Primary onClick={next}>{PRICE_CTA}</Primary>
       </div>
+
+      {/*
+        The waitlist is deliberately quieter than the primary and must stay
+        that way — see the note on `WAITLIST_CTA`. It is a text button, not a
+        second `Primary`: if the two ever read as equal choices the cheaper one
+        wins and the payment signal this funnel exists to measure collapses.
+
+        Underlined rather than colour-only so it is identifiable as a control
+        without a hover, and sized to clear the 44px target rule the footer
+        rebuild set for every tappable thing on a phone.
+      */}
+      <div className="mt-3 flex justify-center">
+        <button
+          type="button"
+          onClick={joinWaitlist}
+          className="min-h-11 px-3 text-small text-ink-muted underline underline-offset-4
+                     transition-colors duration-150 ease-out hover:text-ink"
+        >
+          {WAITLIST_CTA}
+        </button>
+      </div>
+
       <div className="mt-4">
         <BackLink label={BACK} onClick={() => goTo("email")} />
       </div>
@@ -453,6 +495,46 @@ function ConfirmedStep() {
   );
 }
 
+/**
+ * The waitlist terminal state.
+ *
+ * Deliberately the same shape as `ConfirmedStep` — eyebrow, title, supporting
+ * paragraph, one button — because these are two outcomes of one decision and a
+ * visitor should not feel routed somewhere lesser. What differs is substance
+ * rather than treatment.
+ *
+ * It does **not** carry `DONE_CHARGE`. "You have not been charged" answers a
+ * question only someone who clicked pay has; here nothing was ever offered to
+ * charge, so `WAITLIST_CONFIRMATION` says the equivalent honestly instead.
+ *
+ * `syncLead` runs for the same reason it does on the confirmed step: this is
+ * the last word on how far this visitor got, and migration 002's trigger keeps
+ * the higher rank if anything arrives out of order.
+ */
+function WaitlistStep() {
+  const close = useFunnel((s) => s.close);
+
+  useEffect(() => {
+    syncLead(useFunnel.getState());
+  }, []);
+
+  return (
+    <Column>
+      <Eyebrow>{WAITLIST_EYEBROW}</Eyebrow>
+      <div className="mt-3">
+        <Title>{WAITLIST_TITLE}</Title>
+      </div>
+      <p className="mt-4 text-body leading-[1.62] text-ink-read">{WAITLIST_SUPPORTING}</p>
+      <p className="mt-4 text-body leading-[1.62] font-medium text-ink">
+        {WAITLIST_CONFIRMATION}
+      </p>
+      <div className="mt-7">
+        <Primary onClick={close}>{WAITLIST_BUTTON}</Primary>
+      </div>
+    </Column>
+  );
+}
+
 /* ------------------------------------------------------------------ the shell */
 
 export function Funnel() {
@@ -512,6 +594,7 @@ export function Funnel() {
           {stage === "email" && <EmailStep />}
           {stage === "price" && <PriceStep />}
           {stage === "checkout" && <CheckoutStep />}
+          {stage === "waitlist" && <WaitlistStep />}
           {stage === "confirmed" && <ConfirmedStep />}
 
           <Dialog.Close

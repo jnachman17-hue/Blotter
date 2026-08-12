@@ -85,11 +85,11 @@ const SHEET_BORDER = "#dadce0";
 
 /** The four ratified contacts the crop shows, in `sheet-data.ts` order. */
 const ROWS = [
-  { name: "Sarah Chen", status: "Replied", bg: "#d7e7fb", fg: "#1a56a8", next: "Reply to Sarah", days: "0" },
-  { name: "Marcus Lee", status: "Call scheduled", bg: "#e5ddf7", fg: "#5b3fa8", next: "Attend coffee chat", days: "1" },
-  { name: "Priya Shah", status: "Call completed", bg: "#d7f0dd", fg: "#1e6b34", next: "Send thank-you", days: "0" },
-  { name: "Daniel Kim", status: "No reply", bg: "#fbeacb", fg: "#8a5a00", next: "Bump thread", days: "5" },
-  { name: "Alex Morgan", status: "Sent", bg: "#e8eaed", fg: "#5f6368", next: "", days: "0" },
+  { name: "Jamie Diamond", status: "Replied", bg: "#d7e7fb", fg: "#1a56a8", next: "Reply to Jamie", days: "0" },
+  { name: "David Salmon", status: "Call scheduled", bg: "#e5ddf7", fg: "#5b3fa8", next: "Attend coffee chat", days: "1" },
+  { name: "Ken Molise", status: "Call completed", bg: "#d7f0dd", fg: "#1e6b34", next: "Send thank-you", days: "0" },
+  { name: "Larry Sync", status: "No reply", bg: "#fbeacb", fg: "#8a5a00", next: "Bump thread", days: "5" },
+  { name: "Jerome Bowel", status: "Sent", bg: "#e8eaed", fg: "#5f6368", next: "", days: "0" },
 ];
 
 const COL = { name: 300, status: 250, next: 340 };

@@ -7,6 +7,41 @@
  * hero, and 05-SECTION-5 fixes the ten-column preservation view exactly.
  *
  * The five contacts are consistent across every surface on January 16, 2026.
+ *
+ * ## The names changed on August 12, 2026
+ *
+ * Jon's decision. The originals were generic to the point of being a tell —
+ * `Sarah Chen` is the name every AI-built site reaches for — and the page is
+ * about to be promoted to an audience that would notice. The replacements are
+ * **near-miss parodies of finance figures**: recognisable to the reader this
+ * page is for, and evidence a human wrote it.
+ *
+ * They are deliberately *not* the real names. Using a real, identifiable
+ * person's name in commercial material is a right-of-publicity question
+ * independent of whether anything defamatory is said, and the near-miss lands
+ * the same joke without raising it. Two of the puns also do double duty on the
+ * product's own mechanic — Blotter *syncs*, hence `Larry Sync`.
+ *
+ * | Row | Was | Now | Firm was | Firm now |
+ * |---|---|---|---|---|
+ * | 1 | Sarah Chen | Jamie Diamond | JPMorgan | JPMorgan |
+ * | 2 | Marcus Lee | David Salmon | Evercore | Goldman Sachs |
+ * | 3 | Priya Shah | Ken Molise | Lazard | Moelis & Co |
+ * | 4 | Daniel Kim | Larry Sync | Morgan Stanley | BlackRock |
+ * | 5 | Alex Morgan | Jerome Bowel | Centerview | Carlyle |
+ *
+ * Firms track the parodied figure so the joke resolves; Carlyle is where Powell
+ * actually was before the Fed. **Comments in this file that record a dated
+ * ruling keep the name in force at the time** — the August 5 cue swap really
+ * was from Alex Morgan, and rewriting that would falsify the record.
+ *
+ * ⚠ **Names here are longer than the ones the column widths were measured
+ * against**: the widest was 11 characters, the widest now is 13. The Name
+ * column was verified against the built page after the rename rather than
+ * assumed. If a name is ever changed again, re-check it — this file does not
+ * control the widths and nothing will fail loudly.
+ *
+ * Revert point: git tag `pre-parody-and-waitlist-2026-08-12`.
  */
 
 import type { SheetColumn, SheetRow } from "@/components/sheet/sheet-grid";
@@ -21,7 +56,7 @@ import type { Status } from "@/components/sheet/status-chip";
  */
 export const HERO_COLUMNS: SheetColumn[] = [
   // Manual zone totals 372px. Widths fit the longest value in each column
-  // without clipping: "Sarah Chen", "Vice President", "Morgan Stanley".
+  // without clipping: "Jamie Diamond", "Vice President", "BlackRock".
   { header: "Name", width: "w-[108px]" },
   { header: "Title", width: "w-[126px]", kind: "italic" },
   { header: "Firm", width: "w-[138px]" },
@@ -34,28 +69,28 @@ export const HERO_COLUMNS: SheetColumn[] = [
 
 export const HERO_ROWS: SheetRow[] = [
   {
-    // Cue-linked: "Sarah Chen replied", Jan 16 10:42 AM
+    // Cue-linked: "Jamie Diamond replied", Jan 16 10:42 AM
     emphasised: true,
     cells: [
-      "Sarah Chen",
+      "Jamie Diamond",
       "Associate",
       "JPMorgan",
       { status: "Replied" },
-      "Reply to Sarah",
+      "Reply to Jamie",
       "1/16/26",
       "0",
       null,
     ],
   },
   {
-    // Cue-linked: "Coffee chat with Marcus Lee", Jan 17 2:00 PM
+    // Cue-linked: "Coffee chat with David Salmon", Jan 17 2:00 PM
     //
     // Marker for the cue swap below: rows 0, 1 and 3 are now cue-linked.
     emphasised: true,
     cells: [
-      "Marcus Lee",
+      "David Salmon",
       "Analyst",
-      "Evercore",
+      "Goldman Sachs",
       { status: "Call scheduled" },
       "Attend coffee chat",
       "1/15/26",
@@ -66,9 +101,9 @@ export const HERO_ROWS: SheetRow[] = [
   {
     // No cue. Retains baseline maintained tint, not de-emphasised.
     cells: [
-      "Priya Shah",
+      "Ken Molise",
       "Vice President",
-      "Lazard",
+      "Moelis & Co",
       { status: "Call completed" },
       "Send thank-you",
       "1/16/26",
@@ -85,9 +120,9 @@ export const HERO_ROWS: SheetRow[] = [
     // going quiet.
     emphasised: true,
     cells: [
-      "Daniel Kim",
+      "Larry Sync",
       "Associate",
-      "Morgan Stanley",
+      "BlackRock",
       { status: "No reply" },
       "Bump thread",
       "1/11/26",
@@ -105,9 +140,9 @@ export const HERO_ROWS: SheetRow[] = [
     // genuinely-blank rule for this one cell. That ruling is about the cell,
     // not the cue, so removing the cue does not disturb it. Authority level 1.
     cells: [
-      "Alex Morgan",
+      "Jerome Bowel",
       "Analyst",
-      "Centerview",
+      "Carlyle",
       { status: "Sent" },
       { dash: true },
       "1/16/26",
@@ -169,7 +204,7 @@ export const SECTION_3_MOMENTS: DayMoment[] = [
     substamp: "No new activity",
     source: null,
     trigger: "No reply for 5 days",
-    name: "Daniel Kim",
+    name: "Larry Sync",
     status: "No reply",
     next: "Bump thread",
     last: "1/11/26",
@@ -181,10 +216,10 @@ export const SECTION_3_MOMENTS: DayMoment[] = [
     stamp: "10:42 AM",
     substamp: "Gmail",
     source: "gmail",
-    trigger: "Sarah Chen replied",
-    name: "Sarah Chen",
+    trigger: "Jamie Diamond replied",
+    name: "Jamie Diamond",
     status: "Replied",
-    next: "Reply to Sarah",
+    next: "Reply to Jamie",
     last: "1/16/26",
     days: "0",
     call: null,
@@ -194,8 +229,8 @@ export const SECTION_3_MOMENTS: DayMoment[] = [
     stamp: "2:00 PM",
     substamp: "Calendar",
     source: "calendar",
-    trigger: "Coffee chat with Priya Shah",
-    name: "Priya Shah",
+    trigger: "Coffee chat with Ken Molise",
+    name: "Ken Molise",
     status: "Call completed",
     next: "Send thank-you",
     last: "1/16/26",
@@ -207,7 +242,7 @@ export const SECTION_3_MOMENTS: DayMoment[] = [
 export const HERO_CUES: ActivityCue[] = [
   {
     source: "gmail",
-    primary: "Sarah Chen replied",
+    primary: "Jamie Diamond replied",
     timestamp: "Jan 16 · 10:42 AM",
     targetRow: 0,
   },
@@ -229,19 +264,19 @@ export const HERO_CUES: ActivityCue[] = [
       `1/17 @ 2:00 PM` and never moves, in the film and here.
     */
     source: "calendar",
-    primary: "Coffee chat with Priya Shah",
+    primary: "Coffee chat with Ken Molise",
     timestamp: "Jan 16 · 11:00 AM",
     targetRow: 2,
   },
   {
     /*
-      Swapped from `Email sent to Alex Morgan` — `Jan 16 · 8:18 AM` by Jon on
+      Swapped from `Email sent to Jerome Bowel` — `Jan 16 · 8:18 AM` by Jon on
       August 5, 2026, overriding the third entry of `01-HERO` §7's exact cue
       list and the reasoning in its closing paragraph, which held that Daniel
       Kim's no-reply state should stay Blotter-maintained with no card shown.
 
       The copy is not invented: `04-SECTION-4-OUTSTANDING-ACTIONS` §7 already
-      carries "No reply for 5 days" for Daniel Kim, and the Jan 11 date is his
+      carries "No reply for 5 days" for Larry Sync, and the Jan 11 date is his
       ratified last contact, 1/11/26, in `HERO_ROWS` above.
 
       The source mark stays full-strength Gmail rather than the muted treatment
@@ -268,7 +303,7 @@ export const HERO_CUES: ActivityCue[] = [
  *
  * These five are the canonical contacts, identical to `HERO_ROWS` above with
  * Email and LinkedIn added, which `05-SECTION-5` §6 and §7 fix exactly.
- * Alex Morgan's `next` is genuinely blank here: the em-dash exception is scoped
+ * Jerome Bowel's `next` is genuinely blank here: the em-dash exception is scoped
  * to the hero cell alone.
  */
 export interface TrackerContact {
@@ -284,18 +319,18 @@ export interface TrackerContact {
 }
 
 export const TRACKER_CONTACTS: TrackerContact[] = [
-  { name: "Sarah Chen", title: "Associate", firm: "JPMorgan", email: "sarah.chen@jpmorgan.com", status: "Replied", next: "Reply to Sarah", last: "1/16/26", days: "0", call: null },
-  { name: "Marcus Lee", title: "Analyst", firm: "Evercore", email: "marcus.lee@evercore.com", status: "Call scheduled", next: "Attend coffee chat", last: "1/15/26", days: "1", call: "1/17 @ 2:00 PM" },
-  { name: "Priya Shah", title: "Vice President", firm: "Lazard", email: "priya.shah@lazard.com", status: "Call completed", next: "Send thank-you", last: "1/16/26", days: "0", call: "Completed 1/16" },
-  { name: "Daniel Kim", title: "Associate", firm: "Morgan Stanley", email: "daniel.kim@morganstanley.com", status: "No reply", next: "Bump thread", last: "1/11/26", days: "5", call: null },
-  { name: "Alex Morgan", title: "Analyst", firm: "Centerview", email: "alex.morgan@centerview.com", status: "Sent", next: null, last: "1/16/26", days: "0", call: null },
+  { name: "Jamie Diamond", title: "Associate", firm: "JPMorgan", email: "jamie.diamond@jpmorgan.com", status: "Replied", next: "Reply to Jamie", last: "1/16/26", days: "0", call: null },
+  { name: "David Salmon", title: "Analyst", firm: "Goldman Sachs", email: "david.salmon@gs.com", status: "Call scheduled", next: "Attend coffee chat", last: "1/15/26", days: "1", call: "1/17 @ 2:00 PM" },
+  { name: "Ken Molise", title: "Vice President", firm: "Moelis & Co", email: "ken.molise@moelis.com", status: "Call completed", next: "Send thank-you", last: "1/16/26", days: "0", call: "Completed 1/16" },
+  { name: "Larry Sync", title: "Associate", firm: "BlackRock", email: "larry.sync@blackrock.com", status: "No reply", next: "Bump thread", last: "1/11/26", days: "5", call: null },
+  { name: "Jerome Bowel", title: "Analyst", firm: "Carlyle", email: "jerome.bowel@carlyle.com", status: "Sent", next: null, last: "1/16/26", days: "0", call: null },
 ];
 
 /**
  * The Outstanding tab.
  *
  * Counts are ratified by `04-SECTION-4` §7 and reconcile exactly: 6 + 11 + 4 =
- * 21. Sarah Chen, Daniel Kim and Priya Shah are the ratified example rows.
+ * 21. Jamie Diamond, Larry Sync and Ken Molise are the ratified example rows.
  *
  * The other eighteen contacts are invented, and that is a deliberate decision
  * rather than an oversight. The section claims to be "one current view of every
@@ -318,7 +353,7 @@ export const OUTSTANDING_GROUPS: ActionGroup[] = [
   {
     label: "Replies owed", count: 6, rule: "#1a73e8", tint: "#eef4fd",
     rows: [
-      { who: "Sarah Chen", why: "Replied Jan 16" },
+      { who: "Jamie Diamond", why: "Replied Jan 16" },
       { who: "Nathan Cole", why: "Replied Jan 15" },
       { who: "Amara Osei", why: "Replied Jan 15" },
       { who: "Ryan Patel", why: "Replied Jan 14" },
@@ -329,7 +364,7 @@ export const OUTSTANDING_GROUPS: ActionGroup[] = [
   {
     label: "Follow-ups due", count: 11, rule: "#c9a227", tint: "#fdf8ec",
     rows: [
-      { who: "Daniel Kim", why: "No reply, 5 days" },
+      { who: "Larry Sync", why: "No reply, 5 days" },
       { who: "Julia Fontaine", why: "No reply, 6 days" },
       { who: "Chris Whelan", why: "No reply, 7 days" },
       { who: "Nina Abbas", why: "No reply, 8 days" },
@@ -345,7 +380,7 @@ export const OUTSTANDING_GROUPS: ActionGroup[] = [
   {
     label: "Thank-you notes", count: 4, rule: "#0f9d58", tint: "#eef7f1",
     rows: [
-      { who: "Priya Shah", why: "Chat completed Jan 16" },
+      { who: "Ken Molise", why: "Chat completed Jan 16" },
       { who: "Elena Vasquez", why: "Chat completed Jan 15" },
       { who: "Jonah Feldman", why: "Call completed Jan 14" },
       { who: "Ivy Zhang", why: "Chat completed Jan 13" },

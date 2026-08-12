@@ -85,7 +85,7 @@ interface PhoneCol {
 
 /*
  * Fitted to content at 13px Arial rather than scaled down from desktop: `Name`
- * holds "Alex Morgan" unwrapped, `Status` holds the "Call completed" chip,
+ * holds "Jerome Bowel" unwrapped, `Status` holds the "Call completed" chip,
  * `Next move` holds "Attend coffee chat", and `Days` holds its own header,
  * which is wider than any value in it.
  */
@@ -287,7 +287,7 @@ function CropSheet() {
  * change both.**
  *
  * `Email` 196 to 188 and `Call` 112 to 120, so `1/17 @ 2:00 PM` (94.1px) and
- * `Completed 1/16` (91.8px) stop wrapping Marcus Lee's and Priya Shah's rows to
+ * `Completed 1/16` (91.8px) stop wrapping David Salmon's and Ken Molise's rows to
  * 60px against 40.5px for every other row. `Email` was already truncating away
  * more slack than it gives up.
  *
@@ -298,9 +298,13 @@ function CropSheet() {
  */
 const FULL_GUTTER = 43;
 const FULL_COLS = [
-  { header: "Name", letter: "A", w: 112 },
+  /* Name 112 -> 120 and Firm 132 -> 124 on August 12, 2026, mirroring
+     `parts.tsx`. Paired on purpose: the pair sums to zero, so `FULL_W`,
+     `YOURS_W` and `SPLIT_X` are all unchanged and the swipe's zone divider does
+     not move. See the note above `YOURS` in `parts.tsx` for why. */
+  { header: "Name", letter: "A", w: 120 },
   { header: "Title", letter: "B", w: 116, italic: true },
-  { header: "Firm", letter: "C", w: 132 },
+  { header: "Firm", letter: "C", w: 124 },
   { header: "Email", letter: "D", w: 188 },
   { header: "LinkedIn", letter: "E", w: 84 },
   { header: "Status", letter: "F", w: 128, maintained: true },

@@ -74,14 +74,17 @@ function rowCenterY(i: number) {
  * Vertical centre of each cue card, measured from the window top.
  *
  * Section 9 asks each cue to sit as close to its target row as practical. The
- * cue rows are 1, 2 and 4 — Sarah Chen, Marcus Lee and Daniel Kim — so an
+ * cue rows are 1, 2 and 4 — Jamie Diamond, David Salmon and Larry Sync — so an
  * evenly pitched stack is impossible without a card coming to rest level with
- * Priya Shah or Alex Morgan, which would imply a mapping that does not exist.
+ * Ken Molise or Jerome Bowel, which would imply a mapping that does not exist.
  * The stack is therefore deliberately uneven.
  *
  * Retuned on August 5, 2026 when Jon swapped the third cue from Alex Morgan to
  * Daniel Kim, moving its target up one row. The old third position, 358, sat
- * 35.25px from Daniel and would have read as pointing at the wrong contact.
+ * 35.25px away and would have read as pointing at the wrong contact.
+ *
+ * Those two are row 5 and row 4, renamed to Jerome Bowel and Larry Sync on
+ * August 12, 2026. The geometry is unchanged; only the strings moved.
  *
  * Row centres are 192.25, 235.75, 279.25, 322.75 and 366.25. Against those,
  * every card still sits within 13px of its own target row and no closer than

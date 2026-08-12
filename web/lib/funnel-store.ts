@@ -40,6 +40,29 @@ import type {
  * duration and interaction burden. **If the platform variant is ever built it
  * must use this same sequence**, or the comparison is void.
  */
+/**
+ * ## `waitlist` is a rank, not a screen in the payment path
+ *
+ * Added August 12, 2026. This array does two jobs — it lists the stages, and
+ * its index order is the rank used for `furthest_stage`, the column that
+ * records how far a visitor got. `waitlist` is only ever reached by the
+ * secondary button on the price screen. **Nobody passes through it on the way
+ * to checkout**; `Continue to payment` goes from `price` straight to
+ * `checkout` exactly as before.
+ *
+ * Why it ranks below `checkout` rather than above: everyone who clicks pay is
+ * also on the waitlist, so checkout is strictly the further outcome. If
+ * `waitlist` outranked it, a visitor who did both would be recorded as having
+ * merely joined a list, understating the best result — which is the one thing
+ * `furthest_stage` and migration 002 exist to prevent.
+ *
+ * The insert pushes `checkout` from 6 to 7 and `confirmed` from 7 to 8. Checked
+ * against live data before doing it: **no real lead sits above index 4.** Ten
+ * rows exist, five real and one internal at `email`/4, five internal at
+ * `confirmed`/7. `supabase/006-restamp-stage-index.sql` restamps those five so
+ * they do not read as the new `checkout`; it is cosmetic and touches no row
+ * that counts.
+ */
 export const FUNNEL_STAGES = [
   "closed",
   "question_track",
@@ -47,6 +70,7 @@ export const FUNNEL_STAGES = [
   "film",
   "email",
   "price",
+  "waitlist",
   "checkout",
   "confirmed",
 ] as const;

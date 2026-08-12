@@ -2777,3 +2777,124 @@ description of a live system and each gate has to be answered on its merits.
 
 The CASA sentence and the consent-screen row keep their own triggers, which
 already read *on provider selection*, and are unaffected.
+
+### The waitlist branch, August 12, 2026
+
+**Jon's decision.** A second outcome on the price screen, for the visitor who
+wants the product but not in August.
+
+**The defect it answers.** `checkout_started` fires on the price screen's own
+button and had fired **zero times against four email captures** — nobody was
+pressing `Continue to payment` at all. Most of this test's traffic is
+pre-season, so declining was a decision about the calendar rather than about
+the product, and **the funnel could not tell those two apart.** Every "no" was
+recorded identically whether it meant "I don't want this" or "not yet".
+
+**Why it is subordinate, and it must stay so.** `Continue to payment` is the
+`Primary`; the waitlist is an underlined text button beneath it. If they ever
+read as equal choices the cheaper one wins, and the test stops measuring
+willingness to pay — the only thing it exists to measure.
+
+**What the price screen still does not say.** That nothing is charged on any
+path. Disclosing it there would turn `Continue to payment` into a waitlist
+signup too and collapse the two outcomes into one. It stays after the click,
+where it has always been.
+
+**`waitlist` is a rank, not a screen in the payment path.** `Continue to
+payment` goes from `price` straight to `checkout` exactly as before. Jon read
+the first description of this as an interstitial screen and pushed back
+correctly; the confusion was that `FUNNEL_STAGES` does two jobs, listing the
+screens and supplying the rank order for `furthest_stage`.
+
+It ranks **below** `checkout` because everyone who clicks pay is also on the
+waitlist, so checkout is strictly the further outcome. Ranking it above would
+record a visitor who did both as having merely joined a list.
+
+**The tenth event.** `waitlist_joined`, which amends WS3's frozen nine-event
+contract with Jon's approval. It alters none of the nine and
+`checkout_started / page_viewed` keeps both its terms, so no historical figure
+changes meaning. **It must not be added as a step in the canonical funnel**: a
+PostHog funnel is an ordered sequence, and `waitlist_joined` and
+`checkout_started` are mutually exclusive branches off `price_viewed`, so
+inserting it would drive every step after it to zero. Its own insight,
+`price_viewed -> waitlist_joined`, read beside the canonical funnel.
+
+**`DONE_SUPPORTING` gains one word** — `Your place on the waitlist` — so the
+paid path names the same list rather than an unexplained second thing.
+
+**Verified by clicking through a production build**, not by reading the code:
+the price screen shows the new billing line and the subordinate button; the
+waitlist terminal state renders eyebrow, title, supporting, confirmation and
+return; and the lead row was written as `waitlist` at index 6. The test row was
+flagged internal by `?blotter_internal=1`, `real_leads` stayed at **4**
+throughout, and the row was deleted afterwards.
+
+**One defect the click-through caught that reading would not:** the lead was
+POSTed twice per click, because `joinWaitlist` and `WaitlistStep`'s mount effect
+both called `syncLead`. Harmless — the route upserts — but a wasted round trip.
+`joinWaitlist` no longer writes; the terminal step does, matching
+`ConfirmedStep`.
+
+`supabase/006-restamp-stage-index.sql` restamps the five internal rows sitting
+at the old `confirmed` index. **Checked before writing it: no real lead sits
+above index 4**, so it touches nothing that counts.
+
+### The parallel-chat collision, August 12, 2026 — and the rule that follows
+
+**A file boundary does not isolate a parallel chat. A shared git index defeats
+it.**
+
+`14-film-a-recut-brief.md` told the film chat it owned exactly one file and
+forbade it every git command that writes. It obeyed completely. The collision
+happened anyway, because **the brief constrained what that chat writes and
+nothing constrained what this chat commits.** Two commits here used
+`git add -A`, which stages the whole tree:
+
+| Commit | Message | Also captured |
+|---|---|---|
+| `9915501` | web hero clipping | +58 / −26 in `social/blotter-film-a-4x5.html` |
+| `c81fffd` | the waitlist branch | +101 / −2 in the same file |
+
+Nothing was lost or overwritten, and the film chat had run no writing git
+command. The damage is only to the record: **its work is committed under two
+messages about other things**, and it believed 101 lines were still outstanding
+when they were already pushed.
+
+Not rewritten. The branch is pushed, the other chat is finished, and rewriting
+shared history to improve two commit messages trades a real risk for a
+cosmetic gain. This entry is the correction, which is what this log is for.
+
+**The claim that was wrong, stated plainly so it is not repeated:** this chat
+told Jon collision was "structurally impossible." It was not. It was
+*procedurally* prevented, by a rule living in a document the other party had
+read and this party had written — which is the weakest place a guarantee can
+live.
+
+#### The rule
+
+1. **Never `git add -A`, `git add .`, or `git commit -a` while any parallel
+   chat is running.** Stage explicit paths, every time. The cost is one line
+   per commit.
+2. **The brief for a parallel chat must bind both sides.** It currently
+   constrains only the subordinate chat. It must also state which paths the
+   main chat may stage while that chat is live.
+3. **For the next one, prefer a separate git worktree.** Two chats sharing one
+   working tree share one index, and no amount of discipline changes that.
+   A worktree makes the isolation structural rather than procedural, which is
+   what was claimed and was not true.
+
+#### What the collision did not cost, and one thing it nearly did
+
+The film chat could not render `?t=` or `?bare=1` — a `file://` origin gives
+`fit()` a zero-size viewport, which is the negative-scale trap already recorded
+in this log. So it handed off verified by measurement but unverified by
+looking.
+
+Rendering it here from a static server outside the repository found what
+measurement could not: **`social/blotter-film-a-4x5.html` has no `?bare=1`
+handler and the served copy does.** A straight copy across would have put the
+Play button, scrubber and keyboard hints inside the funnel card on a live site.
+Nothing would have failed and nothing would have logged.
+
+That is the fourth hand-kept duplicate to bite this project and the second time
+the divergence was the *served* copy being correct while the source was not.

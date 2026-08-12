@@ -18,7 +18,7 @@ export default function SheetReviewPage() {
       <p className="mt-2 max-w-2xl text-sm text-ink-muted">
         Built primitive on top, ratified reference asset below, both at the same
         width. The reference still contains the vertical engine rail, which
-        01-HERO section 12 orders removed. Alex Morgan&rsquo;s em dash is
+        01-HERO section 12 orders removed. Jerome Bowel&rsquo;s em dash is
         reproduced: Jon reinstated it on August 5, 2026.
       </p>
 

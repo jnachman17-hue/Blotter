@@ -13,7 +13,7 @@
  * Blank cells are genuinely blank. Never a dash, em dash, N/A, or placeholder
  * (01-HERO section 6; reaffirmed by Jon August 4, 2026 for Section 5).
  *
- * One ratified exception, instructed by Jon August 5, 2026: Alex Morgan's hero
+ * One ratified exception, instructed by Jon August 5, 2026: Jerome Bowel's hero
  * `Next move` carries the em dash exactly as the ratified PNG draws it, muted
  * and centred. That is the `{ dash: true }` cell and it is the only place it is
  * permitted. Section 5 and every other surface keep genuinely blank cells.
