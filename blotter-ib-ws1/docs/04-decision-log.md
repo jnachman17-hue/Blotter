@@ -1983,3 +1983,44 @@ though. Maybe have it make both version… so I can see both."*
 
 **Built as both, behind a URL parameter, decided on looking.** It does not block
 the build. Either way the sweep never crosses into Name, Title or Firm.
+
+### Wave 2 opens: Section 3 is cut from desktop, August 11, 2026
+
+**Jon: *"I just don't think we need section three anymore because I think the
+new hero film is gonna show it."*** The three refusals move elsewhere.
+
+This closes `09` §8 row 1, which had read **"The fault, yes. The deletion,
+no"** — on the grounds that *"desktop has room and no hero film, so the
+mechanism may still need its own section there."* The hero film removes the
+second clause, and having room was never a reason to state a claim twice.
+
+**Desktop Section 6's permissions become collapsible.** Jon: *"I do think
+desktop section six permissions should become collapsible."* The mobile header
+`What each connection can and cannot do.` comes with it — he identified the
+dependency himself: that line exists *because* the rows are collapsed.
+
+### The thing cutting Section 3 exposes, and it is not obvious
+
+Cutting Section 3 does **not** by itself align desktop with mobile. Desktop's
+`field-settle` carries **two beats in one section** — preservation with the
+sheet, then the Outstanding view — where mobile has them as two separate
+sections, `02` and `03`.
+
+So cutting Section 3 and stopping there gives desktop **four** numbered blocks
+against mobile's **five**, and desktop's `02` would cover what mobile calls
+`02` and `03`. The numbering would disagree again, which is exactly the
+condition `08` §5 forbids.
+
+**Desktop's `4+5` has to split.** That reverses Jon's own August 5, 2026 merge —
+but the merge predates the argument rework, and **mobile has already un-merged
+them**: `Mobile02` is its own `<section>`. The two surfaces already disagree
+about whether 4 and 5 are one section or two; cutting Section 3 only makes the
+disagreement visible in the numerals.
+
+**The background handoff chain already has the slot.** `Mobile02` carries
+`field-rise` — the same band desktop's Section 3 uses — with exactly one visible
+per surface. So desktop's new ownership section takes `field-rise` and
+Outstanding keeps `field-settle`, and the chain is undisturbed. The
+`desk:hidden` / `desk:block` pair can collapse into one shared component.
+
+Mobile built the slot the desktop cut needs. Nothing has to be invented.
