@@ -39,7 +39,7 @@ import {
  * Column widths, and the 8px that moved on August 11, 2026.
  *
  * `Email` was 196 and `Call` was 112. Two of the five `Blotter`-tab rows —
- * Marcus Lee and Priya Shah — measured 60px natural against 40.5px for the
+ * David Salmon and Ken Molise — measured 60px natural against 40.5px for the
  * other three, and they are the only two contacts with a `Call` value.
  * `1/17 @ 2:00 PM` needs 94.1px and `Completed 1/16` needs 91.8px at 13px
  * Arial, against 88px of text width inside a 112px column with 24px of padding.
@@ -60,10 +60,29 @@ import {
  * from 683px to 675px, which is descriptive rather than ratified; both zone
  * labels still fit at their full size.
  */
+/*
+  Name gained 8px and Firm gave up 8px on August 12, 2026, when the contacts
+  were renamed. **The two moves are one edit and must stay paired**: `YOURS_W`
+  feeds `SHEET_W` and `SPLIT_X`, so changing either width alone moves the
+  ownership boundary — the one line this section exists to draw.
+
+  Why it was needed. At 112 the Name cell's content box is 88px after `px-3`,
+  and `Jamie Diamond` needs 90.3px. It wrapped, and the row went to 55.2px
+  against 37.3px for every other row — the same defect as the two 60px rows
+  fixed in session 8, in the first row of the section. `Sarah Chen` fit at
+  ~64px, which is why nothing ever showed it.
+
+  Why Firm can afford it. Its widest value is `Goldman Sachs` at 85.1px, so at
+  124 it keeps about 15px of slack. Name at 120 gives a 96px content box against
+  90.3px needed.
+
+  **`sheet-phone.tsx`'s `FULL_COLS` is a hand-kept copy of these ten widths and
+  carries the same change.** Nothing propagates between them.
+*/
 const YOURS = [
-  { header: "Name", w: 112 },
+  { header: "Name", w: 120 },
   { header: "Title", w: 116 },
-  { header: "Firm", w: 132 },
+  { header: "Firm", w: 124 },
   { header: "Email", w: 188 },
   { header: "LinkedIn", w: 84 },
 ];
@@ -371,7 +390,7 @@ function ZoneBanner({ withSub }: { withSub: boolean }) {
 export function BlotterTab({ zones = "none" }: { zones?: ZoneTreatment }) {
   const banner = zones === "banner" || zones === "banner-sub";
   /* The banner takes row 1, so every row below it shifts by one and the
-     formula bar has to follow. Sarah Chen's status is the ratified selection. */
+     formula bar has to follow. Jamie Diamond's status is the ratified selection. */
   const rowOffset = banner ? 1 : 0;
 
   return (

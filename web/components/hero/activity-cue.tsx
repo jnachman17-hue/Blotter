@@ -7,8 +7,8 @@
  * supporting visual weight relative to the spreadsheet.
  *
  * Section 7 forbids message previews, subject lines, message bodies, avatars,
- * photographs, bank logos, extra metadata, additional cues for Priya Shah or
- * Daniel Kim, and larger marketing-card treatments. Nothing here may grow into
+ * photographs, bank logos, extra metadata, additional cues for Ken Molise or
+ * Larry Sync, and larger marketing-card treatments. Nothing here may grow into
  * any of those.
  */
 

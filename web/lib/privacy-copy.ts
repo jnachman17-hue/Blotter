@@ -167,7 +167,7 @@ export const KEEPS_HEADING = "What Blotter keeps";
  * data diagram.
  *
  * The em dash in the first paragraph is the spec's own. It contradicts the
- * standing page rule that Alex Morgan's hero cell carries the only dash on the
+ * standing page rule that Jerome Bowel's hero cell carries the only dash on the
  * page; Jon permitted it here on August 6, 2026, scoped to this sentence alone.
  * Recorded at the top of `06-SECTION-6-DATA-AND-PRIVACY.md`.
  */

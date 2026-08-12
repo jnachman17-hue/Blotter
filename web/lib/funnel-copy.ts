@@ -53,7 +53,38 @@ export const EMAIL_LABEL = "Recruiting email";
 
 export const PRICE_TITLE = "Blotter";
 export const PRICE_AMOUNT = "$9.99 / month";
-export const PRICE_BILLING = "Billed monthly. Cancel anytime.";
+
+/**
+ * Availability moves onto the price screen. Ratified by Jon, August 12, 2026.
+ *
+ * **This amends `07-SECTION-7` §8**, whose last clause read "Fall 2026 timing
+ * appears only in the terminal state after a payment-choice click." The rest of
+ * §8 is untouched and still obeyed: no price or availability anywhere on the
+ * page, disclosure only inside this funnel.
+ *
+ * The defect it fixes. `checkout_started` fires on this screen's button, and at
+ * the time of the change it had fired zero times against four email captures —
+ * so nobody was pressing `Continue to payment` at all. The screen said
+ * `$9.99 / month` and `Billed monthly. Cancel anytime.`, which a reader in
+ * August correctly parses as "pay today". Most of this test's traffic is
+ * pre-season and has an empty tracker, so declining is a decision about the
+ * calendar rather than about the product, and **the funnel could not tell those
+ * two apart.** The terminal state has always said Fall 2026 and "you have not
+ * been charged" — two screens further on, behind the click nobody made.
+ *
+ * What is deliberately preserved: the thing being measured is still a *payment*
+ * commitment. What changed is when the money moves, not whether it is money.
+ * Revealing the no-charge fact here as well would turn the click into a
+ * waitlist signup, which is what `WAITLIST_*` below is for — as a second,
+ * separately counted outcome rather than as a softening of this one.
+ *
+ * The cost, stated: the click is cheaper than it was, so figures collected
+ * after this are not strictly comparable with the 0-of-4 before it. Accepted,
+ * because 0 of 4 has a confidence interval of roughly 0% to 60% and cannot
+ * answer anything. Tag `pre-parody-and-waitlist-2026-08-12` is the revert point.
+ */
+export const PRICE_BILLING =
+  "Blotter opens Fall 2026. Billing starts when your access does. Cancel anytime.";
 export const PRICE_DESCRIPTION =
   "A recruiting tracker that stays current from Gmail, Calendar, and Google Sheets.";
 export const PRICE_INCLUDED = [
@@ -101,8 +132,20 @@ export const CHECKOUT_SUMMARY = [
     value:
       "Connects your Google account and keeps your existing recruiting Sheet current",
   },
-  { label: "Billing", value: "Monthly" },
-  { label: "Due today", value: "$9.99" },
+  /*
+    Both rows amended August 12, 2026, with `PRICE_BILLING`. They are the same
+    ruling: `Monthly` and `$9.99` due today contradict a price screen that has
+    just said billing starts at access, and a summary that argues with the
+    screen before it is worse than either version alone.
+
+    `Due today $0.00` under buttons that still read `Pay with card` is the shape
+    every real subscription uses, which also serves the standing requirement
+    that this funnel read as a real product. Nothing is charged on any path —
+    no card field exists anywhere in this funnel — so the figure was always
+    descriptive rather than operative.
+  */
+  { label: "Billing", value: "$9.99 / month, from Fall 2026" },
+  { label: "Due today", value: "$0.00" },
 ];
 export const PAY_CARD = "Pay with card";
 export const PAY_APPLE = "Apple Pay";
