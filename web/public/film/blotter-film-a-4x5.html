@@ -50,7 +50,7 @@
     6.4 - 10.6  BLOTTER   The maintained zone arrives and every row writes
                           itself. Relevant activity from Gmail and Calendar.
 
-   10.6 - 13.4  SILENCE   Everything dims but Daniel Kim, and then nothing
+   10.6 - 13.4  SILENCE   Everything dims but Larry Sync, and then nothing
                           moves at all for nearly two seconds. In a film that
                           opened on a torrent, the stillness is the argument.
 
@@ -90,7 +90,7 @@
   on screen is a prompt to the user and no drafted message appears. "Relevant"
   stays in the Gmail line, because Blotter reads recruiting mail from the
   people the user tracks and any copy implying broader inbox access is wrong.
-  No em dashes in spoken copy; Alex Morgan's Next move cell keeps the one
+  No em dashes in spoken copy; Jerome Bowel's Next move cell keeps the one
   ratified exception.
 
   ---------------------------------------------------------------------------
@@ -116,7 +116,9 @@
   --navy-900:#12233d; --navy-800:#1b3050; --navy-500:#40608c; --navy-400:#647fa6;
   --ink:#14181f; --ink-muted:#5f6368; --ink-faint:#a4a8ac;
   --blotter-100:#f7f2e8; --blotter-200:#f3e6c6;
-  --blotter-400:#d9b64a; --blotter-700:#8a6d12;
+  /* -500 added August 12, 2026 with the sweep, at the value Film C and the web
+     hero already carry, so the three films share the mark exactly. */
+  --blotter-400:#d9b64a; --blotter-500:#c9a227; --blotter-700:#8a6d12;
   --manual-100:#edf2f8; --manual-row:#ffffff;
   --sheet-border:#dadce0; --sheet-grid:#e8eaed;
   --sheet-header:#f8f9fa; --sheet-chrome:#ffffff; --sheet-green:#0f9d58;
@@ -340,8 +342,9 @@ body.bare .chrome{display:none}
   background:var(--sheet-header);color:var(--ink-muted);font-size:18px;
   display:flex;align-items:center;justify-content:center}
 /* Widths and padding solved against the longest real value in each column at
-   24px Arial: "Morgan Stanley", "Attend coffee chat", "Alex Morgan", and the
-   "Call completed" chip. Nothing clips. */
+   24px Arial: "Goldman Sachs", "Attend coffee chat", "Jamie Diamond", and the
+   "Call completed" chip. Nothing clips. Re-measured after the August 12, 2026
+   rename; see the note on COLS for the numbers. */
 .cell{padding:0 13px;font-size:24px;color:var(--ink);white-space:nowrap;
   overflow:hidden;display:flex;align-items:center;height:74px}
 .cell.num{justify-content:flex-end}
@@ -364,6 +367,51 @@ body.bare .chrome{display:none}
 .chip[data-s="No reply"]{background:var(--chip-noreply-bg);color:var(--chip-noreply-fg)}
 .chip[data-s="Sent"]{background:var(--chip-sent-bg);color:var(--chip-sent-fg)}
 .kv{will-change:opacity,transform}
+
+/* ----------------------------------------------------------------- the sweep */
+/*
+  Ported from blotter-film-web-hero.html and blotter-film-c-4x5.html on
+  August 12, 2026. The mark the other two films already use for a status change:
+  a band travelling the maintained block of ONE row, so the moment lands on a
+  row you can identify rather than washing the whole zone at once.
+
+  IT RIDES THE FILL BEAT, not the reveal, and that is a correction to the re-cut
+  brief rather than a preference. Through the window the brief proposed
+  (10.20-11.10) the maintained cells are covered by `.wash.kept` at opacity 1,
+  so a sweep there is painted under an opaque overlay and cannot be seen.
+  `P.fillFrom` is where a row's maintained values actually arrive, which is also
+  the moment the sweep marks in C and the hero. Ruled by Jon, August 12, 2026.
+
+  Two absolutes, and they are the reason this file draws the sweep at all:
+
+    - IT NEVER CROSSES THE OWNERSHIP SPLIT. It spans the maintained block only,
+      from the split to the sheet's edge. `left` and `width` are written from
+      MANUAL_W and KEPT_W in the script and never typed here, so a column-width
+      change cannot push it into Name or Firm. The August 12 rename moved both
+      of those widths; this is exactly the failure that derivation prevents.
+
+    - IT LEAVES NOTHING BEHIND. The opacity envelope returns to 0 and the row
+      carries no badge, outline or residue — only the settled fill.
+
+  The layer is a SIBLING of the washes, not a child of each row. `.row` is not
+  positioned, and positioning it would lift every row above the absolutely
+  positioned washes and break the typing beat that depends on being covered.
+
+  Direction is the hero's default, `sweep=in`: anchored at the sheet's right
+  edge, travelling toward the split, leading edge leftmost.
+
+  The leading edge is `--blotter-700` rather than `-500` for the reason Film C
+  records — at this scale the mid tone goes washy and the edge is the part that
+  has to read as a moving object. Wash and edge, same family, two steps apart.
+  5px here against Film C's 6px: C's sheet content is 36px to this film's 24px,
+  so 5px lands at the same effective weight on a 375px display.
+*/
+.sweeplayer{position:absolute;pointer-events:none}
+.sweeprow{position:absolute;left:0;right:0;overflow:hidden}
+.rowsweep{position:absolute;right:0;top:0;bottom:0;width:0;
+  background:rgba(201,162,39,.17);will-change:width,opacity}
+.rowsweep .lead{position:absolute;left:0;top:0;bottom:0;width:5px;
+  background:var(--blotter-700)}
 
 /* ------------------------------------------------------------ zone washes */
 /*
@@ -570,7 +618,7 @@ body.bare .chrome{display:none}
 
     <!-- 4. SILENCE. Reframed: not "you cannot know", but "you cannot keep knowing". -->
     <div class="line" id="tAnswer">
-      <div class="l1">Daniel Kim.<br><span class="soft">Five days of silence.</span></div>
+      <div class="l1">Larry Sync.<br><span class="soft">Five days of silence.</span></div>
       <div class="l2">Blotter is the only one still counting.</div>
     </div>
 
@@ -640,7 +688,7 @@ body.bare .chrome{display:none}
 
       <div class="fbar">
         <div class="fcell"><span id="fCell">A2</span><span class="caret">&#9662;</span></div>
-        <div class="fval"><span class="fx">fx</span><span id="fVal">Sarah Chen</span></div>
+        <div class="fval"><span class="fx">fx</span><span id="fVal">Jamie Diamond</span></div>
       </div>
 
       <!-- Two strips: the Outstanding view has three columns, the tracker five,
@@ -661,6 +709,10 @@ body.bare .chrome{display:none}
         <div class="washcap manual" id="washManualTxt">You add the contacts.</div>
         <div class="washcap kept" id="washKeptTxt">Blotter fills in the rest.</div>
         <div class="selbox" id="selbox"></div>
+        <!-- Last of the positioned siblings on purpose: the sweep has to paint
+             above the kept wash it is clearing, and paint order here is DOM
+             order. -->
+        <div class="sweeplayer" id="sweeps"></div>
       </div>
 
       <div class="body oa" id="oa">
@@ -678,8 +730,8 @@ body.bare .chrome{display:none}
           <span class="cnt" data-to="6" style="color:var(--group-replies)">0</span>
         </div>
         <div class="oarow">
-          <div class="c who">Sarah Chen</div><div class="c act">Reply to Sarah</div>
-          <div class="c why">Sarah replied Jan 16 at 10:42 AM</div>
+          <div class="c who">Jamie Diamond</div><div class="c act">Reply to Jamie</div>
+          <div class="c why">Jamie replied Jan 16 at 10:42 AM</div>
         </div>
         <div class="oarow more"><div class="c">+5 more replies owed</div></div>
         <div class="grouphead" data-g="followups">
@@ -687,7 +739,7 @@ body.bare .chrome{display:none}
           <span class="cnt" data-to="11" style="color:var(--blotter-700)">0</span>
         </div>
         <div class="oarow">
-          <div class="c who">Daniel Kim</div><div class="c act">Bump thread</div>
+          <div class="c who">Larry Sync</div><div class="c act">Bump thread</div>
           <div class="c why">No reply for 5 days</div>
         </div>
         <div class="oarow more"><div class="c">+10 more follow-ups due</div></div>
@@ -696,7 +748,7 @@ body.bare .chrome{display:none}
           <span class="cnt" data-to="4" style="color:var(--group-thanks)">0</span>
         </div>
         <div class="oarow">
-          <div class="c who">Priya Shah</div><div class="c act">Send thank-you</div>
+          <div class="c who">Ken Molise</div><div class="c act">Send thank-you</div>
           <div class="c why">Coffee chat completed Jan 16</div>
         </div>
         <div class="oarow more"><div class="c">+3 more thank-you notes</div></div>
@@ -766,9 +818,26 @@ body.bare .chrome{display:none}
    Nothing here may be edited without a ruling.
    ========================================================================= */
 
+/*
+  Name 180 -> 196, Firm 216 -> 200, August 12, 2026, with the rename.
+
+  THE PAIR SUMS TO ZERO and that is the point: MANUAL_W stays 396, so the
+  ownership split, both washes and the two underlines below the sheet do not
+  move. Widening Name alone would drag the one boundary this film exists to
+  draw.
+
+  Measured at the film's own 24px Arial, content box = w - 26 of padding:
+
+    Name  196   "Jamie Diamond"  166.7 + 26 = 192.7    3.3 slack
+    Firm  200   "Goldman Sachs"  170.8 + 26 = 196.8    3.2 slack
+
+  At 180 the Name box was 154 and `Jamie Diamond` needed 166.7, so it clipped —
+  silently, because .cell is nowrap + overflow:hidden. The same rename cost the
+  web app a wrapped row (Name 112 -> 120, Firm 132 -> 124, c892d73).
+*/
 const COLS = [
-  { key:"name",   head:"Name",      w:180, kept:false },
-  { key:"firm",   head:"Firm",      w:216, kept:false },
+  { key:"name",   head:"Name",      w:196, kept:false },
+  { key:"firm",   head:"Firm",      w:200, kept:false },
   { key:"status", head:"Status",    w:214, kept:true, chip:true },
   { key:"next",   head:"Next move", w:252, kept:true },
   { key:"days",   head:"Days",      w:94,  kept:true, num:true },
@@ -776,16 +845,30 @@ const COLS = [
 const LETTERS = ["A","B","C","D","E"];
 const SPLIT = COLS.findIndex(c => c.kept);
 
+/*
+  Renamed August 12, 2026 on Jon's ruling, from web/lib/sheet-data.ts. The five
+  are NEAR-MISS PARODIES of finance figures — deliberately not the real names,
+  because a real identifiable person in commercial material is a
+  right-of-publicity question a near-miss does not raise. `Bowel` and `Sync` are
+  intentional. Do not "correct" them to the real spellings.
+
+  Firms track the parodied figure so the joke resolves; Carlyle is where Powell
+  actually was before the Fed.
+*/
 const ROWS = [
-  { name:"Sarah Chen", firm:"JPMorgan",       status:"Replied",        next:"Reply to Sarah",     days:"0" },
-  { name:"Marcus Lee", firm:"Evercore",       status:"Call scheduled", next:"Attend coffee chat", days:"1" },
-  { name:"Priya Shah", firm:"Lazard",         status:"Call completed", next:"Send thank-you",     days:"0" },
-  { name:"Daniel Kim", firm:"Morgan Stanley", status:"No reply",       next:"Bump thread",        days:"5" },
-  /* Alex Morgan's Next move keeps the em dash: ruled by Jon August 5, 2026 and
-     the only cell anywhere permitted one. */
-  { name:"Alex Morgan",firm:"Centerview",     status:"Sent",           next:{dash:true},          days:"0" },
+  { name:"Jamie Diamond", firm:"JPMorgan",      status:"Replied",        next:"Reply to Jamie",     days:"0" },
+  { name:"David Salmon",  firm:"Goldman Sachs", status:"Call scheduled", next:"Attend coffee chat", days:"1" },
+  { name:"Ken Molise",    firm:"Moelis & Co",   status:"Call completed", next:"Send thank-you",     days:"0" },
+  { name:"Larry Sync",    firm:"BlackRock",     status:"No reply",       next:"Bump thread",        days:"5" },
+  /* Row 5's Next move keeps the em dash: ruled by Jon August 5, 2026 and the
+     only cell anywhere permitted one. The row was Alex Morgan when that ruling
+     was made and is Jerome Bowel since the August 12 rename; the ruling is
+     about the cell, not the occupant. */
+  { name:"Jerome Bowel",  firm:"Carlyle",       status:"Sent",           next:{dash:true},          days:"0" },
 ];
-const DANIEL = 3;
+/* Row index of the contact the SILENCE beat isolates. Renamed with its
+   occupant on August 12, 2026 — was DANIEL, for Daniel Kim. */
+const LARRY = 3;
 
 /* -------------------------------------------------------------- torrent text */
 /*
@@ -795,7 +878,7 @@ const DANIEL = 3;
   canonical contacts appear among the senders. No bank logo anywhere.
 */
 const SENDERS = [
-  "Sarah Chen","Marcus Lee","Priya Shah","Daniel Kim","Alex Morgan",
+  "Jamie Diamond","David Salmon","Ken Molise","Larry Sync","Jerome Bowel",
   "Jordan Ellis","Nina Patel","Tom Reyes","Grace Liu","Omar Haddad",
   "Ben Carter","Sofia Rossi","Wes Nakamura","Hana Kim","Luis Ortega","Iris Delgado",
 ];
@@ -966,6 +1049,27 @@ const GRID_H   = HDR_H + ROWS.length * ROW_H;
   });
 })();
 
+/* One sweep per row, laid out from the same derived geometry the washes use.
+   `GUT_W + MANUAL_W` IS the ownership split, so the layer begins exactly on the
+   rule and can never start left of it whatever the column widths become. */
+const rowSweeps = [];
+(function sweeps(){
+  const layer = $("sweeps");
+  layer.style.left   = (GUT_W + MANUAL_W) + "px";
+  layer.style.width  = KEPT_W + "px";
+  layer.style.top    = HDR_H + "px";
+  layer.style.height = (ROWS.length * ROW_H) + "px";
+  ROWS.forEach((_, ri) => {
+    const w = document.createElement("div");
+    w.className = "sweeprow";
+    w.style.top = (ri * ROW_H) + "px";
+    w.style.height = ROW_H + "px";
+    w.innerHTML = '<div class="rowsweep"><span class="lead"></span></div>';
+    layer.appendChild(w);
+    rowSweeps.push(w.firstElementChild);
+  });
+})();
+
 /* torrent pools. Sixteen rows and eight chips are reused for 628 and 68
    arrivals: only about ten are ever on screen and the point is the rate. */
 const MROW_H = 66, MROW_POOL = 12;
@@ -1026,7 +1130,13 @@ const P = {
   /* BLOTTER keeps them current. The right side mirrors the left exactly. */
   reveal:[10.20,10.80],         /* cream header band, and the kept wash appears */
   kCapIn:[10.55,10.90], kCapOut:[11.15,11.45],
-  fillFrom:11.25, fillStep:0.22, fillDur:0.44,
+  /* The fill is also the sweep: five rows, top to bottom, 220ms apart. The
+     brief asked for 120ms in a window of its own, but the stagger that reads as
+     "one row at a time" is already here, and a second sequence beside it would
+     be two clocks on the same gesture. `sweepFade` is the tail that guarantees
+     the band leaves nothing behind; the last one is clear at 12.69, before
+     keptBar at 12.65 has finished drawing. */
+  fillFrom:11.25, fillStep:0.22, fillDur:0.44, sweepFade:0.12,
   keptBar:[12.65,13.10],
   tabIn:[10.40,10.90],
   /* The sources line is the mechanism claim and it was reading as a footnote.
@@ -1267,6 +1377,27 @@ function render(T){
     });
   });
 
+  /* ------------------------------------------------------------ the sweeps */
+  /*
+    One per row, riding that row's own fill, so the band crosses the maintained
+    block while the values write themselves — the same reading as C and the
+    hero, where a value flips as the leading edge reaches it.
+
+    Width is a fraction of KEPT_W and the bar is anchored at the sheet's right
+    edge, so it grows toward the split and stops on it. It cannot reach the
+    manual zone: KEPT_W is the whole of its travel.
+
+    The width is forced back to 0 once the fade-out completes, which matters
+    only for scrubbing backwards — by then the opacity is already 0.
+  */
+  rowSweeps.forEach((s, ri) => {
+    const a    = P.fillFrom + ri * P.fillStep;
+    const out  = [a + P.fillDur, a + P.fillDur + P.sweepFade];
+    const done = seg(t, out) >= 1 ? 0 : 1;
+    s.style.width   = (seg(t, [a, a + P.fillDur]) * done * KEPT_W) + "px";
+    s.style.opacity = band(t, [a, a + 0.06], out);
+  });
+
   /* The right wash mirrors the left, and that mirroring is the argument: one
      side is filled by hand, the other fills itself. */
   const kShow = seg(t, [P.reveal[0]+0.15, P.reveal[1]])
@@ -1284,14 +1415,14 @@ function render(T){
   els.washKTxt.style.height = (GRID_H - HDR_H) + "px";
 
   /* The formula bar follows the sheet's own state: an empty cell before
-     anything is typed, then Sarah Chen's name, then her status once Blotter
-     has written it, then the Outstanding view's own A1. */
+     anything is typed, then Jamie Diamond's name, then that row's status once
+     Blotter has written it, then the Outstanding view's own A1. */
   const hasState = t >= P.fillFrom + 0.30;
   const hasName  = t >= P.typeFrom + 0.20;
   const onOA     = t >= P.swap[0] + 0.30;
   els.fCell.textContent = onOA ? "A1" : hasState ? "C2" : "A2";
   els.fVal.textContent  = onOA ? "Outstanding actions"
-                        : hasState ? "Replied" : hasName ? "Sarah Chen" : "";
+                        : hasState ? "Replied" : hasName ? "Jamie Diamond" : "";
 
   /* ------------------------------------------------------ ownership labels */
   /* Each underline is now the CONCLUSION of its zone's gesture rather than a
@@ -1319,11 +1450,11 @@ function render(T){
   els.tabC.classList.toggle("on", tb <= 0.6);
   els.tabB.childNodes[0].nodeValue = onOA ? "Outstanding" : "Blotter";
 
-  /* --------------------------------------------------- isolate Daniel Kim */
+  /* --------------------------------------------------- isolate Larry Sync */
   /* From here to the swap NOTHING ELSE MOVES. The stillness is the argument. */
   const dm = seg(t, P.dim) * (1 - seg(t, P.swap));
   rowEls.forEach((row, ri) => {
-    row.style.opacity = ri === DANIEL ? 1 : (1 - dm * 0.80);
+    row.style.opacity = ri === LARRY ? 1 : (1 - dm * 0.80);
   });
 
   /* ------------------------------------- tracker becomes Outstanding */
@@ -1377,6 +1508,12 @@ function fit(){
   const wrap = $("stagewrap"), hold = $("stagehold");
   const pad = document.body.classList.contains("bare") ? 0 : 96;
   const bare = document.body.classList.contains("bare");
+  /* The horizontal inset is the preview chrome's, exactly like `pad`, and it
+     has to disappear in bare mode for the same reason. Left un-guarded it
+     costs 40px of an embedded frame: at the funnel's 350px slot on a phone
+     that is 11% of the width, spent on letterbox. Fixed August 11, 2026;
+     `web/public/film/` already carried the guard and this is the source
+     catching up, so a future re-copy cannot reintroduce it. */
   const k = trueSize ? 1 : Math.min(1, (innerWidth - (bare ? 0 : 40)) / 1080, (innerHeight - pad) / 1350);
   wrap.style.transform = `scale(${k})`;
   hold.style.width = (1080 * k) + "px";
@@ -1438,13 +1575,23 @@ window.renderAt = function (sec) {
   return t;
 };
 
+/* ------------------------------------------------------------------------
+   THIS BLOCK EXISTS ONLY IN web/public/film/. It is the single deliberate
+   divergence from `social/blotter-film-a-4x5.html`, and it has to be re-applied
+   by hand every time that file is copied across.
+
+   Everything `bare` mode needs is already in the source — `body.bare` CSS, the
+   un-guarded padding branch in `fit()`, the `c` key toggle. What the source
+   lacks is only the line that reads the query string and sets the class, so a
+   straight copy renders the preview chrome (Play button, scrubber, keyboard
+   hints) inside the funnel card. It looks like a player rather than an asset,
+   and nothing fails, which is why it would ship.
+
+   `?bare=1` is what `components/funnel/film-step.tsx` requests.
+   ------------------------------------------------------------------------ */
 const params = new URLSearchParams(location.search);
 const q = params.get("t");
 if (q !== null) window.renderAt(+q);
-
-/* Embedded use: `?bare=1` strips the chrome so the film can sit inside the
-   funnel as an asset rather than as a player. Added when the film was copied
-   into web/public on August 6, 2026; the source in social/ is unchanged. */
 if (params.get("bare") !== null) document.body.classList.add("bare");
 
 fit();
