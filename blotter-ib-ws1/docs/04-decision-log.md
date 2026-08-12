@@ -2838,3 +2838,63 @@ both called `syncLead`. Harmless — the route upserts — but a wasted round tr
 `supabase/006-restamp-stage-index.sql` restamps the five internal rows sitting
 at the old `confirmed` index. **Checked before writing it: no real lead sits
 above index 4**, so it touches nothing that counts.
+
+### The parallel-chat collision, August 12, 2026 — and the rule that follows
+
+**A file boundary does not isolate a parallel chat. A shared git index defeats
+it.**
+
+`14-film-a-recut-brief.md` told the film chat it owned exactly one file and
+forbade it every git command that writes. It obeyed completely. The collision
+happened anyway, because **the brief constrained what that chat writes and
+nothing constrained what this chat commits.** Two commits here used
+`git add -A`, which stages the whole tree:
+
+| Commit | Message | Also captured |
+|---|---|---|
+| `9915501` | web hero clipping | +58 / −26 in `social/blotter-film-a-4x5.html` |
+| `c81fffd` | the waitlist branch | +101 / −2 in the same file |
+
+Nothing was lost or overwritten, and the film chat had run no writing git
+command. The damage is only to the record: **its work is committed under two
+messages about other things**, and it believed 101 lines were still outstanding
+when they were already pushed.
+
+Not rewritten. The branch is pushed, the other chat is finished, and rewriting
+shared history to improve two commit messages trades a real risk for a
+cosmetic gain. This entry is the correction, which is what this log is for.
+
+**The claim that was wrong, stated plainly so it is not repeated:** this chat
+told Jon collision was "structurally impossible." It was not. It was
+*procedurally* prevented, by a rule living in a document the other party had
+read and this party had written — which is the weakest place a guarantee can
+live.
+
+#### The rule
+
+1. **Never `git add -A`, `git add .`, or `git commit -a` while any parallel
+   chat is running.** Stage explicit paths, every time. The cost is one line
+   per commit.
+2. **The brief for a parallel chat must bind both sides.** It currently
+   constrains only the subordinate chat. It must also state which paths the
+   main chat may stage while that chat is live.
+3. **For the next one, prefer a separate git worktree.** Two chats sharing one
+   working tree share one index, and no amount of discipline changes that.
+   A worktree makes the isolation structural rather than procedural, which is
+   what was claimed and was not true.
+
+#### What the collision did not cost, and one thing it nearly did
+
+The film chat could not render `?t=` or `?bare=1` — a `file://` origin gives
+`fit()` a zero-size viewport, which is the negative-scale trap already recorded
+in this log. So it handed off verified by measurement but unverified by
+looking.
+
+Rendering it here from a static server outside the repository found what
+measurement could not: **`social/blotter-film-a-4x5.html` has no `?bare=1`
+handler and the served copy does.** A straight copy across would have put the
+Play button, scrubber and keyboard hints inside the funnel card on a live site.
+Nothing would have failed and nothing would have logged.
+
+That is the fourth hand-kept duplicate to bite this project and the second time
+the divergence was the *served* copy being correct while the source was not.
