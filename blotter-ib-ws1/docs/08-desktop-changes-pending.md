@@ -261,9 +261,34 @@ It is listed here because the file is shared, so the change lands on desktop
 too — with zero visual delta, which is why it is safe to do in the sweep rather
 than in a desktop pass.
 
-## 9. Copy written for mobile that has not been ratified
+## 9. Copy written for mobile — RATIFIED August 11, 2026
 
-**Status: unratified. Must go to Jon before public traffic if kept.**
+**Status: both strings ratified by Jon, having seen them quoted in place.
+Closed. Two follow-ons opened, recorded below and in `06`.**
+
+Jon on `SUPPORTING_SHORT`: *"I'm okay with this. I think it's better to error on
+the side of less text on mobile version. Maybe there is a slightly better way to
+say it than '... , from Gmail and Calendar' that portion. But in general im okay.
+We might even make desktop version have less text too."*
+
+Jon on the Section 6 line: *"This is ratified and correct… Shows on mobile
+because those three are collapsed things you click plus to see so the header
+what each connection can and cannot do is there so you know."*
+
+**The principle he stated is worth more than the two rulings:** *error on the
+side of less text.* It is the first time a general copy posture has been given
+for this page, and it points the same direction as `09`'s whole diagnosis.
+
+### Two follow-ons
+
+**a. The `, from Gmail and Calendar` tail.** Jon wants a better phrasing. The
+comma-tail reads as an afterthought bolted to a complete sentence. Not urgent
+and not blocking; a copy pass, not a structural one.
+
+**b. Desktop's hero paragraph may want shortening too.** *"We might even make
+desktop version have less text too."* **This is not a wave-1 item** — it is
+ratified hero copy, and cutting it is an argument-level change of exactly the
+kind `09` governs. It goes to wave 2. See `06`.
 
 | String | Where | Note |
 |---|---|---|
