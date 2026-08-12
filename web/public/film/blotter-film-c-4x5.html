@@ -101,7 +101,7 @@
   to the page's column proportions, which is the only way they fit:
 
     gutter  48                                       row numbers only
-    Name   234   "Alex Morgan"        202.10 + 28    the widest name
+    Name   234   "Jamie Diamond"       170.20 + 28    the widest name
     Status 272   "Call completed" chip 249.70 + 22   chip box, not bare text
     Next   322   "Attend coffee chat" 289.55 + 28
     Days   122   header "Days"         81.29 + 28    the header sets this one
@@ -553,10 +553,10 @@ const SWEEP_L = GUT_W + COLS.filter(c => !c.kept).reduce((n,c) => n + c.w, 0); /
 const SWEEP_W = GRID_W - SWEEP_L;                          /* 716 */
 
 const ROWS = [
-  { name:"Sarah Chen",  status:"Sent",           next:"",                   days:"3",
-    to:{ status:"Replied",        next:"Reply to Sarah", days:"0" } },
-  { name:"Marcus Lee",  status:"Call scheduled", next:"Attend coffee chat", days:"1" },
-  { name:"Priya Shah",  status:"Call scheduled", next:"Attend coffee chat", days:"1",
+  { name:"Jamie Diamond",  status:"Sent",           next:"",                   days:"3",
+    to:{ status:"Replied",        next:"Reply to Jamie", days:"0" } },
+  { name:"David Salmon",  status:"Call scheduled", next:"Attend coffee chat", days:"1" },
+  { name:"Ken Molise",  status:"Call scheduled", next:"Attend coffee chat", days:"1",
     to:{ status:"Call completed", next:"Send thank-you", days:"0" } },
   /*
      Jon, on the second cut: Daniel must OPEN on a grey `Sent` pill and become
@@ -578,9 +578,9 @@ const ROWS = [
      days, so day five is where the ratified data already says this row turns.
      The end state is unchanged and is `TRACKER_CONTACTS` exactly.
   */
-  { name:"Daniel Kim",  status:"Sent",           next:"",                   days:"4",
+  { name:"Larry Sync",  status:"Sent",           next:"",                   days:"4",
     to:{ status:"No reply", next:"Bump thread", days:"5" } },
-  { name:"Alex Morgan", status:"Sent",           next:"",                   days:"0" },
+  { name:"Jerome Bowel", status:"Sent",           next:"",                   days:"0" },
 ];
 
 /*
