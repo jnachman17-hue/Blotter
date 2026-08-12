@@ -19,28 +19,43 @@ the first reply of the session.
 
 ### Due now
 
-- **The security audit has reported.** Findings, fixes and the remaining work
-  are in `13-security-audit-findings.md`. **Read that before starting design
-  work** — it carries six items only Jon can do, and one of them is live.
+- **The security audit is closed.** Full record in
+  `13-security-audit-findings.md`. Code fixes are **merged and live**; every
+  item that needed Jon was done on August 12, 2026. **Nothing here is
+  outstanding — do not re-raise these.**
 
-  The short version: the site is sound on secrets, analytics privacy and input
-  handling. The real finding is that **anyone can write unlimited fake leads
-  that read as completed funnels**, straight into `real_leads`. Until a Vercel
-  rate-limit rule exists, **the lead count cannot be fully trusted** — sanity
-  check it before any decision rests on it.
+  The site came back sound on the things that matter most: the service_role key
+  is unreachable from any browser, no secret was ever committed across 305
+  commits, and no email address reaches PostHog on any path.
 
-  Code fixes are on branch `security-audit-fixes-2026-08-12`, deliberately not
-  merged: the header and API-guard changes were never run, so the branch's
-  preview URL is the verification step. `13` §5 has the merge command.
+  The one real finding was that anyone could write unlimited fake leads that
+  read as completed funnels straight into `real_leads`. **That is closed** — a
+  Vercel firewall rate limit on `/api/` is live and was verified enforcing (403
+  from the 11th request in a window). The `real_*` views are locked
+  (`005-lock-down-views.sql`, run by Jon).
 
-  Still open by choice, do not treat as oversights: no Content-Security-Policy,
-  no film-iframe sandboxing (attempted, breaks the films, reverted), and
-  `is_internal` still client-asserted. Reasoning for each is in `13` §4.
+  Verified on production after merge: four security headers present, `text/plain`
+  POSTs rejected 415, a real lead stores 200, the contact form stores 200, and
+  the funnel walks end to end with the film playing.
 
-  Jon's outstanding items, in `13` §2: delete the audit's 5 test rows, run
-  `supabase/005-lock-down-views.sql`, delete three published Goldman Sachs
-  reference files, clear `web/.next/dev`, add the Vercel rate limit, and ratify
-  the new privacy-policy paragraph.
+  **Deferred by decision, not oversight** — reasoning in `13` §4, do not treat
+  as bugs to fix opportunistically:
+  - No Content-Security-Policy. The highest-value header left, and the easiest
+    to break the page with silently. Needs a session with the console open.
+  - No film-iframe sandboxing. Attempted and verified in a browser that
+    `sandbox="allow-scripts"` renders the films **blank**; the variant that keeps
+    them working provides no protection. Real fix is a separate origin.
+  - `is_internal` still client-asserted. Deriving it server-side would break the
+    `?blotter_internal=1` flow across devices.
+  - The three `public/reference/` HTML files stay published. Asked directly,
+    there is no meaningful *security* impact; it was a legal/tidiness call and
+    Jon's to make.
+
+  **Two things for a future session to know.** `web/.next/dev` re-acquires
+  plaintext copies of both privileged keys every time the dev server runs —
+  delete it after any key rotation. And `/privacy` and `/contact` still carry
+  `noindex` from before indexing was turned on; flagged in
+  `app/privacy/page.tsx` as an open question for Jon, deliberately not changed.
 - **Two films now appear on desktop.** `06`'s row on the three films sharing
   one status-change treatment carried the revisit trigger *"before any two
   films appear on the same surface"*, and that condition shipped. See §4.

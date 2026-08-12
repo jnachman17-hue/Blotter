@@ -2,7 +2,18 @@
 
 Date: August 12, 2026
 Audit brief: `12-security-audit-brief.md`
-Status: **Reported. Code fixes applied on a branch. Six items need Jon.**
+Status: **Closed. Every finding is fixed, verified, or consciously deferred.**
+
+Everything in §2 was completed by Jon on August 12, 2026, and the code fixes are
+merged and live on `blotterib.com`. What remains is in §4, and each item there is
+a decision that was taken deliberately, not an outstanding task.
+
+**Verified live on production after merge**, not just reasoned about: all four
+security headers present; a `text/plain` POST to `/api/lead` rejected 415; a
+valid lead stored `200 {"stored":true}`; the contact form stored
+`200 {"sent":true,"stored":true}`; the funnel walked end to end with the film
+playing; and the Vercel rate limit confirmed enforcing — requests 1-10 to
+`/api/` returned normally, 11 onward returned 403.
 
 ---
 
@@ -32,16 +43,24 @@ you" means it cannot be done from the code.
 
 | # | What it is | State |
 |---|---|---|
-| 1 | Anyone can write unlimited fake leads that look like completed sign-ups | **Partly fixed — needs you** |
-| 2 | The two database "views" probably ignore the lock on the tables underneath | **Needs you** (migration written, not run) |
-| 3 | A fake Goldman Sachs rejection email is published on your live site | **Needs you** (deletion was blocked) |
+| 1 | Anyone can write unlimited fake leads that look like completed sign-ups | **Closed** — Vercel rate limit live and verified enforcing |
+| 2 | The two database "views" probably ignore the lock on the tables underneath | **Closed** — `005` run by Jon |
+| 3 | A fake Goldman Sachs rejection email is published on your live site | **Open by choice** — no security impact, see below |
 | 4 | The privacy policy never mentioned the contact form | **Fixed** |
 | 5 | Private-browsing visitors overwrote each other's sign-ups | **Fixed** |
-| 6 | Any other website could make its visitors write rows into your database | **Fixed** |
-| 7 | Your two most powerful keys sit in a hidden file on your laptop | **Needs you** (one command) |
-| 8 | The site sent no security headers at all | **Fixed** (4 of 5) |
-| 9 | The films run in frames with no isolation | **Open — tried, did not work** |
+| 6 | Any other website could make its visitors write rows into your database | **Fixed and verified** (415 on `text/plain`) |
+| 7 | Your two most powerful keys sit in a hidden file on your laptop | **Closed** — cache deleted |
+| 8 | The site sent no security headers at all | **Fixed** (4 of 5; no CSP, §4) |
+| 9 | The films run in frames with no isolation | **Open by choice** — attempted, breaks the films, §4 |
 | 10 | Small bugs: body size, spam trap, mobile button tracking | **Fixed** |
+
+**On #3, revised.** This was originally written up with the legal and
+reputational angle leading. Asked directly whether there was a *security*
+problem, the honest answer is essentially no: the files expose no key, offer no
+route into the site or database, and are unreachable unless someone guesses the
+URL. The only technical nit is that `-v2.html` is ~934 KB of machine-generated
+export carrying script tags nobody has read, sitting on the origin for no
+reason. Left to Jon as a tidiness call, not a security one.
 
 ### 1. Fake leads — the important one
 
@@ -124,9 +143,18 @@ Deleting files was blocked by a safety check on my side, so it is on your list.
 
 ---
 
-## 2. What you need to do
+## 2. What Jon had to do — ALL COMPLETED August 12, 2026
 
-Six things. Roughly 30 minutes total, most of it waiting.
+Kept below as the record of what was done, and because items 1, 2 and 4 are the
+ones to repeat if the schema is ever rebuilt or a key is rotated.
+
+- ✅ Audit test rows deleted
+- ✅ `CHECK-view-security.sql` then `005-lock-down-views.sql` run in Supabase
+- ✅ `web/.next/dev` deleted — **repeat this after every key rotation**
+- ✅ Vercel firewall rate limit added, deployed, and verified enforcing (403 from
+  the 11th request to `/api/` in a window)
+- ✅ Funnel and contact form tested end to end on production
+- ⬜ The three `public/reference/` HTML files — left in place deliberately, see §1
 
 ### 1. Delete the audit's test rows — Supabase, 1 minute
 
