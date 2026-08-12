@@ -38,11 +38,22 @@ import { RefusalPanel } from "@/components/section-3/boundary-block";
 import { PageBox } from "@/components/layout/page-box";
 import { SectionNumber } from "@/components/layout/section-number";
 import { cn } from "@/lib/cn";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import { POLICY_HREF } from "@/lib/privacy-copy";
 import { CLOSING_HEADLINE, FAQ_TITLE, PRODUCT_FAQ } from "@/lib/closing-copy";
 
 /** §6's reading measure, centred inside the page box. */
 const FAQ_W = 960;
+
+/**
+ * The footer's link treatment, shared so the three read as one row.
+ *
+ * 44px target on a phone without a box around it: the padding is
+ * negative-margined back out so the row still sits on the baseline it did
+ * before the Phase 6 tap-target sweep.
+ */
+const FOOTER_LINK =
+  "-my-3 py-3 text-small text-white/55 transition-colors duration-150 ease-out hover:text-white desk:my-0 desk:py-0";
 
 /**
  * Both accounts, supplied by Jon on August 11, 2026 for **both surfaces**.
@@ -255,14 +266,36 @@ export function FaqAndClose() {
             >
               <BlotterLockup size={20} />
             </a>
-            <div className="flex items-center justify-between gap-8 desk:justify-start">
+            {/*
+              `Contact` and the address itself, added August 11, 2026 on Jon's
+              instruction: *"let's also add our broader email somewhere on the
+              page at near the bottom."*
+
+              Both, not one. The link is for a reader who wants to write
+              something and does not want to leave the page to find out how; the
+              bare address is for anyone who would rather use their own mail
+              client, and for the case where the form is broken and the page
+              cannot know it. A form is the better instrument and a printed
+              address is the one that never fails.
+
+              The address is a `mailto` rather than plain text so a phone opens
+              its mail app on a tap instead of asking the reader to select and
+              copy 19 characters at 13.5px.
+            */}
+            <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-2 desk:justify-start">
               <a
-                href={POLICY_HREF}
+                href="/contact"
                 /* 44px target on a phone without a box around it: the padding
                    is negative-margined back out so the row still sits on the
                    baseline it did before. */
-                className="-my-3 py-3 text-small text-white/55 transition-colors duration-150 ease-out hover:text-white desk:my-0 desk:py-0"
+                className={FOOTER_LINK}
               >
+                Contact
+              </a>
+              <a href={`mailto:${CONTACT_EMAIL}`} className={FOOTER_LINK}>
+                {CONTACT_EMAIL}
+              </a>
+              <a href={POLICY_HREF} className={FOOTER_LINK}>
                 Privacy policy
               </a>
               <SocialLinks />

@@ -2211,3 +2211,72 @@ comes with it, because he identified the dependency himself when he ratified
 that string: it exists *because* the rows are closed. Collapsed desktop needs
 it; open desktop must not have it. `ServiceColumns` is retained, rendered
 nowhere, so the ratified three-column composition is one line to restore.
+
+### Four more, August 11, 2026
+
+**1. Section 2's annotation ticks go vertical at every width.** Jon: *"see if
+you can add the vertical sort of blue line instead of those weird dashes… I
+actually like this a lot better."*
+
+They used to turn ninety degrees at the breakpoint — a 2px vertical bar on a
+phone, a 24px horizontal dash on desktop. The horizontal version was argued for
+on the grounds that a dash beside a one-line annotation points at the asset. What
+it did was read as a stray dash, and on desktop there are two of them, one
+before the first annotation and one after the second, so the page looked like it
+carried punctuation nobody chose. The vertical bar is the page's own idiom — the
+same mark the eyebrows use — so the annotations, the eyebrows and the section
+labels now speak one mark instead of two. The mirroring survives, because that
+is an ordering rather than a shape.
+
+**2. The hero film replays.** Jon: *"is it better if it collapses to the static
+version or if it just replays, like the mobile version? I'm starting to lean
+more towards replay."*
+
+**Both survive, and the settle is what makes the replay possible.** This film
+has no wipe-back, so wrapping it would hard-cut three rows and a cue card in one
+frame. The cycle is now film → dissolve to the settled composition → rest four
+seconds → dissolve back and run again, and **the iframe is remounted while the
+static layer is fully opaque**, so the restart happens behind a picture and
+there is no seam to see. The thing that would have been a visible cut is covered
+by the only frame on the page that reads as an argument on its own.
+
+Reduced motion still gets the settled composition and stops there — no film
+mounted, no timer, nothing cycling.
+
+**3. A contact page.** Jon: *"Let's add a contact form on our page… It can be
+about anything, a frequently asked question you suggest, just a general
+question."* Plus the address near the bottom of the landing page.
+
+`/contact`, `api/contact`, and `supabase/004-contact-messages.sql`. Three
+fields, only email and message required. It takes `/privacy`'s shell, since
+these are the page's two secondary surfaces and should read as a pair.
+
+**Two deliberate departures from the lead route.** It **inserts rather than
+upserts** — `leads` is keyed on `visitor_id` because the metric counts unique
+visitors, and two messages from one person are two messages. And **it fails
+loudly**: the lead route returns 200 on every failure path because interrupting
+a converting visitor is worse than losing a row, but a reader told their message
+sent will wait for a reply that cannot come. A contact form that silently drops
+mail is worse than no contact form.
+
+A separate table, not `leads`, for the same reason: mixing correspondence into
+the table the demand test counts would corrupt the one number that must stay
+clean.
+
+Spam: a honeypot that answers 200 when filled, so an automated caller cannot
+tell a drop from a success, plus bounded input on every field. Deliberately not
+a CAPTCHA — it would be the only thing standing between a reader and a question,
+at a volume that does not justify it.
+
+**`supabase/004-contact-messages.sql` has not been run.** Until Jon applies it
+in the SQL Editor the route returns `insert_failed` and the form shows its
+fallback, which is the designed behaviour and was verified.
+
+**4. A bug the verification caught that looking could not.** `CONTACT_EMAIL`
+was first exported from `contact-form.tsx`, which carries `"use client"`.
+Importing a plain constant from a client module into a server component does not
+give you the value — Next replaces it with a client-reference stub, and the
+footer rendered `href="mailto:function(){throw Error(...)}"`. **A broken
+`mailto` renders as perfectly ordinary underlined text**, so a screenshot would
+never have shown it; it was found by reading the served DOM. The constant now
+lives in `lib/contact.ts`, which has no `"use client"`.

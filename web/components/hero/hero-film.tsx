@@ -145,6 +145,14 @@ const DESK_SRC = "/film/blotter-film-web-hero.html?bare=1";
 const DESK_SETTLE_MS = 11_500 + 500;
 
 /**
+ * How long the settled composition rests before the film runs again.
+ *
+ * Long enough to be read rather than glimpsed — the whole point of settling on
+ * it is that it is the frame that carries the argument on its own.
+ */
+const DESK_REST_MS = 4_000;
+
+/**
  * The desktop hero: the film, then the ratified static composition.
  *
  * **The film plays once and then dissolves into `HeroVisualModule`.** Jon,
@@ -165,22 +173,34 @@ const DESK_SETTLE_MS = 11_500 + 500;
  * *three* pieces of activity landing on three different rows. A film that plays
  * once cannot rest on a frame of itself.
  *
- * **Why the settle rather than the loop**, given he offered both and preferred
- * neither: this film has no wipe-back. Film C loops seamlessly because a pale
- * bar runs up the grid and hands every row back to its opening state; this one
- * was built to stop, so wrapping `t` would hard-cut three rows and a cue card
- * in a single frame. The settle needs no new animation, and it lands on the
- * composition that was ratified for exactly this job.
+ * **It replays, as of August 11, 2026.** Jon, having seen it settle once:
+ * *"is it better if it collapses to the static version or if it just replays,
+ * like the mobile version? I'm starting to lean more towards replay."*
  *
- * **It also fixes reduced motion, which had the same defect.** A static
- * substitute was going to be a single film frame, which is the thing he
- * objected to. Now anyone who asks for reduced motion simply gets the settled
- * state immediately and never sees a film at all.
+ * **The settle is what makes the replay possible**, so both survive rather than
+ * one replacing the other. This film has no wipe-back — Film C loops seamlessly
+ * because a pale bar runs up the grid and hands every row back to its opening
+ * state, and this one was built to stop. Wrapping it would hard-cut three rows
+ * and a cue card in a single frame, which reads as a glitch.
  *
- * The ownership labels stay off in both states — `HeroVisualModule` defaults
+ * So the cycle is: film, dissolve to the settled composition, rest on it, then
+ * dissolve back and run again. **The iframe is remounted while the static layer
+ * is fully opaque**, so the restart happens behind a picture and there is no
+ * seam to see. The thing that would otherwise be a hard cut is covered by the
+ * only frame on the page that reads as an argument on its own.
+ *
+ * It also gives the cycle something the phone's loop does not have: four
+ * seconds where the hero is a legible still rather than a moving one.
+ *
+ * **Reduced motion gets the settled composition and stops there.** No film is
+ * mounted, no timer runs, nothing cycles. That reader gets the ratified static
+ * hero and nothing else, which is the correct reading of the preference — and
+ * it is why the settle had to exist before the replay could.
+ *
+ * The ownership labels stay off throughout — `HeroVisualModule` defaults
  * `labels` to false, which is Jon's August 11 ruling.
  *
- * Both layers sit in one box at the film's aspect, so the dissolve is a
+ * Both layers sit in one box at the film's aspect, so every dissolve is a
  * cross-fade in place with nothing moving. The static module is 1322 x 432.5
  * without its label block, which is the film's canvas exactly, so both render
  * at the same scale with the same 8px of shadow room.
@@ -188,12 +208,28 @@ const DESK_SETTLE_MS = 11_500 + 500;
 export function HeroFilmDesk() {
   const reduced = usePrefersReducedMotion();
   const [settled, setSettled] = useState(false);
+  /* Bumped to remount the iframe, which is how the film restarts. It only ever
+     changes while `settled` is true, so the remount is hidden behind the static
+     layer and the reload flash is never on screen. */
+  const [run, setRun] = useState(0);
 
   useEffect(() => {
     if (reduced) return;
-    const id = window.setTimeout(() => setSettled(true), DESK_SETTLE_MS);
-    return () => window.clearTimeout(id);
-  }, [reduced]);
+
+    /* One cycle: play, settle, rest, then restart behind the settled frame. */
+    const toSettle = window.setTimeout(() => setSettled(true), DESK_SETTLE_MS);
+    const toReplay = window.setTimeout(() => {
+      setRun((n) => n + 1);
+      setSettled(false);
+    }, DESK_SETTLE_MS + DESK_REST_MS);
+
+    return () => {
+      window.clearTimeout(toSettle);
+      window.clearTimeout(toReplay);
+    };
+    /* `run` restarts the cycle: the effect tears down and re-arms both timers
+       each time the film is remounted. */
+  }, [reduced, run]);
 
   /* Reduced motion never mounts the iframe at all: there is no point fetching
      a 94KB film to cross-fade away from a reader who asked not to see it. */
@@ -208,6 +244,7 @@ export function HeroFilmDesk() {
       >
         {showFilm && (
           <iframe
+            key={run}
             src={DESK_SRC}
             title="A recruiting tracker updating itself: an email arrives, a meeting completes, and a contact goes quiet"
             scrolling="no"

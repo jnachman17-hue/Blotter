@@ -42,21 +42,32 @@ function ConsequenceVisual() {
   return (
     <div className="mt-14">
       {/*
-        The leader tick turns ninety degrees on a phone.
+        **The vertical tick, at every width, from August 11, 2026.**
 
-        A 24px horizontal dash works on desktop because the annotation is one
-        line beside a wide asset and the dash points at it. At 350px both
-        annotations wrap to two lines, and a horizontal dash beside line one
-        with nothing under it reads as a stray mark rather than as a leader.
+        It used to turn ninety degrees at the breakpoint: a 2px vertical bar on
+        a phone, a 24px horizontal dash on desktop. Jon, comparing the two:
+        *"see if you can add the vertical sort of blue line instead of those
+        weird dashes… I actually like this a lot better."*
 
-        The vertical tick is the page's own idiom — the same 2px bar the eyebrow
-        uses, aligned to the cap height of the first line — so it stays put
-        however the text wraps and it is a mark this page already speaks.
+        The horizontal version was argued for on the grounds that a 24px dash
+        works beside a one-line annotation next to a wide asset and points at
+        it. What it actually did was read as a stray dash — and on desktop there
+        are two of them, one before the first annotation and one after the
+        second, which looks like punctuation nobody chose.
+
+        The vertical bar is the page's own idiom: the same 2px mark the eyebrows
+        use, aligned to the cap height of the first line, so it stays put
+        however the text wraps. Reconciling to it means the annotations, the
+        eyebrows and the section labels all speak one mark instead of two.
+
+        The mirroring survives — the tick leads the first annotation and follows
+        the second — because that is what frames the strip diagonally, and it is
+        an ordering rather than a shape.
       */}
-      <p className="mb-3 flex items-start gap-3 text-[14px] font-medium text-navy-900 desk:items-center">
+      <p className="mb-3 flex items-start gap-3 text-[14px] font-medium text-navy-900">
         <span
           aria-hidden="true"
-          className="mt-[0.32em] h-[0.9em] w-[2px] shrink-0 bg-navy-400 desk:mt-0 desk:h-px desk:w-6"
+          className="mt-[0.32em] h-[0.9em] w-[2px] shrink-0 bg-navy-400"
         />
         One thread buried in 628 emails
       </p>
@@ -96,13 +107,13 @@ function ConsequenceVisual() {
         the copy.
       */}
       <p
-        className="mt-3 flex items-start gap-3 text-[14px] font-medium text-navy-900 desk:items-center desk:justify-end"
+        className="mt-3 flex items-start gap-3 text-[14px] font-medium text-navy-900 desk:justify-end"
         style={{ maxWidth: PAGE_BOX_W }}
       >
         A stale tracker does not direct you back before the deadline passes
         <span
           aria-hidden="true"
-          className="order-first mt-[0.32em] h-[0.9em] w-[2px] shrink-0 bg-navy-400 desk:order-last desk:mt-0 desk:h-px desk:w-6"
+          className="order-first mt-[0.32em] h-[0.9em] w-[2px] shrink-0 bg-navy-400 desk:order-last"
         />
       </p>
     </div>
