@@ -55,7 +55,7 @@
 import { CtaButton } from "@/components/cta-button";
 import { cn } from "@/lib/cn";
 
-export type HeroTopVariant = "current" | "a" | "b" | "c" | "d" | "e";
+export type HeroTopVariant = "current" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h";
 
 /** Ratified, `01-HERO`. */
 const EYEBROW =
@@ -286,13 +286,130 @@ function VariantE() {
   );
 }
 
+/* ------------------------------------------ round two: the eyebrow moves up */
+
+/**
+ * F, G and H all drop the eyebrow from the hero, because it moves into the
+ * header bar. `components/site-header.tsx` carries why that became available.
+ *
+ * **This is the change that unlocked the layout question rather than a tidy-up.**
+ * The eyebrow and its gap were about 51px of the 248 above the film. Taking them
+ * out is what lets a composition be chosen on how it reads instead of on how
+ * short it is, and it is what makes H — centred — testable at all, since the
+ * reason to reject centring last round was that it pushed the film off a laptop
+ * screen rather than anything about the look.
+ *
+ * It also answers the thing Jon named in B and E: *"there's no real header start
+ * to the page."* The start is now the header.
+ *
+ * ## Why E is not in this round
+ *
+ * Jon: *"This feels very left weighted, and there's a lot of empty space on the
+ * right that doesn't feel right… it almost feels like our page is hopping over
+ * to the left."*
+ *
+ * He is right and the argument for E was wrong in a way worth recording. It
+ * rested on the empty right at the top rhyming with the empty right of the film
+ * — **but the film's right is not reliably empty.** A cue card occupies it for
+ * roughly half the run and then leaves. So the rhyme holds intermittently and
+ * the lean is constant, which is the wrong way round. A composition rule cannot
+ * depend on what a visual happens to be doing at a given second.
+ */
+
+/**
+ * F — the left funnel.
+ *
+ * Headline, subhead, CTA stacked and each narrower than the last: 620, then
+ * 440, then the button. Jon liked A's *"upside down triangle… that kinda funnels
+ * you in"*, and this tests whether that quality needs centring or only needs
+ * each element to be narrower than the one above it. The eye still travels down
+ * and inward; it just does it against a left edge.
+ */
+function VariantF() {
+  return (
+    <div className="pt-2">
+      <Headline />
+      <p className="mt-5 max-w-[440px] text-lede leading-[1.55] text-ink-muted">
+        {SUBHEAD}
+      </p>
+      <div className="mt-7">
+        <CtaButton location="hero" />
+      </div>
+    </div>
+  );
+}
+
+/**
+ * G — the counterbalance. **The recommendation.**
+ *
+ * Headline left, subhead right, CTA on its own row beneath. This is C with the
+ * eyebrow moved, and it is the only option that answers every objection Jon
+ * raised in one shape:
+ *
+ * - the counterbalance he liked in C is what stops the block leaning, which is
+ *   what he disliked in E;
+ * - the header start he missed in B comes from the bar;
+ * - nothing is centred, so it avoids the *"too AI-SaaS"* risk he flagged in A;
+ * - and it is **the shortest of the three**, because the subhead sits beside the
+ *   headline rather than under it. About 150px against the current 248, so the
+ *   film clears a laptop fold with room rather than with borrowed spacing.
+ */
+function VariantG() {
+  return (
+    <div className="pt-2">
+      <div className="grid items-start gap-x-16 gap-y-4 desk:grid-cols-[minmax(0,1fr)_420px]">
+        <Headline />
+        <p className="max-w-[44ch] text-lede leading-[1.55] text-ink-muted desk:pt-2">
+          {SUBHEAD}
+        </p>
+      </div>
+      <div className="mt-7">
+        <CtaButton location="hero" />
+      </div>
+    </div>
+  );
+}
+
+/**
+ * H — centred, retested.
+ *
+ * A again, now that the eyebrow has left the hero. Worth rebuilding rather than
+ * ruling out, because Jon's two objections to A were different in kind: *"half
+ * the hero visual film is out of view immediately"* is a height problem, and
+ * the header eyebrow fixes it. *"I don't know if that's just too AI-SaaS"* is a
+ * taste problem, and it is the only one left to judge once the height is gone.
+ *
+ * So H isolates the actual question: with the film on screen, is centred right
+ * for this page? The page theme's centre-nothing rule still says no, and the
+ * category research still says it is what the category does.
+ */
+function VariantH() {
+  return (
+    <div className="pt-2 text-center">
+      <Headline center />
+      <p className="mx-auto mt-5 max-w-[46ch] text-lede leading-[1.55] text-ink-muted">
+        {SUBHEAD}
+      </p>
+      <div className="mt-7 flex justify-center">
+        <CtaButton location="hero" />
+      </div>
+    </div>
+  );
+}
+
 const VARIANTS: Record<Exclude<HeroTopVariant, "current">, () => React.JSX.Element> = {
   a: VariantA,
   b: VariantB,
   c: VariantC,
   d: VariantD,
   e: VariantE,
+  f: VariantF,
+  g: VariantG,
+  h: VariantH,
 };
+
+/** The three that expect the tagline in the header bar instead of the hero. */
+export const HEADER_TAGLINE_VARIANTS: HeroTopVariant[] = ["f", "g", "h"];
 
 export function HeroTop({ variant }: { variant: Exclude<HeroTopVariant, "current"> }) {
   const Block = VARIANTS[variant];

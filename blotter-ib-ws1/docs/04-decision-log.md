@@ -2401,3 +2401,48 @@ was written to prevent.
 weight sits left and its right is empty except when a cue is present, so the
 empty right above rhymes with the empty right below. It keeps centre-nothing and
 pushes it further instead of abandoning it.
+
+### Hero review, round two, August 11, 2026
+
+Jon read all five and the useful part was not which he preferred but why.
+
+**E is withdrawn and the argument for it was wrong.** He: *"it almost feels like
+our page is hopping over to the left."* The case for E rested on the empty right
+at the top rhyming with the empty right of the film. **The film's right is not
+reliably empty** — a cue occupies it for roughly half the run and then leaves.
+So the rhyme is intermittent while the lean is constant, which is the wrong way
+round. A composition rule cannot depend on what a visual happens to be doing at
+a given second.
+
+**The eyebrow question he raised is the one that unlocked the round.** He asked
+whether the tagline could move to the header bar, noting it was rejected for
+mobile. Checking why: 79 characters of uppercase at 12.5px need about 630px, and
+a 390px bar has roughly 265px once the lockup and padding are out. **That is a
+phone-width finding, not an objection to the idea.** The desktop bar is 1400px
+and the line fits with 300px to spare.
+
+It buys about 51px out of the hero's 248, which is what makes the layout
+choosable on how it reads rather than on how short it is — and it is what makes
+a centred hero testable at all, since the reason to reject centring in round one
+was that it pushed the film off a laptop screen.
+
+It also answers what he missed in B and E: *"there's no real header start to the
+page."* The start is now the header.
+
+**Round two: F left funnel, G counterbalance, H centred**, all with the tagline
+in the bar, plus both tagline behaviours — `persist` and `scroll` — as a second
+axis he asked to see against each other. `scroll` rides the header's existing
+`data-elevated` flag rather than adding a listener, so it fades on the same 8px
+threshold as the fill.
+
+**G is the recommendation**, and it is the only shape that answers every
+objection at once: the counterbalance he liked in C stops the lean he disliked
+in E, the bar supplies the start he missed in B, nothing is centred so it dodges
+the *"too AI-SaaS"* risk he flagged in A, and it is the shortest of the three
+because the subhead sits beside the headline rather than under it. About 150px
+against the current 248.
+
+Worth recording that his instinct about A was two separate objections. *"Half
+the hero visual film is out of view"* is a height problem, and the header
+eyebrow removes it. *"Too AI-SaaS"* is a taste problem, and H exists so that is
+the only thing left to judge.

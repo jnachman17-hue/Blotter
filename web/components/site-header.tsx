@@ -102,12 +102,33 @@ function useScrolledPast(px: number, enabled: boolean) {
  * is server-rendered in its default mode and the parameter reader below is the
  * only part that waits.
  */
+/**
+ * Whether the bar carries the page's tagline, and what it does on scroll.
+ *
+ * `off` is live. The other two are the August 11, 2026 review.
+ *
+ * **The reason this is even available is a phone-width argument that does not
+ * apply here.** The tagline in the header was built and rejected during stage
+ * 10: 79 characters of uppercase at 12.5px with 0.1em tracking needs about
+ * 630px, and a 390px bar has roughly 265px once the lockup and padding are
+ * out, so it went to two lines. The desktop bar is 1400px, with the lockup at
+ * ~85 and the CTA at ~150. 630 fits with 300px to spare. The objection was
+ * never to the idea.
+ *
+ * What it buys is not tidiness: **it takes about 51px out of the hero**, which
+ * is the difference between the film clearing the fold on a small laptop and
+ * borrowing spacing to make it fit.
+ */
+export type HeaderTagline = "off" | "persist" | "scroll";
+
 export function SiteHeaderBar({
   mobileCta = true,
   mode = "full",
+  tagline = "off",
 }: {
   mobileCta?: boolean;
   mode?: HeaderMode;
+  tagline?: HeaderTagline;
 }) {
   const scrolled = useScrolledPast(240, mode === "shrink");
   /*
@@ -122,6 +143,7 @@ export function SiteHeaderBar({
   return (
     <header
       data-header-mode={mode}
+      data-tagline={tagline}
       {...(scrolled ? { "data-scrolled": "" } : {})}
       {...(elevated ? { "data-elevated": "" } : {})}
       className={cn(
@@ -161,13 +183,35 @@ export function SiteHeaderBar({
           measured 85x29, which is under the Phase 6 floor; the bar is 60px so
           the height is free, and the mark itself does not change size.
         */}
-        <a
-          href="#top"
-          aria-label="Blotter, back to top"
-          className="flex min-h-11 items-center text-navy-900 desk:min-h-0"
-        >
-          <BlotterLockup size={22} />
-        </a>
+        {/*
+          Brand and tagline are one group. The tagline is the wordmark's
+          descriptor, so it sits with it rather than floating in the middle of
+          the bar under `justify-between`.
+
+          Desktop only, always. The phone bar has no room and that finding
+          stands.
+        */}
+        <div className="flex items-center gap-4">
+          <a
+            href="#top"
+            aria-label="Blotter, back to top"
+            className="flex min-h-11 items-center text-navy-900 desk:min-h-0"
+          >
+            <BlotterLockup size={22} />
+          </a>
+          {tagline !== "off" && (
+            <>
+              <span
+                aria-hidden="true"
+                className="site-header__tagline hidden h-3.5 w-px bg-navy-900/15 desk:block"
+              />
+              <p className="site-header__tagline hidden text-eyebrow leading-none font-medium tracking-[0.1em] text-navy-500 uppercase desk:block">
+                The smart recruiting tracker for investment banking and
+                high-finance networking
+              </p>
+            </>
+          )}
+        </div>
         {/* Desktop always carries it: four placements are ratified there and a
             desktop reader can see the whole page at once. */}
         <div className={mobileCta ? undefined : "hidden desk:block"}>

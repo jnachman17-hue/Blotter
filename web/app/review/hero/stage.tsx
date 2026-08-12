@@ -13,7 +13,11 @@ import { useCallback, useState } from "react";
 
 import { PageBox } from "@/components/layout/page-box";
 import { Hero } from "@/components/sections/hero";
-import { type HeroTopVariant } from "@/components/hero/hero-top";
+import { SiteHeaderBar, type HeaderTagline } from "@/components/site-header";
+import {
+  HEADER_TAGLINE_VARIANTS,
+  type HeroTopVariant,
+} from "@/components/hero/hero-top";
 
 import { Picker } from "../sheet-mobile/picker";
 
@@ -46,8 +50,29 @@ const VARIANTS: { key: HeroTopVariant; label: string; note: string }[] = [
   {
     key: "e",
     label: "E · Left-weighted",
-    note: "Everything in a narrow left column, right side deliberately empty. The only variant built from the film's own composition rather than a layout convention: the film's weight sits left and its right is empty except when a cue is present, so the empty right at the top rhymes with the empty right below. It keeps centre-nothing and pushes it further.",
+    note: "Withdrawn. Jon: “it almost feels like our page is hopping over to the left.” He is right, and the argument for it was wrong: it rested on the empty right at the top rhyming with the empty right of the film, but the film's right is NOT reliably empty. A cue occupies it for about half the run. So the rhyme is intermittent and the lean is constant. Kept only for comparison.",
   },
+  {
+    key: "f",
+    label: "F · Left funnel",
+    note: "Eyebrow moves to the header bar. Headline, subhead, CTA stacked and each narrower than the last: 620, then 440, then the button. Tests whether the upside-down-triangle quality Jon liked in A needs centring, or only needs each element narrower than the one above it.",
+  },
+  {
+    key: "g",
+    label: "G · Counterbalance",
+    note: "THE RECOMMENDATION. Eyebrow in the header, headline left, subhead right, CTA on its own row. The counterbalance Jon liked in C stops the block leaning, which is what he disliked in E; the header supplies the page start he missed in B; nothing is centred, avoiding the too-AI-SaaS risk he flagged in A. It is also the shortest, because the subhead sits beside the headline rather than under it: about 150px against the current 248.",
+  },
+  {
+    key: "h",
+    label: "H · Centred",
+    note: "A again, now that the eyebrow has left the hero. Jon's two objections to A were different in kind: half the film being off screen is a height problem, which the header eyebrow fixes, and “too AI-SaaS” is a taste problem. With the height gone, this isolates the only question left.",
+  },
+];
+
+/** Only F, G and H expect the tagline in the bar. */
+const TAGLINES: { key: HeaderTagline; label: string; note: string }[] = [
+  { key: "persist", label: "Tagline persists", note: "stays for the whole page" },
+  { key: "scroll", label: "Tagline fades", note: "gone once you start reading" },
 ];
 
 export function Stage() {
@@ -55,6 +80,16 @@ export function Stage() {
   const fromUrl = parseInt(params.get("v") ?? "", 10);
   const initial = fromUrl >= 1 && fromUrl <= VARIANTS.length ? fromUrl - 1 : 0;
   const [i, setI] = useState(initial);
+  const [tag, setTag] = useState<HeaderTagline>(
+    params.get("tag") === "persist" ? "persist" : "scroll",
+  );
+
+  const changeTag = useCallback((next: HeaderTagline) => {
+    setTag(next);
+    const url = new URL(window.location.href);
+    url.searchParams.set("tag", next);
+    window.history.replaceState(null, "", url);
+  }, []);
 
   const change = useCallback((next: number) => {
     setI(next);
@@ -64,6 +99,7 @@ export function Stage() {
   }, []);
 
   const active = VARIANTS[i];
+  const usesTagline = HEADER_TAGLINE_VARIANTS.includes(active.key);
 
   return (
     <div>
@@ -76,13 +112,46 @@ export function Stage() {
           <p className="mt-2 max-w-[76ch] text-[13px] leading-[1.5] text-ink-muted">
             {active.note}
           </p>
+          {usesTagline && (
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <span className="text-[11px] tracking-[0.1em] text-ink-faint uppercase">
+                Header
+              </span>
+              {TAGLINES.map((t) => (
+                <button
+                  key={t.key}
+                  type="button"
+                  onClick={() => changeTag(t.key)}
+                  aria-pressed={tag === t.key}
+                  className={
+                    "rounded-full px-3 py-1.5 text-[12px] transition-colors duration-150 ease-out " +
+                    (tag === t.key
+                      ? "bg-navy-900 text-white"
+                      : "bg-navy-900/[0.06] text-ink-muted hover:bg-navy-900/[0.1]")
+                  }
+                >
+                  {t.label}
+                </button>
+              ))}
+              <span className="text-[12px] text-ink-faint">
+                {TAGLINES.find((t) => t.key === tag)?.note}. Scroll to see the
+                difference.
+              </span>
+            </div>
+          )}
           <hr className="mt-6 border-navy-900/10" />
         </PageBox>
       </div>
 
+      {/*
+        The real header, so the tagline can be judged where it actually lives.
+        Sticky, exactly as the page mounts it.
+      */}
+      <SiteHeaderBar tagline={usesTagline ? tag : "off"} />
+
       {/* Keyed so switching re-mounts and the film restarts from its first beat. */}
       <div className="field-open">
-        <Hero key={active.key} top={active.key} />
+        <Hero key={`${active.key}-${tag}`} top={active.key} />
       </div>
 
       <div className="pb-40">

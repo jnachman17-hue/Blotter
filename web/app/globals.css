@@ -472,6 +472,35 @@ body {
 }
 
 /*
+  The header tagline, and its two behaviours. Under review August 11, 2026.
+
+  `persist` keeps it for the whole page. `scroll` shows it at rest and takes it
+  away once the reader has started, on the argument that a descriptor is an
+  introduction rather than a permanent label, and that the bar's job changes
+  from "what is this" to "here is the button" the moment you begin reading.
+
+  It rides the header's existing `data-elevated` flag rather than a second
+  scroll listener, so it fades on the same 8px threshold as the fill and there
+  is no new work on the scroll path.
+*/
+@media (min-width: 1180px) {
+  .site-header__tagline {
+    transition: opacity 220ms ease-out;
+  }
+
+  .site-header[data-tagline="scroll"][data-elevated] .site-header__tagline {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header__tagline {
+      transition: none;
+    }
+  }
+}
+
+/*
   The persistent desktop header, wave 1 of web reconciliation, August 11, 2026.
 
   `08` §13 called the desktop fix "a one-line move" — `<SiteHeader />` out of the
