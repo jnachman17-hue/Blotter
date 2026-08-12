@@ -459,6 +459,88 @@ body {
   .site-header[data-header-mode="shrink"][data-scrolled] .site-header__bar {
     height: 48px;
   }
+
+  /*
+    The bar tracks the content column instead of the window. See the note in
+    `components/site-header.tsx`: 520px is `PAGE_BOX_MOBILE_W` plus the two 20px
+    phone gutters, so the brand and the CTA land exactly on the column's edges.
+    No phone reaches this ceiling, so nothing below 480 moves.
+  */
+  .site-header__bar {
+    max-width: var(--bar-mobile-max);
+  }
+}
+
+/*
+  The header tagline, and its two behaviours. Under review August 11, 2026.
+
+  `persist` keeps it for the whole page. `scroll` shows it at rest and takes it
+  away once the reader has started, on the argument that a descriptor is an
+  introduction rather than a permanent label, and that the bar's job changes
+  from "what is this" to "here is the button" the moment you begin reading.
+
+  It rides the header's existing `data-elevated` flag rather than a second
+  scroll listener, so it fades on the same 8px threshold as the fill and there
+  is no new work on the scroll path.
+*/
+@media (min-width: 1180px) {
+  .site-header__tagline {
+    transition: opacity 220ms ease-out;
+  }
+
+  .site-header[data-tagline="scroll"][data-elevated] .site-header__tagline {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header__tagline {
+      transition: none;
+    }
+  }
+}
+
+/*
+  The persistent desktop header, wave 1 of web reconciliation, August 11, 2026.
+
+  `08` §13 called the desktop fix "a one-line move" — `<SiteHeader />` out of the
+  `field-open` wrapper — and that line is necessary but not sufficient. Making
+  the bar genuinely persistent means it now travels over `field-deep`, the two
+  sheet compositions and every band below, carrying `backdrop-blur-md` with
+  nothing behind it. That is the same smear the phone rule above exists to
+  prevent, and the entry did not anticipate it.
+
+  So desktop gets the phone's fill and edge — **but only once scrolled.** At
+  rest the top 60px of the hero is where both of `field-open`'s radial glows are
+  strongest, and a 78% white veil across them would recompose a hero that `08`
+  §10 lists as deliberately unchanged. The phone does not have this problem
+  because its hero is a film that begins below the bar.
+
+  `data-elevated` arrives at 8px. Fading it rather than snapping it, because
+  unlike the `shrink` height step this animates `background-color` and
+  `box-shadow` — both compositor-friendly, neither forces layout, and the
+  threshold is crossed at the very start of a scroll rather than in the middle
+  of one.
+*/
+@media (min-width: 1180px) {
+  .site-header {
+    background: transparent;
+    box-shadow: 0 1px 0 rgba(18, 35, 61, 0);
+    transition:
+      background-color 160ms ease-out,
+      box-shadow 160ms ease-out;
+  }
+
+  .site-header[data-elevated] {
+    background: color-mix(in srgb, var(--color-page) 78%, transparent);
+    box-shadow: 0 1px 0 rgba(18, 35, 61, 0.07);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header {
+      transition: none;
+    }
+  }
 }
 
 /*
@@ -485,37 +567,48 @@ body {
   place per section, including the merged section where the numeral sits below
   a desktop-only beat.
 */
-@media (max-width: 1179px) {
-  [data-section-numbers="on"] .section-number::before,
-  [data-section-numbers="total"] .section-number::before {
-    content: "";
-    display: block;
-    height: 1px;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(
-      to right,
-      rgba(18, 35, 61, 0.16),
-      rgba(18, 35, 61, 0.05)
-    );
-  }
+[data-section-numbers="on"] .section-number::before,
+[data-section-numbers="total"] .section-number::before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(
+    to right,
+    rgba(18, 35, 61, 0.16),
+    rgba(18, 35, 61, 0.05)
+  );
 }
 
 /*
-  Mobile only, and deliberately.
+  Numbered sections, both surfaces, from August 11, 2026.
 
   Jon chose `01` on August 10, 2026 after comparing it against `01 / 05` and
-  against nothing. It is on below the desktop breakpoint and off above it, which
-  means the two surfaces currently disagree about whether this page has numbered
-  sections. That is a known cost, not an oversight: turning it on for desktop
-  overrides four build specs that forbid an eyebrow, and stage 10 does not touch
-  desktop. `08-desktop-changes-pending.md` carries the decision.
+  against nothing, and it ran phone-only through stage 10.
+
+  **It could not go to desktop until the two surfaces had the same sections**,
+  which `08-desktop-changes-pending.md` §5 states as the condition: the
+  numbering must match the phone exactly or the page contradicts itself between
+  devices. Through stage 10 it could not match — desktop carried a Section 3
+  the phone did not, and carried the phone's `02` and `03` as two beats of one
+  section, so desktop's numerals would have landed on different content.
+  Cutting Section 3 and splitting 4+5 removed both mismatches, and this rule
+  lost its media query the same day.
+
+  The cost, paid knowingly: four build specs forbid an eyebrow and a numeral
+  above a headline reads as one. `04-SECTION-4` §101 and §351, `05-SECTION-5`
+  §74 and §253, `06-SECTION-6` §157, `07-SECTION-7` §85 and §269.
+
+  **The hairline above the numeral is the section boundary**, and drawing it
+  from the numeral is what keeps it to exactly one per section. Wave 1 gave
+  desktop a separate rule hung off each section's first `PageBox`, because
+  desktop had no numeral to hang it from; that rule is deleted now rather than
+  left to fire alongside this one and draw two lines per section.
 */
-@media (max-width: 1179px) {
-  [data-section-numbers="on"] .section-number,
-  [data-section-numbers="total"] .section-number {
-    display: block;
-    margin-bottom: 0.75rem;
-  }
+[data-section-numbers="on"] .section-number,
+[data-section-numbers="total"] .section-number {
+  display: block;
+  margin-bottom: 0.75rem;
 }
 
 /* `01` alone, versus `01 / 05` — the second tells a phone reader how much page
@@ -570,7 +663,33 @@ body {
   --field-f: #f2f1ee; /* Section 6 floor, handoff to Section 7 */
 }
 
-/* Hero: lightest and warmest band. */
+/*
+  Hero: lightest and warmest band.
+
+  **The negative top margin is what makes the persistent header free.** The
+  header left this wrapper on August 11, 2026 so that `position: sticky` had the
+  document to travel in rather than 910px of hero (`08` §13). Taking a 60px
+  child out of a wrapper would normally drop the wrapper's painted box by 60px,
+  which moves both radial glows — they are anchored at `0% -10%` and `100% -12%`
+  of *this box* — and recomposes a ratified hero for no reason.
+
+  So the wrapper pulls itself back up by exactly the header's height and pads
+  the space back. Flow consumed is unchanged (60 header, -60 margin, +60
+  padding), the gradient box still starts at document y=0, the glows sit where
+  they were ratified, and the hero's own content still begins at y=60. Document
+  height does not move.
+
+  **Desktop only.** Below the breakpoint the header is `position: fixed` and
+  already out of flow, with `body` reserving its 60px instead, so the same
+  margin here would slide the film up underneath the bar.
+*/
+@media (min-width: 1180px) {
+  .field-open {
+    margin-top: calc(-1 * var(--header-h));
+    padding-top: var(--header-h);
+  }
+}
+
 .field-open {
   background:
     radial-gradient(

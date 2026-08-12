@@ -21,9 +21,9 @@
  */
 
 import { CtaButton } from "@/components/cta-button";
-import { HeroFilm } from "@/components/hero/hero-film";
-import { HeroVisualModule, TOTAL_W } from "@/components/hero/hero-visual";
-import { Fit } from "@/components/layout/fit";
+import { HeroFilm, HeroFilmDesk } from "@/components/hero/hero-film";
+import { AuthorityLine, HeroTop, type HeroTopVariant } from "@/components/hero/hero-top";
+import { HERO_SUPPORTING_SHORT } from "@/lib/hero-copy";
 import { PageBox } from "@/components/layout/page-box";
 import { cn } from "@/lib/cn";
 
@@ -62,27 +62,22 @@ export type HeroSupporting = "full" | "short" | "none";
  * it. That is what the CTA-arrangement picker settles.
  */
 
-/**
- * UNRATIFIED COPY. Written for the stage-10 comparison on August 10, 2026 and
- * shown only below the desktop breakpoint.
- *
- * It is a condensation of the ratified sentence, not a new claim: same three
- * facts — the sheet is yours already, the sources are Gmail and Calendar, the
- * tracker stays current — with the consequence clause dropped because the film
- * directly above has just shown it happening three times. Written to the page's
- * standing rules: no dash, no availability signal, nothing the product cannot
- * support.
- *
- * Bring it to Jon before public traffic if a variant using it is chosen.
- */
-const SUPPORTING_SHORT =
-  "Blotter keeps the Google Sheet you already use current, from Gmail and Calendar.";
-
 export function Hero({
   supporting = "short",
   heroCta = true,
+  top = "current",
 }: {
   supporting?: HeroSupporting;
+  /**
+   * Which desktop top-block composition to render above the film.
+   *
+   * `current` is what is live. The lettered variants are the August 11, 2026
+   * redesign review and are **desktop only** — below the breakpoint every one
+   * of them renders the ratified phone hero untouched, because the phone's
+   * fold was solved separately in stage 10 and is not in question.
+   * `/review/hero` compares them.
+   */
+  top?: HeroTopVariant;
   /**
    * Whether the in-flow hero button renders on a phone. Desktop always has it.
    *
@@ -107,13 +102,45 @@ export function Hero({
     </>
   );
 
+/*
+  DESKTOP VERTICAL TRIM, August 11, 2026, and it is a stopgap.
+
+  Jon, on a MacBook: *"the bottom of the visual film is just barely cut off, and
+  I don't want it to be cut off at all… we need to remove a little bit of room
+  from the top part of the web version."*
+
+  Measured at 1512 x 862 before the trim: the film's foot sat at 725.8px, which
+  clears that viewport and does not clear a 13-inch one. The height is set by
+  the **right column**, not the headline — paragraph, CTA and authority line
+  come to 197.8px against the headline's 84.8 — so the gaps inside that column
+  are where the space is.
+
+  Four `desk:` gaps come down by 4 to 8px each and the film's own top margin
+  comes down with them, for about 36px. Every mobile value is untouched: each
+  change is `desk:`-scoped, and the phone's fold was solved separately in stage
+  10.
+
+  **This buys the fold and nothing else.** Jon has already said the whole block
+  above the film wants redesigning — *"we're gonna actually need to research
+  sites that we like, lean on skills, and try and redesign this top part quite a
+  bit better"* — and asked for that to be its own piece of work. Trimming
+  gaps is not that. When the redesign happens these values are the first thing
+  it should throw away.
+*/
   return (
     <section className="pb-14">
       <PageBox>
+        {/*
+          A variant replaces the ratified block **above the breakpoint only**.
+          The phone keeps the composition ratified in stage 10 in every case,
+          so nothing below `desk` is under review here.
+        */}
+        {top !== "current" && <HeroTop variant={top} />}
+        <div className={top === "current" ? undefined : "desk:hidden"}>
           {/* Eyebrow, on the shared left edge. Desktop always renders it here;
               on a phone `eyebrow` may move it below the film or drop it. */}
           <p
-            className="flex items-start gap-3 pt-6 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase"
+            className="flex items-start gap-3 pt-6 desk:pt-4 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase"
           >
             {eyebrowLine}
           </p>
@@ -126,7 +153,7 @@ export function Hero({
             sideways on its own, independently of the visual below.
           */}
           <div
-            className="mt-5 grid items-start gap-x-10 gap-y-4 desk:gap-y-6 desk:[grid-template-columns:minmax(0,1fr)_var(--hero-right-col)]"
+            className="mt-5 desk:mt-4 grid items-start gap-x-10 gap-y-4 desk:gap-y-6 desk:[grid-template-columns:minmax(0,1fr)_var(--hero-right-col)]"
             style={{ "--hero-right-col": `${RIGHT_COL_W}px` } as React.CSSProperties}
           >
             {/*
@@ -189,7 +216,7 @@ export function Hero({
                   not miss follow-ups, coffee chats, or next steps.
                 </span>
                 {supporting === "short" && (
-                  <span className="desk:hidden">{SUPPORTING_SHORT}</span>
+                  <span className="desk:hidden">{HERO_SUPPORTING_SHORT}</span>
                 )}
               </p>
 
@@ -214,7 +241,7 @@ export function Hero({
               <div
                 id="hero-cta"
                 className={cn(
-                  "order-3 mt-5 desk:order-none desk:mt-7 desk:block",
+                  "order-3 mt-5 desk:order-none desk:mt-5 desk:block",
                   !heroCta && "hidden",
                 )}
               >
@@ -261,7 +288,7 @@ export function Hero({
                 starts a line inside a 490px column where it has an origin,
                 while stacked full width it has nothing to lead into.
               */}
-              <p className="order-6 -mt-1 text-center text-small leading-[1.5] text-ink-muted desk:order-none desk:mt-6 desk:text-left">
+              <p className="order-6 -mt-1 text-center text-small leading-[1.5] text-ink-muted desk:order-none desk:mt-4 desk:text-left">
                 {/*
                   Centred under the full-width button, with a 12px rule rather
                   than the desktop 32px. Jon's call, August 10, 2026, and it is
@@ -282,11 +309,24 @@ export function Hero({
                   The page theme's "centre nothing" rule is about the hero's two
                   competing axes — copy against an asymmetric visual — and does
                   not reach a caption on a button that is itself full width.
-                  Desktop is untouched: left aligned, 32px rule.
+
+                  **Desktop's rule came down to 12px on August 11, 2026**, wave
+                  1. `08-desktop-changes-pending.md` §6 left this open, on the
+                  argument that desktop's 490px column gives a longer rule an
+                  origin to start from that a stacked phone layout does not.
+                  Jon ruled against it: *"Keep it as is on mobile, for web make
+                  the dash before it shorter. Simply like a normal - kinda
+                  similar to how it is on mobile."*
+
+                  So the two surfaces now share one 12px rule and differ only in
+                  alignment — centred under the full-width phone CTA, left
+                  aligned in the desktop column. The "big dash" he objected to
+                  is gone from both. Having an origin to start from was a reason
+                  a longer rule *could* work, not a reason it should.
                 */}
                 <span
                   aria-hidden="true"
-                  className="mr-2.5 inline-block h-px w-3 align-middle bg-ink-faint desk:mr-3 desk:w-8"
+                  className="mr-2.5 inline-block h-px w-3 align-middle bg-ink-faint desk:mr-3"
                 />
                 Built by a{" "}
                 <span className="font-medium text-ink">
@@ -298,23 +338,40 @@ export function Hero({
           </div>
 
           {/*
-            `Fit` rather than `HeroVisual`, so the module is scaled to the
-            width it is actually given. On desktop that is the 1124px page box
-            and the scale resolves to the ratified 0.85 exactly. The fitting
-            lives here rather than inside `hero-visual.tsx` because that file
-            defines the constants `PAGE_BOX_W` is derived from and must not
-            import back from `components/layout/`.
+            **The desktop hero is a film from August 11, 2026.**
 
-            Desktop only. Below the breakpoint this composition shrinks to
-            0.265 and its sheet type falls under 4px, so `HeroFilm` replaces it
-            outright rather than resizing it — the first section of the mobile
-            build to stop being scaffolding and become a real translation.
+            It was `Fit` wrapping `HeroVisualModule` — the ratified sheet, three
+            activity cues and their connectors, scaled to the 1124px page box at
+            0.8502. Jon: *"Yes. I do wanna do a video asset for the hero on
+            web."* The film's held final frame is that composition's successor,
+            and it is what reduced motion, a failed load and a screenshot all
+            get, so nothing is lost by a reader who never sees it move.
+
+            `hero-visual.tsx` stays in the tree even though nothing renders it:
+            `PAGE_BOX_W` is derived from its `TOTAL_W` and `VISUAL_SCALE`, so it
+            still defines the width of every section on this page.
+
+            The hero's two ownership labels went with it, which is how Jon ruled
+            it — the film never touches the left three columns for eleven
+            seconds, which proves the same split without captioning it.
           */}
-          <div className="mt-8 hidden desk:block">
-            <Fit width={TOTAL_W}>
-              <HeroVisualModule />
-            </Fit>
-          </div>
+        </div>
+          <HeroFilmDesk />
+          {/*
+            The credibility line, below the film on every variant.
+
+            It has been called an orphan in three reviews and re-sited twice
+            inside the hero. The reason it kept failing is that it was in the
+            hero at all: the Evil Martians study of 100 devtool pages puts
+            social proof after the hero, and `design-taste-frontend` caps the
+            hero at four text elements and bans a tagline under the CTAs. This
+            was the fifth element. `components/hero/hero-top.tsx` has the note.
+          */}
+          {top !== "current" && (
+            <div className="mt-5 hidden desk:block">
+              <AuthorityLine />
+            </div>
+          )}
       </PageBox>
     </section>
   );

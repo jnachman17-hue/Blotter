@@ -46,6 +46,9 @@
 
 import { useSyncExternalStore } from "react";
 
+import { HeroVisualModule } from "@/components/hero/hero-visual";
+import { Fit } from "@/components/layout/fit";
+
 /** Native canvas. Both built films share it. */
 const FILM_W = 1080;
 const FILM_H = 1350;
@@ -112,6 +115,85 @@ export function HeroFilm() {
           className="absolute left-0 w-full border-0"
           style={{ aspectRatio: `${FILM_W} / ${FILM_H}`, top: CROP_TOP }}
         />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------- the desktop hero */
+
+/** The web hero film's native canvas. `TOTAL_W` x `SHEET_H` from `hero-visual.tsx`. */
+const DESK_W = 1322;
+const DESK_H = 432.5;
+
+/**
+ * **16px of headroom, and it is a fix rather than padding.**
+ *
+ * The film draws the sheet's drop shadow inside its own stage, but the stage is
+ * exactly the canvas, so the shadow is cut off at the bottom edge. Giving the
+ * iframe 16px more height than the canvas lets the film's own `fit()` centre a
+ * 1:1 render inside it with 8px to spare above and below, which is where the
+ * shadow goes. Flagged by the film session; Jon approved the 16px on August 11,
+ * 2026.
+ */
+const DESK_SHADOW_ROOM = 16;
+
+const DESK_SRC = "/film/blotter-film-web-hero.html?bare=1";
+
+/**
+ * The desktop hero: the film, looping.
+ *
+ * **It loops indefinitely, as of August 11, 2026.** The first build played once
+ * and froze on its last frame; the second played once and cross-faded into the
+ * static composition, rested, and replayed. Jon rejected both, the second
+ * emphatically:
+ *
+ * > *"It's either it's the film, and it goes to the static permanently, or it's
+ * > the film, and it indefinitely loops. And I'm in favor of it indefinitely
+ * > looping like we do on mobile… I don't know why the hell you tried to take a
+ * > middle ground that just makes it worse."*
+ *
+ * He is right, and the middle ground was a workaround for a defect rather than
+ * a design. **The real fault was in the film**, which had no way back to its
+ * opening state, and the embed was papering over that with a cross-fade. The
+ * fix belonged one level down.
+ *
+ * `blotter-film-web-hero.html` now carries Film C's wipe: a pale bar travels up
+ * through the grid and hands each row back **whole** as its centre passes, then
+ * eight tenths of a second at rest before the cycle restarts. Verified
+ * frame-exact — the rendered state at `t = 0` and at `t = DUR` is identical
+ * property for property, so there is no seam to hide and nothing for this
+ * component to do but mount it.
+ *
+ * **Reduced motion still gets the static composition and no film at all.** An
+ * indefinite loop is precisely what that preference exists to refuse, and the
+ * ratified `HeroVisualModule` is the right thing to show instead — three cues,
+ * every row current, readable standing still. Its ownership labels stay off,
+ * per Jon's August 11 ruling.
+ */
+export function HeroFilmDesk() {
+  const reduced = usePrefersReducedMotion();
+
+  return (
+    <div className="mt-4 hidden desk:block">
+      <div
+        className="relative w-full"
+        style={{ aspectRatio: `${DESK_W} / ${DESK_H + DESK_SHADOW_ROOM}` }}
+      >
+        {reduced ? (
+          <div className="absolute inset-0 grid place-items-center">
+            <Fit width={DESK_W}>
+              <HeroVisualModule />
+            </Fit>
+          </div>
+        ) : (
+          <iframe
+            src={DESK_SRC}
+            title="A recruiting tracker updating itself: an email arrives, a meeting completes, and a contact goes quiet"
+            scrolling="no"
+            className="absolute inset-0 h-full w-full border-0"
+          />
+        )}
       </div>
     </div>
   );

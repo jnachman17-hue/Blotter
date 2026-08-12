@@ -1770,3 +1770,815 @@ Verified correct above the breakpoint: production at 1440 measures page box
 Logged in `06` and made the **first row of wave 1** in
 `10-web-reconciliation.md`, because it is the only item in the reconciliation
 inventory a real visitor can hit today.
+
+### Correction: the 481 to 1179px band is polish, not an emergency
+
+Jon checked and it was his own window: *"I was trying to open blotterib.com on a
+reduced window so it automatically adapted to mobile format. But when you expand
+the window it goes to web… I was wrong. You had it correct."*
+
+The diagnosis was right — width-based switching, his viewport under 1180 — but
+**the escalation was wrong.** The entry written an hour earlier called the band
+"the only item in the reconciliation inventory a real visitor can hit today" and
+made it the first row of wave 1. That framing came from believing he had hit it
+on a maximised window. He had not.
+
+What survives is a smaller, real observation: the 480px cap is defensible at
+iPad portrait's 768 and questionable from about 1024 to 1179, which is iPad
+landscape and a browser snapped to half a wide display. Low severity, nobody
+harmed, worth doing while desktop layout is open anyway.
+
+Demoted in `06` and moved out of the lead position in `10`'s wave 1, which goes
+back to the header defect — a measured fault on both surfaces rather than a
+question of taste at unusual widths.
+
+---
+
+## Session 8 — August 11, 2026. Web reconciliation, wave 1.
+
+### Three rulings that close or park standing questions
+
+**The connection provider stays ambiguous, and stops being a checklist item.**
+Jon: *"Connection provider is to be left in ambiguous terms as it currently is
+on privacy page. We don't have one yet and won't for a while. Don't relitigate
+this."*
+
+The reasoning matters more than the outcome here, because the outcome looks like
+inaction. The provider sentence has been carried as "the one unverified claim on
+the page" and surfaced in the §0 checklist of every handoff for five sessions.
+That was correct while a provider was thought to be imminent. It is not, and a
+blocker that cannot be cleared is not a blocker — it is a tax on every session's
+first reply. `06`'s row is marked closed with the revisit trigger moved to
+provider selection and nothing earlier.
+
+**The desktop hero as a film is parked until after wave 1, and Jon is leaning
+yes.** *"We are going to park film as hero and discuss that after wave one.
+Leaning towards yes."*
+
+**The lean is load-bearing for wave 2 and that is worth writing down now.**
+`09` §6 argues desktop should not delete Section 3 on mobile's reasoning,
+because *"desktop has room and no hero film, so the mechanism may still need its
+own section there."* That argument has two clauses and a film hero removes the
+second one. If the hero becomes Film C, the film demonstrates the mechanism on
+desktop exactly as it does on the phone, and Section 3's survival goes from
+settled to genuinely open. **Wave 2 must not be planned as though the hero
+question were independent of it.**
+
+**Section numbering moves from wave 1 to wave 2.** Jon, on being shown the
+collision: *"section numbering can't be wave 1 because we need to decide on new
+web sections. That makes sense."*
+
+`web/app/page.tsx` carries both reading orders in its own comment. Numbering
+desktop today lands `02` on "How Blotter works" and `03` on the merged tracker,
+against the phone's `02` "your sheet" and `03` "outstanding". `08` §5 requires
+the two match exactly or the page contradicts itself between devices, and they
+cannot match until wave 2 rules on which sections exist. Cost of getting it
+wrong: four spec overrides, spent twice.
+
+### Wave 1's instruction, and how it was read
+
+Jon: *"Go ahead and crank out as much of wave one as possible. Everywhere
+stylistically that mobile differs from web, make those changes to web where
+possible and where it makes sense. Complete wave 1 and leave unratified things
+that need discussing to me."*
+
+Read as: apply the settled rows, apply the mobile-to-web presentation sweep on
+judgement, and stop at anything that needs a ruling. Five rows applied, two left
+open, one moved to wave 2. The one judgement call taken without a ruling —
+Section 2's 22px paragraph — is flagged as unratified in `08` §16 with a
+one-class revert, because he raised that observation about both surfaces and it
+is about the page's type scale rather than about phone width.
+
+### Two documented claims that turned out to be wrong
+
+Both were caught because somebody had written down the reasoning, which is the
+third and fourth time that has paid for itself.
+
+**`08` §13's "one-line move" is one line plus two consequences.** Taking the
+header out of `field-open` drops the wrapper's painted box 60px and moves both
+of the hero's radial glows, which are anchored to that box — and it directly
+contradicts `page.tsx`'s own comment, which put the header inside the wrapper on
+purpose. Separately, a header that actually persists travels over every band
+below it carrying `backdrop-blur-md`, which is the smear `globals.css` already
+warns about for the phone. Both are recorded in `08` §13 with what was done.
+
+**`10` §5 called every wave-1 row "already decided and reasoned."** Two of them
+say in their own entries that the desktop half is Jon's call, and one row —
+`08` §12, a confirmed defect live on both surfaces — was missing from the table
+altogether and would have been skipped.
+
+### A hazard found while fixing §12
+
+`components/section-45/sheet-phone.tsx` keeps its own copy of the ten column
+widths, so the row-height fix had to be made twice. **This is the second
+hand-kept duplicate in the codebase**, after `web/public/film/` against
+`social/` — where the copy was right while its source was wrong for five days.
+Both lists now carry a doc comment naming the other.
+
+### Two wave-1 ratifications, August 11, 2026
+
+**Section 2's supporting paragraph stays at 17px on desktop.** Jon, seeing it in
+place: *"I'm okay with the section 2 paragraph shortening."* `08` §16 closed.
+
+**The authority line's rule comes down to 12px on desktop.** Jon: *"Keep it as
+is on mobile, for web make the dash before it shorter. Simply like a normal -
+kinda similar to how it is on mobile."*
+
+The reasoning is worth keeping because **the recorded argument for the opposite
+was wrong, and it was wrong in a way that recurs.** `08` §6 had reasoned that
+desktop could keep 32px because the line sits in a 490px column where a long
+rule has an origin to start from, while a stacked phone layout gives it nothing
+to lead into. That is a reason a long rule *can* work there. It is not a reason
+it should. Jon's objection was never that the dash had nowhere to start — it was
+that it was a big dash, and a wider column does not make a 32px dash smaller,
+only less awkward.
+
+The pattern to watch: an entry finds a structural difference between the two
+surfaces and treats it as a justification for the divergence, when the
+difference only explains why the fault is *less visible* on one of them. `08`
+§16 was the same shape — desktop's 600px measure and the adjacent 60-hour figure
+explained why 22px was less obviously wrong, not why it was right. Both entries
+were written carefully and both reached the wrong conclusion by the same route.
+
+### The web hero film: two decisions and one override, August 11, 2026
+
+**The new film agrees with Film C, not with the current static hero.** Jon:
+*"Let's make the new to be produced hero video agree with film C."*
+
+**This is an override of a ratified cue list and it should not be applied
+quietly.** `01-HERO` §7 fixes the three hero cues, and `HERO_CUES` in
+`web/lib/sheet-data.ts` implements them. The second cue reads
+`Coffee chat with Marcus Lee`, `Jan 17 · 2:00 PM`, targeting row 1. Film C's
+calendar beat is **Priya Shah**, moving `Call scheduled` to `Call completed`
+and `Attend coffee chat` to `Send thank-you`. Agreeing with Film C moves the
+cue to row 2 and rewrites its copy.
+
+Jon already overrode the third entry of the same list on August 5, 2026,
+swapping `Email sent to Alex Morgan` for `No reply for 5 days`. This is the
+second entry of three. **After this, two of the three ratified hero cues are
+Jon's overrides rather than `01-HERO` §7's.** Worth stating plainly so a later
+session does not read the spec and think the page has drifted.
+
+The knock-on: in the current static hero, Marcus sits at `Call scheduled` and
+Priya at `Call completed` — two contacts frozen either side of one transition.
+If Priya now *makes* that transition, her opening state becomes Marcus's
+current one, and the two rows both read `Call scheduled` before the beat. That
+is realistic rather than a problem, but it has to be specified rather than
+discovered.
+
+**The film plays once and holds. Loop is the fallback.** Jon: *"We'll try first
+with held. If it doesn't work we will loop it."*
+
+Film C cannot simply be retimed for this. It ends with a **wipe back** — a pale
+bar runs up the grid and returns every row to its opening state so the loop
+seams frame-exactly. Its resting frame is therefore the tracker *before*
+anything arrived, which is the worst available still for a hero under a
+headline about stale trackers. **The web film must have no wipe-back**, and its
+final frame must be the fully-updated tracker.
+
+`components/hero/hero-film.tsx` shows this is cheap: Film C exposes `?t=` as a
+deterministic frame render, and the mobile hero already uses `?t=9.0` for its
+reduced-motion still. The web film must expose the same parameter.
+
+### The web hero film: the connector, the sweep, and a question it opened
+
+**The connector points at the row. Approved as a deliberate deviation from Film
+C, August 11, 2026.**
+
+Film C's line does not point at a row — it drops into the sheet's top-left
+corner, and the row sweep alone identifies which row moved. Verified by
+rendering `?bare=1&t=9.0`, which is the frame the mobile hero already serves
+under reduced motion.
+
+**Jon's reason for the difference, and it is the right one:** *"Didn't have
+mobile version point to row because no space and reduced columns make it easy
+to track."* Four columns on a phone make a corner plug unambiguous. Eight
+columns across 1,322px do not, and a reader would hunt for what changed. So the
+web film uses the **desktop hero's** ratified device — `01-HERO` §7 and §9's
+"one direct connector per cue, landing on that row's maintained block, closed by
+a small endpoint node" — with Film C's one-at-a-time timing.
+
+**The card sits in one fixed slot.** Jon's design, and it replaced a worse one.
+The card enters right of the sheet, its top level with the sheet's top. A cream
+line drops from it, turns one right angle left, and lands on the target row with
+a node. The row updates, the cue leaves, and the next arrives in the identical
+slot with a different drop length.
+
+The idea it replaced was cue cards accumulating down the right at their rows'
+heights. That collides: Priya and Daniel are adjacent rows 43.5px apart and the
+cards are 56 to 63px tall, so they overlap by about 13px. Today's hero curves
+its connectors precisely to solve that collision. **A fixed slot dissolves it
+rather than solving it** — cards never coexist.
+
+**The last cue stays, and this is Film C's behaviour rather than an addition.**
+At `t=9.0` Film C still shows Daniel's card, its line and its node, with every
+row updated and nothing moving. The web film holds there.
+
+**Sweep direction goes to A/B.** The line now arrives from the right, so the
+fill has a direction to pick. Right-to-left enters where the data arrived and
+halts on the ownership split; left-to-right is Film C's own direction, starting
+at the split. Jon: *"This is less logical and intuitive from a mechanism
+standpoint, but from a visual standpoint it makes more sense. I'm not sure
+though. Maybe have it make both version… so I can see both."*
+
+**Built as both, behind a URL parameter, decided on looking.** It does not block
+the build. Either way the sweep never crosses into Name, Title or Firm.
+
+### Wave 2 opens: Section 3 is cut from desktop, August 11, 2026
+
+**Jon: *"I just don't think we need section three anymore because I think the
+new hero film is gonna show it."*** The three refusals move elsewhere.
+
+This closes `09` §8 row 1, which had read **"The fault, yes. The deletion,
+no"** — on the grounds that *"desktop has room and no hero film, so the
+mechanism may still need its own section there."* The hero film removes the
+second clause, and having room was never a reason to state a claim twice.
+
+**Desktop Section 6's permissions become collapsible.** Jon: *"I do think
+desktop section six permissions should become collapsible."* The mobile header
+`What each connection can and cannot do.` comes with it — he identified the
+dependency himself: that line exists *because* the rows are collapsed.
+
+### The thing cutting Section 3 exposes, and it is not obvious
+
+Cutting Section 3 does **not** by itself align desktop with mobile. Desktop's
+`field-settle` carries **two beats in one section** — preservation with the
+sheet, then the Outstanding view — where mobile has them as two separate
+sections, `02` and `03`.
+
+So cutting Section 3 and stopping there gives desktop **four** numbered blocks
+against mobile's **five**, and desktop's `02` would cover what mobile calls
+`02` and `03`. The numbering would disagree again, which is exactly the
+condition `08` §5 forbids.
+
+**Desktop's `4+5` has to split.** That reverses Jon's own August 5, 2026 merge —
+but the merge predates the argument rework, and **mobile has already un-merged
+them**: `Mobile02` is its own `<section>`. The two surfaces already disagree
+about whether 4 and 5 are one section or two; cutting Section 3 only makes the
+disagreement visible in the numerals.
+
+**The background handoff chain already has the slot.** `Mobile02` carries
+`field-rise` — the same band desktop's Section 3 uses — with exactly one visible
+per surface. So desktop's new ownership section takes `field-rise` and
+Outstanding keeps `field-settle`, and the chain is undisturbed. The
+`desk:hidden` / `desk:block` pair can collapse into one shared component.
+
+Mobile built the slot the desktop cut needs. Nothing has to be invented.
+
+### Section 02's sheet and refusals, August 11, 2026
+
+**The zone treatment is `banner-sub`, provisionally.** Jon: *"I don't love the
+new way of doing it. So if I had to pick, it would be c banner plus sub. But is
+there a cleaner way to do this? I don't know… I honestly make this change, and
+then we'll ratify it. I don't think it looks great, but we're gonna do it."*
+
+Recorded as a **provisional default rather than a ratification**, because he
+said so. `/review/ownership` keeps all four live.
+
+**The manual zone gets a fill, and it is the change that was actually missing.**
+Jon: *"rows three through seven on the You add side should be highlighted in a
+lighter gray than row two."*
+
+He found a real asymmetry rather than a preference. The maintained half was a
+zone — cream in the header, carried down every data cell. The manual half was a
+tinted header sitting on five white rows, so **below the header band the left
+side stopped existing as a region**, and a split that is supposed to be two
+areas was being carried by one row.
+
+The value is derived rather than picked. `blotter-100` sits 8/13/23 below white
+and `MAINTAINED_FILL` sits 2/5/13 below it, about 45% of the header's distance
+from white. `manual-100` is 18/13/7 below white; 45% of that is 8/6/3, or
+**#f7f9fc**. Both zones now recede from their headers by the same proportion in
+their own hues, which is what stops either half looking heavier.
+
+**The refusals go three-across on desktop.** Jon: *"that looks awful expanded…
+just figure it out. so bad expanded."*
+
+The panel was written for a phone and inherited by a 1,124px section. Three
+labels of 11 to 26 characters, each on its own full-width row with a divider
+under it, left about 900px of empty warm panel beside `No AI slop` and spent
+150px of height on nine words. Across, it is one 56px band with the dividers
+turned ninety degrees.
+
+**It also bookends the sheet**, which is a gain: the reassurance claims already
+run three-across above it, so the section reads claims → picture → refusals in
+one rhythm rather than a strip above and a stack below.
+
+`06`'s row warning that the two lists could converge is answered rather than
+ignored — the panel keeps its warm fill, its ring and its coloured tiles, about
+500px of spreadsheet separates them, and **the phone stays stacked**, which is
+the surface the row was actually about.
+
+### The desktop hero becomes a film, August 11, 2026
+
+Built by a separate chat against `11-web-hero-film-brief.md`, reviewed here, and
+installed. `social/blotter-film-web-hero.html`, copied by hand into
+`web/public/film/` — nothing propagates between the two.
+
+**Reviewed before installing.** Held frame matches `HERO_ROWS` on all forty
+cells; opening state exact; the cue holds its fixed slot with a single-elbow
+connector and a node on the sheet's right edge; Marcus and Alex never move.
+
+Two calls the film session made where the brief left room, both better reasoned
+than the guidance they replaced:
+
+- **2.5px line, sized against the zone-split rule rather than the old hairline.**
+  The split is a 2px border, 1.70px at 0.8502. A 3px connector would render
+  2.55px — heavier than the ownership boundary, inverting the hierarchy between
+  a transient annotation and the composition's most important permanent line.
+- **`?sweep=in` as the default.** Film C's line arrives from above, so an
+  outward sweep does not contradict the arrival. This one arrives from the
+  right, so `out` runs back against the direction the information came from.
+
+**Two defects their frame-by-frame checking caught that looking would not.**
+Header cells were clipping the `Days` header, and **`fit()` returns a negative
+scale in a zero-size viewport**, rendering the film mirrored and upside-down.
+The second is not hypothetical: `hero-film.tsx` deliberately embeds a lazy
+iframe inside a `desk:hidden` wrapper, which is exactly that. **Film C carries
+the same latent expression and was correctly left alone** — it is a shipped
+asset and re-cutting it is Jon's call.
+
+### Two rulings taken while installing it
+
+**The page matches the film, not the other way round.** Jon: *"Make it match
+the film."* `HERO_CUES`'s second entry becomes `Coffee chat with Priya Shah`,
+`Jan 16 · 11:00 AM`, targeting row 2. **That is the second of `01-HERO` §7's
+three ratified cues Jon has overridden**, after the third was swapped from Alex
+Morgan on August 5.
+
+**16px of iframe headroom for the drop shadow.** The film draws the sheet's
+shadow inside a stage that is exactly the canvas, so it was cut off at the
+bottom edge. The iframe is now 16px taller than the canvas and the film's own
+`fit()` centres a 1:1 render inside it, leaving 8px above and below.
+
+### What the swap deleted for free
+
+`HeroVisualModule` is no longer rendered anywhere, so **the hero's ownership
+labels are gone by construction** rather than by a separate edit. Verified: zero
+occurrences of either string in the hero at 1440.
+
+`hero-visual.tsx` stays in the tree regardless — `PAGE_BOX_W` is derived from
+its `TOTAL_W` and `VISUAL_SCALE`, so it still defines the width of every section
+on the page.
+
+### Still outstanding, and worth a decision
+
+`FILM-C.md` records that file as 114KB. **It is 298KB.** A nested comment in its
+font block closes early, so all four faces inline rather than the two its notes
+describe — roughly 140KB of fonts nothing on screen draws, in the asset every
+phone visitor fetches above the fold. One character to fix, 47% smaller. Not
+touched: it is a shipped, ratified asset.
+
+### Four changes, August 11, 2026
+
+**1. Film C is 113KB, down from 290KB — and the comment that flagged it was
+wrong about which faces to cut.**
+
+Jon approved the fix *"if there aren't any tradeoffs we are brushing over."*
+There were, in the opposite direction, and checking found them.
+
+The film session reported that a nested comment made "all four faces live
+rather than the two its notes describe", implying Geist and Geist Mono were the
+waste. **They are the two the film actually draws.** Verified at runtime:
+`document.fonts` reported Geist and Geist Mono `loaded` and applied to visible
+text, Schibsted Grotesk and Roboto `unloaded`. Statically, no `font-family`
+anywhere names either — `--sans` is Geist, `--mono` is Geist Mono,
+`--sheet-type` is Arial. Acting on the report as written would have stripped the
+only faces the film uses.
+
+**What actually happened.** The author's intent was right and is worth keeping:
+Film C has no wordmark and no Gmail surface, so it needs neither the display
+face nor Roboto. But the comment saying so **pasted the four-face block inline
+as an example of what not to ship**, and the paste carried its own `/* ... */`,
+which terminated the comment at the example's first line. All four pasted faces
+became live CSS, and the intended Geist + Geist Mono pair below them was live
+too — six `@font-face` blocks in a file its own spec records as two.
+
+Nothing looked wrong, which is why it survived. Deleting the accidental paste
+leaves exactly the intended pair: **290KB to 113KB**, against the 114KB
+`FILM-C.md` always claimed. Fixed in both hand-kept copies. Rendering verified
+pixel-identical at `t=9.0`.
+
+**2. The hero film settles into the static composition instead of freezing.**
+
+Jon: *"it pauses on the static frame of no reply for five days… this is like a
+frozen frame that shows one out of three cues, this literally makes no sense.
+So either we need it to revert back to a hero visual that you can actually read
+statically, or just have it repeat."*
+
+The fault is structural rather than aesthetic, and it was latent in the brief.
+The film shows **one cue at a time in a fixed slot** — the design that makes the
+connector a straight elbow and stops the cards colliding. So no frame of it ever
+holds more than one cue, and no frame can stand in for a composition whose
+argument is three activities landing on three rows. **A film built this way
+cannot rest on a frame of itself**, and the brief asked it to.
+
+Settle rather than loop, of the two he offered: this film has no wipe-back, so
+wrapping `t` would hard-cut three rows and a cue in one frame. The settle needs
+no new animation and lands on the composition ratified for the job.
+
+**It fixes reduced motion too, which had the same defect** — the static
+substitute was going to be a single film frame. Reduced motion now gets the
+settled state immediately and never mounts the film.
+
+**3. The refusals lose their panel and move to the end of the page.**
+
+Jon: *"I don't like the bubbles behind them… just against the gradient
+background"*, and *"this is kind of like a platform whole thing of what we
+don't [do]. So it doesn't necessarily need to be in this section."*
+
+**This overrides `09` §8 row 3, which is recorded rather than quietly dropped.**
+Row 3 reads the refusals as the ownership claim inverted, so it put them with
+ownership. Jon reads them as a statement about what the product is not, which is
+page-level. The row is not wrong about what they *mean*; it is wrong that the
+meaning dictates the placement — and the fact that they looked wrong in Section
+3 and then wrong again in Section 02 is the evidence.
+
+**Not Section 04, despite that being the obvious "bottom".** `09` §4 is explicit
+that *"Section 04 stays about data"*: privacy is what Blotter reads, these are
+what it refuses to write. That distinction survives the reframing, so they land
+after the questions and before the closing CTA, with no numeral — a closing note
+inside `05` rather than a sixth section.
+
+**The cost, stated:** the warm panel was what kept these visibly distinct from
+the reassurance claims, and `06` carries a row warning the two lists could
+converge. They now look the same. What separates them is position rather than
+treatment, which is weaker — and is why the placement is load-bearing.
+
+**4. Section 6's permissions collapse on desktop.** Jon's decision from earlier
+the same day, built. The header line `What each connection can and cannot do.`
+comes with it, because he identified the dependency himself when he ratified
+that string: it exists *because* the rows are closed. Collapsed desktop needs
+it; open desktop must not have it. `ServiceColumns` is retained, rendered
+nowhere, so the ratified three-column composition is one line to restore.
+
+### Four more, August 11, 2026
+
+**1. Section 2's annotation ticks go vertical at every width.** Jon: *"see if
+you can add the vertical sort of blue line instead of those weird dashes… I
+actually like this a lot better."*
+
+They used to turn ninety degrees at the breakpoint — a 2px vertical bar on a
+phone, a 24px horizontal dash on desktop. The horizontal version was argued for
+on the grounds that a dash beside a one-line annotation points at the asset. What
+it did was read as a stray dash, and on desktop there are two of them, one
+before the first annotation and one after the second, so the page looked like it
+carried punctuation nobody chose. The vertical bar is the page's own idiom — the
+same mark the eyebrows use — so the annotations, the eyebrows and the section
+labels now speak one mark instead of two. The mirroring survives, because that
+is an ordering rather than a shape.
+
+**2. The hero film replays.** Jon: *"is it better if it collapses to the static
+version or if it just replays, like the mobile version? I'm starting to lean
+more towards replay."*
+
+**Both survive, and the settle is what makes the replay possible.** This film
+has no wipe-back, so wrapping it would hard-cut three rows and a cue card in one
+frame. The cycle is now film → dissolve to the settled composition → rest four
+seconds → dissolve back and run again, and **the iframe is remounted while the
+static layer is fully opaque**, so the restart happens behind a picture and
+there is no seam to see. The thing that would have been a visible cut is covered
+by the only frame on the page that reads as an argument on its own.
+
+Reduced motion still gets the settled composition and stops there — no film
+mounted, no timer, nothing cycling.
+
+**3. A contact page.** Jon: *"Let's add a contact form on our page… It can be
+about anything, a frequently asked question you suggest, just a general
+question."* Plus the address near the bottom of the landing page.
+
+`/contact`, `api/contact`, and `supabase/004-contact-messages.sql`. Three
+fields, only email and message required. It takes `/privacy`'s shell, since
+these are the page's two secondary surfaces and should read as a pair.
+
+**Two deliberate departures from the lead route.** It **inserts rather than
+upserts** — `leads` is keyed on `visitor_id` because the metric counts unique
+visitors, and two messages from one person are two messages. And **it fails
+loudly**: the lead route returns 200 on every failure path because interrupting
+a converting visitor is worse than losing a row, but a reader told their message
+sent will wait for a reply that cannot come. A contact form that silently drops
+mail is worse than no contact form.
+
+A separate table, not `leads`, for the same reason: mixing correspondence into
+the table the demand test counts would corrupt the one number that must stay
+clean.
+
+Spam: a honeypot that answers 200 when filled, so an automated caller cannot
+tell a drop from a success, plus bounded input on every field. Deliberately not
+a CAPTCHA — it would be the only thing standing between a reader and a question,
+at a volume that does not justify it.
+
+**`supabase/004-contact-messages.sql` has not been run.** Until Jon applies it
+in the SQL Editor the route returns `insert_failed` and the form shows its
+fallback, which is the designed behaviour and was verified.
+
+**4. A bug the verification caught that looking could not.** `CONTACT_EMAIL`
+was first exported from `contact-form.tsx`, which carries `"use client"`.
+Importing a plain constant from a client module into a server component does not
+give you the value — Next replaces it with a client-reference stub, and the
+footer rendered `href="mailto:function(){throw Error(...)}"`. **A broken
+`mailto` renders as perfectly ordinary underlined text**, so a screenshot would
+never have shown it; it was found by reading the served DOM. The constant now
+lives in `lib/contact.ts`, which has no `"use client"`.
+
+### The hero film loops, August 11, 2026 — and the middle ground was a mistake
+
+Jon: *"It's either it's the film, and it goes to the static permanently, or it's
+the film, and it indefinitely loops. And I'm in favor of it indefinitely looping
+like we do on mobile… I don't know why the hell you tried to take a middle
+ground that just makes it worse."*
+
+He is right, and it is worth naming the error precisely because it is a kind
+that recurs. **The film had no way back to its opening state, and instead of
+fixing that I built a workaround one level up** — the embed cross-faded to the
+static composition, rested, and remounted the iframe behind it. That hid the
+seam rather than removing it, and it produced a third behaviour neither of the
+two he had offered. A defect in an asset had been converted into a feature of
+the page.
+
+The fix belonged in the film. **Film C's wipe is now ported into
+`blotter-film-web-hero.html`**, read from the source rather than reinvented:
+
+- `WIPE = [11.50, 12.20]`, `WIPE_H = 120`, `DUR` 11.50 to 13.00.
+- `wipeAt(row)` places each row's hand-back at the instant the bar's centre
+  crosses it, computed from the **built grid** (`offsetTop`, `offsetHeight`) so
+  a row-height change cannot desynchronise a revert from the bar causing it.
+- `mix()` gains a `retreat` term, so a cell advances under the sweep and
+  retreats under the wipe — `cl(advance - retreat)`, exactly Film C's shape.
+- The silence cue gains `out:[11.50,11.90]`. It had `out:null` because the film
+  used to hold on it; a cue still on screen at `DUR` makes the seam impossible.
+- `render()` wraps with `((t % DUR) + DUR) % DUR` instead of clamping, and the
+  driver wraps instead of stopping.
+
+**Verified frame-exact rather than assumed.** Calling `render(0)` and
+`render(13.0)` and diffing every cell opacity, card opacity and the wipe's own
+transform: identical. `render(13.5)` equals `render(0.5)`. There is no seam.
+
+One bug caught before it ran: `WIPE_TRAVEL` referenced `WIPE_H` about 5,000
+characters before `WIPE_H` was declared — a temporal dead zone that would have
+thrown on load. The geometry block moved below the timing constants.
+
+The embed is now four lines of iframe. **Reduced motion still gets
+`HeroVisualModule` and no film**, which is what that preference exists to
+refuse.
+
+### The desktop fold, and what it is not
+
+Jon, on a MacBook: *"the bottom of the visual film is just barely cut off… we
+need to remove a little bit of room from the top part."*
+
+Measured at 1512 x 862: the film's foot sat at 725.8px. **The height is set by
+the right column, not the headline** — paragraph, CTA and authority line come to
+197.8px against the headline's 84.8 — so the gaps inside that column are where
+the space was. Four `desk:` gaps and the film's top margin came down by 4 to 8px
+each, about 36px, putting the foot at 689.8 and clearing a 700px viewport, which
+is a 13-inch MacBook with a bookmarks bar. Every mobile value is untouched.
+
+**This buys the fold and nothing else, and it is explicitly a stopgap.** Jon has
+already scoped the real work: *"we're gonna actually need to research sites that
+we like, lean on skills, and try and redesign this top part quite a bit
+better."* When that happens these trimmed values are the first thing it should
+throw away.
+
+### The contact form's placeholder
+
+Removed. It read `you@university.edu`, and Jon caught that it prompts the wrong
+address: Blotter connects to the account you actually recruit from, which is
+almost always personal rather than institutional. **A hint that contradicts the
+product is worse than no hint.** The field is now unhinted.
+
+### The hero top block goes to review, August 11, 2026
+
+Five compositions behind `/review/hero`, plus what is live. Desktop only; the
+phone hero is settled and not in question.
+
+**The measured problem.** 248px between header and film: eyebrow 35, headline
+85, paragraph 82, CTA 44, authority line 20. **The hero spent twice as much
+vertical space on supporting apparatus as on its own claim**, and the right
+column at 180px was more than twice the headline's 85, so the two-column
+composition never resolved and left a 95px void under the headline.
+
+**Three sources converged on something neither Jon nor I had proposed.** Evil
+Martians studied 100 devtool landing pages: the vast majority centre the hero,
+side-by-side reads as "classic SaaS", and **social proof belongs after the hero,
+not inside it**. Linear's hero is a headline, one 12-word subheadline and a CTA,
+with no paragraph. `design-taste-frontend` independently caps a hero at four
+text elements and bans a tagline under the CTAs.
+
+This hero had five elements, and the fifth was the authority line — the thing
+called an orphan in three separate reviews and re-sited twice. **Its problem was
+never where it sat inside the hero; it was that it was in the hero at all.**
+Every variant moves it below the film, held constant so the comparison has one
+variable. `AuthorityLine` is exported, so restoring it is one line.
+
+Also held constant: the 30-word paragraph drops to the phone's ratified 13-word
+line, which Jon had already asked for and which both the skill and the research
+cap at about 20.
+
+**Where the spec governed over the skill**, surfaced rather than split per
+`CLAUDE.md`: the skill bans em-dashes outright and `CURRENT-HANDOFF` §8c permits
+exactly two as do-not-reopen; the skill bans div-built product UI as fake
+screenshots, and the sheet is a ratified asset while the hero is now an animated
+product UI, which the same research names the strongest hero treatment
+available. The spec wins both.
+
+**One tension left open for Jon rather than ruled on.** The page theme's "centre
+nothing" rule and the skill's anti-centre bias both point away from variant A,
+while the category research points hard toward it. A is built so the argument
+can be had against something real — and rendering it is itself evidence: centred
+copy over a left-weighted film visibly reproduces the two-axis problem the rule
+was written to prevent.
+
+| | |
+|---|---|
+| A | Centred, the devtool default |
+| B | Two columns, resolved so they end together |
+| C | Text block, then the CTA on its own full-width row |
+| D | No subhead at all; the film carries it |
+| E | Left-weighted, built from the film's own composition |
+
+**E is the one that answers the observation that opened this.** The film's
+weight sits left and its right is empty except when a cue is present, so the
+empty right above rhymes with the empty right below. It keeps centre-nothing and
+pushes it further instead of abandoning it.
+
+### Hero review, round two, August 11, 2026
+
+Jon read all five and the useful part was not which he preferred but why.
+
+**E is withdrawn and the argument for it was wrong.** He: *"it almost feels like
+our page is hopping over to the left."* The case for E rested on the empty right
+at the top rhyming with the empty right of the film. **The film's right is not
+reliably empty** — a cue occupies it for roughly half the run and then leaves.
+So the rhyme is intermittent while the lean is constant, which is the wrong way
+round. A composition rule cannot depend on what a visual happens to be doing at
+a given second.
+
+**The eyebrow question he raised is the one that unlocked the round.** He asked
+whether the tagline could move to the header bar, noting it was rejected for
+mobile. Checking why: 79 characters of uppercase at 12.5px need about 630px, and
+a 390px bar has roughly 265px once the lockup and padding are out. **That is a
+phone-width finding, not an objection to the idea.** The desktop bar is 1400px
+and the line fits with 300px to spare.
+
+It buys about 51px out of the hero's 248, which is what makes the layout
+choosable on how it reads rather than on how short it is — and it is what makes
+a centred hero testable at all, since the reason to reject centring in round one
+was that it pushed the film off a laptop screen.
+
+It also answers what he missed in B and E: *"there's no real header start to the
+page."* The start is now the header.
+
+**Round two: F left funnel, G counterbalance, H centred**, all with the tagline
+in the bar, plus both tagline behaviours — `persist` and `scroll` — as a second
+axis he asked to see against each other. `scroll` rides the header's existing
+`data-elevated` flag rather than adding a listener, so it fades on the same 8px
+threshold as the fill.
+
+**G is the recommendation**, and it is the only shape that answers every
+objection at once: the counterbalance he liked in C stops the lean he disliked
+in E, the bar supplies the start he missed in B, nothing is centred so it dodges
+the *"too AI-SaaS"* risk he flagged in A, and it is the shortest of the three
+because the subhead sits beside the headline rather than under it. About 150px
+against the current 248.
+
+Worth recording that his instinct about A was two separate objections. *"Half
+the hero visual film is out of view"* is a height problem, and the header
+eyebrow removes it. *"Too AI-SaaS"* is a taste problem, and H exists so that is
+the only thing left to judge.
+
+### Layout G is chosen, August 11, 2026
+
+Jon: *"I'm going to go with G and im leaning towards persists as opposed to
+fade."* The hero becomes headline left, subhead right, CTA on its own row, with
+the tagline in the header bar.
+
+**Not yet applied to the live page.** The tagline's placement is still open, so
+`app/page.tsx` keeps the current hero until it is settled. Applying G and then
+moving the tagline afterwards would change two things at once, and the whole
+value of this route has been changing one.
+
+### The review route becomes the real page
+
+Jon: *"show this more page content below so I can scroll more to get the feel."*
+
+Right, and the reason is worth recording: **a persistent tagline is not a
+top-of-page question.** What it actually raises is what the bar feels like at
+section 04, with three sections of reading behind you. A hero stub cannot answer
+that, and neither can a screenshot. So `/review/hero` now mounts the whole page
+— real header, real sections, real footer — with the controls floating at the
+bottom so the page reads from its first pixel as it will ship.
+
+Four combinations on two axes: **left or centred**, **persists or fades**.
+
+Centred is absolutely positioned rather than a third flex child. Under
+`justify-between` a third item centres between the lockup and the button, not in
+the bar, and those differ by about 30px here — which defeats the point of the
+option, since what it is for is landing on the page's own axis.
+
+Both behaviours verified by forcing `data-elevated`: `persist` holds at 1.0,
+`scroll` goes 1.0 to 0. The fade rides the header's existing 8px flag rather
+than adding a second scroll listener.
+
+Variants A through H all survive in `components/hero/hero-top.tsx`. Only the
+harness narrowed; `Hero` still takes `top`, so any of them is one string away
+from being back in front of him.
+
+### The hero redesign is applied, August 11, 2026
+
+**Layout G, tagline left, tagline persists.** Jon: *"Left persists it is."*
+Live on the branch.
+
+**Left was decided on measurement.** At 1440 the page's content runs 158 to
+1282 and the lockup sits at 44. Centred, the tagline ran 382 to 1058 — aligned
+with the content, the lockup and the headline all at once, which is to say with
+nothing, since it sat on the viewport centre axis and no other element on this
+page uses that axis. Beside the lockup it is a descriptor on a wordmark.
+
+**Persist was Jon's call against my recommendation and his argument is better
+for this page.** Mine: the bar already gains a fill and an edge on scroll, so a
+permanent 630px line makes the scrolled bar heavier than the resting bar, which
+is backwards. His: Blotter is unknown and about to be promoted cold, so a
+descriptor surviving at any scroll depth does a functional job rather than
+decorating. For a known brand I would still fade it. This is not one.
+
+### What it measures
+
+| | Before | After |
+|---|---|---|
+| Hero section | 729.8 | **658.3** |
+| Film foot | 689.8 | **622.1** |
+| Authority line foot | in the hero | **662.3**, below the film |
+| Document | 6,687 | **6,615** |
+
+**The whole hero, film and credibility line now clear a 700px viewport** with
+38px to spare, against a film that was being cut off before any of this started.
+
+Verified: exactly one visible eyebrow, in the header bar, none in the hero.
+Mobile unchanged at 7,093.8px of sections, eyebrow and authority line both still
+in the phone hero where stage 10 ratified them, no horizontal scroll. The
+footer's link row now wraps to three lines on a phone because Contact and the
+address joined it; every target still clears 44px.
+
+**The stopgap retired itself.** The `desk:` gap trims taken earlier to buy the
+fold are all inside the `current` block, which is now `desk:hidden`. They are
+inert on the live page rather than needing to be unpicked, which is what the
+note on them predicted.
+
+Variants A through H all survive in `components/hero/hero-top.tsx` and
+`/review/hero` still compares the four tagline combinations against what
+shipped. Nothing is deleted; `Hero` still takes `top`.
+
+### Four rulings and a second lead, August 11, 2026
+
+**A second real lead arrived.** `real_leads` is 2, not the 1 every handoff has
+carried. The `leads` table holds 8 rows and **6 are internal**, which is the
+view earning its keep.
+
+**Both real leads clicked `cta_location = hero`**, and both stopped at
+`furthest_stage = email`. Two out of two on the hero button is the only CTA
+placement signal this test has produced.
+
+**The CTA label stays until about 150 visitors.** 3 conversions out of 27 has a
+95% confidence interval of roughly **2% to 29%** — a range that contains both
+"this button is excellent" and "this button is broken". Changing a ratified
+string on that is acting on noise, and it destroys the baseline needed to tell
+whether the change helped.
+
+**A tension worth recording rather than resolving.** There is a real argument
+against *"Try Blotter Now"* that owes nothing to the data: it promises a product
+that does not exist, and a visitor who clicks expecting to use something gets a
+form, a film and a price. That is a better candidate for **0 checkout starts**
+than for the 27 to 3. But the labels that would honestly describe the funnel —
+waitlist, early access, request access — are **forbidden by `07-SECTION-7` §13
+and the standing no-availability-signal rule.** The honest label for this funnel
+is prohibited by the page's own copy rules. Jon's to revisit, not mine.
+
+**The funnel film stays.** Both real leads completed the film step and both
+submitted email after it; the single drop happened *before* it. Deleting it also
+breaks `product_experience_completed`, one of the nine canonical events, which
+would throw away comparability with the little data there is. The redundancy
+with the hero film is real and worsening, but it is a quality problem rather
+than a measured one, and it is reversible.
+
+**The Outstanding view stays, and I could not do better.** Three columns is what
+fits 21 actions into thirteen rows. Every alternative is taller, smaller, or
+breaks something ratified — hiding rows breaks the all-21 rule, and dropping the
+spreadsheet frame breaks the authenticity the section rests on. It is long
+because 21 items is long.
+
+**The hero line loses its tail, on Jon's delegation.** It read *"…current, from
+Gmail and Calendar."* The fault was grammatical — "keeps X current, from Y"
+leaves *from* modifying nothing — and every repair is clumsier. **Cut rather
+than repaired, because the film directly beneath it carries the Gmail mark, the
+Calendar mark and the muted Gmail mark.** The sources are shown forty pixels
+below where the tail said them, which is the fault this rework exists to remove.
+Both surfaces, since the argument is identical on the phone and the two may not
+make different claims.
+
+**It also fixed a duplicate I had introduced.** The string was declared twice,
+`SUPPORTING_SHORT` in `hero.tsx` and `SUBHEAD` in `hero-top.tsx`, and neither
+could import the other because the dependency runs one way. It now lives in
+`lib/hero-copy.ts`. That is the third hand-kept duplicate in this codebase after
+`web/public/film/` and `sheet-phone.tsx`'s column widths, and the first one I
+created myself.

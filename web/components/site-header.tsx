@@ -25,10 +25,29 @@
  * bottom bar partly on the grounds that "the header CTA is the only persistent
  * one". It was not persistent anywhere.
  *
- * Fixed below the breakpoint only, because stage 10 does not touch desktop.
- * `position: fixed` rather than restructuring the DOM: moving the header out of
- * the hero wrapper would fix both surfaces at once, and desktop's half belongs
- * in `08` until Jon takes it.
+ * Fixed below the breakpoint in stage 10. **Desktop's half was taken in wave 1
+ * of web reconciliation, August 11, 2026**: `<SiteHeader />` moved out of the
+ * `field-open` wrapper in `app/page.tsx`, so `sticky` now has the document to
+ * travel in. `.field-open` pulls itself back up under it, so the ratified hero
+ * is unmoved.
+ *
+ * ## Why desktop's fill is gated on scroll and mobile's is not
+ *
+ * A header that genuinely persists passes over every band below it, and this
+ * bar carries `backdrop-blur-md`. Blur over a page this light with nothing
+ * behind it reads as a smear — `globals.css` says so about the phone and it is
+ * just as true at 1440. So desktop needs the fill and the 1px edge that mobile
+ * already has.
+ *
+ * **But it must not have them at rest.** The desktop hero is a ratified
+ * composition and its two radial glows are at full strength in the top 60px, so
+ * a 78% white veil across them at `scrollY` 0 would wash the corners of a
+ * picture `08` §10 lists as deliberately unchanged. The phone has no such
+ * constraint: its hero is a film that starts below the bar.
+ *
+ * Hence `data-elevated`, which appears at 8px of scroll — the fill arrives
+ * exactly when there is content underneath to separate from, and the hero at
+ * rest is pixel-identical to what was ratified.
  */
 
 import { useSearchParams } from "next/navigation";
@@ -83,44 +102,173 @@ function useScrolledPast(px: number, enabled: boolean) {
  * is server-rendered in its default mode and the parameter reader below is the
  * only part that waits.
  */
+/**
+ * Whether the bar carries the page's tagline, and what it does on scroll.
+ *
+ * `off` is live. The other two are the August 11, 2026 review.
+ *
+ * **The reason this is even available is a phone-width argument that does not
+ * apply here.** The tagline in the header was built and rejected during stage
+ * 10: 79 characters of uppercase at 12.5px with 0.1em tracking needs about
+ * 630px, and a 390px bar has roughly 265px once the lockup and padding are
+ * out, so it went to two lines. The desktop bar is 1400px, with the lockup at
+ * ~85 and the CTA at ~150. 630 fits with 300px to spare. The objection was
+ * never to the idea.
+ *
+ * What it buys is not tidiness: **it takes about 51px out of the hero**, which
+ * is the difference between the film clearing the fold on a small laptop and
+ * borrowing spacing to make it fit.
+ */
+export type HeaderTagline = "off" | "persist" | "scroll";
+
+/*
+  RATIFIED August 11, 2026: `persist`, left. Jon, having compared all four
+  combinations on the whole page: *"Left persists it is."*
+
+  **Left, on measurement rather than taste.** At 1440 the page's content runs
+  158 to 1282 and the lockup sits at 44. Centred, the tagline ran 382 to 1058 —
+  aligned with the content, the lockup and the headline all at once, which is to
+  say with nothing. It sat on the viewport's centre axis, and no other element
+  on this page uses that axis. Beside the lockup it is a descriptor on a
+  wordmark, which is a relationship rather than a coincidence.
+
+  **Persist was Jon's call against my recommendation, and his argument is the
+  better one for this page.** Mine was that the bar already gains a fill and an
+  edge on scroll, so adding a permanent 630px line makes the scrolled bar
+  heavier than the resting bar, which is backwards. His is that Blotter is
+  unknown and about to be promoted cold, so a descriptor that survives at any
+  scroll depth is doing a functional job rather than decorating. For a known
+  brand I would still fade it. This is not a known brand.
+
+  The defaults below are the shipped state, so `app/page.tsx` and its Suspense
+  fallback both inherit it. `/review/hero` overrides to keep the comparison.
+*/
+
+/**
+ * Where the tagline sits in the bar.
+ *
+ * `left` groups it with the lockup, which is what a descriptor is: it belongs
+ * to the wordmark. `center` puts it on the page's own centre axis, independent
+ * of both the brand and the CTA, which reads as a statement about the page
+ * rather than a label on the brand.
+ *
+ * Centred is absolutely positioned rather than a third flex child, because
+ * `justify-between` across three items centres it between the lockup and the
+ * button, not in the bar. Those differ by about 30px here, and the whole point
+ * of the option is that it lands on the page's axis.
+ */
+export type HeaderTaglineAlign = "left" | "center";
+
+/** Ratified, `01-HERO`. One copy, so the two placements cannot drift. */
+const TAGLINE =
+  "The smart recruiting tracker for investment banking and high-finance networking";
+
+const TAGLINE_TYPE =
+  "text-eyebrow leading-none font-medium tracking-[0.1em] text-navy-500 uppercase whitespace-nowrap";
+
 export function SiteHeaderBar({
   mobileCta = true,
   mode = "full",
+  tagline = "persist",
+  taglineAlign = "left",
 }: {
   mobileCta?: boolean;
   mode?: HeaderMode;
+  tagline?: HeaderTagline;
+  taglineAlign?: HeaderTaglineAlign;
 }) {
   const scrolled = useScrolledPast(240, mode === "shrink");
+  /*
+    Separate from `scrolled` on purpose. `data-scrolled` fires at 240px and
+    drives the phone's `shrink` comparison, which Jon ratified at that
+    threshold; this fires at 8px and drives nothing but the fill. Reusing one
+    attribute for both would have moved the shrink to 8px and quietly changed a
+    shipped mobile behaviour.
+  */
+  const elevated = useScrolledPast(8, true);
 
   return (
     <header
       data-header-mode={mode}
+      data-tagline={tagline}
       {...(scrolled ? { "data-scrolled": "" } : {})}
+      {...(elevated ? { "data-elevated": "" } : {})}
       className={cn(
         "site-header z-40 backdrop-blur-md",
-        /* Fixed on a phone so it actually persists; the ratified desktop
-           behaviour is untouched and still scoped to the hero wrapper. */
+        /* Fixed on a phone, sticky on desktop — and since August 11, 2026 the
+           sticky one is a direct child of the page, so it travels the whole
+           document instead of the hero's 910px. */
         "fixed inset-x-0 top-0 desk:sticky",
       )}
     >
       <div
         className={cn(
-          "site-header__bar mx-auto flex max-w-[1400px] items-center justify-between px-5 desk:px-6",
+          "site-header__bar relative mx-auto flex max-w-[1400px] items-center justify-between px-5 desk:px-6",
           "h-[60px]",
         )}
+        /*
+          Below the breakpoint the bar takes the page box's own ceiling rather
+          than 1400px. Wave 1, August 11, 2026.
+
+          `06`'s "481 to 1179px band" row is about the content column being
+          capped at 480 and centred in a wide window, which is correct and
+          ratified — a browser knows its width and nothing else, and 480 keeps a
+          tablet from getting a stretched phone layout. **But the header was not
+          obeying that cap.** At 1100px the column sat at 480 in the middle while
+          this bar spanned the full 1052, which put `Try Blotter Now` roughly
+          500px away from the content it belongs to. That gap is what read as
+          broken, rather than the column itself.
+
+          On any real phone the column already fills the screen, so nothing
+          moves at or below 480. Above the breakpoint the ratified 1400px bar is
+          untouched.
+        */
+        style={{ "--bar-mobile-max": "520px" } as React.CSSProperties}
       >
         {/*
           44px on a phone. The lockup is 22px tall and the anchor around it
           measured 85x29, which is under the Phase 6 floor; the bar is 60px so
           the height is free, and the mark itself does not change size.
         */}
-        <a
-          href="#top"
-          aria-label="Blotter, back to top"
-          className="flex min-h-11 items-center text-navy-900 desk:min-h-0"
-        >
-          <BlotterLockup size={22} />
-        </a>
+        {/*
+          Brand and tagline are one group. The tagline is the wordmark's
+          descriptor, so it sits with it rather than floating in the middle of
+          the bar under `justify-between`.
+
+          Desktop only, always. The phone bar has no room and that finding
+          stands.
+        */}
+        <div className="flex items-center gap-4">
+          <a
+            href="#top"
+            aria-label="Blotter, back to top"
+            className="flex min-h-11 items-center text-navy-900 desk:min-h-0"
+          >
+            <BlotterLockup size={22} />
+          </a>
+          {tagline !== "off" && taglineAlign === "left" && (
+            <>
+              <span
+                aria-hidden="true"
+                className="site-header__tagline hidden h-3.5 w-px bg-navy-900/15 desk:block"
+              />
+              <p className={cn(TAGLINE_TYPE, "site-header__tagline hidden desk:block")}>
+                {TAGLINE}
+              </p>
+            </>
+          )}
+        </div>
+
+        {tagline !== "off" && taglineAlign === "center" && (
+          <p
+            className={cn(
+              TAGLINE_TYPE,
+              "site-header__tagline pointer-events-none absolute left-1/2 hidden -translate-x-1/2 desk:block",
+            )}
+          >
+            {TAGLINE}
+          </p>
+        )}
         {/* Desktop always carries it: four placements are ratified there and a
             desktop reader can see the whole page at once. */}
         <div className={mobileCta ? undefined : "hidden desk:block"}>

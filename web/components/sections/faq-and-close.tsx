@@ -34,14 +34,26 @@
 import { BlotterLockup } from "@/components/brand/blotter-mark";
 import { CtaButton } from "@/components/cta-button";
 import { DisclosureList } from "@/components/disclosure";
+import { RefusalPanel } from "@/components/section-3/boundary-block";
 import { PageBox } from "@/components/layout/page-box";
 import { SectionNumber } from "@/components/layout/section-number";
 import { cn } from "@/lib/cn";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import { POLICY_HREF } from "@/lib/privacy-copy";
 import { CLOSING_HEADLINE, FAQ_TITLE, PRODUCT_FAQ } from "@/lib/closing-copy";
 
 /** §6's reading measure, centred inside the page box. */
 const FAQ_W = 960;
+
+/**
+ * The footer's link treatment, shared so the three read as one row.
+ *
+ * 44px target on a phone without a box around it: the padding is
+ * negative-margined back out so the row still sits on the baseline it did
+ * before the Phase 6 tap-target sweep.
+ */
+const FOOTER_LINK =
+  "-my-3 py-3 text-small text-white/55 transition-colors duration-150 ease-out hover:text-white desk:my-0 desk:py-0";
 
 /**
  * Both accounts, supplied by Jon on August 11, 2026 for **both surfaces**.
@@ -144,6 +156,46 @@ export function FaqAndClose() {
               className="mt-8"
             />
           </div>
+
+          {/*
+            The three refusals, and this is their third address in one day.
+
+            `03-SECTION-3` had them inside the boundary block. `09` §8 row 3
+            moved them to the ownership section, on the reasoning that they are
+            the ownership claim stated negatively — *"you write the messages"*
+            and *"no generic mass AI outreach"* are one sentence facing two
+            directions.
+
+            **Jon moved them again on sight**, August 11, 2026: *"this is kind
+            of like a platform whole thing of what we don't [do]. So it doesn't
+            necessarily need to be in this section. Maybe put it somewhere near
+            the top or the bottom."*
+
+            He is describing a different claim than `09` was. `09` reads them as
+            *this section's* ownership claim inverted; he reads them as a
+            statement about **what the product is not**, which is page-level and
+            belongs nowhere in particular — which is exactly why they kept
+            looking wrong wherever they were put.
+
+            **Why here rather than Section 04, which is the obvious "bottom".**
+            `09` §4 is explicit that *"Section 04 stays about data"*: privacy is
+            what Blotter **reads**, and these are what it refuses to **write**.
+            That distinction survives Jon's reframing, so the refusals land
+            after the questions and before the closing CTA instead — the last
+            thing a reader meets before being asked to act, and outside any
+            section's own argument.
+
+            **This is an override of `09` §8 row 3 and it is recorded as one.**
+            The row is not wrong about what the refusals mean; it is wrong that
+            meaning that dictates placement.
+
+            No numeral and no hairline. It is not a sixth section — it is a
+            closing note inside `05`, and giving it a numeral would make the two
+            surfaces disagree about how many sections this page has.
+          */}
+          <div className="mt-14 desk:mt-20">
+            <RefusalPanel />
+          </div>
         </PageBox>
       </section>
 
@@ -214,14 +266,36 @@ export function FaqAndClose() {
             >
               <BlotterLockup size={20} />
             </a>
-            <div className="flex items-center justify-between gap-8 desk:justify-start">
+            {/*
+              `Contact` and the address itself, added August 11, 2026 on Jon's
+              instruction: *"let's also add our broader email somewhere on the
+              page at near the bottom."*
+
+              Both, not one. The link is for a reader who wants to write
+              something and does not want to leave the page to find out how; the
+              bare address is for anyone who would rather use their own mail
+              client, and for the case where the form is broken and the page
+              cannot know it. A form is the better instrument and a printed
+              address is the one that never fails.
+
+              The address is a `mailto` rather than plain text so a phone opens
+              its mail app on a tap instead of asking the reader to select and
+              copy 19 characters at 13.5px.
+            */}
+            <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-2 desk:justify-start">
               <a
-                href={POLICY_HREF}
+                href="/contact"
                 /* 44px target on a phone without a box around it: the padding
                    is negative-margined back out so the row still sits on the
                    baseline it did before. */
-                className="-my-3 py-3 text-small text-white/55 transition-colors duration-150 ease-out hover:text-white desk:my-0 desk:py-0"
+                className={FOOTER_LINK}
               >
+                Contact
+              </a>
+              <a href={`mailto:${CONTACT_EMAIL}`} className={FOOTER_LINK}>
+                {CONTACT_EMAIL}
+              </a>
+              <a href={POLICY_HREF} className={FOOTER_LINK}>
                 Privacy policy
               </a>
               <SocialLinks />

@@ -2,9 +2,11 @@
 
 Date opened: August 10, 2026, session 6
 Last updated: August 11, 2026, session 7
-Status: **Mobile 02 is built and ratified and is live on the phone page.**
-Mobile 03, the funnel and the accessibility sweep remain. **Nothing here has
-reached web** — §8 is the ledger of what it owes.
+Status: **Rows 1, 2, 3 and 5 are applied on both surfaces as of August 11,
+2026.** Section 3 is cut from desktop, Section 4+5 is split in two, the refusals
+have moved, the headline arrangement is in place, and both surfaces render the
+same five numbered sections. §8 is the ledger; row 8b, the Outstanding view, is
+the one row still open.
 
 This is not a responsive-layout document. Everything else in stage 10 changes
 *how* a claim is presented; this changes *which claims the page makes and in

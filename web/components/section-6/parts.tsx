@@ -228,6 +228,10 @@ function ServiceLists({ row }: { row: (typeof PERMISSIONS)[number] }) {
  *
  * The column labels are the spec's own `Can do` and `Cannot do`, set small.
  */
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars --
+   Retained deliberately, rendered nowhere since August 11, 2026. This is the
+   ratified three-column composition and the only record of it in code; if the
+   collapse loses on review it is one line to put back. */
 function ServiceColumns() {
   return (
     <div className="hidden desk:grid desk:grid-cols-3 desk:gap-x-12">
@@ -281,7 +285,7 @@ function ServiceColumns() {
  */
 function ServiceStack() {
   return (
-    <div className="desk:hidden">
+    <div>
       {/*
         Set at reading size in full ink rather than as a muted caption. It is
         not a label on the rows below it — it is the sentence that tells a
@@ -389,11 +393,39 @@ export function ConnectionFinePrint({ providerLead }: { providerLead: string }) 
   );
 }
 
+/**
+ * The three connections, collapsible, on **both** surfaces from August 11, 2026.
+ *
+ * Jon: *"I do think desktop section six permissions should become collapsible…
+ * kinda like we have at mobile, just like the plus lines where you can expand
+ * and collapse it."*
+ *
+ * Desktop used to render `ServiceColumns` — Gmail, Calendar and Sheets as three
+ * open columns with `Can do` / `Cannot do` headings — and the phone rendered
+ * this. Now both render this.
+ *
+ * **The header line comes with it, and that is not incidental.** Jon identified
+ * the dependency himself when he ratified that string: *"Shows on mobile
+ * because those three are collapsed things you click plus to see, so the header
+ * `what each connection can and cannot do` is there so you know."* The line
+ * exists **because** the rows are closed — it tells a reader the rows contain a
+ * `cannot` list, which is the reassuring half and the reason to open one. A
+ * collapsed desktop needs it for exactly the same reason, and an open desktop
+ * must not have it. The two move together or neither moves.
+ *
+ * `06-SECTION-6` §16 forbids *hover*-only concealment and requires keyboard
+ * operability. Both were already solved for the phone — this is a real
+ * accordion with `hiddenUntilFound`, not a hover reveal — so nothing new is
+ * owed by bringing it up a breakpoint.
+ *
+ * Gmail opens by default and the rest fold, on both surfaces. `multiple` so
+ * opening Calendar does not shut Gmail: these are three parallel facts rather
+ * than one answer at a time.
+ *
+ * `ServiceColumns` is retained and rendered nowhere. It is the ratified
+ * three-column composition and the only record of it in code; if the collapse
+ * loses on review, it is one line to put back.
+ */
 export function ServicePermissions() {
-  return (
-    <>
-      <ServiceColumns />
-      <ServiceStack />
-    </>
-  );
+  return <ServiceStack />;
 }

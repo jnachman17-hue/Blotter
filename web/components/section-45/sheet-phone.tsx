@@ -276,18 +276,38 @@ function CropSheet() {
 
 /* ========================================================== the swipe ===== */
 
+/**
+ * The ten columns, and the 8px that moved on August 11, 2026.
+ *
+ * **These widths are a hand-kept copy of `parts.tsx`'s `YOURS` and
+ * `MAINTAINED`.** Nothing propagates between the two, which is the same trap
+ * `web/public/film/` sets against `social/`. `08-desktop-changes-pending.md`
+ * §12's row-height defect was found on desktop and fixed there first; the phone
+ * still had it, because this list is a second copy. **If either list changes,
+ * change both.**
+ *
+ * `Email` 196 to 188 and `Call` 112 to 120, so `1/17 @ 2:00 PM` (94.1px) and
+ * `Completed 1/16` (91.8px) stop wrapping Marcus Lee's and Priya Shah's rows to
+ * 60px against 40.5px for every other row. `Email` was already truncating away
+ * more slack than it gives up.
+ *
+ * `FULL_W` is unchanged at 1,221px, so the swipe's travel, the veil and every
+ * scroll threshold are untouched. `SPLIT_X` moves 683 to 675 — the divider is
+ * ratified as *visible*, not as sitting at a particular pixel, and both zone
+ * labels still fit at their ratified size in 632px and 546px.
+ */
 const FULL_GUTTER = 43;
 const FULL_COLS = [
   { header: "Name", letter: "A", w: 112 },
   { header: "Title", letter: "B", w: 116, italic: true },
   { header: "Firm", letter: "C", w: 132 },
-  { header: "Email", letter: "D", w: 196 },
+  { header: "Email", letter: "D", w: 188 },
   { header: "LinkedIn", letter: "E", w: 84 },
   { header: "Status", letter: "F", w: 128, maintained: true },
   { header: "Next move", letter: "G", w: 142, maintained: true },
   { header: "Last contact", letter: "H", w: 104, maintained: true },
   { header: "Days", letter: "I", w: 52, maintained: true, align: "right" },
-  { header: "Call", letter: "J", w: 112, maintained: true },
+  { header: "Call", letter: "J", w: 120, maintained: true },
 ];
 const FULL_W = FULL_GUTTER + FULL_COLS.reduce((n, c) => n + c.w, 0);
 const YOURS_W = FULL_COLS.slice(0, 5).reduce((n, c) => n + c.w, 0);

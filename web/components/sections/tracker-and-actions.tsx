@@ -32,11 +32,9 @@ import { CtaButton } from "@/components/cta-button";
 import { PageBox } from "@/components/layout/page-box";
 import { SectionNumber } from "@/components/layout/section-number";
 import { OutstandingPhone } from "@/components/section-45/outstanding-phone";
-import {
-  BlotterTab,
-  OutstandingTab,
-  Reassurance,
-} from "@/components/section-45/parts";
+/* `BlotterTab` and `Reassurance` left with the preservation beat on August 11,
+   2026 — see `components/sections/ownership.tsx`. */
+import { OutstandingTab } from "@/components/section-45/parts";
 import { cn } from "@/lib/cn";
 
 /* ------------------------------------------------------------- exact copy */
@@ -103,33 +101,26 @@ export function TrackerAndActions() {
     <section className="field-settle pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
         {/*
-          Beat 1 — preservation. No eyebrow, per `05-SECTION-5` §3.
+          Section 03 — the action view. No eyebrow, per `04-SECTION-4` §4.
 
-          **Desktop only from August 11, 2026.** On a phone this beat is
-          `components/section-45/mobile-02.tsx`, which merges it with Section
-          3's ownership claim and its refusals into one section. `09` §4.
+          **This section used to carry two beats.** Preservation with the sheet
+          came first, then this. Both moved out on August 11, 2026: the
+          preservation beat became `components/sections/ownership.tsx`, its own
+          section on both surfaces, and this is what remained.
 
-          The consequence for numbering: on a phone this element is section 03,
-          the Outstanding list, and mobile 02 is a separate block above it. So
-          the numeral moves down here with beat 2 rather than sitting at the top
-          of the section. Numbers render below the breakpoint only, so desktop
-          is unaffected either way.
+          The reason was numbering. Cutting Section 3 from desktop left desktop
+          with four numbered blocks against the phone's five, because the phone
+          had already split these two beats into `02` and `03`. Desktop's `02`
+          would have covered both. `08-desktop-changes-pending.md` §5 requires
+          the two surfaces agree about what the sections of this page are.
+
+          The head keeps no `flip`. Mirroring existed to distinguish two beats
+          inside one section; with a numeral and a hairline between them there
+          is nothing left to distinguish, and a right-aligned headline with no
+          partner above it is decoration.
         */}
-        <div className="hidden desk:block">
-          <Head h={KEEP_H} sub={KEEP_SUB} />
-          <div className="mt-7">
-            <Reassurance />
-          </div>
-          <div className="mt-10">
-            <BlotterTab />
-          </div>
-        </div>
-
-        {/* Beat 2 — the action view. No eyebrow, per `04-SECTION-4` §4. */}
         <SectionNumber n={3} />
-        <div className="desk:mt-24">
-          <Head h={ACT_H} sub={ACT_SUB} flip />
-        </div>
+        <Head h={ACT_H} sub={ACT_SUB} />
         {/*
           Desktop keeps the three-column composition, which is what lets all 21
           actions land in thirteen rows. A phone has no room for three columns,
