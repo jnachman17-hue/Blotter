@@ -21,104 +21,9 @@
  * this section carries `field-deep`.
  */
 
-import { Fit } from "@/components/layout/fit";
 import { SectionNumber } from "@/components/layout/section-number";
-import { PageBox, PAGE_BOX_W } from "@/components/layout/page-box";
+import { PageBox } from "@/components/layout/page-box";
 import { EYEBROW, ScaleTrajectory } from "@/components/section-2/scale-trajectory";
-import {
-  GmailInboxPhone,
-  GmailInboxStrip,
-} from "@/components/section-2/gmail-inbox-strip";
-
-/**
- * The consequence visual and its two annotations, sections 10 and 11.
- *
- * The annotations stay outside the Gmail surface, cover nothing, and carry a
- * short leader tick rather than an arrow, because section 11 forbids arrows
- * that would imply Blotter is already acting. They frame the strip
- * diagonally, which ties each line to it without adding height.
- */
-function ConsequenceVisual() {
-  return (
-    <div className="mt-14">
-      {/*
-        **The vertical tick, at every width, from August 11, 2026.**
-
-        It used to turn ninety degrees at the breakpoint: a 2px vertical bar on
-        a phone, a 24px horizontal dash on desktop. Jon, comparing the two:
-        *"see if you can add the vertical sort of blue line instead of those
-        weird dashes… I actually like this a lot better."*
-
-        The horizontal version was argued for on the grounds that a 24px dash
-        works beside a one-line annotation next to a wide asset and points at
-        it. What it actually did was read as a stray dash — and on desktop there
-        are two of them, one before the first annotation and one after the
-        second, which looks like punctuation nobody chose.
-
-        The vertical bar is the page's own idiom: the same 2px mark the eyebrows
-        use, aligned to the cap height of the first line, so it stays put
-        however the text wraps. Reconciling to it means the annotations, the
-        eyebrows and the section labels all speak one mark instead of two.
-
-        The mirroring survives — the tick leads the first annotation and follows
-        the second — because that is what frames the strip diagonally, and it is
-        an ordering rather than a shape.
-      */}
-      <p className="mb-3 flex items-start gap-3 text-[14px] font-medium text-navy-900">
-        <span
-          aria-hidden="true"
-          className="mt-[0.32em] h-[0.9em] w-[2px] shrink-0 bg-navy-400"
-        />
-        One thread buried in 628 emails
-      </p>
-
-      {/*
-        The strip is a Gmail surface built at page-box width. `Fit` scales it
-        into whatever width it is given, which on desktop is 1124px and so
-        leaves the ratified composition untouched.
-
-        `02-SECTION-2` §15 permits proportional scaling, a controlled crop, or a
-        separately composed translation on smaller screens, and none of them is
-        chosen yet — this is the placeholder that stops the section pushing the
-        page sideways in the meantime.
-      */}
-      {/* Desktop: the ratified strip, scaled into the page box. */}
-      <div className="hidden desk:block">
-        <Fit width={PAGE_BOX_W}>
-          <GmailInboxStrip width={PAGE_BOX_W} />
-        </Fit>
-      </div>
-      {/* Phone: the same five rows as a phone inbox. See `GmailInboxPhone`. */}
-      <div className="desk:hidden">
-        <GmailInboxPhone />
-      </div>
-
-      {/*
-        The annotation is bounded by the page box rather than pinned to it, so
-        it wraps on a phone instead of holding 1124px open. It stays outside
-        the email asset and covers nothing, per §15.
-      */}
-      {/*
-        The same tick, and on a phone it moves to the front so both annotations
-        read from the same edge. Right-aligning this one is what made the pair
-        frame the asset diagonally on desktop; at 350px there is no diagonal to
-        make, and a right-aligned wrapped paragraph in a left-aligned section
-        just looks like a mistake. `order-first` handles it without duplicating
-        the copy.
-      */}
-      <p
-        className="mt-3 flex items-start gap-3 text-[14px] font-medium text-navy-900 desk:justify-end"
-        style={{ maxWidth: PAGE_BOX_W }}
-      >
-        A stale tracker does not direct you back before the deadline passes
-        <span
-          aria-hidden="true"
-          className="order-first mt-[0.32em] h-[0.9em] w-[2px] shrink-0 bg-navy-400 desk:order-last"
-        />
-      </p>
-    </div>
-  );
-}
 
 export function ScaleAndConsequence() {
   return (
@@ -138,14 +43,50 @@ export function ScaleAndConsequence() {
         </div>
 
         {/*
-          The closing paragraph is cut. Ratified by Jon August 5, 2026: it
-          restated the supporting paragraph almost exactly, ending "begin
-          falling through the cracks" ninety words after that one ended "begin
-          slipping through the cracks". The section now ends on the email,
-          which is a stronger exit into Section 3. This overrides the section 5
-          and section 18 requirement for exact closing copy.
+          THE CONSEQUENCE VISUAL IS CUT, August 11, 2026.
+
+          It was a Gmail row reading `RE: First Round Interview Invitation ·
+          Deadline Passed`, under the annotation *"A stale tracker does not
+          direct you back before the deadline passes."*
+
+          **Jon cut it, and the reason is a claim rather than taste.** That
+          sentence only lands if Blotter's tracker *would* direct you back
+          before a deadline. It would not. The maintained columns are `Status`,
+          `Next move`, `Last contact`, `Days` and `Call` — **there is no
+          deadline field anywhere in the product**, and no section on this page
+          demonstrates one. The visual promised a capability the page never
+          shows and the spec never granted.
+
+          That is the sharpest form of the fault `09-page-argument-rework.md`
+          exists to remove: not a claim proved in the wrong place, but a picture
+          making a promise the product cannot keep. It stopped being theoretical
+          the same day, because the site is now indexed.
+
+          It also discharges `06`'s open claim gate on this asset, which
+          required an illustrative-scenario review "before public-release
+          approval" and had gone overdue.
+
+          **What the section loses, and why it survives it.** `09` §3 lists the
+          buried email alongside the four mark blocks as proof of claim A,
+          volume. The marks are the volume proof; the email was the consequence
+          beat. Section 2 now ends on the supporting paragraph's own last line,
+          *"Deadlines, follow-ups, and next steps begin slipping through the
+          cracks"* — which states the consequence in words the product can
+          support rather than depicting one it cannot.
+
+          **A re-scoped version is available if this ever reads thin**: a thread
+          that went quiet is a consequence Blotter genuinely addresses, since
+          `Days` and `Last contact` are fields it maintains. That is a new
+          ratified asset and it is not being invented here.
+
+          `GmailInboxStrip`, `GmailInboxPhone` and the full `GmailMessage` are
+          retained and rendered nowhere, the same way `ServiceColumns` and
+          `HeroVisualModule` are.
+
+          This overrides `02-SECTION-2` §10 and §11. The earlier override still
+          stands: the closing paragraph was cut on August 5 because it restated
+          the supporting paragraph almost word for word.
         */}
-        <ConsequenceVisual />
       </PageBox>
     </section>
   );
