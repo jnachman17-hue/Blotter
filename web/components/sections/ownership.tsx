@@ -45,9 +45,15 @@
  * | Preservation | the headline | the `Contacts` tab sitting untouched beside `Blotter` |
  * | Ownership | the deck | the zone divider |
  * | What Blotter does | the supporting paragraph | the maintained columns |
- * | What Blotter refuses | the three refusals | — |
  *
  * The point of the rework is that no two of those rows say the same thing.
+ *
+ * **The three refusals left this section on August 11, 2026.** They arrived
+ * here from Section 3 earlier the same day, on `09` §8 row 3's reasoning that
+ * they are the ownership claim stated negatively. Jon moved them out on sight:
+ * *"this is kind of like a platform whole thing of what we don't [do]. So it
+ * doesn't necessarily need to be in this section."* They are now a page-level
+ * statement before the closing CTA — `sections/faq-and-close.tsx`.
  * **This is also why the sheet's zone labels default to `none`** — after the
  * deck lands, `You add these` and `Blotter keeps these current` are that deck
  * restated forty pixels lower. `section-45/parts.tsx` carries the full note.
@@ -66,7 +72,7 @@
  *
  * ## Order, and the one risk in it
  *
- * Number, headline, deck, paragraph, reassurance, visual, refusals — the same
+ * Number, headline, deck, paragraph, reassurance, visual — the same
  * order on both surfaces, because `09` §6 holds that layout may diverge between
  * devices and the argument may not.
  *
@@ -78,7 +84,6 @@
 
 import { SectionNumber } from "@/components/layout/section-number";
 import { PageBox } from "@/components/layout/page-box";
-import { RefusalPanel } from "@/components/section-3/boundary-block";
 import { BlotterTab, Reassurance, ReassuranceStack } from "@/components/section-45/parts";
 import type { ZoneTreatment } from "@/components/section-45/parts";
 import {
@@ -155,17 +160,6 @@ export function Ownership({
           <div className="mt-10">
             <BlotterTab zones={zones} />
           </div>
-          {/*
-            The refusals, arriving from Section 3. They are the ownership claim
-            stated negatively — "you write the messages" and "no generic mass AI
-            outreach" are one sentence facing two directions — so they resolve
-            this section after the picture has made the positive case. Privacy
-            is about what Blotter *reads*; these are about what it refuses to
-            *write*, which is why they did not go to Section 04. `09` §8 row 3.
-          */}
-          <div className="mt-12">
-            <RefusalPanel />
-          </div>
         </div>
 
         {/* -------------------------------------------------------- phone */}
@@ -194,10 +188,6 @@ export function Ownership({
 
           <div className="mt-9">
             <SheetPhone variant={variant} />
-          </div>
-
-          <div className="mt-10">
-            <RefusalPanel />
           </div>
         </div>
       </PageBox>

@@ -2128,3 +2128,86 @@ font block closes early, so all four faces inline rather than the two its notes
 describe — roughly 140KB of fonts nothing on screen draws, in the asset every
 phone visitor fetches above the fold. One character to fix, 47% smaller. Not
 touched: it is a shipped, ratified asset.
+
+### Four changes, August 11, 2026
+
+**1. Film C is 113KB, down from 290KB — and the comment that flagged it was
+wrong about which faces to cut.**
+
+Jon approved the fix *"if there aren't any tradeoffs we are brushing over."*
+There were, in the opposite direction, and checking found them.
+
+The film session reported that a nested comment made "all four faces live
+rather than the two its notes describe", implying Geist and Geist Mono were the
+waste. **They are the two the film actually draws.** Verified at runtime:
+`document.fonts` reported Geist and Geist Mono `loaded` and applied to visible
+text, Schibsted Grotesk and Roboto `unloaded`. Statically, no `font-family`
+anywhere names either — `--sans` is Geist, `--mono` is Geist Mono,
+`--sheet-type` is Arial. Acting on the report as written would have stripped the
+only faces the film uses.
+
+**What actually happened.** The author's intent was right and is worth keeping:
+Film C has no wordmark and no Gmail surface, so it needs neither the display
+face nor Roboto. But the comment saying so **pasted the four-face block inline
+as an example of what not to ship**, and the paste carried its own `/* ... */`,
+which terminated the comment at the example's first line. All four pasted faces
+became live CSS, and the intended Geist + Geist Mono pair below them was live
+too — six `@font-face` blocks in a file its own spec records as two.
+
+Nothing looked wrong, which is why it survived. Deleting the accidental paste
+leaves exactly the intended pair: **290KB to 113KB**, against the 114KB
+`FILM-C.md` always claimed. Fixed in both hand-kept copies. Rendering verified
+pixel-identical at `t=9.0`.
+
+**2. The hero film settles into the static composition instead of freezing.**
+
+Jon: *"it pauses on the static frame of no reply for five days… this is like a
+frozen frame that shows one out of three cues, this literally makes no sense.
+So either we need it to revert back to a hero visual that you can actually read
+statically, or just have it repeat."*
+
+The fault is structural rather than aesthetic, and it was latent in the brief.
+The film shows **one cue at a time in a fixed slot** — the design that makes the
+connector a straight elbow and stops the cards colliding. So no frame of it ever
+holds more than one cue, and no frame can stand in for a composition whose
+argument is three activities landing on three rows. **A film built this way
+cannot rest on a frame of itself**, and the brief asked it to.
+
+Settle rather than loop, of the two he offered: this film has no wipe-back, so
+wrapping `t` would hard-cut three rows and a cue in one frame. The settle needs
+no new animation and lands on the composition ratified for the job.
+
+**It fixes reduced motion too, which had the same defect** — the static
+substitute was going to be a single film frame. Reduced motion now gets the
+settled state immediately and never mounts the film.
+
+**3. The refusals lose their panel and move to the end of the page.**
+
+Jon: *"I don't like the bubbles behind them… just against the gradient
+background"*, and *"this is kind of like a platform whole thing of what we
+don't [do]. So it doesn't necessarily need to be in this section."*
+
+**This overrides `09` §8 row 3, which is recorded rather than quietly dropped.**
+Row 3 reads the refusals as the ownership claim inverted, so it put them with
+ownership. Jon reads them as a statement about what the product is not, which is
+page-level. The row is not wrong about what they *mean*; it is wrong that the
+meaning dictates the placement — and the fact that they looked wrong in Section
+3 and then wrong again in Section 02 is the evidence.
+
+**Not Section 04, despite that being the obvious "bottom".** `09` §4 is explicit
+that *"Section 04 stays about data"*: privacy is what Blotter reads, these are
+what it refuses to write. That distinction survives the reframing, so they land
+after the questions and before the closing CTA, with no numeral — a closing note
+inside `05` rather than a sixth section.
+
+**The cost, stated:** the warm panel was what kept these visibly distinct from
+the reassurance claims, and `06` carries a row warning the two lists could
+converge. They now look the same. What separates them is position rather than
+treatment, which is weaker — and is why the placement is load-bearing.
+
+**4. Section 6's permissions collapse on desktop.** Jon's decision from earlier
+the same day, built. The header line `What each connection can and cannot do.`
+comes with it, because he identified the dependency himself when he ratified
+that string: it exists *because* the rows are closed. Collapsed desktop needs
+it; open desktop must not have it. `ServiceColumns` is retained, rendered
+nowhere, so the ratified three-column composition is one line to restore.

@@ -213,7 +213,7 @@ export function HeroVisual({ scale = VISUAL_SCALE }: { scale?: number }) {
 }
 
 /** Untransformed module at its ratified geometry. */
-export function HeroVisualModule() {
+export function HeroVisualModule({ labels = false }: { labels?: boolean } = {}) {
   return (
     <div className="relative" style={{ width: TOTAL_W }}>
       {/* Sheet, cues and connectors share one coordinate space. */}
@@ -243,26 +243,40 @@ export function HeroVisualModule() {
         ))}
       </div>
 
-      {/* Ownership underlines, clear of the tab strip and lower chrome. */}
-      <div
-        className="relative"
-        style={{ marginTop: LABEL_GAP, height: LABEL_BLOCK }}
-      >
-        <OwnershipLabel
-          left={GUTTER}
-          width={MANUAL_W}
-          lead="YOU"
-          rest="add the contacts"
-          tone="manual"
-        />
-        <OwnershipLabel
-          left={GUTTER + MANUAL_W}
-          width={MAINTAINED_W}
-          lead="BLOTTER"
-          rest="keeps them current"
-          tone="maintained"
-        />
-      </div>
+      {/*
+        Ownership underlines, clear of the tab strip and lower chrome.
+
+        **Off by default since August 11, 2026.** Jon cut them: 13px centred
+        type on a page whose theme rule is to centre nothing, sitting below the
+        whole Sheets window rather than below the columns they name. `01-HERO`
+        §11 requires them, so this is his override, and `06` carries it.
+
+        The code stays because this module is now the hero's *settled* state —
+        what the film fades into and what reduced motion gets instead of the
+        film — and a caller that wants the ratified composition whole can still
+        ask for it.
+      */}
+      {labels && (
+        <div
+          className="relative"
+          style={{ marginTop: LABEL_GAP, height: LABEL_BLOCK }}
+        >
+          <OwnershipLabel
+            left={GUTTER}
+            width={MANUAL_W}
+            lead="YOU"
+            rest="add the contacts"
+            tone="manual"
+          />
+          <OwnershipLabel
+            left={GUTTER + MANUAL_W}
+            width={MAINTAINED_W}
+            lead="BLOTTER"
+            rest="keeps them current"
+            tone="maintained"
+          />
+        </div>
+      )}
     </div>
   );
 }

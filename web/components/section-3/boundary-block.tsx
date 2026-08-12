@@ -208,35 +208,68 @@ export const BADGES = BOUNDARIES.map((b) => b.label);
  * fears is a *phone* problem, where the two lists are 200px apart in one
  * column — and on a phone this stays stacked, so nothing there changes.
  */
+/**
+ * The three refusals.
+ *
+ * **No panel from August 11, 2026.** Jon: *"I really just hate… how those are
+ * filled in. I don't like the bubbles behind them. I like how above we just
+ * have Keep your existing tracker, no re-entering every contact, whatever, just
+ * against the gradient background."*
+ *
+ * So this now matches `Reassurance` exactly: three across, ruled apart with a
+ * hairline, sitting on the page field with no container of its own. The warm
+ * fill and the ring are gone. The glyph tiles stay — those are what the
+ * reassurance row has too, and they are not what he was pointing at.
+ *
+ * **What that costs, and it is a real cost.** The warm panel existed to keep
+ * these visibly distinct from the reassurance claims —
+ * `06-assumptions-and-open-questions.md` carries a row warning the two lists
+ * could converge into "two three-item lists with a mark each". They have now
+ * converged, deliberately. The thing that keeps them apart is no longer their
+ * treatment but their **position**: the reassurance claims sit against the
+ * sheet they describe, and these sit at the end of the page as a statement
+ * about the product rather than about the picture.
+ *
+ * That is a weaker separation than a panel, and it is the reason the placement
+ * below is load-bearing rather than incidental.
+ */
 export function RefusalPanel({ className }: { className?: string }) {
   return (
-    <ul
-      className={cn(
-        "flex flex-col rounded-xl bg-[#fbf9f5] px-5 py-2 ring-1 ring-navy-900/[0.07]",
-        "desk:flex-row desk:items-stretch desk:px-2 desk:py-0",
-        className,
-      )}
-    >
+    <ul className={cn("flex flex-col desk:flex-row desk:items-stretch", className)}>
       {BOUNDARIES.map((item, i) => (
         <BoundaryRow
           key={item.label}
           item={item}
           last={i === BOUNDARIES.length - 1}
+          first={i === 0}
         />
       ))}
     </ul>
   );
 }
 
-function BoundaryRow({ item, last }: { item: Boundary; last: boolean }) {
+function BoundaryRow({
+  item,
+  last,
+  first = false,
+}: {
+  item: Boundary;
+  last: boolean;
+  /* Only the page-level `RefusalPanel` sets this. `Facing()` below belongs to
+     Section 3, which is cut from both surfaces, and keeps its stacked layout
+     where the flag is meaningless. */
+  first?: boolean;
+}) {
   return (
     <li
       className={cn(
         "flex items-center gap-3.5 py-2",
-        /* The divider turns ninety degrees with the list. `last` drops it at
-           the end of the row as well as the end of the stack. */
-        !last && "border-b border-navy-900/[0.08] desk:border-b-0 desk:border-r",
-        "desk:flex-1 desk:justify-center desk:py-4",
+        /* The rule turns ninety degrees with the list, and it is the same
+           hairline `Reassurance` uses rather than a second divider weight. */
+        !last && "border-b border-navy-900/[0.08] desk:border-b-0 desk:border-r desk:border-navy-900/[0.13]",
+        "desk:flex-1 desk:gap-3 desk:px-8 desk:py-1",
+        first && "desk:pl-0",
+        last && "desk:pr-0",
       )}
     >
       <span

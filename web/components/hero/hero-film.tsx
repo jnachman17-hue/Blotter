@@ -44,7 +44,11 @@
  * is in the viewport.
  */
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+
+import { HeroVisualModule } from "@/components/hero/hero-visual";
+import { Fit } from "@/components/layout/fit";
+import { cn } from "@/lib/cn";
 
 /** Native canvas. Both built films share it. */
 const FILM_W = 1080;
@@ -137,41 +141,64 @@ const DESK_SHADOW_ROOM = 16;
 
 const DESK_SRC = "/film/blotter-film-web-hero.html?bare=1";
 
-/**
- * The held frame, as a still.
- *
- * `11.4s` is inside the film's final rest, after Daniel's row has landed and
- * while nothing is moving. Every row is in its end state and the silence cue is
- * still plugged into the sheet, so the still carries the whole argument — which
- * is exactly what a static substitute has to do, and it is the same choice
- * `STILL_SRC` makes for the phone at 9.0s.
- */
-const DESK_STILL_SRC = "/film/blotter-film-web-hero.html?bare=1&t=11.4";
+/** The film's own length, plus a beat so the fade starts after it has settled. */
+const DESK_SETTLE_MS = 11_500 + 500;
 
 /**
- * The desktop hero.
+ * The desktop hero: the film, then the ratified static composition.
  *
- * **This replaces the ratified static composition**, `HeroVisualModule`, from
- * August 11, 2026. Jon: *"Yes. I do wanna do a video asset for the hero on
- * web."* The film's held final frame *is* the new static hero — reduced motion,
- * a failed load and a screenshot all get the same picture — which is why the
- * film has no wipe-back and stops rather than looping.
+ * **The film plays once and then dissolves into `HeroVisualModule`.** Jon,
+ * seeing the first build, which simply froze on the film's last frame:
  *
- * **The hero's ownership labels go with it, and they go by construction.**
- * `YOU add the contacts` and `BLOTTER keeps them current` were drawn by
- * `HeroVisualModule`, which is no longer rendered anywhere. Jon ruled them out
- * on August 11 — they sat below the sheet in 13px centred type on a page whose
- * theme rule is to centre nothing, and the film proves the same split by never
- * touching the left three columns for its whole eleven seconds.
+ * > *"it pauses on the static frame of no reply for five days, but that
+ * > connecting to Daniel, which I just don't understand why this is where the
+ * > static pauses… this is like a frozen frame that shows one out of three
+ * > cues, this literally makes no sense. So either we need it to revert back to
+ * > a hero visual that you can actually read statically, or just have it
+ * > repeat."*
  *
- * `hero-visual.tsx` is kept, not deleted: `PAGE_BOX_W` is derived from its
- * `TOTAL_W` and `VISUAL_SCALE`, so the file still defines the page's width.
+ * He is right, and the reason is structural rather than a matter of taste. The
+ * film shows **one cue at a time in a fixed slot** — that design is what makes
+ * the connector a straight elbow instead of a curve, and it is why the cards
+ * cannot collide. But it means no frame of the film ever contains more than one
+ * cue, so no frame of it can stand in for a composition whose whole argument is
+ * *three* pieces of activity landing on three different rows. A film that plays
+ * once cannot rest on a frame of itself.
  *
- * Not lazy, unlike the phone's. This is the first thing above the fold on the
- * surface that renders it, so there is nothing to defer.
+ * **Why the settle rather than the loop**, given he offered both and preferred
+ * neither: this film has no wipe-back. Film C loops seamlessly because a pale
+ * bar runs up the grid and hands every row back to its opening state; this one
+ * was built to stop, so wrapping `t` would hard-cut three rows and a cue card
+ * in a single frame. The settle needs no new animation, and it lands on the
+ * composition that was ratified for exactly this job.
+ *
+ * **It also fixes reduced motion, which had the same defect.** A static
+ * substitute was going to be a single film frame, which is the thing he
+ * objected to. Now anyone who asks for reduced motion simply gets the settled
+ * state immediately and never sees a film at all.
+ *
+ * The ownership labels stay off in both states — `HeroVisualModule` defaults
+ * `labels` to false, which is Jon's August 11 ruling.
+ *
+ * Both layers sit in one box at the film's aspect, so the dissolve is a
+ * cross-fade in place with nothing moving. The static module is 1322 x 432.5
+ * without its label block, which is the film's canvas exactly, so both render
+ * at the same scale with the same 8px of shadow room.
  */
 export function HeroFilmDesk() {
   const reduced = usePrefersReducedMotion();
+  const [settled, setSettled] = useState(false);
+
+  useEffect(() => {
+    if (reduced) return;
+    const id = window.setTimeout(() => setSettled(true), DESK_SETTLE_MS);
+    return () => window.clearTimeout(id);
+  }, [reduced]);
+
+  /* Reduced motion never mounts the iframe at all: there is no point fetching
+     a 94KB film to cross-fade away from a reader who asked not to see it. */
+  const showFilm = !reduced;
+  const showStatic = reduced || settled;
 
   return (
     <div className="mt-8 hidden desk:block">
@@ -179,13 +206,31 @@ export function HeroFilmDesk() {
         className="relative w-full"
         style={{ aspectRatio: `${DESK_W} / ${DESK_H + DESK_SHADOW_ROOM}` }}
       >
-        <iframe
-          key={reduced ? "still" : "film"}
-          src={reduced ? DESK_STILL_SRC : DESK_SRC}
-          title="A recruiting tracker updating itself: an email arrives, a meeting completes, and a contact goes quiet"
-          scrolling="no"
-          className="absolute inset-0 h-full w-full border-0"
-        />
+        {showFilm && (
+          <iframe
+            src={DESK_SRC}
+            title="A recruiting tracker updating itself: an email arrives, a meeting completes, and a contact goes quiet"
+            scrolling="no"
+            aria-hidden={settled}
+            className={cn(
+              "absolute inset-0 h-full w-full border-0",
+              "transition-opacity duration-700 ease-out motion-reduce:transition-none",
+              settled ? "opacity-0" : "opacity-100",
+            )}
+          />
+        )}
+        <div
+          aria-hidden={!showStatic}
+          className={cn(
+            "absolute inset-0 grid place-items-center",
+            "transition-opacity duration-700 ease-out motion-reduce:transition-none",
+            showStatic ? "opacity-100" : "opacity-0",
+          )}
+        >
+          <Fit width={DESK_W}>
+            <HeroVisualModule />
+          </Fit>
+        </div>
       </div>
     </div>
   );
