@@ -1,6 +1,24 @@
 /**
  * Four voices for the page's copy, for comparison behind `/review/voice`.
  *
+ * ## ⚠ THIS FILE IS A RECORD, NOT THE SOURCE OF TRUTH
+ *
+ * **Jon chose `a` on August 13, 2026 and it is live.** The real copy lives in
+ * the components and in `lib/closing-copy.ts`; nothing on the page reads this
+ * file. It is kept because the comparison is the reasoning behind the choice,
+ * and a later session asking *why does the page talk like this* should be able
+ * to see what it was chosen against.
+ *
+ * **It is already behind the page.** After picking `a`, Jon amended the hero to
+ * `Recruiting truly sucks. / You will lose track.`, changed Section 01's eyebrow
+ * to `The recruiting cycle you signed up for.`, rewrote the hours line, the
+ * Section 03 CTA line and the closing banner, and added three FAQ entries. Read
+ * `04` for the current state. **Do not copy strings out of here.**
+ *
+ * `og` remains exactly what was live before the change, which is the one thing
+ * in this file that stays useful: it is the only place the previous page's copy
+ * survives in full.
+ *
  * ## Why this exists
  *
  * Jon, August 12, 2026: the page is written as semi-professional SaaS marketing
