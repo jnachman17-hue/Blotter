@@ -94,8 +94,8 @@ function Headline({ center = false }: { center?: boolean }) {
         center ? "mx-auto max-w-[620px] text-center" : "max-w-[620px]",
       )}
     >
-      You will lose track.{" "}
-      <span className="text-navy-400">Everyone does.</span>
+      Recruiting truly sucks.{" "}
+      <span className="text-navy-400">You will lose track.</span>
     </h1>
   );
 }

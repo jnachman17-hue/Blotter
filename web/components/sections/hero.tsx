@@ -161,8 +161,8 @@ export function Hero({
               which is cheaper than any decoration.
             */}
             <h1 className="font-display text-display leading-[1.06] font-semibold tracking-[-0.028em] text-ink">
-              You will lose track.{" "}
-              <span className="text-navy-400">Everyone does.</span>
+              Recruiting truly sucks.{" "}
+              <span className="text-navy-400">You will lose track.</span>
             </h1>
 
             <div className="contents desk:block">

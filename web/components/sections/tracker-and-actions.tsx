@@ -49,7 +49,7 @@ const ACT_SUB =
   "Replies you owe, follow-ups that are due, thank-yous you never sent. Rebuilt every time something changes, so you stop reconstructing it out of Gmail and memory.";
 
 /** `04-SECTION-4` §5. The CTA enters the funnel with `cta_location = actions`. */
-const CTA_LINE = "Open your tracker and know what to do next.";
+const CTA_LINE = "Start maximizing shareholder value.";
 
 /* ------------------------------------------------------------------ pieces */
 

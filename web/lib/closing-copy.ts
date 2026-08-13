@@ -83,11 +83,30 @@ export const PRODUCT_FAQ: FaqEntry[] = [
  * §9. The page's ending. §1 requires the page not end on an accordion, so the
  * closing block is a separate visual phase within the same section.
  */
-export const CLOSING_HEADLINE = "Your recruiting tracker, always current.";
+/*
+  Rewritten August 13, 2026 under the voice ruling.
+
+  **The closing banner is the page's other bookend and it has to answer the
+  hero.** The page now opens on `Recruiting truly sucks. You will lose track.`
+  The old ending, `Your recruiting tracker, always current.`, answered a
+  different page — it is a product descriptor, and it arrives after five
+  sections that have been talking to a person.
+
+  So the ending concedes the first half and fixes the second, which is the only
+  honest thing it can do: nothing here makes recruiting pleasant. Conceding it
+  is also what keeps the claim credible at the exact moment the page asks for
+  the click.
+*/
+export const CLOSING_HEADLINE = "Recruiting will still suck. You just won't lose anyone.";
 
 export const CLOSING_SUPPORTING =
-  "Keep your relationships moving without spending every day rebuilding the state of your process.";
+  "Blotter keeps the sheet current on its own, so the hours you were spending on admin go back to the people you are actually trying to reach.";
 
-/** Beneath the CTA, smaller and quieter. */
+/**
+ * Beneath the CTA, smaller and quieter.
+ *
+ * `No AI slop` echoes the line now carried in the header bar on every screen of
+ * the page. It is the boundary statement, so it stays a list of refusals.
+ */
 export const CLOSING_REASSURANCE =
-  "Keep your existing Google Sheet. No mass outreach. No technical-prep content.";
+  "Keep your existing Google Sheet. No mass outreach. No technicals. No AI slop.";

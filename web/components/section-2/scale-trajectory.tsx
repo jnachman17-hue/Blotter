@@ -377,7 +377,9 @@ function ArgumentRow() {
           </span>
           <span className="text-[0.9375rem] leading-[1.45] font-semibold text-ink desk:text-small desk:font-normal desk:text-ink-muted">
             saved on manual tracker administration{" "}
-            <span className="desk:block">over one recruiting cycle</span>
+            <span className="desk:block">
+              during the most grueling few months of your life
+            </span>
           </span>
         </div>
       </div>
