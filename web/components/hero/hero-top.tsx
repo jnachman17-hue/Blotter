@@ -60,7 +60,7 @@ export type HeroTopVariant = "current" | "a" | "b" | "c" | "d" | "e" | "f" | "g"
 
 /** Ratified, `01-HERO`. */
 const EYEBROW =
-  "The smart recruiting tracker for investment banking and high-finance networking";
+  "The non-AI slop tracker that actually saves you time";
 
 function Eyebrow({ center = false }: { center?: boolean }) {
   return (
@@ -94,8 +94,8 @@ function Headline({ center = false }: { center?: boolean }) {
         center ? "mx-auto max-w-[620px] text-center" : "max-w-[620px]",
       )}
     >
-      Your networking keeps moving.{" "}
-      <span className="text-navy-400">Your tracker does not.</span>
+      Recruiting truly sucks.{" "}
+      <span className="text-navy-400">You will lose track.</span>
     </h1>
   );
 }
@@ -119,9 +119,11 @@ export function AuthorityLine({ className }: { className?: string }) {
         aria-hidden="true"
         className="mr-3 inline-block h-px w-3 align-middle bg-ink-faint"
       />
-      Built by a{" "}
-      <span className="font-medium text-ink">former Goldman Sachs banker</span>{" "}
-      for recruitment.
+      Built by{" "}
+      <span className="font-medium text-ink">
+        someone who actually went through IB recruitment
+      </span>
+      .
     </p>
   );
 }

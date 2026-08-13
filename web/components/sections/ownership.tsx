@@ -103,7 +103,7 @@ import { KEEP_H } from "@/components/sections/tracker-and-actions";
  * changing activity current from Gmail and Calendar."*
  */
 export const KEEP_SUB_TRIMMED =
-  "Blotter creates a standardized recruiting view in a new tab and keeps the changing activity current from Gmail and Calendar.";
+  "Blotter creates a clean view in a new tab and keeps the changing activity current from Gmail and Calendar.";
 
 /**
  * The desktop head: headline and deck left, supporting paragraph right.

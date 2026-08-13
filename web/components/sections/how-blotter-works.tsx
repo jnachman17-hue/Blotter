@@ -47,7 +47,7 @@ const EYEBROW = "How Blotter works";
  * than copied, so the two surfaces cannot drift apart on a ratified string.
  */
 export const SECTION_3_HEADLINE =
-  "You manage the relationships. Blotter maintains the moving parts.";
+  "You handle the people. Blotter handles the updating.";
 
 const HEADLINE = SECTION_3_HEADLINE;
 

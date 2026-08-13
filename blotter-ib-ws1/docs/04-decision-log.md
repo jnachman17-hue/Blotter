@@ -3225,6 +3225,238 @@ post worked. And **the six posts should not fire at once**: near-identical posts
 from one account across many subreddits inside a short window is the shape spam
 heuristics look for, and staggering lets the first two teach the next four.
 
+### Voice A is ratified and live, August 13, 2026
+
+**Jon, having looked at all four on the branch: *"I like version A."*** Then two
+rounds of amendments, then *"Go ahead and push this to the live version."*
+
+Merged to `main` and deployed to `blotterib.com`. **This is the largest copy
+change since the page shipped**, and every string of it is text — no layout, no
+asset, no funnel mechanic, exactly the scope Jon set.
+
+#### What the page says now
+
+| Slot | Was | Is |
+|---|---|---|
+| Hero headline | `Your networking keeps moving. Your tracker does not.` | **`Recruiting truly sucks. You will lose track.`** |
+| Eyebrow line | `The smart recruiting tracker for investment banking and high-finance networking` | **`The non-AI slop tracker that actually saves you time`** |
+| Authority | `Built by a former Goldman Sachs banker for recruitment.` | **`Built by someone who actually went through IB recruitment.`** |
+| Section 01 eyebrow | `The scale of a recruiting cycle` | **`The recruiting cycle you signed up for.`** |
+| Section 01 headline | `Your manual tracker was never built to keep up with this.` | **`Your Google Sheet won't keep up with this.`** |
+| Section 01 body | `A manual tracker changes only when you remember to update it…` | **`628 recruiting emails. 68 coffee chats. 30 interview rounds. You will forget things. You will lose track…`** |
+| Hours | `~60 hours saved… over one recruiting cycle` | **`…during the most grueling few months of your life`** |
+| Section 02 headline | `Keep the tracker you already built.` | **`You already have a tracker. Keep it.`** |
+| Section 02 sub | `You manage the relationships. Blotter maintains the moving parts.` | **`You handle the people. Blotter handles the updating.`** |
+| Section 03 headline | `Know exactly what needs your attention.` | **`Everything you still owe`** |
+| Section 03 CTA line | `Open your tracker and know what to do next.` | **`Start maximizing shareholder value.`** |
+| Closing banner | `Your recruiting tracker, always current.` | **`Recruiting will still suck. You just won't lose anyone.`** |
+| FAQ | five product questions | **plus three: who it is for, will AI take my analyst role, am I cooked** |
+
+#### The eyebrow moves by surface, and it removed a live defect
+
+On Jon's instruction the line now rides in the **top bar above the breakpoint**,
+travelling with the reader, and stays as the **hero eyebrow on a phone**.
+
+**Implementing it found that the string was rendering three times in the served
+HTML and twice visibly on desktop** — once in the header bar, once in the hero.
+It had been shipping that way since layout G. Nobody had noticed, and it was
+found by carrying out a copy instruction rather than by any check.
+
+#### Three things changed that Jon did not name, and why
+
+- **The share card.** `app/opengraph-image.tsx` paints the headline into the
+  image that renders on every link. Leaving it would have put the old headline
+  on every Reddit and LinkedIn preview of a page that no longer says it.
+- **`hero-top.tsx`'s parked variants**, so a review route cannot show copy the
+  page has abandoned.
+- **`lib/voice.ts` is marked as a record rather than a source.** Nothing reads
+  it; it survives because the comparison is the reasoning, and `og` is now the
+  only complete copy of the previous page's words.
+
+#### The closing banner is a headline and a button, deliberately
+
+**`CLOSING_SUPPORTING` and `CLOSING_REASSURANCE` are exported and imported
+nowhere.** Found by reading the rendered text at both widths, not the file — the
+file says they exist and the page says they do not. Both were rewritten before
+that surfaced, and neither rewrite reaches a screen.
+
+**Jon ruled: leave it.** *"I'm happy with what's on the bottom banner. That's
+okay."* So the ending is two elements on purpose. The dead constants stay,
+carrying a comment saying so, rather than being deleted — deleting them would
+lose the only written record that the banner once had three parts.
+
+#### Two things this leaves stale
+
+1. **The desktop baseline in `10` §3.** The hero lost the eyebrow above the
+   breakpoint, so the recorded desktop height is wrong. **Until it is re-taken
+   the delta check is not armed**, which is precisely the failure that ran for a
+   session and a half in session 9.
+2. **The share card image changed.** `07` says platforms cache previews hard.
+   The re-scrape was deprioritised on August 12 when the card only changed
+   names; it now carries a different headline, and the next Reddit or LinkedIn
+   link is the first that would show it.
+
+#### The test this lands in the middle of
+
+`WS3-SPEC`'s test-integrity rule was withdrawn on August 12 precisely so this
+could happen, so it breaks no rule. But the reporting requirement Jon did not
+withdraw still stands, so the date is the record: **every visitor before August
+13, 2026 saw a materially different page from every visitor after it.** Nine
+leads and 63 visitors sit on the old copy. Any readout that blends them without
+saying so is wrong.
+
+### Jon overrides the specs on voice, explicitly, August 12, 2026
+
+**Jon: *"I know this overrides a ton of rules on what we have in the spec
+documents, but I am the ultimate authoritative voice here… I'm overriding
+everything. If I say so that's okay. The session is taking a wildly different
+turn than what we had planned for."***
+
+Recorded because `CLAUDE.md` makes the specs authoritative for design decisions
+and requires conflicts to be surfaced rather than split. **This is the override
+arriving through the front door**, which is the correct way for it to arrive.
+The specs remain authoritative against *my* judgement; they are not
+authoritative against Jon's.
+
+**Scope, in his words: text only.** *"I plan on keeping all the visual assets.
+The only thing that would change ever is the text… we're not making a whole new
+website."* Layout, films, the sheet asset, the trajectory diagram, the share
+card and the funnel mechanics all stand.
+
+**Direction: further than this chat advised.** The session's recommendation was
+that the enemy is abstraction rather than professionalism, and that specificity
+would outperform attitude. **Jon wants more direct, more emotional and edgier
+than that.** Not settled by argument — settled by building the variants and
+looking, which is this project's own method for a question with no obvious
+answer.
+
+### The confession frame failed, and r/MBA ran the experiment twice
+
+**The most important finding this project has produced about acquisition**, and
+it arrived within twenty minutes of posting.
+
+**Same subreddit. Same account. Six weeks apart. Opposite result.**
+
+| | Old post, ~34 days earlier | New post, August 12 |
+|---|---|---|
+| Frame | *I had this problem, I mocked something up, would this help you?* | *I made a mistake that cost me a process, here is what I built* |
+| Score | **+13** | **0**, downvoted below its own starting point |
+| Comments | 4 | **9** |
+| What the comments said | `Would be helpful… love to test a beta`, `Yoooo shoot me a DM! Interested in this`, `Hey! I'm down for this, plz send me a dm!` | `Skill issue`, `This is everything wrong with MBAs in a nutshell`, `I'm not trusting anything you build if you can't keep a schedule`, `If you can't pay attention to some emails then how can you pay attention to the 10x more…` |
+
+**Every comment on the old post is a demand signal. Three separate people asked
+to be let in. Every comment on the new post is a judgment of Jon.** Not one asks
+about the product.
+
+**So it is not the subreddit.** Jon's own first read was *"maybe this wasn't the
+right forum… older more serious people."* The same forum, with the same account,
+returned +13 and three access requests six weeks earlier. **The variable that
+changed is the frame.**
+
+#### Why the frame did it, which is the part that transfers
+
+1. **The old frame casts the reader as an advisor. The new one casts them as a
+   juror.** Being consulted raises a reader's status and they answer with what
+   they want. Being handed a confession invites a verdict, and in a
+   status-anxious professional sub a dunk is free status.
+2. **The vulnerability moved from the problem to the person.** In the old post
+   the thing that was broken was recruiting logistics. In the new post the thing
+   that was broken is Jon, **and Jon is the one asking you to trust his
+   software.** `I'm not trusting anything you build if you can't keep a
+   schedule` is that collision stated exactly, by a stranger, within minutes.
+3. **A mockup invites "yes, I'd want that." A finished product invites "prove
+   it."** The old post had nothing to evaluate, so the only available response
+   was to say whether you wanted it.
+4. **The ask got more expensive.** *Would this be helpful?* is answerable in the
+   comment box. *Take a look and tell me where it misses* requires leaving
+   Reddit. The cheap alternative, a dunk, was sitting right there.
+
+#### The session's own error, recorded plainly
+
+**This chat argued for the confession frame and was wrong.** The reasoning was
+that self-incrimination reads as sympathetic and drives comments, and that
+comments drive ranking. It did drive comments — nine against four. **Comments
+were the wrong target.** A post that makes people argue with you ranks; a post
+that makes people want something produces DMs. Optimising for the visible metric
+traded away the one that matters, which is the same failure mode as reading a
+measurement instead of the artefact.
+
+#### A measurement problem this exposes, and it is not small
+
+**The old post's wins arrived as DMs.** Three people asked for access in
+comments; the funnel cannot see any of that. If the frame that actually
+generates demand generates it *in the comment section*, then `checkout_started`
+stays at zero for reasons that have nothing to do with willingness to pay, and
+WS3's read rules will classify a working approach as weak. Carried to `06`.
+
+#### Two operational facts found at the same time
+
+- **The r/financestudents post was removed by automod** (`automod_filtered`)
+  about twenty minutes after posting. `reddit-financestudents-01` will read zero
+  because nobody can see the post, not because the audience did not care.
+- **The r/MBA post sits at score 0**, so it will not surface. Its nine comments
+  are people who already saw it. That thread is finished.
+- A fourth post went to **r/WallstreetOasis**, which was never in the plan and
+  has no campaign path.
+
+#### ⚠ `reddit-financestudents-01` is not r/financestudents
+
+**The r/WallstreetOasis post was published with the r/financestudents link.**
+Jon, August 12, 2026: *"I got posted to r/wso with r/financialstudents link."*
+
+**So every visitor recorded under `reddit-financestudents-01` is a
+r/WallstreetOasis visitor**, and the r/financestudents post is separately
+**pending moderator approval** and has never been publicly visible. The campaign
+that reads as r/financestudents contains none of its traffic and all of
+another sub's.
+
+Recorded rather than repaired: the events already carry the value and nothing
+rewrites a fired event. **Any later readout must state this, or it will
+attribute WSO's performance to a subreddit whose post never went live.** This is
+the first instance of the exact failure the one-path-per-subreddit scheme was
+built to prevent, and it happened at the one place the scheme could not reach —
+which link a human pastes into which box.
+
+The r/MBA post was deleted by Jon the same day.
+
+### Deployed and verified on production, August 12, 2026
+
+Commit `587f031`, pushed to `main`, live in about 40 seconds.
+
+**Verified against `blotterib.com` rather than against the local build**, in the
+order that matters: the browser was flagged with `?blotter_internal=1` **before**
+any tagged visit, so the whole verification run is excluded from every canonical
+number by construction.
+
+| Check | Result |
+|---|---|
+| `/fc`, `/students`, `/analyst` | all **307** to the right campaign |
+| `/`, `/privacy`, `/contact` | all **200**, no route collision |
+| `/privacy` robots | `index, follow` |
+| Attribution stored | correct campaign on all three |
+| Address bar after landing | `https://blotterib.com/`, parameters gone |
+| PostHog received it | `page_viewed` with `traffic_source: reddit` and the campaign |
+
+**One thing stated precisely rather than glossed.** PostHog confirms
+`reddit-financestudents-01` and `reddit-financialanalyst-01` end to end. It shows
+**no canonical event for `reddit-financialcareers-01`**, and that is correct
+behaviour rather than a fault: the test browser had already spent its
+once-per-visitor `page_viewed` on the flagging visit, so nothing fired on the
+`/fc` load. Attribution still stored correctly on that load, which is exactly the
+suppression-coupling this session fixed. A real first-time visitor from Reddit
+fires the event normally.
+
+**The internal exclusion was checked rather than assumed.** The canonical
+subquery matches the test visitor's `distinct_id`, so `properties.is_internal =
+'true'` does match the boolean PostHog stores. Worth recording because the filter
+compares a boolean against a string and could plausibly have silently matched
+nothing, which would have quietly admitted every internal visit into every
+number.
+
+**Traffic, read under the three canonical filters at the same time: 62 unique
+`page_viewed`**, against the 47 recorded at the close of session 9 earlier the
+same day. Pre-promotion and presumably indexing.
+
 ### The subreddit rules were read, August 12, 2026, and four of six forbid this
 
 Read from Reddit's own `about.json` and `about/rules.json` through Jon's logged-in
@@ -3473,8 +3705,22 @@ film geometry, in a different medium.
 **Verified against a production build**, five cases: tagged arrival stores
 source and campaign; a later differently-tagged arrival does not overwrite it;
 direct stores nothing; an own-host referrer is ignored; a cross-host referrer
-stores the bare hostname. Nothing was sent to PostHog — the local server has no
-vendor key, and the canonical filter admits only the two live hosts regardless.
+stores the bare hostname.
+
+⚠ **CORRECTION, same day.** This entry originally said *"Nothing was sent to
+PostHog — the local server has no vendor key."* **That was wrong.** Four
+`page_viewed` events from `localhost:3100` are in PostHog, carrying
+`reddit-financialcareers-01`, `reddit-01` and `reddit-mba-01`. The claim rested
+on `read_network_requests` returning nothing for a `posthog` pattern, which was
+a limitation of the recorder rather than evidence of no traffic — **a derived
+reading trusted over the artefact, which is session 9's lesson repeating in a
+fourth medium.**
+
+**No number is affected**, and it was checked rather than assumed: those events
+carry `is_internal: true` **and** a `$host` of `localhost:3100`, so the canonical
+read drops them twice over. But it makes the `localhost:3100` gap noted in `07`
+real rather than hypothetical — the internal-person subquery names
+`localhost:3000`, and only the `is_internal` clause is actually catching these.
 
 **This is an instrumentation repair, not a change of meaning.** `traffic_source`
 and `campaign` are WS3 properties and still answer the same question. The
