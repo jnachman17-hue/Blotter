@@ -3240,7 +3240,7 @@ asset, no funnel mechanic, exactly the scope Jon set.
 |---|---|---|
 | Hero headline | `Your networking keeps moving. Your tracker does not.` | **`Recruiting truly sucks. You will lose track.`** |
 | Eyebrow line | `The smart recruiting tracker for investment banking and high-finance networking` | **`The non-AI slop tracker that actually saves you time`** |
-| Authority | `Built by a former Goldman Sachs banker for recruitment.` | **`Built by someone who actually went through IB recruitment.`** |
+| Authority | `Built by a former Goldman Sachs banker for recruitment.` | **`Built by someone who actually went through IB recruitment (and hated it).`** |
 | Section 01 eyebrow | `The scale of a recruiting cycle` | **`The recruiting cycle you signed up for.`** |
 | Section 01 headline | `Your manual tracker was never built to keep up with this.` | **`Your Google Sheet won't keep up with this.`** |
 | Section 01 body | `A manual tracker changes only when you remember to update it…` | **`628 recruiting emails. 68 coffee chats. 30 interview rounds. You will forget things. You will lose track…`** |

@@ -330,8 +330,8 @@ export function Hero({
                 Built by{" "}
                 <span className="font-medium text-ink">
                   someone who actually went through IB recruitment
-                </span>
-                .
+                </span>{" "}
+                (and hated it).
               </p>
             </div>
           </div>
