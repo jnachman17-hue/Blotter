@@ -94,8 +94,8 @@ function Headline({ center = false }: { center?: boolean }) {
         center ? "mx-auto max-w-[620px] text-center" : "max-w-[620px]",
       )}
     >
-      Recruiting truly sucks.{" "}
-      <span className="text-navy-400">You will lose track.</span>
+      <span className="block">Recruiting truly sucks.</span>
+      <span className="block text-navy-400">You will lose track.</span>
     </h1>
   );
 }

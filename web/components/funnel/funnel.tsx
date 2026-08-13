@@ -586,7 +586,10 @@ export function Funnel() {
           }
         >
           {/* Every screen is visibly titled; this names the dialog itself. */}
-          <Dialog.Title className="sr-only">Try Blotter</Dialog.Title>
+          {/* Screen-reader name for the dialog. Kept in step with `CTA_LABEL`
+              so the thing a blind visitor is told they opened matches the
+              button they pressed. */}
+          <Dialog.Title className="sr-only">Fix my tracker</Dialog.Title>
 
           {stage === "question_track" && <QuestionTrack />}
           {stage === "question_window" && <QuestionWindow />}

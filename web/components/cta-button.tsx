@@ -32,8 +32,28 @@ import { useFunnel } from "@/lib/funnel-store";
  * If the platform variant is ever built, it must carry this exact label too.
  * WS3 requires the two funnels stay comparable, and the CTA is the first thing
  * that would diverge.
+ *
+ * ## `Fix my tracker`, August 13, 2026
+ *
+ * Jon's ruling, under the voice change. First person, so it reads as the
+ * visitor's own thought rather than the site's instruction, and it is the only
+ * thing on the page the product literally does.
+ *
+ * **What it deliberately is not.** Jon's opening idea was `Get my job` or
+ * `Find me a job`, and the shape was right while the promise was not: the FAQ
+ * says Blotter neither writes outreach nor teaches technicals, the boundary
+ * chips refuse mass outreach, and the closing banner says recruiting will still
+ * suck. A button promising a job is the single claim on this page a stranger
+ * could take apart in one reply, and the page's credibility currently rests on
+ * refusing to overpromise.
+ *
+ * **One label at every placement, and that is a measurement rule rather than a
+ * taste one.** WS3 permits multiple CTAs precisely because they all enter one
+ * funnel and `cta_location` tells them apart. Different labels per placement
+ * would confound label with position, and `cta_location` — the only placement
+ * evidence this test has produced — would stop meaning anything.
  */
-export const CTA_LABEL = "Try Blotter Now";
+export const CTA_LABEL = "Fix my tracker";
 
 /*
  * Shape rule for the page: interactive elements are pills, surfaces are 12px.
