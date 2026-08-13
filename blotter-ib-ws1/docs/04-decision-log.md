@@ -3006,3 +3006,490 @@ more, not less.
    `02` nobody has discharged. **A single-arm test with no precommitted failure
    threshold is one that can always be argued to have nearly worked.** Flagged,
    not decided.
+
+---
+
+## Session 10 — August 12, 2026
+
+Promotion. The session opened by raising six things with Jon; he ruled on all
+six inside one reply. They are recorded separately below because they have
+different lifespans.
+
+### The test-integrity freeze is abandoned
+
+**Jon: *"Side note I'm abandoning the test integrity freeze. We can change page
+if needed."*** And, separately: *"We might revisit CTA label later."*
+
+**What is withdrawn.** `WS3-SPEC.md`'s test-integrity rule froze price, funnel
+sequence, core page proposition, payment-choice mechanics, event definitions and
+traffic-allocation methodology for the duration of a measurement period, and
+required a material change to open a new labeled test iteration whose data must
+not be blended with the prior period. The page may now change mid-flight, and
+the CTA label is named as a live candidate.
+
+**What survives, and it survives on its own authority rather than on the
+freeze's.** WS3's *Reporting requirements* are a separate section, untouched by
+this ruling, and they already require every readout to state exact test dates,
+instrumentation incidents and material traffic-quality concerns. **So a material
+page change still has to be recorded with its date** — not because a freeze
+demands it, but because a number cannot be attributed to a page without it. A
+dated changelog is kept for that purpose and is a reporting aid, not a gate.
+
+**`TEST_ITERATION` stays at `r1`.** `lib/analytics.ts` namespaces milestone
+suppression by iteration and its own comment says to bump it on a material
+change. Bumping it re-fires every milestone for returning visitors and splits
+the dataset in two — which *is* the non-blending behaviour the freeze required
+and Jon has withdrawn. Leaving it alone keeps the read continuous. Recorded here
+because the code comment still instructs the opposite.
+
+### The traffic target is about 1,000 visitors across all platforms
+
+**Jon: *"We just want like 1,000 visitors in total across platforms or something
+like that."***
+
+A target, explicitly not a stop rule. Worth stating what it buys against WS3's
+low-sample treatment, because the number is close to the boundary in one
+direction and not the other:
+
+- It clears the **500** floor for a positive classification and the **600** floor
+  for a negative one, both measured on `page_viewed`.
+- It does **not** automatically clear the second condition on a positive
+  classification: at least **10 unique `payment_option_clicked`**. At 1,000
+  visitors that needs a 1.0 percent rate, which is exactly the bottom of the
+  credible-signal band.
+
+**So 1,000 visitors is comfortably enough to fail conclusively and only just
+enough to succeed conclusively.** Stated as arithmetic, not as a request to
+raise the target.
+
+### The stop rule is deferred, and stays deferred
+
+**Jon: *"It's okay to write the stop rule later. I'm not concerned about it.
+Don't re-litigate this with me."***
+
+Recorded so no later session re-raises it as a blocker. The `02` traffic-gate
+row stays undischarged by choice rather than by oversight, which is the
+distinction that was missing. `06` carries the row and its revisit trigger.
+
+### Promotion posts under the Blotter identity only
+
+**Jon: *"Right now we are posting under Blotter identity and Blotter identity
+only."*** So the LinkedIn company page, `x.com/blotterib`, and a Blotter account
+on Reddit. This also settles WS6's *testing identity* item, which had never been
+asked.
+
+Two consequences are accepted rather than avoided, and they shape the drafting
+rather than reopening the ruling:
+
+1. **A company page with no following has almost no organic reach on LinkedIn.**
+   The LinkedIn post's value is therefore mostly as a destination and a proof of
+   existence rather than as a traffic source, which is the same recall argument
+   that turned indexing on.
+2. **Reddit is the constraint that matters.** Most finance subreddits restrict
+   or remove overt self-promotion, and a brand account posting a product link is
+   the exact shape their rules describe. This is the substance of the open
+   question about whether Reddit needs a different posture — the posture
+   question is now a *rules* question, not a tone question.
+
+### AMENDED hours later: Reddit posts under Jon's anonymous account
+
+**Jon: *"On x and LinkedIn, we're posting from the actual Blotter accounts,
+whereas on Reddit, we're kind of just posting from an anonymous account that is
+mine."***
+
+**This supersedes the Blotter-identity-only ruling above for Reddit only.** X and
+LinkedIn are unchanged.
+
+**It dissolves the problem that ruling created.** The concern recorded above was
+that a brand account posting a product link is the exact shape most finance
+subreddits' self-promotion rules describe. A personal account posting a
+first-person account of its own recruiting cycle is a different object, and it
+is the format that already worked: **the same account posted a mockup of this
+idea across finance and consulting subreddits about a month and a half before
+August 12, 2026 and took roughly 20,000 organic views.**
+
+**The precedent post is the most useful evidence this project has about
+acquisition**, and it is worth recording precisely because nothing else in the
+documentation set knows about it:
+
+- Posted to r/MBA and a range of finance and consulting subreddits.
+- Title: *"Networking absolutely killed me during IB recruitment. Would this
+  tool be helpful?"*
+- A screenshot of an HTML mockup — **of the platform version, which is now
+  scrapped** — plus a first-person account carrying real figures: 742 emails,
+  112 coffee chats, 35 applications, 32 interview rounds, roughly five months.
+- Framing: *I recruited, this was the problem, I mocked up what would have
+  helped, would it help you.* It closes *"Not selling anything."*
+- About 13 upvotes and 4 comments on the r/MBA instance; roughly 20,000 organic
+  views across all of them.
+
+**What changed since, and it is the whole framing problem.** The tool now
+exists, so *"would this be helpful"* can no longer be literally true in the way
+it was, and *"Not selling anything"* is no longer available. Jon's own read:
+*"this framing needs to be a little bit different… we can't just be like, oh,
+Blotter arrived."*
+
+### The Reddit framing is ratified, and the post carries the page's figures
+
+**Jon's framing, approved verbatim as the spine:** *"I've spent the last three
+months building this tool for recruitment and want to see if it's actually
+useful."*
+
+First person, authorship stated, and the reader is given a job. It is also
+**literally true rather than a pose**, which is what makes it usable: nothing can
+be bought, the product opens Fall 2026, and no card is taken anywhere in the
+funnel. The post is a validation post with a working thing in place of a mockup.
+
+**The figures come off the landing page, not from the precedent post.** Jon:
+*"Let's change the numbers to match what is in our landing page."* Verified from
+`components/section-2/scale-trajectory.tsx` rather than quoted from memory:
+
+| | Page | The precedent post said |
+|---|---|---|
+| Recruiting emails | **628** | 742 |
+| Coffee chats | **68** | 112 |
+| Interview rounds | **30** | 32 |
+| Applications | **19** | 35 |
+| Hours | **~60**, saved, estimated | — |
+| Duration | **ten months, Aug to May** | "roughly 5 months" |
+
+**The duration is the one that would have slipped through.** Only the four counts
+were named, but Section 2's desktop time axis runs `Aug Sep Oct Nov Dec Jan Feb
+Mar Apr May`. A post saying five months contradicts the page a click away, for
+no gain.
+
+`~60 hours` is a saved-time estimate, not a workload figure, and the page
+qualifies it in place. It should not be restated in a post as though it were
+measured.
+
+### The Reddit still is A1, the cost frame
+
+**Jon: *"I think I like A1. It draws you in with the numbers and can help pull
+you to the site."***
+
+Film A at **t=3.90**, the volume beat: `628 recruiting emails` and `68 coffee
+chats` over a Gmail inbox and a January of coffee chats, captioned *One Summer
+Analyst 2027 recruiting cycle*.
+
+Five candidates were rendered and looked at rather than argued about, behind
+`/review/reddit-still`. **Two were rejected by looking, and the reasons are worth
+keeping** because they are the reasons any future still gets judged on:
+
+- **The web hero film** carries the most columns, eight, and is roughly **3:1** —
+  a thin strip in a feed, small type against the frame, and a long connector
+  across empty space at the silence beat. Most information, wrong object.
+- **Film C** has the largest type of any film and reads best at feed size, but
+  fits **four columns** and `Firm` is one of the two it drops. On a finance
+  subreddit the bank names are the strongest content in the frame, so trading
+  them for type size is the wrong trade here. Kept as the fallback if legibility
+  ever beats content.
+
+**Why A1 wins on more than taste.** Its figures are the post's figures — 628 and
+68 appear in the image and in the text — and **it shows no product at all**,
+which in a feed is the least advertisement-shaped image available. That matters
+more here than anywhere, because the whole risk on Reddit is reading as
+promotion. It also opens on the cost, which is what the ratified framing opens
+on.
+
+**A2 is proposed as a second inline image**, after the reader has read why: the
+five-column tracker with JPMorgan, Goldman Sachs, Moelis, BlackRock and Carlyle
+legible. A Reddit text post takes more than one inline image, so this is not an
+either-or. ⚠ **A2 carries `YOU add the contacts` / `BLOTTER keeps them
+current`** — the labels Jon cut from the live page hero on August 11 as *"pretty
+awful"*. Different layout in the film, but he should approve it knowing that.
+
+**A timestamp is a claim about a film, not the film.** Film A's volume beat ends
+at 4.4 by the beat table, and `t=4.35` renders **inside the cross-fade**, drawing
+both layers ghosted over each other. `3.90` is the last clean frame with both
+counters landed. Found by rendering, which is session 9's rule applied to a
+still.
+
+### Titles vary between subreddits. The body does not.
+
+**Jon: *"I agree change post headers as opposed to text."***
+
+Six simultaneous posts differing in both audience and wording would leave
+subreddit and copy confounded — if r/MBA outperforms, nothing says whether that
+was the audience or the words. **Holding the body constant makes the difference
+read as hook against audience rather than three tangled variables**, and it is
+free: on Reddit the title carries almost all of the performance and the body
+converts people who have already clicked in.
+
+Per-subreddit adjustment is limited to what genuinely does not fit — MBA
+vocabulary against undergraduate, and `IB recruiting` is simply wrong on a
+consulting subreddit. A line, not a rewrite.
+
+**Two operational notes recorded with it.** Titles ending in a question invite
+comments, and comments drive Reddit ranking — which is part of why the precedent
+post worked. And **the six posts should not fire at once**: near-identical posts
+from one account across many subreddits inside a short window is the shape spam
+heuristics look for, and staggering lets the first two teach the next four.
+
+### The subreddit rules were read, August 12, 2026, and four of six forbid this
+
+Read from Reddit's own `about.json` and `about/rules.json` through Jon's logged-in
+Chrome. **This is the first time any subreddit rule has been checked in this
+project**, and it should have happened before the target list was written rather
+than after.
+
+| Subreddit | Subscribers | Rules that bear on this |
+|---|---|---|
+| r/FinancialCareers | ~1.76M | **No Self-Promotion, Blogs, Spam** · **Highly Likely AI Generated Text** · Low Quality Posts · No Job Posts |
+| r/MBA | ~331K | **No self-promotion** · flair required · questions go to the weekly megathread |
+| r/financestudents | ~35.5K | **No Self-Promotion or Marketing** · **No AI-Generated Posts** · **Avoid Product Recommendations** |
+| r/financestudentshub | ~23.5K | none listed |
+| r/FinancialAnalyst | ~9.3K | **No ads.** |
+| r/consultingcareers | ~9.8K | none listed |
+
+*The subscriber figures come from `about.json`. New Reddit's sidebar showed a
+much smaller number for r/FinancialCareers on the same visit; the API figure is
+used here and the discrepancy is flagged rather than resolved.*
+
+**The finding that matters is not that four subs ban promotion. It is the
+correlation.** The two subs with no self-promotion rule are the two nobody
+reads: r/financestudentshub's best post of the entire year scored **52**, and
+r/consultingcareers' scored 169 and is about McKinsey's Solve game. **Permission
+and reach are inversely related across this list**, and no amount of copy
+changes that.
+
+**Two subs also ban AI-generated text by name**, r/FinancialCareers as a stated
+removal reason and r/financestudents as a rule. Any drafted body has to survive
+that read. It is a constraint on the prose itself: balanced clause pairs, tidy
+tricolons, and *"it's not X, it's Y"* constructions are the tells. The project's
+existing ban on em dashes helps for once.
+
+**What the precedent post does and does not license.** It carried a link and was
+not removed. It was also a mockup with no product behind it and closed *"Not
+selling anything"*, which is materially different from a live page with a price
+and an email capture. It is not evidence that a link survives now.
+
+### Jon's ruling on the rules: post anyway, with the link. Closed.
+
+**Jon, August 12, 2026, after reading the rules:** *"I know that all these
+subreddits ban self promotion, and, of course, that's just an explicit truth
+that is expected. However, we're still gonna go ahead and do this, and we're
+gonna not make it seem like complete and total outward self promotion garbage,
+but we're gonna lean on sort of what we did before. I do think it is okay to
+provide a link because that's around before… I don't wanna hear any pushback
+from you about ethics, or permissions or whatever."*
+
+**Ruled with the rules in front of him**, which is the distinction worth
+recording: this is not an oversight and it is not a session proceeding in
+ignorance. The four options in `06` are collapsed to option (d), link and accept
+removal risk, and that row is closed.
+
+**Do not re-raise this.** Not as a checklist item, not as a caveat on a draft,
+not in a later session. The exposure was written down before the decision was
+taken and the decision was taken anyway, which is all a log needs to carry.
+
+**What survives as craft rather than as objection**, because it changes the copy
+rather than the decision: the lower a post's promotional temperature reads, the
+better it performs against a moderator and against a comment section. Two levers
+are free and both are true. **Nothing is purchasable** — the product opens Fall
+2026 — and **the ask is a question rather than a signup.** The precedent post
+got both for free with *"Not selling anything"*; the closest true equivalent now
+is saying it is not open yet.
+
+### ⚠ The precedent post describes a product Blotter is not
+
+**This is the most expensive thing to get wrong in the draft**, and reusing the
+old paragraph verbatim would get it wrong.
+
+The precedent post's third paragraph promises: a CRM of banks and positions
+**with deadlines**, tracking of **who bounced**, and **emails pre-drafted so you
+just personalize and hit send**.
+
+Blotter does none of those:
+
+- **There is no deadline field.** `06` closed the Section 2 deadline asset in
+  August precisely because *"it makes a claim we show or prove nowhere"* — the
+  maintained columns are `Status`, `Next move`, `Last contact`, `Days` and
+  `Call`.
+- **It does not write outreach.** `closing-copy.ts`, the ratified FAQ: *"You
+  choose who to contact and write every message yourself. Blotter does not
+  generate outreach, teach technicals, or provide recruiting content."*
+
+A reader who clicks the link lands one screen away from the contradiction, and
+on a subreddit that already suspects promotion, being caught overclaiming is a
+worse outcome than the rule itself. **Every draft below describes only what the
+page describes.**
+
+### What actually performs on these subreddits
+
+Sampled top-of-year, and separately top-of-year restricted to self posts, since
+a self post is what is being written.
+
+**The single most relevant datum in the whole sample**, from r/financestudents:
+
+> `I cold-emailed 730 investment bankers and got 3 replies` — 137 points and
+> **101 comments**
+
+**A comment count almost equal to the score.** That is the shape being aimed at,
+and it is nearly this post's own hook: one large specific outreach number, then a
+brutal result. It validates the 628 angle directly, and it suggests the number
+alone is not enough — **the number needs an outcome attached to it.**
+
+Other patterns worth keeping:
+
+- **r/FinancialCareers top-of-year is dominated by memes and drama**, not
+  long-form. Its best *self* posts are first-person and blunt: `I finally did
+  it.` (1,236), `My coworker quit mid close yesterday and honestly I get it`
+  (640), `How I broke into IB as an analyst no MBA` (526).
+- **r/MBA rewards exactly our subject matter.** `What I wish I knew before
+  starting an MBA in NYC: recruiting starts before you even arrive` scored 950,
+  and its Part 2, specifically on investment banking recruiting, scored 397.
+  A recruiting-logistics post is native there.
+- **r/financestudents rewards credentialed insiders**: two AMA-shaped posts,
+  `I'm an investment banking analyst who gets a lot of cold emails. AMA` and
+  `I'm a VP at a BB in London...`, both near 480.
+- **r/FinancialAnalyst is not a recruiting sub.** Its top posts are about job
+  titles, monitors and modelling. Wrong audience; it should probably come off
+  the list.
+
+### No continuity with the precedent post
+
+**Jon: *"We don't need to think about continuity in that sense. Entirely new
+post. My old post is thousands of threads buried and will never surface now."***
+
+**The precedent post is evidence, never a reference.** Nothing in any post
+alludes to it, and the framing is not built to reward anyone who saw it. Its
+record above stays for one reason only: it is the sole datum this project has on
+what a finance-subreddit audience does with this idea, and 20,000 organic views
+is what makes the 1,000-visitor target look reachable.
+
+### The Goldman and JPMorgan claims are knowingly inconsistent
+
+Raised by the session, ruled by Jon, recorded here as a **knowing position rather
+than an oversight** — which is the whole reason this entry exists.
+
+The page makes two claims that belong to two different people:
+
+- The hero authority line: `Built by a former Goldman Sachs banker for
+  recruitment.`
+- Section 2's qualification: `* Representative workload from a high-intensity
+  Summer Analyst 2027 recruiting cycle that resulted in a JPMorgan offer.`
+
+Those are consistent on the page, because the case study is presented as
+*representative* and never as the builder's own. **The Reddit post collapses
+them**: Jon writes first person as the builder, which reads as the Goldman
+banker, and claims the 628 emails as his, which reads as the JPMorgan cycle.
+
+**Jon: *"I know it's inconsistent but I don't think ppl will read into this too
+much. Doubt anyone would really notice this."*** Ruled and proceeding. The
+exposure is a reader who reaches Section 2's footnote and connects it to a
+first-person Reddit post — small, and Jon has weighed it.
+
+Worth keeping in one line so a future session does not rediscover it as a bug:
+**the inconsistency is created by the post, not present on the page.** If it ever
+needs removing, the cheapest fix is on the post's side.
+
+### The Reddit subreddit list, provisional
+
+**Jon, August 12, 2026:** r/MBA, r/consultingcareers, r/financestudentshub,
+r/financialcareers, r/financialanalyst, r/financestudents.
+
+Each gets its own short path and its own campaign value, built and verified the
+same day, so six simultaneous posts stay separable. **Without that they would all
+read as `reddit`**, and the only question worth asking of six posts — which one
+worked — could not be answered afterwards.
+
+```
+blotterib.com/mba         reddit-mba-01
+blotterib.com/consulting  reddit-consultingcareers-01
+blotterib.com/hub         reddit-financestudentshub-01
+blotterib.com/fc          reddit-financialcareers-01
+blotterib.com/analyst     reddit-financialanalyst-01
+blotterib.com/students    reddit-financestudents-01
+```
+
+Subreddit names are unverified and a path costs nothing if one turns out not to
+exist or not to accept the post.
+
+### The audience is anyone recruiting in finance
+
+**Jon: *"We aren't necessarily targeting any specific recruiting candidates. If
+you are recruiting for finance we are targeting."***
+
+So the pre-season composition risk identified in `02`'s replacement strategic
+item is **accepted rather than engineered around**. No audience is selected for
+or against on the basis of where it sits in the recruiting calendar.
+
+**The mitigation becomes diagnostic instead of selective.** Composition is read
+after the fact rather than controlled up front, which requires two things to
+work: a distinct UTM per post, and `recruiting_window` / `recruiting_track` on
+profile completion. That is what makes the UTM scheme below load-bearing rather
+than tidy.
+
+### The share-card re-scrape is deprioritized
+
+**Jon: *"Don't think this is very important."*** Not done. `06` carries the row
+with a trigger, since the cost of being wrong is a stale card on the first
+LinkedIn post and the fix is the same afterwards as before.
+
+### The UTM scheme, and four faults in the attribution code
+
+**Jon: *"We should do the UTM scheme to track where visitors came from."***
+
+The scheme is in `07-infrastructure-runbook.md` under *Promotional links and
+attribution* and is not repeated here. Two parameters only, `utm_source` for the
+platform and `utm_campaign` for the individual post, one campaign value per post
+and never reused.
+
+**Why two and not five.** The adapter reads exactly two parameters and WS3 names
+exactly two properties. A `utm_medium` the instrument ignores adds visible
+length to a link on the one platform — Reddit — where a link that looks like
+marketing is a real cost. The related rule that follows from the same reasoning:
+prefer a Reddit text post with a markdown link over a link post, because a link
+post displays the URL in full.
+
+**Then the code turned out not to be able to answer the question.**
+`attribution()` had four faults, and they were found by reading it rather than
+by it failing, because it fails silently by construction:
+
+1. **`document.referrer` is `""` for direct traffic and `??` does not catch an
+   empty string**, so direct visitors carried `traffic_source: ""`.
+2. **Raw referrer strings do not group.** One source was many rows.
+3. **Same-host navigation counted as a referral** — `/privacy` and back
+   re-attributed a visitor to `blotterib.com` and destroyed their real source.
+4. **Nothing was persisted.** Attribution was recomputed per event from the URL
+   at that moment.
+
+Fixed as first-identified-touch, stored under `blotter:r1:attribution`, with
+`direct` as an explicit never-stored value, referrers reduced to a bare
+hostname, own host ignored.
+
+**A fifth fault appeared during verification and is the interesting one.**
+`attribution()` was reachable only from inside `track()`, which returns early on
+a suppressed milestone — so in a browser that had already been through the
+funnel, a tagged arrival was recorded nowhere. That is a small data case and a
+large design fault: **attribution silently depended on suppression state.**
+Capture now happens on mount in `AnalyticsProvider`, independent of any event.
+
+It was found because the first verification run returned `null` where the value
+should have been, in a browser profile that had run the funnel before. Reading
+the code would not have surfaced it; the run did. Same lesson as session 9's
+film geometry, in a different medium.
+
+**Verified against a production build**, five cases: tagged arrival stores
+source and campaign; a later differently-tagged arrival does not overwrite it;
+direct stores nothing; an own-host referrer is ignored; a cross-host referrer
+stores the bare hostname. Nothing was sent to PostHog — the local server has no
+vendor key, and the canonical filter admits only the two live hosts regardless.
+
+**This is an instrumentation repair, not a change of meaning.** `traffic_source`
+and `campaign` are WS3 properties and still answer the same question. The
+encoding of `traffic_source` does change — `direct` and bare hostnames, where
+the 47 pre-promotion views carry `""` and full referrer URLs — which is worth
+knowing when reading across the boundary.
+
+### `/privacy` becomes indexable, `/contact` does not
+
+Jon: *"Not sure what the privacy condition is."* — so this was explained rather
+than ruled, and decided on the standing reasoning rather than as a new question.
+
+Both pages carry `robots: { index: false }` in their own metadata, left from
+before site indexing was turned on August 11. The recall argument that carried
+indexing applies to the privacy policy directly: a reader who wants to check the
+data story days after seeing a post should be able to find it. `13` recommends
+the same. **`/contact` stays `noindex`** — an indexed contact form attracts
+scrapers and has no recall value.

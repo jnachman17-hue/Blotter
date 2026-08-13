@@ -169,6 +169,129 @@ waitlist` — the trigger refuses to lower it. Both are working as designed and
 both look like failures. Use a fresh incognito profile with
 `?blotter_internal=1` to test a stage from a clean identity.
 
+## Promotional links and attribution
+
+Written August 12, 2026, before the first post. **This is the instrument that
+makes the August 12 audience ruling readable.** The audience is deliberately
+broad — anyone recruiting in finance — so composition is read after the fact
+rather than controlled up front, and `traffic_source` is what makes reading it
+possible. WS3's reporting requirements demand results by traffic source.
+
+### The scheme
+
+**Two parameters, never more.**
+
+```
+https://blotterib.com/?utm_source=<platform>&utm_campaign=<post>
+```
+
+- **`utm_source`** is the platform, one bare lowercase token: `linkedin`, `x`,
+  `reddit`.
+- **`utm_campaign`** identifies the individual post:
+  `<platform>-<placement>-<nn>`, where `placement` is omitted when the platform
+  has only one surface, and `nn` is a two-digit ordinal. Lowercase and hyphens
+  only.
+
+**No `utm_medium`, `utm_term` or `utm_content`.** The adapter reads exactly two
+parameters and WS3 names exactly two properties. Parameters the instrument
+ignores add length to a link that people can see, and buy nothing.
+
+### Nobody ever types that URL. Short links, added August 12, 2026
+
+**The parameters never appear in a post.** Jon's objection was that
+`blotterib.com` is cleaner than a query string, and on Reddit a visible tracking
+query reads as marketing on the one platform where that costs most. Both are
+right, so the tracking moved off the visible link and onto the server.
+
+**A post shows a short path. The server adds the parameters. The page then takes
+them back out of the address bar.**
+
+```
+blotterib.com/r     ->  /?utm_source=reddit&utm_campaign=reddit-01
+blotterib.com/x     ->  /?utm_source=x&utm_campaign=x-01
+blotterib.com/li    ->  /?utm_source=linkedin&utm_campaign=linkedin-01
+```
+
+The table is `PROMO_LINKS` at the top of `web/next.config.ts` and **adding a post
+is one line.** `path` is what goes in the post; `campaign` is what appears in
+PostHog:
+
+```ts
+{ path: "/mba", source: "reddit", campaign: "reddit-mba-01" },
+```
+
+Three properties of this worth knowing:
+
+- **307, not 308.** A temporary redirect can be re-pointed later. A permanent one
+  is cached by browsers and is very hard to take back.
+- **A path cannot collide with a real route.** Taken: `/privacy`, `/contact`,
+  `/review/*`, `/api/*`, `/opengraph-image`, `/icon.svg`.
+- **The address bar is cleaned after capture.** `AnalyticsProvider` strips
+  `utm_*` with `history.replaceState`, so a visitor sees, bookmarks and copies
+  `blotterib.com/`. `?blotter_internal=1` and the review parameters survive. It
+  is skipped when storage is unavailable, because a private-browsing visitor
+  re-reads the URL on every event and stripping it would send the rest of their
+  funnel to `direct`.
+
+Verified on a production build: all three paths return 307 to the right
+destination; `/r` lands, stores `{reddit, reddit-01}`, and leaves
+`http://localhost:3100/` in the address bar; and
+`/?blotter_internal=1&utm_source=reddit&utm_campaign=reddit-mba-01` keeps the
+internal flag while dropping both tracking parameters.
+
+### Rules
+
+1. **One campaign value per post, never reused.** A second post to the same
+   place is `-02`. This is the only thing that separates them afterwards.
+2. **A link in a comment or a reply is its own placement** —
+   `reddit-financialcareers-comment-01`. `social/README.md` designates Film C
+   for replies, so replies are a real placement rather than an afterthought.
+3. **Never post the bare URL when a tagged one will do.** An untagged click
+   falls back to the referrer, which the platforms mangle.
+4. **On Reddit, prefer a text post with a markdown link to a link post.** A link
+   post displays the URL in full, and a visible tracking query reads as
+   marketing on the one platform where that costs the most.
+
+### What the adapter does, rewritten August 12, 2026
+
+`lib/analytics.ts`. The previous version could not answer the attribution
+question on these three platforms; the rewrite is an instrumentation repair and
+changes no event meaning.
+
+- **First identified touch wins**, stored in `localStorage` under
+  `blotter:r1:attribution` and reported on every subsequent event. The post that
+  brought someone gets the credit.
+- **`direct` is the value for unattributed traffic** and is deliberately never
+  stored, so a visitor who arrives cold and returns through a tagged link can
+  still be claimed by it. The old code emitted the empty string here, because
+  `??` does not catch `""`.
+- **Referrers reduce to a bare hostname** — `https://www.reddit.com/r/x/…`
+  becomes `reddit.com` — so one source is one row rather than many.
+- **Own-host referrers are ignored.** A visitor going to `/privacy` and back used
+  to be re-attributed to `blotterib.com`, overwriting their real source.
+- **Capture happens on page load**, from `AnalyticsProvider`, not only inside
+  `track()`. Attribution used to be reachable only through an event, so it
+  silently depended on milestone-suppression state.
+
+Verified on a production build, five cases: a tagged arrival stores source and
+campaign; a later differently-tagged arrival does not overwrite it; a direct
+arrival stores nothing; an own-host referrer is ignored; a cross-host referrer
+stores the bare hostname.
+
+**PostHog's `$pageview` carries UTM natively as well**, so its own Web Analytics
+is an independent second read on the same question. Where the two disagree,
+`traffic_source` is first-touch and `$pageview` is per-load — that is the
+explanation, not a fault.
+
+### One gap in the internal filter, noted rather than fixed
+
+The canonical read filter excludes `localhost:3000`, and
+`.claude/launch.json`'s production-build config serves on **`localhost:3100`**.
+Local production testing therefore does not mark a person internal by that
+clause. It does not affect any number today, because the positive host filter
+admits only `blotterib.com` and `www.blotterib.com` — but if that clause is ever
+relied on alone, add `localhost:3100`.
+
 ## The internal-visitor flag
 
 `?blotter_internal=1` on any page marks that browser forever;

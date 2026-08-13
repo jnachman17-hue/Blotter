@@ -33,19 +33,19 @@
  * analytics are being collected now. Everything after article 03 describes the
  * launch. **If what is collected changes, article 03 changes first.**
  *
- * Indexing. This page still sets `robots: { index: false, follow: false }`
- * below, and that is now the only thing holding it back: `app/robots.ts` was
- * deleted on August 11, 2026 and `app/layout.tsx` opened the site to indexing
- * site-wide. The reference to a robots file in this comment was stale and is
- * corrected here.
+ * Indexing. **This page is indexable as of August 12, 2026**, before promotion.
+ * It had carried `robots: { index: false, follow: false }` from before
+ * `app/robots.ts` was deleted on August 11 and `app/layout.tsx` opened the site
+ * site-wide, and the leftover was the only thing holding it back.
  *
- * ⚠ OPEN QUESTION FOR JON, raised August 12, 2026. The `noindex` on this page
- * and on `/contact` predates that change and looks like an oversight rather
- * than a decision — the runbook's "Indexing was turned on" section discusses
- * only the `/review/*` routes. A privacy policy that search cannot reach, on an
- * indexed site that collects email addresses and links here from a live form,
- * is worth a deliberate ruling either way. **Left as it is, because publication
- * posture is your call, not a defect to quietly fix.**
+ * The reasoning is the one that carried indexing itself: **recall.** A reader
+ * who sees a post, does not click, and goes looking days later should be able
+ * to find the data story — and this is a site that collects real email
+ * addresses and links here from a live form. `13` recommends the same.
+ *
+ * **`/contact` deliberately stays `noindex`.** An indexed contact form attracts
+ * scrapers and has no recall value; nobody searches for it, they follow the
+ * link from here or from the footer.
  *
  * Production cannot be password-protected on Vercel's Hobby plan, so the live
  * URL is public rather than merely unlisted.
@@ -71,7 +71,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Privacy policy | Blotter",
-  robots: { index: false, follow: false },
+  /* Indexable since August 12, 2026. See the indexing note in the header. */
 };
 
 /** Set by Jon on August 6, 2026. Bump when the policy is materially revised. */

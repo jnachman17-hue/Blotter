@@ -1,7 +1,9 @@
 # Workstream 3 Specification
 
-Date last updated: July 30, 2026
-Status: Complete
+Date last updated: **August 12, 2026**
+Status: Complete, with three August 12, 2026 amendments recorded in place — the
+scope amendment below, `waitlist_joined` as a tenth event, and the withdrawal of
+the test-integrity rule.
 Workstream: Conversion and measurement design
 
 ## Purpose
@@ -159,7 +161,12 @@ Jon will maintain and honor the cohort list. Exact terminal copy is deferred to 
 
 ## Canonical analytics events
 
-Both variants use this identical event set:
+**AMENDED August 12, 2026: there are ten, not nine.** `waitlist_joined` was
+added with Jon's approval when the waitlist branch shipped. This amendment was
+recorded in `04-decision-log.md`, `07-infrastructure-runbook.md`,
+`02-strategy-and-test.md` and `lib/analytics.ts` on the day, and **not here**,
+which left the governing specification stating nine for the whole of session 9.
+Corrected rather than re-decided.
 
 1. `page_viewed`
 2. `funnel_started`
@@ -170,8 +177,28 @@ Both variants use this identical event set:
 7. `checkout_started`
 8. `payment_option_clicked`
 9. `beta_spot_confirmed`
+10. `waitlist_joined` — **added August 12, 2026**
 
 There is no separate `cta_clicked` event. `funnel_started` carries `cta_location`.
+
+**What justified amending a frozen contract.** The freeze protects the
+comparability of the nine, and the tenth alters none of them.
+`checkout_started / page_viewed` keeps both its terms, so no historical figure
+changes meaning. Without it the waitlist branch is invisible in PostHog and
+recoverable only from Supabase.
+
+**It is not a funnel step.** A PostHog funnel is an ordered sequence;
+`waitlist_joined` and `checkout_started` are mutually exclusive branches off
+`price_viewed` and a visitor does exactly one. Inserting it into the canonical
+funnel drives every later step to zero and destroys the primary metric. It lives
+in its own insight, `price_viewed -> waitlist_joined`, read beside the canonical
+funnel. `07-infrastructure-runbook.md` is the operational authority on this.
+
+**It has no read rule and no threshold, and that is a known gap**, carried in
+`06-assumptions-and-open-questions.md` with a revisit trigger. The metric
+hierarchy and interpretation bands below were written against the nine and have
+not been extended. Nothing here should be read as implying a rate at which a
+waitlist result means anything.
 
 ## Event meanings
 
@@ -184,6 +211,9 @@ There is no separate `cta_clicked` event. `funnel_started` carries `cta_location
 - `checkout_started`: the visitor chose to continue toward payment.
 - `payment_option_clicked`: the visitor clicked a payment method after seeing price and checkout total.
 - `beta_spot_confirmed`: the terminal cohort confirmation rendered successfully.
+- `waitlist_joined`: the visitor declined the price and took the subordinate
+  waitlist outcome instead. **Added August 12, 2026.** It is a branch off
+  `price_viewed`, never a step between it and `checkout_started`.
 
 ## Required event properties
 
@@ -352,9 +382,31 @@ Workstream 3 sets no permanent or bounded project kill condition.
 
 Weak commercial demand means the current tested proposition is not validated for meaningful backend investment. Blotter may iterate and test again. Each retest should still have a specific hypothesis, precommitted measurement rules, and a defined traffic or spend boundary.
 
-## Test-integrity rule
+## Test-integrity rule — WITHDRAWN August 12, 2026
 
-During a measurement period, freeze:
+> **Jon's ruling.** *"Side note I'm abandoning the test integrity freeze. We can
+> change page if needed."* And separately, on the CTA label: *"We might revisit
+> CTA label later."*
+>
+> **The page may change during the measurement period.** The clause below
+> requiring a material change to open a new labeled test iteration, and
+> forbidding the blending of its data with the prior period, is withdrawn with
+> the rest of the rule.
+>
+> **`TEST_ITERATION` in `lib/analytics.ts` therefore stays at `r1`.** Its own
+> comment instructs a bump on a material change; a bump re-fires every milestone
+> for returning visitors and splits the dataset, which is exactly the
+> non-blending behaviour this ruling withdraws. The code comment is now the
+> stale one, and says so in place.
+>
+> **What this ruling does not touch, because it lives in another section.** The
+> *Reporting requirements* below are unaffected and still require exact test
+> dates, instrumentation incidents and material traffic-quality concerns in
+> every readout. **A material page change still has to be recorded with its
+> date** — not as a gate on making it, but because a rate cannot be attributed
+> to a page otherwise. A dated changelog serves that requirement.
+
+*Superseded.* During a measurement period, freeze:
 
 - price;
 - funnel sequence;

@@ -42,14 +42,57 @@
 
 import { useEffect } from "react";
 
-import { getIdentifiers, setAnalyticsSink } from "@/lib/analytics";
+import { captureAttribution, getIdentifiers, setAnalyticsSink } from "@/lib/analytics";
 import { isInternalVisitor, syncInternalFlag } from "@/lib/internal-visitor";
+
+/**
+ * Take the tracking parameters back out of the address bar.
+ *
+ * The short promotional links in `next.config.ts` redirect to
+ * `/?utm_source=…&utm_campaign=…`, so a visitor who was shown a clean
+ * `blotterib.com/mba` would otherwise land looking at a campaign string. This
+ * puts it back: what they see, bookmark, or paste to a friend is
+ * `blotterib.com/`.
+ *
+ * It also improves the data. A URL copied out of the address bar and shared
+ * onward no longer carries the original post's campaign, so a friend-of-a-visitor
+ * is not counted as another click on that post.
+ *
+ * **Only `utm_*` is removed.** `?blotter_internal=1` marks the browser and must
+ * survive, and the review routes read their own parameters.
+ *
+ * **Only called when attribution is durably stored.** In a browser that refuses
+ * storage, every event re-reads the URL, and stripping it would send the rest of
+ * that visitor's funnel to `direct`.
+ */
+const TRACKING_PARAMS = [
+  "utm_source",
+  "utm_campaign",
+  "utm_medium",
+  "utm_term",
+  "utm_content",
+];
+
+function cleanTrackingParams() {
+  const url = new URL(window.location.href);
+  const present = TRACKING_PARAMS.filter((p) => url.searchParams.has(p));
+  if (present.length === 0) return;
+  for (const p of present) url.searchParams.delete(p);
+  window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+}
 
 export function AnalyticsProvider() {
   useEffect(() => {
     /* Before anything is captured, so the first event of a marked session is
        already marked. */
     syncInternalFlag();
+
+    /* First touch is recorded on arrival rather than on the first event that
+       happens to fire, so a returning visitor arriving through a tagged link is
+       attributed even when every milestone is already suppressed. Runs before
+       the PostHog key check, because attribution is ours and does not depend on
+       a vendor being configured. */
+    if (captureAttribution()) cleanTrackingParams();
 
     const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
     if (!key) return;

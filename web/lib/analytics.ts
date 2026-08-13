@@ -165,8 +165,22 @@ export function setAnalyticsSink(next: AnalyticsSink) {
 /**
  * Test iteration. Namespaces milestone suppression so a visitor is not
  * permanently suppressed across future test rounds (PLAN-AMENDMENTS).
- * Bump this whenever a material page, funnel, price, or proposition change
- * creates a new labeled iteration under the WS3 test-integrity rule.
+ *
+ * ## Do not bump this for a page change. Amended August 12, 2026.
+ *
+ * It used to read *"bump this whenever a material page, funnel, price, or
+ * proposition change creates a new labeled iteration under the WS3
+ * test-integrity rule."* **Jon withdrew the test-integrity rule on August 12,
+ * 2026** — the page may now change mid-flight and its data is not split.
+ *
+ * A bump re-fires every milestone for every returning visitor and starts a
+ * second dataset, which is precisely the non-blending behaviour that ruling
+ * withdrew. It stays `r1` for the whole of round one. A genuinely new test
+ * round is the only thing that moves it.
+ *
+ * What survives the withdrawal is a *reporting* obligation rather than a code
+ * one: WS3's reporting requirements still ask for exact dates and material
+ * changes, so a page change is written down, not namespaced away.
  */
 export const TEST_ITERATION = "r1";
 
@@ -248,13 +262,152 @@ function deviceType(): "desktop" | "tablet" | "mobile" {
   return "desktop";
 }
 
-function attribution(): Pick<EventProperties, "traffic_source" | "campaign"> {
-  if (typeof window === "undefined") return {};
+/* ------------------------------------------------------------- attribution */
+
+/**
+ * Where the visitor came from, and which post brought them.
+ *
+ * Rewritten August 12, 2026, before promotion. **This is an instrumentation
+ * repair, not a change of meaning:** `traffic_source` and `campaign` are WS3
+ * properties and still answer the same question. What changed is that the old
+ * implementation could not answer it reliably on the three surfaces this test
+ * is about to be promoted on.
+ *
+ * ## Why it matters more than it used to
+ *
+ * Round one has one arm, so the audience *is* the result, and the August 12
+ * audience ruling is deliberately broad — anyone recruiting in finance. That
+ * makes composition something to be **read after the fact rather than
+ * controlled up front**, and `traffic_source` is what makes that reading
+ * possible. WS3's reporting requirements demand results by traffic source.
+ *
+ * ## The four faults in the previous version
+ *
+ * 1. **`document.referrer` is `""` for direct traffic, and `?? ` does not catch
+ *    an empty string.** So direct visitors carried `traffic_source: ""` rather
+ *    than no property, which is a value that reads as a bug in every breakdown.
+ *    Direct traffic is now the explicit bucket `direct`.
+ * 2. **Raw referrer strings do not group.** `https://www.reddit.com/r/x/...`
+ *    and `reddit` are the same source and were two rows. Referrers are now
+ *    reduced to a bare hostname.
+ * 3. **Same-host navigation counted as a referral.** A visitor going to
+ *    `/privacy` and back arrived referred by `blotterib.com`, overwriting their
+ *    real source. Own-host referrers are now ignored.
+ * 4. **Nothing was persisted**, so attribution was recomputed per event from
+ *    the URL at that moment. Within one uninterrupted visit the funnel is a
+ *    dialog and never rewrites the URL, so this held — but a return visit
+ *    converted as direct, and the visitor who converts is often not the one who
+ *    first arrived.
+ *
+ * ## First identified touch wins
+ *
+ * The post that brought someone gets the credit, so the first *identified*
+ * source is stored and every later event reports it. `direct` is deliberately
+ * never stored: a visitor who arrives cold and comes back through a tagged link
+ * should be claimable by that link, rather than locked to the absence of one.
+ *
+ * Namespaced by `TEST_ITERATION` to match the suppression keys, so a future
+ * round does not inherit this round's attribution.
+ */
+
+type Attribution = Pick<EventProperties, "traffic_source" | "campaign">;
+
+const ATTRIBUTION_KEY = `blotter:${TEST_ITERATION}:attribution`;
+
+/** Unattributed traffic, as a countable value rather than an empty string. */
+const DIRECT = "direct";
+
+/** Lowercased, trimmed and bounded. Query strings are typed by strangers. */
+function tag(value: string | null): string | undefined {
+  const trimmed = value?.trim().toLowerCase();
+  return trimmed ? trimmed.slice(0, 64) : undefined;
+}
+
+/** `https://www.reddit.com/r/x/...` becomes `reddit.com`. Own host is not a source. */
+function referrerHost(): string | undefined {
+  if (!document.referrer) return undefined;
+  let host: string;
+  try {
+    host = new URL(document.referrer).hostname.toLowerCase().replace(/^www\./, "");
+  } catch {
+    return undefined;
+  }
+  if (!host) return undefined;
+  const self = window.location.hostname.toLowerCase().replace(/^www\./, "");
+  return host === self ? undefined : host;
+}
+
+/** What this page load alone can say. A tagged link always beats a referrer. */
+function attributionFromUrl(): Attribution {
   const params = new URLSearchParams(window.location.search);
-  return {
-    traffic_source: params.get("utm_source") ?? document.referrer ?? undefined,
-    campaign: params.get("utm_campaign") ?? undefined,
-  };
+  const tagged = tag(params.get("utm_source"));
+  if (tagged) {
+    return { traffic_source: tagged, campaign: tag(params.get("utm_campaign")) };
+  }
+  const referred = referrerHost();
+  return referred ? { traffic_source: referred } : {};
+}
+
+function readStoredAttribution(): Attribution | null {
+  try {
+    const raw = window.localStorage.getItem(ATTRIBUTION_KEY);
+    if (!raw) return null;
+    const parsed: unknown = JSON.parse(raw);
+    if (typeof parsed !== "object" || parsed === null) return null;
+    const { traffic_source, campaign } = parsed as Attribution;
+    return typeof traffic_source === "string" && traffic_source
+      ? { traffic_source, ...(typeof campaign === "string" && campaign ? { campaign } : {}) }
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeStoredAttribution(value: Attribution) {
+  try {
+    window.localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(value));
+  } catch {
+    /* storage unavailable; this load still reports itself correctly */
+  }
+}
+
+function attribution(): Attribution {
+  if (typeof window === "undefined") return {};
+
+  const stored = readStoredAttribution();
+  if (stored) return stored;
+
+  const fresh = attributionFromUrl();
+  if (fresh.traffic_source) {
+    writeStoredAttribution(fresh);
+    return fresh;
+  }
+
+  return { traffic_source: DIRECT };
+}
+
+/**
+ * Record first touch on page load, independently of whether any event fires.
+ *
+ * `attribution()` is otherwise reached only from `track()`, which returns early
+ * on a suppressed milestone — so a visitor whose milestones had all fired could
+ * arrive through a tagged link and have it recorded nowhere. That case barely
+ * matters on its own (they are already counted under their first source), but
+ * the coupling does: it makes attribution silently depend on suppression state,
+ * which is both wrong in principle and untestable in a browser that has been
+ * through the funnel before. Called by `AnalyticsProvider` on mount.
+ *
+ * **Returns whether attribution is now durably stored**, which is not the same
+ * as whether it was captured. A browser that refuses storage still reports its
+ * source correctly on this load, by re-reading the URL for every event — so a
+ * caller must not clean the tracking parameters out of the address bar unless
+ * this returns `true`. Stripping them there would attribute that visitor's
+ * `page_viewed` to Reddit and every later event to `direct`.
+ */
+export function captureAttribution(): boolean {
+  if (typeof window === "undefined") return false;
+  attribution();
+  return readStoredAttribution() !== null;
 }
 
 /**

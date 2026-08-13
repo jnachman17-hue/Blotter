@@ -1,6 +1,73 @@
 import type { NextConfig } from "next";
 
+/* ------------------------------------------------------- promotional links */
+
+/**
+ * Short links for promotion. Added August 12, 2026.
+ *
+ * ## The problem these solve
+ *
+ * Attribution needs `?utm_source=` and `?utm_campaign=` on the end of the URL,
+ * and Jon's objection to that is correct: `blotterib.com` is cleaner than
+ * `blotterib.com/?utm_source=reddit&utm_campaign=reddit-mba-01`, and on Reddit
+ * a visible tracking query reads as marketing on the one platform where that
+ * costs the most.
+ *
+ * So the tracking is moved off the visible link and onto the server. **A post
+ * shows a short path on our own domain; the redirect adds the parameters.**
+ * The reader sees `blotterib.com/mba`, which looks like a page rather than a
+ * campaign. `AnalyticsProvider` then strips the parameters from the address bar
+ * once first touch is recorded, so what a visitor sees, bookmarks or copies to
+ * a friend is a clean `blotterib.com/`.
+ *
+ * This is also more robust than putting the parameters in the post: a short
+ * path cannot be stripped by a platform, mangled by an in-app browser, or
+ * dropped when somebody retypes the link from memory.
+ *
+ * ## Adding one
+ *
+ * One line per post. `path` is what goes in the post, `campaign` is what shows
+ * in PostHog. Never reuse a campaign value — a second post to the same place is
+ * `-02`. The scheme is in `07-infrastructure-runbook.md`.
+ *
+ * **A path must not collide with a real route.** Taken: `/privacy`, `/contact`,
+ * `/review/*`, `/api/*`, `/opengraph-image`, `/icon.svg`.
+ *
+ * `permanent: false` deliberately — a 307 can be re-pointed later; a 308 is
+ * cached by browsers and is very hard to take back.
+ */
+const PROMO_LINKS: Array<{ path: string; source: string; campaign: string }> = [
+  /* Platform defaults, for anything without its own path. */
+  { path: "/r", source: "reddit", campaign: "reddit-01" },
+  { path: "/x", source: "x", campaign: "x-01" },
+  { path: "/li", source: "linkedin", campaign: "linkedin-01" },
+
+  /*
+    Reddit round one. Jon's provisional list, August 12, 2026 — one path per
+    subreddit, so six simultaneous posts stay separable afterwards. Without
+    this they would all read as `reddit` and the only question worth asking
+    of six posts, which one worked, could not be answered.
+
+    Subreddit names are Jon's and unverified; a path costs nothing if its
+    subreddit turns out not to exist or not to accept the post.
+  */
+  { path: "/mba", source: "reddit", campaign: "reddit-mba-01" },
+  { path: "/consulting", source: "reddit", campaign: "reddit-consultingcareers-01" },
+  { path: "/hub", source: "reddit", campaign: "reddit-financestudentshub-01" },
+  { path: "/fc", source: "reddit", campaign: "reddit-financialcareers-01" },
+  { path: "/analyst", source: "reddit", campaign: "reddit-financialanalyst-01" },
+  { path: "/students", source: "reddit", campaign: "reddit-financestudents-01" },
+];
+
 const nextConfig: NextConfig = {
+  async redirects() {
+    return PROMO_LINKS.map(({ path, source, campaign }) => ({
+      source: path,
+      destination: `/?utm_source=${source}&utm_campaign=${campaign}`,
+      permanent: false,
+    }));
+  },
+
   /*
     Hosts allowed to load dev-server resources.
 
