@@ -97,8 +97,7 @@ export function Hero({
         aria-hidden="true"
         className="mt-[0.35em] h-[0.9em] w-[2px] shrink-0 bg-navy-500"
       />
-      The smart recruiting tracker for investment banking and high-finance
-      networking
+      The non-AI slop tracker that actually saves you time
     </>
   );
 
@@ -140,7 +139,7 @@ export function Hero({
           {/* Eyebrow, on the shared left edge. Desktop always renders it here;
               on a phone `eyebrow` may move it below the film or drop it. */}
           <p
-            className="flex items-start gap-3 pt-6 desk:pt-4 text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase"
+            className="flex items-start gap-3 pt-6 desk:hidden text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase"
           >
             {eyebrowLine}
           </p>
@@ -162,8 +161,8 @@ export function Hero({
               which is cheaper than any decoration.
             */}
             <h1 className="font-display text-display leading-[1.06] font-semibold tracking-[-0.028em] text-ink">
-              Your networking keeps moving.{" "}
-              <span className="text-navy-400">Your tracker does not.</span>
+              You will lose track.{" "}
+              <span className="text-navy-400">Everyone does.</span>
             </h1>
 
             <div className="contents desk:block">
@@ -328,11 +327,11 @@ export function Hero({
                   aria-hidden="true"
                   className="mr-2.5 inline-block h-px w-3 align-middle bg-ink-faint desk:mr-3"
                 />
-                Built by a{" "}
+                Built by{" "}
                 <span className="font-medium text-ink">
-                  former Goldman Sachs banker
-                </span>{" "}
-                for recruitment.
+                  someone who actually went through IB recruitment
+                </span>
+                .
               </p>
             </div>
           </div>

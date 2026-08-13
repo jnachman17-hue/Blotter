@@ -45,6 +45,36 @@ export const PRODUCT_FAQ: FaqEntry[] = [
     q: "Does Blotter work only for investment banking?",
     a: "Blotter is designed first for investment banking and other high-finance recruiting processes built around intensive networking, follow-ups, coffee chats, applications, and interviews.",
   },
+  /*
+    Three added August 13, 2026 on Jon's instruction, under the voice ruling in
+    `04`. **They are the only jokes on the page and they are load-bearing.**
+
+    The audience is 19 to 21 year old finance recruits who read marketing copy
+    for sport, and a page that never once sounds like a person is a page they
+    have already decided about. These three say, in the last section, that
+    whoever built this is one of them.
+
+    Placed last on purpose. The five product answers above establish that the
+    thing is real; these are the reward for reading to the bottom, and a reader
+    who bounces early never reaches them. Reversing that order would trade the
+    page's credibility for a laugh, which is the wrong way round when Section 6
+    has just asked to read their Gmail.
+
+    `07-SECTION-7` §8 still governs: no price and no availability question here.
+    None of these touches either.
+  */
+  {
+    q: "Who is this built for?",
+    a: "Anyone recruiting in finance. Especially anyone with a deep personal commitment to maximizing shareholder value.",
+  },
+  {
+    q: "Will AI take my analyst role?",
+    a: "Probably.",
+  },
+  {
+    q: "Am I cooked in this job market?",
+    a: "Yes. So is everyone. The ones who aren't are the ones who answered their emails.",
+  },
 ];
 
 /* --------------------------------------------------------- the closing block */

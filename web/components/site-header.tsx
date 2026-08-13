@@ -161,7 +161,7 @@ export type HeaderTaglineAlign = "left" | "center";
 
 /** Ratified, `01-HERO`. One copy, so the two placements cannot drift. */
 const TAGLINE =
-  "The smart recruiting tracker for investment banking and high-finance networking";
+  "The non-AI slop tracker that actually saves you time";
 
 const TAGLINE_TYPE =
   "text-eyebrow leading-none font-medium tracking-[0.1em] text-navy-500 uppercase whitespace-nowrap";

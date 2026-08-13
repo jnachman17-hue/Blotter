@@ -392,7 +392,7 @@ export const OUTSTANDING_TOTAL = OUTSTANDING_GROUPS.reduce((n, g) => n + g.count
 
 /** Exact reassurance copy, `05-SECTION-5` §4. */
 export const REASSURANCE = [
-  "Keep your existing tracker",
-  "No re-entering every contact",
-  "No switching out of Google Sheets",
+  "Keep the tracker you already built",
+  "Don't re-enter every contact",
+  "Don't leave Google Sheets",
 ];

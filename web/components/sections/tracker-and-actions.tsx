@@ -40,13 +40,13 @@ import { cn } from "@/lib/cn";
 
 /* ------------------------------------------------------------- exact copy */
 
-export const KEEP_H = "Keep the tracker you already built.";
+export const KEEP_H = "You already have a tracker. Keep it.";
 export const KEEP_SUB =
-  "Keep the Google Sheet and contacts you already built. Blotter creates a standardized recruiting view in a new tab and keeps the changing activity current from Gmail and Calendar.";
+  "Keep the Google Sheet and contacts you already built. Blotter creates a clean view in a new tab and keeps the changing activity current from Gmail and Calendar.";
 
-const ACT_H = "Know exactly what needs your attention.";
+const ACT_H = "Everything you still owe";
 const ACT_SUB =
-  "Stop reconstructing your next moves from Gmail, Calendar, and memory. Blotter gives you one current view of every action you owe.";
+  "Replies you owe, follow-ups that are due, thank-yous you never sent. Rebuilt every time something changes, so you stop reconstructing it out of Gmail and memory.";
 
 /** `04-SECTION-4` §5. The CTA enters the funnel with `cta_location = actions`. */
 const CTA_LINE = "Open your tracker and know what to do next.";

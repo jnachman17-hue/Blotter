@@ -36,9 +36,8 @@ import { Fit } from "@/components/layout/fit";
 
 /* ------------------------------------------------------------------- copy */
 
-export const EYEBROW = "The scale of a recruiting cycle";
-export const HEADLINE =
-  "Your manual tracker was never built to keep up with this.";
+export const EYEBROW = "The recruiting cycle you signed up for.";
+export const HEADLINE = "Your Google Sheet won't keep up with this.";
 
 export const QUALIFICATION =
   "* Representative workload from a high-intensity Summer Analyst 2027 recruiting cycle that resulted in a JPMorgan offer.";
@@ -127,12 +126,12 @@ type Metric = (typeof METRICS)[number];
 function SupportingParagraph({ className = "" }: { className?: string }) {
   return (
     <p className={className}>
-      A manual tracker changes only when you remember to update it, so at this
-      volume it{" "}
+      628 recruiting emails. 68 coffee chats. 30 interview rounds.{" "}
       <span className="font-semibold text-ink">
-        inevitably falls behind reality
-      </span>
-      . Deadlines, follow-ups, and next steps begin slipping through the cracks.
+        You will forget things. You will lose track.
+      </span>{" "}
+      That is just what happens at this volume. Stuff will inevitably begin to
+      slip through the cracks.
     </p>
   );
 }

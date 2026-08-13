@@ -169,6 +169,51 @@ waitlist` — the trigger refuses to lower it. Both are working as designed and
 both look like failures. Use a fresh incognito profile with
 `?blotter_internal=1` to test a stage from a clean identity.
 
+## Telling a waitlist join from an email capture
+
+Added August 13, 2026, because the question came up as soon as the branch
+produced its first join and the answer was not written down anywhere.
+
+**`furthest_stage` is the column.** `real_leads` is `select * from leads where
+is_internal = false`, so it carries every column the table has, including this
+one. Nothing extra needs joining or deriving.
+
+The ladder, from `lib/funnel-store.ts`:
+
+| index | `furthest_stage` | what the person did |
+|---|---|---|
+| 4 | `email` | gave their email and stopped. **Never saw the price** |
+| 5 | `price` | saw `$9.99 / month` and left |
+| 6 | `waitlist` | **clicked `Join the waitlist instead`** |
+| 7 | `checkout` | clicked `Continue to payment` |
+| 8 | `confirmed` | clicked a payment method |
+
+So an email address alone tells you nothing about intent, and
+`furthest_stage` tells you everything. The read:
+
+```sql
+select created_at, email, furthest_stage, furthest_stage_index,
+       recruiting_track, recruiting_window, cta_location
+from real_leads
+order by created_at desc;
+
+select furthest_stage, count(*) from real_leads group by 1 order by 2 desc;
+```
+
+**One caveat that does not bite today and will later.** `waitlist` ranks
+**below** `checkout` deliberately — everyone who clicks pay is on the same list,
+so checkout is strictly the further outcome. A visitor who joined the waitlist
+and later clicked pay therefore reads as `checkout`, and `furthest_stage`
+**undercounts waitlist joins** the moment any checkout starts exist. There have
+been none ever, so the column is currently exact. **For a true count of the
+button being pressed, PostHog's filtered `waitlist_joined` is the authority and
+`furthest_stage` is the corroboration.**
+
+**`SUPABASE_URL` already ends in `/rest/v1/`.** It is the REST base, not the
+project root, so a query is `"${SUPABASE_URL%/}/real_leads?select=…"`. Appending
+`/rest/v1/` again returns `PGRST125 Invalid path specified in request URL`,
+which reads like a permissions problem and is not one.
+
 ## Promotional links and attribution
 
 Written August 12, 2026, before the first post. **This is the instrument that
