@@ -250,7 +250,51 @@ owner should pin them and both sides follow.
 
 ---
 
-## 4. What the next chats must not trip over
+## 4. Production day one — findings from Jon's first live run
+
+Jon installed the courier into a real sheet on September 1, 2026 and ran it
+against his live gmail account with an 1,100-day calendar window. Findings, in
+the order they were diagnosed:
+
+1. **Warnings overflowed a sheet cell and crashed the courier's write phase.**
+   The engine answered one warning per calendar event that matched no contact —
+   thousands, across three years of a personal calendar — and the courier's
+   `Last run warnings` cell write died at Google's 50,000-character cell limit,
+   *after* Contacts, Found and `Last successful run` had written and before the
+   three measurement rows. Two findings in one: the engine's warnings were
+   unreadable at production scale (**fixed in the engine**: ten examples per
+   kind plus an honest "…and N more" count), and the courier's
+   write-nothing-on-failure promise does not hold once its own write phase is
+   the thing that throws — its failure dialog claimed "it changed nothing" when
+   most of the sheet had in fact been written. **Courier hardening handed off:**
+   truncate defensively before `setValue`, and make the failure message honest
+   about a mid-write fault.
+2. **The courier's Gmail fetch has no date window.** `fetchThreads_` searches
+   `from:/to:/cc:` with no `after:`, so contacts stored under personal gmail
+   addresses dragged in a 2022 club-listserv thread, and §8 dutifully suggested
+   ~170 classmates in the Found tab. The engine rules §2 set the setup scan at
+   3 months; the courier fetches all time. **Handed off:** a
+   `Mail looks back (days)` setting mirroring the calendar pair (Jon needs
+   ~1,100 for the archive test; a live student the §2 default).
+3. **Verified correct in production:** every `Days`/`Last contact` pair is
+   internally consistent; Jay Klein's 1/31 (an 8:24pm CT send that is 2:24am
+   UTC) proves the timezone chain carries the student's offset end to end; Owen
+   Sherry was matched by title on live data; the utexas-only relationships
+   correctly show as `Not emailed` in a gmail-only install (B4 in the Learn
+   findings, now observable in a product).
+4. **One open rules question, from the last four red fixtures** (season
+   snapshots, sheet row 17, attempts 2 vs 1): Jon forwarded Samuel Ward's reply
+   to a third party *inside the same thread*. §3 as ratified makes everything
+   in a one-contact conversation that person's activity, so the engine counts
+   the forward as an attempt; the test chat's answer key does not. Any
+   replacement rule must keep counting outbound to *unstored guessed addresses*
+   (the Sean Kang case) — the workable amendment is: inbound in a one-contact
+   conversation counts as their side thread-wide; outbound counts only when
+   addressed to an address on the contact's row. Works because both Jon's live
+   sheet and the fixtures store every guessed address. **Awaiting Jon's
+   ruling; the engine follows §3 as written until then.**
+
+## 5. What the next chats must not trip over
 
 - **The response row order is the request contact order**, one row per contact,
   always. Sorting ("longest-waiting first") is the product view's job, not the

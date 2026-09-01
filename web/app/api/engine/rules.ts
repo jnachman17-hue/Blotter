@@ -579,8 +579,37 @@ function joinNames(names: string[]): string {
  * The engine
  * ------------------------------------------------------------------ */
 
+/**
+ * Warnings are for a person to read, so each kind is capped. A live courier
+ * sends the student's whole calendar, and on the first real run the engine
+ * answered with one warning per non-recruiting event — thousands of lines,
+ * which no student reads and which overflowed the 50,000-character sheet
+ * cell the courier writes them into. Ten examples and an honest count carry
+ * everything the full list did.
+ */
+const WARNINGS_SHOWN_PER_KIND = 10;
+
+class WarningBucket {
+  private readonly lines: string[] = [];
+  private overflow = 0;
+  constructor(private readonly summary: string) {}
+
+  add(line: string): void {
+    if (this.lines.length < WARNINGS_SHOWN_PER_KIND) this.lines.push(line);
+    else this.overflow += 1;
+  }
+
+  drainInto(warnings: string[]): void {
+    warnings.push(...this.lines);
+    if (this.overflow > 0) warnings.push(`…and ${this.overflow} more ${this.summary}.`);
+  }
+}
+
 export function computeEngine(request: EngineRequest): EngineResponse {
-  const warnings: string[] = [];
+  const unmatchedThreads = new WarningBucket("threads that matched no contact and were ignored");
+  const autoReplies = new WarningBucket("messages treated as automatic replies, not replies");
+  const unmatchedEvents = new WarningBucket("calendar events that matched no contact and were ignored");
+  const caseVariants = new WarningBucket("addresses seen in more than one capitalisation");
 
   const studentAddresses = new Set(
     request.student.addresses.map(addressOf).filter((a) => a.length > 0),
@@ -627,7 +656,7 @@ export function computeEngine(request: EngineRequest): EngineResponse {
 
     if (attribution.size === 0) {
       const subject = thread.messages[0]?.subject ?? thread.thread_id;
-      warnings.push(`A thread ("${subject}") matched no contact and was ignored.`);
+      unmatchedThreads.add(`A thread ("${subject}") matched no contact and was ignored.`);
       return;
     }
 
@@ -645,7 +674,7 @@ export function computeEngine(request: EngineRequest): EngineResponse {
        on — this is the engine "marking" it, per §6. */
     for (const m of classified) {
       if (m.kind === "auto_reply" && attributed.has(m.order)) {
-        warnings.push(
+        autoReplies.add(
           `"${m.msg.subject}" from ${addressOf(m.msg.from)} looks like an automatic reply and was not counted as a reply.`,
         );
       }
@@ -694,7 +723,7 @@ export function computeEngine(request: EngineRequest): EngineResponse {
   for (const event of request.events) {
     const matched = matchEvent(event, contactIndex);
     if (matched.length === 0) {
-      warnings.push(
+      unmatchedEvents.add(
         `Calendar event "${event.title}" (${localDate(event.start)}) matched no contact and was ignored.`,
       );
       continue;
@@ -704,11 +733,17 @@ export function computeEngine(request: EngineRequest): EngineResponse {
 
   for (const [address, seen] of [...spellings].sort(([a], [b]) => (a < b ? -1 : 1))) {
     if (seen.size > 1) {
-      warnings.push(
+      caseVariants.add(
         `${address} appears in more than one capitalisation (${[...seen].sort().join(", ")}); treated as one address.`,
       );
     }
   }
+
+  const warnings: string[] = [];
+  unmatchedThreads.drainInto(warnings);
+  autoReplies.drainInto(warnings);
+  unmatchedEvents.drainInto(warnings);
+  caseVariants.drainInto(warnings);
 
   /* Every contact in the request gets exactly one row back, in the same
      order. Silently dropping a contact is forbidden — a missing row is a

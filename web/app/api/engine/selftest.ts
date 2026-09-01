@@ -548,6 +548,28 @@ check("firm: Citi does not match Houlihan", firmInTitle("Citi", "Danny - Jonatha
   check("case difference is still the same person", r.rows[0].status, "Replied");
 }
 
+/* Warnings cap per kind: a live courier sends the student's whole personal
+   calendar, and one warning per non-recruiting event once overflowed the
+   50,000-character sheet cell the courier writes into. */
+{
+  const events: EventIn[] = Array.from({ length: 15 }, (_, i) => ({
+    id: `e${i}`,
+    title: `Dentist visit ${i}`,
+    start: "2024-02-01T20:00:00Z",
+    end: "2024-02-01T21:00:00Z",
+    attendees: [],
+    organizer: "student@gmail.com",
+  }));
+  const r = computeEngine(req([contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])], [], events));
+  const eventWarnings = r.warnings.filter((w) => w.startsWith("Calendar event"));
+  check("warnings capped: ten examples shown", eventWarnings.length, 10);
+  check(
+    "warnings capped: the rest counted honestly",
+    r.warnings.some((w) => w === "…and 5 more calendar events that matched no contact and were ignored."),
+    true,
+  );
+}
+
 /* ---------------------------------------------------------------- *
  * Days are calendar dates, in the timestamp's own timezone
  * ---------------------------------------------------------------- */
