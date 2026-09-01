@@ -290,7 +290,13 @@ SEASON_ANSWERS = {
     "joseph-candelario":     same(R("2024-01-22T00:56:11Z", "2024-01-21", 0, E(1))),
     "kate-borden":           arc(R("2024-01-23T17:51:06Z", "2024-01-23", 0, E(4)),
                                  R("2024-02-08T23:08:23Z", "2024-02-08", 0, E(4))),
-    "sam-ward":              same(S("2024-01-23T05:01:39Z", "2024-01-22", 2)),
+    # Sam Ward: attempts 1, not 2 — Jon's ruling (September 1, 2026, second
+    # follow-up): a send counts as an attempt only "when a banker is on
+    # either side of it". Jon's mid-thread forward to family carries no Sam
+    # Ward address, so it no longer counts. The engine and rules §5 have not
+    # yet absorbed this ruling, so the four season fixtures are EXPECTED to
+    # fail on exactly this cell until they do. Do not revert to go green.
+    "sam-ward":              same(S("2024-01-23T05:01:39Z", "2024-01-22", 1)),
     "joshua-gumm":           same(S("2024-01-22T21:27:22Z", "2024-01-22", 1, E(2))),
     "chris-miller":          same(R("2024-01-22T23:49:06Z", "2024-01-22", 0)),
     "grey-bianca":           same(R("2024-01-23T02:47:46Z", "2024-01-22", 0)),

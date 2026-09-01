@@ -2,9 +2,14 @@
 
 Written September 1, 2026 by the Test-cases chat, from the real 2024 corpus
 (`blotter-ib-ws1/research/corpus/`) against **`04-ENGINE-RULES.md` (version 3,
-ratified)** and the shapes in **`05-CONTRACT.md`**. Regenerated the same day
-for the v3 rulings (round 2, `12-BRIEF-TEST-CASES-2.md`): **all 31 of 31
-fixtures pass** against the engine. The engine's code was never read while
+ratified)** and the shapes in **`05-CONTRACT.md`**, regenerated the same day
+for the v3 rulings (round 2, `12-BRIEF-TEST-CASES-2.md`) and again for Jon's
+follow-up rulings. **Current expected run: 27 of 31.** The four season
+fixtures fail on exactly one cell — Sam Ward's `attempts`, expected 1 — which
+encodes Jon's newest ruling (*a send counts only when the contact's address
+is on the message*) ahead of the engine and of §5's wording. **That red is
+deliberate. Do not "fix" these fixtures to green; fix the engine and the
+rules sentence** (notes §0.2). The engine's code was never read while
 producing these files — that is the point of them. When the engine disagrees
 with a fixture, the derivation to argue with is in
 `blotter-ib-ws1/docs/workstreams/ws9-build/10-TEST-CASE-NOTES.md`, case by

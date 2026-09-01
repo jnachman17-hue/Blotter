@@ -141,7 +141,7 @@
    "status": "Sent",
    "days": 3,
    "last_contact": "2024-01-22",
-   "attempts": 2,
+   "attempts": 1,
    "next_call": null,
    "last_call": null
   },

@@ -1,6 +1,8 @@
 # Test-case notes — what the answer key covers, and what the rules failed to answer
 
-Date: September 1, 2026. **Round 2 complete — 31 of 31 fixtures pass.**
+Date: September 1, 2026. **Round 2 complete; after Jon's second follow-up
+ruling the run is 27 of 31 — the four misses are one ruled-but-not-yet-built
+cell, §0.2. That red is the system working, not a defect in the key.**
 Author: the Test-cases chat (briefs `07-BRIEF-TEST-CASES.md`, `12-BRIEF-TEST-CASES-2.md`)
 Sources: `04-ENGINE-RULES.md` **v3** (the only authority for right answers),
 `05-CONTRACT.md` (the shapes), the corpus in `blotter-ib-ws1/research/corpus/`.
@@ -85,10 +87,10 @@ Jon answered the three questions in plain terms. Two of them settled things:
   final-thank-you-on-a-dead-thread situation is handled by marking the row
   `Closed` ("correspondence over"), not by special-casing the count. That is
   exactly what the fixtures encode (bounced sends count — Sean Kang is 3;
-  thank-yous count; `Closed` retires the row). **One sliver stays open**, now
-  the tail of 3.4: whether a send to a *third party* inside the contact's
-  single-contact conversation counts (Sam Ward's thread forwarded to family
-  currently adds an attempt). Put back to Jon as a one-line yes/no.
+  thank-yous count; `Closed` retires the row). **One sliver stayed open**, the
+  tail of 3.4: whether a send to a *third party* inside the contact's
+  single-contact conversation counts (Sam Ward's thread forwarded to family).
+  Put back to Jon as a one-line yes/no — **since ruled, see §0.2.**
 - **`found.name` (3.7) was re-explained in plain English** — the "found
   these" approval card can currently show only a bare email address, because
   the agreed courier→engine format carries no display names. Still awaiting
@@ -96,6 +98,40 @@ Jon answered the three questions in plain terms. Two of them settled things:
   more honest caveat now recorded: the corpus captured bare addresses only,
   so even after a contract change these fixtures could not carry real display
   names without re-fetching mail.
+
+### 0.2 — Jon's second follow-up: both remaining questions ruled
+
+**Names: "yes, pass the names through" — RESOLVES 3.7 as a decision; the
+build is now owed.** This is a change to `05-CONTRACT.md` (display names on
+message addresses, so `found.name` can be real), which this chat may not
+edit: it needs the contract's own process — Jon has ruled, the version bump
+and both-sides change belong to the conductor and build chats. Fixture
+consequences, stated ahead of time: the expected files keep `found.name:
+null` until (a) the contract carries names and (b) the corpus is re-fetched
+with display names captured — the archive as it stands recorded bare
+addresses only, so real names cannot be conjured into test data honestly.
+
+**Attempts: a send counts "when a banker is on either side of it" —
+RESOLVES the 3.4 sliver, and all of 3.4 with it.** An outbound counts toward
+a contact's `attempts` only if that contact's address is on the message
+(From/To/Cc). Jon's mid-thread forward of the Sam Ward conversation to
+family therefore no longer counts: **Sam Ward's attempts is 1, not 2**, at
+all four season dates — the only value in the key this ruling moves.
+Whole-conversation attribution (§3) still decides *who wrote last* — Liz
+Ream's reply still advances and resets Steve McLaughlin — the ruling narrows
+only which sends increment the counter. (A cousin question exists for the
+`Sent` clock — should a send the banker isn't on restart "days since you
+wrote"? — no fixture value depends on it, since Jon's real forward was
+followed by a real send two hours later; recorded, not asked.)
+
+**The key now encodes the ruling, and the run is 27 of 31.** The four season
+fixtures each miss on exactly one cell: `attempts` for sheet row 17, Sam
+Ward — expected 1 (Jon's ruling), engine says 2 (the pre-ruling reading).
+Per the round-2 brief's standing instruction, the finding is stated plainly:
+**the fixture is right; the engine and `04-ENGINE-RULES.md` §5 are behind.**
+§5 needs one sentence — *an email counts as an attempt only when the
+contact's address is on it* — and the engine follows. The fixture will not
+be reverted to go green.
 
 What exists now:
 
@@ -217,16 +253,16 @@ attempt, never `last_contact`. Found via Mat Young. One wording residue is
 recorded in §0: a bare-title invite email with none of those prefixes would
 slip the list as written; no expected value here depends on one.
 
-**3.4 — What exactly does `attempts` count? — MOSTLY RESOLVED, §0.1.** Jon
+**3.4 — What exactly does `attempts` count? — RESOLVED, §0.1 + §0.2.** Jon
 confirmed §5 in plain terms: every email sent since they last wrote back is an
-attempt (so bounced sends count — Sean Kang is 3), and the
-final-thank-you-then-silence endgame is handled by marking `Closed`, not by
-special-casing the count. **The one sliver still open:** in a single-contact
-conversation, does an outbound to a *third party* count? §3 says everything in
-the conversation is that person's activity, so the key says yes — Sam Ward's
-attempts is 2, one of which is Jon forwarding the thread to family. One-line
-yes/no from Jon settles it; "no" changes exactly one value (Sam Ward 2→1)
-plus a sentence in §5.
+attempt (so bounced sends count — Sean Kang is 3), the
+final-thank-you-then-silence endgame is handled by marking `Closed`, and — the
+last sliver, ruled in the second follow-up — a send counts only **"when a
+banker is on either side of it"**: the contact's address must be on the
+message. Sam Ward's attempts is therefore **1** (the family forward no longer
+counts). The key encodes this; §5 still needs its sentence and the engine its
+matching change — until then the four season fixtures fail on exactly that
+cell, by design (§0.2).
 
 **3.5 — The round-1 brief's "highest attempts" trio — RESOLVED, §0.1.** The
 brief named Carrie Cruces, Chris Miller, Paige Butters — the highest **total
@@ -246,11 +282,14 @@ plain state with a growing clock — but if Jon intended literally-never-Bounced
 for her, the rules and the brief conflict and the rules won. **Flagged rather
 than softened; brief §5 forbids softening.**
 
-**3.7 — `found.name` cannot exist.** The contract's response example shows
-`"name": "Liz Ream"`, but the contract's request carries **bare addresses** —
-no display names anywhere. No engine can honestly produce that name. Expected
-files say `name: null`. Either the request grows display-name fields, or the
-response drops `name`. Contract ruling needed.
+**3.7 — `found.name` cannot exist — RESOLVED as a decision, §0.2; build
+pending.** The contract's response example shows `"name": "Liz Ream"`, but
+the contract's request carries **bare addresses** — no display names anywhere,
+so no engine can honestly produce that name. Jon ruled: **"yes, pass the
+names through."** The contract change (display names on message addresses)
+and its version bump belong to the conductor and build chats; expected files
+keep `name: null` until the contract carries names *and* the corpus is
+re-fetched with names captured (the archive recorded bare addresses only).
 
 **3.8 — Does §8 read headers or bodies?** "When a new address appears in a
 conversation…" — appears where? Micah Poag's three referral addresses exist
@@ -525,30 +564,28 @@ permanent).
 
 ---
 
-## 7. Unsettled, awaiting Jon — eight and a half remain
+## 7. Unsettled, awaiting Jon — seven remain
 
-Round 2 resolved the day rule (3.1, 3.2) and the calendar-RSVP rule (3.3).
-Jon's same-day follow-up (§0.1) resolved the firm-rows question (3.13), the
-"highest attempts" discrepancy (3.5), and most of the attempts definition
-(3.4). What is left, one line each; full statements in §3:
+Ruled so far: the day rule (3.1, 3.2), calendar RSVPs (3.3), the attempts
+definition in full (3.4, 3.5 — §0.1 and §0.2), names passed through (3.7,
+§0.2 — build pending), and the firm rows (3.13, §0.1). What is left, one
+line each; full statements in §3:
 
-1. The 3.4 sliver: does a send to a third party inside the contact's
-   conversation count as an attempt? (One value in the key rides on it —
-   Sam Ward.)
-2. Marijoy: `Bounced` in the gap vs the round-1 brief's "never worse than
+1. Marijoy: `Bounced` in the gap vs the round-1 brief's "never worse than
    `Sent`" (3.6) — the key follows the rules (`Bounced`).
-3. **`found.name` is unproducible from the contract's request (3.7)** — the
-   "found these" card can only show a bare address today. The one still-open
-   question that most changes what a student sees; re-explained to Jon in
-   plain English, awaiting his call. A yes means a contract change (display
-   names on messages) and, honestly, a corpus re-fetch if the fixtures are
-   ever to carry real names.
-4. §8: headers only, or bodies too? (3.8)
-5. `warnings` shape — and `found.context` wording — testable or explicitly
+2. §8: headers only, or bodies too? (3.8)
+3. `warnings` shape — and `found.context` wording — testable or explicitly
    not (3.9, §0).
-6. `Closed` rows: blank the columns or keep the facts (3.10).
-7. Mid-call `now` (3.11).
-8. `next_call` format; declined invites; nullable `firm`; Bounced
+4. `Closed` rows: blank the columns or keep the facts (3.10).
+5. Mid-call `now` (3.11).
+6. `next_call` format; declined invites; nullable `firm`; Bounced
    `last_contact`; the utmail alias (3.12).
-9. Not a rule question but needing an action: Lonnie's broken capture (§4)
+7. Not a rule question but needing an action: Lonnie's broken capture (§4)
    should be re-fetched, or her row's answer stays a fiction.
+
+Owed by other chats, from the rulings above: one sentence in
+`04-ENGINE-RULES.md` §5 (attempts require the contact on the message) plus
+the matching engine change — the four season fixtures stay deliberately red
+on Sam Ward's attempts until then — and the `05-CONTRACT.md` version bump
+that carries display names, with a corpus re-fetch behind it if the fixtures
+are ever to assert real names.
