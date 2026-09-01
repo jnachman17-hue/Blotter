@@ -291,8 +291,13 @@ the order they were diagnosed:
    (the Sean Kang case) — the workable amendment is: inbound in a one-contact
    conversation counts as their side thread-wide; outbound counts only when
    addressed to an address on the contact's row. Works because both Jon's live
-   sheet and the fixtures store every guessed address. **Awaiting Jon's
-   ruling; the engine follows §3 as written until then.**
+   sheet and the fixtures store every guessed address. **Ruled by Jon,
+   September 1, 2026, after the test-cases review: forwarding to family does
+   not count.** Implemented exactly as the amendment above; with it the engine
+   passes **all 31 fixtures**. For `04-ENGINE-RULES.md` §3 at its next
+   amendment. One consequence worth writing down: an email to a guessed
+   address counts — and its bounce lands — only when the guess is stored on
+   the contact's row, which every real case already does.
 
 ## 5. What the next chats must not trip over
 

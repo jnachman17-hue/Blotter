@@ -431,6 +431,54 @@ const GMAIL_BOUNCE = (failed: string) =>
   check("attempts: state is Sent", r.rows[0].status, "Sent");
 }
 
+/* Forwarding a contact's reply to family inside the same thread is not
+   writing to the contact — Jon's ruling, September 1, 2026. The Samuel Ward
+   shape: outreach, his reply, a forward to a third party, then a real reply
+   to him. One attempt, not two. */
+{
+  const sam = "spward@hl.com";
+  const r = computeEngine(
+    req(
+      [contact(17, "Samuel Ward", "Houlihan Lokey", [sam])],
+      [
+        {
+          thread_id: "t1",
+          messages: [
+            out("2024-01-17T16:44:00-06:00", [sam]),
+            msg({ date: "2024-01-22T15:45:00-06:00", from: sam }),
+            out("2024-01-22T20:46:00-06:00", ["dad@example.com"], { subject: "Fwd: Great news" }),
+            out("2024-01-22T23:01:00-06:00", [sam]),
+          ],
+        },
+      ],
+      [],
+      "2024-01-25T18:00:00Z",
+    ),
+  );
+  check("forward: one attempt, not two", r.rows[0].attempts, 1);
+  check("forward: state still Sent", r.rows[0].status, "Sent");
+
+  const stopsAtForward = computeEngine(
+    req(
+      [contact(17, "Samuel Ward", "Houlihan Lokey", [sam])],
+      [
+        {
+          thread_id: "t1",
+          messages: [
+            out("2024-01-17T16:44:00-06:00", [sam]),
+            msg({ date: "2024-01-22T15:45:00-06:00", from: sam }),
+            out("2024-01-22T20:46:00-06:00", ["dad@example.com"], { subject: "Fwd: Great news" }),
+          ],
+        },
+      ],
+      [],
+      "2024-01-25T18:00:00Z",
+    ),
+  );
+  check("forward: he still holds the last word", stopsAtForward.rows[0].status, "Replied");
+  check("forward: zero attempts since his reply", stopsAtForward.rows[0].attempts, 0);
+}
+
 /* A calendar RSVP is machine mail: accepting an invite is not writing back.
    The unanswered email stays unanswered, in state and in attempts. */
 {

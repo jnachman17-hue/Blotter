@@ -244,9 +244,13 @@ interface ContactActivity {
  * §3: a conversation belongs to a contact if any message in it carries that
  * contact's address in From, To or Cc.
  *
- * - **Exactly one contact in the conversation:** everything in it counts as
- *   that person's activity. This is what lets an assistant's reply advance the
- *   banker's row — Liz Ream really did answer for Steve McLaughlin.
+ * - **Exactly one contact in the conversation:** everything arriving counts as
+ *   that person's side. This is what lets an assistant's reply advance the
+ *   banker's row — Liz Ream really did answer for Steve McLaughlin. The
+ *   student's own messages count only when addressed to the contact
+ *   (Jon's ruling, September 1, 2026): forwarding Samuel Ward's reply to
+ *   family inside the same thread was not writing to Samuel Ward, and must
+ *   not count as an attempt at him.
  * - **Several contacts:** each person's state comes only from messages they
  *   are actually on. One person replying does not mark the other four as
  *   replied — the real "Potential favor" thread holds five relationships.
@@ -270,7 +274,15 @@ function attributeThread(
   if (involved.length === 0) return perContact;
 
   if (involved.length === 1) {
-    perContact.set(involved[0].index, [...classified]);
+    const entry = involved[0];
+    perContact.set(
+      entry.index,
+      classified.filter(
+        (m) =>
+          m.kind !== "outbound" ||
+          [...entry.addresses].some((a) => m.participants.has(a)),
+      ),
+    );
     return perContact;
   }
 
