@@ -431,6 +431,37 @@ const GMAIL_BOUNCE = (failed: string) =>
   check("attempts: state is Sent", r.rows[0].status, "Sent");
 }
 
+/* A calendar RSVP is machine mail: accepting an invite is not writing back.
+   The unanswered email stays unanswered, in state and in attempts. */
+{
+  const mat = "mathew.young@citi.com";
+  const r = computeEngine(
+    req(
+      [contact(4, "Mathew (Mat) Young", "Citi", [mat])],
+      [
+        {
+          thread_id: "t1",
+          messages: [
+            out("2024-01-22T14:00:00Z", [mat]),
+            msg({ date: "2024-01-22T21:05:52Z", from: mat }),
+            out("2024-01-22T21:20:01Z", [mat]),
+            msg({
+              date: "2024-01-22T21:58:58Z",
+              from: mat,
+              subject: "Accepted: Invitation: Mat - Jonathan Citi NY IB Call @ Fri Jan 26, 2024",
+            }),
+          ],
+        },
+      ],
+      [],
+      "2024-01-25T18:00:00Z",
+    ),
+  );
+  check("rsvp: acceptance is not a reply", r.rows[0].status, "Sent");
+  check("rsvp: attempts not reset", r.rows[0].attempts, 1);
+  check("rsvp: last_contact is the real mail", r.rows[0].last_contact, "2024-01-22");
+}
+
 /* ---------------------------------------------------------------- *
  * §7 — the calendar title match
  * ---------------------------------------------------------------- */

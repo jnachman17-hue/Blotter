@@ -51,12 +51,27 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function collectFixtures(): { fixtures: Fixture[]; unrecognised: string[] } {
-  let files: string[];
+/** Every .json under the fixtures tree, as paths relative to it. */
+function walkJson(dir: string, prefix = ""): string[] {
+  let entries;
   try {
-    files = readdirSync(FIXTURES_DIR).filter((f) => f.endsWith(".json")).sort();
+    entries = readdirSync(dir, { withFileTypes: true });
   } catch {
-    console.log(`No fixtures directory at ${FIXTURES_DIR}.`);
+    return [];
+  }
+  const files: string[] = [];
+  for (const entry of entries) {
+    const rel = prefix.length > 0 ? `${prefix}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) files.push(...walkJson(join(dir, entry.name), rel));
+    else if (entry.name.endsWith(".json")) files.push(rel);
+  }
+  return files.sort();
+}
+
+function collectFixtures(): { fixtures: Fixture[]; unrecognised: string[] } {
+  const files = walkJson(FIXTURES_DIR);
+  if (files.length === 0) {
+    console.log(`No fixtures found under ${FIXTURES_DIR}.`);
     return { fixtures: [], unrecognised: [] };
   }
 

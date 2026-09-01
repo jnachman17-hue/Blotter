@@ -147,11 +147,40 @@ function isAutoReplySubject(subject: string): boolean {
   );
 }
 
+/**
+ * A calendar RSVP notification is machine mail, in either direction.
+ *
+ * Clicking Accept on an invite is not the person writing back: it must not
+ * flip a row to `Replied` and must not reset the attempts count — Mat Young
+ * accepted Jon's invite minutes after Jon's last email, and the email he had
+ * not answered stayed unanswered. The meeting facts these messages carry live
+ * in the calendar events, which the engine already reads; the Learn phase
+ * filed these under calendar notifications for the same reason.
+ *
+ * Subject prefixes are the forms Google Calendar and Outlook actually stamp.
+ */
+const CALENDAR_RSVP_STARTS = [
+  "accepted:",
+  "declined:",
+  "tentatively accepted:",
+  "tentative:",
+  "invitation:",
+  "updated invitation:",
+  "canceled event:",
+  "cancelled event:",
+  "new time proposed:",
+];
+
+function isCalendarRsvpSubject(subject: string): boolean {
+  const s = subject.trim().toLowerCase();
+  return CALENDAR_RSVP_STARTS.some((marker) => s.startsWith(marker));
+}
+
 /* ------------------------------------------------------------------ *
  * §3 — How mail attaches to a person
  * ------------------------------------------------------------------ */
 
-type MessageKind = "outbound" | "inbound" | "auto_reply" | "bounce";
+type MessageKind = "outbound" | "inbound" | "auto_reply" | "bounce" | "calendar_rsvp";
 
 interface ClassifiedMessage {
   msg: MessageIn;
@@ -174,7 +203,11 @@ function classify(msg: MessageIn, threadIndex: number, order: number): Classifie
   const from = addressOf(msg.from);
   let kind: MessageKind;
   let failed = new Set<string>();
-  if (msg.is_outbound) {
+  if (isCalendarRsvpSubject(msg.subject)) {
+    /* Checked before direction: the student's own outbound "Accepted:" is
+       just as much machine mail as the banker's. */
+    kind = "calendar_rsvp";
+  } else if (msg.is_outbound) {
     kind = "outbound";
   } else if (isBounceSender(from)) {
     /* Machine mail from a delivery daemon is never a person writing back,
@@ -439,8 +472,9 @@ function computeRow(contact: ContactIn, activity: ContactActivity, now: string):
   /* §5 — attempts: how many times the student has written since the contact
      last wrote back. A first email and a third are not the same situation and
      no state can tell them apart. Bounced sends count: the real student burned
-     three attempts on addresses that did not exist. Auto-replies do not reset
-     the count, because a machine answering is not the contact writing back. */
+     three attempts on addresses that did not exist. Auto-replies and calendar
+     RSVPs do not reset the count, because a machine answering is not the
+     contact writing back. */
   const attempts = correspondence.filter(
     (m) => m.kind === "outbound" && (lastInbound === null || m.epoch > lastInbound.epoch),
   ).length;

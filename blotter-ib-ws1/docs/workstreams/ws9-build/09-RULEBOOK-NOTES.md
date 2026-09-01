@@ -44,21 +44,22 @@ Everything below is a place `04-ENGINE-RULES.md` or `05-CONTRACT.md` left open. 
 is invented silently: each is implemented one way, documented here, and **the ones
 marked ⚠ need Jon's ruling or fixture reconciliation.**
 
-### 2.1 ⚠ What "days" counts — calendar dates, in the timestamp's own timezone
+### 2.1 What "days" counts — calendar dates, in the timestamp's own timezone
+**Ruled by Jon, September 1, 2026: a day turns at midnight in the student's
+timezone.**
 
-"Whole days" is not defined. Two readings disagree: 36 hours is 1 day by elapsed
+"Whole days" was not defined. Two readings disagree: 36 hours is 1 day by elapsed
 time but can be 1 *or 2* calendar days. The contract's own example pairs
 `last_contact: 2026-08-20` with `days: 12` on September 1 — a **date subtraction** —
 so the engine subtracts calendar dates. A call tomorrow morning is `1` day away
-however few hours remain tonight.
+however few hours remain tonight. Jon ratified exactly this.
 
 Which timezone defines "the date": the engine has none of its own and must not
 invent one, so it reads each timestamp's date **in the offset the courier wrote**
-(the first ten characters of an ISO timestamp with offset are its local date). The
-courier therefore controls the student's calendar by choosing offsets. **Open
-question for the courier chat and Jon: should the courier write timestamps in the
-student's timezone?** If it sends everything in UTC, a late-evening Austin email
-lands on tomorrow's date.
+(the first ten characters of an ISO timestamp with offset are its local date).
+**Consequence of the ruling, for the courier chat: the courier must write every
+timestamp in the student's timezone.** If it sends UTC, a late-evening Austin
+email lands on tomorrow's date and the engine cannot know better.
 
 ### 2.2 ⚠ `next_call` carries the full start timestamp
 
@@ -79,13 +80,13 @@ the row moves to `Replied`. A bounce is matched to the outbound it answers by th
 failed recipient named in its body against that outbound's To/Cc.
 
 Two documented edges: a mailer-daemon message naming no address still counts
-against an outbound it directly follows in the same thread; and ⚠ if one outbound
+against an outbound it directly follows in the same thread; and if one outbound
 goes to a contact *and* an untracked address and only the untracked copy bounces,
 the row shows `Bounced` even though the contact's copy was delivered. That reading
 was chosen because it is the one that protects the Sean Kang case (guessed
 addresses that are not in the sheet must still bounce the row); the partial-failure
-edge is rarer and self-heals when the delivered person replies. Jon may rule the
-other way.
+edge is rarer and self-heals when the delivered person replies. **Ruled by Jon,
+September 1, 2026: keep this reading.**
 
 ### 2.4 ⚠ Bounce senders are `mailer-daemon@…` and `postmaster@…`
 
@@ -181,13 +182,68 @@ auto-reply.
 
 ## 3. Fixture disagreements
 
-None yet: **`__fixtures__/` was empty when this was built.** The engine was built
-against the rules alone, as the brief instructs. `run-fixtures.ts` is ready and
-compares `rows` exactly (the acceptance bar), `found` on membership and
-`first_seen`, and treats `name`/`context`/`warnings` wording as notes rather than
-failures — the fixture chat cannot be expected to word engine prose identically.
-When a real disagreement appears, the finding goes here, with which of the three —
-implementation, fixture, or rules document — was wrong.
+The engine was built against the rules alone; the fixtures (31 request/expected
+pairs — 15 targeted cases, 4 whole-season snapshots) landed the same afternoon and
+were run immediately. `run-fixtures.ts` compares `rows` exactly (the acceptance
+bar), `found` on membership and `first_seen`, and treats `name`/`context`/
+`warnings` wording as notes rather than failures.
+
+**Result: 15 of 31 pass. Every one of the 16 failures reduces to exactly three
+findings, and every individual mismatch was verified to fit one of them.** After
+resolving finding 3 in the engine, the two sides agree on **every status, every
+attempts count, every `last_contact`, every `next_call`, and every found-list
+membership** across the whole real season. Nothing else disagrees.
+
+### Finding 1 — `days`: the fixtures floor elapsed time; the engine subtracts dates. **The fixtures are wrong, by Jon's ruling.**
+
+98 `days` mismatches, all exactly `expected N, got N+1`. The fixtures compute
+`floor(elapsed / 24h)` (Jessica Luft: 26 days 18 hours → 26); the engine subtracts
+calendar dates (Jan 19 → Feb 15 = 27). Jon ruled on September 1, 2026 that a day
+turns at midnight in the student's timezone — the engine's reading. **The test
+chat's `build_fixtures.py` needs one formula change and a regeneration.** No
+engine change.
+
+### Finding 2 — `last_call` dates: the fixtures use the UTC clock. **The fixtures are wrong, by the same ruling.**
+
+Two rows (sheet rows 16 and 28), repeated across the four season snapshots. Kate
+Borden's call started `2024-01-22T16:00:00-08:00` — the evening of **January 22**
+in both Pacific and Austin time — and the fixtures expect `2024-01-23`, its UTC
+date. Same for Carson Harris. Falls out of the same regeneration as finding 1.
+
+Related, for the regeneration: the fixtures write message timestamps in UTC (`Z`),
+so any date they imply for evening mail is already shifted off the student's
+calendar. Under Jon's ruling the timestamps themselves should carry the student's
+offset (§2.1).
+
+### Finding 3 — calendar RSVPs reset `attempts`. **The engine was wrong; fixed; a rules gap to ratify.**
+
+Mat Young accepted Jon's invite — subject `Accepted: Invitation: Mat - Jonathan
+Citi NY IB Call @ …` — minutes after Jon's last email. The engine counted that
+acceptance as Mat writing back (attempts reset to 0, and it would have shown
+`Replied` had no call been scheduled). The fixtures treat an RSVP notification as
+machine mail. **The fixtures are right**: clicking Accept is not writing back, the
+meeting facts live in the calendar events the engine already reads, and the Learn
+phase filed these messages under calendar notifications. `04-ENGINE-RULES.md` is
+silent on it — §6 names only auto-replies.
+
+The engine now classifies subjects beginning `Accepted:` / `Declined:` /
+`Tentatively accepted:` / `Invitation:` / `Updated invitation:` / `Canceled
+event:` / `New time proposed:` as machine mail in either direction: never a
+reply, never an attempt, never `last_contact`. This resolved every `attempts`
+mismatch and the two wholly-failing RSVP cases. **⚠ Needs Jon's ratification, and
+belongs in `04-ENGINE-RULES.md` §6 alongside auto-replies** (recorded here rather
+than edited into the ratified document, which this chat must not touch).
+
+### Soft differences, for the record (not failures)
+
+- The fixtures set `found.name` to `null`; the engine derives a name from the
+  address (`liz.ream@…` → "Liz Ream", as the contract's example implies).
+- The fixtures' `found.context` names one contact; the engine names every contact
+  the thread belongs to.
+- The fixtures expect no `warnings`; the engine emits its four kinds (§2.13).
+
+None of these is pinned by the contract. If Jon wants them uniform, the contract
+owner should pin them and both sides follow.
 
 ---
 
