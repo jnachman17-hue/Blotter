@@ -230,9 +230,12 @@ The engine now classifies subjects beginning `Accepted:` / `Declined:` /
 `Tentatively accepted:` / `Invitation:` / `Updated invitation:` / `Canceled
 event:` / `New time proposed:` as machine mail in either direction: never a
 reply, never an attempt, never `last_contact`. This resolved every `attempts`
-mismatch and the two wholly-failing RSVP cases. **⚠ Needs Jon's ratification, and
-belongs in `04-ENGINE-RULES.md` §6 alongside auto-replies** (recorded here rather
-than edited into the ratified document, which this chat must not touch).
+mismatch and the two wholly-failing RSVP cases.
+
+**Ratified by Jon, September 1, 2026** — "a calendar accept/decline notification
+is machine mail: never a reply, never resets attempts." It belongs in
+`04-ENGINE-RULES.md` §6 alongside auto-replies at that document's next amendment;
+recorded here because build chats do not edit the ratified spec.
 
 ### Soft differences, for the record (not failures)
 
