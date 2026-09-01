@@ -4,7 +4,7 @@
   {
    "row": 2,
    "status": "Sent",
-   "days": 7,
+   "days": 8,
    "last_contact": "2024-01-17",
    "attempts": 1,
    "next_call": null,
@@ -13,8 +13,8 @@
   {
    "row": 3,
    "status": "Replied",
-   "days": 3,
-   "last_contact": "2024-01-22",
+   "days": 4,
+   "last_contact": "2024-01-21",
    "attempts": 0,
    "next_call": null,
    "last_call": "2024-01-19"
@@ -22,8 +22,8 @@
   {
    "row": 4,
    "status": "Sent",
-   "days": 5,
-   "last_contact": "2024-01-20",
+   "days": 6,
+   "last_contact": "2024-01-19",
    "attempts": 2,
    "next_call": null,
    "last_call": null
@@ -106,7 +106,7 @@
    "days": 1,
    "last_contact": "2024-01-17",
    "attempts": 0,
-   "next_call": "2024-01-26T11:30:00-08:00",
+   "next_call": "2024-01-26T13:30:00-06:00",
    "last_call": null
   },
   {
@@ -121,7 +121,7 @@
   {
    "row": 15,
    "status": "Sent",
-   "days": 7,
+   "days": 8,
    "last_contact": "2024-01-17",
    "attempts": 1,
    "next_call": null,
@@ -134,13 +134,13 @@
    "last_contact": "2024-01-23",
    "attempts": 0,
    "next_call": null,
-   "last_call": "2024-01-23"
+   "last_call": "2024-01-22"
   },
   {
    "row": 17,
    "status": "Sent",
-   "days": 2,
-   "last_contact": "2024-01-23",
+   "days": 3,
+   "last_contact": "2024-01-22",
    "attempts": 2,
    "next_call": null,
    "last_call": null
@@ -148,7 +148,7 @@
   {
    "row": 18,
    "status": "Sent",
-   "days": 7,
+   "days": 8,
    "last_contact": "2024-01-17",
    "attempts": 1,
    "next_call": null,
@@ -157,7 +157,7 @@
   {
    "row": 19,
    "status": "Sent",
-   "days": 7,
+   "days": 8,
    "last_contact": "2024-01-17",
    "attempts": 1,
    "next_call": null,
@@ -166,7 +166,7 @@
   {
    "row": 20,
    "status": "Sent",
-   "days": 7,
+   "days": 8,
    "last_contact": "2024-01-17",
    "attempts": 1,
    "next_call": null,
@@ -175,7 +175,7 @@
   {
    "row": 21,
    "status": "Sent",
-   "days": 2,
+   "days": 3,
    "last_contact": "2024-01-22",
    "attempts": 1,
    "next_call": null,
@@ -184,8 +184,8 @@
   {
    "row": 22,
    "status": "Sent",
-   "days": 7,
-   "last_contact": "2024-01-18",
+   "days": 8,
+   "last_contact": "2024-01-17",
    "attempts": 1,
    "next_call": null,
    "last_call": null
@@ -193,7 +193,7 @@
   {
    "row": 23,
    "status": "Replied",
-   "days": 2,
+   "days": 3,
    "last_contact": "2024-01-22",
    "attempts": 0,
    "next_call": null,
@@ -202,8 +202,8 @@
   {
    "row": 24,
    "status": "Sent",
-   "days": 6,
-   "last_contact": "2024-01-19",
+   "days": 7,
+   "last_contact": "2024-01-18",
    "attempts": 1,
    "next_call": null,
    "last_call": null
@@ -211,17 +211,17 @@
   {
    "row": 25,
    "status": "Call scheduled",
-   "days": 0,
-   "last_contact": "2024-01-22",
+   "days": 1,
+   "last_contact": "2024-01-21",
    "attempts": 1,
-   "next_call": "2024-01-26T08:00:00-08:00",
+   "next_call": "2024-01-26T10:00:00-06:00",
    "last_call": null
   },
   {
    "row": 26,
    "status": "Replied",
-   "days": 2,
-   "last_contact": "2024-01-23",
+   "days": 3,
+   "last_contact": "2024-01-22",
    "attempts": 0,
    "next_call": null,
    "last_call": null
@@ -229,7 +229,7 @@
   {
    "row": 27,
    "status": "Sent",
-   "days": 2,
+   "days": 3,
    "last_contact": "2024-01-22",
    "attempts": 1,
    "next_call": null,
@@ -242,12 +242,12 @@
    "last_contact": "2024-01-24",
    "attempts": 1,
    "next_call": null,
-   "last_call": "2024-01-24"
+   "last_call": "2024-01-23"
   },
   {
    "row": 29,
    "status": "Sent",
-   "days": 5,
+   "days": 6,
    "last_contact": "2024-01-19",
    "attempts": 1,
    "next_call": null,
@@ -256,7 +256,7 @@
   {
    "row": 30,
    "status": "Sent",
-   "days": 4,
+   "days": 5,
    "last_contact": "2024-01-20",
    "attempts": 1,
    "next_call": null,
@@ -265,8 +265,8 @@
   {
    "row": 31,
    "status": "Sent",
-   "days": 5,
-   "last_contact": "2024-01-20",
+   "days": 6,
+   "last_contact": "2024-01-19",
    "attempts": 1,
    "next_call": null,
    "last_call": null
@@ -274,7 +274,7 @@
   {
    "row": 32,
    "status": "Sent",
-   "days": 1,
+   "days": 2,
    "last_contact": "2024-01-23",
    "attempts": 2,
    "next_call": null,
@@ -286,7 +286,7 @@
    "days": 0,
    "last_contact": "2024-01-22",
    "attempts": 0,
-   "next_call": "2024-01-25T11:00:00-08:00",
+   "next_call": "2024-01-25T13:00:00-06:00",
    "last_call": null
   },
   {
@@ -301,8 +301,8 @@
   {
    "row": 35,
    "status": "Call done",
-   "days": 0,
-   "last_contact": "2024-01-23",
+   "days": 1,
+   "last_contact": "2024-01-22",
    "attempts": 0,
    "next_call": null,
    "last_call": "2024-01-24"
@@ -311,9 +311,9 @@
    "row": 36,
    "status": "Call scheduled",
    "days": 0,
-   "last_contact": "2024-01-23",
+   "last_contact": "2024-01-22",
    "attempts": 1,
-   "next_call": "2024-01-25T15:00:00-08:00",
+   "next_call": "2024-01-25T17:00:00-06:00",
    "last_call": null
   },
   {
@@ -322,23 +322,23 @@
    "days": 1,
    "last_contact": "2024-01-22",
    "attempts": 1,
-   "next_call": "2024-01-26T12:00:00-08:00",
+   "next_call": "2024-01-26T14:00:00-06:00",
    "last_call": null
   },
   {
    "row": 38,
    "status": "Call scheduled",
    "days": 5,
-   "last_contact": "2024-01-23",
+   "last_contact": "2024-01-22",
    "attempts": 1,
-   "next_call": "2024-01-30T10:00:00-08:00",
+   "next_call": "2024-01-30T12:00:00-06:00",
    "last_call": null
   },
   {
    "row": 39,
    "status": "Sent",
-   "days": 1,
-   "last_contact": "2024-01-24",
+   "days": 2,
+   "last_contact": "2024-01-23",
    "attempts": 1,
    "next_call": null,
    "last_call": null
@@ -346,8 +346,8 @@
   {
    "row": 40,
    "status": "Sent",
-   "days": 1,
-   "last_contact": "2024-01-24",
+   "days": 2,
+   "last_contact": "2024-01-23",
    "attempts": 1,
    "next_call": null,
    "last_call": null
@@ -627,19 +627,19 @@
   {
    "email": "Andersen@intrepidfp.com",
    "name": null,
-   "first_seen": "2024-01-20",
+   "first_seen": "2024-01-19",
    "context": "Appeared in a thread with John Sellingsloh"
   },
   {
    "email": "Bemis@intrepidfp.com",
    "name": null,
-   "first_seen": "2024-01-20",
+   "first_seen": "2024-01-19",
    "context": "Appeared in a thread with John Sellingsloh"
   },
   {
    "email": "cook@intrepidfp.com",
    "name": null,
-   "first_seen": "2024-01-20",
+   "first_seen": "2024-01-19",
    "context": "Appeared in a thread with John Sellingsloh"
   },
   {

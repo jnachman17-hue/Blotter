@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-02-15T18:00:00Z",
+ "now": "2024-02-15T12:00:00-06:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -24,7 +24,7 @@
    "messages": [
     {
      "id": "18da505200590986",
-     "date": "2024-02-14T00:29:51Z",
+     "date": "2024-02-13T18:29:51-06:00",
      "from": "dnachman@fastspring.com",
      "to": [
       "steve.mclaughlin@ftpartners.com",
@@ -38,7 +38,7 @@
     },
     {
      "id": "18da85be63b82660",
-     "date": "2024-02-14T16:03:31Z",
+     "date": "2024-02-14T10:03:31-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "liz.ream@ftpartners.com"
@@ -50,7 +50,7 @@
     },
     {
      "id": "18da86c0024143ab",
-     "date": "2024-02-14T16:21:02Z",
+     "date": "2024-02-14T10:21:02-06:00",
      "from": "liz.ream@ftpartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -62,7 +62,7 @@
     },
     {
      "id": "18da874c1eb03b4f",
-     "date": "2024-02-14T16:30:40Z",
+     "date": "2024-02-14T10:30:40-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "liz.ream@ftpartners.com"
@@ -74,7 +74,7 @@
     },
     {
      "id": "18daadbb1f699043",
-     "date": "2024-02-15T03:42:19Z",
+     "date": "2024-02-14T21:42:19-06:00",
      "from": "steve.mclaughlin@ftpartners.com",
      "to": [
       "liz.ream@ftpartners.com",
@@ -87,7 +87,7 @@
     },
     {
      "id": "18daaf1ecc6f1ff4",
-     "date": "2024-02-15T04:06:37Z",
+     "date": "2024-02-14T22:06:37-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "steve.mclaughlin@ftpartners.com"
@@ -99,7 +99,7 @@
     },
     {
      "id": "18daaf62956b3b8b",
-     "date": "2024-02-15T04:11:13Z",
+     "date": "2024-02-14T22:11:13-06:00",
      "from": "steve.mclaughlin@ftpartners.com",
      "to": [
       "jnachman17@gmail.com"

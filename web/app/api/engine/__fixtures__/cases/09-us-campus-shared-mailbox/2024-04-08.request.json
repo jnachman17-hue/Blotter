@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-04-08T18:00:00Z",
+ "now": "2024-04-08T13:00:00-05:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -24,7 +24,7 @@
    "messages": [
     {
      "id": "18ebeb5bf7b97ae0",
-     "date": "2024-04-08T17:16:05Z",
+     "date": "2024-04-08T12:16:05-05:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "US_Campus@bofa.com"
@@ -36,7 +36,7 @@
     },
     {
      "id": "18ebebb3b29c1070",
-     "date": "2024-04-08T17:22:04Z",
+     "date": "2024-04-08T12:22:04-05:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "US_Campus@bofa.com"

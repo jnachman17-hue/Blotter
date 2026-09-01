@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-02-15T18:00:00Z",
+ "now": "2024-02-15T12:00:00-06:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -24,7 +24,7 @@
    "messages": [
     {
      "id": "18d241cdc4f135db",
-     "date": "2024-01-19T23:44:46Z",
+     "date": "2024-01-19T17:44:46-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "jessica.luft@bofa.com"
@@ -41,7 +41,7 @@
    "messages": [
     {
      "id": "18d241d911df6645",
-     "date": "2024-01-19T23:45:06Z",
+     "date": "2024-01-19T17:45:06-06:00",
      "from": "jessica.luft@bofa.com",
      "to": [
       "jnachman@utexas.edu"

@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-04-30T18:00:00Z",
+ "now": "2024-04-30T13:00:00-05:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -26,7 +26,7 @@
    "messages": [
     {
      "id": "18d86f5f94ad0e0e",
-     "date": "2024-02-08T04:24:42Z",
+     "date": "2024-02-07T22:24:42-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Marijoy.Bertolini@aerispartners.com"
@@ -38,7 +38,7 @@
     },
     {
      "id": "18d86f6262e228ee",
-     "date": "2024-02-08T04:24:55Z",
+     "date": "2024-02-07T22:24:55-06:00",
      "from": "mailer-daemon@googlemail.com",
      "to": [
       "jnachman17@gmail.com"
@@ -55,7 +55,7 @@
    "messages": [
     {
      "id": "18d870434c19f943",
-     "date": "2024-02-08T04:40:15Z",
+     "date": "2024-02-07T22:40:15-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "bm@aerispartners.com"
@@ -67,7 +67,7 @@
     },
     {
      "id": "18d8704625bfd255",
-     "date": "2024-02-08T04:40:27Z",
+     "date": "2024-02-07T22:40:27-06:00",
      "from": "mailer-daemon@googlemail.com",
      "to": [
       "jnachman17@gmail.com"
@@ -84,7 +84,7 @@
    "messages": [
     {
      "id": "18df66aeebda31cd",
-     "date": "2024-02-29T19:50:15Z",
+     "date": "2024-02-29T13:50:15-06:00",
      "from": "mjb@aerispartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -96,7 +96,7 @@
     },
     {
      "id": "18df67c8b4089ada",
-     "date": "2024-02-29T20:09:33Z",
+     "date": "2024-02-29T14:09:33-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "mjb@aerispartners.com"
@@ -108,7 +108,7 @@
     },
     {
      "id": "18df6de6bd28c289",
-     "date": "2024-02-29T21:56:27Z",
+     "date": "2024-02-29T15:56:27-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "mjb@aerispartners.com"
@@ -120,7 +120,7 @@
     },
     {
      "id": "18df6e7384314797",
-     "date": "2024-02-29T22:06:02Z",
+     "date": "2024-02-29T16:06:02-06:00",
      "from": "mjb@aerispartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -137,7 +137,7 @@
    "messages": [
     {
      "id": "18e7adb9abe872ba",
-     "date": "2024-03-26T13:03:10Z",
+     "date": "2024-03-26T08:03:10-05:00",
      "from": "mjb@aerispartners.com",
      "to": [
       "jnachman17@gmail.com"

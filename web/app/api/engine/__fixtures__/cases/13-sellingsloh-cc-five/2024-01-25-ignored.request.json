@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-01-25T18:00:00Z",
+ "now": "2024-01-25T12:00:00-06:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -24,7 +24,7 @@
    "messages": [
     {
      "id": "18d242385381dbc2",
-     "date": "2024-01-19T23:52:03Z",
+     "date": "2024-01-19T17:52:03-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "sellingsloh@intrepidfp.com"
@@ -36,7 +36,7 @@
     },
     {
      "id": "18d247eb79c1ac28",
-     "date": "2024-01-20T01:31:31Z",
+     "date": "2024-01-19T19:31:31-06:00",
      "from": "Sellingsloh@intrepidfp.com",
      "to": [
       "jnachman@utexas.edu"
@@ -54,7 +54,7 @@
     },
     {
      "id": "18d282a41dfb95fa",
-     "date": "2024-01-20T18:37:54Z",
+     "date": "2024-01-20T12:37:54-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Sellingsloh@intrepidfp.com"

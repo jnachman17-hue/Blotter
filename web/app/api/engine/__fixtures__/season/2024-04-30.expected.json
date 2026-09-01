@@ -4,7 +4,7 @@
   {
    "row": 2,
    "status": "Sent",
-   "days": 103,
+   "days": 104,
    "last_contact": "2024-01-17",
    "attempts": 1,
    "next_call": null,
@@ -13,8 +13,8 @@
   {
    "row": 3,
    "status": "Replied",
-   "days": 99,
-   "last_contact": "2024-01-22",
+   "days": 100,
+   "last_contact": "2024-01-21",
    "attempts": 0,
    "next_call": null,
    "last_call": "2024-01-19"
@@ -22,8 +22,8 @@
   {
    "row": 4,
    "status": "Sent",
-   "days": 101,
-   "last_contact": "2024-01-20",
+   "days": 102,
+   "last_contact": "2024-01-19",
    "attempts": 2,
    "next_call": null,
    "last_call": null
@@ -94,8 +94,8 @@
   {
    "row": 12,
    "status": "Sent",
-   "days": 90,
-   "last_contact": "2024-01-31",
+   "days": 91,
+   "last_contact": "2024-01-30",
    "attempts": 2,
    "next_call": null,
    "last_call": null
@@ -103,7 +103,7 @@
   {
    "row": 13,
    "status": "Sent",
-   "days": 90,
+   "days": 91,
    "last_contact": "2024-01-30",
    "attempts": 1,
    "next_call": null,
@@ -121,7 +121,7 @@
   {
    "row": 15,
    "status": "Sent",
-   "days": 103,
+   "days": 104,
    "last_contact": "2024-01-17",
    "attempts": 1,
    "next_call": null,
@@ -130,17 +130,17 @@
   {
    "row": 16,
    "status": "Replied",
-   "days": 81,
+   "days": 82,
    "last_contact": "2024-02-08",
    "attempts": 0,
    "next_call": null,
-   "last_call": "2024-01-23"
+   "last_call": "2024-01-22"
   },
   {
    "row": 17,
    "status": "Sent",
-   "days": 98,
-   "last_contact": "2024-01-23",
+   "days": 99,
+   "last_contact": "2024-01-22",
    "attempts": 2,
    "next_call": null,
    "last_call": null
@@ -148,7 +148,7 @@
   {
    "row": 18,
    "status": "Sent",
-   "days": 103,
+   "days": 104,
    "last_contact": "2024-01-17",
    "attempts": 1,
    "next_call": null,
@@ -157,7 +157,7 @@
   {
    "row": 19,
    "status": "Sent",
-   "days": 103,
+   "days": 104,
    "last_contact": "2024-01-17",
    "attempts": 1,
    "next_call": null,
@@ -166,8 +166,8 @@
   {
    "row": 20,
    "status": "Sent",
-   "days": 90,
-   "last_contact": "2024-01-31",
+   "days": 91,
+   "last_contact": "2024-01-30",
    "attempts": 2,
    "next_call": null,
    "last_call": null
@@ -175,7 +175,7 @@
   {
    "row": 21,
    "status": "Sent",
-   "days": 98,
+   "days": 99,
    "last_contact": "2024-01-22",
    "attempts": 1,
    "next_call": null,
@@ -184,8 +184,8 @@
   {
    "row": 22,
    "status": "Sent",
-   "days": 64,
-   "last_contact": "2024-02-26",
+   "days": 65,
+   "last_contact": "2024-02-25",
    "attempts": 2,
    "next_call": null,
    "last_call": null
@@ -193,7 +193,7 @@
   {
    "row": 23,
    "status": "Replied",
-   "days": 98,
+   "days": 99,
    "last_contact": "2024-01-22",
    "attempts": 0,
    "next_call": null,
@@ -202,8 +202,8 @@
   {
    "row": 24,
    "status": "Sent",
-   "days": 90,
-   "last_contact": "2024-01-31",
+   "days": 91,
+   "last_contact": "2024-01-30",
    "attempts": 2,
    "next_call": null,
    "last_call": null
@@ -211,7 +211,7 @@
   {
    "row": 25,
    "status": "Sent",
-   "days": 94,
+   "days": 95,
    "last_contact": "2024-01-26",
    "attempts": 3,
    "next_call": null,
@@ -220,8 +220,8 @@
   {
    "row": 26,
    "status": "Replied",
-   "days": 98,
-   "last_contact": "2024-01-23",
+   "days": 99,
+   "last_contact": "2024-01-22",
    "attempts": 0,
    "next_call": null,
    "last_call": null
@@ -229,7 +229,7 @@
   {
    "row": 27,
    "status": "Sent",
-   "days": 98,
+   "days": 99,
    "last_contact": "2024-01-22",
    "attempts": 1,
    "next_call": null,
@@ -242,12 +242,12 @@
    "last_contact": "2024-01-24",
    "attempts": 1,
    "next_call": null,
-   "last_call": "2024-01-24"
+   "last_call": "2024-01-23"
   },
   {
    "row": 29,
    "status": "Sent",
-   "days": 101,
+   "days": 102,
    "last_contact": "2024-01-19",
    "attempts": 1,
    "next_call": null,
@@ -256,7 +256,7 @@
   {
    "row": 30,
    "status": "Sent",
-   "days": 100,
+   "days": 101,
    "last_contact": "2024-01-20",
    "attempts": 1,
    "next_call": null,
@@ -265,8 +265,8 @@
   {
    "row": 31,
    "status": "Sent",
-   "days": 101,
-   "last_contact": "2024-01-20",
+   "days": 102,
+   "last_contact": "2024-01-19",
    "attempts": 1,
    "next_call": null,
    "last_call": null
@@ -274,7 +274,7 @@
   {
    "row": 32,
    "status": "Sent",
-   "days": 97,
+   "days": 98,
    "last_contact": "2024-01-23",
    "attempts": 2,
    "next_call": null,
@@ -283,7 +283,7 @@
   {
    "row": 33,
    "status": "Sent",
-   "days": 95,
+   "days": 96,
    "last_contact": "2024-01-25",
    "attempts": 1,
    "next_call": null,
@@ -301,8 +301,8 @@
   {
    "row": 35,
    "status": "Replied",
-   "days": 95,
-   "last_contact": "2024-01-26",
+   "days": 96,
+   "last_contact": "2024-01-25",
    "attempts": 0,
    "next_call": null,
    "last_call": "2024-01-24"
@@ -310,8 +310,8 @@
   {
    "row": 36,
    "status": "Sent",
-   "days": 95,
-   "last_contact": "2024-01-26",
+   "days": 96,
+   "last_contact": "2024-01-25",
    "attempts": 2,
    "next_call": null,
    "last_call": "2024-01-25"
@@ -319,7 +319,7 @@
   {
    "row": 37,
    "status": "Sent",
-   "days": 94,
+   "days": 95,
    "last_contact": "2024-01-26",
    "attempts": 2,
    "next_call": null,
@@ -328,7 +328,7 @@
   {
    "row": 38,
    "status": "Sent",
-   "days": 90,
+   "days": 91,
    "last_contact": "2024-01-30",
    "attempts": 1,
    "next_call": null,
@@ -346,8 +346,8 @@
   {
    "row": 40,
    "status": "Sent",
-   "days": 91,
-   "last_contact": "2024-01-30",
+   "days": 92,
+   "last_contact": "2024-01-29",
    "attempts": 2,
    "next_call": null,
    "last_call": "2024-01-29"
@@ -355,7 +355,7 @@
   {
    "row": 41,
    "status": "Sent",
-   "days": 90,
+   "days": 91,
    "last_contact": "2024-01-30",
    "attempts": 1,
    "next_call": null,
@@ -364,7 +364,7 @@
   {
    "row": 42,
    "status": "Replied",
-   "days": 91,
+   "days": 92,
    "last_contact": "2024-01-29",
    "attempts": 0,
    "next_call": null,
@@ -382,7 +382,7 @@
   {
    "row": 44,
    "status": "Replied",
-   "days": 90,
+   "days": 91,
    "last_contact": "2024-01-30",
    "attempts": 0,
    "next_call": null,
@@ -391,7 +391,7 @@
   {
    "row": 45,
    "status": "Sent",
-   "days": 80,
+   "days": 81,
    "last_contact": "2024-02-09",
    "attempts": 1,
    "next_call": null,
@@ -400,8 +400,8 @@
   {
    "row": 46,
    "status": "Sent",
-   "days": 89,
-   "last_contact": "2024-02-01",
+   "days": 90,
+   "last_contact": "2024-01-31",
    "attempts": 1,
    "next_call": null,
    "last_call": null
@@ -409,8 +409,8 @@
   {
    "row": 47,
    "status": "Bounced",
-   "days": 90,
-   "last_contact": "2024-01-31",
+   "days": 91,
+   "last_contact": "2024-01-30",
    "attempts": 3,
    "next_call": null,
    "last_call": null
@@ -418,8 +418,8 @@
   {
    "row": 48,
    "status": "Sent",
-   "days": 90,
-   "last_contact": "2024-01-31",
+   "days": 91,
+   "last_contact": "2024-01-30",
    "attempts": 1,
    "next_call": null,
    "last_call": null
@@ -427,8 +427,8 @@
   {
    "row": 49,
    "status": "Sent",
-   "days": 90,
-   "last_contact": "2024-01-31",
+   "days": 91,
+   "last_contact": "2024-01-30",
    "attempts": 1,
    "next_call": null,
    "last_call": null
@@ -436,7 +436,7 @@
   {
    "row": 50,
    "status": "Replied",
-   "days": 88,
+   "days": 89,
    "last_contact": "2024-02-01",
    "attempts": 0,
    "next_call": null,
@@ -481,8 +481,8 @@
   {
    "row": 55,
    "status": "Replied",
-   "days": 70,
-   "last_contact": "2024-02-20",
+   "days": 71,
+   "last_contact": "2024-02-19",
    "attempts": 0,
    "next_call": null,
    "last_call": "2024-02-19"
@@ -490,7 +490,7 @@
   {
    "row": 56,
    "status": "Sent",
-   "days": 47,
+   "days": 48,
    "last_contact": "2024-03-13",
    "attempts": 1,
    "next_call": null,
@@ -580,7 +580,7 @@
   {
    "row": 66,
    "status": "Sent",
-   "days": 11,
+   "days": 12,
    "last_contact": "2024-04-18",
    "attempts": 1,
    "next_call": null,
@@ -589,8 +589,8 @@
   {
    "row": 67,
    "status": "Replied",
-   "days": 11,
-   "last_contact": "2024-04-19",
+   "days": 12,
+   "last_contact": "2024-04-18",
    "attempts": 0,
    "next_call": null,
    "last_call": null
@@ -598,7 +598,7 @@
   {
    "row": 68,
    "status": "Call done",
-   "days": 87,
+   "days": 88,
    "last_contact": null,
    "attempts": 0,
    "next_call": null,
@@ -627,19 +627,19 @@
   {
    "email": "Andersen@intrepidfp.com",
    "name": null,
-   "first_seen": "2024-01-20",
+   "first_seen": "2024-01-19",
    "context": "Appeared in a thread with John Sellingsloh"
   },
   {
    "email": "Bemis@intrepidfp.com",
    "name": null,
-   "first_seen": "2024-01-20",
+   "first_seen": "2024-01-19",
    "context": "Appeared in a thread with John Sellingsloh"
   },
   {
    "email": "cook@intrepidfp.com",
    "name": null,
-   "first_seen": "2024-01-20",
+   "first_seen": "2024-01-19",
    "context": "Appeared in a thread with John Sellingsloh"
   },
   {
@@ -651,7 +651,7 @@
   {
    "email": "careers@aerispartners.com",
    "name": null,
-   "first_seen": "2024-02-08",
+   "first_seen": "2024-02-07",
    "context": "Appeared in a thread with Paige Butters"
   },
   {
@@ -663,7 +663,7 @@
   {
    "email": "liz.ream@ftpartners.com",
    "name": null,
-   "first_seen": "2024-02-14",
+   "first_seen": "2024-02-13",
    "context": "Appeared in a thread with Steve McLaughlin"
   }
  ],

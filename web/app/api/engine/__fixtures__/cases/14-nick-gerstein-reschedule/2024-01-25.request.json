@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-01-25T18:00:00Z",
+ "now": "2024-01-25T12:00:00-06:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -24,7 +24,7 @@
    "messages": [
     {
      "id": "18d1fe72f5816977",
-     "date": "2024-01-19T04:07:40Z",
+     "date": "2024-01-18T22:07:40-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "NGerstein99@gmail.com"
@@ -36,7 +36,7 @@
     },
     {
      "id": "18d2e2d12fbb865b",
-     "date": "2024-01-21T22:38:29Z",
+     "date": "2024-01-21T16:38:29-06:00",
      "from": "ngerstein99@gmail.com",
      "to": [
       "jnachman@utexas.edu"
@@ -48,7 +48,7 @@
     },
     {
      "id": "18d2e4de37c4c88d",
-     "date": "2024-01-21T23:14:32Z",
+     "date": "2024-01-21T17:14:32-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "ngerstein99@gmail.com"
@@ -60,7 +60,7 @@
     },
     {
      "id": "18d2eeaa5dc1bc16",
-     "date": "2024-01-22T02:05:33Z",
+     "date": "2024-01-21T20:05:33-06:00",
      "from": "ngerstein99@gmail.com",
      "to": [
       "jnachman@utexas.edu"
@@ -72,7 +72,7 @@
     },
     {
      "id": "18d2f50cac7a5635",
-     "date": "2024-01-22T03:57:20Z",
+     "date": "2024-01-21T21:57:20-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "ngerstein99@gmail.com"
@@ -89,7 +89,7 @@
    "messages": [
     {
      "id": "18d2ee690c885bae",
-     "date": "2024-01-22T02:01:17Z",
+     "date": "2024-01-21T20:01:17-06:00",
      "from": "ngerstein99@gmail.com",
      "to": [
       "jnachman17@gmail.com"
@@ -106,7 +106,7 @@
    "messages": [
     {
      "id": "18d310cc6682d747",
-     "date": "2024-01-22T12:02:17Z",
+     "date": "2024-01-22T06:02:17-06:00",
      "from": "ngerstein99@gmail.com",
      "to": [
       "jnachman17@gmail.com"
@@ -123,8 +123,8 @@
   {
    "id": "3aqqe9582g7ppm22q57hgnbit3",
    "title": "Nick - Jonathan Citi IB Call",
-   "start": "2024-01-26T08:00:00-08:00",
-   "end": "2024-01-26T08:30:00-08:00",
+   "start": "2024-01-26T10:00:00-06:00",
+   "end": "2024-01-26T10:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "ngerstein99@gmail.com"

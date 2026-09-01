@@ -4,7 +4,7 @@
   {
    "row": 2,
    "status": "Replied",
-   "days": 2,
+   "days": 3,
    "last_contact": "2024-01-22",
    "attempts": 0,
    "next_call": null,
@@ -13,7 +13,7 @@
   {
    "row": 3,
    "status": "Sent",
-   "days": 2,
+   "days": 3,
    "last_contact": "2024-01-22",
    "attempts": 1,
    "next_call": null,
@@ -25,7 +25,7 @@
    "days": 1,
    "last_contact": "2024-01-22",
    "attempts": 1,
-   "next_call": "2024-01-26T12:00:00-08:00",
+   "next_call": "2024-01-26T14:00:00-06:00",
    "last_call": null
   }
  ],

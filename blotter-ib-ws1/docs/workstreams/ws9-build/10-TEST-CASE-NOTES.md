@@ -1,20 +1,76 @@
 # Test-case notes — what the answer key covers, and what the rules failed to answer
 
-Date: September 1, 2026
-Author: the Test-cases chat (brief `07-BRIEF-TEST-CASES.md`)
-Sources: `04-ENGINE-RULES.md` v2 (the only authority for right answers),
+Date: September 1, 2026. **Round 2 complete — 31 of 31 fixtures pass.**
+Author: the Test-cases chat (briefs `07-BRIEF-TEST-CASES.md`, `12-BRIEF-TEST-CASES-2.md`)
+Sources: `04-ENGINE-RULES.md` **v3** (the only authority for right answers),
 `05-CONTRACT.md` (the shapes), the corpus in `blotter-ib-ws1/research/corpus/`.
-**The engine's code was not read.** Not to build these, not to check them.
+**The engine's code was not read.** Not to build these, not to check them —
+in round 2 the runner was executed, never opened.
+
+---
+
+## 0. Round 2 — what happened, what changed, and the final count
+
+**Round 1 ended 106 mismatches; every one was `days` (98) or `last_call` (8);
+nothing else disagreed anywhere.** Jon ruled for the engine's reading and it is
+now rules v3 §4: **a day turns at midnight in the student's timezone** —
+`days` is a subtraction of calendar dates, not of elapsed hours — and the
+courier must send every timestamp with the student's own offset.
+
+The fixtures were regenerated to that ruling, and **all 31 of 31 now pass**
+(`npx tsx web/app/api/engine/run-fixtures.ts`, September 1, 2026). What
+changed in the key:
+
+- **Every request timestamp now carries America/Chicago offsets** (`-06:00`
+  before the March 10, 2024 DST change, `-05:00` after) instead of UTC `Z`.
+  Instants are unchanged; only the rendering moved.
+- **Every `days` value** is now a calendar-date subtraction where Jon sat.
+  Jessica Luft at 26 days and 18 hours is **27**. Nick Gerstein's
+  tomorrow-morning call is **1** day away — now literally §4's example.
+- **Every date cell** (`last_contact`, `last_call`, `first_seen`) is the
+  Austin calendar date. Evening mail stops sliding onto the next day:
+  Sean Kang's 11:15 pm sends are January 30 again, Kate Borden's and Carson
+  Harris's evening calls are January 22 and 23 — the eight `last_call`
+  values the engine had right in round 1 and the key had wrong.
+- **Timezone claim verified against the corpus, as the round-2 brief asked:**
+  22 of Jon's 23 self-organised calendar events carry
+  `timezone: America/Chicago` (one oddly says `UTC`; other organisers' events
+  carry their own zones), which corroborates Austin. The `-08:00`/`-07:00`
+  offsets on the corpus's start strings are **not** Jon's zone — they flip at
+  the *Pacific* DST date and contradict the events' own timezone fields, so
+  they are the capture session's rendering. Instants are exact either way, and
+  the build asserts that no event's calendar date moves when re-rendered to
+  America/Chicago (none does).
+- **The calendar-RSVP ruling is confirmed in v3 §6** and matches what the
+  fixtures encoded in round 1: every cell here that depends on it is driven by
+  an `Accepted:` / `Invitation:` / `New time proposed:` subject, all in v3's
+  list. One residue, noted not flagged: a bare-title invite email with no such
+  prefix (a few exist in the corpus) would slip past v3's list as written —
+  **no expected value depends on one**, so it is an observation, not a
+  finding.
+- **One thing the passing run still shows, deliberately unasserted:** the
+  engine's `found.context` prose lists every tracked person on the thread
+  ("…with Douglas Melsheimer, Kleopatra Kirkland, Grace Steelman and Jay
+  Klein"); the key's names the contact at first appearance. The runner calls
+  these wording differences and passes them — correct under this README's
+  comparison semantics, since the contract fixes no wording. If Jon ever wants
+  `context` testable, it needs a sentence in the contract; the engine's fuller
+  wording seems the better product answer.
+
+Ambiguities **3.1, 3.2 and 3.3 below are now RESOLVED** by the two v3
+rulings. They are kept in place, marked, so the numbering in earlier
+discussion stays valid. **Eleven questions remain open**, and §7 names the
+three that would most change a real student's sheet.
 
 What exists now:
 
-- **62 fixture files** in `web/app/api/engine/__fixtures__/` — 30 request/expected
+- **62 fixture files** in `web/app/api/engine/__fixtures__/` — 31 request/expected
   pairs plus a README that defines comparison semantics.
 - **4 season fixtures**: all 67 corpus records as one sheet, asked what was true
   on 2024-01-25 (peak), 2024-02-15 (just after the tracker died), 2024-03-15
   (the quiet stretch), 2024-04-30 (season end). Same rows, same order, four
   clocks.
-- **15 targeted cases** (26 pairs), one per hard situation named in the brief.
+- **15 targeted cases** (27 pairs), one per hard situation named in the brief.
 - The conversion script `blotter-ib-ws1/research/scripts/build_fixtures.py`.
   It converts and validates; it decides nothing. Every status, anchor,
   attempts count and found entry is hand-authored data inside it, derived in
@@ -99,30 +155,29 @@ the thank-you-owed state, clearing itself per §4).
 
 Each of these was found by trying to write an expected value and discovering
 the rules do not fix one. **None is decided here.** The fixtures use a stated
-provisional convention where one was unavoidable; every one needs Jon's
-ruling, and the affected cells are listed so the flip cost is visible.
+provisional convention where one was unavoidable; each needs Jon's ruling, and
+the affected cells are listed so the flip cost is visible. *(Round 2: items
+3.1–3.3 are now ruled and marked RESOLVED in place; eleven remain.)*
 
-**3.1 — What is a "day"?** §4 says the clock shows days; the contract says
-"whole days". Floor of elapsed time, or calendar-date difference? And in whose
-timezone? The request carries no student timezone, so calendar-difference is
-not even computable as specified. *Convention used: floor(elapsed/24h), UTC.*
-Consequence: a message sent yesterday evening can show `days: 0`. Every `days`
-value in the key moves by ±1 under the other reading.
+**3.1 — What is a "day"? — RESOLVED, rules v3 §4 (September 1, 2026).** A day
+turns at midnight in the student's timezone; `days` subtracts calendar dates.
+The engine's reading was upheld against the key's floor-of-elapsed-hours; the
+key was regenerated to it. Kept here because 98 of round 1's 106 mismatches
+were exactly this question.
 
-**3.2 — Date cells cross midnight in the wrong timezone.** `last_contact`,
-`last_call`, `first_seen` are bare dates. Kate Borden's call was the evening
-of Jan 22 in Austin; its start is Jan 23 UTC. *Convention: UTC dates.* So the
-key says Kate's `last_call: 2024-01-23` and Carson's `2024-01-24` — a student
-would say "the 22nd" and "the 23rd". The engine cannot do better without a
-timezone in the contract. **This needs a contract ruling, not an engine fix.**
+**3.2 — Date cells cross midnight in the wrong timezone — RESOLVED with 3.1.**
+Same ruling: every date cell is the student's calendar date, and §4 v3 binds
+the courier to send timestamps in the student's own offset so the engine can
+tell. Kate Borden's `last_call` is `2024-01-22` and Carson Harris's
+`2024-01-23` — the engine's round-1 values, now the key's too.
 
-**3.3 — Is a calendar acceptance a reply?** §6 rules an auto-reply is not a
-reply. It says nothing about `Accepted:` / invite / `New Time Proposed:`
-emails, which arrive **from the contact's own address** but are
-machine-generated. *Convention: machine mail — does not count as the contact
-writing.* Status at the four dates never depends on it, but these cells flip
-if Jon rules the other way: Nick Gerstein attempts 3→2, Grant Gillespie 2→1,
-Gary Horton 2→1, Mathew Young 2→1 (and some `last_contact` dates move).
+**3.3 — Is a calendar acceptance a reply? — RESOLVED, rules v3 §6.** The
+key's round-1 reading was ratified: `Accepted:`, `Declined:`, `Tentatively
+accepted:`, `Invitation:`, `Updated invitation:`, `Canceled event:` and `New
+time proposed:` are machine mail in either direction — never a reply, never an
+attempt, never `last_contact`. Found via Mat Young. One wording residue is
+recorded in §0: a bare-title invite email with none of those prefixes would
+slip the list as written; no expected value here depends on one.
 
 **3.4 — What exactly does `attempts` count?** §5: "how many times you have
 written since they last wrote back." Three sub-questions the corpus makes
@@ -302,21 +357,22 @@ several tracked people); calendar per §7; found per §8.
 
 **01 Jessica Luft.** Outbound Jan 19 23:44:46Z; out-of-office back in 20
 seconds **from her own address, in a different Gmail thread**. §6: an
-auto-reply is not a reply. Row: `Sent`, days since *Jon's* send (26 on
+auto-reply is not a reply. Row: `Sent`, days since *Jon's* send (27 on
 Feb 15), `attempts 1`, `found` empty. A naive engine says `Replied, 0 days`
 — the exact failure §6 was written against.
 
 **02 Sean Kang.** Three sends, 3m38s, three bounces from
 `mailer-daemon@googlemail.com` inside the three threads, one carrying
 `Status: 4.4.2` with SMTP 550 and "Address not found" in the text. §4:
-`Bounced`, days since the last bounce (15 on Feb 15). §5: `attempts 3`. §8:
+`Bounced`, days since the last bounce (16 on Feb 15 — the sends were 11:15 pm
+in Austin on January 30). §5: `attempts 3`. §8:
 mailer-daemon never suggested. The engine that keys on `Status: 5.x` marks him
 `Sent` and eventually tells a student to bump a dead address three times —
 the corpus's worst false-positive, now a red bar.
 
 **03 Marijoy Bertolini.** Jan 25 `Not emailed` (nothing yet). Feb 15
-`Bounced` 7, `attempts 2` — both guessed addresses died in under 15 seconds.
-Mar 15 `Replied` 14 — she wrote back Feb 29 **from an address Jon never
+`Bounced` 8, `attempts 2` — both guessed addresses died in under 15 seconds.
+Mar 15 `Replied` 15 — she wrote back Feb 29 **from an address Jon never
 guessed**, 21.6 days after first outreach, and the clock now runs on Jon, not
 her. Apr 30 `Replied` 35 (her Mar 26 update was the process ending; the rules
 have no way to know that, and correctly none to guess it — §6). At no date
@@ -334,7 +390,7 @@ one attendee-less calendar event titled "Jonathan - Owen Sherry Houlihan RX
 Intro Call". Jan 25 (event not yet created): `Not emailed`, all columns null
 — a contact with no mail is a row, not an error (contract: every contact gets
 exactly one row). Feb 15: §7 rule 2 (first name + firm in the title) is the
-only wire that reaches him — `Call done` 12, `last_call 2024-02-02`,
+only wire that reaches him — `Call done` 13, `last_call 2024-02-02`,
 `last_contact null`. Note for the engine builder, flagged not decided: the
 title says "Houlihan", the row's firm is "Houlihan Lokey" — §7's "firm in the
 title" must tolerate partial firm names, as the rules' own example
@@ -343,20 +399,21 @@ title" must tolerate partial firm names, as the rules' own example
 **06 Potential favor.** One thread, 24 messages, five relationships; four are
 tracked rows here. §3's multi-contact rule (a person's state comes only from
 messages they are on) produces four different rows out of the same
-conversation on Feb 15: Doug `Sent 15` (he answered, Jon closed the loop
+conversation on Feb 15: Doug `Sent 16` (he answered, Jon closed the loop
 post-call), Kleopatra `Replied 29` (she answered Jan 17 and was never
-answered), Grace `Sent 5` (her thread ran two weeks behind Doug's), Jay
-`Sent 14`. One person replying marked nobody else `Replied`. The fifth
+answered), Grace `Sent 6` (her thread ran two weeks behind Doug's), Jay
+`Sent 15`. One person replying marked nobody else `Replied`. The fifth
 relationship — Jon's father, who started the thread — appears in `found`
 with the brother's address, per §8.
 
 **07 Liz Ream for Steve.** The deliberate opposite of 06 (§3 separates
 them): in Steve's threads **Steve is the only tracked contact**, so
 everything in the conversation is his activity — Liz's scheduling replies
-advance his row. Feb 15: `Replied 0` (Steve himself wrote at 04:11 that
-morning). Mar 15: the Feb 19 call happened (`last_call 2024-02-19`), Jon's
-thank-you went out Feb 20 02:37 — clearing `Call done` exactly as §4
-describes — and Steve answered 21 minutes later: `Replied 24`. Liz is in
+advance his row. Feb 15: `Replied 1` (Steve wrote at 10:11 the previous
+evening, Austin time). Mar 15: the Feb 19 call happened (`last_call
+2024-02-19`), Jon's thank-you went out the same evening — clearing `Call
+done` exactly as §4 describes — and Steve answered 21 minutes later:
+`Replied 25`. Liz is in
 `found` at both dates. One detail the mechanical conversion surfaced: Liz's
 two calendar-invite emails live in threads that contain no tracked address,
 so the courier never sends them (§2/§3) — the event arrives via the calendar
@@ -371,7 +428,7 @@ sheet under any capitalisation". An engine that case-splits shows `Sent`
 
 **09 US_Campus.** Jon wrote twice to `US_Campus@bofa.com`; the answer came
 from `us_campus@bofa.com`, signed by a person. Mid-afternoon Apr 8: `Sent 0`,
-`attempts 2`. Apr 30: `Replied 21`, `attempts 0`. Same §3 clause as Brady, on
+`attempts 2`. Apr 30: `Replied 22`, `attempts 0`. Same §3 clause as Brady, on
 a shared mailbox a student plausibly tracks as a row.
 
 **10 Wells Fargo bcc.** Three inbound messages with an **empty To line** (the
@@ -383,8 +440,8 @@ row (contract: silently dropping a contact is forbidden).
 
 **11 Citi intro trio.** Chris Miller's "Intro" thread accretes Carrie, then
 Mat Young — three tracked people in one thread, so §3's party filter decides
-every message's ownership. Jan 25: Chris `Replied 2` `attempts 0` (he wrote
-last to Jon and was never answered); Carrie `Sent 2` `attempts 1` with
+every message's ownership. Jan 25: Chris `Replied 3` `attempts 0` (he wrote
+last to Jon and was never answered); Carrie `Sent 3` `attempts 1` with
 `last_call 2024-01-22` — her call ended 20:30Z and Jon's note went 21:02Z, so
 `Call done` had already cleared itself (§4); Mat `Call scheduled 1` for
 Friday's call, `attempts 1`. Also the row where the corpus's own
@@ -395,7 +452,7 @@ him — see §4 note on Mat.
 sends in a row** (Feb 9, 19, 27 — the real highest attempts run in the
 season) → she answers 85 minutes after the third → coffee chat → two
 interviews, all three events attendee-matched to her row (§7). Snapshots:
-Feb 15 `Sent 5` `attempts 1`; **Feb 27 21:00Z `Sent 0` `attempts 3`** (the
+Feb 15 `Sent 6` `attempts 1`; **Feb 27 3 pm Austin `Sent 0` `attempts 3`** (the
 peak, minutes before her reply); Mar 15 `Call scheduled 3` — the behavioral
 interview is Monday, `next_call` carries it, `last_call 2024-03-06` (§4:
 `Last call` keeps its date regardless); Apr 30 `Replied 35`. Note §1 does not
@@ -404,45 +461,70 @@ attendee*, which §7 attaches like any call; only the firm-level events (FT
 rounds, info sessions) fall out.
 
 **13 Sellingsloh cc-five.** His single reply cc's five Intrepid colleagues.
-With John the only row, §8 suggests **all five** (`first_seen 2024-01-20`) —
-the "John Sellingsloh created five in a single Cc line" mechanic verbatim.
-The `-ignored` variant (constructed `ignored` entry, labelled) removes
-`cook@` and expects four: "ignored ones never come back". Row itself:
-`Sent 4`, `attempts 1`.
+With John the only row, §8 suggests **all five** (`first_seen 2024-01-19` —
+his reply landed at 7:31 pm in Austin) — the "John Sellingsloh created five
+in a single Cc line" mechanic verbatim. The `-ignored` variant (constructed
+`ignored` entry, labelled) removes `cook@` and expects four: "ignored ones
+never come back". Row itself: `Sent 5`, `attempts 1`.
 
-**14 Nick Gerstein.** Jan 25: `Call scheduled 0` — tomorrow 10:00 Central;
-the calendar holds only the **final** date of a rescheduled call (the two
+**14 Nick Gerstein.** Jan 25: `Call scheduled 1` — tomorrow 10:00 Central,
+and "a call tomorrow morning is 1 day away" is now §4 v3's own example; the
+calendar holds only the **final** date of a rescheduled call (the two
 acceptance emails for two different dates are in the request as data). Feb 15:
-after the call Jon wrote three times with no answer — `Sent 19`,
-**`attempts 3`**, `last_call 2024-01-26`. With ambiguity 3.3 ruled the other
-way this is `attempts 2`; the status never moves.
+after the call Jon wrote three times with no answer — `Sent 20`,
+**`attempts 3`**, `last_call 2024-01-26`. The acceptances are machine mail per
+§6 v3, so they reset nothing.
 
-**15 David Talbot.** Jan 25 18:00Z: his call ended Jan 24 22:00Z and nobody
-has written since → **`Call done 0`** — §4's thank-you-owed state, held until
-somebody writes. Feb 15: Jon's note went Jan 26 01:10 (the state cleared
-itself to `Sent` at that instant), David answered ten minutes later →
-`Replied 20`, `last_call` still `2024-01-24` (§4: the date is permanent).
+**15 David Talbot.** Noon Austin, Jan 25: his call ended 4 pm yesterday and
+nobody has written since → **`Call done 1`** — §4's thank-you-owed state, held
+until somebody writes. Feb 15: Jon's note went the evening of the 25th (the
+state cleared itself to `Sent` at that instant), David answered ten minutes
+later → `Replied 21`, `last_call` still `2024-01-24` (§4: the date is
+permanent).
 
 ---
 
-## 7. Unsettled, awaiting Jon
+## 7. Unsettled, awaiting Jon — eleven remain
 
-The full statements are in §3; the one-line list, so nothing hides:
+Round 2 resolved the day rule (3.1, 3.2) and the calendar-RSVP rule (3.3).
+The full statements of the rest are in §3; the one-line list, so nothing
+hides:
 
-1. Day-counting semantics and the missing timezone (3.1, 3.2) — affects every
-   `days` and every date cell by ±1.
-2. Calendar acceptances: reply or machine mail? (3.3) — flips four attempts
-   values.
-3. `attempts` sub-definitions: bounced sends, third-party sends (3.4).
-4. "Highest attempts" as the brief meant it vs §5 as written (3.5).
-5. Marijoy: `Bounced` in the gap vs the brief's "never worse than `Sent`" (3.6).
-6. `found.name` is unproducible from the contract's request (3.7).
-7. §8: headers only, or bodies too? (3.8)
-8. `warnings`: shape and obligations, or explicitly untestable (3.9).
-9. `Closed` rows: blank the columns or keep the facts (3.10).
-10. Mid-call `now` (3.11).
-11. `next_call` format; declined invites; nullable `firm`; Bounced
-    `last_contact`; the utmail alias (3.12).
-12. Firm-process rows: keep the nine as address-less rows, or drop them (3.13).
-13. Not a rule question but needing an action: Lonnie's broken capture (§4)
+1. `attempts` sub-definitions: bounced sends, third-party sends (3.4).
+2. "Highest attempts" as the round-1 brief meant it vs §5 as written (3.5).
+3. Marijoy: `Bounced` in the gap vs the brief's "never worse than `Sent`" (3.6).
+4. `found.name` is unproducible from the contract's request (3.7).
+5. §8: headers only, or bodies too? (3.8)
+6. `warnings`: shape and obligations, or explicitly untestable (3.9) — and
+   the same now goes for `found.context` wording, per §0.
+7. `Closed` rows: blank the columns or keep the facts (3.10).
+8. Mid-call `now` (3.11).
+9. `next_call` format; declined invites; nullable `firm`; Bounced
+   `last_contact`; the utmail alias (3.12).
+10. Firm-process rows: keep the nine as address-less rows, or drop them (3.13).
+11. Not a rule question but needing an action: Lonnie's broken capture (§4)
     should be re-fetched, or her row's answer stays a fiction.
+
+### The three that would most change a real student's sheet
+
+Picked per the round-2 brief; the rest stay on the list, unresolved.
+
+1. **The nine firm rows, and the tracker going quiet during interviews
+   (3.13).** As ruled, version one does not track firms — so in the real
+   April, when everything that mattered was FT Partners interviews, the sheet
+   shows nothing moving. Keep that scope, drop the nine rows entirely, or
+   pull firm processes into version one? Whole rows appear or vanish on this
+   answer.
+2. **The "found these" list has no names (3.7).** The approval screen the
+   rules promise ("Liz Ream") can only show bare email addresses under the
+   current contract, because the mail data arrives with addresses only.
+   Either the courier starts sending display names, or the student approves
+   `liz.ream@ftpartners.com` sight unseen. Every referral suggestion a
+   student ever sees looks different on this answer.
+3. **What `Attempts` actually counts (3.4 + 3.5).** Today it counts every
+   send since the person last wrote — including sends that bounced (Sean
+   Kang: 3) and, in a one-contact conversation, mail to third parties (Sam
+   Ward gains an attempt for a thread Jon forwarded to family). And it is
+   *not* the "total outreach" number the round-1 brief expected for
+   Carrie/Chris/Paige. One sentence from Jon fixes the column's meaning;
+   until then the number a student reads is quietly ambiguous.

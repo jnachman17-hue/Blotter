@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-02-15T18:00:00Z",
+ "now": "2024-02-15T12:00:00-06:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -602,7 +602,7 @@
    "messages": [
     {
      "id": "18d10d01b160623c",
-     "date": "2024-01-16T05:48:10Z",
+     "date": "2024-01-15T23:48:10-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "mpoag@hl.com"
@@ -614,7 +614,7 @@
     },
     {
      "id": "18d1847de9f5790d",
-     "date": "2024-01-17T16:36:12Z",
+     "date": "2024-01-17T10:36:12-06:00",
      "from": "MPoag@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -626,7 +626,7 @@
     },
     {
      "id": "18d18b406b8d0322",
-     "date": "2024-01-17T18:34:27Z",
+     "date": "2024-01-17T12:34:27-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "MPoag@hl.com"
@@ -638,7 +638,7 @@
     },
     {
      "id": "18d190bdb132b882",
-     "date": "2024-01-17T20:10:17Z",
+     "date": "2024-01-17T14:10:17-06:00",
      "from": "MPoag@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -650,7 +650,7 @@
     },
     {
      "id": "18d1980f6eae706a",
-     "date": "2024-01-17T22:18:18Z",
+     "date": "2024-01-17T16:18:18-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "MPoag@hl.com"
@@ -667,7 +667,7 @@
    "messages": [
     {
      "id": "18d154bf9ed81426",
-     "date": "2024-01-17T02:41:56Z",
+     "date": "2024-01-16T20:41:56-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "joseph.candelario@psc.com"
@@ -679,7 +679,7 @@
     },
     {
      "id": "18d15edc1a991225",
-     "date": "2024-01-17T05:38:39Z",
+     "date": "2024-01-16T23:38:39-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "joseph.candelario@psc.com"
@@ -691,7 +691,7 @@
     },
     {
      "id": "18d18007f2643bdf",
-     "date": "2024-01-17T15:18:20Z",
+     "date": "2024-01-17T09:18:20-06:00",
      "from": "Joseph.Candelario@psc.com",
      "to": [
       "jnachman17@gmail.com"
@@ -703,7 +703,7 @@
     },
     {
      "id": "18d1834461c5d2a3",
-     "date": "2024-01-17T16:14:55Z",
+     "date": "2024-01-17T10:14:55-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Joseph.Candelario@psc.com"
@@ -715,7 +715,7 @@
     },
     {
      "id": "18d183d64d5e8ee2",
-     "date": "2024-01-17T16:24:51Z",
+     "date": "2024-01-17T10:24:51-06:00",
      "from": "Joseph.Candelario@psc.com",
      "to": [
       "jnachman17@gmail.com"
@@ -727,7 +727,7 @@
     },
     {
      "id": "18d1841f747def26",
-     "date": "2024-01-17T16:29:52Z",
+     "date": "2024-01-17T10:29:52-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Joseph.Candelario@psc.com"
@@ -739,7 +739,7 @@
     },
     {
      "id": "18d185eeb61db3aa",
-     "date": "2024-01-17T17:01:26Z",
+     "date": "2024-01-17T11:01:26-06:00",
      "from": "Joseph.Candelario@psc.com",
      "to": [
       "jnachman17@gmail.com"
@@ -751,7 +751,7 @@
     },
     {
      "id": "18d1ef7aa2a1fece",
-     "date": "2024-01-18T23:46:02Z",
+     "date": "2024-01-18T17:46:02-06:00",
      "from": "Joseph.Candelario@psc.com",
      "to": [
       "jnachman17@gmail.com"
@@ -763,7 +763,7 @@
     },
     {
      "id": "18d1f135712010ff",
-     "date": "2024-01-19T00:16:17Z",
+     "date": "2024-01-18T18:16:17-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Joseph.Candelario@psc.com"
@@ -775,7 +775,7 @@
     },
     {
      "id": "18d1f37896af9bcb",
-     "date": "2024-01-19T00:55:48Z",
+     "date": "2024-01-18T18:55:48-06:00",
      "from": "Joseph.Candelario@psc.com",
      "to": [
       "jnachman17@gmail.com"
@@ -787,7 +787,7 @@
     },
     {
      "id": "18d2e98ae468c293",
-     "date": "2024-01-22T00:36:14Z",
+     "date": "2024-01-21T18:36:14-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "joseph.candelario@psc.com"
@@ -799,7 +799,7 @@
     },
     {
      "id": "18d2eaaf7a35d8f4",
-     "date": "2024-01-22T00:56:11Z",
+     "date": "2024-01-21T18:56:11-06:00",
      "from": "Joseph.Candelario@psc.com",
      "to": [
       "jnachman17@gmail.com"
@@ -816,7 +816,7 @@
    "messages": [
     {
      "id": "18d15f3561969d19",
-     "date": "2024-01-17T05:44:45Z",
+     "date": "2024-01-16T23:44:45-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "ryan.wheeler@guggenheimpartners.com"
@@ -828,7 +828,7 @@
     },
     {
      "id": "18d2438a38d3d3eb",
-     "date": "2024-01-20T00:15:08Z",
+     "date": "2024-01-19T18:15:08-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "ryan.wheeler@guggenheimpartners.com"
@@ -845,7 +845,7 @@
    "messages": [
     {
      "id": "18d1607f829f6494",
-     "date": "2024-01-17T06:07:17Z",
+     "date": "2024-01-17T00:07:17-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "barman.barbara@gmail.com"
@@ -862,7 +862,7 @@
    "messages": [
     {
      "id": "18d160d746b2d47c",
-     "date": "2024-01-17T06:13:17Z",
+     "date": "2024-01-17T00:13:17-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Olivialeigh31@gmail.com"
@@ -879,7 +879,7 @@
    "messages": [
     {
      "id": "18d1611f48f3cdc6",
-     "date": "2024-01-17T06:18:11Z",
+     "date": "2024-01-17T00:18:11-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Anna.e.giesler@gmail.com"
@@ -896,7 +896,7 @@
    "messages": [
     {
      "id": "18d161759edb61c9",
-     "date": "2024-01-17T06:24:04Z",
+     "date": "2024-01-17T00:24:04-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "steelequincy@gmail.com"
@@ -913,7 +913,7 @@
    "messages": [
     {
      "id": "18d161cff11278d2",
-     "date": "2024-01-17T06:30:15Z",
+     "date": "2024-01-17T00:30:15-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "alicewatts419@gmail.com"
@@ -930,7 +930,7 @@
    "messages": [
     {
      "id": "18d162161efd333d",
-     "date": "2024-01-17T06:35:02Z",
+     "date": "2024-01-17T00:35:02-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Noble.nash@me.com"
@@ -947,7 +947,7 @@
    "messages": [
     {
      "id": "18d1629b04ca0ab4",
-     "date": "2024-01-17T06:44:07Z",
+     "date": "2024-01-17T00:44:07-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "victoriad@utexas.edu"
@@ -964,7 +964,7 @@
    "messages": [
     {
      "id": "18d1635118b83bea",
-     "date": "2024-01-17T06:56:32Z",
+     "date": "2024-01-17T00:56:32-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "kathryndzierzanowski@gmail.com"
@@ -976,7 +976,7 @@
     },
     {
      "id": "18d5e03e99660732",
-     "date": "2024-01-31T05:35:30Z",
+     "date": "2024-01-30T23:35:30-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "kathryndzierzanowski@gmail.com"
@@ -993,7 +993,7 @@
    "messages": [
     {
      "id": "18d17ed90fec72f6",
-     "date": "2024-01-17T14:57:38Z",
+     "date": "2024-01-17T08:57:38-06:00",
      "from": "dnachman@fastspring.com",
      "to": [
       "douglas.melsheimer@barclays.com",
@@ -1006,7 +1006,7 @@
     },
     {
      "id": "18d1812db3e549dd",
-     "date": "2024-01-17T15:37:58Z",
+     "date": "2024-01-17T09:37:58-06:00",
      "from": "douglas.melsheimer@barclays.com",
      "to": [
       "dnachman@fastspring.com",
@@ -1021,7 +1021,7 @@
     },
     {
      "id": "18d182c6a30b170e",
-     "date": "2024-01-17T16:06:20Z",
+     "date": "2024-01-17T10:06:20-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "douglas.melsheimer@barclays.com"
@@ -1035,7 +1035,7 @@
     },
     {
      "id": "18d183456493ae87",
-     "date": "2024-01-17T16:14:57Z",
+     "date": "2024-01-17T10:14:57-06:00",
      "from": "dnachman@fastspring.com",
      "to": [
       "kleopatra.kirkland@barclays.com",
@@ -1049,7 +1049,7 @@
     },
     {
      "id": "18d18582c8e6f7d8",
-     "date": "2024-01-17T16:53:38Z",
+     "date": "2024-01-17T10:53:38-06:00",
      "from": "kleopatra.kirkland@barclays.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1061,7 +1061,7 @@
     },
     {
      "id": "18d4800bae7b308f",
-     "date": "2024-01-26T23:00:23Z",
+     "date": "2024-01-26T17:00:23-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "douglas.melsheimer@barclays.com"
@@ -1073,7 +1073,7 @@
     },
     {
      "id": "18d5c1936a95d6e6",
-     "date": "2024-01-30T20:39:32Z",
+     "date": "2024-01-30T14:39:32-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "douglas.melsheimer@barclays.com"
@@ -1085,7 +1085,7 @@
     },
     {
      "id": "18d5c2477926f9a1",
-     "date": "2024-01-30T20:51:14Z",
+     "date": "2024-01-30T14:51:14-06:00",
      "from": "douglas.melsheimer@barclays.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1097,7 +1097,7 @@
     },
     {
      "id": "18d5c268c0713cb6",
-     "date": "2024-01-30T20:53:41Z",
+     "date": "2024-01-30T14:53:41-06:00",
      "from": "douglas.melsheimer@barclays.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1112,7 +1112,7 @@
     },
     {
      "id": "18d5c283b285f900",
-     "date": "2024-01-30T20:55:56Z",
+     "date": "2024-01-30T14:55:56-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "douglas.melsheimer@barclays.com"
@@ -1124,7 +1124,7 @@
     },
     {
      "id": "18d5c31b9d45dc76",
-     "date": "2024-01-30T21:06:18Z",
+     "date": "2024-01-30T15:06:18-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "grace.steelman@barclays.com"
@@ -1136,7 +1136,7 @@
     },
     {
      "id": "18d5c32c65c49300",
-     "date": "2024-01-30T21:07:27Z",
+     "date": "2024-01-30T15:07:27-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "jay.klein@barclays.com"
@@ -1148,7 +1148,7 @@
     },
     {
      "id": "18d5c3a69d02d58e",
-     "date": "2024-01-30T21:15:11Z",
+     "date": "2024-01-30T15:15:11-06:00",
      "from": "grace.steelman@barclays.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1160,7 +1160,7 @@
     },
     {
      "id": "18d5db28dde192a1",
-     "date": "2024-01-31T04:06:38Z",
+     "date": "2024-01-30T22:06:38-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "grace.steelman@barclays.com"
@@ -1172,7 +1172,7 @@
     },
     {
      "id": "18d625458c05ae01",
-     "date": "2024-02-01T01:41:14Z",
+     "date": "2024-01-31T19:41:14-06:00",
      "from": "jay.klein@barclays.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1184,7 +1184,7 @@
     },
     {
      "id": "18d627b2468ff2d1",
-     "date": "2024-02-01T02:24:13Z",
+     "date": "2024-01-31T20:24:13-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "jay.klein@barclays.com"
@@ -1196,7 +1196,7 @@
     },
     {
      "id": "18d66bff9284c316",
-     "date": "2024-02-01T22:17:12Z",
+     "date": "2024-02-01T16:17:12-06:00",
      "from": "grace.steelman@barclays.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1208,7 +1208,7 @@
     },
     {
      "id": "18d6781abfb73408",
-     "date": "2024-02-02T01:49:27Z",
+     "date": "2024-02-01T19:49:27-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "grace.steelman@barclays.com"
@@ -1220,7 +1220,7 @@
     },
     {
      "id": "18d79e86399e002c",
-     "date": "2024-02-05T15:33:39Z",
+     "date": "2024-02-05T09:33:39-06:00",
      "from": "grace.steelman@barclays.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1232,7 +1232,7 @@
     },
     {
      "id": "18d79fef63c178a6",
-     "date": "2024-02-05T15:59:28Z",
+     "date": "2024-02-05T09:59:28-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "grace.steelman@barclays.com"
@@ -1244,7 +1244,7 @@
     },
     {
      "id": "18d8b56dda741af5",
-     "date": "2024-02-09T00:49:01Z",
+     "date": "2024-02-08T18:49:01-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "grace.steelman@barclays.com"
@@ -1256,7 +1256,7 @@
     },
     {
      "id": "18d8e5038be6fbc4",
-     "date": "2024-02-09T14:40:17Z",
+     "date": "2024-02-09T08:40:17-06:00",
      "from": "grace.steelman@barclays.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1268,7 +1268,7 @@
     },
     {
      "id": "18d8f2cfb27b5e28",
-     "date": "2024-02-09T18:41:45Z",
+     "date": "2024-02-09T12:41:45-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "grace.steelman@barclays.com"
@@ -1285,7 +1285,7 @@
    "messages": [
     {
      "id": "18d1860cb14fbd7b",
-     "date": "2024-01-17T17:03:28Z",
+     "date": "2024-01-17T11:03:28-06:00",
      "from": "Joseph.Candelario@psc.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1302,7 +1302,7 @@
    "messages": [
     {
      "id": "18d186926c1a0f54",
-     "date": "2024-01-17T17:11:59Z",
+     "date": "2024-01-17T11:11:59-06:00",
      "from": "kleopatra.kirkland@barclays.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1319,7 +1319,7 @@
    "messages": [
     {
      "id": "18d186fa177e935b",
-     "date": "2024-01-17T17:19:15Z",
+     "date": "2024-01-17T11:19:15-06:00",
      "from": "kleopatra.kirkland@barclays.com",
      "to": [
       "douglas.melsheimer@barclays.com",
@@ -1340,7 +1340,7 @@
    "messages": [
     {
      "id": "18d18b6d2e132e83",
-     "date": "2024-01-17T18:37:30Z",
+     "date": "2024-01-17T12:37:30-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "same@susser.us"
@@ -1357,7 +1357,7 @@
    "messages": [
     {
      "id": "18d18be34b9c8805",
-     "date": "2024-01-17T18:45:34Z",
+     "date": "2024-01-17T12:45:34-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "kate.borden@hl.com"
@@ -1369,7 +1369,7 @@
     },
     {
      "id": "18d1e0b57ff6fa3f",
-     "date": "2024-01-18T19:27:49Z",
+     "date": "2024-01-18T13:27:49-06:00",
      "from": "Kate.Borden@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1381,7 +1381,7 @@
     },
     {
      "id": "18d1e28e5b8611a7",
-     "date": "2024-01-18T20:00:12Z",
+     "date": "2024-01-18T14:00:12-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Kate.Borden@hl.com"
@@ -1393,7 +1393,7 @@
     },
     {
      "id": "18d1e35a258c5085",
-     "date": "2024-01-18T20:13:58Z",
+     "date": "2024-01-18T14:13:58-06:00",
      "from": "Kate.Borden@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1405,7 +1405,7 @@
     },
     {
      "id": "18d1e4073c291b22",
-     "date": "2024-01-18T20:25:56Z",
+     "date": "2024-01-18T14:25:56-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Kate.Borden@hl.com"
@@ -1417,7 +1417,7 @@
     },
     {
      "id": "18d1e491acdde3be",
-     "date": "2024-01-18T20:35:17Z",
+     "date": "2024-01-18T14:35:17-06:00",
      "from": "Kate.Borden@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1429,7 +1429,7 @@
     },
     {
      "id": "18d33b16e7a1433c",
-     "date": "2024-01-23T00:21:17Z",
+     "date": "2024-01-22T18:21:17-06:00",
      "from": "Kate.Borden@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1441,7 +1441,7 @@
     },
     {
      "id": "18d33cb2b64d0171",
-     "date": "2024-01-23T00:49:28Z",
+     "date": "2024-01-22T18:49:28-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Kate.Borden@hl.com"
@@ -1453,7 +1453,7 @@
     },
     {
      "id": "18d37728eaf702e3",
-     "date": "2024-01-23T17:51:06Z",
+     "date": "2024-01-23T11:51:06-06:00",
      "from": "Kate.Borden@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1465,7 +1465,7 @@
     },
     {
      "id": "18d86fa66d971a79",
-     "date": "2024-02-08T04:29:33Z",
+     "date": "2024-02-07T22:29:33-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Kate.Borden@hl.com"
@@ -1477,7 +1477,7 @@
     },
     {
      "id": "18d89b31b1bc9485",
-     "date": "2024-02-08T17:10:26Z",
+     "date": "2024-02-08T11:10:26-06:00",
      "from": "Kate.Borden@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1489,7 +1489,7 @@
     },
     {
      "id": "18d8a19f4b164a66",
-     "date": "2024-02-08T19:02:53Z",
+     "date": "2024-02-08T13:02:53-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "kate.borden@hl.com"
@@ -1501,7 +1501,7 @@
     },
     {
      "id": "18d8af60ea2859f0",
-     "date": "2024-02-08T23:03:17Z",
+     "date": "2024-02-08T17:03:17-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "kate.borden@hl.com"
@@ -1513,7 +1513,7 @@
     },
     {
      "id": "18d8afb08eea7e96",
-     "date": "2024-02-08T23:08:23Z",
+     "date": "2024-02-08T17:08:23-06:00",
      "from": "Kate.Borden@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1530,7 +1530,7 @@
    "messages": [
     {
      "id": "18d1999524fb7e88",
-     "date": "2024-01-17T22:44:54Z",
+     "date": "2024-01-17T16:44:54-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "SPWard@hl.com"
@@ -1542,7 +1542,7 @@
     },
     {
      "id": "18d3323459704287",
-     "date": "2024-01-22T21:45:51Z",
+     "date": "2024-01-22T15:45:51-06:00",
      "from": "SPWard@hl.com",
      "to": [
       "jnachman@utexas.edu"
@@ -1556,7 +1556,7 @@
     },
     {
      "id": "18d343615923c677",
-     "date": "2024-01-23T02:46:15Z",
+     "date": "2024-01-22T20:46:15-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "dmnachman@gmail.com"
@@ -1568,7 +1568,7 @@
     },
     {
      "id": "18d34b20877af3b9",
-     "date": "2024-01-23T05:01:39Z",
+     "date": "2024-01-22T23:01:39-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "SPWard@hl.com"
@@ -1585,7 +1585,7 @@
    "messages": [
     {
      "id": "18d19bc02709f37f",
-     "date": "2024-01-17T23:22:47Z",
+     "date": "2024-01-17T17:22:47-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "lukes5061@gmail.com"
@@ -1602,7 +1602,7 @@
    "messages": [
     {
      "id": "18d19c12ebd2c807",
-     "date": "2024-01-17T23:28:26Z",
+     "date": "2024-01-17T17:28:26-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "nicholas.perez@guggenheimpartners.com"
@@ -1619,7 +1619,7 @@
    "messages": [
     {
      "id": "18d19c56d1cc2044",
-     "date": "2024-01-17T23:33:05Z",
+     "date": "2024-01-17T17:33:05-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Michael.liou@guggenheimpartners.com"
@@ -1631,7 +1631,7 @@
     },
     {
      "id": "18d5e05d2c6f7dba",
-     "date": "2024-01-31T05:37:36Z",
+     "date": "2024-01-30T23:37:36-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Michael.liou@guggenheimpartners.com"
@@ -1648,7 +1648,7 @@
    "messages": [
     {
      "id": "18d1a2b0734e7a02",
-     "date": "2024-01-18T01:24:03Z",
+     "date": "2024-01-17T19:24:03-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "joshua.gumm@ftpartners.com"
@@ -1660,7 +1660,7 @@
     },
     {
      "id": "18d1e8cf2fd79d49",
-     "date": "2024-01-18T21:49:24Z",
+     "date": "2024-01-18T15:49:24-06:00",
      "from": "joshua.gumm@ftpartners.com",
      "to": [
       "jnachman@utexas.edu"
@@ -1672,7 +1672,7 @@
     },
     {
      "id": "18d1f5c8fdb94b9a",
-     "date": "2024-01-19T01:36:15Z",
+     "date": "2024-01-18T19:36:15-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "joshua.gumm@ftpartners.com"
@@ -1684,7 +1684,7 @@
     },
     {
      "id": "18d1f666aa2a620e",
-     "date": "2024-01-19T01:46:56Z",
+     "date": "2024-01-18T19:46:56-06:00",
      "from": "Joshua.Gumm@ftpartners.com",
      "to": [
       "jnachman@utexas.edu"
@@ -1696,7 +1696,7 @@
     },
     {
      "id": "18d1f9cd324d36bc",
-     "date": "2024-01-19T02:46:27Z",
+     "date": "2024-01-18T20:46:27-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Joshua.Gumm@ftpartners.com"
@@ -1708,7 +1708,7 @@
     },
     {
      "id": "18d32eba79565b01",
-     "date": "2024-01-22T20:45:20Z",
+     "date": "2024-01-22T14:45:20-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Joshua.Gumm@ftpartners.com"
@@ -1720,7 +1720,7 @@
     },
     {
      "id": "18d33049f2f7981e",
-     "date": "2024-01-22T21:12:30Z",
+     "date": "2024-01-22T15:12:30-06:00",
      "from": "Joshua.Gumm@ftpartners.com",
      "to": [
       "jnachman@utexas.edu"
@@ -1732,7 +1732,7 @@
     },
     {
      "id": "18d3312222cb01a2",
-     "date": "2024-01-22T21:27:22Z",
+     "date": "2024-01-22T15:27:22-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Joshua.Gumm@ftpartners.com"
@@ -1749,7 +1749,7 @@
    "messages": [
     {
      "id": "18d1ababd203090c",
-     "date": "2024-01-18T04:01:01Z",
+     "date": "2024-01-17T22:01:01-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "mike.giaquinto@leerink.com"
@@ -1766,7 +1766,7 @@
    "messages": [
     {
      "id": "18d1d7c3597e5b8a",
-     "date": "2024-01-18T16:51:22Z",
+     "date": "2024-01-18T10:51:22-06:00",
      "from": "dmnachman@gmail.com",
      "to": [
       "chris.miller@citi.com",
@@ -1779,7 +1779,7 @@
     },
     {
      "id": "18d1db7961d55a5b",
-     "date": "2024-01-18T17:56:27Z",
+     "date": "2024-01-18T11:56:27-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "dmnachman@gmail.com"
@@ -1793,7 +1793,7 @@
     },
     {
      "id": "18d1e72a27af8769",
-     "date": "2024-01-18T21:20:39Z",
+     "date": "2024-01-18T15:20:39-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com",
@@ -1806,7 +1806,7 @@
     },
     {
      "id": "18d1e7d045233c1f",
-     "date": "2024-01-18T21:32:06Z",
+     "date": "2024-01-18T15:32:06-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "chris.miller@citi.com"
@@ -1823,7 +1823,7 @@
    "messages": [
     {
      "id": "18d1e34c8a12e95e",
-     "date": "2024-01-18T20:13:07Z",
+     "date": "2024-01-18T14:13:07-06:00",
      "from": "Kate.Borden@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1840,7 +1840,7 @@
    "messages": [
     {
      "id": "18d1e35c96921376",
-     "date": "2024-01-18T20:14:12Z",
+     "date": "2024-01-18T14:14:12-06:00",
      "from": "Kate.Borden@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1857,7 +1857,7 @@
    "messages": [
     {
      "id": "18d1f37a7163ac0d",
-     "date": "2024-01-19T00:55:55Z",
+     "date": "2024-01-18T18:55:55-06:00",
      "from": "Joseph.Candelario@psc.com",
      "to": [
       "jnachman17@gmail.com"
@@ -1874,7 +1874,7 @@
    "messages": [
     {
      "id": "18d1fa84907c0116",
-     "date": "2024-01-19T02:58:58Z",
+     "date": "2024-01-18T20:58:58-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "tgauntt@jefferies.com"
@@ -1886,7 +1886,7 @@
     },
     {
      "id": "18d5e01ac4be5a33",
-     "date": "2024-01-31T05:33:04Z",
+     "date": "2024-01-30T23:33:04-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "tgauntt@jefferies.com"
@@ -1903,7 +1903,7 @@
    "messages": [
     {
      "id": "18d1fe72f5816977",
-     "date": "2024-01-19T04:07:40Z",
+     "date": "2024-01-18T22:07:40-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "NGerstein99@gmail.com"
@@ -1915,7 +1915,7 @@
     },
     {
      "id": "18d2e2d12fbb865b",
-     "date": "2024-01-21T22:38:29Z",
+     "date": "2024-01-21T16:38:29-06:00",
      "from": "ngerstein99@gmail.com",
      "to": [
       "jnachman@utexas.edu"
@@ -1927,7 +1927,7 @@
     },
     {
      "id": "18d2e4de37c4c88d",
-     "date": "2024-01-21T23:14:32Z",
+     "date": "2024-01-21T17:14:32-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "ngerstein99@gmail.com"
@@ -1939,7 +1939,7 @@
     },
     {
      "id": "18d2eeaa5dc1bc16",
-     "date": "2024-01-22T02:05:33Z",
+     "date": "2024-01-21T20:05:33-06:00",
      "from": "ngerstein99@gmail.com",
      "to": [
       "jnachman@utexas.edu"
@@ -1951,7 +1951,7 @@
     },
     {
      "id": "18d2f50cac7a5635",
-     "date": "2024-01-22T03:57:20Z",
+     "date": "2024-01-21T21:57:20-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "ngerstein99@gmail.com"
@@ -1963,7 +1963,7 @@
     },
     {
      "id": "18d467c3ea7934b0",
-     "date": "2024-01-26T15:56:04Z",
+     "date": "2024-01-26T09:56:04-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "ngerstein99@gmail.com"
@@ -1975,7 +1975,7 @@
     },
     {
      "id": "18d48037cdc5581a",
-     "date": "2024-01-26T23:03:24Z",
+     "date": "2024-01-26T17:03:24-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "ngerstein99@gmail.com"
@@ -1992,7 +1992,7 @@
    "messages": [
     {
      "id": "18d22997be1fcb37",
-     "date": "2024-01-19T16:41:31Z",
+     "date": "2024-01-19T10:41:31-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2009,7 +2009,7 @@
    "messages": [
     {
      "id": "18d229a963218f9e",
-     "date": "2024-01-19T16:42:47Z",
+     "date": "2024-01-19T10:42:47-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2021,7 +2021,7 @@
     },
     {
      "id": "18d229b0d4cf017b",
-     "date": "2024-01-19T16:43:16Z",
+     "date": "2024-01-19T10:43:16-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2033,7 +2033,7 @@
     },
     {
      "id": "18d22c8238313d85",
-     "date": "2024-01-19T17:32:32Z",
+     "date": "2024-01-19T11:32:32-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2045,7 +2045,7 @@
     },
     {
      "id": "18d3393fe9db71c3",
-     "date": "2024-01-22T23:49:06Z",
+     "date": "2024-01-22T17:49:06-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2062,7 +2062,7 @@
    "messages": [
     {
      "id": "18d22cbb43e09bf5",
-     "date": "2024-01-19T17:36:10Z",
+     "date": "2024-01-19T11:36:10-06:00",
      "from": "Grey.Bianca@mizuhogroup.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2074,7 +2074,7 @@
     },
     {
      "id": "18d2334e177638ce",
-     "date": "2024-01-19T19:31:24Z",
+     "date": "2024-01-19T13:31:24-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Grey.Bianca@mizuhogroup.com"
@@ -2086,7 +2086,7 @@
     },
     {
      "id": "18d2353e14f8d1b4",
-     "date": "2024-01-19T20:03:13Z",
+     "date": "2024-01-19T14:03:13-06:00",
      "from": "Grey.Bianca@mizuhogroup.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2098,7 +2098,7 @@
     },
     {
      "id": "18d240175ec1db36",
-     "date": "2024-01-19T23:14:51Z",
+     "date": "2024-01-19T17:14:51-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Grey.Bianca@mizuhogroup.com"
@@ -2110,7 +2110,7 @@
     },
     {
      "id": "18d3433dcc297b0b",
-     "date": "2024-01-23T02:43:50Z",
+     "date": "2024-01-22T20:43:50-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Grey.Bianca@mizuhogroup.com"
@@ -2122,7 +2122,7 @@
     },
     {
      "id": "18d343a5ef40ceba",
-     "date": "2024-01-23T02:47:46Z",
+     "date": "2024-01-22T20:47:46-06:00",
      "from": "Grey.Bianca@mizuhogroup.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2139,7 +2139,7 @@
    "messages": [
     {
      "id": "18d22cfc9808e8e9",
-     "date": "2024-01-19T17:40:52Z",
+     "date": "2024-01-19T11:40:52-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "carrie.cruces@citi.com",
@@ -2152,7 +2152,7 @@
     },
     {
      "id": "18d22d10902a78c8",
-     "date": "2024-01-19T17:42:14Z",
+     "date": "2024-01-19T11:42:14-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2164,7 +2164,7 @@
     },
     {
      "id": "18d22dd970633b55",
-     "date": "2024-01-19T17:55:57Z",
+     "date": "2024-01-19T11:55:57-06:00",
      "from": "carrie.cruces@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2176,7 +2176,7 @@
     },
     {
      "id": "18d23160da173c89",
-     "date": "2024-01-19T18:57:44Z",
+     "date": "2024-01-19T12:57:44-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "carrie.cruces@citi.com"
@@ -2188,7 +2188,7 @@
     },
     {
      "id": "18d231cbc620ad93",
-     "date": "2024-01-19T19:05:02Z",
+     "date": "2024-01-19T13:05:02-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "chris.miller@citi.com"
@@ -2200,7 +2200,7 @@
     },
     {
      "id": "18d23237607449f8",
-     "date": "2024-01-19T19:12:15Z",
+     "date": "2024-01-19T13:12:15-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2212,7 +2212,7 @@
     },
     {
      "id": "18d23699778e5d8a",
-     "date": "2024-01-19T20:28:53Z",
+     "date": "2024-01-19T14:28:53-06:00",
      "from": "carrie.cruces@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2224,7 +2224,7 @@
     },
     {
      "id": "18d24047aba67127",
-     "date": "2024-01-19T23:18:09Z",
+     "date": "2024-01-19T17:18:09-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "carrie.cruces@citi.com"
@@ -2236,7 +2236,7 @@
     },
     {
      "id": "18d32d541701ebbe",
-     "date": "2024-01-22T20:20:41Z",
+     "date": "2024-01-22T14:20:41-06:00",
      "from": "carrie.cruces@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2250,7 +2250,7 @@
     },
     {
      "id": "18d32f714b204820",
-     "date": "2024-01-22T20:57:49Z",
+     "date": "2024-01-22T14:57:49-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "mathew.young@citi.com"
@@ -2262,7 +2262,7 @@
     },
     {
      "id": "18d32fb783f0ed70",
-     "date": "2024-01-22T21:02:37Z",
+     "date": "2024-01-22T15:02:37-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "carrie.cruces@citi.com"
@@ -2274,7 +2274,7 @@
     },
     {
      "id": "18d32fe916119eef",
-     "date": "2024-01-22T21:05:52Z",
+     "date": "2024-01-22T15:05:52-06:00",
      "from": "mathew.young@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2286,7 +2286,7 @@
     },
     {
      "id": "18d330b671622ff5",
-     "date": "2024-01-22T21:20:01Z",
+     "date": "2024-01-22T15:20:01-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "mathew.young@citi.com"
@@ -2298,7 +2298,7 @@
     },
     {
      "id": "18d47fb930ec9f38",
-     "date": "2024-01-26T22:54:45Z",
+     "date": "2024-01-26T16:54:45-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "mathew.young@citi.com"
@@ -2315,7 +2315,7 @@
    "messages": [
     {
      "id": "18d23cf387a81adc",
-     "date": "2024-01-19T22:19:55Z",
+     "date": "2024-01-19T16:19:55-06:00",
      "from": "carson.harris@jpmorgan.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2327,7 +2327,7 @@
     },
     {
      "id": "18d2416e92e9af34",
-     "date": "2024-01-19T23:38:17Z",
+     "date": "2024-01-19T17:38:17-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "carson.harris@jpmorgan.com"
@@ -2339,7 +2339,7 @@
     },
     {
      "id": "18d31eff9a07e097",
-     "date": "2024-01-22T16:10:10Z",
+     "date": "2024-01-22T10:10:10-06:00",
      "from": "carson.harris@jpmorgan.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2351,7 +2351,7 @@
     },
     {
      "id": "18d326fa819f826d",
-     "date": "2024-01-22T18:29:54Z",
+     "date": "2024-01-22T12:29:54-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "carson.harris@jpmorgan.com"
@@ -2363,7 +2363,7 @@
     },
     {
      "id": "18d3a120d552d7af",
-     "date": "2024-01-24T06:04:37Z",
+     "date": "2024-01-24T00:04:37-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "carson.harris@jpmorgan.com"
@@ -2380,7 +2380,7 @@
    "messages": [
     {
      "id": "18d2406419fc6b6d",
-     "date": "2024-01-19T23:19:09Z",
+     "date": "2024-01-19T17:19:09-06:00",
      "from": "Grey.Bianca@mizuhogroup.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2397,7 +2397,7 @@
    "messages": [
     {
      "id": "18d241cdc4f135db",
-     "date": "2024-01-19T23:44:46Z",
+     "date": "2024-01-19T17:44:46-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "jessica.luft@bofa.com"
@@ -2414,7 +2414,7 @@
    "messages": [
     {
      "id": "18d241ba25acf9f4",
-     "date": "2024-01-19T23:43:19Z",
+     "date": "2024-01-19T17:43:19-06:00",
      "from": "carrie.cruces@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2431,7 +2431,7 @@
    "messages": [
     {
      "id": "18d241d911df6645",
-     "date": "2024-01-19T23:45:06Z",
+     "date": "2024-01-19T17:45:06-06:00",
      "from": "jessica.luft@bofa.com",
      "to": [
       "jnachman@utexas.edu"
@@ -2448,7 +2448,7 @@
    "messages": [
     {
      "id": "18d242385381dbc2",
-     "date": "2024-01-19T23:52:03Z",
+     "date": "2024-01-19T17:52:03-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "sellingsloh@intrepidfp.com"
@@ -2460,7 +2460,7 @@
     },
     {
      "id": "18d247eb79c1ac28",
-     "date": "2024-01-20T01:31:31Z",
+     "date": "2024-01-19T19:31:31-06:00",
      "from": "Sellingsloh@intrepidfp.com",
      "to": [
       "jnachman@utexas.edu"
@@ -2478,7 +2478,7 @@
     },
     {
      "id": "18d282a41dfb95fa",
-     "date": "2024-01-20T18:37:54Z",
+     "date": "2024-01-20T12:37:54-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Sellingsloh@intrepidfp.com"
@@ -2495,7 +2495,7 @@
    "messages": [
     {
      "id": "18d2441f2c611082",
-     "date": "2024-01-20T00:25:17Z",
+     "date": "2024-01-19T18:25:17-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Keaton.cruzcosa@psc.com"
@@ -2512,7 +2512,7 @@
    "messages": [
     {
      "id": "18d2835aaf5862da",
-     "date": "2024-01-20T18:50:22Z",
+     "date": "2024-01-20T12:50:22-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "horton@intrepidfp.com"
@@ -2524,7 +2524,7 @@
     },
     {
      "id": "18d32e5da4ed0e69",
-     "date": "2024-01-22T20:38:54Z",
+     "date": "2024-01-22T14:38:54-06:00",
      "from": "horton@intrepidfp.com",
      "to": [
       "jnachman@utexas.edu"
@@ -2536,7 +2536,7 @@
     },
     {
      "id": "18d3308b1e23e387",
-     "date": "2024-01-22T21:17:03Z",
+     "date": "2024-01-22T15:17:03-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "horton@intrepidfp.com"
@@ -2548,7 +2548,7 @@
     },
     {
      "id": "18d3319205b6ea1f",
-     "date": "2024-01-22T21:34:48Z",
+     "date": "2024-01-22T15:34:48-06:00",
      "from": "horton@intrepidfp.com",
      "to": [
       "jnachman@utexas.edu"
@@ -2560,7 +2560,7 @@
     },
     {
      "id": "18d33312aff6a3cf",
-     "date": "2024-01-22T22:01:16Z",
+     "date": "2024-01-22T16:01:16-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "horton@intrepidfp.com"
@@ -2572,7 +2572,7 @@
     },
     {
      "id": "18d37e1356c90618",
-     "date": "2024-01-23T19:52:01Z",
+     "date": "2024-01-23T13:52:01-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "horton@intrepidfp.com"
@@ -2589,7 +2589,7 @@
    "messages": [
     {
      "id": "18d2846e24a66597",
-     "date": "2024-01-20T19:09:10Z",
+     "date": "2024-01-20T13:09:10-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Robinson@intrepidfp.com"
@@ -2601,7 +2601,7 @@
     },
     {
      "id": "18d322382c94dc20",
-     "date": "2024-01-22T17:06:34Z",
+     "date": "2024-01-22T11:06:34-06:00",
      "from": "Robinson@intrepidfp.com",
      "to": [
       "jnachman@utexas.edu"
@@ -2613,7 +2613,7 @@
     },
     {
      "id": "18d32aefdbdec92b",
-     "date": "2024-01-22T19:39:05Z",
+     "date": "2024-01-22T13:39:05-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Robinson@intrepidfp.com"
@@ -2625,7 +2625,7 @@
     },
     {
      "id": "18d32dc27170b4a2",
-     "date": "2024-01-22T20:28:07Z",
+     "date": "2024-01-22T14:28:07-06:00",
      "from": "Robinson@intrepidfp.com",
      "to": [
       "jnachman@utexas.edu"
@@ -2637,7 +2637,7 @@
     },
     {
      "id": "18d4243d9df7dab0",
-     "date": "2024-01-25T20:15:58Z",
+     "date": "2024-01-25T14:15:58-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Robinson@intrepidfp.com"
@@ -2654,7 +2654,7 @@
    "messages": [
     {
      "id": "18d2ee690c885bae",
-     "date": "2024-01-22T02:01:17Z",
+     "date": "2024-01-21T20:01:17-06:00",
      "from": "ngerstein99@gmail.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2671,7 +2671,7 @@
    "messages": [
     {
      "id": "18d310cc6682d747",
-     "date": "2024-01-22T12:02:17Z",
+     "date": "2024-01-22T06:02:17-06:00",
      "from": "ngerstein99@gmail.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2688,7 +2688,7 @@
    "messages": [
     {
      "id": "18d32d1f8874a2ca",
-     "date": "2024-01-22T20:17:12Z",
+     "date": "2024-01-22T14:17:12-06:00",
      "from": "carrie.cruces@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2705,7 +2705,7 @@
    "messages": [
     {
      "id": "18d32d8554168836",
-     "date": "2024-01-22T20:24:10Z",
+     "date": "2024-01-22T14:24:10-06:00",
      "from": "David.Talbot@raymondjames.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2717,7 +2717,7 @@
     },
     {
      "id": "18d330e496eb38f6",
-     "date": "2024-01-22T21:23:10Z",
+     "date": "2024-01-22T15:23:10-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "David.Talbot@raymondjames.com"
@@ -2729,7 +2729,7 @@
     },
     {
      "id": "18d3388cb52c665c",
-     "date": "2024-01-22T23:36:56Z",
+     "date": "2024-01-22T17:36:56-06:00",
      "from": "David.Talbot@raymondjames.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2741,7 +2741,7 @@
     },
     {
      "id": "18d343dc0bac20e0",
-     "date": "2024-01-23T02:54:38Z",
+     "date": "2024-01-22T20:54:38-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "David.Talbot@raymondjames.com"
@@ -2753,7 +2753,7 @@
     },
     {
      "id": "18d3445be1e80f5d",
-     "date": "2024-01-23T03:03:11Z",
+     "date": "2024-01-22T21:03:11-06:00",
      "from": "David.Talbot@raymondjames.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2765,7 +2765,7 @@
     },
     {
      "id": "18d43515afba10aa",
-     "date": "2024-01-26T01:10:21Z",
+     "date": "2024-01-25T19:10:21-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "David.Talbot@raymondjames.com"
@@ -2777,7 +2777,7 @@
     },
     {
      "id": "18d435b4e9c9026f",
-     "date": "2024-01-26T01:20:56Z",
+     "date": "2024-01-25T19:20:56-06:00",
      "from": "David.Talbot@raymondjames.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2794,7 +2794,7 @@
    "messages": [
     {
      "id": "18d32dafce4f29ab",
-     "date": "2024-01-22T20:27:02Z",
+     "date": "2024-01-22T14:27:02-06:00",
      "from": "Robinson@intrepidfp.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2811,7 +2811,7 @@
    "messages": [
     {
      "id": "18d32dbd8a80bd39",
-     "date": "2024-01-22T20:28:01Z",
+     "date": "2024-01-22T14:28:01-06:00",
      "from": "Grant.Gillespie@morganstanley.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2823,7 +2823,7 @@
     },
     {
      "id": "18d3303b62becc5e",
-     "date": "2024-01-22T21:11:37Z",
+     "date": "2024-01-22T15:11:37-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Grant.Gillespie@morganstanley.com"
@@ -2835,7 +2835,7 @@
     },
     {
      "id": "18d346298de9f89a",
-     "date": "2024-01-23T03:34:48Z",
+     "date": "2024-01-22T21:34:48-06:00",
      "from": "Grant.Gillespie@morganstanley.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2847,7 +2847,7 @@
     },
     {
      "id": "18d3493231109791",
-     "date": "2024-01-23T04:27:54Z",
+     "date": "2024-01-22T22:27:54-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Grant.Gillespie@morganstanley.com"
@@ -2859,7 +2859,7 @@
     },
     {
      "id": "18d4355d39bf7283",
-     "date": "2024-01-26T01:15:14Z",
+     "date": "2024-01-25T19:15:14-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Grant.Gillespie@morganstanley.com"
@@ -2876,7 +2876,7 @@
    "messages": [
     {
      "id": "18d332f300b19767",
-     "date": "2024-01-22T21:58:58Z",
+     "date": "2024-01-22T15:58:58-06:00",
      "from": "mathew.young@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2893,7 +2893,7 @@
    "messages": [
     {
      "id": "18d335857a5cd119",
-     "date": "2024-01-22T22:44:00Z",
+     "date": "2024-01-22T16:44:00-06:00",
      "from": "horton@intrepidfp.com",
      "to": [
       "jnachman17@gmail.com"
@@ -2910,7 +2910,7 @@
    "messages": [
     {
      "id": "18d33c7c722672e3",
-     "date": "2024-01-23T00:45:46Z",
+     "date": "2024-01-22T18:45:46-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "kstephens@hl.com"
@@ -2922,7 +2922,7 @@
     },
     {
      "id": "18d33fb8f757a006",
-     "date": "2024-01-23T01:42:07Z",
+     "date": "2024-01-22T19:42:07-06:00",
      "from": "KStephens@hl.com",
      "to": [
       "jnachman@utexas.edu"
@@ -2934,7 +2934,7 @@
     },
     {
      "id": "18d343932a530ccf",
-     "date": "2024-01-23T02:49:40Z",
+     "date": "2024-01-22T20:49:40-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "KStephens@hl.com"
@@ -2946,7 +2946,7 @@
     },
     {
      "id": "18d5b8525b084de4",
-     "date": "2024-01-30T17:57:42Z",
+     "date": "2024-01-30T11:57:42-06:00",
      "from": "KStephens@hl.com",
      "to": [
       "jnachman@utexas.edu"
@@ -2958,7 +2958,7 @@
     },
     {
      "id": "18d5bc7821b59359",
-     "date": "2024-01-30T19:10:04Z",
+     "date": "2024-01-30T13:10:04-06:00",
      "from": "KStephens@hl.com",
      "to": [
       "jnachman@utexas.edu"
@@ -2970,7 +2970,7 @@
     },
     {
      "id": "18d5bfad7df86115",
-     "date": "2024-01-30T20:06:22Z",
+     "date": "2024-01-30T14:06:22-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "KStephens@hl.com"
@@ -2987,7 +2987,7 @@
    "messages": [
     {
      "id": "18d3444ec540c8b9",
-     "date": "2024-01-23T03:02:18Z",
+     "date": "2024-01-22T21:02:18-06:00",
      "from": "David.Talbot@raymondjames.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3004,7 +3004,7 @@
    "messages": [
     {
      "id": "18d3625b3395166e",
-     "date": "2024-01-23T11:47:32Z",
+     "date": "2024-01-23T05:47:32-06:00",
      "from": "Grant.Gillespie@morganstanley.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3021,7 +3021,7 @@
    "messages": [
     {
      "id": "18d38c210dd28bf1",
-     "date": "2024-01-23T23:57:35Z",
+     "date": "2024-01-23T17:57:35-06:00",
      "from": "carson.harris@jpmorgan.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3033,7 +3033,7 @@
     },
     {
      "id": "18d38c3a97b3c236",
-     "date": "2024-01-23T23:59:23Z",
+     "date": "2024-01-23T17:59:23-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "carson.harris@jpmorgan.com"
@@ -3045,7 +3045,7 @@
     },
     {
      "id": "18d38e8281495b66",
-     "date": "2024-01-24T00:39:10Z",
+     "date": "2024-01-23T18:39:10-06:00",
      "from": "carson.harris@jpmorgan.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3062,7 +3062,7 @@
    "messages": [
     {
      "id": "18d39072affb5b93",
-     "date": "2024-01-24T01:13:07Z",
+     "date": "2024-01-23T19:13:07-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "ethan.marnhout@ftpartners.com"
@@ -3074,7 +3074,7 @@
     },
     {
      "id": "18d5c1483239661f",
-     "date": "2024-01-30T20:34:24Z",
+     "date": "2024-01-30T14:34:24-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "ethan.marnhout@ftpartners.com"
@@ -3086,7 +3086,7 @@
     },
     {
      "id": "18d5c1766e3c0f90",
-     "date": "2024-01-30T20:37:30Z",
+     "date": "2024-01-30T14:37:30-06:00",
      "from": "ethan.marnhout@ftpartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3098,7 +3098,7 @@
     },
     {
      "id": "18d5c1b103ef1720",
-     "date": "2024-01-30T20:41:33Z",
+     "date": "2024-01-30T14:41:33-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "ethan.marnhout@ftpartners.com"
@@ -3110,7 +3110,7 @@
     },
     {
      "id": "18d5c1bca4d63ba4",
-     "date": "2024-01-30T20:42:17Z",
+     "date": "2024-01-30T14:42:17-06:00",
      "from": "ethan.marnhout@ftpartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3122,7 +3122,7 @@
     },
     {
      "id": "18d7ed34ef723f49",
-     "date": "2024-02-06T14:29:53Z",
+     "date": "2024-02-06T08:29:53-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "ethan.marnhout@ftpartners.com"
@@ -3139,7 +3139,7 @@
    "messages": [
     {
      "id": "18d39138c824852a",
-     "date": "2024-01-24T01:26:38Z",
+     "date": "2024-01-23T19:26:38-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "danny.shin@hl.com"
@@ -3151,7 +3151,7 @@
     },
     {
      "id": "18d47060a922a98c",
-     "date": "2024-01-26T18:26:25Z",
+     "date": "2024-01-26T12:26:25-06:00",
      "from": "Danny.Shin@hl.com",
      "to": [
       "jnachman@utexas.edu"
@@ -3163,7 +3163,7 @@
     },
     {
      "id": "18d4809f82870207",
-     "date": "2024-01-26T23:10:29Z",
+     "date": "2024-01-26T17:10:29-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Danny.Shin@hl.com"
@@ -3175,7 +3175,7 @@
     },
     {
      "id": "18d48539a11e6804",
-     "date": "2024-01-27T00:30:43Z",
+     "date": "2024-01-26T18:30:43-06:00",
      "from": "Danny.Shin@hl.com",
      "to": [
       "jnachman@utexas.edu"
@@ -3187,7 +3187,7 @@
     },
     {
      "id": "18d48db81b8a63ae",
-     "date": "2024-01-27T02:59:21Z",
+     "date": "2024-01-26T20:59:21-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Danny.Shin@hl.com"
@@ -3199,7 +3199,7 @@
     },
     {
      "id": "18d57b3ddd8704cc",
-     "date": "2024-01-30T00:10:21Z",
+     "date": "2024-01-29T18:10:21-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Danny.Shin@hl.com"
@@ -3216,7 +3216,7 @@
    "messages": [
     {
      "id": "18d51f2b7d4e1947",
-     "date": "2024-01-28T21:21:12Z",
+     "date": "2024-01-28T15:21:12-06:00",
      "from": "Matt.Manriquez@morganstanley.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3228,7 +3228,7 @@
     },
     {
      "id": "18d520fe90e24bda",
-     "date": "2024-01-28T21:53:10Z",
+     "date": "2024-01-28T15:53:10-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Matt.Manriquez@morganstanley.com"
@@ -3240,7 +3240,7 @@
     },
     {
      "id": "18d55e8434c3a78d",
-     "date": "2024-01-29T15:48:14Z",
+     "date": "2024-01-29T09:48:14-06:00",
      "from": "Matt.Manriquez@morganstanley.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3252,7 +3252,7 @@
     },
     {
      "id": "18d563b90285b621",
-     "date": "2024-01-29T17:19:20Z",
+     "date": "2024-01-29T11:19:20-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Matt.Manriquez@morganstanley.com"
@@ -3264,7 +3264,7 @@
     },
     {
      "id": "18d5642ba1e48e4f",
-     "date": "2024-01-29T17:27:03Z",
+     "date": "2024-01-29T11:27:03-06:00",
      "from": "Matt.Manriquez@morganstanley.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3276,7 +3276,7 @@
     },
     {
      "id": "18d5cbd7cc3147e0",
-     "date": "2024-01-30T23:38:58Z",
+     "date": "2024-01-30T17:38:58-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Matt.Manriquez@morganstanley.com"
@@ -3293,7 +3293,7 @@
    "messages": [
     {
      "id": "18d5638fc9498973",
-     "date": "2024-01-29T17:16:25Z",
+     "date": "2024-01-29T11:16:25-06:00",
      "from": "Matt.Manriquez@morganstanley.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3310,7 +3310,7 @@
    "messages": [
     {
      "id": "18d56dd8d8c5e518",
-     "date": "2024-01-29T20:16:09Z",
+     "date": "2024-01-29T14:16:09-06:00",
      "from": "Maura.Vestal@hl.com",
      "to": [
       "jnachman@utexas.edu"
@@ -3327,7 +3327,7 @@
    "messages": [
     {
      "id": "18d5bca7d667683f",
-     "date": "2024-01-30T19:13:24Z",
+     "date": "2024-01-30T13:13:24-06:00",
      "from": "Lynell.Velten@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3341,7 +3341,7 @@
     },
     {
      "id": "18d5bf79d31e4387",
-     "date": "2024-01-30T20:02:50Z",
+     "date": "2024-01-30T14:02:50-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Lynell.Velten@hl.com"
@@ -3353,7 +3353,7 @@
     },
     {
      "id": "18d5c08770011806",
-     "date": "2024-01-30T20:21:08Z",
+     "date": "2024-01-30T14:21:08-06:00",
      "from": "Lynell.Velten@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3370,7 +3370,7 @@
    "messages": [
     {
      "id": "18d5df16fb10d3f0",
-     "date": "2024-01-31T05:15:19Z",
+     "date": "2024-01-30T23:15:19-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "sean.kang@stifel.com"
@@ -3382,7 +3382,7 @@
     },
     {
      "id": "18d5df1a40ccc1e2",
-     "date": "2024-01-31T05:15:32Z",
+     "date": "2024-01-30T23:15:32-06:00",
      "from": "mailer-daemon@googlemail.com",
      "to": [
       "jnachman@utexas.edu"
@@ -3399,7 +3399,7 @@
    "messages": [
     {
      "id": "18d5df378de6f3a8",
-     "date": "2024-01-31T05:17:33Z",
+     "date": "2024-01-30T23:17:33-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "kang.s@stifel.com"
@@ -3411,7 +3411,7 @@
     },
     {
      "id": "18d5df3afb88ab97",
-     "date": "2024-01-31T05:17:46Z",
+     "date": "2024-01-30T23:17:46-06:00",
      "from": "mailer-daemon@googlemail.com",
      "to": [
       "jnachman@utexas.edu"
@@ -3428,7 +3428,7 @@
    "messages": [
     {
      "id": "18d5df4c34dfa869",
-     "date": "2024-01-31T05:18:57Z",
+     "date": "2024-01-30T23:18:57-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "s.kang@stifel.com"
@@ -3440,7 +3440,7 @@
     },
     {
      "id": "18d5df4f7043267d",
-     "date": "2024-01-31T05:19:10Z",
+     "date": "2024-01-30T23:19:10-06:00",
      "from": "mailer-daemon@googlemail.com",
      "to": [
       "jnachman@utexas.edu"
@@ -3457,7 +3457,7 @@
    "messages": [
     {
      "id": "18d5dfc5bb026e1b",
-     "date": "2024-01-31T05:27:15Z",
+     "date": "2024-01-30T23:27:15-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "Kyle.Gunnison@raymondjames.com"
@@ -3474,7 +3474,7 @@
    "messages": [
     {
      "id": "18d5e0b219252902",
-     "date": "2024-01-31T05:43:23Z",
+     "date": "2024-01-30T23:43:23-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "kvalliani@jefferies.com"
@@ -3491,7 +3491,7 @@
    "messages": [
     {
      "id": "18d609c15bc39d59",
-     "date": "2024-01-31T17:40:50Z",
+     "date": "2024-01-31T11:40:50-06:00",
      "from": "Sara.Laracca@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3503,7 +3503,7 @@
     },
     {
      "id": "18d62d4e33da11f8",
-     "date": "2024-02-01T04:02:14Z",
+     "date": "2024-01-31T22:02:14-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Sara.Laracca@hl.com"
@@ -3520,7 +3520,7 @@
    "messages": [
     {
      "id": "18d6705867686e3a",
-     "date": "2024-02-01T23:33:45Z",
+     "date": "2024-02-01T17:33:45-06:00",
      "from": "Sara.Laracca@hl.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3537,7 +3537,7 @@
    "messages": [
     {
      "id": "18d7a06e8dc2306d",
-     "date": "2024-02-05T16:07:56Z",
+     "date": "2024-02-05T10:07:56-06:00",
      "from": "grace.steelman@barclays.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3554,7 +3554,7 @@
    "messages": [
     {
      "id": "18d86f5f94ad0e0e",
-     "date": "2024-02-08T04:24:42Z",
+     "date": "2024-02-07T22:24:42-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Marijoy.Bertolini@aerispartners.com"
@@ -3566,7 +3566,7 @@
     },
     {
      "id": "18d86f6262e228ee",
-     "date": "2024-02-08T04:24:55Z",
+     "date": "2024-02-07T22:24:55-06:00",
      "from": "mailer-daemon@googlemail.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3583,7 +3583,7 @@
    "messages": [
     {
      "id": "18d870434c19f943",
-     "date": "2024-02-08T04:40:15Z",
+     "date": "2024-02-07T22:40:15-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "bm@aerispartners.com"
@@ -3595,7 +3595,7 @@
     },
     {
      "id": "18d8704625bfd255",
-     "date": "2024-02-08T04:40:27Z",
+     "date": "2024-02-07T22:40:27-06:00",
      "from": "mailer-daemon@googlemail.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3612,7 +3612,7 @@
    "messages": [
     {
      "id": "18d8709ee04efd25",
-     "date": "2024-02-08T04:46:31Z",
+     "date": "2024-02-07T22:46:31-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "careers@aerispartners.com"
@@ -3624,7 +3624,7 @@
     },
     {
      "id": "18d8906565eae4b9",
-     "date": "2024-02-08T14:01:37Z",
+     "date": "2024-02-08T08:01:37-06:00",
      "from": "pgb@aerispartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3636,7 +3636,7 @@
     },
     {
      "id": "18d8ecb50b1bd467",
-     "date": "2024-02-09T16:55:01Z",
+     "date": "2024-02-09T10:55:01-06:00",
      "from": "pgb@aerispartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3648,7 +3648,7 @@
     },
     {
      "id": "18d8f31a6a62bd34",
-     "date": "2024-02-09T18:46:52Z",
+     "date": "2024-02-09T12:46:52-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "pgb@aerispartners.com"
@@ -3665,7 +3665,7 @@
    "messages": [
     {
      "id": "18d8ec8ad9534f6c",
-     "date": "2024-02-09T16:55:01Z",
+     "date": "2024-02-09T10:55:01-06:00",
      "from": "pgb@aerispartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3682,7 +3682,7 @@
    "messages": [
     {
      "id": "18d94f516bd01d39",
-     "date": "2024-02-10T21:38:26Z",
+     "date": "2024-02-10T15:38:26-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "gs-hcm-recruiting-coo@ny.email.gs.com"
@@ -3694,7 +3694,7 @@
     },
     {
      "id": "18d9cdf2bfaa653d",
-     "date": "2024-02-12T10:30:47Z",
+     "date": "2024-02-12T04:30:47-06:00",
      "from": "Gayathri.Ravi@gs.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3711,7 +3711,7 @@
    "messages": [
     {
      "id": "18da505200590986",
-     "date": "2024-02-14T00:29:51Z",
+     "date": "2024-02-13T18:29:51-06:00",
      "from": "dnachman@fastspring.com",
      "to": [
       "steve.mclaughlin@ftpartners.com",
@@ -3725,7 +3725,7 @@
     },
     {
      "id": "18da85be63b82660",
-     "date": "2024-02-14T16:03:31Z",
+     "date": "2024-02-14T10:03:31-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "liz.ream@ftpartners.com"
@@ -3737,7 +3737,7 @@
     },
     {
      "id": "18da86c0024143ab",
-     "date": "2024-02-14T16:21:02Z",
+     "date": "2024-02-14T10:21:02-06:00",
      "from": "liz.ream@ftpartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3749,7 +3749,7 @@
     },
     {
      "id": "18da874c1eb03b4f",
-     "date": "2024-02-14T16:30:40Z",
+     "date": "2024-02-14T10:30:40-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "liz.ream@ftpartners.com"
@@ -3761,7 +3761,7 @@
     },
     {
      "id": "18daadbb1f699043",
-     "date": "2024-02-15T03:42:19Z",
+     "date": "2024-02-14T21:42:19-06:00",
      "from": "steve.mclaughlin@ftpartners.com",
      "to": [
       "liz.ream@ftpartners.com",
@@ -3774,7 +3774,7 @@
     },
     {
      "id": "18daaf1ecc6f1ff4",
-     "date": "2024-02-15T04:06:37Z",
+     "date": "2024-02-14T22:06:37-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "steve.mclaughlin@ftpartners.com"
@@ -3786,7 +3786,7 @@
     },
     {
      "id": "18daaf62956b3b8b",
-     "date": "2024-02-15T04:11:13Z",
+     "date": "2024-02-14T22:11:13-06:00",
      "from": "steve.mclaughlin@ftpartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -3805,8 +3805,8 @@
   {
    "id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g74o32gpm750j8cpk6gsk8g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g6osj6c1j8kpjih248p33ic9k650j4d1m68r4acpl8oqj6h2264og",
    "title": "Joseph - Jonathan Intro Call",
-   "start": "2024-01-19T12:30:00-08:00",
-   "end": "2024-01-19T13:00:00-08:00",
+   "start": "2024-01-19T14:30:00-06:00",
+   "end": "2024-01-19T15:00:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "joseph.candelario@psc.com"
@@ -3816,8 +3816,8 @@
   {
    "id": "1uj4ac7352hs804tu78e8grqc9",
    "title": "Josh - Jonathan FT Partners IB Call ",
-   "start": "2024-01-22T11:00:00-08:00",
-   "end": "2024-01-22T11:30:00-08:00",
+   "start": "2024-01-22T13:00:00-06:00",
+   "end": "2024-01-22T13:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "joshua.gumm@ftpartners.com"
@@ -3827,8 +3827,8 @@
   {
    "id": "3qrpn59m0kc0j384e56nfcvfb4",
    "title": "Carrie - Jonathan Citi IB Call ",
-   "start": "2024-01-22T12:00:00-08:00",
-   "end": "2024-01-22T12:30:00-08:00",
+   "start": "2024-01-22T14:00:00-06:00",
+   "end": "2024-01-22T14:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "carrie.cruces@citi.com"
@@ -3838,8 +3838,8 @@
   {
    "id": "49dsnoorh99106tf64bgfpmr4j",
    "title": "Kate - Jonathan Houlihan IB Call ",
-   "start": "2024-01-22T16:00:00-08:00",
-   "end": "2024-01-22T16:30:00-08:00",
+   "start": "2024-01-22T18:00:00-06:00",
+   "end": "2024-01-22T18:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "kate.borden@hl.com"
@@ -3849,8 +3849,8 @@
   {
    "id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g70o30gq58gs3eha56gp48g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g8cpjgca56514ccph6cs42e1k8csjihi561246c1h7113gdpp6d1g",
    "title": "FW: UT Austin 2025 Summer Analyst Information Session",
-   "start": "2024-01-22T17:00:00-08:00",
-   "end": "2024-01-22T18:00:00-08:00",
+   "start": "2024-01-22T19:00:00-06:00",
+   "end": "2024-01-22T20:00:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "sarah.marks@citi.com"
@@ -3860,8 +3860,8 @@
   {
    "id": "5sojt2vr83gms3r6cqcbp6dbq6",
    "title": "Gary - Jonathan Intrepid IB Call ",
-   "start": "2024-01-23T10:30:00-08:00",
-   "end": "2024-01-23T11:00:00-08:00",
+   "start": "2024-01-23T12:30:00-06:00",
+   "end": "2024-01-23T13:00:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "horton@intrepidfp.com"
@@ -3871,8 +3871,8 @@
   {
    "id": "174nj2k6lljafhesbghibecnlt",
    "title": "Carson - Jonathan JPM IB Call ",
-   "start": "2024-01-23T16:00:00-08:00",
-   "end": "2024-01-23T16:30:00-08:00",
+   "start": "2024-01-23T18:00:00-06:00",
+   "end": "2024-01-23T18:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "carson.harris@jpmorgan.com"
@@ -3882,8 +3882,8 @@
   {
    "id": "35cotclfim6dflhme14pr6qj38",
    "title": "David - Jonathan RJ IB Call",
-   "start": "2024-01-24T13:30:00-08:00",
-   "end": "2024-01-24T14:00:00-08:00",
+   "start": "2024-01-24T15:30:00-06:00",
+   "end": "2024-01-24T16:00:00-06:00",
    "attendees": [
     "david.talbot@raymondjames.com",
     "jnachman17@gmail.com"
@@ -3893,8 +3893,8 @@
   {
    "id": "550nk40kuhmpr20nnulvbpg2qb",
    "title": "Will - Jonathan Intrepid IB Call ",
-   "start": "2024-01-25T11:00:00-08:00",
-   "end": "2024-01-25T11:30:00-08:00",
+   "start": "2024-01-25T13:00:00-06:00",
+   "end": "2024-01-25T13:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "robinson@intrepidfp.com"
@@ -3904,8 +3904,8 @@
   {
    "id": "15gegepcub0vbvg41lfc1fb36r",
    "title": "Grant - Jonathan Morgan Stanley IB Call",
-   "start": "2024-01-25T15:00:00-08:00",
-   "end": "2024-01-25T15:30:00-08:00",
+   "start": "2024-01-25T17:00:00-06:00",
+   "end": "2024-01-25T17:30:00-06:00",
    "attendees": [
     "grant.gillespie@morganstanley.com",
     "jnachman17@gmail.com"
@@ -3915,8 +3915,8 @@
   {
    "id": "3aqqe9582g7ppm22q57hgnbit3",
    "title": "Nick - Jonathan Citi IB Call",
-   "start": "2024-01-26T08:00:00-08:00",
-   "end": "2024-01-26T08:30:00-08:00",
+   "start": "2024-01-26T10:00:00-06:00",
+   "end": "2024-01-26T10:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "ngerstein99@gmail.com"
@@ -3926,8 +3926,8 @@
   {
    "id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g8h132cq660q32dho6gsk8g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g6gq3ah9i8go32hhk70qk6h9k8l13cda48kojgd9i6kqjedpo6h20",
    "title": "Catch up with Jonathan Nachman / Doug Melsheimer",
-   "start": "2024-01-26T11:30:00-08:00",
-   "end": "2024-01-26T12:00:00-08:00",
+   "start": "2024-01-26T13:30:00-06:00",
+   "end": "2024-01-26T14:00:00-06:00",
    "attendees": [
     "douglas.melsheimer@barclays.com",
     "jnachman17@gmail.com"
@@ -3937,8 +3937,8 @@
   {
    "id": "5g20kmm2m13hcafuva844f1hq1",
    "title": "Mat - Jonathan Citi NY IB Call ",
-   "start": "2024-01-26T12:00:00-08:00",
-   "end": "2024-01-26T12:30:00-08:00",
+   "start": "2024-01-26T14:00:00-06:00",
+   "end": "2024-01-26T14:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "mathew.young@citi.com"
@@ -3948,8 +3948,8 @@
   {
    "id": "06knmtt002mqgonvc5jsa7072v",
    "title": "Danny - Jonathan Houlihan LA IB Call",
-   "start": "2024-01-29T15:00:00-08:00",
-   "end": "2024-01-29T15:30:00-08:00",
+   "start": "2024-01-29T17:00:00-06:00",
+   "end": "2024-01-29T17:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "danny.shin@hl.com"
@@ -3959,8 +3959,8 @@
   {
    "id": "14h65j8g4c44ivu8o8q1hi6ab5",
    "title": "Matt - Jonathan Morgan Stanley 1st Round",
-   "start": "2024-01-30T08:00:00-08:00",
-   "end": "2024-01-30T08:30:00-08:00",
+   "start": "2024-01-30T10:00:00-06:00",
+   "end": "2024-01-30T10:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "matt.manriquez@morganstanley.com"
@@ -3970,8 +3970,8 @@
   {
    "id": "66pu0bocvdoujv218unu5bopjb",
    "title": "Kevin - Jonathan Houlihan IB Call ",
-   "start": "2024-01-30T10:00:00-08:00",
-   "end": "2024-01-30T10:30:00-08:00",
+   "start": "2024-01-30T12:00:00-06:00",
+   "end": "2024-01-30T12:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "kstephens@hl.com"
@@ -3981,8 +3981,8 @@
   {
    "id": "mt5biosnpecd3drk5dp5b5kss4",
    "title": "Jonathan - Wall Street Mastermind Strategy Session",
-   "start": "2024-01-31T06:00:00-08:00",
-   "end": "2024-01-31T07:00:00-08:00",
+   "start": "2024-01-31T08:00:00-06:00",
+   "end": "2024-01-31T09:00:00-06:00",
    "attendees": [
     "jnachman17@gmail.com"
    ],
@@ -3991,8 +3991,8 @@
   {
    "id": "5rien8vjbd24n4hf2bcdlu8ecc",
    "title": "Ethan - Jonathan FT Partners IB Call",
-   "start": "2024-02-02T09:30:00-08:00",
-   "end": "2024-02-02T10:00:00-08:00",
+   "start": "2024-02-02T11:30:00-06:00",
+   "end": "2024-02-02T12:00:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "ethan.marnhout@ftpartners.com"
@@ -4002,16 +4002,16 @@
   {
    "id": "54q85o92hinu8venrnu0cf6uh9",
    "title": "Jonathan - Owen Sherry Houlihan RX Intro Call",
-   "start": "2024-02-02T11:30:00-08:00",
-   "end": "2024-02-02T12:00:00-08:00",
+   "start": "2024-02-02T13:30:00-06:00",
+   "end": "2024-02-02T14:00:00-06:00",
    "attendees": [],
    "organizer": "jnachman17@gmail.com"
   },
   {
    "id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g70o46gpl74p4aca56kq48g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g8cpjae236sr3egpk8os3ighk88s4cg9l6p24ae9p6gpj2ghg6t1g",
    "title": "Katrina/Jonathan: K1 Intro ",
-   "start": "2024-02-02T13:00:00-08:00",
-   "end": "2024-02-02T13:30:00-08:00",
+   "start": "2024-02-02T15:00:00-06:00",
+   "end": "2024-02-02T15:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "kyuzefpolsky@k1ops.com"
@@ -4021,16 +4021,16 @@
   {
    "id": "0clu6dne5fjvncbrkt46badihv",
    "title": "Intrepid Info Session ",
-   "start": "2024-02-06T15:30:00-08:00",
-   "end": "2024-02-06T16:30:00-08:00",
+   "start": "2024-02-06T17:30:00-06:00",
+   "end": "2024-02-06T18:30:00-06:00",
    "attendees": [],
    "organizer": "jnachman17@gmail.com"
   },
   {
    "id": "5bbceiv8dev2tlg0gmkvacc09q",
    "title": "Grace - Jonathan Barclays IB Call",
-   "start": "2024-02-08T08:30:00-08:00",
-   "end": "2024-02-08T09:00:00-08:00",
+   "start": "2024-02-08T10:30:00-06:00",
+   "end": "2024-02-08T11:00:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "grace.steelman@barclays.com"
@@ -4040,16 +4040,16 @@
   {
    "id": "0bca8i0gkg2dq6p6mkccm8g3ci",
    "title": "Wells Fargo Handshake IB WestCoast Info Session",
-   "start": "2024-02-08T17:00:00-08:00",
-   "end": "2024-02-08T18:00:00-08:00",
+   "start": "2024-02-08T19:00:00-06:00",
+   "end": "2024-02-08T20:00:00-06:00",
    "attendees": [],
    "organizer": "jnachman17@gmail.com"
   },
   {
    "id": "13tinnbl4ti2jj28oslc9o1rsn",
    "title": "Houlihan LA CFR OOH 1st Round Interview",
-   "start": "2024-02-09T10:00:00-08:00",
-   "end": "2024-02-09T11:00:00-08:00",
+   "start": "2024-02-09T12:00:00-06:00",
+   "end": "2024-02-09T13:00:00-06:00",
    "attendees": [],
    "organizer": "jnachman17@gmail.com"
   }

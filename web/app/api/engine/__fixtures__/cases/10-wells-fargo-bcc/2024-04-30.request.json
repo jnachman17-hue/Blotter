@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-04-30T18:00:00Z",
+ "now": "2024-04-30T13:00:00-05:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -25,7 +25,7 @@
    "messages": [
     {
      "id": "18eb03a799ad4481",
-     "date": "2024-04-05T21:41:15Z",
+     "date": "2024-04-05T16:41:15-05:00",
      "from": "CIBUniversityRecruiting@wellsfargo.com",
      "to": [],
      "cc": [
@@ -38,7 +38,7 @@
     },
     {
      "id": "18eb0472a5d3851c",
-     "date": "2024-04-05T21:51:17Z",
+     "date": "2024-04-05T16:51:17-05:00",
      "from": "Abey.T.Dessie@wellsfargo.com",
      "to": [],
      "cc": [
@@ -51,7 +51,7 @@
     },
     {
      "id": "18ebe97e38035839",
-     "date": "2024-04-08T16:36:06Z",
+     "date": "2024-04-08T11:36:06-05:00",
      "from": "Abey.T.Dessie@wellsfargo.com",
      "to": [],
      "cc": [

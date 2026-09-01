@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-02-15T18:00:00Z",
+ "now": "2024-02-15T12:00:00-06:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -21,8 +21,8 @@
   {
    "id": "54q85o92hinu8venrnu0cf6uh9",
    "title": "Jonathan - Owen Sherry Houlihan RX Intro Call",
-   "start": "2024-02-02T11:30:00-08:00",
-   "end": "2024-02-02T12:00:00-08:00",
+   "start": "2024-02-02T13:30:00-06:00",
+   "end": "2024-02-02T14:00:00-06:00",
    "attendees": [],
    "organizer": "jnachman17@gmail.com"
   }

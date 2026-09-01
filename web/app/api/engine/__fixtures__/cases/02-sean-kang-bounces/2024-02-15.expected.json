@@ -4,8 +4,8 @@
   {
    "row": 2,
    "status": "Bounced",
-   "days": 15,
-   "last_contact": "2024-01-31",
+   "days": 16,
+   "last_contact": "2024-01-30",
    "attempts": 3,
    "next_call": null,
    "last_call": null

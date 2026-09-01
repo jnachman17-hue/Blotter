@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-01-25T18:00:00Z",
+ "now": "2024-01-25T12:00:00-06:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -24,7 +24,7 @@
    "messages": [
     {
      "id": "18d32d8554168836",
-     "date": "2024-01-22T20:24:10Z",
+     "date": "2024-01-22T14:24:10-06:00",
      "from": "David.Talbot@raymondjames.com",
      "to": [
       "jnachman17@gmail.com"
@@ -36,7 +36,7 @@
     },
     {
      "id": "18d330e496eb38f6",
-     "date": "2024-01-22T21:23:10Z",
+     "date": "2024-01-22T15:23:10-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "David.Talbot@raymondjames.com"
@@ -48,7 +48,7 @@
     },
     {
      "id": "18d3388cb52c665c",
-     "date": "2024-01-22T23:36:56Z",
+     "date": "2024-01-22T17:36:56-06:00",
      "from": "David.Talbot@raymondjames.com",
      "to": [
       "jnachman17@gmail.com"
@@ -60,7 +60,7 @@
     },
     {
      "id": "18d343dc0bac20e0",
-     "date": "2024-01-23T02:54:38Z",
+     "date": "2024-01-22T20:54:38-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "David.Talbot@raymondjames.com"
@@ -72,7 +72,7 @@
     },
     {
      "id": "18d3445be1e80f5d",
-     "date": "2024-01-23T03:03:11Z",
+     "date": "2024-01-22T21:03:11-06:00",
      "from": "David.Talbot@raymondjames.com",
      "to": [
       "jnachman17@gmail.com"
@@ -89,7 +89,7 @@
    "messages": [
     {
      "id": "18d3444ec540c8b9",
-     "date": "2024-01-23T03:02:18Z",
+     "date": "2024-01-22T21:02:18-06:00",
      "from": "David.Talbot@raymondjames.com",
      "to": [
       "jnachman17@gmail.com"
@@ -106,8 +106,8 @@
   {
    "id": "35cotclfim6dflhme14pr6qj38",
    "title": "David - Jonathan RJ IB Call",
-   "start": "2024-01-24T13:30:00-08:00",
-   "end": "2024-01-24T14:00:00-08:00",
+   "start": "2024-01-24T15:30:00-06:00",
+   "end": "2024-01-24T16:00:00-06:00",
    "attendees": [
     "david.talbot@raymondjames.com",
     "jnachman17@gmail.com"

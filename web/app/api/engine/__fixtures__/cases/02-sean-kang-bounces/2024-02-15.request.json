@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-02-15T18:00:00Z",
+ "now": "2024-02-15T12:00:00-06:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -26,7 +26,7 @@
    "messages": [
     {
      "id": "18d5df16fb10d3f0",
-     "date": "2024-01-31T05:15:19Z",
+     "date": "2024-01-30T23:15:19-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "sean.kang@stifel.com"
@@ -38,7 +38,7 @@
     },
     {
      "id": "18d5df1a40ccc1e2",
-     "date": "2024-01-31T05:15:32Z",
+     "date": "2024-01-30T23:15:32-06:00",
      "from": "mailer-daemon@googlemail.com",
      "to": [
       "jnachman@utexas.edu"
@@ -55,7 +55,7 @@
    "messages": [
     {
      "id": "18d5df378de6f3a8",
-     "date": "2024-01-31T05:17:33Z",
+     "date": "2024-01-30T23:17:33-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "kang.s@stifel.com"
@@ -67,7 +67,7 @@
     },
     {
      "id": "18d5df3afb88ab97",
-     "date": "2024-01-31T05:17:46Z",
+     "date": "2024-01-30T23:17:46-06:00",
      "from": "mailer-daemon@googlemail.com",
      "to": [
       "jnachman@utexas.edu"
@@ -84,7 +84,7 @@
    "messages": [
     {
      "id": "18d5df4c34dfa869",
-     "date": "2024-01-31T05:18:57Z",
+     "date": "2024-01-30T23:18:57-06:00",
      "from": "jnachman@utexas.edu",
      "to": [
       "s.kang@stifel.com"
@@ -96,7 +96,7 @@
     },
     {
      "id": "18d5df4f7043267d",
-     "date": "2024-01-31T05:19:10Z",
+     "date": "2024-01-30T23:19:10-06:00",
      "from": "mailer-daemon@googlemail.com",
      "to": [
       "jnachman@utexas.edu"

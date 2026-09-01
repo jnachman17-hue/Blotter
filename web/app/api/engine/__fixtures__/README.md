@@ -1,10 +1,12 @@
 # Engine fixtures — the answer key
 
 Written September 1, 2026 by the Test-cases chat, from the real 2024 corpus
-(`blotter-ib-ws1/research/corpus/`) against **`04-ENGINE-RULES.md` (version 2,
-ratified)** and the shapes in **`05-CONTRACT.md`**. The engine's code was never
-read while producing these files — that is the point of them. When the engine
-disagrees with a fixture, the derivation to argue with is in
+(`blotter-ib-ws1/research/corpus/`) against **`04-ENGINE-RULES.md` (version 3,
+ratified)** and the shapes in **`05-CONTRACT.md`**. Regenerated the same day
+for the v3 rulings (round 2, `12-BRIEF-TEST-CASES-2.md`): **all 31 of 31
+fixtures pass** against the engine. The engine's code was never read while
+producing these files — that is the point of them. When the engine disagrees
+with a fixture, the derivation to argue with is in
 `blotter-ib-ws1/docs/workstreams/ws9-build/10-TEST-CASE-NOTES.md`, case by
 case, with rule citations.
 
@@ -41,26 +43,31 @@ hand and lives in that script as data, not logic.
   claim". The contract gives warning categories but no shape; pinning strings
   would invent engine obligations the rules never made.
 
-## Conventions the expected values assume (provisional, flagged to Jon)
+## Conventions the expected values follow
 
-The rules do not decide these; the notes document (§3) puts each to Jon. Until
-he rules, the expected values use:
+**Ruled (rules v3, September 1, 2026) — no longer provisional:**
 
-1. **`days`** = whole elapsed days, `floor((now − anchor) / 24h)`, computed in
-   UTC. Not calendar-date difference in the student's timezone — the contract
-   carries no student timezone, so this is the only computable reading.
-2. **Date cells** (`last_contact`, `last_call`, `found.first_seen`) = the UTC
-   calendar date of the instant. Consequence worth knowing: Kate Borden's and
-   Carson Harris's evening calls (Central time) carry next-day dates.
-3. **`next_call`** = the matched upcoming event's `start` exactly as it
+1. **`days`** = a subtraction of calendar dates in the student's timezone
+   (§4 v3: "a day turns at midnight in the student's timezone"). A call
+   tomorrow morning is `1` however few hours remain tonight.
+2. **Every request timestamp carries the student's own offset** — here
+   America/Chicago: `-06:00` before the March 10, 2024 DST change, `-05:00`
+   after (§4 v3 binds the courier to this). Date cells (`last_contact`,
+   `last_call`, `found.first_seen`) are therefore the student's calendar
+   dates: Kate Borden's and Carson Harris's evening calls are January 22
+   and 23. The corpus stored messages in UTC and calendar strings in the
+   capture session's Pacific rendering; instants were preserved exactly and
+   re-rendered (see notes §0 for the corpus verification).
+3. **Calendar RSVPs are machine mail** (§6 v3): `Accepted:`, `Declined:`,
+   `Invitation:`, `Updated invitation:`, `New time proposed:` and kin are
+   never a reply, never an attempt, never `last_contact`.
+
+**Still provisional (flagged in the notes §3):**
+
+4. **`next_call`** = the matched upcoming event's `start` exactly as it
    appears in the request (ISO 8601 with offset). The contract never shows a
    non-null example; §9's sheet renders a time of day, so a bare date would
    lose information.
-4. **Calendar acceptances, invites and "New Time Proposed" emails are machine
-   mail**: they do not count as the contact writing, in the spirit of rules §6
-   (an auto-reply is not a reply). This affects only `attempts` and
-   `last_contact` on a few rows, never `status` at these dates; the notes list
-   the rows that flip if Jon rules the other way.
 5. **A `Closed` row** keeps its factual columns (`last_contact`, `attempts`,
    calls); only `days` is null, per the §4 table.
 6. **Bounced rows'** `last_contact` = the date of the final send attempt.

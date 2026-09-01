@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-01-25T18:00:00Z",
+ "now": "2024-01-25T12:00:00-06:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -42,7 +42,7 @@
    "messages": [
     {
      "id": "18d1d7c3597e5b8a",
-     "date": "2024-01-18T16:51:22Z",
+     "date": "2024-01-18T10:51:22-06:00",
      "from": "dmnachman@gmail.com",
      "to": [
       "chris.miller@citi.com",
@@ -55,7 +55,7 @@
     },
     {
      "id": "18d1db7961d55a5b",
-     "date": "2024-01-18T17:56:27Z",
+     "date": "2024-01-18T11:56:27-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "dmnachman@gmail.com"
@@ -69,7 +69,7 @@
     },
     {
      "id": "18d1e72a27af8769",
-     "date": "2024-01-18T21:20:39Z",
+     "date": "2024-01-18T15:20:39-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com",
@@ -82,7 +82,7 @@
     },
     {
      "id": "18d1e7d045233c1f",
-     "date": "2024-01-18T21:32:06Z",
+     "date": "2024-01-18T15:32:06-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "chris.miller@citi.com"
@@ -99,7 +99,7 @@
    "messages": [
     {
      "id": "18d22997be1fcb37",
-     "date": "2024-01-19T16:41:31Z",
+     "date": "2024-01-19T10:41:31-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -116,7 +116,7 @@
    "messages": [
     {
      "id": "18d229a963218f9e",
-     "date": "2024-01-19T16:42:47Z",
+     "date": "2024-01-19T10:42:47-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -128,7 +128,7 @@
     },
     {
      "id": "18d229b0d4cf017b",
-     "date": "2024-01-19T16:43:16Z",
+     "date": "2024-01-19T10:43:16-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -140,7 +140,7 @@
     },
     {
      "id": "18d22c8238313d85",
-     "date": "2024-01-19T17:32:32Z",
+     "date": "2024-01-19T11:32:32-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -152,7 +152,7 @@
     },
     {
      "id": "18d3393fe9db71c3",
-     "date": "2024-01-22T23:49:06Z",
+     "date": "2024-01-22T17:49:06-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -169,7 +169,7 @@
    "messages": [
     {
      "id": "18d22cfc9808e8e9",
-     "date": "2024-01-19T17:40:52Z",
+     "date": "2024-01-19T11:40:52-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "carrie.cruces@citi.com",
@@ -182,7 +182,7 @@
     },
     {
      "id": "18d22d10902a78c8",
-     "date": "2024-01-19T17:42:14Z",
+     "date": "2024-01-19T11:42:14-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -194,7 +194,7 @@
     },
     {
      "id": "18d22dd970633b55",
-     "date": "2024-01-19T17:55:57Z",
+     "date": "2024-01-19T11:55:57-06:00",
      "from": "carrie.cruces@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -206,7 +206,7 @@
     },
     {
      "id": "18d23160da173c89",
-     "date": "2024-01-19T18:57:44Z",
+     "date": "2024-01-19T12:57:44-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "carrie.cruces@citi.com"
@@ -218,7 +218,7 @@
     },
     {
      "id": "18d231cbc620ad93",
-     "date": "2024-01-19T19:05:02Z",
+     "date": "2024-01-19T13:05:02-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "chris.miller@citi.com"
@@ -230,7 +230,7 @@
     },
     {
      "id": "18d23237607449f8",
-     "date": "2024-01-19T19:12:15Z",
+     "date": "2024-01-19T13:12:15-06:00",
      "from": "chris.miller@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -242,7 +242,7 @@
     },
     {
      "id": "18d23699778e5d8a",
-     "date": "2024-01-19T20:28:53Z",
+     "date": "2024-01-19T14:28:53-06:00",
      "from": "carrie.cruces@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -254,7 +254,7 @@
     },
     {
      "id": "18d24047aba67127",
-     "date": "2024-01-19T23:18:09Z",
+     "date": "2024-01-19T17:18:09-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "carrie.cruces@citi.com"
@@ -266,7 +266,7 @@
     },
     {
      "id": "18d32d541701ebbe",
-     "date": "2024-01-22T20:20:41Z",
+     "date": "2024-01-22T14:20:41-06:00",
      "from": "carrie.cruces@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -280,7 +280,7 @@
     },
     {
      "id": "18d32f714b204820",
-     "date": "2024-01-22T20:57:49Z",
+     "date": "2024-01-22T14:57:49-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "mathew.young@citi.com"
@@ -292,7 +292,7 @@
     },
     {
      "id": "18d32fb783f0ed70",
-     "date": "2024-01-22T21:02:37Z",
+     "date": "2024-01-22T15:02:37-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "carrie.cruces@citi.com"
@@ -304,7 +304,7 @@
     },
     {
      "id": "18d32fe916119eef",
-     "date": "2024-01-22T21:05:52Z",
+     "date": "2024-01-22T15:05:52-06:00",
      "from": "mathew.young@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -316,7 +316,7 @@
     },
     {
      "id": "18d330b671622ff5",
-     "date": "2024-01-22T21:20:01Z",
+     "date": "2024-01-22T15:20:01-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "mathew.young@citi.com"
@@ -333,7 +333,7 @@
    "messages": [
     {
      "id": "18d241ba25acf9f4",
-     "date": "2024-01-19T23:43:19Z",
+     "date": "2024-01-19T17:43:19-06:00",
      "from": "carrie.cruces@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -350,7 +350,7 @@
    "messages": [
     {
      "id": "18d32d1f8874a2ca",
-     "date": "2024-01-22T20:17:12Z",
+     "date": "2024-01-22T14:17:12-06:00",
      "from": "carrie.cruces@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -367,7 +367,7 @@
    "messages": [
     {
      "id": "18d332f300b19767",
-     "date": "2024-01-22T21:58:58Z",
+     "date": "2024-01-22T15:58:58-06:00",
      "from": "mathew.young@citi.com",
      "to": [
       "jnachman17@gmail.com"
@@ -384,8 +384,8 @@
   {
    "id": "3qrpn59m0kc0j384e56nfcvfb4",
    "title": "Carrie - Jonathan Citi IB Call ",
-   "start": "2024-01-22T12:00:00-08:00",
-   "end": "2024-01-22T12:30:00-08:00",
+   "start": "2024-01-22T14:00:00-06:00",
+   "end": "2024-01-22T14:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "carrie.cruces@citi.com"
@@ -395,8 +395,8 @@
   {
    "id": "5g20kmm2m13hcafuva844f1hq1",
    "title": "Mat - Jonathan Citi NY IB Call ",
-   "start": "2024-01-26T12:00:00-08:00",
-   "end": "2024-01-26T12:30:00-08:00",
+   "start": "2024-01-26T14:00:00-06:00",
+   "end": "2024-01-26T14:30:00-06:00",
    "attendees": [
     "jnachman17@gmail.com",
     "mathew.young@citi.com"

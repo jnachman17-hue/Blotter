@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-04-30T18:00:00Z",
+ "now": "2024-04-30T13:00:00-05:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -24,7 +24,7 @@
    "messages": [
     {
      "id": "18eafe2fcc8957c8",
-     "date": "2024-04-05T20:11:12Z",
+     "date": "2024-04-05T15:11:12-05:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Brady.flynn@ftpartners.com"
@@ -36,7 +36,7 @@
     },
     {
      "id": "18ec0f6c84ad730f",
-     "date": "2024-04-09T03:46:18Z",
+     "date": "2024-04-08T22:46:18-05:00",
      "from": "Brady.flynn@ftpartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -48,7 +48,7 @@
     },
     {
      "id": "18eed53a069593eb",
-     "date": "2024-04-17T18:31:00Z",
+     "date": "2024-04-17T13:31:00-05:00",
      "from": "Brady.Flynn@ftpartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -60,7 +60,7 @@
     },
     {
      "id": "18ef158ab0b6358f",
-     "date": "2024-04-18T13:15:03Z",
+     "date": "2024-04-18T08:15:03-05:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Brady.Flynn@ftpartners.com"
@@ -72,7 +72,7 @@
     },
     {
      "id": "18ef180f37ddd749",
-     "date": "2024-04-18T13:59:00Z",
+     "date": "2024-04-18T08:59:00-05:00",
      "from": "Brady.Flynn@ftpartners.com",
      "to": [
       "jnachman17@gmail.com"

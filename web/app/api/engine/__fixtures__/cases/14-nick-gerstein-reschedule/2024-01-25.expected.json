@@ -4,10 +4,10 @@
   {
    "row": 2,
    "status": "Call scheduled",
-   "days": 0,
-   "last_contact": "2024-01-22",
+   "days": 1,
+   "last_contact": "2024-01-21",
    "attempts": 1,
-   "next_call": "2024-01-26T08:00:00-08:00",
+   "next_call": "2024-01-26T10:00:00-06:00",
    "last_call": null
   }
  ],

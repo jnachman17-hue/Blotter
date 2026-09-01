@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-02-15T18:00:00Z",
+ "now": "2024-02-15T12:00:00-06:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -26,7 +26,7 @@
    "messages": [
     {
      "id": "18d86f5f94ad0e0e",
-     "date": "2024-02-08T04:24:42Z",
+     "date": "2024-02-07T22:24:42-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "Marijoy.Bertolini@aerispartners.com"
@@ -38,7 +38,7 @@
     },
     {
      "id": "18d86f6262e228ee",
-     "date": "2024-02-08T04:24:55Z",
+     "date": "2024-02-07T22:24:55-06:00",
      "from": "mailer-daemon@googlemail.com",
      "to": [
       "jnachman17@gmail.com"
@@ -55,7 +55,7 @@
    "messages": [
     {
      "id": "18d870434c19f943",
-     "date": "2024-02-08T04:40:15Z",
+     "date": "2024-02-07T22:40:15-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "bm@aerispartners.com"
@@ -67,7 +67,7 @@
     },
     {
      "id": "18d8704625bfd255",
-     "date": "2024-02-08T04:40:27Z",
+     "date": "2024-02-07T22:40:27-06:00",
      "from": "mailer-daemon@googlemail.com",
      "to": [
       "jnachman17@gmail.com"

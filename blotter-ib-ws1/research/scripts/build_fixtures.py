@@ -22,12 +22,23 @@ DIVISION OF LABOUR — read this before trusting anything below.
   The reasoning behind every expected value is in
   docs/workstreams/ws9-build/10-TEST-CASE-NOTES.md, with rule citations.
 
-PROVISIONAL CONVENTIONS (all flagged to Jon in 10-TEST-CASE-NOTES.md §3):
-  - days       = floor(elapsed / 24h) between `now` and the anchor (UTC).
-  - date cells = the UTC calendar date of the anchoring instant.
-  - next_call  = the matched upcoming event's `start` string, verbatim.
-  - a calendar acceptance / invite / "New Time Proposed" email does NOT count
-    as the contact writing (it is machine mail, in the spirit of rules §6).
+CONVENTIONS — updated for rules v3 (round 2, brief 12-BRIEF-TEST-CASES-2.md):
+  - days       = subtraction of calendar dates in the student's timezone
+                 (America/Chicago). RULED, §4 v3: "a day turns at midnight in
+                 the student's timezone", and a call tomorrow morning is 1.
+  - timestamps = every request timestamp carries the student's own offset
+                 (-06:00 CST / -05:00 CDT across the 2024-03-10 DST change),
+                 per §4 v3's courier obligation. The corpus stores messages in
+                 UTC and calendar strings in the capture session's Pacific
+                 rendering; instants are preserved exactly, rendering changes.
+  - date cells = the America/Chicago calendar date of the instant.
+  - RSVP mail  = `Accepted:` / `Declined:` / `Invitation:` / `Updated
+                 invitation:` / `New time proposed:` etc. are machine mail —
+                 never a reply, never an attempt, never last_contact.
+                 RULED, §6 v3 (the fixtures' round-1 reading, ratified).
+  Still provisional (flagged in 10-TEST-CASE-NOTES.md §3):
+  - next_call  = the matched upcoming event's `start` string as sent in the
+                 request.
   - a Closed row keeps its factual columns; only `days` is null (rules §4).
 
 Run from the repo root:
@@ -38,7 +49,10 @@ Writes into web/app/api/engine/__fixtures__/ (the one directory this chat owns).
 import json
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
+STUDENT_TZ = ZoneInfo("America/Chicago")
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
 CORPUS = os.path.join(ROOT, "blotter-ib-ws1", "research", "corpus")
@@ -97,15 +111,24 @@ def parse_iso(s):
     return datetime.fromisoformat(s.replace("Z", "+00:00"))
 
 
-def utc_date(s):
-    return parse_iso(s).astimezone(timezone.utc).date().isoformat()
+def student_date(s):
+    """The calendar date of an instant where the student is (rules §4 v3)."""
+    return parse_iso(s).astimezone(STUDENT_TZ).date().isoformat()
 
 
-def floor_days(a, b):
-    """Whole elapsed days from a to b (b >= a)."""
-    delta = parse_iso(b) - parse_iso(a)
-    assert delta.total_seconds() >= 0, f"negative interval {a} .. {b}"
-    return delta.days
+def student_render(s):
+    """Re-render an instant with the student's own offset (rules §4 v3: this
+    binds the courier). The instant is unchanged; only the rendering moves."""
+    return parse_iso(s).astimezone(STUDENT_TZ).isoformat()
+
+
+def date_diff(a, b):
+    """Whole days from a to b as a subtraction of the student's calendar
+    dates — not elapsed hours (rules §4 v3, ruled by Jon)."""
+    da, db = parse_iso(a).astimezone(STUDENT_TZ).date(), parse_iso(b).astimezone(STUDENT_TZ).date()
+    days = (db - da).days
+    assert days >= 0, f"negative interval {a} .. {b}"
+    return days
 
 
 def msg_addresses(m):
@@ -121,7 +144,7 @@ def convert_message(m):
     assert is_out == (sender.lower() in STUDENT_SET), f"direction mismatch on {m['message_id']} ({sender})"
     return {
         "id": m["message_id"],
-        "date": m["date"],
+        "date": student_render(m["date"]),
         "from": sender,
         "to": list(m.get("to") or []),
         "cc": list(m.get("cc") or []),
@@ -132,11 +155,18 @@ def convert_message(m):
 
 
 def convert_event(e):
+    # The corpus stores start/end as the capture session rendered them
+    # (Pacific offsets); the events' own `timezone` fields say
+    # America/Chicago for Jon's calendar. Instants are exact either way —
+    # re-render with the student's offset per §4 v3, and assert the
+    # calendar DATE never moves in the process.
+    assert student_date(e["start"]) == e["start"][:10], \
+        f"event {e['event_id'][:12]} date shifts under America/Chicago"
     return {
         "id": e["event_id"],
         "title": e["summary"],
-        "start": e["start"],
-        "end": e["end"],
+        "start": student_render(e["start"]),
+        "end": student_render(e["end"]),
         "attendees": [a["email"] for a in e.get("attendees", [])],
         "organizer": e.get("organizer"),
     }
@@ -147,9 +177,10 @@ def courier_threads(threads, roster_emails, now):
     tracked address in From/To/Cc of any message, with all its messages up to
     `now`. Rules §2 and §3."""
     roster = {a.lower() for a in roster_emails}
+    now_i = parse_iso(now)
     out = []
     for tid in sorted(threads):
-        msgs = [m for m in threads[tid] if m["date"] <= now]
+        msgs = [m for m in threads[tid] if parse_iso(m["date"]) <= now_i]
         if not msgs:
             continue
         if not any(msg_addresses(m) & roster for m in msgs):
@@ -238,67 +269,67 @@ SEASON_ANSWERS = {
     "sam-susser":            same(S("2024-01-17T18:37:30Z", "2024-01-17", 1)),
     "luke-skelly":           same(S("2024-01-17T23:22:47Z", "2024-01-17", 1)),
     "nicholas-perez":        same(S("2024-01-17T23:28:26Z", "2024-01-17", 1)),
-    "keaton-cruzcosa":       same(S("2024-01-20T00:25:17Z", "2024-01-20", 1)),
+    "keaton-cruzcosa":       same(S("2024-01-20T00:25:17Z", "2024-01-19", 1)),
     # -- cold emails bumped once, never answered: attempts climbs to 2.
     "kathryn-dzierzanowski": arc(S("2024-01-17T06:56:32Z", "2024-01-17", 1),
-                                 S("2024-01-31T05:35:30Z", "2024-01-31", 2)),
-    "ryan-wheeler":          same(S("2024-01-20T00:15:08Z", "2024-01-20", 2)),
+                                 S("2024-01-31T05:35:30Z", "2024-01-30", 2)),
+    "ryan-wheeler":          same(S("2024-01-20T00:15:08Z", "2024-01-19", 2)),
     "michael-liou":          arc(S("2024-01-17T23:33:05Z", "2024-01-17", 1),
-                                 S("2024-01-31T05:37:36Z", "2024-01-31", 2)),
-    "turner-gauntt":         arc(S("2024-01-19T02:58:58Z", "2024-01-19", 1),
-                                 S("2024-01-31T05:33:04Z", "2024-01-31", 2)),
-    "mike-giaquinto":        arc(S("2024-01-18T04:01:01Z", "2024-01-18", 1),
-                                 S("2024-01-18T04:01:01Z", "2024-01-18", 1),
-                                 S("2024-02-26T03:03:53Z", "2024-02-26", 2)),
+                                 S("2024-01-31T05:37:36Z", "2024-01-30", 2)),
+    "turner-gauntt":         arc(S("2024-01-19T02:58:58Z", "2024-01-18", 1),
+                                 S("2024-01-31T05:33:04Z", "2024-01-30", 2)),
+    "mike-giaquinto":        arc(S("2024-01-18T04:01:01Z", "2024-01-17", 1),
+                                 S("2024-01-18T04:01:01Z", "2024-01-17", 1),
+                                 S("2024-02-26T03:03:53Z", "2024-02-25", 2)),
     # -- sent after 25 Jan: Not emailed at the peak date, Sent afterwards.
-    "kyle-gunnison":         arc(NE, S("2024-01-31T05:27:15Z", "2024-01-31", 1)),
-    "kammeh-valliani":       arc(NE, S("2024-01-31T05:43:23Z", "2024-01-31", 1)),
+    "kyle-gunnison":         arc(NE, S("2024-01-31T05:27:15Z", "2024-01-30", 1)),
+    "kammeh-valliani":       arc(NE, S("2024-01-31T05:43:23Z", "2024-01-30", 1)),
     # -- the auto-reply trap: her out-of-office is not a reply (rules §6).
     "jessica-luft":          same(S("2024-01-19T23:44:46Z", "2024-01-19", 1)),
     # -- live relationships, one per shape.
-    "joseph-candelario":     same(R("2024-01-22T00:56:11Z", "2024-01-22", 0, E(1))),
+    "joseph-candelario":     same(R("2024-01-22T00:56:11Z", "2024-01-21", 0, E(1))),
     "kate-borden":           arc(R("2024-01-23T17:51:06Z", "2024-01-23", 0, E(4)),
                                  R("2024-02-08T23:08:23Z", "2024-02-08", 0, E(4))),
-    "sam-ward":              same(S("2024-01-23T05:01:39Z", "2024-01-23", 2)),
+    "sam-ward":              same(S("2024-01-23T05:01:39Z", "2024-01-22", 2)),
     "joshua-gumm":           same(S("2024-01-22T21:27:22Z", "2024-01-22", 1, E(2))),
     "chris-miller":          same(R("2024-01-22T23:49:06Z", "2024-01-22", 0)),
-    "grey-bianca":           same(R("2024-01-23T02:47:46Z", "2024-01-23", 0)),
+    "grey-bianca":           same(R("2024-01-23T02:47:46Z", "2024-01-22", 0)),
     "carrie-cruces":         same(S("2024-01-22T21:02:37Z", "2024-01-22", 1, E(3))),
     "carson-harris":         same(S("2024-01-24T06:04:37Z", "2024-01-24", 1, E(7))),
     "john-sellingsloh":      same(S("2024-01-20T18:37:54Z", "2024-01-20", 1)),
     "gary-horton":           same(S("2024-01-23T19:52:01Z", "2024-01-23", 2, E(6))),
-    "nick-gerstein":         arc(CS(E(11), "2024-01-22", 1),
+    "nick-gerstein":         arc(CS(E(11), "2024-01-21", 1),
                                  S("2024-01-26T23:03:24Z", "2024-01-26", 3, E(11))),
     "will-robinson":         arc(CS(E(9), "2024-01-22", 0),
                                  S("2024-01-25T20:15:58Z", "2024-01-25", 1, E(9))),
-    "david-talbot":          arc(CD(E(8), "2024-01-23", 0),
-                                 R("2024-01-26T01:20:56Z", "2024-01-26", 0, E(8))),
-    "grant-gillespie":       arc(CS(E(10), "2024-01-23", 1),
-                                 S("2024-01-26T01:15:14Z", "2024-01-26", 2, E(10))),
+    "david-talbot":          arc(CD(E(8), "2024-01-22", 0),
+                                 R("2024-01-26T01:20:56Z", "2024-01-25", 0, E(8))),
+    "grant-gillespie":       arc(CS(E(10), "2024-01-22", 1),
+                                 S("2024-01-26T01:15:14Z", "2024-01-25", 2, E(10))),
     "mathew-young":          arc(CS(E(13), "2024-01-22", 1),
                                  S("2024-01-26T22:54:45Z", "2024-01-26", 2, E(13))),
-    "kevin-stephens":        arc(CS(E(16), "2024-01-23", 1),
+    "kevin-stephens":        arc(CS(E(16), "2024-01-22", 1),
                                  S("2024-01-30T20:06:22Z", "2024-01-30", 1, E(16))),
-    "ethan-marnhout":        arc(S("2024-01-24T01:13:07Z", "2024-01-24", 1),
+    "ethan-marnhout":        arc(S("2024-01-24T01:13:07Z", "2024-01-23", 1),
                                  S("2024-02-06T14:29:53Z", "2024-02-06", 1, E(18))),
-    "danny-shin":            arc(S("2024-01-24T01:26:38Z", "2024-01-24", 1),
-                                 S("2024-01-30T00:10:21Z", "2024-01-30", 2, E(14))),
+    "danny-shin":            arc(S("2024-01-24T01:26:38Z", "2024-01-23", 1),
+                                 S("2024-01-30T00:10:21Z", "2024-01-29", 2, E(14))),
     "matt-manriquez":        arc(NE, S("2024-01-30T23:38:58Z", "2024-01-30", 1, E(15))),
     # -- the "Potential favor" thread: four tracked people, one conversation.
     "douglas-melsheimer":    arc(CS(E(12), "2024-01-17", 0),
                                  S("2024-01-30T20:55:56Z", "2024-01-30", 1, E(12))),
     "kleopatra-kirkland":    same(R("2024-01-17T17:19:15Z", "2024-01-17", 0)),
     "grace-steelman":        arc(NE, S("2024-02-09T18:41:45Z", "2024-02-09", 1, E(22))),
-    "jay-klein":             arc(NE, S("2024-02-01T02:24:13Z", "2024-02-01", 1)),
+    "jay-klein":             arc(NE, S("2024-02-01T02:24:13Z", "2024-01-31", 1)),
     # -- inbound-only contacts: they wrote, Jon never answered in mail.
     "maura-vestal":          arc(NE, R("2024-01-29T20:16:09Z", "2024-01-29", 0)),
     "lynell-velten":         arc(NE, R("2024-01-30T20:21:08Z", "2024-01-30", 0)),
     "sara-laracca":          arc(NE, R("2024-02-01T23:33:45Z", "2024-02-01", 0)),
     "gayathri-ravi":         arc(NE, R("2024-02-12T10:30:47Z", "2024-02-12", 0)),
     # -- the bounce cases.
-    "sean-kang":             arc(NE, B("2024-01-31T05:19:10Z", "2024-01-31", 3)),
+    "sean-kang":             arc(NE, B("2024-01-31T05:19:10Z", "2024-01-30", 3)),
     "marijoy-bertolini":     arc(NE,
-                                 B("2024-02-08T04:40:27Z", "2024-02-08", 2),
+                                 B("2024-02-08T04:40:27Z", "2024-02-07", 2),
                                  R("2024-02-29T22:06:02Z", "2024-02-29", 0),
                                  R("2024-03-26T13:03:10Z", "2024-03-26", 0)),
     # -- Aeris: the long arc, interviews attached by attendee (rules §7).
@@ -312,14 +343,14 @@ SEASON_ANSWERS = {
     # -- Steve McLaughlin: the assistant-advances-the-row case, then the
     #    thank-you clearing Call done by itself (rules §3, §4).
     "steve-mclaughlin":      arc(NE,
-                                 R("2024-02-15T04:11:13Z", "2024-02-15", 0),
-                                 R("2024-02-20T02:58:20Z", "2024-02-20", 0, E(25))),
+                                 R("2024-02-15T04:11:13Z", "2024-02-14", 0),
+                                 R("2024-02-20T02:58:20Z", "2024-02-19", 0, E(25))),
     "elliot-calkins":        arc(NE, NE, S("2024-03-13T22:27:18Z", "2024-03-13", 1)),
     # -- April relationships.
     "emily-saunders":        arc(NE, NE, NE, R("2024-04-09T14:40:31Z", "2024-04-09", 0)),
     "ben-dziedzic":          arc(NE, NE, NE, S("2024-04-11T17:06:37Z", "2024-04-11", 1)),
     "bradley-cagle":         arc(NE, NE, NE, S("2024-04-18T18:09:07Z", "2024-04-18", 1)),
-    "sean-hussey":           arc(NE, NE, NE, R("2024-04-19T01:35:36Z", "2024-04-19", 0)),
+    "sean-hussey":           arc(NE, NE, NE, R("2024-04-19T01:35:36Z", "2024-04-18", 0)),
     # -- Owen Sherry: no email address anywhere; reachable only through the
     #    event title (rules §7 rule 2). Call done with no mail is not an error.
     "owen-sherry":           arc(NE, CD(E(19), None, 0)),
@@ -346,13 +377,13 @@ SEASON_FOUND = [
     ("dnachman@fastspring.com",              "2024-01-17", "Appeared in a thread with Douglas Melsheimer"),
     ("andrew.nachman@wisc.edu",              "2024-01-17", "Appeared in a thread with Kleopatra Kirkland"),
     ("dmnachman@gmail.com",                  "2024-01-18", "Appeared in a thread with Chris Miller"),
-    ("Bemis@intrepidfp.com",                 "2024-01-20", "Appeared in a thread with John Sellingsloh"),
-    ("cook@intrepidfp.com",                  "2024-01-20", "Appeared in a thread with John Sellingsloh"),
-    ("Andersen@intrepidfp.com",              "2024-01-20", "Appeared in a thread with John Sellingsloh"),
+    ("Bemis@intrepidfp.com",                 "2024-01-19", "Appeared in a thread with John Sellingsloh"),
+    ("cook@intrepidfp.com",                  "2024-01-19", "Appeared in a thread with John Sellingsloh"),
+    ("Andersen@intrepidfp.com",              "2024-01-19", "Appeared in a thread with John Sellingsloh"),
     ("FRCampusRecruiting@hl.com",            "2024-01-22", "Appeared in a thread with Samuel Ward"),
-    ("careers@aerispartners.com",            "2024-02-08", "Appeared in a thread with Paige Butters"),
+    ("careers@aerispartners.com",            "2024-02-07", "Appeared in a thread with Paige Butters"),
     ("gs-hcm-recruiting-coo@ny.email.gs.com","2024-02-10", "Appeared in a thread with Gayathri Ravi"),
-    ("liz.ream@ftpartners.com",              "2024-02-14", "Appeared in a thread with Steve McLaughlin"),
+    ("liz.ream@ftpartners.com",              "2024-02-13", "Appeared in a thread with Steve McLaughlin"),
 ]
 
 
@@ -415,7 +446,7 @@ CASES = [
         "events": [],
         "nows": {
             "2024-02-15": {"now": NOW["feb"],
-                           "rows": {"marijoy-bertolini": ("Closed", None, "2024-02-08", 2, None, None)},
+                           "rows": {"marijoy-bertolini": ("Closed", None, "2024-02-07", 2, None, None)},
                            "found": []},
         },
     },
@@ -458,15 +489,15 @@ CASES = [
         "nows": {
             "2024-02-15": {"now": NOW["feb"],
                            "rows": {"steve-mclaughlin": SEASON_ANSWERS["steve-mclaughlin"]["feb"]},
-                           "found": [("liz.ream@ftpartners.com", "2024-02-14",
+                           "found": [("liz.ream@ftpartners.com", "2024-02-13",
                                       "Appeared in a thread with Steve McLaughlin"),
-                                     ("dnachman@fastspring.com", "2024-02-14",
+                                     ("dnachman@fastspring.com", "2024-02-13",
                                       "Appeared in a thread with Steve McLaughlin")]},
             "2024-03-15": {"now": NOW["mar"],
                            "rows": {"steve-mclaughlin": SEASON_ANSWERS["steve-mclaughlin"]["mar"]},
-                           "found": [("liz.ream@ftpartners.com", "2024-02-14",
+                           "found": [("liz.ream@ftpartners.com", "2024-02-13",
                                       "Appeared in a thread with Steve McLaughlin"),
-                                     ("dnachman@fastspring.com", "2024-02-14",
+                                     ("dnachman@fastspring.com", "2024-02-13",
                                       "Appeared in a thread with Steve McLaughlin")]},
         },
     },
@@ -533,19 +564,19 @@ CASES = [
         "nows": {
             "2024-02-15": {"now": NOW["feb"],
                            "rows": {"paige-butters": SEASON_ANSWERS["paige-butters"]["feb"]},
-                           "found": [("careers@aerispartners.com", "2024-02-08",
+                           "found": [("careers@aerispartners.com", "2024-02-07",
                                       "Appeared in a thread with Paige Butters")]},
             "2024-02-27": {"now": "2024-02-27T21:00:00Z",
                            "rows": {"paige-butters": S("2024-02-27T20:27:34Z", "2024-02-27", 3)},
-                           "found": [("careers@aerispartners.com", "2024-02-08",
+                           "found": [("careers@aerispartners.com", "2024-02-07",
                                       "Appeared in a thread with Paige Butters")]},
             "2024-03-15": {"now": NOW["mar"],
                            "rows": {"paige-butters": SEASON_ANSWERS["paige-butters"]["mar"]},
-                           "found": [("careers@aerispartners.com", "2024-02-08",
+                           "found": [("careers@aerispartners.com", "2024-02-07",
                                       "Appeared in a thread with Paige Butters")]},
             "2024-04-30": {"now": NOW["apr"],
                            "rows": {"paige-butters": SEASON_ANSWERS["paige-butters"]["apr"]},
-                           "found": [("careers@aerispartners.com", "2024-02-08",
+                           "found": [("careers@aerispartners.com", "2024-02-07",
                                       "Appeared in a thread with Paige Butters")]},
         },
     },
@@ -557,19 +588,19 @@ CASES = [
         "nows": {
             "2024-01-25": {"now": NOW["jan"],
                            "rows": {"john-sellingsloh": SEASON_ANSWERS["john-sellingsloh"]["jan"]},
-                           "found": [("Bemis@intrepidfp.com", "2024-01-20", "Appeared in a thread with John Sellingsloh"),
-                                     ("horton@intrepidfp.com", "2024-01-20", "Appeared in a thread with John Sellingsloh"),
-                                     ("cook@intrepidfp.com", "2024-01-20", "Appeared in a thread with John Sellingsloh"),
-                                     ("Andersen@intrepidfp.com", "2024-01-20", "Appeared in a thread with John Sellingsloh"),
-                                     ("Robinson@intrepidfp.com", "2024-01-20", "Appeared in a thread with John Sellingsloh")]},
+                           "found": [("Bemis@intrepidfp.com", "2024-01-19", "Appeared in a thread with John Sellingsloh"),
+                                     ("horton@intrepidfp.com", "2024-01-19", "Appeared in a thread with John Sellingsloh"),
+                                     ("cook@intrepidfp.com", "2024-01-19", "Appeared in a thread with John Sellingsloh"),
+                                     ("Andersen@intrepidfp.com", "2024-01-19", "Appeared in a thread with John Sellingsloh"),
+                                     ("Robinson@intrepidfp.com", "2024-01-19", "Appeared in a thread with John Sellingsloh")]},
             "2024-01-25-ignored": {"now": NOW["jan"],
                            "constructed": "the ignored list entry is constructed; everything else is real",
                            "ignored": ["cook@intrepidfp.com"],
                            "rows": {"john-sellingsloh": SEASON_ANSWERS["john-sellingsloh"]["jan"]},
-                           "found": [("Bemis@intrepidfp.com", "2024-01-20", "Appeared in a thread with John Sellingsloh"),
-                                     ("horton@intrepidfp.com", "2024-01-20", "Appeared in a thread with John Sellingsloh"),
-                                     ("Andersen@intrepidfp.com", "2024-01-20", "Appeared in a thread with John Sellingsloh"),
-                                     ("Robinson@intrepidfp.com", "2024-01-20", "Appeared in a thread with John Sellingsloh")]},
+                           "found": [("Bemis@intrepidfp.com", "2024-01-19", "Appeared in a thread with John Sellingsloh"),
+                                     ("horton@intrepidfp.com", "2024-01-19", "Appeared in a thread with John Sellingsloh"),
+                                     ("Andersen@intrepidfp.com", "2024-01-19", "Appeared in a thread with John Sellingsloh"),
+                                     ("Robinson@intrepidfp.com", "2024-01-19", "Appeared in a thread with John Sellingsloh")]},
         },
     },
     {
@@ -627,19 +658,19 @@ def render_row(row_num, entry, now, events_by_pos):
 
     days = None
     if status in ("Sent", "Replied", "Bounced"):
-        days = floor_days(anchor, now)
+        days = date_diff(anchor, now)
     elif status == "Call scheduled":
-        days = floor_days(now, ev_start(anchor))
+        days = date_diff(now, ev_start(anchor))
     elif status == "Call done":
-        days = floor_days(ev_start(anchor), now)
+        days = date_diff(ev_start(anchor), now)
     return {
         "row": row_num,
         "status": status,
         "days": days,
         "last_contact": lc,
         "attempts": att,
-        "next_call": ev_start(nc) if nc else None,
-        "last_call": utc_date(ev_start(lcall)) if lcall else None,
+        "next_call": student_render(ev_start(nc)) if nc else None,
+        "last_call": student_date(ev_start(lcall)) if lcall else None,
     }
 
 
@@ -655,7 +686,7 @@ def validate_entry(slug, entry, now, all_msg_dates, events_by_pos, contact_dates
     assert status in valid, f"{slug}: bad status {status}"
     if isinstance(anchor, str):
         assert anchor in all_msg_dates, f"{slug}: anchor {anchor} matches no corpus message"
-        assert anchor <= now, f"{slug}: anchor {anchor} after now {now}"
+        assert parse_iso(anchor) <= parse_iso(now), f"{slug}: anchor {anchor} after now {now}"
         m = all_msg_dates[anchor]
         if status == "Sent":
             assert m["direction"] == "outbound", f"{slug}: Sent anchor {anchor} is not outbound"
@@ -694,11 +725,11 @@ def main():
         for t in rec.get("threads", []):
             for m in t.get("messages", []):
                 all_msg_dates[m["date"]] = m
-                dates.add(utc_date(m["date"]))
+                dates.add(student_date(m["date"]))
         for ref in rec.get("calendar_event_ids") or []:
             for e in events:
                 if e["event_id"] == ref:
-                    dates.add(utc_date(e["start"]))
+                    dates.add(student_date(e["start"]))
         contact_dates[slug] = dates
     # Custom-row anchors validate against the global message set only.
 
@@ -728,11 +759,12 @@ def main():
         roster_emails = [a for _, row in season_rows for a in row["emails"]]
         request = {
             "version": 1,
-            "now": now,
+            "now": student_render(now),
             "student": {"addresses": STUDENT_ADDRESSES},
             "contacts": [row for _, row in season_rows],
             "threads": courier_threads(threads, roster_emails, now),
-            "events": [convert_event(e) for e in events if e["created"] <= now],
+            "events": [convert_event(e) for e in events
+                       if parse_iso(e["created"]) <= parse_iso(now)],
             "ignored": [],
         }
         expected_rows = []
@@ -785,12 +817,12 @@ def main():
             roster_emails = [a for _, row in rows for a in row["emails"]]
             request = {
                 "version": 1,
-                "now": now,
+                "now": student_render(now),
                 "student": {"addresses": STUDENT_ADDRESSES},
                 "contacts": [row for _, row in rows],
                 "threads": courier_threads(threads, roster_emails, now),
                 "events": [convert_event(events_by_pos[n]) for n in case["events"]
-                           if events_by_pos[n]["created"] <= now],
+                           if parse_iso(events_by_pos[n]["created"]) <= parse_iso(now)],
                 "ignored": spec.get("ignored", []),
             }
             expected_rows = []

@@ -1,6 +1,6 @@
 {
  "version": 1,
- "now": "2024-02-27T21:00:00Z",
+ "now": "2024-02-27T15:00:00-06:00",
  "student": {
   "addresses": [
    "jnachman17@gmail.com",
@@ -24,7 +24,7 @@
    "messages": [
     {
      "id": "18d8709ee04efd25",
-     "date": "2024-02-08T04:46:31Z",
+     "date": "2024-02-07T22:46:31-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "careers@aerispartners.com"
@@ -36,7 +36,7 @@
     },
     {
      "id": "18d8906565eae4b9",
-     "date": "2024-02-08T14:01:37Z",
+     "date": "2024-02-08T08:01:37-06:00",
      "from": "pgb@aerispartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -48,7 +48,7 @@
     },
     {
      "id": "18d8ecb50b1bd467",
-     "date": "2024-02-09T16:55:01Z",
+     "date": "2024-02-09T10:55:01-06:00",
      "from": "pgb@aerispartners.com",
      "to": [
       "jnachman17@gmail.com"
@@ -60,7 +60,7 @@
     },
     {
      "id": "18d8f31a6a62bd34",
-     "date": "2024-02-09T18:46:52Z",
+     "date": "2024-02-09T12:46:52-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "pgb@aerispartners.com"
@@ -72,7 +72,7 @@
     },
     {
      "id": "18dc33ccda3e2987",
-     "date": "2024-02-19T21:19:18Z",
+     "date": "2024-02-19T15:19:18-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "pgb@aerispartners.com"
@@ -84,7 +84,7 @@
     },
     {
      "id": "18dec4053f3eefe9",
-     "date": "2024-02-27T20:27:34Z",
+     "date": "2024-02-27T14:27:34-06:00",
      "from": "jnachman17@gmail.com",
      "to": [
       "pgb@aerispartners.com"
@@ -101,7 +101,7 @@
    "messages": [
     {
      "id": "18d8ec8ad9534f6c",
-     "date": "2024-02-09T16:55:01Z",
+     "date": "2024-02-09T10:55:01-06:00",
      "from": "pgb@aerispartners.com",
      "to": [
       "jnachman17@gmail.com"
