@@ -49,12 +49,40 @@ var SETTING_ADDRESSES = 'Your email addresses';
 var SETTING_SERVER = 'Server URL';
 var SETTING_LAST_RUN = 'Last successful run';
 var SETTING_WARNINGS = 'Last run warnings';
+var SETTING_CAL_BACK = 'Calendar looks back (days)';
+var SETTING_CAL_FORWARD = 'Calendar looks ahead (days)';
+var SETTING_RUN_TOOK = 'Last run took';
+var SETTING_RUN_FETCHED = 'Last run fetched';
+var SETTING_GMAIL_CALLS = 'Gmail calls last run';
 
-// Calendar fetch window. The server is stateless, so every run must carry the
-// season's history; these bounds are a mechanical cap, not a judgment.
-// Recorded as a chosen constant in 11-COURIER-NOTES.md.
-var EVENT_DAYS_BACK = 365;
-var EVENT_DAYS_FORWARD = 180;
+// Per-run measurement (13-BRIEF-COURIER-2 §2): nobody knows what a run
+// actually costs until one is watched. Written to Settings on success; on
+// failure it goes to the execution log instead, because a failed run writes
+// nothing to the sheet.
+var runMetrics_ = null;
+
+// Calendar fetch window defaults. The server is stateless, so every run must
+// carry the season's history; these are mechanical caps, not judgments, and
+// the Settings tab can override them (Jon widens the look-back for his 2024
+// archive test; a live student never touches it).
+var EVENT_DAYS_BACK_DEFAULT = 365;
+var EVENT_DAYS_FORWARD_DEFAULT = 180;
+
+// The hybrid cadence — Jon's ruling, September 1, 2026 (13-BRIEF-COURIER-2
+// §1), and adjustable here. Apps Script timers cannot vary by time of day,
+// so the trigger still fires every 15 minutes and the run decides at the top
+// whether to work: between DAY_STARTS_AT_HOUR and DAY_ENDS_AT_HOUR (in the
+// student's own timezone) every firing works; outside them the run exits
+// immediately — about a second of trigger time and zero Gmail reads — unless
+// NIGHT_EVERY_MINUTES have passed since the last worked run.
+var DAY_STARTS_AT_HOUR = 7;   // 7am — first 15-minute run of the day
+var DAY_ENDS_AT_HOUR = 22;    // 10pm — after this, night cadence
+var NIGHT_EVERY_MINUTES = 120;
+
+// Script-property key remembering when a run last did work. Scheduling
+// bookkeeping only — it is not the sheet, so the write-nothing-on-failure
+// rule is untouched.
+var PROP_LAST_WORKED_MS = 'blotterLastWorkedMs';
 
 // Gmail search queries are built in chunks of this many addresses so no
 // single query grows past what Gmail search accepts.
@@ -136,6 +164,11 @@ function setupSheet() {
   ensureSettingRow_(settings, SETTING_SERVER, SERVER_URL_DEFAULT);
   ensureSettingRow_(settings, SETTING_LAST_RUN, '');
   ensureSettingRow_(settings, SETTING_WARNINGS, '');
+  ensureSettingRow_(settings, SETTING_CAL_BACK, EVENT_DAYS_BACK_DEFAULT);
+  ensureSettingRow_(settings, SETTING_CAL_FORWARD, EVENT_DAYS_FORWARD_DEFAULT);
+  ensureSettingRow_(settings, SETTING_RUN_TOOK, '');
+  ensureSettingRow_(settings, SETTING_RUN_FETCHED, '');
+  ensureSettingRow_(settings, SETTING_GMAIL_CALLS, '');
   settings.autoResizeColumn(1);
 
   SpreadsheetApp.getUi().alert(
@@ -183,7 +216,8 @@ function runNow() {
   } catch (e) {
     SpreadsheetApp.getUi().alert(
       'Blotter could not update the sheet, so it changed nothing.\n\n' +
-      'The sheet is exactly as it was. Reason:\n' + (e && e.message ? e.message : e)
+      'The sheet is exactly as it was. Reason:\n' +
+      (e && e.message ? e.message : e) + '\n\n(Failed' + metricsSuffix_() + ')'
     );
   }
 }
@@ -191,18 +225,44 @@ function runNow() {
 /** Trigger entry: run silently. On failure, log and leave the sheet alone. */
 function runCourier() {
   try {
+    if (!shouldWorkNow_()) return; // night cadence: exit before any read
     courierPass_();
   } catch (e) {
     // A stale "Last successful run" in Settings is the visible signal.
-    console.error('Courier run failed, sheet untouched: ' + (e && e.message ? e.message : e));
+    console.error('Courier run failed, sheet untouched: ' +
+      (e && e.message ? e.message : e) + metricsSuffix_());
   }
+}
+
+/**
+ * The hybrid cadence's whole implementation. Inside day hours every firing
+ * works; at night, only when NIGHT_EVERY_MINUTES have passed since the last
+ * worked run. Scheduling, not a judgment — it decides when to ask, never
+ * what anything means. Manual runs (the menu) skip this entirely.
+ */
+function shouldWorkNow_() {
+  var hour = Number(Utilities.formatDate(new Date(), studentTimeZone_(), 'H'));
+  if (hour >= DAY_STARTS_AT_HOUR && hour < DAY_ENDS_AT_HOUR) return true;
+  var last = Number(PropertiesService.getScriptProperties().getProperty(PROP_LAST_WORKED_MS) || 0);
+  return new Date().getTime() - last >= NIGHT_EVERY_MINUTES * 60 * 1000;
+}
+
+/** " after 41 seconds; 126 conversations, 325 messages, 134 Gmail calls" or ''. */
+function metricsSuffix_() {
+  if (!runMetrics_) return '';
+  var seconds = Math.round((new Date().getTime() - runMetrics_.startedMs) / 1000);
+  return ' after ' + seconds + ' seconds; ' + runMetrics_.threads + ' conversations, ' +
+    runMetrics_.messages + ' messages, ' +
+    (runMetrics_.searches + runMetrics_.threadFetches) + ' Gmail calls';
 }
 
 function startAutomaticUpdates() {
   deleteCourierTriggers_();
   ScriptApp.newTrigger('runCourier').timeBased().everyMinutes(15).create();
   SpreadsheetApp.getUi().alert(
-    'Automatic updates are on. Blotter will refresh this sheet every 15 minutes.\n\n' +
+    'Automatic updates are on. Blotter will refresh this sheet every 15 minutes ' +
+    'from ' + DAY_STARTS_AT_HOUR + 'am to ' + (DAY_ENDS_AT_HOUR - 12) + 'pm your time, ' +
+    'and every ' + Math.round(NIGHT_EVERY_MINUTES / 60) + ' hours overnight.\n\n' +
     'You can close the sheet — it keeps running.'
   );
 }
@@ -231,6 +291,10 @@ function courierPass_() {
     throw new Error('Another Blotter run is already in progress. Nothing was changed.');
   }
   try {
+    runMetrics_ = { startedMs: new Date().getTime(), searches: 0, threadFetches: 0, threads: 0, messages: 0 };
+    PropertiesService.getScriptProperties()
+      .setProperty(PROP_LAST_WORKED_MS, String(runMetrics_.startedMs));
+
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var settings = readSettings_(ss);
     var sheetState = readContacts_(ss);
@@ -239,7 +303,7 @@ function courierPass_() {
     // --- Fetch (read-only) ---
     var threads = fetchThreads_(sheetState.allContactEmails);
     markOutbound_(threads, settings.addresses);
-    var events = fetchEvents_();
+    var events = fetchEvents_(settings.calendarDaysBack, settings.calendarDaysForward);
 
     // --- Ask the server what it all means ---
     var request = {
@@ -262,9 +326,19 @@ function courierPass_() {
     writeSetting_(ss, SETTING_WARNINGS,
       (response.warnings && response.warnings.length) ? response.warnings.join(' | ') : 'None');
 
+    // The measurement (13-BRIEF-COURIER-2 §2): what a run actually costs.
+    var seconds = Math.round((new Date().getTime() - runMetrics_.startedMs) / 1000);
+    writeSetting_(ss, SETTING_RUN_TOOK, seconds + ' seconds');
+    writeSetting_(ss, SETTING_RUN_FETCHED,
+      runMetrics_.threads + ' conversations, ' + runMetrics_.messages + ' messages');
+    writeSetting_(ss, SETTING_GMAIL_CALLS,
+      (runMetrics_.searches + runMetrics_.threadFetches) +
+      ' (' + runMetrics_.searches + ' searches, ' + runMetrics_.threadFetches + ' conversation fetches)');
+
     return 'Updated ' + response.rows.length + ' contact row(s). ' +
       'Added ' + added + ' approved contact(s). ' +
-      'Suggested ' + suggested + ' new name(s) in the Found tab.';
+      'Suggested ' + suggested + ' new name(s) in the Found tab. ' +
+      'Took ' + seconds + ' seconds.';
   } finally {
     lock.releaseLock();
   }
@@ -296,7 +370,18 @@ function readSettings_(ss) {
     throw new Error('Settings needs a "' + SETTING_SERVER + '" starting with https://');
   }
 
-  return { addresses: addresses, serverUrl: serverUrl };
+  return {
+    addresses: addresses,
+    serverUrl: serverUrl,
+    calendarDaysBack: positiveOrDefault_(byLabel[SETTING_CAL_BACK], EVENT_DAYS_BACK_DEFAULT),
+    calendarDaysForward: positiveOrDefault_(byLabel[SETTING_CAL_FORWARD], EVENT_DAYS_FORWARD_DEFAULT)
+  };
+}
+
+/** A positive whole number from a settings cell, or the default. */
+function positiveOrDefault_(value, defaultValue) {
+  var n = Number(value);
+  return (isFinite(n) && n > 0) ? Math.floor(n) : defaultValue;
 }
 
 function readContacts_(ss) {
@@ -428,6 +513,7 @@ function fetchThreads_(contactEmails) {
     var start = 0;
     var PAGE = 100;
     while (true) {
+      runMetrics_.searches++;
       var page = GmailApp.search(query, start, PAGE);
       page.forEach(function (t) { threadsById[t.getId()] = t; });
       if (page.length < PAGE) break;
@@ -438,6 +524,7 @@ function fetchThreads_(contactEmails) {
   var out = [];
   Object.keys(threadsById).forEach(function (id) {
     var thread = threadsById[id];
+    runMetrics_.threadFetches++;
     var messages = thread.getMessages().map(function (m) {
       return {
         id: m.getId(),
@@ -450,6 +537,8 @@ function fetchThreads_(contactEmails) {
         is_outbound: false // set below, once, against the student's addresses
       };
     });
+    runMetrics_.threads++;
+    runMetrics_.messages += messages.length;
     out.push({ thread_id: id, messages: messages });
   });
   return out;
@@ -471,10 +560,10 @@ function markOutbound_(threads, studentAddresses) {
  * and to whom, is the server's judgment (§7) — the title-match rule means the
  * courier must not pre-filter by attendee.
  */
-function fetchEvents_() {
+function fetchEvents_(daysBack, daysForward) {
   var now = new Date();
-  var from = new Date(now.getTime() - EVENT_DAYS_BACK * 24 * 60 * 60 * 1000);
-  var to = new Date(now.getTime() + EVENT_DAYS_FORWARD * 24 * 60 * 60 * 1000);
+  var from = new Date(now.getTime() - daysBack * 24 * 60 * 60 * 1000);
+  var to = new Date(now.getTime() + daysForward * 24 * 60 * 60 * 1000);
   return CalendarApp.getDefaultCalendar().getEvents(from, to).map(function (e) {
     var creators = e.getCreators();
     return {

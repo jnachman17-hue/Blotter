@@ -60,30 +60,49 @@ September 1, 2026. Per user, resetting 24h after first use.
 | Script runtime | 6 min/execution | 6 min/execution |
 | URL Fetch payload/response | 50 MB | 50 MB |
 
-**The 15-minute cadence is quota-risky on consumer accounts at full-season
-scale, on two independent budgets:**
+**Redone September 1, 2026 for the hybrid cadence** — Jon's ruling in
+`13-BRIEF-COURIER-2.md` §1: every 15 minutes from 7am to 10pm, every 120
+minutes overnight, both in the student's timezone. Implemented as a
+decide-at-the-top gate (Apps Script timers cannot vary by time of day): the
+15-minute trigger keeps firing, and an off-hours firing exits in about a
+second with **zero Gmail reads** unless 120 minutes have passed since the
+last worked run. Constants at the top of `Code.gs`, marked adjustable.
 
-- **Trigger runtime:** 96 runs/day against 90 min/day allows an average of
-  **56 seconds per run**. The courier refetches the whole season every run
-  (the server is stateless, so it must); at Jon's real scale — 67 contacts,
-  126 threads, 325 messages — a run plausibly takes 30–120 s.
-- **Gmail reads:** ~8 searches + 126 thread fetches + ~325 message reads per
-  run is roughly 450+ operations; × 96 runs ≈ **43,000/day against 20,000**.
-  How Google meters "read/write operations" per method call is not precisely
-  documented, so treat this as an order-of-magnitude warning, not arithmetic.
+The day becomes **~65 worked runs** (60 in the 15-hour day window, 4–5
+overnight) plus ~36 idle firings costing roughly a second each. Against the
+two budgets:
+
+- **Trigger runtime: probably clears, with stated headroom.** 65 runs +
+  ~36 s of idle firings against 5,400 s/day allows an average of **~82
+  seconds per worked run** (up from 56 at the old cadence). My duration
+  guess for a full late-season run is 30–120 s — inside the budget at the
+  middle, over it at the top (65 × 120 s ≈ 7,800 s). A run averaging two
+  minutes still breaks this budget.
+- **Gmail reads: probably still does not clear, at peak, on a consumer
+  account.** The ~450-operations-per-run figure remains an estimate — how
+  Google meters "read/write operations" per method call is not documented —
+  and 65 × ~450 ≈ **29,000 against 20,000**. The cadence cut the overrun
+  from ~2.2× to ~1.5×; it did not remove it. An early-season sheet (a
+  dozen contacts, a few dozen threads) is far inside the budget; Workspace
+  accounts (50,000/day, most .edu) clear it at any scale — though a school
+  admin can also have Apps Script or external requests disabled, which
+  would kill the install entirely. Untested.
+
+**Plainly: one budget probably clears, the other probably does not at
+full-season consumer-account scale, and both verdicts rest on estimates.**
+That is exactly why the run now measures itself (§2 of the round-2 brief):
+every successful run writes wall-clock seconds, conversations, messages and
+Gmail calls to Settings, and Jon's archive run — 67 contacts at end-of-season
+scale, the worst-case shape — is the first real observation. The numbers he
+sends back replace this arithmetic. If they run hot, the levers are Jon's to
+rule: a narrower day window, a slower day cadence, or leaning on Workspace.
 
 **When a quota trips, the run throws before the write phase, so the
 architecture holds** — the sheet goes stale (visible in Settings → Last
 successful run) and recovers when the quota resets. Nothing is half-written.
 
-Not mitigated in code, deliberately — every mitigation is either state
-(caching, and the courier must stay dumb) or a cadence change (15 minutes is
-ruled in the engine rules, not mine to change). **Decision for Jon if the
-pilot hits this:** a 30- or 60-minute cadence (60-minute ≈ 24 runs/day, well
-inside both budgets), or lean on the fact that students recruiting from
-**.edu addresses are usually on Workspace**, where both budgets are 2.5–4×
-larger — though a school admin can also have Apps Script or external requests
-disabled, which would kill the install entirely. Untested.
+Caching is still refused as a mitigation, deliberately — it is state, and the
+courier must stay dumb.
 
 Also real: a first run against a very large season could exceed the 6-minute
 execution cap, and since every run refetches everything, it would fail the
@@ -158,9 +177,12 @@ proves nor disproves it; first real student install will.
   run. The courier deduplicates against everything already in Found or
   Contacts before writing. If that dedupe ever moves server-side, the
   contract needs a `pending` field.
-- **Only the default calendar is read**, in a fixed window: 365 days back,
-  180 forward (constants at the top of `Code.gs`). Both are mechanical caps
-  I chose; neither is ruled anywhere.
+- **Only the default calendar is read**, in a window that defaults to 365
+  days back and 180 forward but is **settable from the Settings tab**
+  (`Calendar looks back (days)` / `Calendar looks ahead (days)`) — added in
+  round 2 so Jon's 2024 archive test can reach its own calendar. A student
+  never touches it. The defaults are mechanical caps I chose; neither is
+  ruled anywhere.
 - **Body text is quote-stripped by heuristic** (first `>`-quoted line,
   "On … wrote:", Outlook dividers), no length cap. Bounce and auto-reply
   signals live above the fold, which is all the contract wants bodies for.
@@ -219,3 +241,61 @@ step 5 has each student set their own.
 The calendar-RSVP ruling (§6, `Accepted:` etc. as machine mail) needs nothing
 from the courier — it sends those messages like any other and the server
 classifies them, which is the division of labor working as designed.
+
+---
+
+## Addendum, September 1, 2026 — round 2: cadence, measurement, and the archive install
+
+Per `13-BRIEF-COURIER-2.md`. Production was verified live first: an
+empty-sheet contract request to `https://blotterib.com/api/engine` returned
+`200` with `{"version":1,"rows":[],"found":[],"warnings":[]}` — the seam
+works end to end from outside.
+
+**The hybrid cadence** is in (§3 above, rewritten). One implementation note:
+the "when did a run last do work" memory lives in a **script property**
+(`blotterLastWorkedMs` via `PropertiesService`), not the sheet. That is
+deliberate — the contract forbids writing anything to the sheet on failure,
+and pacing has to update even when a run fails, or a down server at 2am
+would be retried at full 15-minute cadence all night. A script property is
+the courier's own scheduling bookkeeping, invisible to the student, and is
+not the sheet.
+
+**The measurement** (round-2 brief §2 says "every run"; the contract says a
+failed run writes nothing — the contract wins): a successful run writes
+`Last run took`, `Last run fetched`, and `Gmail calls last run` to Settings;
+a failed run appends the same numbers to its execution-log line and its
+error dialog instead, so a 4-minute failing run is still visible. "Gmail
+calls" counts the calls the courier makes (searches + per-conversation
+fetches); whether Google's own metering counts per-message property reads on
+top of that is exactly the uncertainty the measurement cannot resolve from
+our side — if measured calls come in far under quota but the quota still
+trips, that is the explanation to reach for.
+
+**The archive install** (`INSTALL.md`, rewritten; Part B held at four
+steps): Jon runs the real install against his 2024 season and eyeballs the
+sheet against `__fixtures__/season/2024-04-30.expected.json`. The contact
+paste block was generated from the **request fixture**, not
+`research/corpus/index.json` as the brief said — the request fixture is the
+exact list the expected file answers, which is the property the test needs.
+(They should agree; the index's own totals say 68 records where the fixture
+has 67 contacts — presumably the K1 removal — and reconciling that ledger
+belongs to the corpus/test chats, not the courier.) Expectations
+pre-loaded into the guide so real gaps aren't reported as bugs:
+
+- **`Days` will never match the key** — the fixtures froze `now` at
+  2024-04-30, a live run counts to today. Expected values ~900.
+- **17 contacts are utexas-only** (named in `INSTALL.md`) and cannot match
+  from a gmail-only install; 3 more were in both mailboxes and may run low.
+  This includes **Sean Kang, the key's only `Bounced`** — his row is the
+  two-mailbox gap made visible, and the guide says to expect `Not emailed`.
+- Eyeball rows chosen gmail-only so they should match exactly: Micah Poag
+  (`Sent`/1), Joseph Candelario (`Replied`/0 + a call), Ryan Wheeler
+  (`Sent`/2), Owen Sherry (`Call done` with no email address — the calendar
+  title-match rule proven end to end, if his event is on the gmail
+  calendar and the widened window reaches it).
+
+**What comes back from Jon's run feeds three decisions:** the measured
+run cost (→ whether the cadence survives), the warning-screen screenshots
+(→ closes the `06` open question; correct INSTALL.md step 15's quoted text
+against them), and match/no-match on the eyeball rows (→ whether courier +
+engine + fixtures agree in the wild).

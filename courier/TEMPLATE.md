@@ -67,6 +67,11 @@ Label in column A, value in column B. Found by label text, not row number.
 | `Server URL` | Student (pre-filled) | Defaults to `https://blotterib.com/api/engine` |
 | `Last successful run` | Blotter | The contract's one permitted extra write. If it goes stale, Blotter is failing quietly and touching nothing |
 | `Last run warnings` | Blotter | The contract's `warnings` array, joined; `None` when empty. The contract gives warnings no home in the sheet, so this is the courier's choice — flagged in `11-COURIER-NOTES.md` |
+| `Calendar looks back (days)` | Student (pre-filled `365`) | Round 2: how far back the calendar fetch reaches. Jon sets `1100` for the 2024 archive test; a live student leaves it alone |
+| `Calendar looks ahead (days)` | Student (pre-filled `180`) | Round 2: forward reach of the calendar fetch |
+| `Last run took` | Blotter | Round 2 measurement: wall-clock seconds of the last successful run |
+| `Last run fetched` | Blotter | Round 2 measurement: conversations and messages fetched |
+| `Gmail calls last run` | Blotter | Round 2 measurement: searches + conversation fetches the courier made. Failed runs report the same numbers to the execution log instead — the sheet is never written on failure |
 
 ## What is deliberately absent
 
