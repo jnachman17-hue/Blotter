@@ -1,0 +1,90 @@
+{
+ "version": 1,
+ "now": "2024-04-30T18:00:00Z",
+ "student": {
+  "addresses": [
+   "jnachman17@gmail.com",
+   "jnachman@utexas.edu"
+  ]
+ },
+ "contacts": [
+  {
+   "row": 2,
+   "name": "Brady Flynn",
+   "firm": "FT Partners",
+   "emails": [
+    "Brady.flynn@ftpartners.com"
+   ],
+   "closed": false
+  }
+ ],
+ "threads": [
+  {
+   "thread_id": "18eafe21f17ade9f",
+   "messages": [
+    {
+     "id": "18eafe2fcc8957c8",
+     "date": "2024-04-05T20:11:12Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "Brady.flynn@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Enjoyed Our Conversation",
+     "body": "Hey Brady,\n\nI hope all is well. I just wanted to send a brief email expressing my appreciation for the time you spent with me over the phone today. I enjoyed learning more about the firm and your experience there. Congratulations on your recent promotion!\n\nBest,\nJonathan",
+     "is_outbound": true
+    },
+    {
+     "id": "18ec0f6c84ad730f",
+     "date": "2024-04-09T03:46:18Z",
+     "from": "Brady.flynn@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Enjoyed Our Conversation",
+     "body": "Hey Jonathan, thanks for the note. Enjoyed chatting with you as well!\n\nBrady Flynn, Analyst, Financial Technology Partners LP",
+     "is_outbound": false
+    },
+    {
+     "id": "18eed53a069593eb",
+     "date": "2024-04-17T18:31:00Z",
+     "from": "Brady.Flynn@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Enjoyed Our Conversation",
+     "body": "Hey Jonathan – congrats on the offer, well deserved! Happy to chat if I can be helpful while you think through the decision.\n\nBrady Flynn, Analyst",
+     "is_outbound": false
+    },
+    {
+     "id": "18ef158ab0b6358f",
+     "date": "2024-04-18T13:15:03Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "Brady.Flynn@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Enjoyed Our Conversation",
+     "body": "Hey Brady,\n\nI appreciate you reaching out to me and offering your willingness to speak. I have since signed the offer. Thank you for your help throughout this process.\n\nBest,\nJonathan Nachman",
+     "is_outbound": true
+    },
+    {
+     "id": "18ef180f37ddd749",
+     "date": "2024-04-18T13:59:00Z",
+     "from": "Brady.Flynn@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Enjoyed Our Conversation",
+     "body": "Great to hear - congrats, Jonathan!\n\nBrady Flynn, Analyst",
+     "is_outbound": false
+    }
+   ]
+  }
+ ],
+ "events": [],
+ "ignored": []
+}

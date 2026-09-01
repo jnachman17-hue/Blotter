@@ -1,0 +1,26 @@
+{
+ "version": 1,
+ "now": "2024-01-25T18:00:00Z",
+ "student": {
+  "addresses": [
+   "jnachman17@gmail.com",
+   "jnachman@utexas.edu"
+  ]
+ },
+ "contacts": [
+  {
+   "row": 2,
+   "name": "Marijoy Bertolini",
+   "firm": "Aeris Partners",
+   "emails": [
+    "mjb@aerispartners.com",
+    "Marijoy.Bertolini@aerispartners.com",
+    "bm@aerispartners.com"
+   ],
+   "closed": false
+  }
+ ],
+ "threads": [],
+ "events": [],
+ "ignored": []
+}

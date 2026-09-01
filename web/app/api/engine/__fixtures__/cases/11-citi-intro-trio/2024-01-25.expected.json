@@ -1,0 +1,41 @@
+{
+ "version": 1,
+ "rows": [
+  {
+   "row": 2,
+   "status": "Replied",
+   "days": 2,
+   "last_contact": "2024-01-22",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 3,
+   "status": "Sent",
+   "days": 2,
+   "last_contact": "2024-01-22",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": "2024-01-22"
+  },
+  {
+   "row": 4,
+   "status": "Call scheduled",
+   "days": 1,
+   "last_contact": "2024-01-22",
+   "attempts": 1,
+   "next_call": "2024-01-26T12:00:00-08:00",
+   "last_call": null
+  }
+ ],
+ "found": [
+  {
+   "email": "dmnachman@gmail.com",
+   "name": null,
+   "first_seen": "2024-01-18",
+   "context": "Appeared in a thread with Chris Miller"
+  }
+ ],
+ "warnings": []
+}

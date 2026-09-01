@@ -1,0 +1,31 @@
+{
+ "version": 1,
+ "now": "2024-02-15T18:00:00Z",
+ "student": {
+  "addresses": [
+   "jnachman17@gmail.com",
+   "jnachman@utexas.edu"
+  ]
+ },
+ "contacts": [
+  {
+   "row": 2,
+   "name": "Owen Sherry",
+   "firm": "Houlihan Lokey",
+   "emails": [],
+   "closed": false
+  }
+ ],
+ "threads": [],
+ "events": [
+  {
+   "id": "54q85o92hinu8venrnu0cf6uh9",
+   "title": "Jonathan - Owen Sherry Houlihan RX Intro Call",
+   "start": "2024-02-02T11:30:00-08:00",
+   "end": "2024-02-02T12:00:00-08:00",
+   "attendees": [],
+   "organizer": "jnachman17@gmail.com"
+  }
+ ],
+ "ignored": []
+}

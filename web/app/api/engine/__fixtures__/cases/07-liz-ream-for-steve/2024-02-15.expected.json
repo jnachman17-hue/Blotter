@@ -1,0 +1,29 @@
+{
+ "version": 1,
+ "rows": [
+  {
+   "row": 2,
+   "status": "Replied",
+   "days": 0,
+   "last_contact": "2024-02-15",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  }
+ ],
+ "found": [
+  {
+   "email": "dnachman@fastspring.com",
+   "name": null,
+   "first_seen": "2024-02-14",
+   "context": "Appeared in a thread with Steve McLaughlin"
+  },
+  {
+   "email": "liz.ream@ftpartners.com",
+   "name": null,
+   "first_seen": "2024-02-14",
+   "context": "Appeared in a thread with Steve McLaughlin"
+  }
+ ],
+ "warnings": []
+}

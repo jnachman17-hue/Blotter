@@ -1,0 +1,85 @@
+{
+ "version": 1,
+ "now": "2024-02-15T18:00:00Z",
+ "student": {
+  "addresses": [
+   "jnachman17@gmail.com",
+   "jnachman@utexas.edu"
+  ]
+ },
+ "contacts": [
+  {
+   "row": 2,
+   "name": "Marijoy Bertolini",
+   "firm": "Aeris Partners",
+   "emails": [
+    "mjb@aerispartners.com",
+    "Marijoy.Bertolini@aerispartners.com",
+    "bm@aerispartners.com"
+   ],
+   "closed": false
+  }
+ ],
+ "threads": [
+  {
+   "thread_id": "18d869220d90d01e",
+   "messages": [
+    {
+     "id": "18d86f5f94ad0e0e",
+     "date": "2024-02-08T04:24:42Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "Marijoy.Bertolini@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "Good Evening Marijoy,\n\nI hope this email finds you well. I am emailing to emphasize my interest in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am from Los Angeles, and I'm now studying Economics and Business at the University of Texas - Austin. I'm sure your firm doesn't receive many applications from UT students, if any at all, so I wanted to send this email to reaffirm my interest in Aeris, having already submitted my online application.\n\nA week ago, a close friend of mine studying at USC Marshall shared with me that Aeris had directly reached out to him for recruitment purposes. This conversation piqued my interest in your firm. I have since spent some time learning more about Aeris Partners. My interest is twofold:\n\n1) I am particularly interested in boutique tech banks. Aeries stands out as a SaaS M&A bank as I believe very strongly in the future of the SaaS industry.\n2) Through learning more about your firm through talking to my buddy who had a coffee chat with Aeris and your website, it is abundantly clear that your firm places a tremendous emphasis on company culture and personal fit, transcending beyond the superficial culture narrative of most banks. This is very unique to your firm and genuinely appeals to me.\n\nI hope I have demonstrated my sincere interest in your firm and you consider my application. I also attached my resume below.\n\nBest,\nJonathan Nachman",
+     "is_outbound": true
+    },
+    {
+     "id": "18d86f6262e228ee",
+     "date": "2024-02-08T04:24:55Z",
+     "from": "mailer-daemon@googlemail.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Delivery Status Notification (Failure)",
+     "body": "** Address not found **\n\nYour message wasn't delivered to Marijoy.Bertolini@aerispartners.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 5.1.1 <Marijoy.Bertolini@aerispartners.com>: Recipient address rejected: User unknown\nFinal-Recipient: rfc822; Marijoy.Bertolini@aerispartners.com\nAction: failed\nStatus: 5.1.1\nRemote-MTA: dns; mx1-us1.ppe-hosted.com.\nDiagnostic-Code: smtp; 550 5.1.1 <Marijoy.Bertolini@aerispartners.com>: Recipient address rejected: User unknown\nLast-Attempt-Date: Wed, 07 Feb 2024 20:24:55 -0800 (PST)",
+     "is_outbound": false
+    }
+   ]
+  },
+  {
+   "thread_id": "18d870306f73048e",
+   "messages": [
+    {
+     "id": "18d870434c19f943",
+     "date": "2024-02-08T04:40:15Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "bm@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "[same outreach text as the message to Marijoy.Bertolini@aerispartners.com 16 minutes earlier]",
+     "is_outbound": true
+    },
+    {
+     "id": "18d8704625bfd255",
+     "date": "2024-02-08T04:40:27Z",
+     "from": "mailer-daemon@googlemail.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Delivery Status Notification (Failure)",
+     "body": "** Address not found **\n\nYour message wasn't delivered to bm@aerispartners.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 5.1.1 : Recipient address rejected: User unknown",
+     "is_outbound": false
+    }
+   ]
+  }
+ ],
+ "events": [],
+ "ignored": []
+}

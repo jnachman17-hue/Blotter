@@ -1,0 +1,70 @@
+{
+ "version": 1,
+ "now": "2024-04-30T18:00:00Z",
+ "student": {
+  "addresses": [
+   "jnachman17@gmail.com",
+   "jnachman@utexas.edu"
+  ]
+ },
+ "contacts": [
+  {
+   "row": 2,
+   "name": "Wells Fargo - application, video interview, first round, withdrawal",
+   "firm": null,
+   "emails": [
+    "CIBUniversityRecruiting@wellsfargo.com",
+    "Abey.T.Dessie@wellsfargo.com"
+   ],
+   "closed": false
+  }
+ ],
+ "threads": [
+  {
+   "thread_id": "18eb03a799ad4481",
+   "messages": [
+    {
+     "id": "18eb03a799ad4481",
+     "date": "2024-04-05T21:41:15Z",
+     "from": "CIBUniversityRecruiting@wellsfargo.com",
+     "to": [],
+     "cc": [
+      "CIBUniversityRecruiting@wellsfargo.com",
+      "Abey.T.Dessie@wellsfargo.com"
+     ],
+     "subject": "Action Required: Wells Fargo 2025 Summer Internship - Investment Banking (San Francisco) | Preference Form",
+     "body": "Good afternoon,\n\nWe hope this email finds you well. Thank you for applying to the Wells Fargo 2025 Summer Investment Banking Internship Program (San Francisco).\n\nTo remain in the process and indicate your group preference, you will need to complete the below group preference form. Please complete it by noon EST on Monday, April 8.\n\n[Preference survey link]\n\nAbey T. Dessie, Recruiter - Early Careers, Corporate and Investment Banking",
+     "is_outbound": false
+    },
+    {
+     "id": "18eb0472a5d3851c",
+     "date": "2024-04-05T21:51:17Z",
+     "from": "Abey.T.Dessie@wellsfargo.com",
+     "to": [],
+     "cc": [
+      "CIBUniversityRecruiting@wellsfargo.com",
+      "Abey.T.Dessie@wellsfargo.com"
+     ],
+     "subject": "RE: Action Required: Wells Fargo 2025 Summer Internship - Investment Banking (San Francisco) | Preference Form",
+     "body": "Good afternoon,\n\nThank you to those that have reached out. We will be sending out a new form on Monday. Please disregard the prior email. Enjoy your weekend.\n\nAbey T. Dessie",
+     "is_outbound": false
+    },
+    {
+     "id": "18ebe97e38035839",
+     "date": "2024-04-08T16:36:06Z",
+     "from": "Abey.T.Dessie@wellsfargo.com",
+     "to": [],
+     "cc": [
+      "CIBUniversityRecruiting@wellsfargo.com",
+      "Abey.T.Dessie@wellsfargo.com"
+     ],
+     "subject": "RE: Action Required: Wells Fargo 2025 Summer Internship - Investment Banking (San Francisco) | Preference Form",
+     "body": "Good afternoon,\n\nThank you all for our patience. Here is the link to the updated group preference form. The access code is: 2025IBSanFrancisco.\n\nTo remain in the process, you will need to complete the form by 1pm EST on Tuesday, April 9.\n\nAbey T. Dessie",
+     "is_outbound": false
+    }
+   ]
+  }
+ ],
+ "events": [],
+ "ignored": []
+}

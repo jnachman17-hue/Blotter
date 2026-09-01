@@ -1,0 +1,161 @@
+{
+ "version": 1,
+ "now": "2024-03-15T18:00:00Z",
+ "student": {
+  "addresses": [
+   "jnachman17@gmail.com",
+   "jnachman@utexas.edu"
+  ]
+ },
+ "contacts": [
+  {
+   "row": 2,
+   "name": "Steve McLaughlin",
+   "firm": "FT Partners",
+   "emails": [
+    "steve.mclaughlin@ftpartners.com"
+   ],
+   "closed": false
+  }
+ ],
+ "threads": [
+  {
+   "thread_id": "18da505200590986",
+   "messages": [
+    {
+     "id": "18da505200590986",
+     "date": "2024-02-14T00:29:51Z",
+     "from": "dnachman@fastspring.com",
+     "to": [
+      "steve.mclaughlin@ftpartners.com",
+      "liz.ream@ftpartners.com",
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Introduction",
+     "body": "Steve - Thanks again for agreeing to talk to my son Jonathan. I know he is eager to apply to the FT Analyst program.\n\nLiz - I've copied Jonathan so that you can coordinate directly with him to find a time that works.\n\nThanks,\nDavid\n\nDavid Nachman, CEO, FastSpring",
+     "is_outbound": false
+    },
+    {
+     "id": "18da85be63b82660",
+     "date": "2024-02-14T16:03:31Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "liz.ream@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Introduction",
+     "body": "Hello Liz,\n\nI hope you are doing well. I am following up on the introduction made by my father yesterday. I am very excited for the opportunity to speak with Steve over the phone. Here are some times (CT) that work for me in the next few days:\n\nFriday (2/16): 12:00 pm onwards\nMonday (2/19): 11:30 am onwards\nTuesday (2/20): 9:30 am - 1:30 pm & 5:00 pm onwards\nWednesday (2/21): 11:30 am onwards\nThursday (2/22) 9:30 am - 1:00 pm\n\nPlease let me know if any of these times are convenient for Steve. Thank you!\n\nBest,\nJonathan Nachman",
+     "is_outbound": true
+    },
+    {
+     "id": "18da86c0024143ab",
+     "date": "2024-02-14T16:21:02Z",
+     "from": "liz.ream@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Introduction",
+     "body": "Hi Jonathan – Thanks for sending times. Let’s please go with Monday at 2:30 CT. I’ll send a calendar invite.\n\nLiz Ream, Executive Assistant",
+     "is_outbound": false
+    },
+    {
+     "id": "18da874c1eb03b4f",
+     "date": "2024-02-14T16:30:40Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "liz.ream@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Introduction",
+     "body": "Confirmed - thank you.",
+     "is_outbound": true
+    },
+    {
+     "id": "18daadbb1f699043",
+     "date": "2024-02-15T03:42:19Z",
+     "from": "steve.mclaughlin@ftpartners.com",
+     "to": [
+      "liz.ream@ftpartners.com",
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Introduction",
+     "body": "Jonathan, hey! Great to meet and look forward to chatting. Liz (cc'd) can help find us 15 mins either next week or the week after.\n\nIf you haven't already done so, please officially apply for the analyst program (2025 Summer Analyst, Investment Banking (San Francisco) at Financial Technology Partners, via Greenhouse) so we can get you in the process.\n\nBest,\nSteve",
+     "is_outbound": false
+    },
+    {
+     "id": "18daaf1ecc6f1ff4",
+     "date": "2024-02-15T04:06:37Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "steve.mclaughlin@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Introduction",
+     "body": "Hello Steve,\n\nGreat to hear from you! I coordinated with Liz directly to set up a time to call. She scheduled us for this upcoming Monday (1/19) at 2:30 pm CT. I'm hoping this aligns with your schedule, and I look forward to speaking with you then.\n\nBest,\nJonathan",
+     "is_outbound": true
+    },
+    {
+     "id": "18daaf62956b3b8b",
+     "date": "2024-02-15T04:11:13Z",
+     "from": "steve.mclaughlin@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "liz.ream@ftpartners.com"
+     ],
+     "subject": "RE: Introduction",
+     "body": "Excellent! Look forward to it.\n\nSteve",
+     "is_outbound": false
+    }
+   ]
+  },
+  {
+   "thread_id": "18dc33d0fbf6a9dd",
+   "messages": [
+    {
+     "id": "18dc45fa94a8ca1e",
+     "date": "2024-02-20T02:37:00Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "steve.mclaughlin@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Enjoyed our Conversation",
+     "body": "Hey Steve,\n\nI just wanted to send a quick note of appreciation for the time you spent with me over the phone today. I appreciated gaining insight into the firm through the lens of someone with your extensive experience. You, along with Ethan and Josh, have done an incredible job of selling me on FT. Thanks again and enjoy the remainder of your time in Park City!\n\nBest,\nJonathan",
+     "is_outbound": true
+    },
+    {
+     "id": "18dc47338174f585",
+     "date": "2024-02-20T02:58:20Z",
+     "from": "steve.mclaughlin@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Re: Enjoyed our Conversation",
+     "body": "Thanks Jonathan, enjoyed the convo!\n\nBest,\nSteve",
+     "is_outbound": false
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g60o3ig9j6p242ca56l348g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g6913ie1o691jee9p84r46h9k84skcdpi6oqjcghk651j2hhm84q0",
+   "title": "Steve McLaughlin/Jonathan Nachman intro",
+   "start": "2024-02-19T12:30:00-08:00",
+   "end": "2024-02-19T12:45:00-08:00",
+   "attendees": [
+    "jnachman17@gmail.com",
+    "liz.ream@ftpartners.com",
+    "steve.mclaughlin@ftpartners.com"
+   ],
+   "organizer": "liz.ream@ftpartners.com"
+  }
+ ],
+ "ignored": []
+}

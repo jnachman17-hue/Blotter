@@ -1,0 +1,41 @@
+{
+ "version": 1,
+ "rows": [
+  {
+   "row": 2,
+   "status": "Sent",
+   "days": 4,
+   "last_contact": "2024-01-20",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  }
+ ],
+ "found": [
+  {
+   "email": "Andersen@intrepidfp.com",
+   "name": null,
+   "first_seen": "2024-01-20",
+   "context": "Appeared in a thread with John Sellingsloh"
+  },
+  {
+   "email": "Bemis@intrepidfp.com",
+   "name": null,
+   "first_seen": "2024-01-20",
+   "context": "Appeared in a thread with John Sellingsloh"
+  },
+  {
+   "email": "horton@intrepidfp.com",
+   "name": null,
+   "first_seen": "2024-01-20",
+   "context": "Appeared in a thread with John Sellingsloh"
+  },
+  {
+   "email": "Robinson@intrepidfp.com",
+   "name": null,
+   "first_seen": "2024-01-20",
+   "context": "Appeared in a thread with John Sellingsloh"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,23 @@
+{
+ "version": 1,
+ "rows": [
+  {
+   "row": 2,
+   "status": "Call scheduled",
+   "days": 3,
+   "last_contact": "2024-03-11",
+   "attempts": 0,
+   "next_call": "2024-03-18T12:00:00-07:00",
+   "last_call": "2024-03-06"
+  }
+ ],
+ "found": [
+  {
+   "email": "careers@aerispartners.com",
+   "name": null,
+   "first_seen": "2024-02-08",
+   "context": "Appeared in a thread with Paige Butters"
+  }
+ ],
+ "warnings": []
+}

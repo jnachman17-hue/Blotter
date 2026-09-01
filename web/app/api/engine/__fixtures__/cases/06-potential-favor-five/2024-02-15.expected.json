@@ -1,0 +1,56 @@
+{
+ "version": 1,
+ "rows": [
+  {
+   "row": 2,
+   "status": "Sent",
+   "days": 15,
+   "last_contact": "2024-01-30",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": "2024-01-26"
+  },
+  {
+   "row": 3,
+   "status": "Replied",
+   "days": 29,
+   "last_contact": "2024-01-17",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 4,
+   "status": "Sent",
+   "days": 5,
+   "last_contact": "2024-02-09",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": "2024-02-08"
+  },
+  {
+   "row": 5,
+   "status": "Sent",
+   "days": 14,
+   "last_contact": "2024-02-01",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  }
+ ],
+ "found": [
+  {
+   "email": "andrew.nachman@wisc.edu",
+   "name": null,
+   "first_seen": "2024-01-17",
+   "context": "Appeared in a thread with Kleopatra Kirkland"
+  },
+  {
+   "email": "dnachman@fastspring.com",
+   "name": null,
+   "first_seen": "2024-01-17",
+   "context": "Appeared in a thread with Douglas Melsheimer"
+  }
+ ],
+ "warnings": []
+}

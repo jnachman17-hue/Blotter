@@ -1,0 +1,114 @@
+{
+ "version": 1,
+ "now": "2024-02-15T18:00:00Z",
+ "student": {
+  "addresses": [
+   "jnachman17@gmail.com",
+   "jnachman@utexas.edu"
+  ]
+ },
+ "contacts": [
+  {
+   "row": 2,
+   "name": "Sean Kang",
+   "firm": "Stifel",
+   "emails": [
+    "sean.kang@stifel.com",
+    "kang.s@stifel.com",
+    "s.kang@stifel.com"
+   ],
+   "closed": false
+  }
+ ],
+ "threads": [
+  {
+   "thread_id": "18d5defb8924ec0a",
+   "messages": [
+    {
+     "id": "18d5df16fb10d3f0",
+     "date": "2024-01-31T05:15:19Z",
+     "from": "jnachman@utexas.edu",
+     "to": [
+      "sean.kang@stifel.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested in Pursuing Banking @ Stifel NY",
+     "body": "Hello Sean,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I'd love to talk to you to learn more about your experience at Stifel given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "is_outbound": true
+    },
+    {
+     "id": "18d5df1a40ccc1e2",
+     "date": "2024-01-31T05:15:32Z",
+     "from": "mailer-daemon@googlemail.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Delivery Status Notification (Failure)",
+     "body": "** Address not found **\n\nYour message wasn't delivered to sean.kang@stifel.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 #5.1.0 Address rejected.\nFinal-Recipient: rfc822; sean.kang@stifel.com\nAction: failed\nStatus: 4.4.2\nRemote-MTA: dns; smtp.gslb.stifel.com.\nDiagnostic-Code: smtp; 550 #5.1.0 Address rejected.\nLast-Attempt-Date: Tue, 30 Jan 2024 21:15:32 -0800 (PST)",
+     "is_outbound": false
+    }
+   ]
+  },
+  {
+   "thread_id": "18d5df31eecb185c",
+   "messages": [
+    {
+     "id": "18d5df378de6f3a8",
+     "date": "2024-01-31T05:17:33Z",
+     "from": "jnachman@utexas.edu",
+     "to": [
+      "kang.s@stifel.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested in Banking @ Stifel NY",
+     "body": "[same outreach text as the message to sean.kang@stifel.com two minutes earlier]",
+     "is_outbound": true
+    },
+    {
+     "id": "18d5df3afb88ab97",
+     "date": "2024-01-31T05:17:46Z",
+     "from": "mailer-daemon@googlemail.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Delivery Status Notification (Failure)",
+     "body": "** Address not found **\n\nYour message wasn't delivered to kang.s@stifel.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 #5.1.0 Address rejected.",
+     "is_outbound": false
+    }
+   ]
+  },
+  {
+   "thread_id": "18d5df457c604827",
+   "messages": [
+    {
+     "id": "18d5df4c34dfa869",
+     "date": "2024-01-31T05:18:57Z",
+     "from": "jnachman@utexas.edu",
+     "to": [
+      "s.kang@stifel.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested in Banking @ Stifel NY",
+     "body": "[same outreach text as the two previous attempts]",
+     "is_outbound": true
+    },
+    {
+     "id": "18d5df4f7043267d",
+     "date": "2024-01-31T05:19:10Z",
+     "from": "mailer-daemon@googlemail.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Delivery Status Notification (Failure)",
+     "body": "** Address not found **\n\nYour message wasn't delivered to s.kang@stifel.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 #5.1.0 Address rejected.",
+     "is_outbound": false
+    }
+   ]
+  }
+ ],
+ "events": [],
+ "ignored": []
+}

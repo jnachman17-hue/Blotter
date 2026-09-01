@@ -1,0 +1,671 @@
+{
+ "version": 1,
+ "rows": [
+  {
+   "row": 2,
+   "status": "Sent",
+   "days": 57,
+   "last_contact": "2024-01-17",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 3,
+   "status": "Replied",
+   "days": 53,
+   "last_contact": "2024-01-22",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": "2024-01-19"
+  },
+  {
+   "row": 4,
+   "status": "Sent",
+   "days": 55,
+   "last_contact": "2024-01-20",
+   "attempts": 2,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 5,
+   "status": "Sent",
+   "days": 58,
+   "last_contact": "2024-01-17",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 6,
+   "status": "Sent",
+   "days": 58,
+   "last_contact": "2024-01-17",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 7,
+   "status": "Sent",
+   "days": 58,
+   "last_contact": "2024-01-17",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 8,
+   "status": "Sent",
+   "days": 58,
+   "last_contact": "2024-01-17",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 9,
+   "status": "Sent",
+   "days": 58,
+   "last_contact": "2024-01-17",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 10,
+   "status": "Sent",
+   "days": 58,
+   "last_contact": "2024-01-17",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 11,
+   "status": "Sent",
+   "days": 58,
+   "last_contact": "2024-01-17",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 12,
+   "status": "Sent",
+   "days": 44,
+   "last_contact": "2024-01-31",
+   "attempts": 2,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 13,
+   "status": "Sent",
+   "days": 44,
+   "last_contact": "2024-01-30",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": "2024-01-26"
+  },
+  {
+   "row": 14,
+   "status": "Replied",
+   "days": 58,
+   "last_contact": "2024-01-17",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 15,
+   "status": "Sent",
+   "days": 57,
+   "last_contact": "2024-01-17",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 16,
+   "status": "Replied",
+   "days": 35,
+   "last_contact": "2024-02-08",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": "2024-01-23"
+  },
+  {
+   "row": 17,
+   "status": "Sent",
+   "days": 52,
+   "last_contact": "2024-01-23",
+   "attempts": 2,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 18,
+   "status": "Sent",
+   "days": 57,
+   "last_contact": "2024-01-17",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 19,
+   "status": "Sent",
+   "days": 57,
+   "last_contact": "2024-01-17",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 20,
+   "status": "Sent",
+   "days": 44,
+   "last_contact": "2024-01-31",
+   "attempts": 2,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 21,
+   "status": "Sent",
+   "days": 52,
+   "last_contact": "2024-01-22",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": "2024-01-22"
+  },
+  {
+   "row": 22,
+   "status": "Sent",
+   "days": 18,
+   "last_contact": "2024-02-26",
+   "attempts": 2,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 23,
+   "status": "Replied",
+   "days": 52,
+   "last_contact": "2024-01-22",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 24,
+   "status": "Sent",
+   "days": 44,
+   "last_contact": "2024-01-31",
+   "attempts": 2,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 25,
+   "status": "Sent",
+   "days": 48,
+   "last_contact": "2024-01-26",
+   "attempts": 3,
+   "next_call": null,
+   "last_call": "2024-01-26"
+  },
+  {
+   "row": 26,
+   "status": "Replied",
+   "days": 52,
+   "last_contact": "2024-01-23",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 27,
+   "status": "Sent",
+   "days": 52,
+   "last_contact": "2024-01-22",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": "2024-01-22"
+  },
+  {
+   "row": 28,
+   "status": "Sent",
+   "days": 51,
+   "last_contact": "2024-01-24",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": "2024-01-24"
+  },
+  {
+   "row": 29,
+   "status": "Sent",
+   "days": 55,
+   "last_contact": "2024-01-19",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 30,
+   "status": "Sent",
+   "days": 54,
+   "last_contact": "2024-01-20",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 31,
+   "status": "Sent",
+   "days": 55,
+   "last_contact": "2024-01-20",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 32,
+   "status": "Sent",
+   "days": 51,
+   "last_contact": "2024-01-23",
+   "attempts": 2,
+   "next_call": null,
+   "last_call": "2024-01-23"
+  },
+  {
+   "row": 33,
+   "status": "Sent",
+   "days": 49,
+   "last_contact": "2024-01-25",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": "2024-01-25"
+  },
+  {
+   "row": 34,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 35,
+   "status": "Replied",
+   "days": 49,
+   "last_contact": "2024-01-26",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": "2024-01-24"
+  },
+  {
+   "row": 36,
+   "status": "Sent",
+   "days": 49,
+   "last_contact": "2024-01-26",
+   "attempts": 2,
+   "next_call": null,
+   "last_call": "2024-01-25"
+  },
+  {
+   "row": 37,
+   "status": "Sent",
+   "days": 48,
+   "last_contact": "2024-01-26",
+   "attempts": 2,
+   "next_call": null,
+   "last_call": "2024-01-26"
+  },
+  {
+   "row": 38,
+   "status": "Sent",
+   "days": 44,
+   "last_contact": "2024-01-30",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": "2024-01-30"
+  },
+  {
+   "row": 39,
+   "status": "Sent",
+   "days": 38,
+   "last_contact": "2024-02-06",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": "2024-02-02"
+  },
+  {
+   "row": 40,
+   "status": "Sent",
+   "days": 45,
+   "last_contact": "2024-01-30",
+   "attempts": 2,
+   "next_call": null,
+   "last_call": "2024-01-29"
+  },
+  {
+   "row": 41,
+   "status": "Sent",
+   "days": 44,
+   "last_contact": "2024-01-30",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": "2024-01-30"
+  },
+  {
+   "row": 42,
+   "status": "Replied",
+   "days": 45,
+   "last_contact": "2024-01-29",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 43,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 44,
+   "status": "Replied",
+   "days": 44,
+   "last_contact": "2024-01-30",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 45,
+   "status": "Sent",
+   "days": 34,
+   "last_contact": "2024-02-09",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": "2024-02-08"
+  },
+  {
+   "row": 46,
+   "status": "Sent",
+   "days": 43,
+   "last_contact": "2024-02-01",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 47,
+   "status": "Bounced",
+   "days": 44,
+   "last_contact": "2024-01-31",
+   "attempts": 3,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 48,
+   "status": "Sent",
+   "days": 44,
+   "last_contact": "2024-01-31",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 49,
+   "status": "Sent",
+   "days": 44,
+   "last_contact": "2024-01-31",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 50,
+   "status": "Replied",
+   "days": 42,
+   "last_contact": "2024-02-01",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 51,
+   "status": "Replied",
+   "days": 14,
+   "last_contact": "2024-02-29",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 52,
+   "status": "Call scheduled",
+   "days": 3,
+   "last_contact": "2024-03-11",
+   "attempts": 0,
+   "next_call": "2024-03-18T12:00:00-07:00",
+   "last_call": "2024-03-06"
+  },
+  {
+   "row": 53,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 54,
+   "status": "Replied",
+   "days": 32,
+   "last_contact": "2024-02-12",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 55,
+   "status": "Replied",
+   "days": 24,
+   "last_contact": "2024-02-20",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": "2024-02-19"
+  },
+  {
+   "row": 56,
+   "status": "Sent",
+   "days": 1,
+   "last_contact": "2024-03-13",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 57,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 58,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 59,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 60,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 61,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 62,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 63,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 64,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 65,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 66,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 67,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 68,
+   "status": "Call done",
+   "days": 41,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": "2024-02-02"
+  }
+ ],
+ "found": [
+  {
+   "email": "andrew.nachman@wisc.edu",
+   "name": null,
+   "first_seen": "2024-01-17",
+   "context": "Appeared in a thread with Kleopatra Kirkland"
+  },
+  {
+   "email": "dnachman@fastspring.com",
+   "name": null,
+   "first_seen": "2024-01-17",
+   "context": "Appeared in a thread with Douglas Melsheimer"
+  },
+  {
+   "email": "dmnachman@gmail.com",
+   "name": null,
+   "first_seen": "2024-01-18",
+   "context": "Appeared in a thread with Chris Miller"
+  },
+  {
+   "email": "Andersen@intrepidfp.com",
+   "name": null,
+   "first_seen": "2024-01-20",
+   "context": "Appeared in a thread with John Sellingsloh"
+  },
+  {
+   "email": "Bemis@intrepidfp.com",
+   "name": null,
+   "first_seen": "2024-01-20",
+   "context": "Appeared in a thread with John Sellingsloh"
+  },
+  {
+   "email": "cook@intrepidfp.com",
+   "name": null,
+   "first_seen": "2024-01-20",
+   "context": "Appeared in a thread with John Sellingsloh"
+  },
+  {
+   "email": "FRCampusRecruiting@hl.com",
+   "name": null,
+   "first_seen": "2024-01-22",
+   "context": "Appeared in a thread with Samuel Ward"
+  },
+  {
+   "email": "careers@aerispartners.com",
+   "name": null,
+   "first_seen": "2024-02-08",
+   "context": "Appeared in a thread with Paige Butters"
+  },
+  {
+   "email": "gs-hcm-recruiting-coo@ny.email.gs.com",
+   "name": null,
+   "first_seen": "2024-02-10",
+   "context": "Appeared in a thread with Gayathri Ravi"
+  },
+  {
+   "email": "liz.ream@ftpartners.com",
+   "name": null,
+   "first_seen": "2024-02-14",
+   "context": "Appeared in a thread with Steve McLaughlin"
+  }
+ ],
+ "warnings": []
+}

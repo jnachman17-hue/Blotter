@@ -1,0 +1,16 @@
+{
+ "version": 1,
+ "rows": [
+  {
+   "row": 2,
+   "status": "Bounced",
+   "days": 7,
+   "last_contact": "2024-02-08",
+   "attempts": 2,
+   "next_call": null,
+   "last_call": null
+  }
+ ],
+ "found": [],
+ "warnings": []
+}

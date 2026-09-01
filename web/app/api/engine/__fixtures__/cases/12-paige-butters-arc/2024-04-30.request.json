@@ -1,0 +1,387 @@
+{
+ "version": 1,
+ "now": "2024-04-30T18:00:00Z",
+ "student": {
+  "addresses": [
+   "jnachman17@gmail.com",
+   "jnachman@utexas.edu"
+  ]
+ },
+ "contacts": [
+  {
+   "row": 2,
+   "name": "Paige Butters",
+   "firm": "Aeris Partners",
+   "emails": [
+    "pgb@aerispartners.com"
+   ],
+   "closed": false
+  }
+ ],
+ "threads": [
+  {
+   "thread_id": "18d8707ca8c88b93",
+   "messages": [
+    {
+     "id": "18d8709ee04efd25",
+     "date": "2024-02-08T04:46:31Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "careers@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "Hello Aeris Recruiting Team,\n\nI hope this email finds you well. I am emailing to emphasize my interest in\nrecruiting at Aeris Partners for the Summer Analyst 2025 Program. I am\nfrom Los Angeles, and I'm now studying Economics and Business at the\nUniversity of Texas - Austin. I'm sure your firm doesn't receive many\napplications from UT students, if any at all, so I wanted to send this\nemail to reaffirm my interest in Aeris, having already submitted my online\napplication.\n\nA week ago, a close friend of mine studying at USC Marshall shared with me\nthat Aeris had directly reached out to him for recruitment purposes. This\nconversation piqued my interest in your firm. I have since spent some time\nlearning more about Aeris Partners. My interest is twofold:\n\n1) I am particularly interested in boutique tech banks. Aeries stands out\nas a SaaS M&A bank as I believe very strongly in the future of the SaaS\nindustry.\n2) Through learning more about your firm through talking to my buddy who\nhad a coffee chat with Aeris and your website, it is abundantly clear that\nyour firm places a tremendous emphasis on company culture and personal\nfit, transcending beyond the superficial culture narrative of most banks.\nThis is very unique to your firm and genuinely appeals to me.\n\nI hope I have demonstrated my sincere interest in your firm and you\nconsider my application. I also attached my resume below.\n\nBest,\nJonathan Nachman",
+     "is_outbound": true
+    },
+    {
+     "id": "18d8906565eae4b9",
+     "date": "2024-02-08T14:01:37Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "Hi Jonathan,\n\nThank you for your interest in Aeris Partners! I have escalated your application in the review process based on your email below, so thank you for following up. If you have not heard from us on any potential next steps by Tuesday, please feel free to reconnect with me and I’ll let you know of any status updates. We appreciate your patience as we navigate through an unprecedented volume of applications this cycle!\n\nBest,\nPaige\n\nPaige Butters\nDirector of Operations\nAeris Partners LLC\nOffice: 617.751.4032\nCell: 740.412.1748\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Wednesday, February 7, 2024 11:47 PM\nTo: Careers <Careers@aerispartners.com>\nSubject: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship\n\nHello Aeris Recruiting Team,\n\nI hope this email finds you well. I am emailing to emphasize my interest in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am from Los Angeles, and I'm now studying Economics and Business at the University of Texas - Austin. I'm sure your firm doesn't receive many applications from UT students, if any at all, so I wanted to send this email to reaffirm my interest in Aeris, having already submitted my online application.\n\nA week ago, a close friend of mine studying at USC Marshall shared with me that Aeris had directly reached out to him for recruitment purposes. This conversation piqued my interest in your firm. I have since spent some time learning more about Aeris Partners. My interest is twofold:\n\n1) I am particularly interested in boutique tech banks. Aeries stands out as a SaaS M&A bank as I believe very strongly in the future of the SaaS industry.\n2) Through learning more about your firm through talking to my buddy who had a coffee chat with Aeris and your website, it is abundantly clear that your firm places a tremendous emphasis on company culture and personal fit, transcending beyond the superficial culture narrative of most banks. This is very unique to your firm and genuinely appeals to me.\n\nI hope I have demonstrated my sincere interest in your firm and you consider my application. I also attached my resume below.\n\nBest,\nJonathan Nachman",
+     "is_outbound": false
+    },
+    {
+     "id": "18d8ecb50b1bd467",
+     "date": "2024-02-09T16:55:01Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Re: RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "Hi Jonathan,\n\nDo you have some availability for a Coffee Chat next week? Informal, 10-15 minutes. Please let me know!\n\nThanks,\nPaige\n\nPaige Butters\nDirector of Operations\nAeris Partners LLC\n\nOn 9:01am, Thu 2/08/24, pgb@aerispartners.com wrote:\nHi Jonathan,\n\nThank you for your interest in Aeris Partners! I have escalated your application in the review process based on your email below, so thank you for following up. If you have not heard from us on any potential next steps by Tuesday, please feel free to reconnect with me and I’ll let you know of any status updates. We appreciate your patience as we navigate through an unprecedented volume of applications this cycle!\n\nBest,\nPaige\n\nPaige Butters\nDirector of Operations\nAeris Partners LLC\nOffice: 617.751.4032\nCell: 740.412.1748\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Wednesday, February 7, 2024 11:47 PM\nTo: Careers <Careers@aerispartners.com>\nSubject: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship\n\nHello Aeris Recruiting Team,\n\nI hope this email finds you well. I am emailing to emphasize my interest in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am from Los Angeles, and I'm now studying Economics and Business at the University of Texas - Austin. I'm sure your firm doesn't receive many applications from UT students, if any at all, so I wanted to send this email to reaffirm my interest in Aeris, having already submitted my online application.\n\nA week ago, a close friend of mine studying at USC Marshall shared with me that Aeris had directly reached out to him for recruitment purposes. This conversation piqued my interest in your firm. I have since spent some time learning more about Aeris Partners. My interest is twofold:\n\n1) I am particularly interested in boutique tech banks. Aeries stands out as a SaaS M&A bank as I believe very strongly in the future of the SaaS industry.\n2) Through learning more about your firm through talking to my buddy who had a coffee chat with Aeris and your website, it is abundantly clear that your firm places a tremendous emphasis on company culture and personal fit, transcending beyond the superficial culture narrative of most banks. This is very unique to your firm and genuinely appeals to me.\n\nI hope I have demonstrated my sincere interest in your firm and you consider my application. I also attached my resume below.\n\nBest,\nJonathan Nachman",
+     "is_outbound": false
+    },
+    {
+     "id": "18d8f31a6a62bd34",
+     "date": "2024-02-09T18:46:52Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "pgb@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "Hi Paige,\n\nI appreciate you getting back to me. I'd love to hop on a quick phone call\nsometime in the next week. Here are some times (CT) I am available:\n\nMonday (1/12): 12:00 pm onwards\nTuesday (1/13): 9:30 am - 1:00 pm & 5:00 pm onwards\nWednesday (1/14): 11:30 am onwards\nThursday (1/15): 9:00 am - 1:00 pm\n\nPlease let me know if any of these times are convenient for you. I look\nforward to speaking with you soon!\n\nBest,\nJonathan\n\nOn Fri, Feb 9, 2024 at 10:55 AM Paige Butters <pgb@aerispartners.com> wrote:\n\n> Hi Jonathan,\n>\n> Do you have some availability for a Coffee Chat next week? Informal,\n> 10-15 minutes. Please let me know!\n>\n> Thanks,\n> Paige\n>\n>\n> Paige Butters\n> Director of Operations\n> Aeris Partners LLC\n>\n>\n> On 9:01am, Thu 2/08/24, pgb@aerispartners.com wrote:\n>\n> Hi Jonathan,\n>\n>\n>\n> Thank you for your interest in Aeris Partners! I have escalated your\n> application in the review process based on your email below, so thank you\n> for following up. If you have not heard from us on any potential next\n> steps by Tuesday, please feel free to reconnect with me and I’ll let you\n> know of any status updates. We appreciate your patience as we navigate\n> through an unprecedented volume of applications this cycle!\n>\n>\n>\n> Best,\n>\n> Paige\n>\n>\n>\n>\n>\n> *Paige Butters*\n>\n> *Director of Operations*\n>\n> *Aeris Partners LLC*\n>\n> Office: 617.751.4032\n>\n> Cell: 740.412.1748\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Wednesday, February 7, 2024 11:47 PM\n> *To:* Careers <Careers@aerispartners.com>\n> *Subject:* UT Austin Student Highly Interested in Aeris Partners' Summer\n> 2025 Internship\n>\n>\n>\n> Hello Aeris Recruiting Team,\n>\n>\n>\n> I hope this email finds you well. I am emailing to emphasize my interest\n> in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am\n> from Los Angeles, and I'm now studying Economics and Business at the\n> University of Texas - Austin. I'm sure your firm doesn't receive many\n> applications from UT students, if any at all, so I wanted to send this\n> email to reaffirm my interest in Aeris, having already submitted my online\n> application.\n>\n>\n>\n> A week ago, a close friend of mine studying at USC Marshall shared with me\n> that Aeris had directly reached out to him for recruitment purposes. This\n> conversation piqued my interest in your firm. I have since spent some time\n> learning more about Aeris Partners. My interest is twofold:\n>\n>\n>\n> 1) I am particularly interested in boutique tech banks. Aeries stands out\n> as a SaaS M&A bank as I believe very strongly in the future of the SaaS\n> industry.\n>\n> 2) Through learning more about your firm through talking to my buddy who\n> had a coffee chat with Aeris and your website, it is abundantly clear that\n> your firm places a tremendous emphasis on company culture and personal\n> fit, transcending beyond the superficial culture narrative of most banks.\n> This is very unique to your firm and genuinely appeals to me.\n>\n>\n>\n> I hope I have demonstrated my sincere interest in your firm and you\n> consider my application. I also attached my resume below.\n>\n>\n>\n> Best,\n>\n> Jonathan Nachman\n>\n>\n>",
+     "is_outbound": true
+    },
+    {
+     "id": "18dc33ccda3e2987",
+     "date": "2024-02-19T21:19:18Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "pgb@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "Hey Paige,\n\nI hope you are doing well. I wanted to bump my email from about a week ago\nas I am still highly interested in pursuing recruiting with Aeris and would\nlove to chat with you. Here are some updated times (CT) that work for me\nthis week:\n\nTuesday (2/20): 9:30 am - 1:00 pm & 5:00 pm onwards\nWednesday (2/21): 11:30 am onwards\nThursday (2/22): 8:30 am - 1:00 pm\nFriday (2/23): 11 am onwards\n\nPlease let me know if any of these times work for you.\n\nBest,\nJonathan\n\nOn Fri, Feb 9, 2024 at 12:46 PM Jonathan Nachman <jnachman17@gmail.com>\nwrote:\n\n> Hi Paige,\n>\n> I appreciate you getting back to me. I'd love to hop on a quick phone call\n> sometime in the next week. Here are some times (CT) I am available:\n>\n> Monday (1/12): 12:00 pm onwards\n> Tuesday (1/13): 9:30 am - 1:00 pm & 5:00 pm onwards\n> Wednesday (1/14): 11:30 am onwards\n> Thursday (1/15): 9:00 am - 1:00 pm\n>\n> Please let me know if any of these times are convenient for you. I look\n> forward to speaking with you soon!\n>\n> Best,\n> Jonathan\n>\n> On Fri, Feb 9, 2024 at 10:55 AM Paige Butters <pgb@aerispartners.com>\n> wrote:\n>\n>> Hi Jonathan,\n>>\n>> Do you have some availability for a Coffee Chat next week? Informal,\n>> 10-15 minutes. Please let me know!\n>>\n>> Thanks,\n>> Paige\n>>\n>>\n>> Paige Butters\n>> Director of Operations\n>> Aeris Partners LLC\n>>\n>>\n>> On 9:01am, Thu 2/08/24, pgb@aerispartners.com wrote:\n>>\n>> Hi Jonathan,\n>>\n>>\n>>\n>> Thank you for your interest in Aeris Partners! I have escalated your\n>> application in the review process based on your email below, so thank you\n>> for following up. If you have not heard from us on any potential next\n>> steps by Tuesday, please feel free to reconnect with me and I’ll let you\n>> know of any status updates. We appreciate your patience as we navigate\n>> through an unprecedented volume of applications this cycle!\n>>\n>>\n>>\n>> Best,\n>>\n>> Paige\n>>\n>>\n>>\n>>\n>>\n>> *Paige Butters*\n>>\n>> *Director of Operations*\n>>\n>> *Aeris Partners LLC*\n>>\n>> Office: 617.751.4032\n>>\n>> Cell: 740.412.1748\n>>\n>>\n>>\n>> *From:* Jonathan Nachman <jnachman17@gmail.com>\n>> *Sent:* Wednesday, February 7, 2024 11:47 PM\n>> *To:* Careers <Careers@aerispartners.com>\n>> *Subject:* UT Austin Student Highly Interested in Aeris Partners' Summer\n>> 2025 Internship\n>>\n>>\n>>\n>> Hello Aeris Recruiting Team,\n>>\n>>\n>>\n>> I hope this email finds you well. I am emailing to emphasize my interest\n>> in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am\n>> from Los Angeles, and I'm now studying Economics and Business at the\n>> University of Texas - Austin. I'm sure your firm doesn't receive many\n>> applications from UT students, if any at all, so I wanted to send this\n>> email to reaffirm my interest in Aeris, having already submitted my online\n>> application.\n>>\n>>\n>>\n>> A week ago, a close friend of mine studying at USC Marshall shared with\n>> me that Aeris had directly reached out to him for recruitment purposes.\n>> This conversation piqued my interest in your firm. I have since spent some\n>> time learning more about Aeris Partners. My interest is twofold:\n>>\n>>\n>>\n>> 1) I am particularly interested in boutique tech banks. Aeries stands out\n>> as a SaaS M&A bank as I believe very strongly in the future of the SaaS\n>> industry.\n>>\n>> 2) Through learning more about your firm through talking to my buddy who\n>> had a coffee chat with Aeris and your website, it is abundantly clear that\n>> your firm places a tremendous emphasis on company culture and personal\n>> fit, transcending beyond the superficial culture narrative of most banks.\n>> This is very unique to your firm and genuinely appeals to me.\n>>\n>>\n>>\n>> I hope I have demonstrated my sincere interest in your firm and you\n>> consider my application. I also attached my resume below.\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan Nachman\n>>\n>>\n>>\n>",
+     "is_outbound": true
+    },
+    {
+     "id": "18dec4053f3eefe9",
+     "date": "2024-02-27T20:27:34Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "pgb@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "Hello Paige,\n\nI wanted to reach out one last time and see if it is still possible to find\na time to have a brief coffee chat. I am still heavily interested in Aeris\nand would love to continue the recruiting process if possible. Here are\nsome updated times (CT) that work for me:\n\nWednesday (2/28): 11:30 am onwards\nThursday (2/29): 8:30 am - 1:00 pm\nFriday (3/1): 11 am onwards\nMonday (3/4): 11:30 am onwards\nTuesday (3/5): 8:30 am - 1:00 pm & 5: pm onwards\nWednesday (3/6): 11:30 am onwards\n\nPlease let me know if any of these times work for you. Thanks in advance.\n\nBest,\nJonathan\n\nOn Mon, Feb 19, 2024 at 3:19 PM Jonathan Nachman <jnachman17@gmail.com>\nwrote:\n\n> Hey Paige,\n>\n> I hope you are doing well. I wanted to bump my email from about a week ago\n> as I am still highly interested in pursuing recruiting with Aeris and would\n> love to chat with you. Here are some updated times (CT) that work for me\n> this week:\n>\n> Tuesday (2/20): 9:30 am - 1:00 pm & 5:00 pm onwards\n> Wednesday (2/21): 11:30 am onwards\n> Thursday (2/22): 8:30 am - 1:00 pm\n> Friday (2/23): 11 am onwards\n>\n> Please let me know if any of these times work for you.\n>\n> Best,\n> Jonathan\n>\n> On Fri, Feb 9, 2024 at 12:46 PM Jonathan Nachman <jnachman17@gmail.com>\n> wrote:\n>\n>> Hi Paige,\n>>\n>> I appreciate you getting back to me. I'd love to hop on a quick phone\n>> call sometime in the next week. Here are some times (CT) I am available:\n>>\n>> Monday (1/12): 12:00 pm onwards\n>> Tuesday (1/13): 9:30 am - 1:00 pm & 5:00 pm onwards\n>> Wednesday (1/14): 11:30 am onwards\n>> Thursday (1/15): 9:00 am - 1:00 pm\n>>\n>> Please let me know if any of these times are convenient for you. I look\n>> forward to speaking with you soon!\n>>\n>> Best,\n>> Jonathan\n>>\n>> On Fri, Feb 9, 2024 at 10:55 AM Paige Butters <pgb@aerispartners.com>\n>> wrote:\n>>\n>>> Hi Jonathan,\n>>>\n>>> Do you have some availability for a Coffee Chat next week? Informal,\n>>> 10-15 minutes. Please let me know!\n>>>\n>>> Thanks,\n>>> Paige\n>>>\n>>>\n>>> Paige Butters\n>>> Director of Operations\n>>> Aeris Partners LLC\n>>>\n>>>\n>>> On 9:01am, Thu 2/08/24, pgb@aerispartners.com wrote:\n>>>\n>>> Hi Jonathan,\n>>>\n>>>\n>>>\n>>> Thank you for your interest in Aeris Partners! I have escalated your\n>>> application in the review process based on your email below, so thank you\n>>> for following up. If you have not heard from us on any potential next\n>>> steps by Tuesday, please feel free to reconnect with me and I’ll let you\n>>> know of any status updates. We appreciate your patience as we navigate\n>>> through an unprecedented volume of applications this cycle!\n>>>\n>>>\n>>>\n>>> Best,\n>>>\n>>> Paige\n>>>\n>>>\n>>>\n>>>\n>>>\n>>> *Paige Butters*\n>>>\n>>> *Director of Operations*\n>>>\n>>> *Aeris Partners LLC*\n>>>\n>>> Office: 617.751.4032\n>>>\n>>> Cell: 740.412.1748\n>>>\n>>>\n>>>\n>>> *From:* Jonathan Nachman <jnachman17@gmail.com>\n>>> *Sent:* Wednesday, February 7, 2024 11:47 PM\n>>> *To:* Careers <Careers@aerispartners.com>\n>>> *Subject:* UT Austin Student Highly Interested in Aeris Partners'\n>>> Summer 2025 Internship\n>>>\n>>>\n>>>\n>>> Hello Aeris Recruiting Team,\n>>>\n>>>\n>>>\n>>> I hope this email finds you well. I am emailing to emphasize my interest\n>>> in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am\n>>> from Los Angeles, and I'm now studying Economics and Business at the\n>>> University of Texas - Austin. I'm sure your firm doesn't receive many\n>>> applications from UT students, if any at all, so I wanted to send this\n>>> email to reaffirm my interest in Aeris, having already submitted my online\n>>> application.\n>>>\n>>>\n>>>\n>>> A week ago, a close friend of mine studying at USC Marshall shared with\n>>> me that Aeris had directly reached out to him for recruitment purposes.\n>>> This conversation piqued my interest in your firm. I have since spent some\n>>> time learning more about Aeris Partners. My interest is twofold:\n>>>\n>>>\n>>>\n>>> 1) I am particularly interested in boutique tech banks. Aeries stands\n>>> out as a SaaS M&A bank as I believe very strongly in the future of the SaaS\n>>> industry.\n>>>\n>>> 2) Through learning more about your firm through talking to my buddy who\n>>> had a coffee chat with Aeris and your website, it is abundantly clear that\n>>> your firm places a tremendous emphasis on company culture and personal\n>>> fit, transcending beyond the superficial culture narrative of most banks.\n>>> This is very unique to your firm and genuinely appeals to me.\n>>>\n>>>\n>>>\n>>> I hope I have demonstrated my sincere interest in your firm and you\n>>> consider my application. I also attached my resume below.\n>>>\n>>>\n>>>\n>>> Best,\n>>>\n>>> Jonathan Nachman\n>>>\n>>>\n>>>\n>>",
+     "is_outbound": true
+    },
+    {
+     "id": "18dec8ed14ece59b",
+     "date": "2024-02-27T21:53:14Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "Hi Jonathan,\n\nThank you for following up! I’ve just sent a Teams invite for a Coffee Chat on Thursday, February 29th at 10am ET. Looking forward to it!\n\nBest,\nPaige\n\nPaige Butters\nDirector of Operations\nAeris Partners LLC\nOffice: 617.751.4032\nCell: 740.412.1748\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Tuesday, February 27, 2024 3:28 PM\nTo: Paige Butters <pgb@aerispartners.com>\nSubject: Re: RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship\n\nHello Paige,\n\nI wanted to reach out one last time and see if it is still possible to find a time to have a brief coffee chat. I am still heavily interested in Aeris and would love to continue the recruiting process if possible. Here are some updated times (CT) that work for me:\n\nWednesday (2/28): 11:30 am onwards\nThursday (2/29): 8:30 am - 1:00 pm\nFriday (3/1): 11 am onwards\nMonday (3/4): 11:30 am onwards\nTuesday (3/5): 8:30 am - 1:00 pm & 5: pm onwards\nWednesday (3/6): 11:30 am onwards\n\nPlease let me know if any of these times work for you. Thanks in advance.\n\nBest,\nJonathan\n\nOn Mon, Feb 19, 2024 at 3:19 PM Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>> wrote:\nHey Paige,\n\nI hope you are doing well. I wanted to bump my email from about a week ago as I am still highly interested in pursuing recruiting with Aeris and would love to chat with you. Here are some updated times (CT) that work for me this week:\n\nTuesday (2/20): 9:30 am - 1:00 pm & 5:00 pm onwards\nWednesday (2/21): 11:30 am onwards\nThursday (2/22): 8:30 am - 1:00 pm\nFriday (2/23): 11 am onwards\n\nPlease let me know if any of these times work for you.\n\nBest,\nJonathan\n\nOn Fri, Feb 9, 2024 at 12:46 PM Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>> wrote:\nHi Paige,\n\nI appreciate you getting back to me. I'd love to hop on a quick phone call sometime in the next week. Here are some times (CT) I am available:\n\nMonday (1/12): 12:00 pm onwards\nTuesday (1/13): 9:30 am - 1:00 pm & 5:00 pm onwards\nWednesday (1/14): 11:30 am onwards\nThursday (1/15): 9:00 am - 1:00 pm\n\nPlease let me know if any of these times are convenient for you. I look forward to speaking with you soon!\n\nBest,\nJonathan\n\nOn Fri, Feb 9, 2024 at 10:55 AM Paige Butters <pgb@aerispartners.com<mailto:pgb@aerispartners.com>> wrote:\nHi Jonathan,\n\nDo you have some availability for a Coffee Chat next week? Informal, 10-15 minutes. Please let me know!\n\nThanks,\nPaige\n\nPaige Butters\nDirector of Operations\nAeris Partners LLC\n\nOn 9:01am, Thu 2/08/24, pgb@aerispartners.com<mailto:pgb@aerispartners.com> wrote:\nHi Jonathan,\n\nThank you for your interest in Aeris Partners! I have escalated your application in the review process based on your email below, so thank you for following up. If you have not heard from us on any potential next steps by Tuesday, please feel free to reconnect with me and I’ll let you know of any status updates. We appreciate your patience as we navigate through an unprecedented volume of applications this cycle!\n\nBest,\nPaige\n\nPaige Butters\nDirector of Operations\nAeris Partners LLC\nOffice: 617.751.4032\nCell: 740.412.1748\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Wednesday, February 7, 2024 11:47 PM\nTo: Careers <Careers@aerispartners.com<mailto:Careers@aerispartners.com>>\nSubject: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship\n\nHello Aeris Recruiting Team,\n\nI hope this email finds you well. I am emailing to emphasize my interest in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am from Los Angeles, and I'm now studying Economics and Business at the University of Texas - Austin. I'm sure your firm doesn't receive many applications from UT students, if any at all, so I wanted to send this email to reaffirm my interest in Aeris, having already submitted my online application.\n\nA week ago, a close friend of mine studying at USC Marshall shared with me that Aeris had directly reached out to him for recruitment purposes. This conversation piqued my interest in your firm. I have since spent some time learning more about Aeris Partners. My interest is twofold:\n\n1) I am particularly interested in boutique tech banks. Aeries stands out as a SaaS M&A bank as I believe very strongly in the future of the SaaS industry.\n2) Through learning more about your firm through talking to my buddy who had a coffee chat with Aeris and your website, it is abundantly clear that your firm places a tremendous emphasis on company culture and personal fit, transcending beyond the superficial culture narrative of most banks. This is very unique to your firm and genuinely appeals to me.\n\nI hope I have demonstrated my sincere interest in your firm and you consider my application. I also attached my resume below.\n\nBest,\nJonathan Nachman",
+     "is_outbound": false
+    },
+    {
+     "id": "18dec90841be059f",
+     "date": "2024-02-27T21:55:10Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "pgb@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "Perfect - thanks for sending that over! I look forward to our conversation\nthen.\n\nBest,\nJonathan\n\nOn Tue, Feb 27, 2024 at 3:53 PM Paige Butters <pgb@aerispartners.com> wrote:\n\n> Hi Jonathan,\n>\n>\n>\n> Thank you for following up! I’ve just sent a Teams invite for a Coffee\n> Chat on Thursday, February 29th at 10am ET. Looking forward to it!\n>\n>\n>\n> Best,\n>\n> Paige\n>\n>\n>\n> *Paige Butters*\n>\n> *Director of Operations*\n>\n> *Aeris Partners LLC*\n>\n> Office: 617.751.4032\n>\n> Cell: 740.412.1748\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Tuesday, February 27, 2024 3:28 PM\n> *To:* Paige Butters <pgb@aerispartners.com>\n> *Subject:* Re: RE: UT Austin Student Highly Interested in Aeris Partners'\n> Summer 2025 Internship\n>\n>\n>\n> Hello Paige,\n>\n>\n>\n> I wanted to reach out one last time and see if it is still possible to\n> find a time to have a brief coffee chat. I am still heavily interested in\n> Aeris and would love to continue the recruiting process if possible. Here\n> are some updated times (CT) that work for me:\n>\n>\n>\n> Wednesday (2/28): 11:30 am onwards\n>\n> Thursday (2/29): 8:30 am - 1:00 pm\n>\n> Friday (3/1): 11 am onwards\n>\n> Monday (3/4): 11:30 am onwards\n>\n> Tuesday (3/5): 8:30 am - 1:00 pm & 5: pm onwards\n>\n> Wednesday (3/6): 11:30 am onwards\n>\n>\n>\n> Please let me know if any of these times work for you. Thanks in advance.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Mon, Feb 19, 2024 at 3:19 PM Jonathan Nachman <jnachman17@gmail.com>\n> wrote:\n>\n> Hey Paige,\n>\n>\n>\n> I hope you are doing well. I wanted to bump my email from about a week ago\n> as I am still highly interested in pursuing recruiting with Aeris and would\n> love to chat with you. Here are some updated times (CT) that work for me\n> this week:\n>\n>\n>\n> Tuesday (2/20): 9:30 am - 1:00 pm & 5:00 pm onwards\n>\n> Wednesday (2/21): 11:30 am onwards\n>\n> Thursday (2/22): 8:30 am - 1:00 pm\n>\n> Friday (2/23): 11 am onwards\n>\n>\n>\n> Please let me know if any of these times work for you.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Fri, Feb 9, 2024 at 12:46 PM Jonathan Nachman <jnachman17@gmail.com>\n> wrote:\n>\n> Hi Paige,\n>\n>\n>\n> I appreciate you getting back to me. I'd love to hop on a quick phone call\n> sometime in the next week. Here are some times (CT) I am available:\n>\n>\n>\n> Monday (1/12): 12:00 pm onwards\n>\n> Tuesday (1/13): 9:30 am - 1:00 pm & 5:00 pm onwards\n>\n> Wednesday (1/14): 11:30 am onwards\n>\n> Thursday (1/15): 9:00 am - 1:00 pm\n>\n>\n>\n> Please let me know if any of these times are convenient for you. I look\n> forward to speaking with you soon!\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Fri, Feb 9, 2024 at 10:55 AM Paige Butters <pgb@aerispartners.com>\n> wrote:\n>\n> Hi Jonathan,\n>\n>\n>\n> Do you have some availability for a Coffee Chat next week? Informal,\n> 10-15 minutes. Please let me know!\n>\n>\n>\n> Thanks,\n>\n> Paige\n>\n>\n>\n>\n>\n> Paige Butters\n>\n> Director of Operations\n>\n> Aeris Partners LLC\n>\n>\n>\n> On 9:01am, Thu 2/08/24, pgb@aerispartners.com wrote:\n>\n> Hi Jonathan,\n>\n>\n>\n> Thank you for your interest in Aeris Partners! I have escalated your\n> application in the review process based on your email below, so thank you\n> for following up. If you have not heard from us on any potential next\n> steps by Tuesday, please feel free to reconnect with me and I’ll let you\n> know of any status updates. We appreciate your patience as we navigate\n> through an unprecedented volume of applications this cycle!\n>\n>\n>\n> Best,\n>\n> Paige\n>\n>\n>\n>\n>\n> *Paige Butters*\n>\n> *Director of Operations*\n>\n> *Aeris Partners LLC*\n>\n> Office: 617.751.4032\n>\n> Cell: 740.412.1748\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Wednesday, February 7, 2024 11:47 PM\n> *To:* Careers <Careers@aerispartners.com>\n> *Subject:* UT Austin Student Highly Interested in Aeris Partners' Summer\n> 2025 Internship\n>\n>\n>\n> Hello Aeris Recruiting Team,\n>\n>\n>\n> I hope this email finds you well. I am emailing to emphasize my interest\n> in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am\n> from Los Angeles, and I'm now studying Economics and Business at the\n> University of Texas - Austin. I'm sure your firm doesn't receive many\n> applications from UT students, if any at all, so I wanted to send this\n> email to reaffirm my interest in Aeris, having already submitted my online\n> application.\n>\n>\n>\n> A week ago, a close friend of mine studying at USC Marshall shared with me\n> that Aeris had directly reached out to him for recruitment purposes. This\n> conversation piqued my interest in your firm. I have since spent some time\n> learning more about Aeris Partners. My interest is twofold:\n>\n>\n>\n> 1) I am particularly interested in boutique tech banks. Aeries stands out\n> as a SaaS M&A bank as I believe very strongly in the future of the SaaS\n> industry.\n>\n> 2) Through learning more about your firm through talking to my buddy who\n> had a coffee chat with Aeris and your website, it is abundantly clear that\n> your firm places a tremendous emphasis on company culture and personal\n> fit, transcending beyond the superficial culture narrative of most banks.\n> This is very unique to your firm and genuinely appeals to me.\n>\n>\n>\n> I hope I have demonstrated my sincere interest in your firm and you\n> consider my application. I also attached my resume below.\n>\n>\n>\n> Best,\n>\n> Jonathan Nachman\n>\n>\n>\n>",
+     "is_outbound": true
+    },
+    {
+     "id": "18df5ba825655091",
+     "date": "2024-02-29T16:37:37Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "pgb@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "Good Morning Paige,\n\nI wanted to send a brief email expressing my gratitude for our conversation\nover the phone earlier this morning. I'm especially appreciative of the\nadditional insight you were able to provide regarding the firm's\nculture/environment. Like I mentioned before, I am exceptionally interested\nin pursuing Aeries further and look forward to continuing with the\nrecruitment process. Also, I've attached an updated version of my resume (now\nincludes my upcoming summer 2024 internship) to this email. Thanks again!\n\nBest,\nJonathan\n\nOn Tue, Feb 27, 2024 at 3:55 PM Jonathan Nachman <jnachman17@gmail.com>\nwrote:\n\n> Perfect - thanks for sending that over! I look forward to our conversation\n> then.\n>\n> Best,\n> Jonathan\n>\n> On Tue, Feb 27, 2024 at 3:53 PM Paige Butters <pgb@aerispartners.com>\n> wrote:\n>\n>> Hi Jonathan,\n>>\n>>\n>>\n>> Thank you for following up! I’ve just sent a Teams invite for a Coffee\n>> Chat on Thursday, February 29th at 10am ET. Looking forward to it!\n>>\n>>\n>>\n>> Best,\n>>\n>> Paige\n>>\n>>\n>>\n>> *Paige Butters*\n>>\n>> *Director of Operations*\n>>\n>> *Aeris Partners LLC*\n>>\n>> Office: 617.751.4032\n>>\n>> Cell: 740.412.1748\n>>\n>>\n>>\n>> *From:* Jonathan Nachman <jnachman17@gmail.com>\n>> *Sent:* Tuesday, February 27, 2024 3:28 PM\n>> *To:* Paige Butters <pgb@aerispartners.com>\n>> *Subject:* Re: RE: UT Austin Student Highly Interested in Aeris\n>> Partners' Summer 2025 Internship\n>>\n>>\n>>\n>> Hello Paige,\n>>\n>>\n>>\n>> I wanted to reach out one last time and see if it is still possible to\n>> find a time to have a brief coffee chat. I am still heavily interested in\n>> Aeris and would love to continue the recruiting process if possible. Here\n>> are some updated times (CT) that work for me:\n>>\n>>\n>>\n>> Wednesday (2/28): 11:30 am onwards\n>>\n>> Thursday (2/29): 8:30 am - 1:00 pm\n>>\n>> Friday (3/1): 11 am onwards\n>>\n>> Monday (3/4): 11:30 am onwards\n>>\n>> Tuesday (3/5): 8:30 am - 1:00 pm & 5: pm onwards\n>>\n>> Wednesday (3/6): 11:30 am onwards\n>>\n>>\n>>\n>> Please let me know if any of these times work for you. Thanks in advance.\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>>\n>> On Mon, Feb 19, 2024 at 3:19 PM Jonathan Nachman <jnachman17@gmail.com>\n>> wrote:\n>>\n>> Hey Paige,\n>>\n>>\n>>\n>> I hope you are doing well. I wanted to bump my email from about a week\n>> ago as I am still highly interested in pursuing recruiting with Aeris and\n>> would love to chat with you. Here are some updated times (CT) that work for\n>> me this week:\n>>\n>>\n>>\n>> Tuesday (2/20): 9:30 am - 1:00 pm & 5:00 pm onwards\n>>\n>> Wednesday (2/21): 11:30 am onwards\n>>\n>> Thursday (2/22): 8:30 am - 1:00 pm\n>>\n>> Friday (2/23): 11 am onwards\n>>\n>>\n>>\n>> Please let me know if any of these times work for you.\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>>\n>> On Fri, Feb 9, 2024 at 12:46 PM Jonathan Nachman <jnachman17@gmail.com>\n>> wrote:\n>>\n>> Hi Paige,\n>>\n>>\n>>\n>> I appreciate you getting back to me. I'd love to hop on a quick phone\n>> call sometime in the next week. Here are some times (CT) I am available:\n>>\n>>\n>>\n>> Monday (1/12): 12:00 pm onwards\n>>\n>> Tuesday (1/13): 9:30 am - 1:00 pm & 5:00 pm onwards\n>>\n>> Wednesday (1/14): 11:30 am onwards\n>>\n>> Thursday (1/15): 9:00 am - 1:00 pm\n>>\n>>\n>>\n>> Please let me know if any of these times are convenient for you. I look\n>> forward to speaking with you soon!\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>>\n>> On Fri, Feb 9, 2024 at 10:55 AM Paige Butters <pgb@aerispartners.com>\n>> wrote:\n>>\n>> Hi Jonathan,\n>>\n>>\n>>\n>> Do you have some availability for a Coffee Chat next week? Informal,\n>> 10-15 minutes. Please let me know!\n>>\n>>\n>>\n>> Thanks,\n>>\n>> Paige\n>>\n>>\n>>\n>>\n>>\n>> Paige Butters\n>>\n>> Director of Operations\n>>\n>> Aeris Partners LLC\n>>\n>>\n>>\n>> On 9:01am, Thu 2/08/24, pgb@aerispartners.com wrote:\n>>\n>> Hi Jonathan,\n>>\n>>\n>>\n>> Thank you for your interest in Aeris Partners! I have escalated your\n>> application in the review process based on your email below, so thank you\n>> for following up. If you have not heard from us on any potential next\n>> steps by Tuesday, please feel free to reconnect with me and I’ll let you\n>> know of any status updates. We appreciate your patience as we navigate\n>> through an unprecedented volume of applications this cycle!\n>>\n>>\n>>\n>> Best,\n>>\n>> Paige\n>>\n>>\n>>\n>>\n>>\n>> *Paige Butters*\n>>\n>> *Director of Operations*\n>>\n>> *Aeris Partners LLC*\n>>\n>> Office: 617.751.4032\n>>\n>> Cell: 740.412.1748\n>>\n>>\n>>\n>> *From:* Jonathan Nachman <jnachman17@gmail.com>\n>> *Sent:* Wednesday, February 7, 2024 11:47 PM\n>> *To:* Careers <Careers@aerispartners.com>\n>> *Subject:* UT Austin Student Highly Interested in Aeris Partners' Summer\n>> 2025 Internship\n>>\n>>\n>>\n>> Hello Aeris Recruiting Team,\n>>\n>>\n>>\n>> I hope this email finds you well. I am emailing to emphasize my interest\n>> in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am\n>> from Los Angeles, and I'm now studying Economics and Business at the\n>> University of Texas - Austin. I'm sure your firm doesn't receive many\n>> applications from UT students, if any at all, so I wanted to send this\n>> email to reaffirm my interest in Aeris, having already submitted my online\n>> application.\n>>\n>>\n>>\n>> A week ago, a close friend of mine studying at USC Marshall shared with\n>> me that Aeris had directly reached out to him for recruitment purposes.\n>> This conversation piqued my interest in your firm. I have since spent some\n>> time learning more about Aeris Partners. My interest is twofold:\n>>\n>>\n>>\n>> 1) I am particularly interested in boutique tech banks. Aeries stands out\n>> as a SaaS M&A bank as I believe very strongly in the future of the SaaS\n>> industry.\n>>\n>> 2) Through learning more about your firm through talking to my buddy who\n>> had a coffee chat with Aeris and your website, it is abundantly clear that\n>> your firm places a tremendous emphasis on company culture and personal\n>> fit, transcending beyond the superficial culture narrative of most banks.\n>> This is very unique to your firm and genuinely appeals to me.\n>>\n>>\n>>\n>> I hope I have demonstrated my sincere interest in your firm and you\n>> consider my application. I also attached my resume below.\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan Nachman\n>>\n>>\n>>\n>>",
+     "is_outbound": true
+    },
+    {
+     "id": "18df5e682f2bf027",
+     "date": "2024-02-29T17:25:37Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "Hi Jonathan,\n\nIt was so nice speaking with you earlier and thank you for the updated resume! Please let me know your availability for your 1st Round Technical Interview next week, and we’ll keep you moving forward in the process.\n\nThanks,\nPaige\n\nPaige Butters\nAeris Partners LLC\nOffice: 617.751.4032\nCell: 740.412.1748\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Thursday, February 29, 2024 11:38 AM\nTo: Paige Butters <pgb@aerispartners.com>\nSubject: Re: RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship\n\nGood Morning Paige,\n\nI wanted to send a brief email expressing my gratitude for our conversation over the phone earlier this morning. I'm especially appreciative of the additional insight you were able to provide regarding the firm's culture/environment. Like I mentioned before, I am exceptionally interested in pursuing Aeries further and look forward to continuing with the recruitment process. Also, I've attached an updated version of my resume (now includes my upcoming summer 2024 internship) to this email. Thanks again!\n\nBest,\nJonathan\n\nOn Tue, Feb 27, 2024 at 3:55 PM Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>> wrote:\nPerfect - thanks for sending that over! I look forward to our conversation then.\n\nBest,\nJonathan\n\nOn Tue, Feb 27, 2024 at 3:53 PM Paige Butters <pgb@aerispartners.com<mailto:pgb@aerispartners.com>> wrote:\nHi Jonathan,\n\nThank you for following up! I’ve just sent a Teams invite for a Coffee Chat on Thursday, February 29th at 10am ET. Looking forward to it!\n\nBest,\nPaige\n\nPaige Butters\nDirector of Operations\nAeris Partners LLC\nOffice: 617.751.4032\nCell: 740.412.1748\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Tuesday, February 27, 2024 3:28 PM\nTo: Paige Butters <pgb@aerispartners.com<mailto:pgb@aerispartners.com>>\nSubject: Re: RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship\n\nHello Paige,\n\nI wanted to reach out one last time and see if it is still possible to find a time to have a brief coffee chat. I am still heavily interested in Aeris and would love to continue the recruiting process if possible. Here are some updated times (CT) that work for me:\n\nWednesday (2/28): 11:30 am onwards\nThursday (2/29): 8:30 am - 1:00 pm\nFriday (3/1): 11 am onwards\nMonday (3/4): 11:30 am onwards\nTuesday (3/5): 8:30 am - 1:00 pm & 5: pm onwards\nWednesday (3/6): 11:30 am onwards\n\nPlease let me know if any of these times work for you. Thanks in advance.\n\nBest,\nJonathan\n\nOn Mon, Feb 19, 2024 at 3:19 PM Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>> wrote:\nHey Paige,\n\nI hope you are doing well. I wanted to bump my email from about a week ago as I am still highly interested in pursuing recruiting with Aeris and would love to chat with you. Here are some updated times (CT) that work for me this week:\n\nTuesday (2/20): 9:30 am - 1:00 pm & 5:00 pm onwards\nWednesday (2/21): 11:30 am onwards\nThursday (2/22): 8:30 am - 1:00 pm\nFriday (2/23): 11 am onwards\n\nPlease let me know if any of these times work for you.\n\nBest,\nJonathan\n\nOn Fri, Feb 9, 2024 at 12:46 PM Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>> wrote:\nHi Paige,\n\nI appreciate you getting back to me. I'd love to hop on a quick phone call sometime in the next week. Here are some times (CT) I am available:\n\nMonday (1/12): 12:00 pm onwards\nTuesday (1/13): 9:30 am - 1:00 pm & 5:00 pm onwards\nWednesday (1/14): 11:30 am onwards\nThursday (1/15): 9:00 am - 1:00 pm\n\nPlease let me know if any of these times are convenient for you. I look forward to speaking with you soon!\n\nBest,\nJonathan\n\nOn Fri, Feb 9, 2024 at 10:55 AM Paige Butters <pgb@aerispartners.com<mailto:pgb@aerispartners.com>> wrote:\nHi Jonathan,\n\nDo you have some availability for a Coffee Chat next week? Informal, 10-15 minutes. Please let me know!\n\nThanks,\nPaige\n\nPaige Butters\nDirector of Operations\nAeris Partners LLC\n\nOn 9:01am, Thu 2/08/24, pgb@aerispartners.com<mailto:pgb@aerispartners.com> wrote:\nHi Jonathan,\n\nThank you for your interest in Aeris Partners! I have escalated your application in the review process based on your email below, so thank you for following up. If you have not heard from us on any potential next steps by Tuesday, please feel free to reconnect with me and I’ll let you know of any status updates. We appreciate your patience as we navigate through an unprecedented volume of applications this cycle!\n\nBest,\nPaige\n\nPaige Butters\nDirector of Operations\nAeris Partners LLC\nOffice: 617.751.4032\nCell: 740.412.1748\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Wednesday, February 7, 2024 11:47 PM\nTo: Careers <Careers@aerispartners.com<mailto:Careers@aerispartners.com>>\nSubject: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship\n\nHello Aeris Recruiting Team,\n\nI hope this email finds you well. I am emailing to emphasize my interest in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am from Los Angeles, and I'm now studying Economics and Business at the University of Texas - Austin. I'm sure your firm doesn't receive many applications from UT students, if any at all, so I wanted to send this email to reaffirm my interest in Aeris, having already submitted my online application.\n\nA week ago, a close friend of mine studying at USC Marshall shared with me that Aeris had directly reached out to him for recruitment purposes. This conversation piqued my interest in your firm. I have since spent some time learning more about Aeris Partners. My interest is twofold:\n\n1) I am particularly interested in boutique tech banks. Aeries stands out as a SaaS M&A bank as I believe very strongly in the future of the SaaS industry.\n2) Through learning more about your firm through talking to my buddy who had a coffee chat with Aeris and your website, it is abundantly clear that your firm places a tremendous emphasis on company culture and personal fit, transcending beyond the superficial culture narrative of most banks. This is very unique to your firm and genuinely appeals to me.\n\nI hope I have demonstrated my sincere interest in your firm and you consider my application. I also attached my resume below.\n\nBest,\nJonathan Nachman",
+     "is_outbound": false
+    },
+    {
+     "id": "18df627c62e0978e",
+     "date": "2024-02-29T18:36:58Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "pgb@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: RE: UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "body": "Hello again,\n\nGiven I have two midterms at the beginning of next week, I'll propose some\ntimes (CT) from mid-week onwards:\n\nWednesday (3/6): 1:45 pm onwards\nThursday (3/7): 10:00 am - 1:00 pm & 5:30 pm onwards\nFriday (3/8): 8:30 am - 12:00 pm\n\nHopefully we can find a time that works there. If not, please let me know\nand we'll figure something out.\n\nBest,\nJonathan\n\nOn Thu, Feb 29, 2024 at 11:25 AM Paige Butters <pgb@aerispartners.com>\nwrote:\n\n> Hi Jonathan,\n>\n>\n>\n> It was so nice speaking with you earlier and thank you for the updated\n> resume! Please let me know your availability for your 1st Round\n> Technical Interview next week, and we’ll keep you moving forward in the\n> process.\n>\n>\n>\n> Thanks,\n>\n> Paige\n>\n>\n>\n> *Paige Butters*\n>\n> *Aeris Partners LLC*\n>\n> Office: 617.751.4032\n>\n> Cell: 740.412.1748\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Thursday, February 29, 2024 11:38 AM\n> *To:* Paige Butters <pgb@aerispartners.com>\n> *Subject:* Re: RE: UT Austin Student Highly Interested in Aeris Partners'\n> Summer 2025 Internship\n>\n>\n>\n> Good Morning Paige,\n>\n>\n>\n> I wanted to send a brief email expressing my gratitude for our\n> conversation over the phone earlier this morning. I'm especially\n> appreciative of the additional insight you were able to provide regarding\n> the firm's culture/environment. Like I mentioned before, I am exceptionally\n> interested in pursuing Aeries further and look forward to continuing with\n> the recruitment process. Also, I've attached an updated version of my\n> resume (now includes my upcoming summer 2024 internship) to this email.\n> Thanks again!\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Tue, Feb 27, 2024 at 3:55 PM Jonathan Nachman <jnachman17@gmail.com>\n> wrote:\n>\n> Perfect - thanks for sending that over! I look forward to our conversation\n> then.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Tue, Feb 27, 2024 at 3:53 PM Paige Butters <pgb@aerispartners.com>\n> wrote:\n>\n> Hi Jonathan,\n>\n>\n>\n> Thank you for following up! I’ve just sent a Teams invite for a Coffee\n> Chat on Thursday, February 29th at 10am ET. Looking forward to it!\n>\n>\n>\n> Best,\n>\n> Paige\n>\n>\n>\n> *Paige Butters*\n>\n> *Director of Operations*\n>\n> *Aeris Partners LLC*\n>\n> Office: 617.751.4032\n>\n> Cell: 740.412.1748\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Tuesday, February 27, 2024 3:28 PM\n> *To:* Paige Butters <pgb@aerispartners.com>\n> *Subject:* Re: RE: UT Austin Student Highly Interested in Aeris Partners'\n> Summer 2025 Internship\n>\n>\n>\n> Hello Paige,\n>\n>\n>\n> I wanted to reach out one last time and see if it is still possible to\n> find a time to have a brief coffee chat. I am still heavily interested in\n> Aeris and would love to continue the recruiting process if possible. Here\n> are some updated times (CT) that work for me:\n>\n>\n>\n> Wednesday (2/28): 11:30 am onwards\n>\n> Thursday (2/29): 8:30 am - 1:00 pm\n>\n> Friday (3/1): 11 am onwards\n>\n> Monday (3/4): 11:30 am onwards\n>\n> Tuesday (3/5): 8:30 am - 1:00 pm & 5: pm onwards\n>\n> Wednesday (3/6): 11:30 am onwards\n>\n>\n>\n> Please let me know if any of these times work for you. Thanks in advance.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Mon, Feb 19, 2024 at 3:19 PM Jonathan Nachman <jnachman17@gmail.com>\n> wrote:\n>\n> Hey Paige,\n>\n>\n>\n> I hope you are doing well. I wanted to bump my email from about a week ago\n> as I am still highly interested in pursuing recruiting with Aeris and would\n> love to chat with you. Here are some updated times (CT) that work for me\n> this week:\n>\n>\n>\n> Tuesday (2/20): 9:30 am - 1:00 pm & 5:00 pm onwards\n>\n> Wednesday (2/21): 11:30 am onwards\n>\n> Thursday (2/22): 8:30 am - 1:00 pm\n>\n> Friday (2/23): 11 am onwards\n>\n>\n>\n> Please let me know if any of these times work for you.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Fri, Feb 9, 2024 at 12:46 PM Jonathan Nachman <jnachman17@gmail.com>\n> wrote:\n>\n> Hi Paige,\n>\n>\n>\n> I appreciate you getting back to me. I'd love to hop on a quick phone call\n> sometime in the next week. Here are some times (CT) I am available:\n>\n>\n>\n> Monday (1/12): 12:00 pm onwards\n>\n> Tuesday (1/13): 9:30 am - 1:00 pm & 5:00 pm onwards\n>\n> Wednesday (1/14): 11:30 am onwards\n>\n> Thursday (1/15): 9:00 am - 1:00 pm\n>\n>\n>\n> Please let me know if any of these times are convenient for you. I look\n> forward to speaking with you soon!\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Fri, Feb 9, 2024 at 10:55 AM Paige Butters <pgb@aerispartners.com>\n> wrote:\n>\n> Hi Jonathan,\n>\n>\n>\n> Do you have some availability for a Coffee Chat next week? Informal,\n> 10-15 minutes. Please let me know!\n>\n>\n>\n> Thanks,\n>\n> Paige\n>\n>\n>\n>\n>\n> Paige Butters\n>\n> Director of Operations\n>\n> Aeris Partners LLC\n>\n>\n>\n> On 9:01am, Thu 2/08/24, pgb@aerispartners.com wrote:\n>\n> Hi Jonathan,\n>\n>\n>\n> Thank you for your interest in Aeris Partners! I have escalated your\n> application in the review process based on your email below, so thank you\n> for following up. If you have not heard from us on any potential next\n> steps by Tuesday, please feel free to reconnect with me and I’ll let you\n> know of any status updates. We appreciate your patience as we navigate\n> through an unprecedented volume of applications this cycle!\n>\n>\n>\n> Best,\n>\n> Paige\n>\n>\n>\n>\n>\n> *Paige Butters*\n>\n> *Director of Operations*\n>\n> *Aeris Partners LLC*\n>\n> Office: 617.751.4032\n>\n> Cell: 740.412.1748\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Wednesday, February 7, 2024 11:47 PM\n> *To:* Careers <Careers@aerispartners.com>\n> *Subject:* UT Austin Student Highly Interested in Aeris Partners' Summer\n> 2025 Internship\n>\n>\n>\n> Hello Aeris Recruiting Team,\n>\n>\n>\n> I hope this email finds you well. I am emailing to emphasize my interest\n> in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am\n> from Los Angeles, and I'm now studying Economics and Business at the\n> University of Texas - Austin. I'm sure your firm doesn't receive many\n> applications from UT students, if any at all, so I wanted to send this\n> email to reaffirm my interest in Aeris, having already submitted my online\n> application.\n>\n>\n>\n> A week ago, a close friend of mine studying at USC Marshall shared with me\n> that Aeris had directly reached out to him for recruitment purposes. This\n> conversation piqued my interest in your firm. I have since spent some time\n> learning more about Aeris Partners. My interest is twofold:\n>\n>\n>\n> 1) I am particularly interested in boutique tech banks. Aeries stands out\n> as a SaaS M&A bank as I believe very strongly in the future of the SaaS\n> industry.\n>\n> 2) Through learning more about your firm through talking to my buddy who\n> had a coffee chat with Aeris and your website, it is abundantly clear that\n> your firm places a tremendous emphasis on company culture and personal\n> fit, transcending beyond the superficial culture narrative of most banks.\n> This is very unique to your firm and genuinely appeals to me.\n>\n>\n>\n> I hope I have demonstrated my sincere interest in your firm and you\n> consider my application. I also attached my resume below.\n>\n>\n>\n> Best,\n>\n> Jonathan Nachman\n>\n>\n>\n>",
+     "is_outbound": true
+    }
+   ]
+  },
+  {
+   "thread_id": "18d8ec8ad9534f6c",
+   "messages": [
+    {
+     "id": "18d8ec8ad9534f6c",
+     "date": "2024-02-09T16:55:01Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Thank you for applying to Aeris Partners",
+     "body": "",
+     "is_outbound": false
+    }
+   ]
+  },
+  {
+   "thread_id": "18dec8e4bf88eff6",
+   "messages": [
+    {
+     "id": "18dec8e4bf88eff6",
+     "date": "2024-02-27T21:52:37Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Coffee Chat with Aeris Partners",
+     "body": "",
+     "is_outbound": false
+    }
+   ]
+  },
+  {
+   "thread_id": "18df6b44f49dbb09",
+   "messages": [
+    {
+     "id": "18df6b44f49dbb09",
+     "date": "2024-02-29T00:00:00Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Technical Interview with Aeris Partners",
+     "body": "",
+     "is_outbound": false
+    }
+   ]
+  },
+  {
+   "thread_id": "18e15a9d8b494747",
+   "messages": [
+    {
+     "id": "18e15a9d8b494747",
+     "date": "2024-03-06T21:27:11Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Aeris Partners Application Update",
+     "body": "Hi Jonathan,\n\nThank you for taking the time to do a technical interview with our team. You did very well and we would like to move forward in the interview process. We would love to hear your thoughts on the conversation!\n\nThe next step is an industry-specific and behavioral interview over Teams, so if you are interested in moving forward, please let me know your availability for next week.\n\nWe look forward to hearing from you!\n\nThanks,\nPaige\n\nPaige Butters, Aeris Partners LLC",
+     "is_outbound": false
+    },
+    {
+     "id": "18e15ecc5038e85b",
+     "date": "2024-03-06T22:40:21Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "pgb@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Aeris Partners Application Update",
+     "body": "Hi Paige,\n\nIt's great to hear from you again! I enjoyed my conversation with Caitlin earlier this afternoon and was able to learn a little more about the firm and her background; I'm excited to be continuing the process with Aeris.\n\nUnfortunately, next week isn't ideal for interviews as I will be out of the country on my Spring Break. However, I would love to schedule the interview as soon as I get back. Here are some times (CT) that work for me the week of the 18th.\n\nMonday (3/18): 12:30 pm onwards\nTuesday (3/19): 10:00 am - 1:00 pm & 5:30 pm onwards\nWednesday (3/20): 12:30 pm onwards\nThursday (3/21): 10:00 am - 1:00 pm & 5:30 pm onwards\nFriday (3/22): 10:00 am onwards\n\nPlease let me know if any of these times work and if you have any questions.\n\nThanks,\nJonathan",
+     "is_outbound": true
+    }
+   ]
+  },
+  {
+   "thread_id": "18e1f319d9688866",
+   "messages": [
+    {
+     "id": "18e1f319d9688866",
+     "date": "2024-03-08T17:52:05Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Aeris Partners Application Update",
+     "body": "Hi Jonathan,\n\nThank you for taking the time to do a technical interview with our team. You did very well and we would like to move forward in the interview process. We would love to hear your thoughts on the conversation!\n\nThe next step is an industry-specific and behavioral interview over Teams, so if you are interested in moving forward, please let me know your availability for next week.\n\nWe look forward to hearing from you!\n\nThanks,\nPaige\n\nPaige Butters, Aeris Partners LLC",
+     "is_outbound": false
+    },
+    {
+     "id": "18e1f606fd17f5f7",
+     "date": "2024-03-08T18:43:16Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "pgb@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Aeris Partners Application Update",
+     "body": "Hi Paige,\n\nIt's great to hear from you again! I enjoyed my conversation with Caitlin earlier this week and was able to learn a little more about the firm and her background; I'm excited to be continuing the process with Aeris.\n\n[availability block identical to the 3/6 reply]\n\nThanks,\nJonathan",
+     "is_outbound": true
+    },
+    {
+     "id": "18e2eb0ae164256a",
+     "date": "2024-03-11T18:05:11Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Aeris Partners Application Update",
+     "body": "Hi Jonathan,\n\nThank you for providing your availability, I have just sent a Teams invite for Monday, March 18th at 3pm ET for your 2nd Round Interview with one of our Analysts. Please let me know if any conflicts arise or if you have any questions in the meantime.\n\nBest,\nPaige\n\nPaige Butters, Director of Operations, Aeris Partners LLC",
+     "is_outbound": false
+    }
+   ]
+  },
+  {
+   "thread_id": "18e2eb01b24eddec",
+   "messages": [
+    {
+     "id": "18e2eb01b24eddec",
+     "date": "2024-03-11T00:00:00Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Industry-Specific / Behavioral Interview with Aeris Partners",
+     "body": "",
+     "is_outbound": false
+    }
+   ]
+  },
+  {
+   "thread_id": "18e6263c7bf30b98",
+   "messages": [
+    {
+     "id": "18e63beb4ba13b87",
+     "date": "2024-03-22T01:20:25Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "pgb@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "Inquiring About Timeline of Recruiting Process",
+     "body": "Good Evening Paige,\n\nI hope this email finds you well and that you've had an enjoyable week. I first want to express my gratitude for the opportunity to have had my 2nd round interview with Gabriel on Monday. I enjoyed the opportunity to learn more about the firm and how I can potentially contribute in the future.\n\nI am emailing in regards to the timeline of my recruitment process with Aeris. Specifically, I want to gently ask if there might be any updates regarding the potential next steps in the recruitment timeline. I remain highly enthusiastic about the possibility of joining Aeris and would love to continue this process if possible.\n\nI look forward to hearing from you soon. Please let me know if there is anything you require from me in the meantime.\n\nBest,\nJonathan",
+     "is_outbound": true
+    },
+    {
+     "id": "18e67d461a1dc58a",
+     "date": "2024-03-22T20:22:32Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Inquiring About Timeline of Recruiting Process",
+     "body": "Hi Jonathan,\n\nThank you for reaching out! We should have an updated timeline for our San Francisco candidates by early next week. Please let me know if you have any competing offer deadlines we should be aware of in case we need to expedite the process on our end.\n\nHave a great weekend!\n\nBest,\nPaige",
+     "is_outbound": false
+    },
+    {
+     "id": "18e763167ff49c3a",
+     "date": "2024-03-25T15:18:52Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "pgb@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Inquiring About Timeline of Recruiting Process",
+     "body": "Hey Paige,\n\nI hope you had a great weekend. I appreciate the update in the previous email. I will be sure to keep you informed on any other competing offers as needed. I look forward to hearing from you soon.\n\nBest,\nJonathan",
+     "is_outbound": true
+    },
+    {
+     "id": "18e7b4ab627bab81",
+     "date": "2024-03-26T15:04:32Z",
+     "from": "pgb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Inquiring About Timeline of Recruiting Process",
+     "body": "Hi James,\n\nI know Marijoy Bertolini is working through the pipeline as we speak – hopefully more to come sooner rather than later. Please feel free to reach out to me anytime with any questions.\n\nThanks,\nPaige",
+     "is_outbound": false
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g8gsk4d9n8oq3cgpn6osk8g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g6csj2da588q48da36co32e1k6l134ga46spj4e218op48ci48l2g",
+   "title": "Coffee Chat with Aeris Partners",
+   "start": "2024-02-29T07:00:00-08:00",
+   "end": "2024-02-29T07:30:00-08:00",
+   "attendees": [
+    "jnachman17@gmail.com",
+    "pgb@aerispartners.com"
+   ],
+   "organizer": "pgb@aerispartners.com"
+  },
+  {
+   "id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g70oj6ca18l13ad9j6p148g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g6l236h9l8d238h9m691j6gpk650j6hhp74rj6h236oq48c1m8kr0",
+   "title": "Technical Interview with Aeris Partners",
+   "start": "2024-03-06T12:00:00-08:00",
+   "end": "2024-03-06T12:30:00-08:00",
+   "attendees": [
+    "jnachman17@gmail.com",
+    "pgb@aerispartners.com"
+   ],
+   "organizer": "pgb@aerispartners.com"
+  },
+  {
+   "id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g70q3cda18csj0h256spk8g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g8p2jegpi88sj4chi6srj2c1k84s3igpn84rj6d1h6sqj0e1n751g",
+   "title": "Industry-Specific / Behavioral Interview with Aeris Partners",
+   "start": "2024-03-18T12:00:00-07:00",
+   "end": "2024-03-18T12:30:00-07:00",
+   "attendees": [
+    "jnachman17@gmail.com",
+    "pgb@aerispartners.com"
+   ],
+   "organizer": "pgb@aerispartners.com"
+  }
+ ],
+ "ignored": []
+}

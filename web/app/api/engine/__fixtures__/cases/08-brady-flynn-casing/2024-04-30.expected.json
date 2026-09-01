@@ -1,0 +1,16 @@
+{
+ "version": 1,
+ "rows": [
+  {
+   "row": 2,
+   "status": "Replied",
+   "days": 12,
+   "last_contact": "2024-04-18",
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  }
+ ],
+ "found": [],
+ "warnings": []
+}

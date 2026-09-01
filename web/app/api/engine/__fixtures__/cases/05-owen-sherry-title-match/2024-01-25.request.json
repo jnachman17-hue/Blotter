@@ -1,0 +1,22 @@
+{
+ "version": 1,
+ "now": "2024-01-25T18:00:00Z",
+ "student": {
+  "addresses": [
+   "jnachman17@gmail.com",
+   "jnachman@utexas.edu"
+  ]
+ },
+ "contacts": [
+  {
+   "row": 2,
+   "name": "Owen Sherry",
+   "firm": "Houlihan Lokey",
+   "emails": [],
+   "closed": false
+  }
+ ],
+ "threads": [],
+ "events": [],
+ "ignored": []
+}

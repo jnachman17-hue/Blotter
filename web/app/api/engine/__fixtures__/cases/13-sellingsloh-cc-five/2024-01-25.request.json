@@ -1,0 +1,72 @@
+{
+ "version": 1,
+ "now": "2024-01-25T18:00:00Z",
+ "student": {
+  "addresses": [
+   "jnachman17@gmail.com",
+   "jnachman@utexas.edu"
+  ]
+ },
+ "contacts": [
+  {
+   "row": 2,
+   "name": "John Sellingsloh",
+   "firm": "Intrepid",
+   "emails": [
+    "sellingsloh@intrepidfp.com"
+   ],
+   "closed": false
+  }
+ ],
+ "threads": [
+  {
+   "thread_id": "18d241f188e3c48a",
+   "messages": [
+    {
+     "id": "18d242385381dbc2",
+     "date": "2024-01-19T23:52:03Z",
+     "from": "jnachman@utexas.edu",
+     "to": [
+      "sellingsloh@intrepidfp.com"
+     ],
+     "cc": [],
+     "subject": "Nice Meeting You & Potential Call (Econ Student)",
+     "body": "Hello John,\n\nIt was great to meet you yesterday – I appreciate you spending the time to provide me with some valuable insight. I know you spoke with many students yesterday, so you likely don't specifically remember me. I was one of the Econ students who spoke with you about the feasibility of breaking into Banking without being a McCombs major. Additionally, I am particularly interested in working in New York as opposed to Houston. Therefore, I am following up to see if we could hop on a quick call so I can better understand Intrepid's recruiting process and learn a little more about your experience.\n\nIf you have any free time in the next week, I would love to hop on a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "is_outbound": true
+    },
+    {
+     "id": "18d247eb79c1ac28",
+     "date": "2024-01-20T01:31:31Z",
+     "from": "Sellingsloh@intrepidfp.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [
+      "Bemis@intrepidfp.com",
+      "horton@intrepidfp.com",
+      "cook@intrepidfp.com",
+      "Andersen@intrepidfp.com",
+      "Robinson@intrepidfp.com"
+     ],
+     "subject": "RE: Nice Meeting You & Potential Call (Econ Student)",
+     "body": "Hi Jonathan,\n\nLikewise, it was nice meeting you too. I have copied a few others from Intrepid who help out with recruiting. Gary and Reed were with me yesterday, but I have also copied Brett Bemis (Associate), Kevin Cook (Senior Analyst), and Will Robinson (Analyst). They are all UT alumni. Brett / Kevin / Reed are based in Houston, and Gary / Will are in New York. I think they will be helpful in providing their perspective on the internship and our analyst program.\n\nYou should try to attend our info session on February 6th from 5:30 – 6:30pm CT in UTC 3.102. I can introduce you to a few others then.\n\nHave a great weekend!\n\nJohn Sellingsloh",
+     "is_outbound": false
+    },
+    {
+     "id": "18d282a41dfb95fa",
+     "date": "2024-01-20T18:37:54Z",
+     "from": "jnachman@utexas.edu",
+     "to": [
+      "Sellingsloh@intrepidfp.com"
+     ],
+     "cc": [],
+     "subject": "Re: Nice Meeting You & Potential Call (Econ Student)",
+     "body": "John – I appreciate you connecting me to some of the appropriate contacts at Intrepid. I will reach out to them directly to learn more about the firm and gain some additional recruiting insight. In the meantime, I'll be in attendance at the info session on February 6th. I look forward to seeing you then. Thanks again!\n\nBest,\nJonathan",
+     "is_outbound": true
+    }
+   ]
+  }
+ ],
+ "events": [],
+ "ignored": []
+}

@@ -1,0 +1,66 @@
+{
+ "version": 1,
+ "now": "2024-04-30T18:00:00Z",
+ "student": {
+  "addresses": [
+   "jnachman17@gmail.com",
+   "jnachman@utexas.edu"
+  ]
+ },
+ "contacts": [
+  {
+   "row": 2,
+   "name": "Bank of America - application",
+   "firm": null,
+   "emails": [
+    "US_Campus@bofa.com"
+   ],
+   "closed": false
+  }
+ ],
+ "threads": [
+  {
+   "thread_id": "18ebeb05f11a3468",
+   "messages": [
+    {
+     "id": "18ebeb5bf7b97ae0",
+     "date": "2024-04-08T17:16:05Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "US_Campus@bofa.com"
+     ],
+     "cc": [],
+     "subject": "Emphasizing my Interest in Bank of America Recruiting (Application ID: 3225121)",
+     "body": "Hello Bank of America Recruiting Office,\n\nI hope this email finds you well. I am writing this email to express my continued interest in the Global Investment Banking Summer Analyst Program - 2025. I applied for this position in February, but have not received updates. If any opportunities still remain, I am highly interested in pursuing recruiting for this position where possible. Please let me know if you have any questions.\n\nBest,\nJonathan Nachman",
+     "is_outbound": true
+    },
+    {
+     "id": "18ebebb3b29c1070",
+     "date": "2024-04-08T17:22:04Z",
+     "from": "jnachman17@gmail.com",
+     "to": [
+      "US_Campus@bofa.com"
+     ],
+     "cc": [],
+     "subject": "Re: Emphasizing my Interest in Bank of America Recruiting (Application ID: 3225121)",
+     "body": "Additionally, attached to this email is an updated copy of my resume.",
+     "is_outbound": true
+    },
+    {
+     "id": "18ebefac9720193a",
+     "date": "2024-04-08T18:31:18Z",
+     "from": "us_campus@bofa.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Emphasizing my Interest in Bank of America Recruiting (Application ID: 3225121)",
+     "body": "Hi,\n\nThank you for your inquiry. Per request, I have updated your application. All applicants are currently under review and once a decision has been made a notification will be sent out. Your patience is appreciated during this process.\n\nBest,\n\nChrissonna Cohen\nGlobal Human Resources – Talent Acquisition, Enterprise Campus Strategy",
+     "is_outbound": false
+    }
+   ]
+  }
+ ],
+ "events": [],
+ "ignored": []
+}
