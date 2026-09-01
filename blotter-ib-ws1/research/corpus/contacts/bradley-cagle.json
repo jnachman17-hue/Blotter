@@ -1,0 +1,81 @@
+{
+ "slug": "bradley-cagle",
+ "name": "Bradley Cagle",
+ "firm": "FT Partners",
+ "title": "Analyst",
+ "addresses_seen": [
+  "Bradley.Cagle@ftpartners.com"
+ ],
+ "relationship_opened": "Purely inbound congratulation after the offer; no prior contact",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 2,
+  "outbound": 1,
+  "inbound": 1,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-04-18T16:46:35Z",
+ "last_activity": "2024-04-18T18:09:07Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18ef21a5ee21fbc6",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Congrats!",
+   "messages": [
+    {
+     "message_id": "18ef21a5ee21fbc6",
+     "date": "2024-04-18T16:46:35Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Bradley.Cagle@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Congrats!",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Jonathan - heard you officially accepted the offer, just wanted to say congrats! Looking forward to meeting you this summer.\n\nBest,\nBradley\n\nBradley Cagle, Analyst, Financial Technology Partners LP",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Inbound from a person Jon had never emailed. No prior outbound exists in either mailbox.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ef265e65cb8600",
+     "date": "2024-04-18T18:09:07Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Bradley.Cagle@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Congrats!",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Bradley,\n\nI appreciate you reaching out. I am excited to have accepted the offer and also look forward to meeting you!\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

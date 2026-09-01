@@ -1,0 +1,4192 @@
+{
+ "Banking Contacts": {
+  "2": {
+   "A": {
+    "v": "Legend",
+    "fill": "FF264D82"
+   },
+   "D": {
+    "v": "Bulge",
+    "fill": "FF000000"
+   },
+   "E": {
+    "v": "Boutique",
+    "fill": "FF000000"
+   }
+  },
+  "3": {
+   "A": {
+    "v": "No Response",
+    "fill": "FFFFE598"
+   },
+   "D": {
+    "v": "Goldman Sachs: 0",
+    "fill": "FF000000"
+   },
+   "E": {
+    "v": "Evercore: 0",
+    "fill": "FF000000"
+   }
+  },
+  "4": {
+   "A": {
+    "v": "Phone Call Done",
+    "fill": "FF9CC2E5"
+   },
+   "D": {
+    "v": "Morgan Stanley: 2",
+    "fill": "FF000000"
+   },
+   "E": {
+    "v": "PJT: 0",
+    "fill": "FF000000"
+   }
+  },
+  "5": {
+   "A": {
+    "v": "Bad Email Address",
+    "fill": "FFFF9393"
+   },
+   "D": {
+    "v": "Bank of America: 0",
+    "fill": "FF000000"
+   },
+   "E": {
+    "v": "Lazard: 0",
+    "fill": "FF000000"
+   }
+  },
+  "6": {
+   "A": {
+    "v": "Met in Person",
+    "fill": "FFA8D08D"
+   },
+   "D": {
+    "v": "J.P. Morgan: 0",
+    "fill": "FF000000"
+   },
+   "E": {
+    "v": "Rothschild: 0",
+    "fill": "FF000000"
+   }
+  },
+  "7": {
+   "A": {
+    "v": "Email Correspondence",
+    "fill": "FFCC99FF"
+   },
+   "D": {
+    "v": "Credit Suisse: 0",
+    "fill": "FF000000"
+   },
+   "E": {
+    "v": "PWP: 0",
+    "fill": "FF000000"
+   }
+  },
+  "8": {
+   "A": {
+    "v": "Email Correspondence Ended",
+    "fill": "FFF4B083"
+   },
+   "D": {
+    "v": "Barclays: 1",
+    "fill": "FF000000"
+   },
+   "E": {
+    "v": "Centerview: 0",
+    "fill": "FF000000"
+   }
+  },
+  "9": {
+   "A": {
+    "v": "Leaving Position",
+    "fill": null
+   },
+   "D": {
+    "v": "Citi: 4",
+    "fill": "FF000000"
+   },
+   "E": {
+    "v": "Moelis: 0",
+    "fill": "FF000000"
+   }
+  },
+  "10": {
+   "A": {
+    "v": "Left Position",
+    "fill": null
+   },
+   "D": {
+    "v": "UBS: 0",
+    "fill": "FF000000"
+   },
+   "E": {
+    "v": null,
+    "fill": "FF000000"
+   }
+  },
+  "11": {
+   "A": {
+    "v": "Pending",
+    "fill": null
+   }
+  },
+  "12": {
+   "A": {
+    "v": "Call Pending",
+    "fill": "FF00FF00"
+   }
+  },
+  "13": {
+   "A": {
+    "v": "NOT YET EMAILED",
+    "fill": "FFFF0000"
+   }
+  },
+  "14": {
+   "A": {
+    "v": "Total",
+    "fill": null
+   }
+  },
+  "16": {
+   "A": {
+    "v": "Name",
+    "fill": "FF264D82"
+   },
+   "B": {
+    "v": "Position ",
+    "fill": "FF264D82"
+   },
+   "C": {
+    "v": "Company",
+    "fill": "FF264D82"
+   },
+   "D": {
+    "v": "Location",
+    "fill": "FF264D82"
+   },
+   "E": {
+    "v": "Relation",
+    "fill": "FF264D82"
+   },
+   "F": {
+    "v": "Group/Division",
+    "fill": "FF264D82"
+   },
+   "G": {
+    "v": "Contact",
+    "fill": "FF264D82"
+   },
+   "H": {
+    "v": "Email",
+    "fill": "FF264D82"
+   },
+   "I": {
+    "v": "Degree",
+    "fill": "FF264D82"
+   },
+   "J": {
+    "v": "Notes",
+    "fill": "FF264D82"
+   },
+   "K": {
+    "v": "LinkedIn",
+    "fill": "FF264D82"
+   },
+   "L": {
+    "v": "Initial Contact",
+    "fill": "FF264D82"
+   },
+   "M": {
+    "v": "Secondary Contact",
+    "fill": "FF264D82"
+   },
+   "N": {
+    "v": "Emaily Sent ",
+    "fill": "FF264D82"
+   },
+   "O": {
+    "v": "Response",
+    "fill": "FF264D82"
+   },
+   "P": {
+    "v": "Call Date",
+    "fill": "FF264D82"
+   },
+   "Q": {
+    "v": "Email Sent From",
+    "fill": "FF264D82"
+   },
+   "R": {
+    "v": "Thank you email",
+    "fill": "FF264D82"
+   }
+  },
+  "17": {
+   "A": {
+    "v": "Joseph Candelario",
+    "fill": "FFA4C2F4"
+   },
+   "B": {
+    "v": "Associate ",
+    "fill": null
+   },
+   "C": {
+    "v": "Piper Sandler ",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "KA",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "joseph.candelario@psc.com",
+    "fill": null
+   },
+   "I": {
+    "v": "Typically only mark if unique",
+    "fill": null
+   },
+   "J": {
+    "v": "Deals they were on, advice they had, people they said were helpful, interests they have, etc.",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45307.0",
+    "fill": null
+   },
+   "M": {
+    "v": "Date",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "Friday  (1/19) 2:30",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent ",
+    "fill": null
+   }
+  },
+  "18": {
+   "A": {
+    "v": "Ryan Wheeler ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Guggenheim ",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "KA",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "ryan.wheeler@guggenheimpartners.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45307.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "19": {
+   "A": {
+    "v": "Barbara  Barman ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Goldman ",
+    "fill": null
+   },
+   "D": {
+    "v": "Dallas ",
+    "fill": null
+   },
+   "E": {
+    "v": "PGN ",
+    "fill": null
+   },
+   "F": {
+    "v": "Generalist ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "barman.barbara@gmail.com",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "Worked at Wells Fargo Summer Analyst (Charlotte) --> GS Houston",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45307.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "20": {
+   "A": {
+    "v": "Olivia Henderson ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Morgan Stanley",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "PGN ",
+    "fill": null
+   },
+   "F": {
+    "v": "Generalist ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "Olivialeigh31@gmail.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45307.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "21": {
+   "A": {
+    "v": "Anna Giesler ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "RothChilds ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York",
+    "fill": null
+   },
+   "E": {
+    "v": "PGN ",
+    "fill": null
+   },
+   "F": {
+    "v": "Generalist ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "Anna.e.giesler@gmail.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45307.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "22": {
+   "A": {
+    "v": "Quincy Steele ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Morgan Stanley",
+    "fill": null
+   },
+   "D": {
+    "v": "New York ",
+    "fill": null
+   },
+   "E": {
+    "v": "PGN ",
+    "fill": null
+   },
+   "F": {
+    "v": "Utilities and Power ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "steelequincy@gmail.com",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45307.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes ",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "23": {
+   "A": {
+    "v": "Alice Watts",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Perella Weinberg Partners",
+    "fill": null
+   },
+   "D": {
+    "v": "New York",
+    "fill": null
+   },
+   "E": {
+    "v": "PGN ",
+    "fill": null
+   },
+   "F": {
+    "v": "Generalist ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "alicewatts419@gmail.com",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45307.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "24": {
+   "A": {
+    "v": "Noble Nash ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Intrepid ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York ",
+    "fill": null
+   },
+   "E": {
+    "v": "PGN ",
+    "fill": null
+   },
+   "F": {
+    "v": "Generalist ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "Noble.nash@me.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45307.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "25": {
+   "A": {
+    "v": "Sam Susser ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Goldman ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York ",
+    "fill": null
+   },
+   "E": {
+    "v": "PGN ",
+    "fill": null
+   },
+   "F": {
+    "v": "Generalist ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "same@susser.us",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45307.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "26": {
+   "A": {
+    "v": "Victoria Daly ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Goldman ",
+    "fill": null
+   },
+   "D": {
+    "v": "London ",
+    "fill": null
+   },
+   "E": {
+    "v": "PGN ",
+    "fill": null
+   },
+   "F": {
+    "v": "Generalist ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "victoriad@utexas.edu",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45307.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "27": {
+   "A": {
+    "v": "Kathryn Dzierzanowski",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Cain Brothers ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York",
+    "fill": null
+   },
+   "E": {
+    "v": "PGN ",
+    "fill": null
+   },
+   "F": {
+    "v": "Healthcare",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "kathryndzierzanowski@gmail.com",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45307.0",
+    "fill": null
+   },
+   "M": {
+    "v": "45321.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "P": {
+    "v": "Bumped 1st email",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "28": {
+   "A": {
+    "v": "Douglas Meshenhower ",
+    "fill": "FF9CC2E5"
+   },
+   "B": {
+    "v": "MD",
+    "fill": null
+   },
+   "C": {
+    "v": "Barclays ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York ",
+    "fill": null
+   },
+   "E": {
+    "v": "Dad",
+    "fill": null
+   },
+   "F": {
+    "v": "?",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "douglas.melsheimer@barclays.com",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "Get history and prepare for tomorrow's call",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45308.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "Friday (1/26) @ 1:30 Pm,",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent",
+    "fill": null
+   }
+  },
+  "29": {
+   "A": {
+    "v": "Kate Borden ",
+    "fill": "theme8"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Huliihan ",
+    "fill": null
+   },
+   "D": {
+    "v": "Los Angeles ",
+    "fill": null
+   },
+   "E": {
+    "v": "Chadwick ",
+    "fill": null
+   },
+   "F": {
+    "v": "Generalist ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "kborden@hl.com",
+    "fill": null
+   },
+   "L": {
+    "v": "45308.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "Monday (1/22) @ 6 pm ",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent",
+    "fill": null
+   }
+  },
+  "30": {
+   "A": {
+    "v": "SPWard@hl.com",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Associate ",
+    "fill": null
+   },
+   "C": {
+    "v": "Huliihan ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York ",
+    "fill": null
+   },
+   "E": {
+    "v": "Micah - no mention ",
+    "fill": null
+   },
+   "F": {
+    "v": "RX",
+    "fill": null
+   },
+   "H": {
+    "v": "SPWard@hl.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45308.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "31": {
+   "A": {
+    "v": "Luke Skelly ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Associate ",
+    "fill": null
+   },
+   "C": {
+    "v": "Guggenheim ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York ",
+    "fill": null
+   },
+   "E": {
+    "v": "LSE & Texas",
+    "fill": null
+   },
+   "F": {
+    "v": "Tech ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "lukes5061@gmail.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45308.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No ",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "32": {
+   "A": {
+    "v": "Nicholas Perez ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Guggenheim ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York ",
+    "fill": null
+   },
+   "E": {
+    "v": "Texas",
+    "fill": null
+   },
+   "F": {
+    "v": "Power, Utilities, Renewables",
+    "fill": "FFFFFFFF"
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "nicholas.perez@guggenheimpartners.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45308.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No ",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "33": {
+   "A": {
+    "v": "Michael Liou ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Associate ",
+    "fill": null
+   },
+   "C": {
+    "v": "Guggenheim ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York ",
+    "fill": null
+   },
+   "E": {
+    "v": "Texas ",
+    "fill": null
+   },
+   "F": {
+    "v": "Generalist ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "Michael.liou@guggenheimpartners.com",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45308.0",
+    "fill": null
+   },
+   "M": {
+    "v": "45321.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No ",
+    "fill": null
+   },
+   "P": {
+    "v": "Bumped 1st Email",
+    "fill": "FFFFFFFF"
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "34": {
+   "A": {
+    "v": "Joshua Gumm ",
+    "fill": "FF6D9EEB"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "FT Partners ",
+    "fill": null
+   },
+   "D": {
+    "v": "San Francisco ",
+    "fill": null
+   },
+   "E": {
+    "v": "Family Friend ",
+    "fill": null
+   },
+   "F": {
+    "v": "Tech ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "joshua.gumm@ftpartners.com",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "Sending contact info of houston guy who went to rice then re recruited to get outta houston",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45308.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "Monday (1/22) @ 1pm ",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent ",
+    "fill": null
+   }
+  },
+  "35": {
+   "A": {
+    "v": "Mike Giaquinto ",
+    "fill": "FFFF0000"
+   },
+   "B": {
+    "v": "MD",
+    "fill": null
+   },
+   "C": {
+    "v": "Leerink",
+    "fill": null
+   },
+   "D": {
+    "v": "New York ",
+    "fill": null
+   },
+   "E": {
+    "v": "Family Friend ",
+    "fill": null
+   },
+   "F": {
+    "v": "Health Care",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "mike.giaquinto@leerink.com",
+    "fill": null
+   },
+   "J": {
+    "v": "FOLLOW UP",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45308.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "36": {
+   "A": {
+    "v": "Humberto Zamorano ",
+    "fill": "FFA4C2F4"
+   },
+   "B": {
+    "v": "Incoming Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "JP Morgan",
+    "fill": null
+   },
+   "D": {
+    "v": "New York",
+    "fill": null
+   },
+   "E": {
+    "v": "KA",
+    "fill": null
+   },
+   "F": {
+    "v": "Generalist ",
+    "fill": null
+   },
+   "G": {
+    "v": "Phone",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "Ongoing",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "Thursday 1/18 after 6",
+    "fill": null
+   }
+  },
+  "37": {
+   "A": {
+    "v": "Chris Miller ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Senior Md ",
+    "fill": null
+   },
+   "C": {
+    "v": "Citi",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Family Friend ",
+    "fill": null
+   },
+   "F": {
+    "v": "Oil & Gas? ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "chris.miller@citi.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "None",
+    "fill": null
+   },
+   "L": {
+    "v": "45309.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No*",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com ",
+    "fill": null
+   }
+  },
+  "38": {
+   "A": {
+    "v": "Steve McLaughlin\n",
+    "fill": "FFFF0000"
+   },
+   "B": {
+    "v": "CEO ",
+    "fill": null
+   },
+   "C": {
+    "v": "FT Partners ",
+    "fill": null
+   },
+   "D": {
+    "v": "Miami ",
+    "fill": null
+   },
+   "E": {
+    "v": "Dad - Biz",
+    "fill": null
+   },
+   "F": {
+    "v": "CEO ",
+    "fill": null
+   },
+   "G": {
+    "v": "unknown ",
+    "fill": null
+   },
+   "H": {
+    "v": "unknown",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   }
+  },
+  "39": {
+   "A": {
+    "v": "Turner Gauntt",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Jefferies ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York",
+    "fill": null
+   },
+   "E": {
+    "v": "Texas ",
+    "fill": null
+   },
+   "F": {
+    "v": "Tech ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "tgauntt@jefferies.com",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45309.0",
+    "fill": null
+   },
+   "M": {
+    "v": "45321.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "P": {
+    "v": "Bumped 1st email",
+    "fill": null
+   }
+  },
+  "40": {
+   "A": {
+    "v": "Nick Gernstein ",
+    "fill": "FF9CC2E5"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Citi",
+    "fill": null
+   },
+   "D": {
+    "v": "New York",
+    "fill": null
+   },
+   "E": {
+    "v": "Miranda Brother",
+    "fill": null
+   },
+   "F": {
+    "v": "M&A",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "NGerstein99@gmail.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45309.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "Friday (1/26) @ 10 am ",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent ",
+    "fill": null
+   }
+  },
+  "41": {
+   "A": {
+    "v": "Carrie Cruces",
+    "fill": "FF6D9EEB"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Citi",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Chris Miller Refferal",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "carrie.cruces@citi.com",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "M: +1.908.247.4363, O: +1.832.667.0726",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45310.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "P": {
+    "v": "Monday (1/22) @ 2pm",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent ",
+    "fill": null
+   }
+  },
+  "42": {
+   "A": {
+    "v": "Grey.Bianca@mizuhogroup.com",
+    "fill": "FF00FF00"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Mizhou Group ",
+    "fill": "FFFFFFFF"
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Chris Miller Refferal",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "Grey.Bianca@mizuhogroup.com",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "(318) 780-2674",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45310.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No*",
+    "fill": null
+   },
+   "P": {
+    "v": "Wednesday (1/24) 2 pm Ct",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "43": {
+   "A": {
+    "v": "Carson Harris",
+    "fill": "FF9CC2E5"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "JP Morgan ",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Chris Miller Refferal / texas",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "carson.harris@jpmorgan.com",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "Times proposed",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45310.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "Tuesday (1/23) 6 pm ct",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent",
+    "fill": null
+   }
+  },
+  "44": {
+   "A": {
+    "v": "Jessica (Jess Luft)",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "HR ",
+    "fill": null
+   },
+   "C": {
+    "v": "BofA",
+    "fill": null
+   },
+   "D": {
+    "v": "New York * ",
+    "fill": null
+   },
+   "E": {
+    "v": "UT Networking",
+    "fill": null
+   },
+   "F": {
+    "v": "*",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "jessica.luft@bofa.com",
+    "fill": null
+   },
+   "L": {
+    "v": "1/18 (in person) 1/19 email",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "45": {
+   "A": {
+    "v": "John Sellingslosh ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "VP ",
+    "fill": null
+   },
+   "C": {
+    "v": "Intrepid ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York ",
+    "fill": null
+   },
+   "E": {
+    "v": "UT Networking ",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "sellingsloh@intrepidfp.com",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "Energy - Forwarded me to appropiate New York Contacts",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "1/18 (in person) 1/19 email",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "46": {
+   "A": {
+    "v": "Keaton Cruzcosa ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Piper Sandler ",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Refferal by Joseph C / UT",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "Keaton.cruzcosa@psc.com",
+    "fill": null
+   },
+   "J": {
+    "v": "Energy",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45310.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes (Sent times)",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "47": {
+   "A": {
+    "v": "Gary Horton",
+    "fill": "theme8"
+   },
+   "B": {
+    "v": "Gary Horton",
+    "fill": null
+   },
+   "C": {
+    "v": "Intrepid ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York ",
+    "fill": null
+   },
+   "E": {
+    "v": "Reffered by Josh Sellingsloh",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "horton@intrepidfp.com",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "Energy - Forwarded me to appropiate New York Contacts",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45310.0",
+    "fill": null
+   },
+   "M": {
+    "v": "Times proposed ",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes*",
+    "fill": null
+   },
+   "P": {
+    "v": "Tueday (1/23) 12:30 pm ",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent",
+    "fill": null
+   }
+  },
+  "48": {
+   "A": {
+    "v": "Will Robinson ",
+    "fill": "FF9CC2E5"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Intrepid ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York ",
+    "fill": null
+   },
+   "E": {
+    "v": "Reffered by Josh Sellingsloh",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "Robinson@intrepidfp.com",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "Energy",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "Thursday (1/25) @ 1pm ct",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent",
+    "fill": null
+   }
+  },
+  "49": {
+   "A": {
+    "v": "Brad Hutchinson",
+    "fill": "FFB6D7A8"
+   },
+   "B": {
+    "v": "MD / Vice Chairman",
+    "fill": null
+   },
+   "C": {
+    "v": "BofA Merrill Lynch ",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Chirs - Senior Refferal ",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "b.hutchinson@baml.com",
+    "fill": null
+   },
+   "J": {
+    "v": "Scheduled Send Monday @ 8 am ",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45313.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Awaiting Send",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "50": {
+   "A": {
+    "v": "Jeremy Michael",
+    "fill": "FFB6D7A8"
+   },
+   "B": {
+    "v": "MD / Global Head",
+    "fill": null
+   },
+   "C": {
+    "v": "Barclays ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York",
+    "fill": null
+   },
+   "E": {
+    "v": "Chirs - Senior Refferal ",
+    "fill": null
+   },
+   "F": {
+    "v": "Natural Resources",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "jeremy.michael@barclayscapital.com",
+    "fill": null
+   },
+   "J": {
+    "v": "Scheduled Send Monday @ 8 am ",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45314.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Awaiting Send",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "51": {
+   "A": {
+    "v": "Howard House ",
+    "fill": "FFB6D7A8"
+   },
+   "B": {
+    "v": "MD ",
+    "fill": null
+   },
+   "C": {
+    "v": "Greenhill",
+    "fill": null
+   },
+   "D": {
+    "v": "Unknown",
+    "fill": null
+   },
+   "E": {
+    "v": "Chirs - Senior Refferal ",
+    "fill": null
+   },
+   "F": {
+    "v": "Unknown",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "howard.house@greenhill.com",
+    "fill": null
+   },
+   "J": {
+    "v": "Scheduled Send Monday @ 8 am ",
+    "fill": null
+   },
+   "K": {
+    "v": "Non existent ",
+    "fill": null
+   },
+   "L": {
+    "v": "45315.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Awaiting Send",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "52": {
+   "A": {
+    "v": "Chris Getz",
+    "fill": "FFB6D7A8"
+   },
+   "B": {
+    "v": "MD",
+    "fill": null
+   },
+   "C": {
+    "v": "Mizuho",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Chirs - Senior Refferal ",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "*",
+    "fill": null
+   },
+   "H": {
+    "v": "chris.getz@mizuhogroup.com",
+    "fill": null
+   },
+   "J": {
+    "v": "Don't email he directed Analyst to me (Grey Bianca)",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45316.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Awaiting Send",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "53": {
+   "A": {
+    "v": "Jonathan Cox",
+    "fill": "FFB6D7A8"
+   },
+   "B": {
+    "v": "MD ",
+    "fill": null
+   },
+   "C": {
+    "v": "JP Morgan",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Chirs - Senior Refferal ",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "jonathan.cox@jpmorgan.com",
+    "fill": null
+   },
+   "J": {
+    "v": "Scheduled Send Monday @ 8 am ",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45317.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Awaiting Send",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "54": {
+   "A": {
+    "v": "Chris Mize",
+    "fill": "FFB6D7A8"
+   },
+   "B": {
+    "v": "MD ",
+    "fill": null
+   },
+   "C": {
+    "v": "Morgan Stanley ",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Chirs - Senior Refferal ",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "christopher.mize@morganstanley.com",
+    "fill": null
+   },
+   "J": {
+    "v": "Scheduled Send Monday @ 8 am ",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45318.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Awaiting Send",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "55": {
+   "A": {
+    "v": "Hank Hilliard",
+    "fill": "FFB6D7A8"
+   },
+   "B": {
+    "v": "MD ",
+    "fill": null
+   },
+   "C": {
+    "v": "RBC ",
+    "fill": null
+   },
+   "D": {
+    "v": "Unknown ",
+    "fill": null
+   },
+   "E": {
+    "v": "Chirs - Senior Refferal ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "Hank.hilliard@rbccn.com",
+    "fill": null
+   },
+   "J": {
+    "v": "Scheduled Send Monday @ 8 am ",
+    "fill": null
+   },
+   "K": {
+    "v": "Non existent ",
+    "fill": null
+   },
+   "L": {
+    "v": "45319.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Awaiting Send",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "56": {
+   "A": {
+    "v": "Rob Pierce",
+    "fill": "FFB6D7A8"
+   },
+   "B": {
+    "v": "MD ",
+    "fill": null
+   },
+   "C": {
+    "v": "Toronto Dominion ",
+    "fill": null
+   },
+   "D": {
+    "v": "Unknown",
+    "fill": null
+   },
+   "E": {
+    "v": "Chirs - Senior Refferal ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "Rob.pierce@tdsecurities.com",
+    "fill": null
+   },
+   "J": {
+    "v": "Scheduled Send Monday @ 8 am ",
+    "fill": null
+   },
+   "K": {
+    "v": "Non existent ",
+    "fill": null
+   },
+   "L": {
+    "v": "45320.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Awaiting Send",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "57": {
+   "A": {
+    "v": "Sonu Johl",
+    "fill": "FFB6D7A8"
+   },
+   "B": {
+    "v": "Director ",
+    "fill": null
+   },
+   "C": {
+    "v": "Raymond Jones ",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Chris - Senior Refferal",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "Sonu.johl@raymondjames.com",
+    "fill": null
+   },
+   "J": {
+    "v": "Scheduled Send Monday @ 8 am ",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45321.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Awaiting Send",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "58": {
+   "A": {
+    "v": "Warner Friend - more to come",
+    "fill": null
+   },
+   "L": {
+    "v": "45310.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "59": {
+   "A": {
+    "v": "Keaton Kruzcosa ",
+    "fill": "FFFFE599"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Piper Sandler",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Joseph - Candelario ",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "Keaton.cruzcosa@psc.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45311.0",
+    "fill": null
+   }
+  },
+  "60": {
+   "A": {
+    "v": "Kevin Stephen's ",
+    "fill": "theme8"
+   },
+   "B": {
+    "v": "MD",
+    "fill": null
+   },
+   "C": {
+    "v": "Houlihan Lokey",
+    "fill": null
+   },
+   "D": {
+    "v": "Los Angeles",
+    "fill": null
+   },
+   "E": {
+    "v": "Zoe",
+    "fill": null
+   },
+   "F": {
+    "v": "Financial Sponsors",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "kstephens@hl.com",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45313.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "Tuesday (1/30) @ 12 pm ct",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent ",
+    "fill": null
+   }
+  },
+  "61": {
+   "A": {
+    "v": "Mat Young",
+    "fill": "FF9CC2E5"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Citi",
+    "fill": null
+   },
+   "D": {
+    "v": "New York",
+    "fill": null
+   },
+   "E": {
+    "v": "Carrie Refferal",
+    "fill": null
+   },
+   "F": {
+    "v": "Power",
+    "fill": null
+   },
+   "G": {
+    "v": "email",
+    "fill": null
+   },
+   "H": {
+    "v": "mathew.young@citi.com",
+    "fill": null
+   },
+   "J": {
+    "v": "Reffered by Carrie Houston Citi - times proposed",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45313.0",
+    "fill": "FFFFFFFF"
+   },
+   "M": {
+    "v": "CELL CALL (469) 834-1618",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": "FFFFFFFF"
+   },
+   "O": {
+    "v": "Yes",
+    "fill": "FFFFFFFF"
+   },
+   "P": {
+    "v": "Friday (1/26) @ 2 m ct",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent",
+    "fill": null
+   }
+  },
+  "62": {
+   "A": {
+    "v": "Grant Gillespie ",
+    "fill": "FF9CC2E5"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Morgan Stanley ",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Unsure (reached out to me)",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy",
+    "fill": null
+   },
+   "G": {
+    "v": "email ",
+    "fill": null
+   },
+   "H": {
+    "v": "Grant.Gillespie@morganstanley.com",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "Times proposed ",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45313.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes*",
+    "fill": null
+   },
+   "P": {
+    "v": "Thursday (1/25) @ 5 pm ct",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent",
+    "fill": null
+   }
+  },
+  "63": {
+   "A": {
+    "v": "David Talbot ",
+    "fill": "FF9CC2E5"
+   },
+   "B": {
+    "v": "Analyat ",
+    "fill": null
+   },
+   "C": {
+    "v": "Raymond Jones",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Sonu- Chris refferal",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "David.Talbot@raymondjames.com",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "Times proposed ",
+    "fill": null
+   },
+   "K": {
+    "v": "None",
+    "fill": null
+   },
+   "L": {
+    "v": "44948.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes*",
+    "fill": null
+   },
+   "P": {
+    "v": "Wednesday (1/24) 3:30 pm ct",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent",
+    "fill": null
+   }
+  },
+  "64": {
+   "A": {
+    "v": "Ethan Marnhout ",
+    "fill": "FF9CC2E5"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "FT Partners ",
+    "fill": null
+   },
+   "D": {
+    "v": "San Francisco",
+    "fill": null
+   },
+   "E": {
+    "v": "Josh Gumm Refferal",
+    "fill": null
+   },
+   "F": {
+    "v": "Fintech ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "(ethan.marnhout@ftpartners.com",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "Houston IB -> FT partners San Francisco ",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45314.0",
+    "fill": null
+   },
+   "M": {
+    "v": "Email bumped - confirmed ",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "Friday (2/1) @ 11:30 am CT",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent ",
+    "fill": null
+   }
+  },
+  "65": {
+   "A": {
+    "v": "Carson Harris",
+    "fill": "theme8"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "JPM",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Chris Refferal",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "carson.harris@jpmorgan.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45313.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "Tuesday (1/23) @ 6pm",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent",
+    "fill": null
+   }
+  },
+  "66": {
+   "A": {
+    "v": "Danny Shin ",
+    "fill": "theme8"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "`",
+    "fill": null
+   },
+   "D": {
+    "v": "Los Angeles",
+    "fill": null
+   },
+   "E": {
+    "v": "Kate Borden Refferal",
+    "fill": null
+   },
+   "F": {
+    "v": "CFR ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "danny.shin@hl.com",
+    "fill": null
+   },
+   "J": {
+    "v": "Hardass",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45314.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "P": {
+    "v": "Dates proposed",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent ",
+    "fill": null
+   }
+  },
+  "67": {
+   "A": {
+    "v": "Nolan D'Souza ",
+    "fill": "FFFF0000"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Intrepid",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "Gary Refferal",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "nolandsouza@utexas.edu",
+    "fill": "FFFFFFFF"
+   },
+   "J": {
+    "v": "Ka Homie / TRY AND FIND INTREPID EMAIL",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "68": {
+   "A": {
+    "v": "Raleigh David",
+    "fill": "FFFF0000"
+   },
+   "B": {
+    "v": "Analyst ",
+    "fill": null
+   },
+   "C": {
+    "v": "Raymond James ",
+    "fill": null
+   },
+   "D": {
+    "v": "Houston ",
+    "fill": null
+   },
+   "E": {
+    "v": "KA? David T. Refferal",
+    "fill": null
+   },
+   "F": {
+    "v": "Energy",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "?",
+    "fill": null
+   }
+  },
+  "69": {
+   "A": {
+    "v": "Grace Steelman ",
+    "fill": "FF00FF00"
+   },
+   "B": {
+    "v": "Analyst",
+    "fill": null
+   },
+   "C": {
+    "v": "Barclays",
+    "fill": null
+   },
+   "D": {
+    "v": "New York",
+    "fill": null
+   },
+   "E": {
+    "v": "Doug Refferal",
+    "fill": null
+   },
+   "F": {
+    "v": "Tech ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "jay.klein@barclays.com",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45321.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "10:30 am Central ",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "70": {
+   "A": {
+    "v": "Jay Klain ",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Analyst",
+    "fill": null
+   },
+   "C": {
+    "v": "Barclays ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York",
+    "fill": null
+   },
+   "E": {
+    "v": "Doug Refferal",
+    "fill": null
+   },
+   "F": {
+    "v": "Tech ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email ",
+    "fill": null
+   },
+   "H": {
+    "v": "grace.steelman@barclays.com ",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45321.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "71": {
+   "A": {
+    "v": "Sean Kang",
+    "fill": null
+   },
+   "B": {
+    "v": "Analyst/UNSURE",
+    "fill": null
+   },
+   "C": {
+    "v": "Stifel",
+    "fill": null
+   },
+   "D": {
+    "v": "New York",
+    "fill": null
+   },
+   "E": {
+    "v": "Texas",
+    "fill": null
+   },
+   "F": {
+    "v": "Healthcare",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   }
+  },
+  "72": {
+   "A": {
+    "v": "Kyle Gunninson",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Director",
+    "fill": null
+   },
+   "C": {
+    "v": "Raymond James ",
+    "fill": null
+   },
+   "D": {
+    "v": "New York",
+    "fill": null
+   },
+   "E": {
+    "v": "UT Austin",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "Kyle.Gunnison@raymondjames.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45321.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman@utexas.edu",
+    "fill": null
+   }
+  },
+  "73": {
+   "A": {
+    "v": "Kammeh Valliani",
+    "fill": "FFFFE598"
+   },
+   "B": {
+    "v": "Associate ",
+    "fill": null
+   },
+   "C": {
+    "v": "Jefferies",
+    "fill": null
+   },
+   "D": {
+    "v": "New york",
+    "fill": null
+   },
+   "E": {
+    "v": "UT Austin",
+    "fill": null
+   },
+   "F": {
+    "v": "Unknown ",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "kvalliani@jefferies.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "L": {
+    "v": "45321.0",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "No",
+    "fill": null
+   }
+  },
+  "74": {
+   "A": {
+    "v": "Katrina Yuzefpolsky",
+    "fill": "FF9CC2E5"
+   },
+   "B": {
+    "v": "Recruiter? ",
+    "fill": null
+   },
+   "C": {
+    "v": "K-1",
+    "fill": null
+   },
+   "D": {
+    "v": "Manhattan ",
+    "fill": null
+   },
+   "E": {
+    "v": "Proximit",
+    "fill": null
+   },
+   "F": {
+    "v": "PE",
+    "fill": null
+   },
+   "G": {
+    "v": "Email",
+    "fill": null
+   },
+   "H": {
+    "v": "kyuzefpolsky@k1ops.com",
+    "fill": "FFFFFFFF"
+   },
+   "K": {
+    "v": "Here",
+    "fill": null
+   },
+   "N": {
+    "v": "Yes",
+    "fill": null
+   },
+   "O": {
+    "v": "Yes",
+    "fill": null
+   },
+   "P": {
+    "v": "45324.0",
+    "fill": null
+   },
+   "Q": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "R": {
+    "v": "Sent",
+    "fill": null
+   }
+  },
+  "85": {
+   "A": {
+    "v": "Bank Applications",
+    "fill": null
+   }
+  },
+  "86": {
+   "A": {
+    "v": "Piper Sandler ",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "Submitted ",
+    "fill": null
+   }
+  },
+  "87": {
+   "A": {
+    "v": "Houlihan LA Corp Fin CFR",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "submitted ",
+    "fill": null
+   }
+  },
+  "88": {
+   "A": {
+    "v": "Morgan Stanley Hou",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "submitted ",
+    "fill": null
+   }
+  },
+  "89": {
+   "A": {
+    "v": "JPM Chase",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "Submitted ",
+    "fill": null
+   }
+  },
+  "90": {
+   "A": {
+    "v": "Aeris Partners SF",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "Submiteed ",
+    "fill": null
+   }
+  },
+  "91": {
+   "A": {
+    "v": "Houlihan NY Corp Finance ",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "Submited ",
+    "fill": null
+   }
+  },
+  "92": {
+   "A": {
+    "v": "Moelis LA",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "Submitted ",
+    "fill": null
+   }
+  },
+  "93": {
+   "A": {
+    "v": "Ft Partners",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "Submitted ",
+    "fill": null
+   }
+  },
+  "94": {
+   "A": {
+    "v": "BofA (NY, SF, CHI)",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "95": {
+   "A": {
+    "v": "Leerink",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "Submiteed",
+    "fill": null
+   }
+  },
+  "96": {
+   "A": {
+    "v": "Barclays NY",
+    "fill": null
+   },
+   "B": {
+    "v": "JonathanNachman",
+    "fill": null
+   },
+   "D": {
+    "v": "Submitted ",
+    "fill": null
+   }
+  },
+  "97": {
+   "A": {
+    "v": "Barclays LA ",
+    "fill": null
+   },
+   "B": {
+    "v": "JonathanNachman",
+    "fill": null
+   },
+   "D": {
+    "v": "submitted ",
+    "fill": null
+   }
+  },
+  "98": {
+   "A": {
+    "v": "Barclays SF",
+    "fill": null
+   },
+   "B": {
+    "v": "JonathanNachman",
+    "fill": null
+   },
+   "D": {
+    "v": "submitted ",
+    "fill": null
+   }
+  },
+  "99": {
+   "A": {
+    "v": "Barclays Chi ",
+    "fill": null
+   },
+   "B": {
+    "v": "JonathanNachman",
+    "fill": null
+   },
+   "D": {
+    "v": "submitted ",
+    "fill": null
+   }
+  },
+  "100": {
+   "A": {
+    "v": "Wells Fargo (NY, SF, LA)",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "submitted ",
+    "fill": null
+   }
+  },
+  "101": {
+   "A": {
+    "v": "UBS  (NY, CHI, SF)",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "submitted ",
+    "fill": null
+   }
+  },
+  "102": {
+   "A": {
+    "v": "Citi (NY, LA, Sf, Chi)",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "submitted ",
+    "fill": null
+   }
+  },
+  "103": {
+   "A": {
+    "v": "Baird Tampa",
+    "fill": null
+   },
+   "B": {
+    "v": "jnahman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "submitted ",
+    "fill": null
+   }
+  },
+  "104": {
+   "A": {
+    "v": "AGC Boston ",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "submitted",
+    "fill": null
+   },
+   "E": {
+    "v": null,
+    "fill": "FFFFFFFF"
+   }
+  },
+  "105": {
+   "A": {
+    "v": "RBC New York ",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "submitted",
+    "fill": null
+   }
+  },
+  "106": {
+   "A": {
+    "v": "DC Advisory ",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "107": {
+   "A": {
+    "v": "Union Square Advisors ",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   }
+  },
+  "108": {
+   "A": {
+    "v": "Loop Capital ",
+    "fill": null
+   }
+  },
+  "109": {
+   "A": {
+    "v": "Duetsche SF ",
+    "fill": null
+   },
+   "B": {
+    "v": "jnachman17@gmail.com",
+    "fill": null
+   },
+   "D": {
+    "v": "submitted",
+    "fill": null
+   }
+  },
+  "110": {
+   "A": {
+    "v": "HSBC",
+    "fill": null
+   },
+   "B": {
+    "v": "JonathanNachman",
+    "fill": null
+   }
+  },
+  "112": {
+   "A": {
+    "v": "Jefferies",
+    "fill": null
+   }
+  },
+  "113": {
+   "A": {
+    "v": "Harris Williams ",
+    "fill": null
+   }
+  },
+  "114": {
+   "A": {
+    "v": "Oppenheimer ",
+    "fill": null
+   }
+  },
+  "115": {
+   "A": {
+    "v": "Bestmere venture partners ",
+    "fill": null
+   },
+   "B": {
+    "v": " ",
+    "fill": null
+   }
+  }
+ },
+ "Email Structures": {
+  "2": {
+   "B": {
+    "v": "Firm Name",
+    "fill": "FF264D82"
+   },
+   "C": {
+    "v": "Structure",
+    "fill": "FF264D82"
+   }
+  },
+  "3": {
+   "B": {
+    "v": "Bulge Brackets",
+    "fill": "FFD8D8D8"
+   },
+   "C": {
+    "v": null,
+    "fill": "FFD8D8D8"
+   }
+  },
+  "4": {
+   "B": {
+    "v": "Goldman Sachs",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@gs.com",
+    "fill": null
+   }
+  },
+  "5": {
+   "B": {
+    "v": "Morgan Stanley",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@ms.com",
+    "fill": null
+   }
+  },
+  "6": {
+   "B": {
+    "v": "Credit Suisse",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@credit-suisse.com",
+    "fill": null
+   }
+  },
+  "7": {
+   "B": {
+    "v": "BAML",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@baml.com",
+    "fill": null
+   }
+  },
+  "8": {
+   "B": {
+    "v": "Deutsche Bank",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@db.com",
+    "fill": null
+   }
+  },
+  "9": {
+   "B": {
+    "v": "J.P. Morgan",
+    "fill": null
+   },
+   "C": {
+    "v": "first.m.last@jpmorgan.com",
+    "fill": null
+   },
+   "D": {
+    "v": "The middle initial is only used if they have two bankers with the same name. Many banks are like that.",
+    "fill": null
+   }
+  },
+  "10": {
+   "B": {
+    "v": "Citigroup",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@citi.com",
+    "fill": null
+   }
+  },
+  "11": {
+   "B": {
+    "v": "Barclays",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@barclays.com",
+    "fill": null
+   }
+  },
+  "13": {
+   "B": {
+    "v": "Boutiques/Others",
+    "fill": "FFD8D8D8"
+   },
+   "C": {
+    "v": null,
+    "fill": "FFD8D8D8"
+   }
+  },
+  "14": {
+   "B": {
+    "v": "Evercore Partners",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@evercore.com",
+    "fill": null
+   },
+   "D": {
+    "v": "Senior Bankers = last@evercore.com",
+    "fill": null
+   }
+  },
+  "15": {
+   "B": {
+    "v": "Lazard",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@lazard.com",
+    "fill": null
+   }
+  },
+  "16": {
+   "B": {
+    "v": "Houlihan Lokey",
+    "fill": null
+   },
+   "C": {
+    "v": "flast@hlhz.com",
+    "fill": null
+   }
+  },
+  "17": {
+   "B": {
+    "v": "Greenhill & Co.",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@greenhill.com",
+    "fill": null
+   }
+  },
+  "18": {
+   "B": {
+    "v": "Centerview Partners",
+    "fill": null
+   },
+   "C": {
+    "v": "flast@centerviewpartners.com",
+    "fill": null
+   }
+  },
+  "19": {
+   "B": {
+    "v": "Cain Brothers",
+    "fill": null
+   },
+   "C": {
+    "v": "flast@cainbrothers.com",
+    "fill": null
+   }
+  },
+  "20": {
+   "B": {
+    "v": "Guggenheim",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@guggenheimpartners.com",
+    "fill": null
+   }
+  },
+  "21": {
+   "B": {
+    "v": "UBS",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@ubs.com",
+    "fill": null
+   }
+  },
+  "22": {
+   "B": {
+    "v": "RBC",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@rbc.com",
+    "fill": null
+   }
+  },
+  "23": {
+   "B": {
+    "v": "Wells Fargo",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@wellsfargo.com",
+    "fill": null
+   }
+  },
+  "24": {
+   "B": {
+    "v": "Jefferies",
+    "fill": null
+   },
+   "C": {
+    "v": "flast@jefferies.com",
+    "fill": null
+   }
+  },
+  "25": {
+   "B": {
+    "v": "Macquaire",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@macquaire.com",
+    "fill": null
+   }
+  },
+  "26": {
+   "B": {
+    "v": "Stifel",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@stifel.com",
+    "fill": null
+   }
+  },
+  "27": {
+   "B": {
+    "v": "Oppenhemier",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@opco.com",
+    "fill": null
+   }
+  },
+  "28": {
+   "B": {
+    "v": "Piper Jaffray",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@pjc.com",
+    "fill": null
+   }
+  },
+  "29": {
+   "B": {
+    "v": "Raymond James",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@raymondjames.com",
+    "fill": null
+   }
+  },
+  "30": {
+   "B": {
+    "v": "Perella Weinberg",
+    "fill": null
+   },
+   "C": {
+    "v": "flast@pwpartners.com",
+    "fill": null
+   }
+  },
+  "31": {
+   "B": {
+    "v": "Qatalyst Partners",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@qatalyst.com",
+    "fill": null
+   },
+   "D": {
+    "v": "This varies with some of their bankers",
+    "fill": null
+   }
+  },
+  "32": {
+   "B": {
+    "v": "PJT Partners",
+    "fill": null
+   },
+   "C": {
+    "v": "last@pjtpartners.com",
+    "fill": null
+   }
+  },
+  "33": {
+   "B": {
+    "v": "Rothschild & Co",
+    "fill": null
+   },
+   "C": {
+    "v": "first.last@rothschildandco.com",
+    "fill": null
+   }
+  },
+  "35": {
+   "B": {
+    "v": "Private Equity & Buyside",
+    "fill": "FFD8D8D8"
+   },
+   "C": {
+    "v": null,
+    "fill": "FFD8D8D8"
+   }
+  },
+  "36": {
+   "B": {
+    "v": "Apollo Global Management",
+    "fill": null
+   },
+   "C": {
+    "v": "flast@apollo.com",
+    "fill": null
+   }
+  },
+  "37": {
+   "B": {
+    "v": "Blackstone",
+    "fill": null
+   },
+   "C": {
+    "v": "last@blackstone.com",
+    "fill": null
+   }
+  },
+  "38": {
+   "B": {
+    "v": "Ares",
+    "fill": null
+   },
+   "C": {
+    "v": "flast@aresmgmt.com",
+    "fill": null
+   }
+  }
+ }
+}

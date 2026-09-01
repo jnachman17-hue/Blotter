@@ -1,0 +1,86 @@
+{
+ "slug": "turner-gauntt",
+ "name": "Turner Gauntt",
+ "firm": "Jefferies",
+ "title": "Analyst, Tech",
+ "addresses_seen": [
+  "tgauntt@jefferies.com"
+ ],
+ "relationship_opened": "Cold email, Texas angle",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 2,
+  "outbound": 2,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-19T02:58:58Z",
+ "last_activity": "2024-01-31T05:33:04Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d1fa618a606fb4",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin Student Interested in Investment Banking @ Jefferies",
+   "messages": [
+    {
+     "message_id": "18d1fa84907c0116",
+     "date": "2024-01-19T02:58:58Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "tgauntt@jefferies.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested in Investment Banking @ Jefferies",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Turner,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I'd love to talk to you to learn more about your experience at Jefferies given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d5e01ac4be5a33",
+     "date": "2024-01-31T05:33:04Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "tgauntt@jefferies.com"
+     ],
+     "cc": [],
+     "subject": "Re: UT Austin Student Interested in Investment Banking @ Jefferies",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Tuner,\n\nI hope this email finds you well. I wanted to politely bump my first email as I am still very interested in pursuing Banking at Jefferies in New York. If you would be willing to chat that would greatly appreciated.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Bump at 12.1 days. Salutation misspells the recipient's name ('Tuner'). Recorded verbatim.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

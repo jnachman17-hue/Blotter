@@ -1,0 +1,154 @@
+{
+ "slug": "houlihan-rx-process",
+ "name": "Houlihan Lokey NY Restructuring - shared-mailbox recruiting process",
+ "firm": null,
+ "title": null,
+ "addresses_seen": [],
+ "relationship_opened": "Firm-level recruiting process, not a single person",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "record_type": "firm_process",
+ "counts": {
+  "threads": 3,
+  "messages": 4,
+  "outbound": 1,
+  "inbound": 3,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-29T20:16:09Z",
+ "last_activity": "2024-01-31T03:09:12Z",
+ "threads": [
+  {
+   "thread_id": "18d56dd8d8c5e518",
+   "capture": "supplement",
+   "subject": "Houlihan Lokey | 2025 Summer Analyst Recruiting Introductory Call",
+   "messages": [
+    {
+     "message_id": "18d56dd8d8c5e518",
+     "date": "2024-01-29T20:16:09Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Maura.Vestal@hl.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Houlihan Lokey | 2025 Summer Analyst Recruiting Introductory Call",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      },
+      {
+       "filename": "image002.gif",
+       "mimeType": "image/gif"
+      },
+      {
+       "filename": "image003.gif",
+       "mimeType": "image/gif"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Jonathan,\n\nHope you are well! We understand that you are interested in our 2025 New York Financial Restructuring Summer Analyst opportunities at Houlihan Lokey and would like to set up a 30-minute introductory call with one of our bankers over the next few weeks. If you are interested, could you please email FRcampusrecruiting@hl.com with your availability for the next two weeks? We will respond back to you as soon as we can with a confirmation of your scheduled date/time.\n\nIn the meantime, if you have any questions, please do not hesitate to reach out.\n\nBest,\nMaura Vestal, Senior Campus Recruiter",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Inbound from a fourth Houlihan party, instructing Jon to write to a fifth (a shared mailbox). Houlihan Lokey is represented in this corpus by SEVEN distinct addresses across both mailboxes.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d5724608ac6ffb",
+   "capture": "supplement",
+   "subject": "Scheduling an Introductory Call: Houlihan NY Restructuring Team",
+   "messages": [
+    {
+     "message_id": "18d5731e0d8259e6",
+     "date": "2024-01-29T21:48:22Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "FRcampusrecruiting@hl.com"
+     ],
+     "cc": [],
+     "subject": "Scheduling an Introductory Call: Houlihan NY Restructuring Team",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Houlihan Recruiting Team,\n\nI hope you are doing well. I received an email from Maura Vestal directing me to reach out to this email address to schedule an introductory call with Houlihan's New York Restructuring Team. I am eager to take advantage of this opportunity. Here are some times (ET) that work for me.\n\nThursday (2/1): 11:00 am - 2:00 pm & 6:00 pm onwards.\nFriday (2/2): 1:00 pm onwards\nMonday (2/5): 12:30 pm onwards\nTuesday (2/6): 11:00 am - 2:00 pm & 6:00 pm onwards\nWednesday (2/7): 12:30 pm onwards\nThursday (2/8): 11:00 am - 2:00 pm & 6:00 pm onwards\n\nPlease let me know if any of these times are convenient. I look forward to speaking with someone from the Houlihan NY Restructuring Team soon!\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d5834a37885d42",
+     "date": "2024-01-30T02:30:50Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "FRCampusRecruiting@hl.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "RE: Scheduling an Introductory Call: Houlihan NY Restructuring Team",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan,\n\nThank you for giving us your availability! We will get back to you shortly confirming the date/time of your introductory call.\n\nIn the meantime, if you have any questions, please do let me know.\n\nBest,\nFR Campus Recruiting",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Reply from a shared mailbox signed by no individual. There is no person to attach this relationship to.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d5d7e1a17bb5e2",
+   "capture": "supplement",
+   "subject": "Houlihan Lokey | 2025 Summer Analyst Recruiting Introductory Call",
+   "messages": [
+    {
+     "message_id": "18d5d7e1a17bb5e2",
+     "date": "2024-01-31T03:09:12Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "FRCampusRecruiting@hl.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Houlihan Lokey | 2025 Summer Analyst Recruiting Introductory Call",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Jonathan,\n\nYour introductory call is scheduled for Friday, February 2nd at 2:30PM EST with Owen Sherry. Please make sure to have your phone available during this time as the banker will call you on the number listed in your resume.\n\nIf you have any questions, please do let me know.\n\nBest,\nFR Campus Recruiting",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "THIS EXPLAINS A STAGE A MYSTERY. The gmail calendar holds a solo block, 'Jonathan - Owen Sherry Houlihan RX Intro Call', 2024-02-02 11:30 PT, with zero attendees. This is why: the call was booked by email in the utexas account, by a shared mailbox, on behalf of a banker who was never in any thread, and the banker called Jon's phone. No invite was ever sent by anyone. Jon typed the block himself. Owen Sherry has no email address anywhere in either mailbox.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+{
+ "slug": "kyle-gunnison",
+ "name": "Kyle Gunnison",
+ "firm": "Raymond James",
+ "title": "Director",
+ "addresses_seen": [
+  "Kyle.Gunnison@raymondjames.com"
+ ],
+ "relationship_opened": "Cold email to a senior banker, explicitly asking to be routed to an analyst",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 1,
+  "outbound": 1,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-31T05:27:15Z",
+ "last_activity": "2024-01-31T05:27:15Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d5df88ffa42376",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Fellow Longhorn Interested in Banking @ Raymond James NY",
+   "messages": [
+    {
+     "message_id": "18d5dfc5bb026e1b",
+     "date": "2024-01-31T05:27:15Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "Kyle.Gunnison@raymondjames.com"
+     ],
+     "cc": [],
+     "subject": "Fellow Longhorn Interested in Banking @ Raymond James NY",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Kyle,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I'm reaching out to you as I'd love to learn more about the recruiting process at Raymond James given I'm particularly interested in Banking in New York.\n\nWhile I know you are a Senior Banker and are likely very removed from the recruiting process, it would be immensely helpful if you could put me in touch with an appropriate analyst. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Never answered. Tracker spells the surname 'Gunninson'; the address Jon used is 'Kyle.Gunnison@'.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

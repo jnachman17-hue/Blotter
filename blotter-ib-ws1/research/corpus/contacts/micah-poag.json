@@ -1,0 +1,160 @@
+{
+ "slug": "micah-poag",
+ "name": "Micah Poag",
+ "firm": "Houlihan Lokey",
+ "title": null,
+ "addresses_seen": [
+  "mpoag@hl.com",
+  "MPoag@hl.com"
+ ],
+ "relationship_opened": "Resume sent directly; became a referral source",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 5,
+  "outbound": 3,
+  "inbound": 2,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-16T05:48:10Z",
+ "last_activity": "2024-01-17T22:18:18Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d10ced6a9e70c7",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Resume - Jonathan Nachman",
+   "messages": [
+    {
+     "message_id": "18d10d01b160623c",
+     "date": "2024-01-16T05:48:10Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "mpoag@hl.com"
+     ],
+     "cc": [],
+     "subject": "Resume - Jonathan Nachman",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d1847de9f5790d",
+     "date": "2024-01-17T16:36:12Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "MPoag@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Resume - Jonathan Nachman",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "You wanted to speak with someone in NY?\n\nMicah Poag\nHoulihan Lokey\n817.880.4897 Mobile\nmpoag@hl.com",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d18b406b8d0322",
+     "date": "2024-01-17T18:34:27Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "MPoag@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: Resume - Jonathan Nachman",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume (10).pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Yea, it would be great if you can put me in touch with or send me the contact info of a good person to talk to in the NY office. Attached is an updated resume in case you forward it.",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d190bdb132b882",
+     "date": "2024-01-17T20:10:17Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "MPoag@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Resume - Jonathan Nachman",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Email:\n\n  * Sam Ward (SPWard@HL.com)\n     * New York RX\n  * Leland Cook (LCook@HL.com)\n     * Dallas Consumer M&A\n  * Alex Crosby (ACrosby@HL.com)\n     * Dallas Healthcare\n\nYou can’t mention I sent you.\n\nGeneral email template is just first letter of first name and last name followed by @HL.com\n\nSo you can email anyone you want, but it’s a cold email, I’m not a reference.\n\nBest of luck bud.\n\nMicah Poag\nHoulihan Lokey",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d1980f6eae706a",
+     "date": "2024-01-17T22:18:18Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "MPoag@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: Resume - Jonathan Nachman",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Got it - thank you.",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,220 @@
+{
+ "slug": "grey-bianca",
+ "name": "Grey Bianca",
+ "firm": "Mizuho",
+ "title": "Analyst, Energy IB",
+ "addresses_seen": [
+  "Grey.Bianca@mizuhogroup.com"
+ ],
+ "relationship_opened": "Inbound; referred by Chris Miller via Chris Getz",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 2,
+  "messages": 7,
+  "outbound": 3,
+  "inbound": 4,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-19T17:36:10Z",
+ "last_activity": "2024-01-23T02:47:46Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d22cbb43e09bf5",
+   "capture": "spilled",
+   "shared_thread": false,
+   "subject": "Grey / Jonathan Intro Call",
+   "messages": [
+    {
+     "message_id": "18d22cbb43e09bf5",
+     "date": "2024-01-19T17:36:10Z",
+     "internal_date": "1705685770000",
+     "direction": "inbound",
+     "sender": "Grey.Bianca@mizuhogroup.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Grey / Jonathan Intro Call",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hey Jonathan,\n\nYou were referred my way from an MD I believe you know at CitiBank here in Houston. Let me know if you have some time to talk about Mizuho/Greenhill and our summer analyst program next week.\n\nBest,\nGrey Bianca\nAnalyst | Energy Investment Banking\n\nMizuho Americas\n909 Fannin St. Suite 1600 Houston, TX 77010.\ngrey.bianca@mizuhogroup.com<mailto:grey.bianca@mizuhogroup.com>\nPhone: (917) 361-8254\n\n[cid:image001.png@01DA4ACA.26FB3EE0]\nThis message is the property of Mizuho Americas and has been classified as Confidential\n\n######################################################################\nMizuho Americas LLC All Rights Reserved.\nPlease see https://mizuhoamericas.com/email-disclaimer for important additional disclosures and terms and conditions relating to this e-mail and your reliance upon the contents herein. This message may contain confidential or privileged information. If you are not the intended recipient, please advise us immediately and delete this message.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d2334e177638ce",
+     "date": "2024-01-19T19:31:24Z",
+     "internal_date": "1705692684000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Grey.Bianca@mizuhogroup.com"
+     ],
+     "cc": [],
+     "subject": "Re: Grey / Jonathan Intro Call",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Grey,\n\nI hope you are doing well. I appreciate you reaching out to me from the\nCiti referral. I would love to hop on a quick call with you sometime early\nnext week to learn a little more about your background and Mizuho. Here are\nsome times that work for me.\n\nMonday (1/22) : 2 - 6 pm & 7 pm onwards\nTuesday (1/23): 10 am - 1 pm & 5 pm onwards\nWednesday(1/24): 11 am onwards\n\nPlease let me know if any of these times are convenient for you, and we'll\nschedule a call.\n\nBest,\nJonathan\n\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 11:36 AM Bianca, Grey <Grey.Bianca@mizuhogroup.com>\nwrote:\n\n> Hey Jonathan,\n>\n>\n>\n> You were referred my way from an MD I believe you know at CitiBank here in\n> Houston. Let me know if you have some time to talk about Mizuho/Greenhill\n> and our summer analyst program next week.\n>\n>\n>\n> Best,\n>\n> *Grey Bianca*\n>\n> Analyst *|* Energy Investment Banking\n>\n>\n>\n> Mizuho Americas\n>\n> 909 Fannin St. Suite 1600 Houston, TX 77010.\n>\n> grey.bianca@mizuhogroup.com\n>\n> Phone: (917) 361-8254\n>\n>\n>\n>\n>\n> This message is the property of Mizuho Americas and has been classified as\n> Confidential\n>\n>\n> ------------------------------\n> Mizuho Americas LLC All Rights Reserved.\n> Please see https://mizuhoamericas.com/email-disclaimer for important\n> additional disclosures and terms and conditions relating to this e-mail and\n> your reliance upon the contents herein. This message may contain\n> confidential or privileged information. If you are not the intended\n> recipient, please advise us immediately and delete this message.\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d2353e14f8d1b4",
+     "date": "2024-01-19T20:03:13Z",
+     "internal_date": "1705694593000",
+     "direction": "inbound",
+     "sender": "Grey.Bianca@mizuhogroup.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE:  Re: Grey / Jonathan Intro Call",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Let’s do Wednesday at 2pm CT. Give me a call then at (318) 780-2674\n\nBest,\nGrey Bianca\nAnalyst, Energy Investment Banking\nPhone: (917) 361-8254\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Friday, January 19, 2024 1:31 PM\nTo: Bianca, Grey <Grey.Bianca@mizuhogroup.com>\nSubject: External: Re: Grey / Jonathan Intro Call\n\nHello Grey, I hope you are doing well. I appreciate you reaching out to me from the Citi referral. I would love to hop on a quick call with you sometime early next week to learn a little more about your background and Mizuho. Here are some\n\nHello Grey,\n\nI hope you are doing well. I appreciate you reaching out to me from the Citi referral. I would love to hop on a quick call with you sometime early next week to learn a little more about your background and Mizuho. Here are some times that work for me.\n\nMonday (1/22) : 2 - 6 pm & 7 pm onwards\nTuesday (1/23): 10 am - 1 pm & 5 pm onwards\nWednesday(1/24): 11 am onwards\n\nPlease let me know if any of these times are convenient for you, and we'll schedule a call.\n\nBest,\nJonathan\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 11:36 AM Bianca, Grey <Grey.Bianca@mizuhogroup.com<mailto:Grey.Bianca@mizuhogroup.com>> wrote:\nHey Jonathan,\n\nYou were referred my way from an MD I believe you know at CitiBank here in Houston. Let me know if you have some time to talk about Mizuho/Greenhill and our summer analyst program next week.\n\nBest,\nGrey Bianca\nAnalyst | Energy Investment Banking\n\nMizuho Americas\n909 Fannin St. Suite 1600 Houston, TX 77010.\ngrey.bianca@mizuhogroup.com<mailto:grey.bianca@mizuhogroup.com>\nPhone: (917) 361-8254\n\n[cid:image001.png@01DA4ADF.D61EB4F0]\nThis message is the property of Mizuho Americas and has been classified as Confidential\n\n________________________________\nMizuho Americas LLC All Rights Reserved.\nPlease see https://mizuhoamericas.com/email-disclaimer<https://urldefense.com/v3/__https:/mizuhoamericas.com/email-disclaimer__;!!AJslKrWaDbga!OYNYBoManlPM3ZHLLb47vuAEgwW2q2oO6RLs8w4jeZ1cw-ot1aH41bO-io9REo4HzEo2yGDmuMV-orVIhvoxjhK54Q$> for important additional disclosures and terms and conditions relating to this e-mail and your reliance upon the contents herein. This message may contain confidential or privileged information. If you are not the intended recipient, please advise us immediately and delete this message.\nThis message is the property of Mizuho Americas and has been classified as Confidential\n\nThis message is the property of Mizuho Americas and has been classified as Confidential\nThis message is the property of Mizuho Americas and has been classified as Confidential",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d240175ec1db36",
+     "date": "2024-01-19T23:14:51Z",
+     "internal_date": "1705706091000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Grey.Bianca@mizuhogroup.com"
+     ],
+     "cc": [],
+     "subject": "Re: Re: Grey / Jonathan Intro Call",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Perfect! I'll send you a calendar invite. I look forward to speaking then.\nBest,\nJonathan\n\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 2:05 PM Bianca, Grey <Grey.Bianca@mizuhogroup.com>\nwrote:\n\n> Let’s do Wednesday at 2pm CT. Give me a call then at (318) 780-2674\n>\n>\n>\n> Best,\n>\n> Grey Bianca\n>\n> Analyst, Energy Investment Banking\n>\n> Phone: (917) 361-8254\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Friday, January 19, 2024 1:31 PM\n> *To:* Bianca, Grey <Grey.Bianca@mizuhogroup.com>\n> *Subject:* External: Re: Grey / Jonathan Intro Call\n>\n>\n>\n> Hello Grey, I hope you are doing well. I appreciate you reaching out to me\n> from the Citi referral. I would love to hop on a quick call with you\n> sometime early next week to learn a little more about your background and\n> Mizuho. Here are some\n>\n> Hello Grey,\n>\n>\n>\n> I hope you are doing well. I appreciate you reaching out to me from the\n> Citi referral. I would love to hop on a quick call with you sometime early\n> next week to learn a little more about your background and Mizuho. Here are\n> some times that work for me.\n>\n>\n>\n> Monday (1/22) : 2 - 6 pm & 7 pm onwards\n>\n> Tuesday (1/23): 10 am - 1 pm & 5 pm onwards\n>\n> Wednesday(1/24): 11 am onwards\n>\n>\n>\n> Please let me know if any of these times are convenient for you, and we'll\n> schedule a call.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n>\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n>\n>\n> On Fri, Jan 19, 2024 at 11:36 AM Bianca, Grey <Grey.Bianca@mizuhogroup.com>\n> wrote:\n>\n> Hey Jonathan,\n>\n>\n>\n> You were referred my way from an MD I believe you know at CitiBank here in\n> Houston. Let me know if you have some time to talk about Mizuho/Greenhill\n> and our summer analyst program next week.\n>\n>\n>\n> Best,\n>\n> *Grey Bianca*\n>\n> Analyst *|* Energy Investment Banking\n>\n>\n>\n> Mizuho Americas\n>\n> 909 Fannin St. Suite 1600 Houston, TX 77010.\n>\n> grey.bianca@mizuhogroup.com\n>\n> Phone: (917) 361-8254\n>\n>\n>\n>\n>\n> This message is the property of Mizuho Americas and has been classified as\n> Confidential\n>\n>\n> ------------------------------\n>\n> Mizuho Americas LLC All Rights Reserved.\n> Please see https://mizuhoamericas.com/email-disclaimer\n> <https://urldefense.com/v3/__https:/mizuhoamericas.com/email-disclaimer__;!!AJslKrWaDbga!OYNYBoManlPM3ZHLLb47vuAEgwW2q2oO6RLs8w4jeZ1cw-ot1aH41bO-io9REo4HzEo2yGDmuMV-orVIhvoxjhK54Q$>\n> for important additional disclosures and terms and conditions relating to\n> this e-mail and your reliance upon the contents herein. This message may\n> contain confidential or privileged information. If you are not the intended\n> recipient, please advise us immediately and delete this message.\n>\n> This message is the property of Mizuho Americas and has been classified as\n> Confidential\n>\n>\n>\n> This message is the property of Mizuho Americas and has been classified as\n> Confidential\n>\n> This message is the property of Mizuho Americas and has been classified as\n> Confidential\n>\n>\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d3433dcc297b0b",
+     "date": "2024-01-23T02:43:50Z",
+     "internal_date": "1705977830000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Grey.Bianca@mizuhogroup.com"
+     ],
+     "cc": [],
+     "subject": "Re: Re: Grey / Jonathan Intro Call",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Grey,\n\nI hope you are doing well. I am emailing to go ahead and cancel our call on\nWednesday. I'll keep this email brief, but as I'm new to the recruiting\nprocess I'm realizing my interests are evolving. Given that, I feel as if\nMizuho doesn't greatly align with what I'm looking for. I want to do this\nentirely out of respect for your time. Nonetheless, I'm extremely\nappreciative of your willingness to set up a call with me in the first\nplace. I hope you can understand.\n\nBest,\nJonathan\n\nOn Fri, Jan 19, 2024 at 5:14 PM Jonathan Nachman <jnachman17@gmail.com>\nwrote:\n\n> Perfect! I'll send you a calendar invite. I look forward to speaking then.\n> Best,\n> Jonathan\n>\n> *Jonathan Nachman *\n> University of Texas, Austin\n> Economics & Business\n> M: (310)-292-4712\n>\n>\n> On Fri, Jan 19, 2024 at 2:05 PM Bianca, Grey <Grey.Bianca@mizuhogroup.com>\n> wrote:\n>\n>> Let’s do Wednesday at 2pm CT. Give me a call then at (318) 780-2674\n>>\n>>\n>>\n>> Best,\n>>\n>> Grey Bianca\n>>\n>> Analyst, Energy Investment Banking\n>>\n>> Phone: (917) 361-8254\n>>\n>>\n>>\n>> *From:* Jonathan Nachman <jnachman17@gmail.com>\n>> *Sent:* Friday, January 19, 2024 1:31 PM\n>> *To:* Bianca, Grey <Grey.Bianca@mizuhogroup.com>\n>> *Subject:* External: Re: Grey / Jonathan Intro Call\n>>\n>>\n>>\n>> Hello Grey, I hope you are doing well. I appreciate you reaching out to\n>> me from the Citi referral. I would love to hop on a quick call with you\n>> sometime early next week to learn a little more about your background and\n>> Mizuho. Here are some\n>>\n>> Hello Grey,\n>>\n>>\n>>\n>> I hope you are doing well. I appreciate you reaching out to me from the\n>> Citi referral. I would love to hop on a quick call with you sometime early\n>> next week to learn a little more about your background and Mizuho. Here are\n>> some times that work for me.\n>>\n>>\n>>\n>> Monday (1/22) : 2 - 6 pm & 7 pm onwards\n>>\n>> Tuesday (1/23): 10 am - 1 pm & 5 pm onwards\n>>\n>> Wednesday(1/24): 11 am onwards\n>>\n>>\n>>\n>> Please let me know if any of these times are convenient for you, and\n>> we'll schedule a call.\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>>\n>>\n>>\n>> *Jonathan Nachman *\n>>\n>> University of Texas, Austin\n>>\n>> Economics & Business\n>>\n>> M: (310)-292-4712\n>>\n>>\n>>\n>>\n>>\n>> On Fri, Jan 19, 2024 at 11:36 AM Bianca, Grey <\n>> Grey.Bianca@mizuhogroup.com> wrote:\n>>\n>> Hey Jonathan,\n>>\n>>\n>>\n>> You were referred my way from an MD I believe you know at CitiBank here\n>> in Houston. Let me know if you have some time to talk about\n>> Mizuho/Greenhill and our summer analyst program next week.\n>>\n>>\n>>\n>> Best,\n>>\n>> *Grey Bianca*\n>>\n>> Analyst *|* Energy Investment Banking\n>>\n>>\n>>\n>> Mizuho Americas\n>>\n>> 909 Fannin St. Suite 1600 Houston, TX 77010.\n>>\n>> grey.bianca@mizuhogroup.com\n>>\n>> Phone: (917) 361-8254\n>>\n>>\n>>\n>>\n>>\n>> This message is the property of Mizuho Americas and has been classified\n>> as Confidential\n>>\n>>\n>> ------------------------------\n>>\n>> Mizuho Americas LLC All Rights Reserved.\n>> Please see https://mizuhoamericas.com/email-disclaimer\n>> <https://urldefense.com/v3/__https:/mizuhoamericas.com/email-disclaimer__;!!AJslKrWaDbga!OYNYBoManlPM3ZHLLb47vuAEgwW2q2oO6RLs8w4jeZ1cw-ot1aH41bO-io9REo4HzEo2yGDmuMV-orVIhvoxjhK54Q$>\n>> for important additional disclosures and terms and conditions relating to\n>> this e-mail and your reliance upon the contents herein. This message may\n>> contain confidential or privileged information. If you are not the intended\n>> recipient, please advise us immediately and delete this message.\n>>\n>> This message is the property of Mizuho Americas and has been classified\n>> as Confidential\n>>\n>>\n>>\n>> This message is the property of Mizuho Americas and has been classified\n>> as Confidential\n>>\n>> This message is the property of Mizuho Americas and has been classified\n>> as Confidential\n>>\n>>\n>>\n>>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d343a5ef40ceba",
+     "date": "2024-01-23T02:47:46Z",
+     "internal_date": "1705978066000",
+     "direction": "inbound",
+     "sender": "Grey.Bianca@mizuhogroup.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Re: Re: Grey / Jonathan Intro Call",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      },
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Thanks for letting me know and best of luck with your other processes!\n\n---\nSent from Workspace ONE Boxer<https://whatisworkspaceone.com/boxer>\nOn January 22, 2024 at 8:44:18 PM CST, Jonathan Nachman <jnachman17@gmail.com> wrote:\nHi Grey, I hope you are doing well. I am emailing to go ahead and cancel our call on Wednesday. I'll keep this email brief, but as I'm new to the recruiting process I'm realizing my interests are evolving. Given that, I feel as\n\nHi Grey,\n\nI hope you are doing well. I am emailing to go ahead and cancel our call on Wednesday. I'll keep this email brief, but as I'm new to the recruiting process I'm realizing my interests are evolving. Given that, I feel as if Mizuho doesn't greatly align with what I'm looking for. I want to do this entirely out of respect for your time. Nonetheless, I'm extremely appreciative of your willingness to set up a call with me in the first place. I hope you can understand.\n\nBest,\nJonathan\n\nOn Fri, Jan 19, 2024 at 5:14 PM Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>> wrote:\nPerfect! I'll send you a calendar invite. I look forward to speaking then.\nBest,\nJonathan\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 2:05 PM Bianca, Grey <Grey.Bianca@mizuhogroup.com<mailto:Grey.Bianca@mizuhogroup.com>> wrote:\n\nLet’s do Wednesday at 2pm CT. Give me a call then at (318) 780-2674\n\nBest,\n\nGrey Bianca\n\nAnalyst, Energy Investment Banking\n\nPhone: (917) 361-8254\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Friday, January 19, 2024 1:31 PM\nTo: Bianca, Grey <Grey.Bianca@mizuhogroup.com<mailto:Grey.Bianca@mizuhogroup.com>>\nSubject: External: Re: Grey / Jonathan Intro Call\n\nHello Grey, I hope you are doing well. I appreciate you reaching out to me from the Citi referral. I would love to hop on a quick call with you sometime early next week to learn a little more about your background and Mizuho. Here are some\n\nHello Grey,\n\nI hope you are doing well. I appreciate you reaching out to me from the Citi referral. I would love to hop on a quick call with you sometime early next week to learn a little more about your background and Mizuho. Here are some times that work for me.\n\nMonday (1/22) : 2 - 6 pm & 7 pm onwards\n\nTuesday (1/23): 10 am - 1 pm & 5 pm onwards\n\nWednesday(1/24): 11 am onwards\n\nPlease let me know if any of these times are convenient for you, and we'll schedule a call.\n\nBest,\n\nJonathan\n\nJonathan Nachman\n\nUniversity of Texas, Austin\n\nEconomics & Business\n\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 11:36 AM Bianca, Grey <Grey.Bianca@mizuhogroup.com<mailto:Grey.Bianca@mizuhogroup.com>> wrote:\n\nHey Jonathan,\n\nYou were referred my way from an MD I believe you know at CitiBank here in Houston. Let me know if you have some time to talk about Mizuho/Greenhill and our summer analyst program next week.\n\nBest,\n\nGrey Bianca\n\nAnalyst | Energy Investment Banking\n\nMizuho Americas\n\n909 Fannin St. Suite 1600 Houston, TX 77010.\n\ngrey.bianca@mizuhogroup.com<mailto:grey.bianca@mizuhogroup.com>\n\nPhone: (917) 361-8254\n\n[cid:ii_18d2400bfd64cff311]\n\nThis message is the property of Mizuho Americas and has been classified as Confidential\n\n________________________________\n\nMizuho Americas LLC All Rights Reserved.\nPlease see https://mizuhoamericas.com/email-disclaimer<https://urldefense.com/v3/__https:/mizuhoamericas.com/email-disclaimer__;!!AJslKrWaDbga!OYNYBoManlPM3ZHLLb47vuAEgwW2q2oO6RLs8w4jeZ1cw-ot1aH41bO-io9REo4HzEo2yGDmuMV-orVIhvoxjhK54Q$> for important additional disclosures and terms and conditions relating to this e-mail and your reliance upon the contents herein. This message may contain confidential or privileged information. If you are not the intended recipient, please advise us immediately and delete this message.\n\nThis message is the property of Mizuho Americas and has been classified as Confidential\n\nThis message is the property of Mizuho Americas and has been classified as Confidential\n\nThis message is the property of Mizuho Americas and has been classified as Confidential\n\nThis message is the property of Mizuho Americas and has been classified as Confidential - Mobile",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d2406419fc6b6d",
+   "capture": "metadata_only",
+   "shared_thread": false,
+   "subject": "Accepted: Grey - Jonathan Mizuho IB Call",
+   "messages": [
+    {
+     "message_id": "18d2406419fc6b6d",
+     "date": "2024-01-19T23:19:09Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Grey.Bianca@mizuhogroup.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Accepted: Grey - Jonathan Mizuho IB Call",
+     "labels": [],
+     "attachments": [],
+     "has_attachment": null,
+     "body": null,
+     "body_source": "metadata_only",
+     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

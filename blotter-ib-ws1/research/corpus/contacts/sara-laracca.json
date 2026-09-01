@@ -1,0 +1,123 @@
+{
+ "slug": "sara-laracca",
+ "name": "Sara Laracca",
+ "firm": "Houlihan Lokey",
+ "title": "Recruiting Analyst",
+ "addresses_seen": [
+  "Sara.Laracca@hl.com"
+ ],
+ "relationship_opened": "Inbound; scheduled the LA first round",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 2,
+  "messages": 3,
+  "outbound": 1,
+  "inbound": 2,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-31T17:40:50Z",
+ "last_activity": "2024-02-01T23:33:45Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d609c15bc39d59",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Houlihan Lokey | 2025 Summer Analyst Program | Availability Request",
+   "messages": [
+    {
+     "message_id": "18d609c15bc39d59",
+     "date": "2024-01-31T17:40:50Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Sara.Laracca@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Houlihan Lokey | 2025 Summer Analyst Program | Availability Request",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Jonathan,\n\nThank you for your interest in Houlihan Lokey's 2025 Summer Financial Analyst - Corporate Finance Consumer, Food & Retail position in LA!\n\nWe would like to schedule a 1st round interview with a banker from the Consumer, Food & Retail team. The interview format will be a 30-minute video interview via Zoom.\n\nPlease reply to this email with a few days/times that work well for you the week of 2/5 and 2/12, including your respective time zone. We will schedule accordingly and be in touch to confirm your interview in the coming days.\n\nIf you have any questions, please don't hesitate to reach out.\n\nBest,\nSara Laracca, Recruiting Analyst",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d62d4e33da11f8",
+     "date": "2024-02-01T04:02:14Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Sara.Laracca@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: Houlihan Lokey | 2025 Summer Analyst Program | Availability Request",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Sara,\n\nI appreciate you reaching out, and I'm excited to be offered a 1st round. Here are some times (CT) below that work for me over the next two weeks:\n\nWednesday (2/7): 12:00 pm onwards\nThursday (2/8): 10:00 am - 1:00 pm & 5:30 pm onwards\nFriday (2/9): 11:00 am onwards\nMonday (2/12): 12:00 pm onwards\nTuesday (2/13): 10:00 am - 1:00 pm & 5:30 pm onwards\nWednesday (2/14): 12:00 pm onwards\n\nI hope we can find a convenient time somewhere in there. I look forward to the interview!\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d6705867686e3a",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Houlihan Lokey | 2025 Summer Analyst Program: First Round Interview Confirmation",
+   "messages": [
+    {
+     "message_id": "18d6705867686e3a",
+     "date": "2024-02-01T23:33:45Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Sara.Laracca@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Houlihan Lokey | 2025 Summer Analyst Program: First Round Interview Confirmation",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Jonathan,\n\nWe are delighted to confirm your video interview with Houlihan Lokey for the 2025 Corporate Finance Summer Analyst Program in LA - Consumer.\n\nPlease review the interview details below and confirm receipt of this email.\n\nDate: 2/9/2024\nTime: 10:00 am PST\nInterviewer: Lonnie Kauppila\nAttire: Business\nZoom Link: [redacted in corpus — present in source]\n\nWe strongly encourage you to review our HL Website to prepare for the interview. Please let us know if you have any questions.\n\nBest,\nSara Laracca, Recruiting Analyst",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

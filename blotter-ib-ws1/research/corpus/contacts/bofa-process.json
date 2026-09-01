@@ -1,0 +1,118 @@
+{
+ "slug": "bofa-process",
+ "name": "Bank of America - application",
+ "firm": null,
+ "title": null,
+ "addresses_seen": [],
+ "relationship_opened": "Firm-level recruiting process, not a single person",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "record_type": "firm_process",
+ "counts": {
+  "threads": 3,
+  "messages": 3,
+  "outbound": 2,
+  "inbound": 1,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-04-08T17:16:05Z",
+ "last_activity": "2024-04-08T18:31:18Z",
+ "threads": [
+  {
+   "thread_id": "18ebeb05f11a3468",
+   "capture": "supplement",
+   "subject": "Emphasizing my Interest in Bank of America Recruiting (Application ID: 3225121)",
+   "messages": [
+    {
+     "message_id": "18ebeb5bf7b97ae0",
+     "date": "2024-04-08T17:16:05Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "US_Campus@bofa.com"
+     ],
+     "cc": [],
+     "subject": "Emphasizing my Interest in Bank of America Recruiting (Application ID: 3225121)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Bank of America Recruiting Office,\n\nI hope this email finds you well. I am writing this email to express my continued interest in the Global Investment Banking Summer Analyst Program - 2025. I applied for this position in February, but have not received updates. If any opportunities still remain, I am highly interested in pursuing recruiting for this position where possible. Please let me know if you have any questions.\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ebebb3b29c1070",
+     "date": "2024-04-08T17:22:04Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "US_Campus@bofa.com"
+     ],
+     "cc": [],
+     "subject": "Re: Emphasizing my Interest in Bank of America Recruiting (Application ID: 3225121)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "_Jonathan Nachman Internship Resume (2) (2).pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Additionally, attached to this email is an updated copy of my resume.",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ebefac9720193a",
+     "date": "2024-04-08T18:31:18Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "us_campus@bofa.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Emphasizing my Interest in Bank of America Recruiting (Application ID: 3225121)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi,\n\nThank you for your inquiry. Per request, I have updated your application. All applicants are currently under review and once a decision has been made a notification will be sent out. Your patience is appreciated during this process.\n\nBest,\n\nChrissonna Cohen\nGlobal Human Resources – Talent Acquisition, Enterprise Campus Strategy",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Reply signed by Chrissonna Cohen but sent from the shared us_campus@bofa.com mailbox, in different case from the address Jon wrote to (US_Campus@). The person who answered is not the address on file.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18de6e5510c5fd90",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  },
+  {
+   "thread_id": "18de6d5c989217aa",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  }
+ ]
+}

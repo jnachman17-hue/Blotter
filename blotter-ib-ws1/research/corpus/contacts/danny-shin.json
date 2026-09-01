@@ -1,0 +1,167 @@
+{
+ "slug": "danny-shin",
+ "name": "Danny Shin",
+ "firm": "Houlihan Lokey",
+ "title": "Financial Analyst",
+ "addresses_seen": [
+  "danny.shin@hl.com",
+  "Danny.Shin@hl.com"
+ ],
+ "relationship_opened": "Cold email, referred by Kate Borden (a gmail-account contact)",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 6,
+  "outbound": 4,
+  "inbound": 2,
+  "calendar_events": 1
+ },
+ "first_activity": "2024-01-24T01:26:38Z",
+ "last_activity": "2024-01-30T00:10:21Z",
+ "calendar_event_ids": [
+  "06knmtt002mqgonvc5jsa7072v"
+ ],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d3908c14f7552e",
+   "capture": "spilled",
+   "shared_thread": false,
+   "subject": "[Referral from Kate Borden] UT Austin Student Interested in Banking @ Houlihan LA",
+   "messages": [
+    {
+     "message_id": "18d39138c824852a",
+     "date": "2024-01-24T01:26:38Z",
+     "internal_date": "1706059598000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "danny.shin@hl.com"
+     ],
+     "cc": [],
+     "subject": "[Referral from Kate Borden] UT Austin Student Interested in Banking @ Houlihan LA",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Danny,\n\nI hope you are doing well. My name is Jonathan Nachman, and I'm a sophomore\nEconomics and Business Student at the University of Texas, Austin. I had\nthe opportunity to speak with Kate over the phone yesterday to learn more\nabout Houlihan's CFR group and the Summer (2025) Analyst Internship\nProgram. I am especially interested in your CFR group, particularly the\nconsumer entertainment aspect of it. I am eager to learn more about the\ngroup and the upcoming recruiting process.\n\nIf you have any free time next week, I would love to set up a quick phone\ncall with you. I am pretty open and can likely adjust my schedule to\naccommodate whatever works best for you. Please let me know if you would be\nwilling to do this. Attached is my resume.\n\nBest,\nJonathan\n\n--\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d47060a922a98c",
+     "date": "2024-01-26T18:26:25Z",
+     "internal_date": "1706293585000",
+     "direction": "inbound",
+     "sender": "Danny.Shin@hl.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "RE: [Referral from Kate Borden] UT Austin Student Interested in Banking @ Houlihan LA",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Jonathan – can you please send me your availability next week?\n\nBest,\n\nDanny Shin\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.789.5731 Direct\n+1.310.560.1461 Mobile\ndanny.shin@hl.com <mailto:danny.shin@hl.com>\n\nFrom: Jonathan M Nachman <jnachman@utexas.edu>\nSent: Tuesday, January 23, 2024 5:27 PM\nTo: Shin, Danny <Danny.Shin@HL.com>\nSubject: [Referral from Kate Borden] UT Austin Student Interested in Banking @ Houlihan LA\n\nThis message is from an external sender.\n________________________________\nHello Danny,\n\nI hope you are doing well. My name is Jonathan Nachman, and I'm a sophomore Economics and Business Student at the University of Texas, Austin. I had the opportunity to speak with Kate over the phone yesterday to learn more about Houlihan's CFR group and the Summer (2025) Analyst Internship Program. I am especially interested in your CFR group, particularly the consumer entertainment aspect of it. I am eager to learn more about the group and the upcoming recruiting process.\n\nIf you have any free time next week, I would love to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan\n\n--\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nHOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC BUSINESS COMMUNICATION VIA HL.COM E-MAIL ADDRESSES, BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING, SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS COMMUNICATION PURPOSES.\n\nPlease consider the environment before printing.\n\nHoulihan Lokey is a trade name for Houlihan Lokey, Inc., and its subsidiaries and affiliates, which include in the United States: Houlihan Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an SEC-registered broker-dealer and member of FINRA (www.finra.org) and SIPC (www.sipc.org) (investment banking services); and Houlihan Lokey Financial Advisors, Inc. (financial advisory services). Houlihan Lokey affiliates may share information and resources with other Houlihan Lokey affiliates to bring relevant resources to bear on its various engagements and such affiliates may perform services in connection with such engagements. This e-mail message and any attachments are for the sole use of the intended recipient(s) and may contain confidential information. If you are not an intended recipient, or an intended recipient's authorized agent, you are hereby notified that any dissemination, distribution or copying of this e-mail message or any attachments is strictly prohibited. If you have received this message in error, please notify the sender by reply e-mail and delete this e-mail message and any attachments from your computer system.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d4809f82870207",
+     "date": "2024-01-26T23:10:29Z",
+     "internal_date": "1706310629000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "Danny.Shin@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: [Referral from Kate Borden] UT Austin Student Interested in Banking @ Houlihan LA",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Danny – I appreciate you getting back to me. Here are some times (PT) that\nwork for me next week:\n\nMonday: 11 am onwards\nTuesday: 7:30 am - 11:15 am & 3:15 pm onwards\nWednesday: 10 am onwards\nThursday: 7:30 am 11:15 am & 3:15 pm onwards\n\nPlease let me know if any of these times are convenient for you, and look\nforward to speaking with you.\n\nBest,\nJonathan\n\nOn Fri, Jan 26, 2024 at 12:26 PM Shin, Danny <Danny.Shin@hl.com> wrote:\n\n> Hey Jonathan – can you please send me your availability next week?\n>\n>\n>\n> Best,\n>\n>\n>\n> *Danny Shin *\n> Financial Analyst\n>\n> *Houlihan Lokey*\n> +1.310.789.5731 *Direct *\n>\n> +1.310.560.1461 *Mobile *\n> danny.shin@hl.com\n>\n>\n>\n> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n> *Sent:* Tuesday, January 23, 2024 5:27 PM\n> *To:* Shin, Danny <Danny.Shin@HL.com>\n> *Subject:* [Referral from Kate Borden] UT Austin Student Interested in\n> Banking @ Houlihan LA\n>\n>\n>\n> *This message is from an external sender.*\n> ------------------------------\n>\n> Hello Danny,\n>\n>\n>\n> I hope you are doing well. My name is Jonathan Nachman, and I'm a\n> sophomore Economics and Business Student at the University of Texas,\n> Austin. I had the opportunity to speak with Kate over the phone yesterday\n> to learn more about Houlihan's CFR group and the Summer (2025) Analyst\n> Internship Program. I am especially interested in your CFR group,\n> particularly the consumer entertainment aspect of it. I am eager to learn\n> more about the group and the upcoming recruiting process.\n>\n>\n>\n> If you have any free time next week, I would love to set up a quick phone\n> call with you. I am pretty open and can likely adjust my schedule to\n> accommodate whatever works best for you. Please let me know if you would be\n> willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> --\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n> *HOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC\n> BUSINESS COMMUNICATION VIA HL.COM <http://HL.COM> E-MAIL ADDRESSES,\n> BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING,\n> SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF\n> COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS\n> COMMUNICATION PURPOSES.*\n>\n> Please consider the environment before printing.\n>\n> Houlihan Lokey is a trade name for Houlihan Lokey, Inc., and its\n> subsidiaries and affiliates, which include in the United States: Houlihan\n> Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an\n> SEC-registered broker-dealer and member of FINRA (www.finra.org) and SIPC\n> (www.sipc.org) (investment banking services); and Houlihan Lokey\n> Financial Advisors, Inc. (financial advisory services). Houlihan Lokey\n> affiliates may share information and resources with other Houlihan Lokey\n> affiliates to bring relevant resources to bear on its various engagements\n> and such affiliates may perform services in connection with such\n> engagements. This e-mail message and any attachments are for the sole use\n> of the intended recipient(s) and may contain confidential information. If\n> you are not an intended recipient, or an intended recipient's authorized\n> agent, you are hereby notified that any dissemination, distribution or\n> copying of this e-mail message or any attachments is strictly prohibited.\n> If you have received this message in error, please notify the sender by\n> reply e-mail and delete this e-mail message and any attachments from your\n> computer system.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d48539a11e6804",
+     "date": "2024-01-27T00:30:43Z",
+     "internal_date": "1706315443000",
+     "direction": "inbound",
+     "sender": "Danny.Shin@hl.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "RE: [Referral from Kate Borden] UT Austin Student Interested in Banking @ Houlihan LA",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Let’s do 3pm PT on Monday. Feel free to send a calendar invite and call me on my cell.\n\nDanny Shin\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.789.5731 Direct\n+1.310.560.1461 Mobile\ndanny.shin@hl.com <mailto:danny.shin@hl.com>\n\nFrom: Jonathan M Nachman <jnachman@utexas.edu>\nSent: Friday, January 26, 2024 3:10 PM\nTo: Shin, Danny <Danny.Shin@HL.com>\nSubject: Re: [Referral from Kate Borden] UT Austin Student Interested in Banking @ Houlihan LA\n\nThis message is from an external sender.\n________________________________\nDanny – I appreciate you getting back to me. Here are some times (PT) that work for me next week:\n\nMonday: 11 am onwards\nTuesday: 7:30 am - 11:15 am & 3:15 pm onwards\nWednesday: 10 am onwards\nThursday: 7:30 am 11:15 am & 3:15 pm onwards\n\nPlease let me know if any of these times are convenient for you, and look forward to speaking with you.\n\nBest,\nJonathan\n\nOn Fri, Jan 26, 2024 at 12:26 PM Shin, Danny <Danny.Shin@hl.com<mailto:Danny.Shin@hl.com>> wrote:\nHey Jonathan – can you please send me your availability next week?\n\nBest,\n\nDanny Shin\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.789.5731 Direct\n+1.310.560.1461 Mobile\ndanny.shin@hl.com <mailto:danny.shin@hl.com>\n\nFrom: Jonathan M Nachman <jnachman@utexas.edu<mailto:jnachman@utexas.edu>>\nSent: Tuesday, January 23, 2024 5:27 PM\nTo: Shin, Danny <Danny.Shin@HL.com<mailto:Danny.Shin@HL.com>>\nSubject: [Referral from Kate Borden] UT Austin Student Interested in Banking @ Houlihan LA\n\nThis message is from an external sender.\n________________________________\nHello Danny,\n\nI hope you are doing well. My name is Jonathan Nachman, and I'm a sophomore Economics and Business Student at the University of Texas, Austin. I had the opportunity to speak with Kate over the phone yesterday to learn more about Houlihan's CFR group and the Summer (2025) Analyst Internship Program. I am especially interested in your CFR group, particularly the consumer entertainment aspect of it. I am eager to learn more about the group and the upcoming recruiting process.\n\nIf you have any free time next week, I would love to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan\n\n--\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nHOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC BUSINESS COMMUNICATION VIA HL.COM<http://HL.COM> E-MAIL ADDRESSES, BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING, SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS COMMUNICATION PURPOSES.\n\nPlease consider the environment before printing.\n\nHoulihan Lokey is a trade name for Houlihan Lokey, Inc., and its subsidiaries and affiliates, which include in the United States: Houlihan Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an SEC-registered broker-dealer and member of FINRA (www.finra.org<http://www.finra.org>) and SIPC (www.sipc.org<http://www.sipc.org>) (investment banking services); and Houlihan Lokey Financial Advisors, Inc. (financial advisory services). Houlihan Lokey affiliates may share information and resources with other Houlihan Lokey affiliates to bring relevant resources to bear on its various engagements and such affiliates may perform services in connection with such engagements. This e-mail message and any attachments are for the sole use of the intended recipient(s) and may contain confidential information. If you are not an intended recipient, or an intended recipient's authorized agent, you are hereby notified that any dissemination, distribution or copying of this e-mail message or any attachments is strictly prohibited. If you have received this message in error, please notify the sender by reply e-mail and delete this e-mail message and any attachments from your computer system.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d48db81b8a63ae",
+     "date": "2024-01-27T02:59:21Z",
+     "internal_date": "1706324361000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "Danny.Shin@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: [Referral from Kate Borden] UT Austin Student Interested in Banking @ Houlihan LA",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Perfect! I just sent over a calendar invite. I look forward to speaking\nwith you then.\n\nOn Fri, Jan 26, 2024 at 6:30 PM Shin, Danny <Danny.Shin@hl.com> wrote:\n\n> Let’s do 3pm PT on Monday. Feel free to send a calendar invite and call me\n> on my cell.\n>\n>\n>\n> *Danny Shin *\n> Financial Analyst\n>\n> *Houlihan Lokey*\n> +1.310.789.5731 *Direct *\n>\n> +1.310.560.1461 *Mobile *\n> danny.shin@hl.com\n>\n>\n>\n> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n> *Sent:* Friday, January 26, 2024 3:10 PM\n> *To:* Shin, Danny <Danny.Shin@HL.com>\n> *Subject:* Re: [Referral from Kate Borden] UT Austin Student Interested\n> in Banking @ Houlihan LA\n>\n>\n>\n> *This message is from an external sender.*\n> ------------------------------\n>\n> Danny – I appreciate you getting back to me. Here are some times (PT) that\n> work for me next week:\n>\n>\n>\n> Monday: 11 am onwards\n>\n> Tuesday: 7:30 am - 11:15 am & 3:15 pm onwards\n>\n> Wednesday: 10 am onwards\n>\n> Thursday: 7:30 am 11:15 am & 3:15 pm onwards\n>\n>\n>\n> Please let me know if any of these times are convenient for you, and look\n> forward to speaking with you.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Fri, Jan 26, 2024 at 12:26 PM Shin, Danny <Danny.Shin@hl.com> wrote:\n>\n> Hey Jonathan – can you please send me your availability next week?\n>\n>\n>\n> Best,\n>\n>\n>\n> *Danny Shin *\n> Financial Analyst\n>\n> *Houlihan Lokey*\n> +1.310.789.5731 *Direct *\n>\n> +1.310.560.1461 *Mobile *\n> danny.shin@hl.com\n>\n>\n>\n> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n> *Sent:* Tuesday, January 23, 2024 5:27 PM\n> *To:* Shin, Danny <Danny.Shin@HL.com>\n> *Subject:* [Referral from Kate Borden] UT Austin Student Interested in\n> Banking @ Houlihan LA\n>\n>\n>\n> *This message is from an external sender.*\n> ------------------------------\n>\n> Hello Danny,\n>\n>\n>\n> I hope you are doing well. My name is Jonathan Nachman, and I'm a\n> sophomore Economics and Business Student at the University of Texas,\n> Austin. I had the opportunity to speak with Kate over the phone yesterday\n> to learn more about Houlihan's CFR group and the Summer (2025) Analyst\n> Internship Program. I am especially interested in your CFR group,\n> particularly the consumer entertainment aspect of it. I am eager to learn\n> more about the group and the upcoming recruiting process.\n>\n>\n>\n> If you have any free time next week, I would love to set up a quick phone\n> call with you. I am pretty open and can likely adjust my schedule to\n> accommodate whatever works best for you. Please let me know if you would be\n> willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> --\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n> *HOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC\n> BUSINESS COMMUNICATION VIA HL.COM <http://HL.COM> E-MAIL ADDRESSES,\n> BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING,\n> SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF\n> COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS\n> COMMUNICATION PURPOSES.*\n>\n> Please consider the environment before printing.\n>\n> Houlihan Lokey is a trade name for Houlihan Lokey, Inc., and its\n> subsidiaries and affiliates, which include in the United States: Houlihan\n> Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an\n> SEC-registered broker-dealer and member of FINRA (www.finra.org) and SIPC\n> (www.sipc.org) (investment banking services); and Houlihan Lokey\n> Financial Advisors, Inc. (financial advisory services). Houlihan Lokey\n> affiliates may share information and resources with other Houlihan Lokey\n> affiliates to bring relevant resources to bear on its various engagements\n> and such affiliates may perform services in connection with such\n> engagements. This e-mail message and any attachments are for the sole use\n> of the intended recipient(s) and may contain confidential information. If\n> you are not an intended recipient, or an intended recipient's authorized\n> agent, you are hereby notified that any dissemination, distribution or\n> copying of this e-mail message or any attachments is strictly prohibited.\n> If you have received this message in error, please notify the sender by\n> reply e-mail and delete this e-mail message and any attachments from your\n> computer system.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d57b3ddd8704cc",
+     "date": "2024-01-30T00:10:21Z",
+     "internal_date": "1706573421000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "Danny.Shin@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: [Referral from Kate Borden] UT Austin Student Interested in Banking @ Houlihan LA",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Danny – I greatly appreciate you spending the time to hop on the phone with\nme today. Your additional insight into the OOH Entertainment group was very\nuseful and further excites me to continue pursuing this position. I wanted\nto let you know that I just submitted my online application for the \"2025\nSummer Financial Analyst (Class of 2026) - Corporate Finance, Los Angeles\nConsumer, Food & Retail\" position. Thanks again for your help!\n\nBest,\nJonathan\n\nOn Fri, Jan 26, 2024 at 8:59 PM Jonathan M Nachman <jnachman@utexas.edu>\nwrote:\n\n> Perfect! I just sent over a calendar invite. I look forward to speaking\n> with you then.\n>\n> On Fri, Jan 26, 2024 at 6:30 PM Shin, Danny <Danny.Shin@hl.com> wrote:\n>\n>> Let’s do 3pm PT on Monday. Feel free to send a calendar invite and call\n>> me on my cell.\n>>\n>>\n>>\n>> *Danny Shin *\n>> Financial Analyst\n>>\n>> *Houlihan Lokey*\n>> +1.310.789.5731 *Direct *\n>>\n>> +1.310.560.1461 *Mobile *\n>> danny.shin@hl.com\n>>\n>>\n>>\n>> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n>> *Sent:* Friday, January 26, 2024 3:10 PM\n>> *To:* Shin, Danny <Danny.Shin@HL.com>\n>> *Subject:* Re: [Referral from Kate Borden] UT Austin Student Interested\n>> in Banking @ Houlihan LA\n>>\n>>\n>>\n>> *This message is from an external sender.*\n>> ------------------------------\n>>\n>> Danny – I appreciate you getting back to me. Here are some times (PT)\n>> that work for me next week:\n>>\n>>\n>>\n>> Monday: 11 am onwards\n>>\n>> Tuesday: 7:30 am - 11:15 am & 3:15 pm onwards\n>>\n>> Wednesday: 10 am onwards\n>>\n>> Thursday: 7:30 am 11:15 am & 3:15 pm onwards\n>>\n>>\n>>\n>> Please let me know if any of these times are convenient for you, and\n>> look forward to speaking with you.\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>>\n>> On Fri, Jan 26, 2024 at 12:26 PM Shin, Danny <Danny.Shin@hl.com> wrote:\n>>\n>> Hey Jonathan – can you please send me your availability next week?\n>>\n>>\n>>\n>> Best,\n>>\n>>\n>>\n>> *Danny Shin *\n>> Financial Analyst\n>>\n>> *Houlihan Lokey*\n>> +1.310.789.5731 *Direct *\n>>\n>> +1.310.560.1461 *Mobile *\n>> danny.shin@hl.com\n>>\n>>\n>>\n>> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n>> *Sent:* Tuesday, January 23, 2024 5:27 PM\n>> *To:* Shin, Danny <Danny.Shin@HL.com>\n>> *Subject:* [Referral from Kate Borden] UT Austin Student Interested in\n>> Banking @ Houlihan LA\n>>\n>>\n>>\n>> *This message is from an external sender.*\n>> ------------------------------\n>>\n>> Hello Danny,\n>>\n>>\n>>\n>> I hope you are doing well. My name is Jonathan Nachman, and I'm a\n>> sophomore Economics and Business Student at the University of Texas,\n>> Austin. I had the opportunity to speak with Kate over the phone yesterday\n>> to learn more about Houlihan's CFR group and the Summer (2025) Analyst\n>> Internship Program. I am especially interested in your CFR group,\n>> particularly the consumer entertainment aspect of it. I am eager to learn\n>> more about the group and the upcoming recruiting process.\n>>\n>>\n>>\n>> If you have any free time next week, I would love to set up a quick phone\n>> call with you. I am pretty open and can likely adjust my schedule to\n>> accommodate whatever works best for you. Please let me know if you would be\n>> willing to do this. Attached is my resume.\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>>\n>> --\n>>\n>> *Jonathan Nachman *\n>>\n>> University of Texas, Austin\n>>\n>> Economics & Business\n>>\n>> M: (310)-292-4712\n>>\n>>\n>>\n>> *HOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC\n>> BUSINESS COMMUNICATION VIA HL.COM <http://HL.COM> E-MAIL ADDRESSES,\n>> BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING,\n>> SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF\n>> COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS\n>> COMMUNICATION PURPOSES.*\n>>\n>> Please consider the environment before printing.\n>>\n>> Houlihan Lokey is a trade name for Houlihan Lokey, Inc., and its\n>> subsidiaries and affiliates, which include in the United States: Houlihan\n>> Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an\n>> SEC-registered broker-dealer and member of FINRA (www.finra.org) and\n>> SIPC (www.sipc.org) (investment banking services); and Houlihan Lokey\n>> Financial Advisors, Inc. (financial advisory services). Houlihan Lokey\n>> affiliates may share information and resources with other Houlihan Lokey\n>> affiliates to bring relevant resources to bear on its various engagements\n>> and such affiliates may perform services in connection with such\n>> engagements. This e-mail message and any attachments are for the sole use\n>> of the intended recipient(s) and may contain confidential information. If\n>> you are not an intended recipient, or an intended recipient's authorized\n>> agent, you are hereby notified that any dissemination, distribution or\n>> copying of this e-mail message or any attachments is strictly prohibited.\n>> If you have received this message in error, please notify the sender by\n>> reply e-mail and delete this e-mail message and any attachments from your\n>> computer system.\n>>\n>>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

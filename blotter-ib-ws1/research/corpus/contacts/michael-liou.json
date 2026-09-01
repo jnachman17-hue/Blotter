@@ -1,0 +1,86 @@
+{
+ "slug": "michael-liou",
+ "name": "Michael Liou",
+ "firm": "Guggenheim",
+ "title": "Associate",
+ "addresses_seen": [
+  "Michael.liou@guggenheimpartners.com"
+ ],
+ "relationship_opened": "Cold email, Texas angle",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 2,
+  "outbound": 2,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-17T23:33:05Z",
+ "last_activity": "2024-01-31T05:37:36Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d19c48a680c2b8",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin Student Interested in Investment Banking @ Guggenheim",
+   "messages": [
+    {
+     "message_id": "18d19c56d1cc2044",
+     "date": "2024-01-17T23:33:05Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "Michael.liou@guggenheimpartners.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested in Investment Banking @ Guggenheim",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Michael,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I'd love to talk to you to learn more about your experience at Guggenheim especially given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d5e05d2c6f7dba",
+     "date": "2024-01-31T05:37:36Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "Michael.liou@guggenheimpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: UT Austin Student Interested in Investment Banking @ Guggenheim",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Michael,\n\nI hope all is well. I wanted to politely bump my previous email as I am still very interested in pursuing Banking at Guggenheim in New York. If you would be willing to chat that would be greatly appreciated.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Bump sent at 13.25 days. One of five bumps Jon sent within a 26-minute window on 2024-01-30/31.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

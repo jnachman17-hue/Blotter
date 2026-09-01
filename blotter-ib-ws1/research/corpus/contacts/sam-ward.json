@@ -1,0 +1,144 @@
+{
+ "slug": "sam-ward",
+ "name": "Samuel Ward",
+ "firm": "Houlihan Lokey",
+ "title": "Restructuring, New York",
+ "addresses_seen": [
+  "SPWard@hl.com",
+  "spward@hl.com"
+ ],
+ "relationship_opened": "Cold email using an address supplied by Micah Poag in the gmail account",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 4,
+  "outbound": 3,
+  "inbound": 1,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-17T22:44:54Z",
+ "last_activity": "2024-01-23T05:01:39Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d19982e1fda671",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin Student Interested in Investment Banking @ Houlihan",
+   "messages": [
+    {
+     "message_id": "18d1999524fb7e88",
+     "date": "2024-01-17T22:44:54Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "SPWard@hl.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested in Investment Banking @ Houlihan",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Sam,\n\nI hope you are doing well. I am an undergraduate Economics student at the University of Texas, and I'm pursuing a career in Investment Banking. I'd love to talk to you to learn more about your experience at Houlihan in New York. I am particularly interested in hearing from you given you successfully entered banking without a business degree as I'm attempting to do the same.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Sam Ward is one of the three names Micah Poag supplied in the gmail mailbox on 2024-01-17. The referral arrives in one account and is acted on from the other, 2 hours later.",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d3323459704287",
+     "date": "2024-01-22T21:45:51Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "SPWard@hl.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [
+      "FRCampusRecruiting@hl.com"
+     ],
+     "subject": "RE: UT Austin Student Interested in Investment Banking @ Houlihan",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Jonathan,\n\nThank you for reaching out and for your interest Houlihan Lokey Restructuring’s 2025 Summer Analyst Program in New York. I am copying into this email our recruiting team who is running point on this process – if you have not shared your resume here, please reply to this email with a copy.\n\nThis email confirms that we have noted your interest and will review your resume and be in touch if there are any next steps. From a process standpoint, if you have already reached out to others in the NY restructuring team, that is fine, but going forward please direct all communications to the recruiting team. Thank you again for your interest.\n\nBest,\nSam\n\nSamuel Ward, Houlihan Lokey",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "A reply that redirects the relationship to a different party. The person answered but handed ownership to a shared recruiting mailbox — the individual relationship ends here and a firm-process one begins.",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d343615923c677",
+     "date": "2024-01-23T02:46:15Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "dmnachman@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Fwd: UT Austin Student Interested in Investment Banking @ Houlihan",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "[forward of Sam Ward's reply to Jon's father, no added text]",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "An outbound inside a banker thread that is addressed to a family member, not the banker. Direction is outbound and the counterparty is not the contact.",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d34b20877af3b9",
+     "date": "2024-01-23T05:01:39Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "SPWard@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: UT Austin Student Interested in Investment Banking @ Houlihan",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Sam – I appreciate your response. I'll direct further inquiry to the recruiting team.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

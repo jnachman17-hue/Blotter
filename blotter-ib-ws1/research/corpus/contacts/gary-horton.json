@@ -1,0 +1,194 @@
+{
+ "slug": "gary-horton",
+ "name": "Gary Horton",
+ "firm": "Intrepid",
+ "title": null,
+ "addresses_seen": [
+  "horton@intrepidfp.com"
+ ],
+ "relationship_opened": "Referred by John Sellingsloh. Outbound is NOT in this mailbox - see missing_outbound",
+ "source_mailbox": [
+  "jnachman17@gmail.com",
+  "jnachman@utexas.edu"
+ ],
+ "stage": "A+B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 2,
+  "messages": 7,
+  "outbound": 4,
+  "inbound": 3,
+  "calendar_events": 1
+ },
+ "first_activity": "2024-01-20T18:50:22Z",
+ "last_activity": "2024-01-23T19:52:01Z",
+ "calendar_event_ids": [
+  "5sojt2vr83gms3r6cqcbp6dbq6"
+ ],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d2831f19e55e97",
+   "capture": "spilled",
+   "shared_thread": false,
+   "subject": "Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+   "messages": [
+    {
+     "message_id": "18d2835aaf5862da",
+     "date": "2024-01-20T18:50:22Z",
+     "internal_date": "1705776622000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "horton@intrepidfp.com"
+     ],
+     "cc": [],
+     "subject": "Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Gary,\n\nI hope you are doing well. I am an undergraduate Economics & Business\nstudent at the University of Texas, and I'm pursuing a career in Investment\nBanking. I had the privilege of speaking with John during Thursday's on\ncampus networking event; however, I didn't get a chance to meet you. I'd\nlove to talk to you to learn more about your experience at Intrepid given\nI'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week or so, it would be great to set\nup a quick phone call with you. I am pretty open and can likely adjust my\nschedule to accommodate whatever works best for you. Please let me know if\nyou would be willing to do this. Attached is my resume.\n\nBest,\nJonathan\n\n--\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d32e5da4ed0e69",
+     "date": "2024-01-22T20:38:54Z",
+     "internal_date": "1705955934000",
+     "direction": "inbound",
+     "sender": "horton@intrepidfp.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "RE: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Thanks for reaching out and providing your resume, Jonathon. I’d be happy to jump on the phone in the near future to chat. Let me know some times that you’re available over the next week or so and we can find a few minutes that work for both of us to connect.\n\nGary Horton\nO: 646.979.3037 | C: 214.704.6375\nhorton@intrepidfp.com<mailto:horton@intrepidfp.com>\n\nFrom: Jonathan M Nachman <jnachman@utexas.edu>\nSent: Saturday, January 20, 2024 1:50 PM\nTo: Gary Horton <horton@intrepidfp.com>\nSubject: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)\n\nHello Gary, I hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I had the privilege of speaking w\nCaution: External (jnachman@utexas.edu<mailto:jnachman@utexas.edu>)\nFirst-Time Sender Details<https://protection.inkyphishfence.com/details?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9ob3J0b25AaW50cmVwaWRmcC5jb20vYjgzZjZiY2QxYTgyNGI2MGM4OTU0MWQ5Y2Q0NDFkMTIvMTcwNTc3NjY0My42MQ==#key=d04a9150e092c7e241beb51aaf3056ae>\n  Report This Email<https://protection.inkyphishfence.com/report?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9ob3J0b25AaW50cmVwaWRmcC5jb20vYjgzZjZiY2QxYTgyNGI2MGM4OTU0MWQ5Y2Q0NDFkMTIvMTcwNTc3NjY0My42MQ==#key=d04a9150e092c7e241beb51aaf3056ae> FAQ<https://www.inky.com/banner-faq> Protection by INKY<https://www.inky.com/protection-by-inky>\n\nHello Gary,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I had the privilege of speaking with John during Thursday's on campus networking event; however, I didn't get a chance to meet you. I'd love to talk to you to learn more about your experience at Intrepid given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week or so, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan\n\n--\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nIMPORTANT DISCLOSURE:\nThis message, including any attachments, may contain confidential, privileged and/or proprietary information and is intended only for the use of the individual or entity to whom it is addressed. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of this message or its attachments is strictly prohibited. If you have received this message in error, please notify the sender immediately and delete the message. Unless explicitly stated to the contrary, nothing contained in this message or any attachment constitutes an offer to buy or sell, or a solicitation of an offer to buy or sell, any security, property interest or other asset, nor does it constitute a binding obligation of any kind, an official confirmation of any transaction or an official statement of Intrepid Financial Partners, L.L.C. or its affiliates (collectively, “Intrepid”). It does not constitute a recommendation or take into account the particular investment objectives, financial conditions or needs of specific investors. Intrepid does not provide tax, accounting, or legal advice. Intrepid does not represent that any information or opinion in this communication obtained from third parties is accurate or complete, and thus it should not be relied upon as such. Intrepid reserves the right, to the extent permitted by applicable law, to review, retain, monitor, intercept and reproduce electronic messages to and from its systems and networks. Intrepid Partners, LLC is a broker-dealer registered with the U.S. Securities and Exchange Commission, a member of FINRA, a member of SIPC, and an affiliate of Intrepid Investment Management, LLC. Securities are offered through Intrepid Partners and investment advice is provided through Intrepid Investment Management. By communicating with Intrepid by email, you hereby consent to the foregoing.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d3308b1e23e387",
+     "date": "2024-01-22T21:17:03Z",
+     "internal_date": "1705958223000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "horton@intrepidfp.com"
+     ],
+     "cc": [],
+     "subject": "Re: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Gary – thanks for getting back to me. Here are some times that work for\nme:\n\nTuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards\n\nWednesday (1/24): 3 pm onwards\n\nThursday (1/25): 10 am - 1pm & 5 pm onwards\n\nFriday (1/26): 2:45 pm onwards\n\nPlease let me know if any of these times are convenient for you. I look\nforward to speaking with you.\n\nBest, Jonathan\n\nOn Mon, Jan 22, 2024 at 2:39 PM Gary Horton <horton@intrepidfp.com> wrote:\n\n> Thanks for reaching out and providing your resume, Jonathon. I’d be happy\n> to jump on the phone in the near future to chat. Let me know some times\n> that you’re available over the next week or so and we can find a few\n> minutes that work for both of us to connect.\n>\n>\n>\n> *Gary Horton*\n>\n> O: 646.979.3037 | C: 214.704.6375\n>\n> *horton@intrepidfp.com <horton@intrepidfp.com>*\n>\n>\n>\n> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n> *Sent:* Saturday, January 20, 2024 1:50 PM\n> *To:* Gary Horton <horton@intrepidfp.com>\n> *Subject:* Referral by John Sellingsloh (UT Austin Student Interested in\n> Banking @ Intrepid NY)\n>\n>\n>\n> Hello Gary, I hope you are doing well. I am an undergraduate Economics &\n> Business student at the University of Texas, and I'm pursuing a career in\n> Investment Banking. I had the privilege of speaking w\n>\n> *Caution*: External (jnachman@utexas.edu)\n>\n> First-Time Sender Details\n> <https://protection.inkyphishfence.com/details?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9ob3J0b25AaW50cmVwaWRmcC5jb20vYjgzZjZiY2QxYTgyNGI2MGM4OTU0MWQ5Y2Q0NDFkMTIvMTcwNTc3NjY0My42MQ==#key�4a9150e092c7e241beb51aaf3056ae>\n>\n> Report This Email\n> <https://protection.inkyphishfence.com/report?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9ob3J0b25AaW50cmVwaWRmcC5jb20vYjgzZjZiY2QxYTgyNGI2MGM4OTU0MWQ5Y2Q0NDFkMTIvMTcwNTc3NjY0My42MQ==#key�4a9150e092c7e241beb51aaf3056ae>\n> FAQ <https://www.inky.com/banner-faq> Protection by INKY\n> <https://www.inky.com/protection-by-inky>\n>\n>\n>\n> Hello Gary,\n>\n>\n>\n> I hope you are doing well. I am an undergraduate Economics & Business\n> student at the University of Texas, and I'm pursuing a career in Investment\n> Banking. I had the privilege of speaking with John during Thursday's on\n> campus networking event; however, I didn't get a chance to meet you. I'd\n> love to talk to you to learn more about your experience at Intrepid given\n> I'm particularly interested in Banking in New York.\n>\n>\n>\n> If you have any free time in the next week or so, it would be great to set\n> up a quick phone call with you. I am pretty open and can likely adjust my\n> schedule to accommodate whatever works best for you. Please let me know if\n> you would be willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> --\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n> IMPORTANT DISCLOSURE:\n> This message, including any attachments, may contain confidential,\n> privileged and/or proprietary information and is intended only for the use\n> of the individual or entity to whom it is addressed. If you are not the\n> intended recipient, you are hereby notified that any dissemination,\n> distribution or copying of this message or its attachments is strictly\n> prohibited. If you have received this message in error, please notify the\n> sender immediately and delete the message. Unless explicitly stated to the\n> contrary, nothing contained in this message or any attachment constitutes\n> an offer to buy or sell, or a solicitation of an offer to buy or sell, any\n> security, property interest or other asset, nor does it constitute a\n> binding obligation of any kind, an official confirmation of any transaction\n> or an official statement of Intrepid Financial Partners, L.L.C. or its\n> affiliates (collectively, “Intrepid”). It does not constitute a\n> recommendation or take into account the particular investment objectives,\n> financial conditions or needs of specific investors. Intrepid does not\n> provide tax, accounting, or legal advice. Intrepid does not represent that\n> any information or opinion in this communication obtained from third\n> parties is accurate or complete, and thus it should not be relied upon as\n> such. Intrepid reserves the right, to the extent permitted by applicable\n> law, to review, retain, monitor, intercept and reproduce electronic\n> messages to and from its systems and networks. Intrepid Partners, LLC is a\n> broker-dealer registered with the U.S. Securities and Exchange Commission,\n> a member of FINRA, a member of SIPC, and an affiliate of Intrepid\n> Investment Management, LLC. Securities are offered through Intrepid\n> Partners and investment advice is provided through Intrepid Investment\n> Management. By communicating with Intrepid by email, you hereby consent to\n> the foregoing.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d3319205b6ea1f",
+     "date": "2024-01-22T21:34:48Z",
+     "internal_date": "1705959288000",
+     "direction": "inbound",
+     "sender": "horton@intrepidfp.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "RE: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Thanks, Jonathon. Let’s plan on tomorrow (Tuesday, 1/23) at 12:30pm CT. What is the best number to reach you at?\n\nGary Horton\nO: 646.979.3037 | C: 214.704.6375\nhorton@intrepidfp.com<mailto:horton@intrepidfp.com>\n\nFrom: Jonathan M Nachman <jnachman@utexas.edu>\nSent: Monday, January 22, 2024 4:17 PM\nTo: Gary Horton <horton@intrepidfp.com>\nSubject: Re: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)\n\nHi Gary – thanks for getting back to me. Here are some times that work for me: Tuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards Wednesday (1/24): 3 pm onwards Thursday (1/25): 10 am - 1pm &\nExternal (jnachman@utexas.edu<mailto:jnachman@utexas.edu>)\n  Report This Email<https://protection.inkyphishfence.com/report?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9ob3J0b25AaW50cmVwaWRmcC5jb20vODRhNTk0ZmE4MTcxMDhhNDc3ODc0NjM0ODk1Yjk5MGEvMTcwNTk1ODI0Ni42Mw==#key=48167a9c0c55f60c8d5894e3b6f58d13> FAQ<https://www.inky.com/banner-faq> Protection by INKY<https://www.inky.com/protection-by-inky>\n\nHi Gary – thanks for getting back to me. Here are some times that work for me:\n\nTuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards\n\nWednesday (1/24): 3 pm onwards\n\nThursday (1/25): 10 am - 1pm & 5 pm onwards\n\nFriday (1/26): 2:45 pm onwards\n\nPlease let me know if any of these times are convenient for you. I look forward to speaking with you.\n\nBest, Jonathan\n\nOn Mon, Jan 22, 2024 at 2:39 PM Gary Horton <horton@intrepidfp.com<mailto:horton@intrepidfp.com>> wrote:\nThanks for reaching out and providing your resume, Jonathon. I’d be happy to jump on the phone in the near future to chat. Let me know some times that you’re available over the next week or so and we can find a few minutes that work for both of us to connect.\n\nGary Horton\nO: 646.979.3037 | C: 214.704.6375\nhorton@intrepidfp.com<mailto:horton@intrepidfp.com>\n\nFrom: Jonathan M Nachman <jnachman@utexas.edu<mailto:jnachman@utexas.edu>>\nSent: Saturday, January 20, 2024 1:50 PM\nTo: Gary Horton <horton@intrepidfp.com<mailto:horton@intrepidfp.com>>\nSubject: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)\n\nHello Gary, I hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I had the privilege of speaking w\nCaution: External (jnachman@utexas.edu<mailto:jnachman@utexas.edu>)\nFirst-Time Sender Details<https://protection.inkyphishfence.com/details?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9ob3J0b25AaW50cmVwaWRmcC5jb20vYjgzZjZiY2QxYTgyNGI2MGM4OTU0MWQ5Y2Q0NDFkMTIvMTcwNTc3NjY0My42MQ==#key=d04a9150e092c7e241beb51aaf3056ae>\n  Report This Email<https://protection.inkyphishfence.com/report?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9ob3J0b25AaW50cmVwaWRmcC5jb20vYjgzZjZiY2QxYTgyNGI2MGM4OTU0MWQ5Y2Q0NDFkMTIvMTcwNTc3NjY0My42MQ==#key=d04a9150e092c7e241beb51aaf3056ae> FAQ<https://www.inky.com/banner-faq> Protection by INKY<https://www.inky.com/protection-by-inky>\n\nHello Gary,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I had the privilege of speaking with John during Thursday's on campus networking event; however, I didn't get a chance to meet you. I'd love to talk to you to learn more about your experience at Intrepid given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week or so, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan\n\n--\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nIMPORTANT DISCLOSURE:\nThis message, including any attachments, may contain confidential, privileged and/or proprietary information and is intended only for the use of the individual or entity to whom it is addressed. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of this message or its attachments is strictly prohibited. If you have received this message in error, please notify the sender immediately and delete the message. Unless explicitly stated to the contrary, nothing contained in this message or any attachment constitutes an offer to buy or sell, or a solicitation of an offer to buy or sell, any security, property interest or other asset, nor does it constitute a binding obligation of any kind, an official confirmation of any transaction or an official statement of Intrepid Financial Partners, L.L.C. or its affiliates (collectively, “Intrepid”). It does not constitute a recommendation or take into account the particular investment objectives, financial conditions or needs of specific investors. Intrepid does not provide tax, accounting, or legal advice. Intrepid does not represent that any information or opinion in this communication obtained from third parties is accurate or complete, and thus it should not be relied upon as such. Intrepid reserves the right, to the extent permitted by applicable law, to review, retain, monitor, intercept and reproduce electronic messages to and from its systems and networks. Intrepid Partners, LLC is a broker-dealer registered with the U.S. Securities and Exchange Commission, a member of FINRA, a member of SIPC, and an affiliate of Intrepid Investment Management, LLC. Securities are offered through Intrepid Partners and investment advice is provided through Intrepid Investment Management. By communicating with Intrepid by email, you hereby consent to the foregoing.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d33312aff6a3cf",
+     "date": "2024-01-22T22:01:16Z",
+     "internal_date": "1705960876000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "horton@intrepidfp.com"
+     ],
+     "cc": [],
+     "subject": "Re: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Perfect! My cell is (310)-292-4712. I'll send you a calendar invite, and I\nlook forward to speaking with you at 12:30 pm tomorrow.\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 3:35 PM Gary Horton <horton@intrepidfp.com> wrote:\n\n> Thanks, Jonathon. Let’s plan on tomorrow (Tuesday, 1/23) at 12:30pm CT.\n> What is the best number to reach you at?\n>\n>\n>\n> *Gary Horton*\n>\n> O: 646.979.3037 | C: 214.704.6375\n>\n> *horton@intrepidfp.com <horton@intrepidfp.com>*\n>\n>\n>\n> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n> *Sent:* Monday, January 22, 2024 4:17 PM\n> *To:* Gary Horton <horton@intrepidfp.com>\n> *Subject:* Re: Referral by John Sellingsloh (UT Austin Student Interested\n> in Banking @ Intrepid NY)\n>\n>\n>\n>\n>\n> Hi Gary – thanks for getting back to me. Here are some times that work for\n> me:\n>\n>\n>\n> Tuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards\n>\n> Wednesday (1/24): 3 pm onwards\n>\n> Thursday (1/25): 10 am - 1pm & 5 pm onwards\n>\n> Friday (1/26): 2:45 pm onwards\n>\n>\n>\n> Please let me know if any of these times are convenient for you. I look\n> forward to speaking with you.\n>\n>\n>\n> Best, Jonathan\n>\n>\n>\n>\n>\n>\n>\n> On Mon, Jan 22, 2024 at 2:39 PM Gary Horton <horton@intrepidfp.com> wrote:\n>\n> Thanks for reaching out and providing your resume, Jonathon. I’d be happy\n> to jump on the phone in the near future to chat. Let me know some times\n> that you’re available over the next week or so and we can find a few\n> minutes that work for both of us to connect.\n>\n>\n>\n> *Gary Horton*\n>\n> O: 646.979.3037 | C: 214.704.6375\n>\n> *horton@intrepidfp.com <horton@intrepidfp.com>*\n>\n>\n>\n> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n> *Sent:* Saturday, January 20, 2024 1:50 PM\n> *To:* Gary Horton <horton@intrepidfp.com>\n> *Subject:* Referral by John Sellingsloh (UT Austin Student Interested in\n> Banking @ Intrepid NY)\n>\n>\n>\n>\n>\n> Hello Gary,\n>\n>\n>\n> I hope you are doing well. I am an undergraduate Economics & Business\n> student at the University of Texas, and I'm pursuing a career in Investment\n> Banking. I had the privilege of speaking with John during Thursday's on\n> campus networking event; however, I didn't get a chance to meet you. I'd\n> love to talk to you to learn more about your experience at Intrepid given\n> I'm particularly interested in Banking in New York.\n>\n>\n>\n> If you have any free time in the next week or so, it would be great to set\n> up a quick phone call with you. I am pretty open and can likely adjust my\n> schedule to accommodate whatever works best for you. Please let me know if\n> you would be willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> --\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n> IMPORTANT DISCLOSURE:\n> This message, including any attachments, may contain confidential,\n> privileged and/or proprietary information and is intended only for the use\n> of the individual or entity to whom it is addressed. If you are not the\n> intended recipient, you are hereby notified that any dissemination,\n> distribution or copying of this message or its attachments is strictly\n> prohibited. If you have received this message in error, please notify the\n> sender immediately and delete the message. Unless explicitly stated to the\n> contrary, nothing contained in this message or any attachment constitutes\n> an offer to buy or sell, or a solicitation of an offer to buy or sell, any\n> security, property interest or other asset, nor does it constitute a\n> binding obligation of any kind, an official confirmation of any transaction\n> or an official statement of Intrepid Financial Partners, L.L.C. or its\n> affiliates (collectively, “Intrepid”). It does not constitute a\n> recommendation or take into account the particular investment objectives,\n> financial conditions or needs of specific investors. Intrepid does not\n> provide tax, accounting, or legal advice. Intrepid does not represent that\n> any information or opinion in this communication obtained from third\n> parties is accurate or complete, and thus it should not be relied upon as\n> such. Intrepid reserves the right, to the extent permitted by applicable\n> law, to review, retain, monitor, intercept and reproduce electronic\n> messages to and from its systems and networks. Intrepid Partners, LLC is a\n> broker-dealer registered with the U.S. Securities and Exchange Commission,\n> a member of FINRA, a member of SIPC, and an affiliate of Intrepid\n> Investment Management, LLC. Securities are offered through Intrepid\n> Partners and investment advice is provided through Intrepid Investment\n> Management. By communicating with Intrepid by email, you hereby consent to\n> the foregoing.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d37e1356c90618",
+     "date": "2024-01-23T19:52:01Z",
+     "internal_date": "1706039521000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "horton@intrepidfp.com"
+     ],
+     "cc": [],
+     "subject": "Re: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Gary – I really appreciate you taking the time to hop on the phone with me.\nYou provided some extremely valuable insight into the firm, and I'm\nexcited to continue the recruiting process with Intrepid. If you could get\nback to me with the details of applying indirectly with Recruit McCombs,\nthat would be much appreciated. In the meantime, I will be talking with\nWill and Nolan. Thanks again!\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 4:01 PM Jonathan M Nachman <jnachman@utexas.edu>\nwrote:\n\n> Perfect! My cell is (310)-292-4712. I'll send you a calendar invite, and I\n> look forward to speaking with you at 12:30 pm tomorrow.\n>\n> Best,\n> Jonathan\n>\n> On Mon, Jan 22, 2024 at 3:35 PM Gary Horton <horton@intrepidfp.com> wrote:\n>\n>> Thanks, Jonathon. Let’s plan on tomorrow (Tuesday, 1/23) at 12:30pm CT.\n>> What is the best number to reach you at?\n>>\n>>\n>>\n>> *Gary Horton*\n>>\n>> O: 646.979.3037 | C: 214.704.6375\n>>\n>> *horton@intrepidfp.com <horton@intrepidfp.com>*\n>>\n>>\n>>\n>> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n>> *Sent:* Monday, January 22, 2024 4:17 PM\n>> *To:* Gary Horton <horton@intrepidfp.com>\n>> *Subject:* Re: Referral by John Sellingsloh (UT Austin Student\n>> Interested in Banking @ Intrepid NY)\n>>\n>>\n>>\n>>\n>>\n>> Hi Gary – thanks for getting back to me. Here are some times that work\n>> for me:\n>>\n>>\n>>\n>> Tuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards\n>>\n>> Wednesday (1/24): 3 pm onwards\n>>\n>> Thursday (1/25): 10 am - 1pm & 5 pm onwards\n>>\n>> Friday (1/26): 2:45 pm onwards\n>>\n>>\n>>\n>> Please let me know if any of these times are convenient for you. I look\n>> forward to speaking with you.\n>>\n>>\n>>\n>> Best, Jonathan\n>>\n>>\n>>\n>>\n>>\n>>\n>>\n>> On Mon, Jan 22, 2024 at 2:39 PM Gary Horton <horton@intrepidfp.com>\n>> wrote:\n>>\n>> Thanks for reaching out and providing your resume, Jonathon. I’d be happy\n>> to jump on the phone in the near future to chat. Let me know some times\n>> that you’re available over the next week or so and we can find a few\n>> minutes that work for both of us to connect.\n>>\n>>\n>>\n>> *Gary Horton*\n>>\n>> O: 646.979.3037 | C: 214.704.6375\n>>\n>> *horton@intrepidfp.com <horton@intrepidfp.com>*\n>>\n>>\n>>\n>> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n>> *Sent:* Saturday, January 20, 2024 1:50 PM\n>> *To:* Gary Horton <horton@intrepidfp.com>\n>> *Subject:* Referral by John Sellingsloh (UT Austin Student Interested in\n>> Banking @ Intrepid NY)\n>>\n>>\n>>\n>>\n>>\n>> Hello Gary,\n>>\n>>\n>>\n>> I hope you are doing well. I am an undergraduate Economics & Business\n>> student at the University of Texas, and I'm pursuing a career in Investment\n>> Banking. I had the privilege of speaking with John during Thursday's on\n>> campus networking event; however, I didn't get a chance to meet you. I'd\n>> love to talk to you to learn more about your experience at Intrepid given\n>> I'm particularly interested in Banking in New York.\n>>\n>>\n>>\n>> If you have any free time in the next week or so, it would be great to\n>> set up a quick phone call with you. I am pretty open and can likely adjust\n>> my schedule to accommodate whatever works best for you. Please let me know\n>> if you would be willing to do this. Attached is my resume.\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>>\n>> --\n>>\n>> *Jonathan Nachman *\n>>\n>> University of Texas, Austin\n>>\n>> Economics & Business\n>>\n>> M: (310)-292-4712\n>>\n>>\n>> IMPORTANT DISCLOSURE:\n>> This message, including any attachments, may contain confidential,\n>> privileged and/or proprietary information and is intended only for the use\n>> of the individual or entity to whom it is addressed. If you are not the\n>> intended recipient, you are hereby notified that any dissemination,\n>> distribution or copying of this message or its attachments is strictly\n>> prohibited. If you have received this message in error, please notify the\n>> sender immediately and delete the message. Unless explicitly stated to the\n>> contrary, nothing contained in this message or any attachment constitutes\n>> an offer to buy or sell, or a solicitation of an offer to buy or sell, any\n>> security, property interest or other asset, nor does it constitute a\n>> binding obligation of any kind, an official confirmation of any transaction\n>> or an official statement of Intrepid Financial Partners, L.L.C. or its\n>> affiliates (collectively, “Intrepid”). It does not constitute a\n>> recommendation or take into account the particular investment objectives,\n>> financial conditions or needs of specific investors. Intrepid does not\n>> provide tax, accounting, or legal advice. Intrepid does not represent that\n>> any information or opinion in this communication obtained from third\n>> parties is accurate or complete, and thus it should not be relied upon as\n>> such. Intrepid reserves the right, to the extent permitted by applicable\n>> law, to review, retain, monitor, intercept and reproduce electronic\n>> messages to and from its systems and networks. Intrepid Partners, LLC is a\n>> broker-dealer registered with the U.S. Securities and Exchange Commission,\n>> a member of FINRA, a member of SIPC, and an affiliate of Intrepid\n>> Investment Management, LLC. Securities are offered through Intrepid\n>> Partners and investment advice is provided through Intrepid Investment\n>> Management. By communicating with Intrepid by email, you hereby consent to\n>> the foregoing.\n>>\n>>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d335857a5cd119",
+   "capture": "metadata_only",
+   "shared_thread": false,
+   "subject": "Accepted: Gary - Jonathan Intrepid IB Call",
+   "messages": [
+    {
+     "message_id": "18d335857a5cd119",
+     "date": "2024-01-22T22:44:00Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "horton@intrepidfp.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Accepted: Gary - Jonathan Intrepid IB Call",
+     "labels": [],
+     "attachments": [],
+     "has_attachment": null,
+     "body": null,
+     "body_source": "metadata_only",
+     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

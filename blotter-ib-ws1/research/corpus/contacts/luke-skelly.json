@@ -1,0 +1,64 @@
+{
+ "slug": "luke-skelly",
+ "name": "Luke Skelly",
+ "firm": "Guggenheim",
+ "title": "Associate, Tech",
+ "addresses_seen": [
+  "lukes5061@gmail.com"
+ ],
+ "relationship_opened": "Cold email to a personal address, LSE and Texas angle",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 1,
+  "outbound": 1,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-17T23:22:47Z",
+ "last_activity": "2024-01-17T23:22:47Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d19b85298eaa06",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin & LSE Student Interested in Investment Banking @ Guggenheim",
+   "messages": [
+    {
+     "message_id": "18d19bc02709f37f",
+     "date": "2024-01-17T23:22:47Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "lukes5061@gmail.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin & LSE Student Interested in Investment Banking @ Guggenheim",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Luke,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking (I also spent a summer studying at LSE). I'd love to talk to you to learn more about your experience at Guggenheim especially given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Three Guggenheim analysts emailed within 11 minutes on 2024-01-17, none of whom replied. A fourth Guggenheim contact, Elliot Calkins, was emailed six weeks later from the GMAIL account and did reply. Same firm, two accounts, no shared history.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

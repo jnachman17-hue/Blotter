@@ -1,0 +1,112 @@
+{
+ "slug": "lynell-velten",
+ "name": "Lynell Velten",
+ "firm": "Houlihan Lokey",
+ "title": "VP, CF Campus Recruiting",
+ "addresses_seen": [
+  "Lynell.Velten@hl.com"
+ ],
+ "relationship_opened": "Inbound from campus recruiting after resume was passed internally",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 3,
+  "outbound": 1,
+  "inbound": 2,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-30T19:13:24Z",
+ "last_activity": "2024-01-30T20:21:08Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d5bca7d667683f",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "2025 Houlihan Lokey Summer Analyst Program",
+   "messages": [
+    {
+     "message_id": "18d5bca7d667683f",
+     "date": "2024-01-30T19:13:24Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Lynell.Velten@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "Sara.Laracca@hl.com"
+     ],
+     "subject": "2025 Houlihan Lokey Summer Analyst Program",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Jonathan,\n\nI hope you're well! By way of introduction, my name is Lynell Velten and I lead Corporate Finance Campus Recruiting at Houlihan Lokey. I received your resume from our Consumer Retail team in LA and we appreciate your interest in our internship program. In order to be considered, please submit a formal application on our HL Careers Website.\n\nAny questions, please don't hesitate to reach out.\n\nBest,\nLynell\n\nLynell Velten, Vice President, CF Campus Recruiting",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d5bf79d31e4387",
+     "date": "2024-01-30T20:02:50Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Lynell.Velten@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: 2025 Houlihan Lokey Summer Analyst Program",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Lynell,\n\nI hope you are doing well. I submitted my formal application online yesterday for Houlihan Lokey’s 2025 Summer Financial Analyst (Class of 2026) - Corporate Finance, Los Angeles Consumer, Food & Retail position. I have not yet completed my virtual Suited assessment yet. I am wondering if that is the reason you are not able to see my application. If you could provide some clarification that would be much appreciated.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d5c08770011806",
+     "date": "2024-01-30T20:21:08Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Lynell.Velten@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: 2025 Houlihan Lokey Summer Analyst Program",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan,\n\nMy apologies, I was searching on your gmail address in our applicant tracking system and for some reason your application did not appear. I researched on your name and I was able to locate it. Please disregard my previous email!\n\nBest,\nLynell",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

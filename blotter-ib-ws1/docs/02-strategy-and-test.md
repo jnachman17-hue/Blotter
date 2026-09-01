@@ -160,7 +160,18 @@ Non-paid channels are provisionally important, but the exact acquisition plan re
 
 Social account seeding remains exempt from the research-before-spend rule because account age and history may be mechanically necessary before promotional posting.
 
-## Later product work
+## Later product work — AMENDED September 1, 2026
+
+> **Amended by the session 11 architecture ruling.** The first build does not
+> use an intermediary at all: it runs inside the student's own Google account,
+> with Blotter's server holding the rules and never the mail. The intermediary
+> remains the destination for a hosted build, and the architecture is
+> deliberately shaped so that migration swaps where the facts arrive from rather
+> than rebuilding the product. See `04-decision-log.md`, session 11.
+>
+> **This changes nothing in this file above.** The funnel, the event set, the
+> read rules and the thresholds are untouched. **It is not a decision to
+> build** — the demand evidence has not moved.
 
 If validation justifies backend development, Gmail capture is expected to use an intermediary such as Nylas or Unipile. Real OAuth implementation and permission-willingness testing are not part of the mandatory round-one funnel.
 

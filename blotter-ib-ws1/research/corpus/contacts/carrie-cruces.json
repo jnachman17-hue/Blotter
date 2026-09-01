@@ -1,0 +1,393 @@
+{
+ "slug": "carrie-cruces",
+ "name": "Carrie Cruces",
+ "firm": "Citi",
+ "title": "Analyst, Global Energy Group",
+ "addresses_seen": [
+  "carrie.cruces@citi.com"
+ ],
+ "relationship_opened": "Referred by Chris Miller",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 3,
+  "messages": 16,
+  "outbound": 7,
+  "inbound": 9,
+  "calendar_events": 1
+ },
+ "first_activity": "2024-01-19T17:40:52Z",
+ "last_activity": "2024-01-26T22:54:45Z",
+ "calendar_event_ids": [
+  "3qrpn59m0kc0j384e56nfcvfb4"
+ ],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d22cfc9808e8e9",
+   "capture": "spilled",
+   "shared_thread": false,
+   "subject": "Intro",
+   "messages": [
+    {
+     "message_id": "18d22cfc9808e8e9",
+     "date": "2024-01-19T17:40:52Z",
+     "internal_date": "1705686052000",
+     "direction": "inbound",
+     "sender": "chris.miller@citi.com",
+     "to": [
+      "carrie.cruces@citi.com",
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Intro",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan Nachman Resume 1-24.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Jonathan, I'm introducing you to Carrie Cruces who is the real motor behind our UT recruiting effort! Please connect with her. She said we have an event on campus next week, etc.\n\nI'll leave it to you guys to connect.\n\nThanks\n\nChris\n\nChristopher B. Miller\nManaging Director\nVice Chairman | Citi Energy Investment Banking\nCiti\n811 Main, Suite 3900\nHouston, TX 77002\nT: 713.821.4701\nF: 713.481.0229\nM: 713.826.0761\nchris.miller@citi.com<mailto:chris.miller@citi.com%3cmailto:chris.miller@citi.com>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d22d10902a78c8",
+     "date": "2024-01-19T17:42:14Z",
+     "internal_date": "1705686134000",
+     "direction": "inbound",
+     "sender": "chris.miller@citi.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Intro",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Happy to mock interview you when you're ready. You're going to need to be bulletproof on your \"why Houston\" story (you will probably get asked that in these initial meetings anyway, so prepare for that). Chris\n\nFrom: Miller, Chris [BKG-IB]\nSent: Friday, January 19, 2024 11:41 AM\nTo: Cruces, Carrie [BKG-IB]; '[gmail.com] Jonathan Nachman'\nSubject: Intro\n\nJonathan, I'm introducing you to Carrie Cruces who is the real motor behind our UT recruiting effort! Please connect with her. She said we have an event on campus next week, etc.\n\nI'll leave it to you guys to connect.\n\nThanks\n\nChris\n\nChristopher B. Miller\nManaging Director\nVice Chairman | Citi Energy Investment Banking\nCiti\n811 Main, Suite 3900\nHouston, TX 77002\nT: 713.821.4701\nF: 713.481.0229\nM: 713.826.0761\nchris.miller@citi.com<mailto:chris.miller@citi.com%3cmailto:chris.miller@citi.com>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d22dd970633b55",
+     "date": "2024-01-19T17:55:57Z",
+     "internal_date": "1705686957000",
+     "direction": "inbound",
+     "sender": "carrie.cruces@citi.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Intro",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Thanks Chris, moving you to bcc.\n\nJonathan— nice to meet you! Let me know your availability and we’ll find some time to connect over the phone. Additionally, we will be on campus on Monday (1/22) for our info session and I will pass along details for that once I have it.\n\nCarrie Cruces\nCiti | Investment Banking\nGlobal Energy Group\nM: +1.908.247.4363\nO: +1.832.667.0726\ncarrie.cruces@citi.com\n\nFrom: Miller, Chris [BKG-IB] <cm36890@citi.com<mailto:cm36890@citi.com>>\nDate: Friday, Jan 19, 2024 at 11:40 AM\nTo: Cruces, Carrie [BKG-IB] <cc22388@citi.com<mailto:cc22388@citi.com>>, [gmail.com] Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSubject: Intro\n\nJonathan, I’m introducing you to Carrie Cruces who is the real motor behind our UT recruiting effort! Please connect with her. She said we have an event on campus next week, etc.\n\nI’ll leave it to you guys to connect.\n\nThanks\n\nChris\n\nChristopher B. Miller\nManaging Director\nVice Chairman | Citi Energy Investment Banking\nCiti\n811 Main, Suite 3900\nHouston, TX 77002\nT: 713.821.4701\nF: 713.481.0229\nM: 713.826.0761\nchris.miller@citi.com<mailto:chris.miller@citi.com%3cmailto:chris.miller@citi.com>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d23160da173c89",
+     "date": "2024-01-19T18:57:44Z",
+     "internal_date": "1705690664000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "carrie.cruces@citi.com"
+     ],
+     "cc": [],
+     "subject": "Re: Intro",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Carrie,\n\nI hope you are doing well. Firstly, it's great to hear Citi is doing an\ninfo session on campus next week – I appreciate you passing along the\ndetails for that. Additionally, I would love to connect over the phone so\nlet me give you some times that work next week.\n\nMonday (1/22) : 2 - 6 pm & 7 pm onwards\nTuesday (1/23): 10 am - 1 pm & 5 pm onwards\nWednesday(1/24): 11 am onwards\n\nPlease let me know if any of these times work for you and we'll schedule a\ncall.\n\nBest,\nJonathan\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 11:56 AM Cruces, Carrie <carrie.cruces@citi.com>\nwrote:\n\n> Thanks Chris, moving you to bcc.\n>\n> Jonathan— nice to meet you! Let me know your availability and we’ll find\n> some time to connect over the phone. Additionally, we will be on campus on\n> Monday (1/22) for our info session and I will pass along details for that\n> once I have it.\n>\n> *Carrie Cruces*\n>\n> Citi | Investment Banking\n>\n> Global Energy Group\n>\n> M: +1.908.247.4363\n>\n> O: +1.832.667.0726\n>\n> carrie.cruces@citi.com\n>\n>\n>\n>\n> *From: *Miller, Chris [BKG-IB] <cm36890@citi.com>\n> *Date: *Friday, Jan 19, 2024 at 11:40 AM\n> *To: *Cruces, Carrie [BKG-IB] <cc22388@citi.com>, [gmail.com] Jonathan\n> Nachman <jnachman17@gmail.com>\n> *Subject: *Intro\n>\n> Jonathan, I’m introducing you to Carrie Cruces who is the real motor\n> behind our UT recruiting effort! Please connect with her. She said we\n> have an event on campus next week, etc.\n>\n>\n>\n> I’ll leave it to you guys to connect.\n>\n>\n>\n> Thanks\n>\n>\n>\n> Chris\n>\n>\n>\n>\n>\n>\n>\n>\n>\n>\n>\n> *Christopher B. Miller*\n>\n> Managing Director\n>\n> Vice Chairman | Citi Energy Investment Banking\n>\n> Citi\n>\n> 811 Main, Suite 3900\n>\n> Houston, TX 77002\n>\n> T: 713.821.4701\n>\n> F: 713.481.0229\n>\n> M: 713.826.0761\n>\n> chris.miller@citi.com\n> <chris.miller@citi.com%3cmailto:chris.miller@citi.com>\n>\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d231cbc620ad93",
+     "date": "2024-01-19T19:05:02Z",
+     "internal_date": "1705691102000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "chris.miller@citi.com"
+     ],
+     "cc": [],
+     "subject": "Re: Intro",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Chris,\n\nI greatly appreciate all of the introduction you made on my behalf this\nmorning - that should be quite useful for getting a foot in the door in\nsome places. I am eager to jump on the opportunity of mock interviewing\nwith you. I will create a *why Houston *story this weekend. Let me work on\nthat and I'll shoot you some potential meeting times for early next week to\nfigure something out.\n\nMuch appreciated,\nJonathan\n\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 11:42 AM Miller, Chris <chris.miller@citi.com>\nwrote:\n\n> Happy to mock interview you when you’re ready. You’re going to need to be\n> bulletproof on your “why Houston” story (you will probably get asked that\n> in these initial meetings anyway, so prepare for that). Chris\n>\n>\n>\n> *From:* Miller, Chris [BKG-IB]\n> *Sent:* Friday, January 19, 2024 11:41 AM\n> *To:* Cruces, Carrie [BKG-IB]; '[gmail.com] Jonathan Nachman'\n> *Subject:* Intro\n>\n>\n>\n> Jonathan, I’m introducing you to Carrie Cruces who is the real motor\n> behind our UT recruiting effort! Please connect with her. She said we\n> have an event on campus next week, etc.\n>\n>\n>\n> I’ll leave it to you guys to connect.\n>\n>\n>\n> Thanks\n>\n>\n>\n> Chris\n>\n>\n>\n>\n>\n>\n>\n>\n>\n>\n>\n> *Christopher B. Miller*\n>\n> Managing Director\n>\n> Vice Chairman | Citi Energy Investment Banking\n>\n> Citi\n>\n> 811 Main, Suite 3900\n>\n> Houston, TX 77002\n>\n> T: 713.821.4701\n>\n> F: 713.481.0229\n>\n> M: 713.826.0761\n>\n> chris.miller@citi.com\n> <chris.miller@citi.com%3cmailto:chris.miller@citi.com>\n>\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d23237607449f8",
+     "date": "2024-01-19T19:12:15Z",
+     "internal_date": "1705691535000",
+     "direction": "inbound",
+     "sender": "chris.miller@citi.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Intro",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Sounds good!\n\nSent with BlackBerry Work\n(www.blackberry.com)\n\nFrom: [gmail.com] Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nDate: Friday, Jan 19, 2024 at 1:05 PM\nTo: Miller, Chris [BKG-IB] <cm36890@citi.com<mailto:cm36890@citi.com>>\nSubject: Re: Intro\n\nChris, I greatly appreciate all of the introduction you made on my behalf this morning - that should be quite useful for getting a foot in the door in some places. I am eager to jump on the opportunity of mock interviewing with you. I will\n\nChris,\n\nI greatly appreciate all of the introduction you made on my behalf this morning - that should be quite useful for getting a foot in the door in some places. I am eager to jump on the opportunity of mock interviewing with you. I will create a why Houston story this weekend. Let me work on that and I'll shoot you some potential meeting times for early next week to figure something out.\n\nMuch appreciated,\nJonathan\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 11:42 AM Miller, Chris <chris.miller@citi.com<mailto:chris.miller@citi.com>> wrote:\nHappy to mock interview you when you’re ready. You’re going to need to be bulletproof on your “why Houston” story (you will probably get asked that in these initial meetings anyway, so prepare for that). Chris\n\nFrom: Miller, Chris [BKG-IB]\nSent: Friday, January 19, 2024 11:41 AM\nTo: Cruces, Carrie [BKG-IB]; '[gmail.com<https://urldefense.com/v3/__http://gmail.com__;!!Jkho33Y!mD5ZMccTbIlpE6HiM_-9fuIchkeCueWAgCru3Su2SyHlFuO77YfYnx1uWTuAA0KIX_gucMShy0ppIiTIOO8$>] Jonathan Nachman'\nSubject: Intro\n\nJonathan, I’m introducing you to Carrie Cruces who is the real motor behind our UT recruiting effort! Please connect with her. She said we have an event on campus next week, etc.\n\nI’ll leave it to you guys to connect.\n\nThanks\n\nChris\n\nChristopher B. Miller\nManaging Director\nVice Chairman | Citi Energy Investment Banking\nCiti\n811 Main, Suite 3900\nHouston, TX 77002\nT: 713.821.4701\nF: 713.481.0229\nM: 713.826.0761\nchris.miller@citi.com<mailto:chris.miller@citi.com%3cmailto:chris.miller@citi.com>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d23699778e5d8a",
+     "date": "2024-01-19T20:28:53Z",
+     "internal_date": "1705696133000",
+     "direction": "inbound",
+     "sender": "carrie.cruces@citi.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Intro",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Let’s do 2pm on Monday. Can you send me a calendar invite? Can call me at the cell in my signature.\n\nLook forward to it.\n\nCarrie Cruces\nCiti | Investment Banking\nGlobal Energy Group\nM: +1.908.247.4363\nO: +1.832.667.0726\ncarrie.cruces@citi.com\n\nFrom: [gmail.com] Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nDate: Friday, Jan 19, 2024 at 12:57 PM\nTo: Cruces, Carrie [BKG-IB] <cc22388@citi.com<mailto:cc22388@citi.com>>\nSubject: Re: Intro\n\nHi Carrie, I hope you are doing well. Firstly, it's great to hear Citi is doing an info session on campus next week – I appreciate you passing along the details for that. Additionally, I would love to connect over the phone so let me give\n\nHi Carrie,\n\nI hope you are doing well. Firstly, it's great to hear Citi is doing an info session on campus next week – I appreciate you passing along the details for that. Additionally, I would love to connect over the phone so let me give you some times that work next week.\n\nMonday (1/22) : 2 - 6 pm & 7 pm onwards\nTuesday (1/23): 10 am - 1 pm & 5 pm onwards\nWednesday(1/24): 11 am onwards\n\nPlease let me know if any of these times work for you and we'll schedule a call.\n\nBest,\nJonathan\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 11:56 AM Cruces, Carrie <carrie.cruces@citi.com<mailto:carrie.cruces@citi.com>> wrote:\nThanks Chris, moving you to bcc.\n\nJonathan— nice to meet you! Let me know your availability and we’ll find some time to connect over the phone. Additionally, we will be on campus on Monday (1/22) for our info session and I will pass along details for that once I have it.\n\nCarrie Cruces\nCiti | Investment Banking\nGlobal Energy Group\nM: +1.908.247.4363\nO: +1.832.667.0726\ncarrie.cruces@citi.com<mailto:carrie.cruces@citi.com>\n\nFrom: Miller, Chris [BKG-IB] <cm36890@citi.com<mailto:cm36890@citi.com>>\nDate: Friday, Jan 19, 2024 at 11:40 AM\nTo: Cruces, Carrie [BKG-IB] <cc22388@citi.com<mailto:cc22388@citi.com>>, [gmail.com<https://urldefense.com/v3/__http://gmail.com__;!!Jkho33Y!mQ1keEIYCLjmfOE6yUMuVe-xE10hPCksWq7xLy7ueLlAwjRByIglPTe3HQU_KhVY_QuqdFMNA5pPgZSYtIu2$>] Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSubject: Intro\n\nJonathan, I’m introducing you to Carrie Cruces who is the real motor behind our UT recruiting effort! Please connect with her. She said we have an event on campus next week, etc.\n\nI’ll leave it to you guys to connect.\n\nThanks\n\nChris\n\nChristopher B. Miller\nManaging Director\nVice Chairman | Citi Energy Investment Banking\nCiti\n811 Main, Suite 3900\nHouston, TX 77002\nT: 713.821.4701\nF: 713.481.0229\nM: 713.826.0761\nchris.miller@citi.com<mailto:chris.miller@citi.com%3cmailto:chris.miller@citi.com>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d24047aba67127",
+     "date": "2024-01-19T23:18:09Z",
+     "internal_date": "1705706289000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "carrie.cruces@citi.com"
+     ],
+     "cc": [],
+     "subject": "Re: Intro",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Perfect! I'll shoot you a calendar invite and look forward to speaking with\nyou then.\n\nBest,\nJonathan\n\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 2:28 PM Cruces, Carrie <carrie.cruces@citi.com>\nwrote:\n\n> Let’s do 2pm on Monday. Can you send me a calendar invite? Can call me at\n> the cell in my signature.\n>\n> Look forward to it.\n>\n> *Carrie Cruces*\n>\n> Citi | Investment Banking\n>\n> Global Energy Group\n>\n> M: +1.908.247.4363\n>\n> O: +1.832.667.0726\n>\n> carrie.cruces@citi.com\n>\n>\n>\n>\n> *From: *[gmail.com] Jonathan Nachman <jnachman17@gmail.com>\n> *Date: *Friday, Jan 19, 2024 at 12:57 PM\n> *To: *Cruces, Carrie [BKG-IB] <cc22388@citi.com>\n> *Subject: *Re: Intro\n>\n> Hi Carrie, I hope you are doing well. Firstly, it's great to hear Citi is\n> doing an info session on campus next week – I appreciate you passing along\n> the details for that. Additionally, I would love to connect over the phone\n> so let me give\n> Hi Carrie,\n>\n> I hope you are doing well. Firstly, it's great to hear Citi is doing an\n> info session on campus next week – I appreciate you passing along the\n> details for that. Additionally, I would love to connect over the phone so\n> let me give you some times that work next week.\n>\n> Monday (1/22) : 2 - 6 pm & 7 pm onwards\n> Tuesday (1/23): 10 am - 1 pm & 5 pm onwards\n> Wednesday(1/24): 11 am onwards\n>\n> Please let me know if any of these times work for you and we'll schedule a\n> call.\n>\n> Best,\n> Jonathan\n> *Jonathan Nachman *\n> University of Texas, Austin\n> Economics & Business\n> M: (310)-292-4712\n>\n>\n> On Fri, Jan 19, 2024 at 11:56 AM Cruces, Carrie <carrie.cruces@citi.com>\n> wrote:\n>\n>> Thanks Chris, moving you to bcc.\n>>\n>> Jonathan— nice to meet you! Let me know your availability and we’ll find\n>> some time to connect over the phone. Additionally, we will be on campus on\n>> Monday (1/22) for our info session and I will pass along details for that\n>> once I have it.\n>>\n>> *Carrie Cruces*\n>>\n>> Citi | Investment Banking\n>>\n>> Global Energy Group\n>>\n>> M: +1.908.247.4363\n>>\n>> O: +1.832.667.0726\n>>\n>> carrie.cruces@citi.com\n>>\n>>\n>>\n>>\n>> *From: *Miller, Chris [BKG-IB] <cm36890@citi.com>\n>> *Date: *Friday, Jan 19, 2024 at 11:40 AM\n>> *To: *Cruces, Carrie [BKG-IB] <cc22388@citi.com>, [gmail.com\n>> <https://urldefense.com/v3/__http://gmail.com__;!!Jkho33Y!mQ1keEIYCLjmfOE6yUMuVe-xE10hPCksWq7xLy7ueLlAwjRByIglPTe3HQU_KhVY_QuqdFMNA5pPgZSYtIu2$>]\n>> Jonathan Nachman <jnachman17@gmail.com>\n>> *Subject: *Intro\n>>\n>> Jonathan, I’m introducing you to Carrie Cruces who is the real motor\n>> behind our UT recruiting effort! Please connect with her. She said we\n>> have an event on campus next week, etc.\n>>\n>>\n>>\n>> I’ll leave it to you guys to connect.\n>>\n>>\n>>\n>> Thanks\n>>\n>>\n>>\n>> Chris\n>>\n>>\n>>\n>>\n>>\n>>\n>>\n>>\n>>\n>>\n>>\n>> *Christopher B. Miller*\n>>\n>> Managing Director\n>>\n>> Vice Chairman | Citi Energy Investment Banking\n>>\n>> Citi\n>>\n>> 811 Main, Suite 3900\n>>\n>> Houston, TX 77002\n>>\n>> T: 713.821.4701\n>>\n>> F: 713.481.0229\n>>\n>> M: 713.826.0761\n>>\n>> chris.miller@citi.com\n>> <chris.miller@citi.com%3cmailto:chris.miller@citi.com>\n>>\n>>\n>>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d32d541701ebbe",
+     "date": "2024-01-22T20:20:41Z",
+     "internal_date": "1705954841000",
+     "direction": "inbound",
+     "sender": "carrie.cruces@citi.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "mathew.young@citi.com"
+     ],
+     "subject": "RE: Intro",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Jonathan,\n\nWanted to connect you to Mat (ccd) who is an analyst in our power group in NY and would be a great resource for you to talk to learn more about the group.\n\nThanks,\nCarrie\n\nCarrie Cruces\nCiti | Investment Banking\nGlobal Energy Group\nM: +1.908.247.4363\nO: +1.832.667.0726\ncarrie.cruces@citi.com<mailto:carrie.cruces@citi.com>\n\nFrom: [gmail.com] Jonathan Nachman <jnachman17@gmail.com>\nSent: Friday, January 19, 2024 5:18 PM\nTo: Cruces, Carrie [BKG-IB] <cc22388@citi.com>\nSubject: Re: Intro\n\nPerfect! I'll shoot you a calendar invite and look forward to speaking with you then. Best, Jonathan Jonathan Nachman University of Texas, Austin Economics & Business M: (310)-292-4712 On Fri, Jan 19, 2024 at 2: 28 PM Cruces, Carrie\n\nPerfect! I'll shoot you a calendar invite and look forward to speaking with you then.\n\nBest,\nJonathan\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 2:28 PM Cruces, Carrie <carrie.cruces@citi.com<mailto:carrie.cruces@citi.com>> wrote:\nLet’s do 2pm on Monday. Can you send me a calendar invite? Can call me at the cell in my signature.\n\nLook forward to it.\n\nCarrie Cruces\nCiti | Investment Banking\nGlobal Energy Group\nM: +1.908.247.4363\nO: +1.832.667.0726\ncarrie.cruces@citi.com<mailto:carrie.cruces@citi.com>\n\nFrom: [gmail.com<https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!mDKIqmraTKfL7UdwhlrIZ9myl6QjUOXyrjMd6ARZJpT2aMvw3GChOmbyOBo9LOGqPEdR4yXjtvsGRixW3BYm$>] Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nDate: Friday, Jan 19, 2024 at 12:57 PM\nTo: Cruces, Carrie [BKG-IB] <cc22388@citi.com<mailto:cc22388@citi.com>>\nSubject: Re: Intro\n\nHi Carrie, I hope you are doing well. Firstly, it's great to hear Citi is doing an info session on campus next week – I appreciate you passing along the details for that. Additionally, I would love to connect over the phone so let me give\nHi Carrie,\n\nI hope you are doing well. Firstly, it's great to hear Citi is doing an info session on campus next week – I appreciate you passing along the details for that. Additionally, I would love to connect over the phone so let me give you some times that work next week.\n\nMonday (1/22) : 2 - 6 pm & 7 pm onwards\nTuesday (1/23): 10 am - 1 pm & 5 pm onwards\nWednesday(1/24): 11 am onwards\n\nPlease let me know if any of these times work for you and we'll schedule a call.\n\nBest,\nJonathan\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 11:56 AM Cruces, Carrie <carrie.cruces@citi.com<mailto:carrie.cruces@citi.com>> wrote:\nThanks Chris, moving you to bcc.\n\nJonathan— nice to meet you! Let me know your availability and we’ll find some time to connect over the phone. Additionally, we will be on campus on Monday (1/22) for our info session and I will pass along details for that once I have it.\n\nCarrie Cruces\nCiti | Investment Banking\nGlobal Energy Group\nM: +1.908.247.4363\nO: +1.832.667.0726\ncarrie.cruces@citi.com<mailto:carrie.cruces@citi.com>\n\nFrom: Miller, Chris [BKG-IB] <cm36890@citi.com<mailto:cm36890@citi.com>>\nDate: Friday, Jan 19, 2024 at 11:40 AM\nTo: Cruces, Carrie [BKG-IB] <cc22388@citi.com<mailto:cc22388@citi.com>>, [gmail.com<https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!mQ1keEIYCLjmfOE6yUMuVe-xE10hPCksWq7xLy7ueLlAwjRByIglPTe3HQU_KhVY_QuqdFMNA5pPgZSYtIu2$>] Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSubject: Intro\n\nJonathan, I’m introducing you to Carrie Cruces who is the real motor behind our UT recruiting effort! Please connect with her. She said we have an event on campus next week, etc.\n\nI’ll leave it to you guys to connect.\n\nThanks\n\nChris\n\nChristopher B. Miller\nManaging Director\nVice Chairman | Citi Energy Investment Banking\nCiti\n811 Main, Suite 3900\nHouston, TX 77002\nT: 713.821.4701\nF: 713.481.0229\nM: 713.826.0761\nchris.miller@citi.com<mailto:chris.miller@citi.com%3cmailto:chris.miller@citi.com>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d32f714b204820",
+     "date": "2024-01-22T20:57:49Z",
+     "internal_date": "1705957069000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "mathew.young@citi.com"
+     ],
+     "cc": [],
+     "subject": "Re: Intro",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Matthew,\n\nI hope you are doing well. I am an undergraduate UT Austin student studying\nEconomics and Business. I had the privilege of speaking with Carrie on the\nphone today and she referred me to you as a point of contact to learn more\nabout Citi's NY Power Group.\n\nI would love to hop on a quick call to learn more about your experience.\nHere are some times (CST) that work for me:\n\nTuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards\n\nWednesday (1/24): 3 pm onwards\n\nThursday (1/25): 10 am - 1pm & 5 pm onwards\n\nFriday (1/26): 2 pm onwards\n\nPlease let me know if any of these are convenient for you. (Attached is my\nresume)\n\nBest,\nJonathan\n\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Mon, Jan 22, 2024 at 2:20 PM Cruces, Carrie <carrie.cruces@citi.com>\nwrote:\n\n> Jonathan,\n>\n>\n>\n> Wanted to connect you to Mat (ccd) who is an analyst in our power group in\n> NY and would be a great resource for you to talk to learn more about the\n> group.\n>\n>\n>\n> Thanks,\n>\n> Carrie\n>\n>\n>\n> *Carrie Cruces *\n>\n> Citi | Investment Banking\n>\n> Global Energy Group\n>\n> M: +1.908.247.4363\n>\n> O: +1.832.667.0726\n>\n> carrie.cruces@citi.com\n>\n>\n>\n> *From:* [gmail.com] Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Friday, January 19, 2024 5:18 PM\n> *To:* Cruces, Carrie [BKG-IB] <cc22388@citi.com>\n> *Subject:* Re: Intro\n>\n>\n>\n> Perfect! I'll shoot you a calendar invite and look forward to speaking\n> with you then. Best, Jonathan Jonathan Nachman University of Texas, Austin\n> Economics & Business M: (310)-292-4712 On Fri, Jan 19, 2024 at 2: 28 PM\n> Cruces, Carrie\n>\n> Perfect! I'll shoot you a calendar invite and look forward to speaking\n> with you then.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n>\n>\n> On Fri, Jan 19, 2024 at 2:28 PM Cruces, Carrie <carrie.cruces@citi.com>\n> wrote:\n>\n> Let’s do 2pm on Monday. Can you send me a calendar invite? Can call me at\n> the cell in my signature.\n>\n>\n>\n> Look forward to it.\n>\n>\n>\n> *Carrie Cruces*\n>\n> Citi | Investment Banking\n>\n> Global Energy Group\n>\n> M: +1.908.247.4363\n>\n> O: +1.832.667.0726\n>\n> carrie.cruces@citi.com\n>\n>\n>\n>\n>\n> *From: *[gmail.com\n> <https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!mDKIqmraTKfL7UdwhlrIZ9myl6QjUOXyrjMd6ARZJpT2aMvw3GChOmbyOBo9LOGqPEdR4yXjtvsGRixW3BYm$>]\n> Jonathan Nachman <jnachman17@gmail.com>\n>\n> *Date: *Friday, Jan 19, 2024 at 12:57 PM\n>\n> *To: *Cruces, Carrie [BKG-IB] <cc22388@citi.com>\n>\n> *Subject: *Re: Intro\n>\n>\n>\n> Hi Carrie, I hope you are doing well. Firstly, it's great to hear Citi is\n> doing an info session on campus next week – I appreciate you passing along\n> the details for that. Additionally, I would love to connect over the phone\n> so let me give\n>\n> Hi Carrie,\n>\n>\n>\n> I hope you are doing well. Firstly, it's great to hear Citi is doing an\n> info session on campus next week – I appreciate you passing along the\n> details for that. Additionally, I would love to connect over the phone so\n> let me give you some times that work next week.\n>\n>\n>\n> Monday (1/22) : 2 - 6 pm & 7 pm onwards\n>\n> Tuesday (1/23): 10 am - 1 pm & 5 pm onwards\n>\n> Wednesday(1/24): 11 am onwards\n>\n>\n>\n> Please let me know if any of these times work for you and we'll schedule a\n> call.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n>\n>\n> On Fri, Jan 19, 2024 at 11:56 AM Cruces, Carrie <carrie.cruces@citi.com>\n> wrote:\n>\n> Thanks Chris, moving you to bcc.\n>\n>\n>\n> Jonathan— nice to meet you! Let me know your availability and we’ll find\n> some time to connect over the phone. Additionally, we will be on campus on\n> Monday (1/22) for our info session and I will pass along details for that\n> once I have it.\n>\n>\n>\n> *Carrie Cruces*\n>\n> Citi | Investment Banking\n>\n> Global Energy Group\n>\n> M: +1.908.247.4363\n>\n> O: +1.832.667.0726\n>\n> carrie.cruces@citi.com\n>\n>\n>\n>\n>\n> *From: *Miller, Chris [BKG-IB] <cm36890@citi.com>\n>\n> *Date: *Friday, Jan 19, 2024 at 11:40 AM\n>\n> *To: *Cruces, Carrie [BKG-IB] <cc22388@citi.com>, [gmail.com\n> <https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!mQ1keEIYCLjmfOE6yUMuVe-xE10hPCksWq7xLy7ueLlAwjRByIglPTe3HQU_KhVY_QuqdFMNA5pPgZSYtIu2$>]\n> Jonathan Nachman <jnachman17@gmail.com>\n>\n> *Subject: *Intro\n>\n>\n>\n> Jonathan, I’m introducing you to Carrie Cruces who is the real motor\n> behind our UT recruiting effort! Please connect with her. She said we\n> have an event on campus next week, etc.\n>\n>\n>\n> I’ll leave it to you guys to connect.\n>\n>\n>\n> Thanks\n>\n>\n>\n> Chris\n>\n>\n>\n>\n>\n>\n>\n>\n>\n>\n>\n> *Christopher B. Miller*\n>\n> Managing Director\n>\n> Vice Chairman | Citi Energy Investment Banking\n>\n> Citi\n>\n> 811 Main, Suite 3900\n>\n> Houston, TX 77002\n>\n> T: 713.821.4701\n>\n> F: 713.481.0229\n>\n> M: 713.826.0761\n>\n> chris.miller@citi.com\n> <chris.miller@citi.com%3cmailto:chris.miller@citi.com>\n>\n>\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d32fb783f0ed70",
+     "date": "2024-01-22T21:02:37Z",
+     "internal_date": "1705957357000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "carrie.cruces@citi.com"
+     ],
+     "cc": [],
+     "subject": "Re: Intro",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Carrie – Thanks for spending the time to speak with me over the phone today\nand connecting me with Mat. Despite being unsure of exactly where exactly I\nwant to pursue Investment Banking, I appreciate you providing\nvaluable insight in Citi's Houston Analyst Program. I've reached out to\nMatt directly and in the meantime will continue to explore opportunities in\nHouston with Citi.\n\nMuch appreciated,\nJonathan\n\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Mon, Jan 22, 2024 at 2:20 PM Cruces, Carrie <carrie.cruces@citi.com>\nwrote:\n\n> Jonathan,\n>\n>\n>\n> Wanted to connect you to Mat (ccd) who is an analyst in our power group in\n> NY and would be a great resource for you to talk to learn more about the\n> group.\n>\n>\n>\n> Thanks,\n>\n> Carrie\n>\n>\n>\n> *Carrie Cruces *\n>\n> Citi | Investment Banking\n>\n> Global Energy Group\n>\n> M: +1.908.247.4363\n>\n> O: +1.832.667.0726\n>\n> carrie.cruces@citi.com\n>\n>\n>\n> *From:* [gmail.com] Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Friday, January 19, 2024 5:18 PM\n> *To:* Cruces, Carrie [BKG-IB] <cc22388@citi.com>\n> *Subject:* Re: Intro\n>\n>\n>\n> Perfect! I'll shoot you a calendar invite and look forward to speaking\n> with you then. Best, Jonathan Jonathan Nachman University of Texas, Austin\n> Economics & Business M: (310)-292-4712 On Fri, Jan 19, 2024 at 2: 28 PM\n> Cruces, Carrie\n>\n> Perfect! I'll shoot you a calendar invite and look forward to speaking\n> with you then.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n>\n>\n> On Fri, Jan 19, 2024 at 2:28 PM Cruces, Carrie <carrie.cruces@citi.com>\n> wrote:\n>\n> Let’s do 2pm on Monday. Can you send me a calendar invite? Can call me at\n> the cell in my signature.\n>\n>\n>\n> Look forward to it.\n>\n>\n>\n> *Carrie Cruces*\n>\n> Citi | Investment Banking\n>\n> Global Energy Group\n>\n> M: +1.908.247.4363\n>\n> O: +1.832.667.0726\n>\n> carrie.cruces@citi.com\n>\n>\n>\n>\n>\n> *From: *[gmail.com\n> <https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!mDKIqmraTKfL7UdwhlrIZ9myl6QjUOXyrjMd6ARZJpT2aMvw3GChOmbyOBo9LOGqPEdR4yXjtvsGRixW3BYm$>]\n> Jonathan Nachman <jnachman17@gmail.com>\n>\n> *Date: *Friday, Jan 19, 2024 at 12:57 PM\n>\n> *To: *Cruces, Carrie [BKG-IB] <cc22388@citi.com>\n>\n> *Subject: *Re: Intro\n>\n>\n>\n> Hi Carrie, I hope you are doing well. Firstly, it's great to hear Citi is\n> doing an info session on campus next week – I appreciate you passing along\n> the details for that. Additionally, I would love to connect over the phone\n> so let me give\n>\n> Hi Carrie,\n>\n>\n>\n> I hope you are doing well. Firstly, it's great to hear Citi is doing an\n> info session on campus next week – I appreciate you passing along the\n> details for that. Additionally, I would love to connect over the phone so\n> let me give you some times that work next week.\n>\n>\n>\n> Monday (1/22) : 2 - 6 pm & 7 pm onwards\n>\n> Tuesday (1/23): 10 am - 1 pm & 5 pm onwards\n>\n> Wednesday(1/24): 11 am onwards\n>\n>\n>\n> Please let me know if any of these times work for you and we'll schedule a\n> call.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n>\n>\n> On Fri, Jan 19, 2024 at 11:56 AM Cruces, Carrie <carrie.cruces@citi.com>\n> wrote:\n>\n> Thanks Chris, moving you to bcc.\n>\n>\n>\n> Jonathan— nice to meet you! Let me know your availability and we’ll find\n> some time to connect over the phone. Additionally, we will be on campus on\n> Monday (1/22) for our info session and I will pass along details for that\n> once I have it.\n>\n>\n>\n> *Carrie Cruces*\n>\n> Citi | Investment Banking\n>\n> Global Energy Group\n>\n> M: +1.908.247.4363\n>\n> O: +1.832.667.0726\n>\n> carrie.cruces@citi.com\n>\n>\n>\n>\n>\n> *From: *Miller, Chris [BKG-IB] <cm36890@citi.com>\n>\n> *Date: *Friday, Jan 19, 2024 at 11:40 AM\n>\n> *To: *Cruces, Carrie [BKG-IB] <cc22388@citi.com>, [gmail.com\n> <https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!mQ1keEIYCLjmfOE6yUMuVe-xE10hPCksWq7xLy7ueLlAwjRByIglPTe3HQU_KhVY_QuqdFMNA5pPgZSYtIu2$>]\n> Jonathan Nachman <jnachman17@gmail.com>\n>\n> *Subject: *Intro\n>\n>\n>\n> Jonathan, I’m introducing you to Carrie Cruces who is the real motor\n> behind our UT recruiting effort! Please connect with her. She said we\n> have an event on campus next week, etc.\n>\n>\n>\n> I’ll leave it to you guys to connect.\n>\n>\n>\n> Thanks\n>\n>\n>\n> Chris\n>\n>\n>\n>\n>\n>\n>\n>\n>\n>\n>\n> *Christopher B. Miller*\n>\n> Managing Director\n>\n> Vice Chairman | Citi Energy Investment Banking\n>\n> Citi\n>\n> 811 Main, Suite 3900\n>\n> Houston, TX 77002\n>\n> T: 713.821.4701\n>\n> F: 713.481.0229\n>\n> M: 713.826.0761\n>\n> chris.miller@citi.com\n> <chris.miller@citi.com%3cmailto:chris.miller@citi.com>\n>\n>\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d32fe916119eef",
+     "date": "2024-01-22T21:05:52Z",
+     "internal_date": "1705957552000",
+     "direction": "inbound",
+     "sender": "mathew.young@citi.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Intro",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Jonathan,\n\nGood to meet you. Let’s shoot for Friday at 3pm ET. Please send over a calendar invite and call my cell (below) then.\n\nThanks,\nMat\n\nMat Young\nCiti | Investment Banking\nGlobal Power, Utilities & Renewables\nM: (469) 834-1618\nmathew.young@citi.com<mailto:mathew.young@citi.com>\n\nFrom: [gmail.com] Jonathan Nachman <jnachman17@gmail.com>\nSent: Monday, January 22, 2024 3:58 PM\nTo: Young, Mathew [BKG-IB] <my22753@citi.com>\nSubject: Re: Intro\n\nHi Matthew, I hope you are doing well. I am an undergraduate UT Austin student studying Economics and Business. I had the privilege of speaking with Carrie on the phone today and she referred me to you as a point of contact to learn more about\n\nHi Matthew,\n\nI hope you are doing well. I am an undergraduate UT Austin student studying Economics and Business. I had the privilege of speaking with Carrie on the phone today and she referred me to you as a point of contact to learn more about Citi's NY Power Group.\n\nI would love to hop on a quick call to learn more about your experience. Here are some times (CST) that work for me:\n\nTuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards\n\nWednesday (1/24): 3 pm onwards\n\nThursday (1/25): 10 am - 1pm & 5 pm onwards\n\nFriday (1/26): 2 pm onwards\n\nPlease let me know if any of these are convenient for you. (Attached is my resume)\n\nBest,\nJonathan\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Mon, Jan 22, 2024 at 2:20 PM Cruces, Carrie <carrie.cruces@citi.com<mailto:carrie.cruces@citi.com>> wrote:\nJonathan,\n\nWanted to connect you to Mat (ccd) who is an analyst in our power group in NY and would be a great resource for you to talk to learn more about the group.\n\nThanks,\nCarrie\n\nCarrie Cruces\nCiti | Investment Banking\nGlobal Energy Group\nM: +1.908.247.4363\nO: +1.832.667.0726\ncarrie.cruces@citi.com<mailto:carrie.cruces@citi.com>\n\nFrom: [gmail.com<https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!iNHMWpJNaXXj1UWmwn7Z9qJqKpe1ZzJXf5pK9C2f1SASV5AKcaM2ljYW3qa-7s7hEXpQFoDdivQqzyRK0o0f$>] Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Friday, January 19, 2024 5:18 PM\nTo: Cruces, Carrie [BKG-IB] <cc22388@citi.com<mailto:cc22388@citi.com>>\nSubject: Re: Intro\n\nPerfect! I'll shoot you a calendar invite and look forward to speaking with you then. Best, Jonathan Jonathan Nachman University of Texas, Austin Economics & Business M: (310)-292-4712 On Fri, Jan 19, 2024 at 2: 28 PM Cruces, Carrie\nPerfect! I'll shoot you a calendar invite and look forward to speaking with you then.\n\nBest,\nJonathan\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 2:28 PM Cruces, Carrie <carrie.cruces@citi.com<mailto:carrie.cruces@citi.com>> wrote:\nLet’s do 2pm on Monday. Can you send me a calendar invite? Can call me at the cell in my signature.\n\nLook forward to it.\n\nCarrie Cruces\nCiti | Investment Banking\nGlobal Energy Group\nM: +1.908.247.4363\nO: +1.832.667.0726\ncarrie.cruces@citi.com<mailto:carrie.cruces@citi.com>\n\nFrom: [gmail.com<https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!mDKIqmraTKfL7UdwhlrIZ9myl6QjUOXyrjMd6ARZJpT2aMvw3GChOmbyOBo9LOGqPEdR4yXjtvsGRixW3BYm$>] Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nDate: Friday, Jan 19, 2024 at 12:57 PM\nTo: Cruces, Carrie [BKG-IB] <cc22388@citi.com<mailto:cc22388@citi.com>>\nSubject: Re: Intro\n\nHi Carrie, I hope you are doing well. Firstly, it's great to hear Citi is doing an info session on campus next week – I appreciate you passing along the details for that. Additionally, I would love to connect over the phone so let me give\nHi Carrie,\n\nI hope you are doing well. Firstly, it's great to hear Citi is doing an info session on campus next week – I appreciate you passing along the details for that. Additionally, I would love to connect over the phone so let me give you some times that work next week.\n\nMonday (1/22) : 2 - 6 pm & 7 pm onwards\nTuesday (1/23): 10 am - 1 pm & 5 pm onwards\nWednesday(1/24): 11 am onwards\n\nPlease let me know if any of these times work for you and we'll schedule a call.\n\nBest,\nJonathan\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Fri, Jan 19, 2024 at 11:56 AM Cruces, Carrie <carrie.cruces@citi.com<mailto:carrie.cruces@citi.com>> wrote:\nThanks Chris, moving you to bcc.\n\nJonathan— nice to meet you! Let me know your availability and we’ll find some time to connect over the phone. Additionally, we will be on campus on Monday (1/22) for our info session and I will pass along details for that once I have it.\n\nCarrie Cruces\nCiti | Investment Banking\nGlobal Energy Group\nM: +1.908.247.4363\nO: +1.832.667.0726\ncarrie.cruces@citi.com<mailto:carrie.cruces@citi.com>\n\nFrom: Miller, Chris [BKG-IB] <cm36890@citi.com<mailto:cm36890@citi.com>>\nDate: Friday, Jan 19, 2024 at 11:40 AM\nTo: Cruces, Carrie [BKG-IB] <cc22388@citi.com<mailto:cc22388@citi.com>>, [gmail.com<https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!mQ1keEIYCLjmfOE6yUMuVe-xE10hPCksWq7xLy7ueLlAwjRByIglPTe3HQU_KhVY_QuqdFMNA5pPgZSYtIu2$>] Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSubject: Intro\n\nJonathan, I’m introducing you to Carrie Cruces who is the real motor behind our UT recruiting effort! Please connect with her. She said we have an event on campus next week, etc.\n\nI’ll leave it to you guys to connect.\n\nThanks\n\nChris\n\nChristopher B. Miller\nManaging Director\nVice Chairman | Citi Energy Investment Banking\nCiti\n811 Main, Suite 3900\nHouston, TX 77002\nT: 713.821.4701\nF: 713.481.0229\nM: 713.826.0761\nchris.miller@citi.com<mailto:chris.miller@citi.com%3cmailto:chris.miller@citi.com>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d330b671622ff5",
+     "date": "2024-01-22T21:20:01Z",
+     "internal_date": "1705958401000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "mathew.young@citi.com"
+     ],
+     "cc": [],
+     "subject": "Re: Intro",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Mat,\n\nPerfect! I'll send over the invite now.\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 3:06 PM Young, Mathew <mathew.young@citi.com> wrote:\n\n> Hey Jonathan,\n>\n>\n>\n> Good to meet you. Let’s shoot for Friday at 3pm ET. Please send over a\n> calendar invite and call my cell (below) then.\n>\n>\n>\n> Thanks,\n>\n> Mat\n>\n>\n>\n> *Mat Young*\n>\n> Citi | Investment Banking\n>\n> Global Power, Utilities & Renewables\n> M: (469) 834-1618\n>\n> mathew.young@citi.com\n>\n>\n>\n> *From:* [gmail.com] Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Monday, January 22, 2024 3:58 PM\n> *To:* Young, Mathew [BKG-IB] <my22753@citi.com>\n> *Subject:* Re: Intro\n>\n>\n>\n> Hi Matthew, I hope you are doing well. I am an undergraduate UT Austin\n> student studying Economics and Business. I had the privilege of speaking\n> with Carrie on the phone today and she referred me to you as a point of\n> contact to learn more about\n>\n> Hi Matthew,\n>\n>\n>\n> I hope you are doing well. I am an undergraduate UT Austin student\n> studying Economics and Business. I had the privilege of speaking with\n> Carrie on the phone today and she referred me to you as a point of contact\n> to learn more about Citi's NY Power Group.\n>\n>\n>\n> I would love to hop on a quick call to learn more about your experience.\n> Here are some times (CST) that work for me:\n>\n>\n>\n> Tuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards\n>\n> Wednesday (1/24): 3 pm onwards\n>\n> Thursday (1/25): 10 am - 1pm & 5 pm onwards\n>\n> Friday (1/26): 2 pm onwards\n>\n>\n>\n> Please let me know if any of these are convenient for you. (Attached is my\n> resume)\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n>\n>\n> On Mon, Jan 22, 2024 at 2:20 PM Cruces, Carrie <carrie.cruces@citi.com>\n> wrote:\n>\n> Jonathan,\n>\n>\n>\n> Wanted to connect you to Mat (ccd) who is an analyst in our power group in\n> NY and would be a great resource for you to talk to learn more about the\n> group.\n>\n>\n>\n> Thanks,\n>\n> Carrie\n>\n>\n>\n> *Carrie Cruces *\n>\n> Citi | Investment Banking\n>\n> Global Energy Group\n>\n> M: +1.908.247.4363\n>\n> O: +1.832.667.0726\n>\n> carrie.cruces@citi.com\n>\n>\n>\n> *From:* [gmail.com\n> <https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!iNHMWpJNaXXj1UWmwn7Z9qJqKpe1ZzJXf5pK9C2f1SASV5AKcaM2ljYW3qa-7s7hEXpQFoDdivQqzyRK0o0f$>]\n> Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Friday, January 19, 2024 5:18 PM\n> *To:* Cruces, Carrie [BKG-IB] <cc22388@citi.com>\n> *Subject:* Re: Intro\n>\n>\n>\n> Perfect! I'll shoot you a calendar invite and look forward to speaking\n> with you then. Best, Jonathan Jonathan Nachman University of Texas, Austin\n> Economics & Business M: (310)-292-4712 On Fri, Jan 19, 2024 at 2: 28 PM\n> Cruces, Carrie\n>\n> Perfect! I'll shoot you a calendar invite and look forward to speaking\n> with you then.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n>\n>\n> On Fri, Jan 19, 2024 at 2:28 PM Cruces, Carrie <carrie.cruces@citi.com>\n> wrote:\n>\n> Let’s do 2pm on Monday. Can you send me a calendar invite? Can call me at\n> the cell in my signature.\n>\n>\n>\n> Look forward to it.\n>\n>\n>\n> *Carrie Cruces*\n>\n> Citi | Investment Banking\n>\n> Global Energy Group\n>\n> M: +1.908.247.4363\n>\n> O: +1.832.667.0726\n>\n> carrie.cruces@citi.com\n>\n>\n>\n>\n>\n> *From: *[gmail.com\n> <https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!mDKIqmraTKfL7UdwhlrIZ9myl6QjUOXyrjMd6ARZJpT2aMvw3GChOmbyOBo9LOGqPEdR4yXjtvsGRixW3BYm$>]\n> Jonathan Nachman <jnachman17@gmail.com>\n>\n> *Date: *Friday, Jan 19, 2024 at 12:57 PM\n>\n> *To: *Cruces, Carrie [BKG-IB] <cc22388@citi.com>\n>\n> *Subject: *Re: Intro\n>\n>\n>\n> Hi Carrie, I hope you are doing well. Firstly, it's great to hear Citi is\n> doing an info session on campus next week – I appreciate you passing along\n> the details for that. Additionally, I would love to connect over the phone\n> so let me give\n>\n> Hi Carrie,\n>\n>\n>\n> I hope you are doing well. Firstly, it's great to hear Citi is doing an\n> info session on campus next week – I appreciate you passing along the\n> details for that. Additionally, I would love to connect over the phone so\n> let me give you some times that work next week.\n>\n>\n>\n> Monday (1/22) : 2 - 6 pm & 7 pm onwards\n>\n> Tuesday (1/23): 10 am - 1 pm & 5 pm onwards\n>\n> Wednesday(1/24): 11 am onwards\n>\n>\n>\n> Please let me know if any of these times work for you and we'll schedule a\n> call.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n>\n>\n> On Fri, Jan 19, 2024 at 11:56 AM Cruces, Carrie <carrie.cruces@citi.com>\n> wrote:\n>\n> Thanks Chris, moving you to bcc.\n>\n>\n>\n> Jonathan— nice to meet you! Let me know your availability and we’ll find\n> some time to connect over the phone. Additionally, we will be on campus on\n> Monday (1/22) for our info session and I will pass along details for that\n> once I have it.\n>\n>\n>\n> *Carrie Cruces*\n>\n> Citi | Investment Banking\n>\n> Global Energy Group\n>\n> M: +1.908.247.4363\n>\n> O: +1.832.667.0726\n>\n> carrie.cruces@citi.com\n>\n>\n>\n>\n>\n> *From: *Miller, Chris [BKG-IB] <cm36890@citi.com>\n>\n> *Date: *Friday, Jan 19, 2024 at 11:40 AM\n>\n> *To: *Cruces, Carrie [BKG-IB] <cc22388@citi.com>, [gmail.com\n> <https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!mQ1keEIYCLjmfOE6yUMuVe-xE10hPCksWq7xLy7ueLlAwjRByIglPTe3HQU_KhVY_QuqdFMNA5pPgZSYtIu2$>]\n> Jonathan Nachman <jnachman17@gmail.com>\n>\n> *Subject: *Intro\n>\n>\n>\n> Jonathan, I’m introducing you to Carrie Cruces who is the real motor\n> behind our UT recruiting effort! Please connect with her. She said we\n> have an event on campus next week, etc.\n>\n>\n>\n> I’ll leave it to you guys to connect.\n>\n>\n>\n> Thanks\n>\n>\n>\n> Chris\n>\n>\n>\n>\n>\n>\n>\n>\n>\n>\n>\n> *Christopher B. Miller*\n>\n> Managing Director\n>\n> Vice Chairman | Citi Energy Investment Banking\n>\n> Citi\n>\n> 811 Main, Suite 3900\n>\n> Houston, TX 77002\n>\n> T: 713.821.4701\n>\n> F: 713.481.0229\n>\n> M: 713.826.0761\n>\n> chris.miller@citi.com\n> <chris.miller@citi.com%3cmailto:chris.miller@citi.com>\n>\n>\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d47fb930ec9f38",
+     "date": "2024-01-26T22:54:45Z",
+     "internal_date": "1706309685000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "mathew.young@citi.com"
+     ],
+     "cc": [],
+     "subject": "Re: Intro",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Mat – I greatly appreciate you taking the time to speak with me this\nafternoon. Your insight as a banker who started in Houston and transitioned\nto New York is very applicable to my situation. With that said, I am very\ninterested in continuing to pursue recruitment at Citi NY. As you mentioned\non the call, it would be much appreciated if you could connect me with Wes,\nthe analyst from the CET group. Thanks again!\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 3:20 PM Jonathan Nachman <jnachman17@gmail.com>\nwrote:\n\n> Mat,\n>\n> Perfect! I'll send over the invite now.\n>\n> Best,\n> Jonathan\n>\n>\n>\n>\n> On Mon, Jan 22, 2024 at 3:06 PM Young, Mathew <mathew.young@citi.com>\n> wrote:\n>\n>> Hey Jonathan,\n>>\n>>\n>>\n>> Good to meet you. Let’s shoot for Friday at 3pm ET. Please send over a\n>> calendar invite and call my cell (below) then.\n>>\n>>\n>>\n>> Thanks,\n>>\n>> Mat\n>>\n>>\n>>\n>> *Mat Young*\n>>\n>> Citi | Investment Banking\n>>\n>> Global Power, Utilities & Renewables\n>> M: (469) 834-1618\n>>\n>> mathew.young@citi.com\n>>\n>>\n>>\n>> *From:* [gmail.com] Jonathan Nachman <jnachman17@gmail.com>\n>> *Sent:* Monday, January 22, 2024 3:58 PM\n>> *To:* Young, Mathew [BKG-IB] <my22753@citi.com>\n>> *Subject:* Re: Intro\n>>\n>>\n>>\n>> Hi Matthew, I hope you are doing well. I am an undergraduate UT Austin\n>> student studying Economics and Business. I had the privilege of speaking\n>> with Carrie on the phone today and she referred me to you as a point of\n>> contact to learn more about\n>>\n>> Hi Matthew,\n>>\n>>\n>>\n>> I hope you are doing well. I am an undergraduate UT Austin student\n>> studying Economics and Business. I had the privilege of speaking with\n>> Carrie on the phone today and she referred me to you as a point of contact\n>> to learn more about Citi's NY Power Group.\n>>\n>>\n>>\n>> I would love to hop on a quick call to learn more about your experience.\n>> Here are some times (CST) that work for me:\n>>\n>>\n>>\n>> Tuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards\n>>\n>> Wednesday (1/24): 3 pm onwards\n>>\n>> Thursday (1/25): 10 am - 1pm & 5 pm onwards\n>>\n>> Friday (1/26): 2 pm onwards\n>>\n>>\n>>\n>> Please let me know if any of these are convenient for you. (Attached is\n>> my resume)\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>>\n>>\n>> *Jonathan Nachman *\n>>\n>> University of Texas, Austin\n>>\n>> Economics & Business\n>>\n>> M: (310)-292-4712\n>>\n>>\n>>\n>>\n>>\n>> On Mon, Jan 22, 2024 at 2:20 PM Cruces, Carrie <carrie.cruces@citi.com>\n>> wrote:\n>>\n>> Jonathan,\n>>\n>>\n>>\n>> Wanted to connect you to Mat (ccd) who is an analyst in our power group\n>> in NY and would be a great resource for you to talk to learn more about the\n>> group.\n>>\n>>\n>>\n>> Thanks,\n>>\n>> Carrie\n>>\n>>\n>>\n>> *Carrie Cruces *\n>>\n>> Citi | Investment Banking\n>>\n>> Global Energy Group\n>>\n>> M: +1.908.247.4363\n>>\n>> O: +1.832.667.0726\n>>\n>> carrie.cruces@citi.com\n>>\n>>\n>>\n>> *From:* [gmail.com\n>> <https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!iNHMWpJNaXXj1UWmwn7Z9qJqKpe1ZzJXf5pK9C2f1SASV5AKcaM2ljYW3qa-7s7hEXpQFoDdivQqzyRK0o0f$>]\n>> Jonathan Nachman <jnachman17@gmail.com>\n>> *Sent:* Friday, January 19, 2024 5:18 PM\n>> *To:* Cruces, Carrie [BKG-IB] <cc22388@citi.com>\n>> *Subject:* Re: Intro\n>>\n>>\n>>\n>> Perfect! I'll shoot you a calendar invite and look forward to speaking\n>> with you then. Best, Jonathan Jonathan Nachman University of Texas, Austin\n>> Economics & Business M: (310)-292-4712 On Fri, Jan 19, 2024 at 2: 28 PM\n>> Cruces, Carrie\n>>\n>> Perfect! I'll shoot you a calendar invite and look forward to speaking\n>> with you then.\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>>\n>>\n>> *Jonathan Nachman *\n>>\n>> University of Texas, Austin\n>>\n>> Economics & Business\n>>\n>> M: (310)-292-4712\n>>\n>>\n>>\n>>\n>>\n>> On Fri, Jan 19, 2024 at 2:28 PM Cruces, Carrie <carrie.cruces@citi.com>\n>> wrote:\n>>\n>> Let’s do 2pm on Monday. Can you send me a calendar invite? Can call me at\n>> the cell in my signature.\n>>\n>>\n>>\n>> Look forward to it.\n>>\n>>\n>>\n>> *Carrie Cruces*\n>>\n>> Citi | Investment Banking\n>>\n>> Global Energy Group\n>>\n>> M: +1.908.247.4363\n>>\n>> O: +1.832.667.0726\n>>\n>> carrie.cruces@citi.com\n>>\n>>\n>>\n>>\n>>\n>> *From: *[gmail.com\n>> <https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!mDKIqmraTKfL7UdwhlrIZ9myl6QjUOXyrjMd6ARZJpT2aMvw3GChOmbyOBo9LOGqPEdR4yXjtvsGRixW3BYm$>]\n>> Jonathan Nachman <jnachman17@gmail.com>\n>>\n>> *Date: *Friday, Jan 19, 2024 at 12:57 PM\n>>\n>> *To: *Cruces, Carrie [BKG-IB] <cc22388@citi.com>\n>>\n>> *Subject: *Re: Intro\n>>\n>>\n>>\n>> Hi Carrie, I hope you are doing well. Firstly, it's great to hear Citi is\n>> doing an info session on campus next week – I appreciate you passing along\n>> the details for that. Additionally, I would love to connect over the phone\n>> so let me give\n>>\n>> Hi Carrie,\n>>\n>>\n>>\n>> I hope you are doing well. Firstly, it's great to hear Citi is doing an\n>> info session on campus next week – I appreciate you passing along the\n>> details for that. Additionally, I would love to connect over the phone so\n>> let me give you some times that work next week.\n>>\n>>\n>>\n>> Monday (1/22) : 2 - 6 pm & 7 pm onwards\n>>\n>> Tuesday (1/23): 10 am - 1 pm & 5 pm onwards\n>>\n>> Wednesday(1/24): 11 am onwards\n>>\n>>\n>>\n>> Please let me know if any of these times work for you and we'll schedule\n>> a call.\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>> *Jonathan Nachman *\n>>\n>> University of Texas, Austin\n>>\n>> Economics & Business\n>>\n>> M: (310)-292-4712\n>>\n>>\n>>\n>>\n>>\n>> On Fri, Jan 19, 2024 at 11:56 AM Cruces, Carrie <carrie.cruces@citi.com>\n>> wrote:\n>>\n>> Thanks Chris, moving you to bcc.\n>>\n>>\n>>\n>> Jonathan— nice to meet you! Let me know your availability and we’ll find\n>> some time to connect over the phone. Additionally, we will be on campus on\n>> Monday (1/22) for our info session and I will pass along details for that\n>> once I have it.\n>>\n>>\n>>\n>> *Carrie Cruces*\n>>\n>> Citi | Investment Banking\n>>\n>> Global Energy Group\n>>\n>> M: +1.908.247.4363\n>>\n>> O: +1.832.667.0726\n>>\n>> carrie.cruces@citi.com\n>>\n>>\n>>\n>>\n>>\n>> *From: *Miller, Chris [BKG-IB] <cm36890@citi.com>\n>>\n>> *Date: *Friday, Jan 19, 2024 at 11:40 AM\n>>\n>> *To: *Cruces, Carrie [BKG-IB] <cc22388@citi.com>, [gmail.com\n>> <https://urldefense.com/v3/__http:/gmail.com__;!!Jkho33Y!mQ1keEIYCLjmfOE6yUMuVe-xE10hPCksWq7xLy7ueLlAwjRByIglPTe3HQU_KhVY_QuqdFMNA5pPgZSYtIu2$>]\n>> Jonathan Nachman <jnachman17@gmail.com>\n>>\n>> *Subject: *Intro\n>>\n>>\n>>\n>> Jonathan, I’m introducing you to Carrie Cruces who is the real motor\n>> behind our UT recruiting effort! Please connect with her. She said we\n>> have an event on campus next week, etc.\n>>\n>>\n>>\n>> I’ll leave it to you guys to connect.\n>>\n>>\n>>\n>> Thanks\n>>\n>>\n>>\n>> Chris\n>>\n>>\n>>\n>>\n>>\n>>\n>>\n>>\n>>\n>>\n>>\n>> *Christopher B. Miller*\n>>\n>> Managing Director\n>>\n>> Vice Chairman | Citi Energy Investment Banking\n>>\n>> Citi\n>>\n>> 811 Main, Suite 3900\n>>\n>> Houston, TX 77002\n>>\n>> T: 713.821.4701\n>>\n>> F: 713.481.0229\n>>\n>> M: 713.826.0761\n>>\n>> chris.miller@citi.com\n>> <chris.miller@citi.com%3cmailto:chris.miller@citi.com>\n>>\n>>\n>>\n>>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d241ba25acf9f4",
+   "capture": "metadata_only",
+   "shared_thread": false,
+   "subject": "Accepted: Invitation: Carrie - Jonathan Citi IB Call @ Mon Jan 22, 2024 2pm - 2:30pm (CST) (carrie.cruces@citi.com)",
+   "messages": [
+    {
+     "message_id": "18d241ba25acf9f4",
+     "date": "2024-01-19T23:43:19Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "carrie.cruces@citi.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Accepted: Invitation: Carrie - Jonathan Citi IB Call @ Mon Jan 22, 2024 2pm - 2:30pm (CST) (carrie.cruces@citi.com)",
+     "labels": [],
+     "attachments": [],
+     "has_attachment": null,
+     "body": null,
+     "body_source": "metadata_only",
+     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d32d1f8874a2ca",
+   "capture": "metadata_only",
+   "shared_thread": false,
+   "subject": "FW: UT Austin 2025 Summer Analyst Information Session",
+   "messages": [
+    {
+     "message_id": "18d32d1f8874a2ca",
+     "date": "2024-01-22T20:17:12Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "carrie.cruces@citi.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "FW: UT Austin 2025 Summer Analyst Information Session",
+     "labels": [],
+     "attachments": [],
+     "has_attachment": null,
+     "body": null,
+     "body_source": "metadata_only",
+     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

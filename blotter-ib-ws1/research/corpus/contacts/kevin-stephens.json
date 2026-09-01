@@ -1,0 +1,168 @@
+{
+ "slug": "kevin-stephens",
+ "name": "Kevin Stephens",
+ "firm": "Houlihan Lokey",
+ "title": "MD, Financial Sponsors",
+ "addresses_seen": [
+  "kstephens@hl.com",
+  "KStephens@hl.com"
+ ],
+ "relationship_opened": "Cold email via his daughter Zoe, a friend of Jon's. Ended by referring Jon internally to Tyler Martinez, who 'will make sure you get an interview'.",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 6,
+  "outbound": 3,
+  "inbound": 3,
+  "calendar_events": 1
+ },
+ "first_activity": "2024-01-23T00:45:46Z",
+ "last_activity": "2024-01-30T20:06:22Z",
+ "calendar_event_ids": [
+  "66pu0bocvdoujv218unu5bopjb"
+ ],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d33af0ee7617f6",
+   "capture": "spilled",
+   "shared_thread": false,
+   "subject": "Seeking advice on Banking @ Houlihan [Chadwick Alum & UT Austin Student)",
+   "messages": [
+    {
+     "message_id": "18d33c7c722672e3",
+     "date": "2024-01-23T00:45:46Z",
+     "internal_date": "1705970746000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "kstephens@hl.com"
+     ],
+     "cc": [],
+     "subject": "Seeking advice on Banking @ Houlihan [Chadwick Alum & UT Austin Student)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Kevin,\n\nI hope you are doing well. My name is Jonathan Nachman, and I'm a\nsophomore Economics and Business Student at The University of Texas,\nAustin.\n\nI was speaking with your daughter, Zoe, last night at a Chadwick dinner,\nwhere I learned of our mutual interest in pursuing Investment Banking. She\nhad mentioned to me your role at Houlihan and expressed your willingness to\nbe a point of contact for me.\n\nCoincidentally, I was on the phone today with Kate Borden, another Chadwick\nalum and current analyst at Houlihan LA (CFR group). I am extremely\ninterested in your firm and would love to set up a quick phone call to gain\nsome more insight from you as a more senior banker. Please let me know if\nyou have any time to call next week.\n\nBest,\nJonathan\n\n--\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d33fb8f757a006",
+     "date": "2024-01-23T01:42:07Z",
+     "internal_date": "1705974127000",
+     "direction": "inbound",
+     "sender": "KStephens@hl.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Re: Seeking advice on Banking @ Houlihan [Chadwick Alum & UT Austin Student)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Jonathan,\nI would be happy to connect. I can be available late this week or next week as follows -\n\nFriday, 1/26 - 9:30-12:30 PT\nTuesday, 1/30 - 9-11 or 1-3 PT\nWed, 1/31 - 11:30-2pm PT\nThursday, 2/1 - 9:30-11 PT\nFriday, 2/2 - 9:30-1:30 PT\n\nRegards,\nKevin Stephens\nManaging Director\nHoulihan Lokey\nOffice: 310-788-5258\nMobile: 562-889-7113\n\nOn Jan 22, 2024, at 4:46 PM, Jonathan M Nachman <jnachman@utexas.edu> wrote:\n\n﻿\nThis message is from an external sender.\n________________________________\nHello Kevin,\n\nI hope you are doing well. My name is Jonathan Nachman, and I'm a sophomore Economics and Business Student at The University of Texas, Austin.\n\nI was speaking with your daughter, Zoe, last night at a Chadwick dinner, where I learned of our mutual interest in pursuing Investment Banking. She had mentioned to me your role at Houlihan and expressed your willingness to be a point of contact for me.\n\nCoincidentally, I was on the phone today with Kate Borden, another Chadwick alum and current analyst at Houlihan LA (CFR group). I am extremely interested in your firm and would love to set up a quick phone call to gain some more insight from you as a more senior banker. Please let me know if you have any time to call next week.\n\nBest,\nJonathan\n\n--\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n<Jonathan-Nachman-IB-Resume.pdf>\n\nHOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC BUSINESS COMMUNICATION VIA HL.COM E-MAIL ADDRESSES, BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING, SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS COMMUNICATION PURPOSES.\n\nPlease consider the environment before printing.\n\nHoulihan Lokey is a trade name for Houlihan Lokey, Inc., and its subsidiaries and affiliates, which include in the United States: Houlihan Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an SEC-registered broker-dealer and member of FINRA (www.finra.org) and SIPC (www.sipc.org) (investment banking services); and Houlihan Lokey Financial Advisors, Inc. (financial advisory services). Houlihan Lokey affiliates may share information and resources with other Houlihan Lokey affiliates to bring relevant resources to bear on its various engagements and such affiliates may perform services in connection with such engagements. This e-mail message and any attachments are for the sole use of the intended recipient(s) and may contain confidential information. If you are not an intended recipient, or an intended recipient's authorized agent, you are hereby notified that any dissemination, distribution or copying of this e-mail message or any attachments is strictly prohibited. If you have received this message in error, please notify the sender by reply e-mail and delete this e-mail message and any attachments from your computer system.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d343932a530ccf",
+     "date": "2024-01-23T02:49:40Z",
+     "internal_date": "1705978180000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "KStephens@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: Seeking advice on Banking @ Houlihan [Chadwick Alum & UT Austin Student)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Kevin – I appreciate your quick response. Let's do Tuesday (1/30) at 10 am\nPT. I'll send you a calendar invite and look forward to speaking with you\nthen.\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 7:42 PM Stephens, Kevin <KStephens@hl.com> wrote:\n\n> Jonathan,\n> I would be happy to connect. I can be available late this week or next\n> week as follows -\n>\n> Friday, 1/26 - 9:30-12:30 PT\n> Tuesday, 1/30 - 9-11 or 1-3 PT\n> Wed, 1/31 - 11:30-2pm PT\n> Thursday, 2/1 - 9:30-11 PT\n> Friday, 2/2 - 9:30-1:30 PT\n>\n> Regards,\n> Kevin Stephens\n> Managing Director\n> Houlihan Lokey\n> Office: 310-788-5258\n> Mobile: 562-889-7113\n>\n> On Jan 22, 2024, at 4:46 PM, Jonathan M Nachman <jnachman@utexas.edu>\n> wrote:\n>\n> ﻿\n> *This message is from an external sender.*\n> ------------------------------\n> Hello Kevin,\n>\n> I hope you are doing well. My name is Jonathan Nachman, and I'm a\n> sophomore Economics and Business Student at The University of Texas,\n> Austin.\n>\n> I was speaking with your daughter, Zoe, last night at a Chadwick dinner,\n> where I learned of our mutual interest in pursuing Investment Banking. She\n> had mentioned to me your role at Houlihan and expressed your willingness to\n> be a point of contact for me.\n>\n> Coincidentally, I was on the phone today with Kate Borden, another\n> Chadwick alum and current analyst at Houlihan LA (CFR group). I am\n> extremely interested in your firm and would love to set up a quick phone\n> call to gain some more insight from you as a more senior banker. Please let\n> me know if you have any time to call next week.\n>\n> Best,\n> Jonathan\n>\n> --\n> *Jonathan Nachman *\n> University of Texas, Austin\n> Economics & Business\n> M: (310)-292-4712\n> <Jonathan-Nachman-IB-Resume.pdf>\n>\n>\n>\n> *HOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC\n> BUSINESS COMMUNICATION VIA HL.COM <http://HL.COM> E-MAIL ADDRESSES,\n> BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING,\n> SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF\n> COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS\n> COMMUNICATION PURPOSES.*\n>\n> Please consider the environment before printing.\n>\n> Houlihan Lokey is a trade name for Houlihan Lokey, Inc., and its\n> subsidiaries and affiliates, which include in the United States: Houlihan\n> Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an\n> SEC-registered broker-dealer and member of FINRA (www.finra.org) and SIPC\n> (www.sipc.org) (investment banking services); and Houlihan Lokey\n> Financial Advisors, Inc. (financial advisory services). Houlihan Lokey\n> affiliates may share information and resources with other Houlihan Lokey\n> affiliates to bring relevant resources to bear on its various engagements\n> and such affiliates may perform services in connection with such\n> engagements. This e-mail message and any attachments are for the sole use\n> of the intended recipient(s) and may contain confidential information. If\n> you are not an intended recipient, or an intended recipient's authorized\n> agent, you are hereby notified that any dissemination, distribution or\n> copying of this e-mail message or any attachments is strictly prohibited.\n> If you have received this message in error, please notify the sender by\n> reply e-mail and delete this e-mail message and any attachments from your\n> computer system.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d5b8525b084de4",
+     "date": "2024-01-30T17:57:42Z",
+     "internal_date": "1706637462000",
+     "direction": "inbound",
+     "sender": "KStephens@hl.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Re: Seeking advice on Banking @ Houlihan [Chadwick Alum & UT Austin Student)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Jonathan,\nYou can reach me on my office line for our call at 10am PT.\n\nOffice line - 310-788-5258\n\nThanks,\nKevin\n\nOn Jan 22, 2024, at 6:50 PM, Jonathan M Nachman <jnachman@utexas.edu> wrote:\n\n﻿\nThis message is from an external sender.\n________________________________\nKevin – I appreciate your quick response. Let's do Tuesday (1/30) at 10 am PT. I'll send you a calendar invite and look forward to speaking with you then.\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 7:42 PM Stephens, Kevin <KStephens@hl.com<mailto:KStephens@hl.com>> wrote:\nJonathan,\nI would be happy to connect. I can be available late this week or next week as follows -\n\nFriday, 1/26 - 9:30-12:30 PT\nTuesday, 1/30 - 9-11 or 1-3 PT\nWed, 1/31 - 11:30-2pm PT\nThursday, 2/1 - 9:30-11 PT\nFriday, 2/2 - 9:30-1:30 PT\n\nRegards,\nKevin Stephens\nManaging Director\nHoulihan Lokey\nOffice: 310-788-5258\nMobile: 562-889-7113\n\nOn Jan 22, 2024, at 4:46 PM, Jonathan M Nachman <jnachman@utexas.edu<mailto:jnachman@utexas.edu>> wrote:\n\n﻿\nThis message is from an external sender.\n________________________________\nHello Kevin,\n\nI hope you are doing well. My name is Jonathan Nachman, and I'm a sophomore Economics and Business Student at The University of Texas, Austin.\n\nI was speaking with your daughter, Zoe, last night at a Chadwick dinner, where I learned of our mutual interest in pursuing Investment Banking. She had mentioned to me your role at Houlihan and expressed your willingness to be a point of contact for me.\n\nCoincidentally, I was on the phone today with Kate Borden, another Chadwick alum and current analyst at Houlihan LA (CFR group). I am extremely interested in your firm and would love to set up a quick phone call to gain some more insight from you as a more senior banker. Please let me know if you have any time to call next week.\n\nBest,\nJonathan\n\n--\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n<Jonathan-Nachman-IB-Resume.pdf>\n\nHOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC BUSINESS COMMUNICATION VIA HL.COM<http://HL.COM> E-MAIL ADDRESSES, BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING, SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS COMMUNICATION PURPOSES.\n\nPlease consider the environment before printing.\n\nHoulihan Lokey is a trade name for Houlihan Lokey, Inc., and its subsidiaries and affiliates, which include in the United States: Houlihan Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an SEC-registered broker-dealer and member of FINRA (www.finra.org<http://www.finra.org>) and SIPC (www.sipc.org<http://www.sipc.org>) (investment banking services); and Houlihan Lokey Financial Advisors, Inc. (financial advisory services). Houlihan Lokey affiliates may share information and resources with other Houlihan Lokey affiliates to bring relevant resources to bear on its various engagements and such affiliates may perform services in connection with such engagements. This e-mail message and any attachments are for the sole use of the intended recipient(s) and may contain confidential information. If you are not an intended recipient, or an intended recipient's authorized agent, you are hereby notified that any dissemination, distribution or copying of this e-mail message or any attachments is strictly prohibited. If you have received this message in error, please notify the sender by reply e-mail and delete this e-mail message and any attachments from your computer system.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d5bc7821b59359",
+     "date": "2024-01-30T19:10:04Z",
+     "internal_date": "1706641804000",
+     "direction": "inbound",
+     "sender": "KStephens@hl.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Re: Seeking advice on Banking @ Houlihan [Chadwick Alum & UT Austin Student)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Jonathan,\nI spoke to Tyler Martinez (VP in the CFR Group) in Los Angeles. I mentioned our conversation and the fact you’ve spoken to Kate. He will make sure you get an interview.\n\nBest of luck.\n\nKevin Stephens\n\nOn Jan 22, 2024, at 6:50 PM, Jonathan M Nachman <jnachman@utexas.edu> wrote:\n\n﻿\nThis message is from an external sender.\n________________________________\nKevin – I appreciate your quick response. Let's do Tuesday (1/30) at 10 am PT. I'll send you a calendar invite and look forward to speaking with you then.\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 7:42 PM Stephens, Kevin <KStephens@hl.com<mailto:KStephens@hl.com>> wrote:\nJonathan,\nI would be happy to connect. I can be available late this week or next week as follows -\n\nFriday, 1/26 - 9:30-12:30 PT\nTuesday, 1/30 - 9-11 or 1-3 PT\nWed, 1/31 - 11:30-2pm PT\nThursday, 2/1 - 9:30-11 PT\nFriday, 2/2 - 9:30-1:30 PT\n\nRegards,\nKevin Stephens\nManaging Director\nHoulihan Lokey\nOffice: 310-788-5258\nMobile: 562-889-7113\n\nOn Jan 22, 2024, at 4:46 PM, Jonathan M Nachman <jnachman@utexas.edu<mailto:jnachman@utexas.edu>> wrote:\n\n﻿\nThis message is from an external sender.\n________________________________\nHello Kevin,\n\nI hope you are doing well. My name is Jonathan Nachman, and I'm a sophomore Economics and Business Student at The University of Texas, Austin.\n\nI was speaking with your daughter, Zoe, last night at a Chadwick dinner, where I learned of our mutual interest in pursuing Investment Banking. She had mentioned to me your role at Houlihan and expressed your willingness to be a point of contact for me.\n\nCoincidentally, I was on the phone today with Kate Borden, another Chadwick alum and current analyst at Houlihan LA (CFR group). I am extremely interested in your firm and would love to set up a quick phone call to gain some more insight from you as a more senior banker. Please let me know if you have any time to call next week.\n\nBest,\nJonathan\n\n--\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n<Jonathan-Nachman-IB-Resume.pdf>\n\nHOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC BUSINESS COMMUNICATION VIA HL.COM<http://HL.COM> E-MAIL ADDRESSES, BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING, SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS COMMUNICATION PURPOSES.\n\nPlease consider the environment before printing.\n\nHoulihan Lokey is a trade name for Houlihan Lokey, Inc., and its subsidiaries and affiliates, which include in the United States: Houlihan Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an SEC-registered broker-dealer and member of FINRA (www.finra.org<http://www.finra.org>) and SIPC (www.sipc.org<http://www.sipc.org>) (investment banking services); and Houlihan Lokey Financial Advisors, Inc. (financial advisory services). Houlihan Lokey affiliates may share information and resources with other Houlihan Lokey affiliates to bring relevant resources to bear on its various engagements and such affiliates may perform services in connection with such engagements. This e-mail message and any attachments are for the sole use of the intended recipient(s) and may contain confidential information. If you are not an intended recipient, or an intended recipient's authorized agent, you are hereby notified that any dissemination, distribution or copying of this e-mail message or any attachments is strictly prohibited. If you have received this message in error, please notify the sender by reply e-mail and delete this e-mail message and any attachments from your computer system.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d5bfad7df86115",
+     "date": "2024-01-30T20:06:22Z",
+     "internal_date": "1706645182000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "KStephens@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: Seeking advice on Banking @ Houlihan [Chadwick Alum & UT Austin Student)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Kevin – I greatly appreciate you hoping on the phone with me and offering\nsome valuable insight into the industry. It was extremely useful to me as I\ncontinue to navigate this process from a fairly unique position. To that\nend, I look forward to continuing recruiting with Houlihan LA in the coming\nweeks. Thanks again for your help!\n\nBest,\nJonathan\n\nOn Tue, Jan 30, 2024 at 1:10 PM Stephens, Kevin <KStephens@hl.com> wrote:\n\n> Jonathan,\n> I spoke to Tyler Martinez (VP in the CFR Group) in Los Angeles. I\n> mentioned our conversation and the fact you’ve spoken to Kate. He will\n> make sure you get an interview.\n>\n> Best of luck.\n>\n> Kevin Stephens\n>\n> On Jan 22, 2024, at 6:50 PM, Jonathan M Nachman <jnachman@utexas.edu>\n> wrote:\n>\n> ﻿\n> *This message is from an external sender.*\n> ------------------------------\n> Kevin – I appreciate your quick response. Let's do Tuesday (1/30) at 10 am\n> PT. I'll send you a calendar invite and look forward to speaking with you\n> then.\n>\n> Best,\n> Jonathan\n>\n> On Mon, Jan 22, 2024 at 7:42 PM Stephens, Kevin <KStephens@hl.com> wrote:\n>\n>> Jonathan,\n>> I would be happy to connect. I can be available late this week or next\n>> week as follows -\n>>\n>> Friday, 1/26 - 9:30-12:30 PT\n>> Tuesday, 1/30 - 9-11 or 1-3 PT\n>> Wed, 1/31 - 11:30-2pm PT\n>> Thursday, 2/1 - 9:30-11 PT\n>> Friday, 2/2 - 9:30-1:30 PT\n>>\n>> Regards,\n>> Kevin Stephens\n>> Managing Director\n>> Houlihan Lokey\n>> Office: 310-788-5258\n>> Mobile: 562-889-7113\n>>\n>> On Jan 22, 2024, at 4:46 PM, Jonathan M Nachman <jnachman@utexas.edu>\n>> wrote:\n>>\n>> ﻿\n>> *This message is from an external sender.*\n>> ------------------------------\n>> Hello Kevin,\n>>\n>> I hope you are doing well. My name is Jonathan Nachman, and I'm a\n>> sophomore Economics and Business Student at The University of Texas,\n>> Austin.\n>>\n>> I was speaking with your daughter, Zoe, last night at a Chadwick dinner,\n>> where I learned of our mutual interest in pursuing Investment Banking. She\n>> had mentioned to me your role at Houlihan and expressed your willingness to\n>> be a point of contact for me.\n>>\n>> Coincidentally, I was on the phone today with Kate Borden, another\n>> Chadwick alum and current analyst at Houlihan LA (CFR group). I am\n>> extremely interested in your firm and would love to set up a quick phone\n>> call to gain some more insight from you as a more senior banker. Please let\n>> me know if you have any time to call next week.\n>>\n>> Best,\n>> Jonathan\n>>\n>> --\n>> *Jonathan Nachman *\n>> University of Texas, Austin\n>> Economics & Business\n>> M: (310)-292-4712\n>> <Jonathan-Nachman-IB-Resume.pdf>\n>>\n>>\n>>\n>> *HOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC\n>> BUSINESS COMMUNICATION VIA HL.COM <http://HL.COM> E-MAIL ADDRESSES,\n>> BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING,\n>> SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF\n>> COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS\n>> COMMUNICATION PURPOSES.*\n>>\n>> Please consider the environment before printing.\n>>\n>> Houlihan Lokey is a trade name for Houlihan Lokey, Inc., and its\n>> subsidiaries and affiliates, which include in the United States: Houlihan\n>> Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an\n>> SEC-registered broker-dealer and member of FINRA (www.finra.org) and\n>> SIPC (www.sipc.org) (investment banking services); and Houlihan Lokey\n>> Financial Advisors, Inc. (financial advisory services). Houlihan Lokey\n>> affiliates may share information and resources with other Houlihan Lokey\n>> affiliates to bring relevant resources to bear on its various engagements\n>> and such affiliates may perform services in connection with such\n>> engagements. This e-mail message and any attachments are for the sole use\n>> of the intended recipient(s) and may contain confidential information. If\n>> you are not an intended recipient, or an intended recipient's authorized\n>> agent, you are hereby notified that any dissemination, distribution or\n>> copying of this e-mail message or any attachments is strictly prohibited.\n>> If you have received this message in error, please notify the sender by\n>> reply e-mail and delete this e-mail message and any attachments from your\n>> computer system.\n>>\n>>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

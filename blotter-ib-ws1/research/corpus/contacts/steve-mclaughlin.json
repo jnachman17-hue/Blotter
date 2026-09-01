@@ -1,0 +1,313 @@
+{
+ "slug": "steve-mclaughlin",
+ "name": "Steve McLaughlin",
+ "firm": "FT Partners",
+ "title": "CEO",
+ "addresses_seen": [
+  "steve.mclaughlin@ftpartners.com"
+ ],
+ "relationship_opened": "Introduced by Jon's father",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 4,
+  "messages": 11,
+  "outbound": 4,
+  "inbound": 7,
+  "calendar_events": 1
+ },
+ "first_activity": "2024-02-14T00:00:00Z",
+ "last_activity": "2024-02-20T02:58:20Z",
+ "calendar_event_ids": [
+  "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g60o3ig9j6p242ca56l348g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g6913ie1o691jee9p84r46h9k84skcdpi6oqjcghk651j2hhm84q0"
+ ],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18da505200590986",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Introduction",
+   "messages": [
+    {
+     "message_id": "18da505200590986",
+     "date": "2024-02-14T00:29:51Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "dnachman@fastspring.com",
+     "to": [
+      "steve.mclaughlin@ftpartners.com",
+      "liz.ream@ftpartners.com",
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Introduction",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Steve - Thanks again for agreeing to talk to my son Jonathan. I know he is eager to apply to the FT Analyst program.\n\nLiz - I've copied Jonathan so that you can coordinate directly with him to find a time that works.\n\nThanks,\nDavid\n\nDavid Nachman, CEO, FastSpring",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18da85be63b82660",
+     "date": "2024-02-14T16:03:31Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "liz.ream@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Introduction",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Liz,\n\nI hope you are doing well. I am following up on the introduction made by my father yesterday. I am very excited for the opportunity to speak with Steve over the phone. Here are some times (CT) that work for me in the next few days:\n\nFriday (2/16): 12:00 pm onwards\nMonday (2/19): 11:30 am onwards\nTuesday (2/20): 9:30 am - 1:30 pm & 5:00 pm onwards\nWednesday (2/21): 11:30 am onwards\nThursday (2/22) 9:30 am - 1:00 pm\n\nPlease let me know if any of these times are convenient for Steve. Thank you!\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18da86c0024143ab",
+     "date": "2024-02-14T16:21:02Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "liz.ream@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Introduction",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan – Thanks for sending times. Let’s please go with Monday at 2:30 CT. I’ll send a calendar invite.\n\nLiz Ream, Executive Assistant",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18da874c1eb03b4f",
+     "date": "2024-02-14T16:30:40Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "liz.ream@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Introduction",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Confirmed - thank you.",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18daadbb1f699043",
+     "date": "2024-02-15T03:42:19Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "steve.mclaughlin@ftpartners.com",
+     "to": [
+      "liz.ream@ftpartners.com",
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Introduction",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Jonathan, hey! Great to meet and look forward to chatting. Liz (cc'd) can help find us 15 mins either next week or the week after.\n\nIf you haven't already done so, please officially apply for the analyst program (2025 Summer Analyst, Investment Banking (San Francisco) at Financial Technology Partners, via Greenhouse) so we can get you in the process.\n\nBest,\nSteve",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18daaf1ecc6f1ff4",
+     "date": "2024-02-15T04:06:37Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "steve.mclaughlin@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Introduction",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Steve,\n\nGreat to hear from you! I coordinated with Liz directly to set up a time to call. She scheduled us for this upcoming Monday (1/19) at 2:30 pm CT. I'm hoping this aligns with your schedule, and I look forward to speaking with you then.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18daaf62956b3b8b",
+     "date": "2024-02-15T04:11:13Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "steve.mclaughlin@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "liz.ream@ftpartners.com"
+     ],
+     "subject": "RE: Introduction",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Excellent! Look forward to it.\n\nSteve",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18dc33d0fbf6a9dd",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Enjoyed our Conversation",
+   "messages": [
+    {
+     "message_id": "18dc45fa94a8ca1e",
+     "date": "2024-02-20T02:37:00Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "steve.mclaughlin@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Enjoyed our Conversation",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Steve,\n\nI just wanted to send a quick note of appreciation for the time you spent with me over the phone today. I appreciated gaining insight into the firm through the lens of someone with your extensive experience. You, along with Ethan and Josh, have done an incredible job of selling me on FT. Thanks again and enjoy the remainder of your time in Park City!\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Thank-you note. Call was 2024-02-19 12:30 PT; note sent 2024-02-19 18:37 PT — same day, ~6 hours after.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18dc47338174f585",
+     "date": "2024-02-20T02:58:20Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "steve.mclaughlin@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Re: Enjoyed our Conversation",
+     "labels": [
+      "IMPORTANT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Thanks Jonathan, enjoyed the convo!\n\nBest,\nSteve",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "labelIds contains IMPORTANT but neither INBOX nor SENT — an archived inbound. A rule keyed on the INBOX label would miss this message.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18da86cbcbfeaa10",
+   "capture": "metadata_only",
+   "shared_thread": false,
+   "subject": "Steve McLaughlin/Jonathan Nachman intro",
+   "messages": [
+    {
+     "message_id": "18da86cbcbfeaa10",
+     "date": "2024-02-14T00:00:00Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "liz.ream@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Steve McLaughlin/Jonathan Nachman intro",
+     "labels": [],
+     "attachments": [],
+     "has_attachment": null,
+     "body": null,
+     "body_source": "metadata_only",
+     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18dae725d2e2066e",
+   "capture": "metadata_only",
+   "shared_thread": false,
+   "subject": "Steve McLaughlin/Jonathan Nachman intro",
+   "messages": [
+    {
+     "message_id": "18dae725d2e2066e",
+     "date": "2024-02-15T00:00:00Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "liz.ream@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Steve McLaughlin/Jonathan Nachman intro",
+     "labels": [],
+     "attachments": [],
+     "has_attachment": null,
+     "body": null,
+     "body_source": "metadata_only",
+     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

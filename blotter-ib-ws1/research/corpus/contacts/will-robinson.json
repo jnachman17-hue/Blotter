@@ -1,0 +1,174 @@
+{
+ "slug": "will-robinson",
+ "name": "Will Robinson",
+ "firm": "Intrepid",
+ "title": "Analyst",
+ "addresses_seen": [
+  "Robinson@intrepidfp.com"
+ ],
+ "relationship_opened": "Referred by John Sellingsloh. Outbound is NOT in this mailbox - see missing_outbound",
+ "source_mailbox": [
+  "jnachman17@gmail.com",
+  "jnachman@utexas.edu"
+ ],
+ "stage": "A+B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 2,
+  "messages": 6,
+  "outbound": 3,
+  "inbound": 3,
+  "calendar_events": 1
+ },
+ "first_activity": "2024-01-20T19:09:10Z",
+ "last_activity": "2024-01-25T20:15:58Z",
+ "calendar_event_ids": [
+  "550nk40kuhmpr20nnulvbpg2qb"
+ ],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d2835cf4e7f9a5",
+   "capture": "spilled",
+   "shared_thread": false,
+   "subject": "Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+   "messages": [
+    {
+     "message_id": "18d2846e24a66597",
+     "date": "2024-01-20T19:09:10Z",
+     "internal_date": "1705777750000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "Robinson@intrepidfp.com"
+     ],
+     "cc": [],
+     "subject": "Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Will,\n\nI hope you are doing well. I am an undergraduate Economics & Business\nstudent at the University of Texas, and I'm pursuing a career in Investment\nBanking. I had the privilege of speaking with John during Thursday's on\ncampus networking event, and I'm very interested in the firm. I'd love to\ntalk to you to learn more about your experience at Intrepid given I'm\nparticularly interested in Banking in New York.\n\nIf you have any free time in the next week or so, it would be great to set\nup a quick phone call with you. I am pretty open and can likely adjust my\nschedule to accommodate whatever works best for you. Please let me know if\nyou would be willing to do this. Attached is my resume.\n\nBest,\nJonathan\n--\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d322382c94dc20",
+     "date": "2024-01-22T17:06:34Z",
+     "internal_date": "1705943194000",
+     "direction": "inbound",
+     "sender": "Robinson@intrepidfp.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "RE: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Jonathan – happy to find a time to chat. I’m pretty free this Thursday/Friday afternoon. Just shoot me a calendar invite for a time that works on your end and I’ll confirm.\n\nThanks,\nWill\n\nWill Robinson\nO: 646.979.3030 | C: 682.226.9764\n\nFrom: Jonathan M Nachman <jnachman@utexas.edu>\nSent: Saturday, January 20, 2024 2:09 PM\nTo: Will Robinson <Robinson@intrepidfp.com>\nSubject: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)\n\nHello Will, I hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I had the privilege of speaking w\nCaution: External (jnachman@utexas.edu<mailto:jnachman@utexas.edu>)\nFirst-Time Sender Details<https://protection.inkyphishfence.com/details?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9yb2JpbnNvbkBpbnRyZXBpZGZwLmNvbS85YTU1YWVkMmMyY2MxYTRmYWE5ODc3MDc4ZTYzZTc5MS8xNzA1Nzc3NzcyLjEx#key=afa68ff8c6077ded971f4505fbcc829b>\n  Report This Email<https://protection.inkyphishfence.com/report?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9yb2JpbnNvbkBpbnRyZXBpZGZwLmNvbS85YTU1YWVkMmMyY2MxYTRmYWE5ODc3MDc4ZTYzZTc5MS8xNzA1Nzc3NzcyLjEx#key=afa68ff8c6077ded971f4505fbcc829b> FAQ<https://www.inky.com/banner-faq> Protection by INKY<https://www.inky.com/protection-by-inky>\n\nHello Will,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I had the privilege of speaking with John during Thursday's on campus networking event, and I'm very interested in the firm. I'd love to talk to you to learn more about your experience at Intrepid given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week or so, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan\n--\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nIMPORTANT DISCLOSURE:\nThis message, including any attachments, may contain confidential, privileged and/or proprietary information and is intended only for the use of the individual or entity to whom it is addressed. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of this message or its attachments is strictly prohibited. If you have received this message in error, please notify the sender immediately and delete the message. Unless explicitly stated to the contrary, nothing contained in this message or any attachment constitutes an offer to buy or sell, or a solicitation of an offer to buy or sell, any security, property interest or other asset, nor does it constitute a binding obligation of any kind, an official confirmation of any transaction or an official statement of Intrepid Financial Partners, L.L.C. or its affiliates (collectively, “Intrepid”). It does not constitute a recommendation or take into account the particular investment objectives, financial conditions or needs of specific investors. Intrepid does not provide tax, accounting, or legal advice. Intrepid does not represent that any information or opinion in this communication obtained from third parties is accurate or complete, and thus it should not be relied upon as such. Intrepid reserves the right, to the extent permitted by applicable law, to review, retain, monitor, intercept and reproduce electronic messages to and from its systems and networks. Intrepid Partners, LLC is a broker-dealer registered with the U.S. Securities and Exchange Commission, a member of FINRA, a member of SIPC, and an affiliate of Intrepid Investment Management, LLC. Securities are offered through Intrepid Partners and investment advice is provided through Intrepid Investment Management. By communicating with Intrepid by email, you hereby consent to the foregoing.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d32aefdbdec92b",
+     "date": "2024-01-22T19:39:05Z",
+     "internal_date": "1705952345000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "Robinson@intrepidfp.com"
+     ],
+     "cc": [],
+     "subject": "Re: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Will,\n\nThanks for getting back to me. I just shot you a calendar invite for\nThursday afternoon at 1 pm cst. If it doesn't work, simply request to\nadjust the calendar invite to something that works for you. Thanks!\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 11:06 AM Will Robinson <Robinson@intrepidfp.com>\nwrote:\n\n> Jonathan – happy to find a time to chat. I’m pretty free this\n> Thursday/Friday afternoon. Just shoot me a calendar invite for a time that\n> works on your end and I’ll confirm.\n>\n>\n>\n> Thanks,\n>\n> Will\n>\n>\n>\n> *Will Robinson*\n>\n> O: 646.979.3030 | C: 682.226.9764\n>\n>\n>\n> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n> *Sent:* Saturday, January 20, 2024 2:09 PM\n> *To:* Will Robinson <Robinson@intrepidfp.com>\n> *Subject:* Referral by John Sellingsloh (UT Austin Student Interested in\n> Banking @ Intrepid NY)\n>\n>\n>\n> Hello Will, I hope you are doing well. I am an undergraduate Economics &\n> Business student at the University of Texas, and I'm pursuing a career in\n> Investment Banking. I had the privilege of speaking w\n>\n> *Caution*: External (jnachman@utexas.edu)\n>\n> First-Time Sender Details\n> <https://protection.inkyphishfence.com/details?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9yb2JpbnNvbkBpbnRyZXBpZGZwLmNvbS85YTU1YWVkMmMyY2MxYTRmYWE5ODc3MDc4ZTYzZTc5MS8xNzA1Nzc3NzcyLjEx#key�a68ff8c6077ded971f4505fbcc829b>\n>\n> Report This Email\n> <https://protection.inkyphishfence.com/report?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9yb2JpbnNvbkBpbnRyZXBpZGZwLmNvbS85YTU1YWVkMmMyY2MxYTRmYWE5ODc3MDc4ZTYzZTc5MS8xNzA1Nzc3NzcyLjEx#key�a68ff8c6077ded971f4505fbcc829b>\n> FAQ <https://www.inky.com/banner-faq> Protection by INKY\n> <https://www.inky.com/protection-by-inky>\n>\n>\n>\n> Hello Will,\n>\n>\n>\n> I hope you are doing well. I am an undergraduate Economics & Business\n> student at the University of Texas, and I'm pursuing a career in Investment\n> Banking. I had the privilege of speaking with John during Thursday's on\n> campus networking event, and I'm very interested in the firm. I'd love to\n> talk to you to learn more about your experience at Intrepid given I'm\n> particularly interested in Banking in New York.\n>\n>\n>\n> If you have any free time in the next week or so, it would be great to set\n> up a quick phone call with you. I am pretty open and can likely adjust my\n> schedule to accommodate whatever works best for you. Please let me know if\n> you would be willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n> --\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n> IMPORTANT DISCLOSURE:\n> This message, including any attachments, may contain confidential,\n> privileged and/or proprietary information and is intended only for the use\n> of the individual or entity to whom it is addressed. If you are not the\n> intended recipient, you are hereby notified that any dissemination,\n> distribution or copying of this message or its attachments is strictly\n> prohibited. If you have received this message in error, please notify the\n> sender immediately and delete the message. Unless explicitly stated to the\n> contrary, nothing contained in this message or any attachment constitutes\n> an offer to buy or sell, or a solicitation of an offer to buy or sell, any\n> security, property interest or other asset, nor does it constitute a\n> binding obligation of any kind, an official confirmation of any transaction\n> or an official statement of Intrepid Financial Partners, L.L.C. or its\n> affiliates (collectively, “Intrepid”). It does not constitute a\n> recommendation or take into account the particular investment objectives,\n> financial conditions or needs of specific investors. Intrepid does not\n> provide tax, accounting, or legal advice. Intrepid does not represent that\n> any information or opinion in this communication obtained from third\n> parties is accurate or complete, and thus it should not be relied upon as\n> such. Intrepid reserves the right, to the extent permitted by applicable\n> law, to review, retain, monitor, intercept and reproduce electronic\n> messages to and from its systems and networks. Intrepid Partners, LLC is a\n> broker-dealer registered with the U.S. Securities and Exchange Commission,\n> a member of FINRA, a member of SIPC, and an affiliate of Intrepid\n> Investment Management, LLC. Securities are offered through Intrepid\n> Partners and investment advice is provided through Intrepid Investment\n> Management. By communicating with Intrepid by email, you hereby consent to\n> the foregoing.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d32dc27170b4a2",
+     "date": "2024-01-22T20:28:07Z",
+     "internal_date": "1705955287000",
+     "direction": "inbound",
+     "sender": "Robinson@intrepidfp.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "RE: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Works for me, thanks. My cell number is in my signature, you can just give me a call.\n\nTalk then,\n\nWill Robinson\nO: 646.979.3030 | C: 682.226.9764\n\nFrom: Jonathan M Nachman <jnachman@utexas.edu>\nSent: Monday, January 22, 2024 2:39 PM\nTo: Will Robinson <Robinson@intrepidfp.com>\nSubject: Re: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)\n\nWill, Thanks for getting back to me. I just shot you a calendar invite for Thursday afternoon at 1 pm cst. If it doesn't work, simply request to adjust the calendar invite to something that works for\nExternal (jnachman@utexas.edu<mailto:jnachman@utexas.edu>)\n  Report This Email<https://protection.inkyphishfence.com/report?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9yb2JpbnNvbkBpbnRyZXBpZGZwLmNvbS9mODQ4YTY0OGI2ZWQ5Y2E0NDIwODZjOGQxZDNlMTgxYS8xNzA1OTUyMzYzLjk5#key=b2f2fb43fd2beb8dafe1c6acacecf2c2> FAQ<https://www.inky.com/banner-faq> Protection by INKY<https://www.inky.com/protection-by-inky>\n\nWill,\n\nThanks for getting back to me. I just shot you a calendar invite for Thursday afternoon at 1 pm cst. If it doesn't work, simply request to adjust the calendar invite to something that works for you. Thanks!\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 11:06 AM Will Robinson <Robinson@intrepidfp.com<mailto:Robinson@intrepidfp.com>> wrote:\nJonathan – happy to find a time to chat. I’m pretty free this Thursday/Friday afternoon. Just shoot me a calendar invite for a time that works on your end and I’ll confirm.\n\nThanks,\nWill\n\nWill Robinson\nO: 646.979.3030 | C: 682.226.9764\n\nFrom: Jonathan M Nachman <jnachman@utexas.edu<mailto:jnachman@utexas.edu>>\nSent: Saturday, January 20, 2024 2:09 PM\nTo: Will Robinson <Robinson@intrepidfp.com<mailto:Robinson@intrepidfp.com>>\nSubject: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)\n\nHello Will, I hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I had the privilege of speaking w\nCaution: External (jnachman@utexas.edu<mailto:jnachman@utexas.edu>)\nFirst-Time Sender Details<https://protection.inkyphishfence.com/details?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9yb2JpbnNvbkBpbnRyZXBpZGZwLmNvbS85YTU1YWVkMmMyY2MxYTRmYWE5ODc3MDc4ZTYzZTc5MS8xNzA1Nzc3NzcyLjEx#key=afa68ff8c6077ded971f4505fbcc829b>\n  Report This Email<https://protection.inkyphishfence.com/report?id=aW50cmVwaWRmaW5hbmNpYWxwYXJ0bmVycy9yb2JpbnNvbkBpbnRyZXBpZGZwLmNvbS85YTU1YWVkMmMyY2MxYTRmYWE5ODc3MDc4ZTYzZTc5MS8xNzA1Nzc3NzcyLjEx#key=afa68ff8c6077ded971f4505fbcc829b> FAQ<https://www.inky.com/banner-faq> Protection by INKY<https://www.inky.com/protection-by-inky>\n\nHello Will,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I had the privilege of speaking with John during Thursday's on campus networking event, and I'm very interested in the firm. I'd love to talk to you to learn more about your experience at Intrepid given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week or so, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan\n--\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nIMPORTANT DISCLOSURE:\nThis message, including any attachments, may contain confidential, privileged and/or proprietary information and is intended only for the use of the individual or entity to whom it is addressed. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of this message or its attachments is strictly prohibited. If you have received this message in error, please notify the sender immediately and delete the message. Unless explicitly stated to the contrary, nothing contained in this message or any attachment constitutes an offer to buy or sell, or a solicitation of an offer to buy or sell, any security, property interest or other asset, nor does it constitute a binding obligation of any kind, an official confirmation of any transaction or an official statement of Intrepid Financial Partners, L.L.C. or its affiliates (collectively, “Intrepid”). It does not constitute a recommendation or take into account the particular investment objectives, financial conditions or needs of specific investors. Intrepid does not provide tax, accounting, or legal advice. Intrepid does not represent that any information or opinion in this communication obtained from third parties is accurate or complete, and thus it should not be relied upon as such. Intrepid reserves the right, to the extent permitted by applicable law, to review, retain, monitor, intercept and reproduce electronic messages to and from its systems and networks. Intrepid Partners, LLC is a broker-dealer registered with the U.S. Securities and Exchange Commission, a member of FINRA, a member of SIPC, and an affiliate of Intrepid Investment Management, LLC. Securities are offered through Intrepid Partners and investment advice is provided through Intrepid Investment Management. By communicating with Intrepid by email, you hereby consent to the foregoing.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d4243d9df7dab0",
+     "date": "2024-01-25T20:15:58Z",
+     "internal_date": "1706213758000",
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "Robinson@intrepidfp.com"
+     ],
+     "cc": [],
+     "subject": "Re: Referral by John Sellingsloh (UT Austin Student Interested in Banking @ Intrepid NY)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Will – I really appreciate you taking the time to speak with me today. The\ninsight you provided me from a somewhat similar background is immensely\nvaluable. With that, the prospect of interning at Intrepid really excites\nme. I will definitely be continuing the application process with the firm.\nThanks again!\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 2:28 PM Will Robinson <Robinson@intrepidfp.com>\nwrote:\n\n> Works for me, thanks. My cell number is in my signature, you can just give\n> me a call.\n>\n>\n>\n> Talk then,\n>\n>\n>\n> *Will Robinson*\n>\n> O: 646.979.3030 | C: 682.226.9764\n>\n>\n>\n> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n> *Sent:* Monday, January 22, 2024 2:39 PM\n> *To:* Will Robinson <Robinson@intrepidfp.com>\n> *Subject:* Re: Referral by John Sellingsloh (UT Austin Student Interested\n> in Banking @ Intrepid NY)\n>\n>\n>\n>\n>\n> Will,\n>\n>\n>\n> Thanks for getting back to me. I just shot you a calendar invite for\n> Thursday afternoon at 1 pm cst. If it doesn't work, simply request to\n> adjust the calendar invite to something that works for you. Thanks!\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Mon, Jan 22, 2024 at 11:06 AM Will Robinson <Robinson@intrepidfp.com>\n> wrote:\n>\n> Jonathan – happy to find a time to chat. I’m pretty free this\n> Thursday/Friday afternoon. Just shoot me a calendar invite for a time that\n> works on your end and I’ll confirm.\n>\n>\n>\n> Thanks,\n>\n> Will\n>\n>\n>\n> *Will Robinson*\n>\n> O: 646.979.3030 | C: 682.226.9764\n>\n>\n>\n> *From:* Jonathan M Nachman <jnachman@utexas.edu>\n> *Sent:* Saturday, January 20, 2024 2:09 PM\n> *To:* Will Robinson <Robinson@intrepidfp.com>\n> *Subject:* Referral by John Sellingsloh (UT Austin Student Interested in\n> Banking @ Intrepid NY)\n>\n>\n>\n>\n>\n> Hello Will,\n>\n>\n>\n> I hope you are doing well. I am an undergraduate Economics & Business\n> student at the University of Texas, and I'm pursuing a career in Investment\n> Banking. I had the privilege of speaking with John during Thursday's on\n> campus networking event, and I'm very interested in the firm. I'd love to\n> talk to you to learn more about your experience at Intrepid given I'm\n> particularly interested in Banking in New York.\n>\n>\n>\n> If you have any free time in the next week or so, it would be great to set\n> up a quick phone call with you. I am pretty open and can likely adjust my\n> schedule to accommodate whatever works best for you. Please let me know if\n> you would be willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n> --\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n> IMPORTANT DISCLOSURE:\n> This message, including any attachments, may contain confidential,\n> privileged and/or proprietary information and is intended only for the use\n> of the individual or entity to whom it is addressed. If you are not the\n> intended recipient, you are hereby notified that any dissemination,\n> distribution or copying of this message or its attachments is strictly\n> prohibited. If you have received this message in error, please notify the\n> sender immediately and delete the message. Unless explicitly stated to the\n> contrary, nothing contained in this message or any attachment constitutes\n> an offer to buy or sell, or a solicitation of an offer to buy or sell, any\n> security, property interest or other asset, nor does it constitute a\n> binding obligation of any kind, an official confirmation of any transaction\n> or an official statement of Intrepid Financial Partners, L.L.C. or its\n> affiliates (collectively, “Intrepid”). It does not constitute a\n> recommendation or take into account the particular investment objectives,\n> financial conditions or needs of specific investors. Intrepid does not\n> provide tax, accounting, or legal advice. Intrepid does not represent that\n> any information or opinion in this communication obtained from third\n> parties is accurate or complete, and thus it should not be relied upon as\n> such. Intrepid reserves the right, to the extent permitted by applicable\n> law, to review, retain, monitor, intercept and reproduce electronic\n> messages to and from its systems and networks. Intrepid Partners, LLC is a\n> broker-dealer registered with the U.S. Securities and Exchange Commission,\n> a member of FINRA, a member of SIPC, and an affiliate of Intrepid\n> Investment Management, LLC. Securities are offered through Intrepid\n> Partners and investment advice is provided through Intrepid Investment\n> Management. By communicating with Intrepid by email, you hereby consent to\n> the foregoing.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d32dafce4f29ab",
+   "capture": "metadata_only",
+   "shared_thread": false,
+   "subject": "Accepted: Will - Jonathan Intrepid IB Call",
+   "messages": [
+    {
+     "message_id": "18d32dafce4f29ab",
+     "date": "2024-01-22T20:27:02Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Robinson@intrepidfp.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Accepted: Will - Jonathan Intrepid IB Call",
+     "labels": [],
+     "attachments": [],
+     "has_attachment": null,
+     "body": null,
+     "body_source": "metadata_only",
+     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,166 @@
+{
+ "slug": "ethan-marnhout",
+ "name": "Ethan Marnhout",
+ "firm": "FT Partners",
+ "title": "Analyst, Fintech",
+ "addresses_seen": [
+  "ethan.marnhout@ftpartners.com"
+ ],
+ "relationship_opened": "Cold email, referred by Josh Gumm",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 6,
+  "outbound": 4,
+  "inbound": 2,
+  "calendar_events": 1
+ },
+ "first_activity": "2024-01-24T01:13:07Z",
+ "last_activity": "2024-02-06T14:29:53Z",
+ "calendar_event_ids": [
+  "5rien8vjbd24n4hf2bcdlu8ecc"
+ ],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d3900b05a25d95",
+   "capture": "spilled",
+   "shared_thread": false,
+   "subject": "[Josh Gumm Referral] UT Austin Student Interested in Banking @ FT",
+   "messages": [
+    {
+     "message_id": "18d39072affb5b93",
+     "date": "2024-01-24T01:13:07Z",
+     "internal_date": "1706058787000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "ethan.marnhout@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "[Josh Gumm Referral] UT Austin Student Interested in Banking @ FT",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Ethan,\n\nI hope you are doing well. My name is Jonathan Nachman, and I'm an\nEconomics and Business student at the University of Texas, Austin. I had\nthe opportunity to speak to Josh Gumm on the phone yesterday regarding the\nSummer Analyst Internship program at FT Partners, where he filled me in\nbriefly on your background. Given your unique experience spending a summer\nas an Analyst in Houston to ultimately re-recruiting, I think you could\nprovide me with some very valuable insight coming from UT.\n\nIf you have any free time in the next week, I would love to set up a quick\nphone call with you. I am pretty open and can likely adjust my schedule to\naccommodate whatever works best for you. Please let me know if you would be\nwilling to do this. Attached is my resume.\n\nBest,\nJonathan\n\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d5c1483239661f",
+     "date": "2024-01-30T20:34:24Z",
+     "internal_date": "1706646864000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "ethan.marnhout@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: [Josh Gumm Referral] UT Austin Student Interested in Banking @ FT",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Ethan,\n\nI hope all is well. I just wanted to politely bump my previous email. If\nyou have some time in the next week or so, I would still greatly appreciate\nthe opportunity to speak with you. Please let me know if you would be\nwilling to do this.\n\nBest,\nJonathan\n\nOn Tue, Jan 23, 2024 at 7:13 PM Jonathan Nachman <jnachman17@gmail.com>\nwrote:\n\n> Hello Ethan,\n>\n> I hope you are doing well. My name is Jonathan Nachman, and I'm an\n> Economics and Business student at the University of Texas, Austin. I had\n> the opportunity to speak to Josh Gumm on the phone yesterday regarding the\n> Summer Analyst Internship program at FT Partners, where he filled me in\n> briefly on your background. Given your unique experience spending a summer\n> as an Analyst in Houston to ultimately re-recruiting, I think you could\n> provide me with some very valuable insight coming from UT.\n>\n> If you have any free time in the next week, I would love to set up a quick\n> phone call with you. I am pretty open and can likely adjust my schedule to\n> accommodate whatever works best for you. Please let me know if you would be\n> willing to do this. Attached is my resume.\n>\n> Best,\n> Jonathan\n>\n> *Jonathan Nachman *\n> University of Texas, Austin\n> Economics & Business\n> M: (310)-292-4712\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d5c1766e3c0f90",
+     "date": "2024-01-30T20:37:30Z",
+     "internal_date": "1706647050000",
+     "direction": "inbound",
+     "sender": "ethan.marnhout@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: [Josh Gumm Referral] UT Austin Student Interested in Banking @ FT",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Jonathan,\n\nSorry for the delay here – would be glad to hop on the phone some time.\n\nHow does this Friday at 9:30am sound?\n\nLet me know, thanks.\n\nBest,\nEthan\n\n_______________________________\nEthan Marnhout\nAnalyst\n(650) 416-1548\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Tuesday, January 30, 2024 12:34 PM\nTo: Ethan Marnhout <ethan.marnhout@ftpartners.com>\nSubject: Re: [Josh Gumm Referral] UT Austin Student Interested in Banking @ FT\n\nHey Ethan,\n\nI hope all is well. I just wanted to politely bump my previous email. If you have some time in the next week or so, I would still greatly appreciate the opportunity to speak with you. Please let me know if you would be willing to do this.\n\nBest,\nJonathan\n\nOn Tue, Jan 23, 2024 at 7:13 PM Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>> wrote:\nHello Ethan,\n\nI hope you are doing well. My name is Jonathan Nachman, and I'm an Economics and Business student at the University of Texas, Austin. I had the opportunity to speak to Josh Gumm on the phone yesterday regarding the Summer Analyst Internship program at FT Partners, where he filled me in briefly on your background. Given your unique experience spending a summer as an Analyst in Houston to ultimately re-recruiting, I think you could provide me with some very valuable insight coming from UT.\n\nIf you have any free time in the next week, I would love to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d5c1b103ef1720",
+     "date": "2024-01-30T20:41:33Z",
+     "internal_date": "1706647293000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "ethan.marnhout@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: [Josh Gumm Referral] UT Austin Student Interested in Banking @ FT",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Ethan – I appreciate the quick response. Friday (2/2) at 9:30 am PT works\nfor me. I will send you a calendar invite, and I look forward to speaking\nwith you then.\n\nBest,\nJonathan\n\nOn Tue, Jan 30, 2024 at 2:37 PM Ethan Marnhout <\nethan.marnhout@ftpartners.com> wrote:\n\n> Hey Jonathan,\n>\n>\n>\n> Sorry for the delay here – would be glad to hop on the phone some time.\n>\n>\n>\n> How does this Friday at 9:30am sound?\n>\n>\n>\n> Let me know, thanks.\n>\n>\n>\n> Best,\n>\n> Ethan\n>\n>\n>\n> _______________________________\n>\n> *Ethan Marnhout*\n>\n> Analyst\n> (650) 416-1548\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Tuesday, January 30, 2024 12:34 PM\n> *To:* Ethan Marnhout <ethan.marnhout@ftpartners.com>\n> *Subject:* Re: [Josh Gumm Referral] UT Austin Student Interested in\n> Banking @ FT\n>\n>\n>\n> Hey Ethan,\n>\n>\n>\n> I hope all is well. I just wanted to politely bump my previous email. If\n> you have some time in the next week or so, I would still greatly appreciate\n> the opportunity to speak with you. Please let me know if you would be\n> willing to do this.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Tue, Jan 23, 2024 at 7:13 PM Jonathan Nachman <jnachman17@gmail.com>\n> wrote:\n>\n> Hello Ethan,\n>\n>\n>\n> I hope you are doing well. My name is Jonathan Nachman, and I'm an\n> Economics and Business student at the University of Texas, Austin. I had\n> the opportunity to speak to Josh Gumm on the phone yesterday regarding the\n> Summer Analyst Internship program at FT Partners, where he filled me in\n> briefly on your background. Given your unique experience spending a summer\n> as an Analyst in Houston to ultimately re-recruiting, I think you could\n> provide me with some very valuable insight coming from UT.\n>\n>\n>\n> If you have any free time in the next week, I would love to set up a quick\n> phone call with you. I am pretty open and can likely adjust my schedule to\n> accommodate whatever works best for you. Please let me know if you would be\n> willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d5c1bca4d63ba4",
+     "date": "2024-01-30T20:42:17Z",
+     "internal_date": "1706647337000",
+     "direction": "inbound",
+     "sender": "ethan.marnhout@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: [Josh Gumm Referral] UT Austin Student Interested in Banking @ FT",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Great thanks man.\n\n_______________________________\nEthan Marnhout\nAnalyst\n(650) 416-1548\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Tuesday, January 30, 2024 12:42 PM\nTo: Ethan Marnhout <ethan.marnhout@ftpartners.com>\nSubject: Re: [Josh Gumm Referral] UT Austin Student Interested in Banking @ FT\n\nEthan – I appreciate the quick response. Friday (2/2) at 9:30 am PT works for me. I will send you a calendar invite, and I look forward to speaking with you then.\n\nBest,\nJonathan\n\nOn Tue, Jan 30, 2024 at 2:37 PM Ethan Marnhout <ethan.marnhout@ftpartners.com<mailto:ethan.marnhout@ftpartners.com>> wrote:\nHey Jonathan,\n\nSorry for the delay here – would be glad to hop on the phone some time.\n\nHow does this Friday at 9:30am sound?\n\nLet me know, thanks.\n\nBest,\nEthan\n\n_______________________________\nEthan Marnhout\nAnalyst\n(650) 416-1548\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Tuesday, January 30, 2024 12:34 PM\nTo: Ethan Marnhout <ethan.marnhout@ftpartners.com<mailto:ethan.marnhout@ftpartners.com>>\nSubject: Re: [Josh Gumm Referral] UT Austin Student Interested in Banking @ FT\n\nHey Ethan,\n\nI hope all is well. I just wanted to politely bump my previous email. If you have some time in the next week or so, I would still greatly appreciate the opportunity to speak with you. Please let me know if you would be willing to do this.\n\nBest,\nJonathan\n\nOn Tue, Jan 23, 2024 at 7:13 PM Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>> wrote:\nHello Ethan,\n\nI hope you are doing well. My name is Jonathan Nachman, and I'm an Economics and Business student at the University of Texas, Austin. I had the opportunity to speak to Josh Gumm on the phone yesterday regarding the Summer Analyst Internship program at FT Partners, where he filled me in briefly on your background. Given your unique experience spending a summer as an Analyst in Houston to ultimately re-recruiting, I think you could provide me with some very valuable insight coming from UT.\n\nIf you have any free time in the next week, I would love to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d7ed34ef723f49",
+     "date": "2024-02-06T14:29:53Z",
+     "internal_date": "1707229793000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "ethan.marnhout@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: [Josh Gumm Referral] UT Austin Student Interested in Banking @ FT",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Ethan,\n\nI hope you had a nice weekend. I wanted to reach out and briefly say thanks\nfor hopping on the phone with me last Friday. I really appreciate your\nwillingness to have a casual yet informative conversation with me.\nYour insight is very useful, and I will be applying to FT in the near\nfuture.\n\nBest,\nJonathan\n\nOn Tue, Jan 30, 2024 at 2:42 PM Ethan Marnhout <\nethan.marnhout@ftpartners.com> wrote:\n\n> Great thanks man.\n>\n>\n>\n> _______________________________\n>\n> *Ethan Marnhout*\n>\n> Analyst\n> (650) 416-1548\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Tuesday, January 30, 2024 12:42 PM\n> *To:* Ethan Marnhout <ethan.marnhout@ftpartners.com>\n> *Subject:* Re: [Josh Gumm Referral] UT Austin Student Interested in\n> Banking @ FT\n>\n>\n>\n> Ethan – I appreciate the quick response. Friday (2/2) at 9:30 am PT works\n> for me. I will send you a calendar invite, and I look forward to speaking\n> with you then.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Tue, Jan 30, 2024 at 2:37 PM Ethan Marnhout <\n> ethan.marnhout@ftpartners.com> wrote:\n>\n> Hey Jonathan,\n>\n>\n>\n> Sorry for the delay here – would be glad to hop on the phone some time.\n>\n>\n>\n> How does this Friday at 9:30am sound?\n>\n>\n>\n> Let me know, thanks.\n>\n>\n>\n> Best,\n>\n> Ethan\n>\n>\n>\n> _______________________________\n>\n> *Ethan Marnhout*\n>\n> Analyst\n> (650) 416-1548\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Tuesday, January 30, 2024 12:34 PM\n> *To:* Ethan Marnhout <ethan.marnhout@ftpartners.com>\n> *Subject:* Re: [Josh Gumm Referral] UT Austin Student Interested in\n> Banking @ FT\n>\n>\n>\n> Hey Ethan,\n>\n>\n>\n> I hope all is well. I just wanted to politely bump my previous email. If\n> you have some time in the next week or so, I would still greatly appreciate\n> the opportunity to speak with you. Please let me know if you would be\n> willing to do this.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Tue, Jan 23, 2024 at 7:13 PM Jonathan Nachman <jnachman17@gmail.com>\n> wrote:\n>\n> Hello Ethan,\n>\n>\n>\n> I hope you are doing well. My name is Jonathan Nachman, and I'm an\n> Economics and Business student at the University of Texas, Austin. I had\n> the opportunity to speak to Josh Gumm on the phone yesterday regarding the\n> Summer Analyst Internship program at FT Partners, where he filled me in\n> briefly on your background. Given your unique experience spending a summer\n> as an Analyst in Houston to ultimately re-recruiting, I think you could\n> provide me with some very valuable insight coming from UT.\n>\n>\n>\n> If you have any free time in the next week, I would love to set up a quick\n> phone call with you. I am pretty open and can likely adjust my schedule to\n> accommodate whatever works best for you. Please let me know if you would be\n> willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

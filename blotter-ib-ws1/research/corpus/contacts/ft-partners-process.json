@@ -1,0 +1,822 @@
+{
+ "slug": "ft-partners-process",
+ "name": "FT Partners - application, interviews, super day, offer",
+ "firm": null,
+ "title": null,
+ "addresses_seen": [],
+ "relationship_opened": "Firm-level recruiting process, not a single person",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "record_type": "firm_process",
+ "counts": {
+  "threads": 14,
+  "messages": 29,
+  "outbound": 12,
+  "inbound": 17,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-03-18T14:52:04Z",
+ "last_activity": "2024-04-18T14:26:05Z",
+ "threads": [
+  {
+   "thread_id": "18e520c565fbb783",
+   "capture": "supplement",
+   "subject": "Financial Technology Partners Interview Next Steps",
+   "messages": [
+    {
+     "message_id": "18e520c565fbb783",
+     "date": "2024-03-18T14:52:04Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "caroline.hodge@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "lindsay.mceachern@ftpartners.com"
+     ],
+     "subject": "Financial Technology Partners Interview Next Steps",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan,\n\nWe're excited to move you forward in the interview process for the 2025 Summer Analyst, Investment Banking (San Francisco) position!\n\nTo help us schedule, please let us know when you're available by selecting the online calendar link below. Please note, the more options you offer us, the quicker we're able to schedule your interview.\n\nThe timing and duration of your interview(s) will also depend on the availability of our interviewer(s), but once we coordinate calendars, we will confirm exact time and duration with you.\n\nRegards,\nCaroline\n\n[Greenhouse availability link]",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Scheduling handed off to a Greenhouse availability form. No calendar invite, no proposed times in the mail. A product watching mail alone sees no scheduling signal here at all.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18e59c64de9e334f",
+     "date": "2024-03-20T02:52:31Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "caroline.hodge@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Financial Technology Partners Interview Next Steps",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Caroline,\n\nI hope you are doing well. I submitted my interview availability using the link you provided yesterday evening. I applied to your firm directly via a link I was sent by an analyst following a coffee chat, and it was only from your recent email that I realized I am recruiting exclusively for the San Francisco office. While I am extremely interested in both San Francisco and New York, I have a slight preference for New York. I am wondering how this affects the interview process and recruiting network I am in. I would greatly appreciate it if you could provide any clarification.\n\nSincerely,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18e5bd9e30291d25",
+     "date": "2024-03-20T12:33:06Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "caroline.hodge@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Financial Technology Partners Interview Next Steps",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "~WRD1727.jpg",
+       "mimeType": "image/jpeg"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Jonathan,\n\nI hope you are doing well!\n\nWe are looking forward to moving you forward in the process. Thank you for letting us know your location preference. We have moved you over to our New York process. You will be receiving an updated availability request for this process.\n\nWhen you submit your availability, please also include times for next week as well.\n\nPlease let me know if you have any additional questions.\n\nThank you!\nCaroline\n\nCaroline Hodge, Campus Recruiter",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18e5bda05e4e7c0c",
+     "date": "2024-03-20T12:33:18Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "caroline.hodge@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "lindsey.box@ftpartners.com"
+     ],
+     "subject": "Financial Technology Partners Interview Next Steps",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan,\n\nWe're excited to move you forward in the interview process for the 2025 Summer Analyst, Investment Banking (New York) position!\n\n[same Greenhouse availability template as the San Francisco message, new link]\n\nRegards,\nCaroline",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Identical template body to the 3/18 message, different office. Sent 12 seconds after the human reply above.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18e5c6c54c9d44e9",
+     "date": "2024-03-20T15:13:06Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "caroline.hodge@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Financial Technology Partners Interview Next Steps",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "~WRD1727.jpg",
+       "mimeType": "image/jpeg"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Good Morning Caroline,\n\nI greatly appreciate you adjusting me over to the New York process. I just submitted my availability under the new link.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18e5cbb25290802e",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  },
+  {
+   "thread_id": "18e805ab63b9e84f",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  },
+  {
+   "thread_id": "18e76f06c6ae3f43",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  },
+  {
+   "thread_id": "18e7bd1d24a71dfa",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  },
+  {
+   "thread_id": "18e9b42927ecbdde",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  },
+  {
+   "thread_id": "18e9b853b537d836",
+   "capture": "spilled",
+   "subject": "FT Partners Super Day Confirmation",
+   "messages": [
+    {
+     "message_id": "18e9b853b537d836",
+     "date": "2024-04-01T21:16:23Z",
+     "internal_date": "1712006183000",
+     "direction": "inbound",
+     "sender": "lindsey.box@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "caroline.hodge@ftpartners.com",
+      "lindsey.box@ftpartners.com",
+      "christina.celestino@ftpartners.com"
+     ],
+     "subject": "FT Partners Super Day Confirmation",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "interview_0.ics",
+       "mimeType": "text/calendar"
+      },
+      {
+       "filename": "interview_1.ics",
+       "mimeType": "text/calendar"
+      },
+      {
+       "filename": "interview_2.ics",
+       "mimeType": "text/calendar"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Jonathan,\n\nThank you for submitting your availability for the 2025 Summer Analyst, Investment Banking (New York) position!\n\nYour interviews will take place on Friday April 5, 12:00pm - 1:00pm; 3:30pm CDT via Zoom. Please find all Zoom information below.\n\nInterview Schedule:\nDate/Time: Apr 5, 2024 12:00pm-12:30pm CDT\nInterviewers: Brady Flynn\nZoom: https://ftpartners.zoom.us/j/93963749770\n\nMeeting ID: 939 6374 9770\n\nPasscode: 734569\n\nDate/Time: Apr 5, 2024 12:30pm-1:00pm CDT\nInterviewers: Sebastian Plate\nZoom: https://ftpartners.zoom.us/j/99807451859?pwd=UVZCc1FLYWxkd24wemJJWnhTajlzQT09\n\nMeeting ID: 998 0745 1859\n\nPasscode: 129960\n\nDate/Time: Apr 5, 2024 3:30pm-4:00pm CDT\nInterviewers: Sam Daddeh\nZoom: https://ftpartners.zoom.us/j/91456859498?pwd=S3FyR0hTa2NrdE94ZldidnJRN2VyZz09\n\nMeeting ID: 914 5685 9498\n\nPasscode: 824444\n\nPlease let me or one of my team members know if you have any questions prior to your interviews. We are looking forward to meeting you!\n\nLindsey",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ec472ee60e9481",
+     "date": "2024-04-09T20:00:46Z",
+     "internal_date": "1712692846000",
+     "direction": "inbound",
+     "sender": "caroline.hodge@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "Christina.Celestino@ftpartners.com"
+     ],
+     "subject": "RE: FT Partners Super Day Confirmation",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan,\n\nI hope your week is going well!\n\nThank you again for making the time to meet with the team on Friday. We are collecting feedback internally and hope to have an update for you later this week.\n\nIn the meantime, can you please let us know if you have any upcoming Superdays or exploding offers we should be aware of?\n\nThank you!\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Lindsey Box <lindsey.box@ftpartners.com>\nSent: Monday, April 1, 2024 5:16 PM\nTo: jnachman17@gmail.com\nCc: Caroline Hodge <caroline.hodge@ftpartners.com>; Lindsey Box <lindsey.box@ftpartners.com>; Christina Celestino <christina.celestino@ftpartners.com>\nSubject: FT Partners Super Day Confirmation\n\nHi Jonathan,\n\nThank you for submitting your availability for the 2025 Summer Analyst, Investment Banking (New York) position!\n\nYour interviews will take place on Friday April 5, 12:00pm - 1:00pm; 3:30pm CDT via Zoom. Please find all Zoom information below.\n\nInterview Schedule:\nDate/Time: Apr 5, 2024 12:00pm-12:30pm CDT\nInterviewers: Brady Flynn\nZoom: https://ftpartners.zoom.us/j/93963749770<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_93963749770&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=IJNgAsBw8V5x654acmOYOCfy9D7IzLRbIe968iqT0X8&e=>\n\nMeeting ID: 939 6374 9770\n\nPasscode: 734569\n\nDate/Time: Apr 5, 2024 12:30pm-1:00pm CDT\nInterviewers: Sebastian Plate\nZoom: https://ftpartners.zoom.us/j/99807451859?pwd=UVZCc1FLYWxkd24wemJJWnhTajlzQT09<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_99807451859-3Fpwd-3DUVZCc1FLYWxkd24wemJJWnhTajlzQT09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=exBoWIpcLdnRQJOSpe2mJnE9qRuRtIqiW0UKWTt6-v4&e=>\n\nMeeting ID: 998 0745 1859\n\nPasscode: 129960\n\nDate/Time: Apr 5, 2024 3:30pm-4:00pm CDT\nInterviewers: Sam Daddeh\nZoom: https://ftpartners.zoom.us/j/91456859498?pwd=S3FyR0hTa2NrdE94ZldidnJRN2VyZz09<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_91456859498-3Fpwd-3DS3FyR0hTa2NrdE94ZldidnJRN2VyZz09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=ZyWhRUgZnff4ZEs168DQccguiE_Uoa2lXxkyR1Izg_I&e=>\n\nMeeting ID: 914 5685 9498\n\nPasscode: 824444\n\nPlease let me or one of my team members know if you have any questions prior to your interviews. We are looking forward to meeting you!\n\nLindsey\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ec49118b1c2d84",
+     "date": "2024-04-09T20:33:46Z",
+     "internal_date": "1712694826000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "caroline.hodge@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: FT Partners Super Day Confirmation",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Caroline,\n\nI hope this message finds you well. Thank you for keeping me informed about\nmy recruitment status; my interest in joining FT Partners remains very\nstrong. I'm looking forward to any updates you might have later this week.\nAdditionally, I wanted to mention that I'm likely to have a super day\ntowards the end of this week or very early next week. I will share any\nother relevant details as they arise.\n\nBest,\nJonathan Nachman\n\nOn Tue, Apr 9, 2024 at 3:00 PM Caroline Hodge <caroline.hodge@ftpartners.com>\nwrote:\n\n> Hi Jonathan,\n>\n>\n>\n> I hope your week is going well!\n>\n>\n>\n> Thank you again for making the time to meet with the team on Friday. We\n> are collecting feedback internally and hope to have an update for you later\n> this week.\n>\n>\n>\n> In the meantime, can you please let us know if you have any upcoming\n> Superdays or exploding offers we should be aware of?\n>\n>\n>\n> Thank you!\n>\n> Caroline\n>\n>\n>\n> _______________________________\n>\n> *Caroline Hodge *\n> Campus Recruiter\n>\n> (929) 480-7710 (office)\n>\n>\n>\n> *From:* Lindsey Box <lindsey.box@ftpartners.com>\n> *Sent:* Monday, April 1, 2024 5:16 PM\n> *To:* jnachman17@gmail.com\n> *Cc:* Caroline Hodge <caroline.hodge@ftpartners.com>; Lindsey Box <\n> lindsey.box@ftpartners.com>; Christina Celestino <\n> christina.celestino@ftpartners.com>\n> *Subject:* FT Partners Super Day Confirmation\n>\n>\n>\n> Hi Jonathan,\n>\n> Thank you for submitting your availability for the *2025 Summer Analyst,\n> Investment Banking (New York)* position!\n>\n> Your interviews will take place on *Friday April 5, 12:00pm - 1:00pm;\n> 3:30pm CDT via Zoom. *Please find all Zoom information below.\n>\n> *Interview Schedule:*\n> Date/Time: Apr 5, 2024 12:00pm-12:30pm CDT\n> Interviewers: Brady Flynn\n> Zoom: https://ftpartners.zoom.us/j/93963749770\n> <https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_93963749770&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=IJNgAsBw8V5x654acmOYOCfy9D7IzLRbIe968iqT0X8&e=>\n>\n> Meeting ID: 939 6374 9770\n>\n> Passcode: 734569\n>\n> Date/Time: Apr 5, 2024 12:30pm-1:00pm CDT\n> Interviewers: Sebastian Plate\n> Zoom:\n> https://ftpartners.zoom.us/j/99807451859?pwd=UVZCc1FLYWxkd24wemJJWnhTajlzQT09\n> <https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_99807451859-3Fpwd-3DUVZCc1FLYWxkd24wemJJWnhTajlzQT09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=exBoWIpcLdnRQJOSpe2mJnE9qRuRtIqiW0UKWTt6-v4&e=>\n>\n> Meeting ID: 998 0745 1859\n>\n> Passcode: 129960\n>\n> Date/Time: Apr 5, 2024 3:30pm-4:00pm CDT\n> Interviewers: Sam Daddeh\n> Zoom:\n> https://ftpartners.zoom.us/j/91456859498?pwd=S3FyR0hTa2NrdE94ZldidnJRN2VyZz09\n> <https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_91456859498-3Fpwd-3DS3FyR0hTa2NrdE94ZldidnJRN2VyZz09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=ZyWhRUgZnff4ZEs168DQccguiE_Uoa2lXxkyR1Izg_I&e=>\n>\n> Meeting ID: 914 5685 9498\n>\n> Passcode: 824444\n>\n>\n>\n> Please let me or one of my team members know if you have any questions\n> prior to your interviews. We are looking forward to meeting you!\n>\n> Lindsey\n>\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ecefdcff57cae6",
+     "date": "2024-04-11T21:08:40Z",
+     "internal_date": "1712869720000",
+     "direction": "inbound",
+     "sender": "caroline.hodge@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "Christina.Celestino@ftpartners.com"
+     ],
+     "subject": "RE: FT Partners Super Day Confirmation",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "~WRD0004.jpg",
+       "mimeType": "image/jpeg"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Jonathan,\nI hope your week is going well!\nAs an update on our 2025 IBD Summer Analyst interview process, we were fortunate to have all of our offers that had previously been extended accepted and we recently filled our NY class. While we are positive on your candidacy, we are can no longer consider you for our New York opportunity.\nThat being said, we are still recruiting for Summer Analysts to join our San Francisco cohort. Would you be interested in being considered for our San Francisco opportunity?\nPlease let us know if this is of interest to you!\nBest,\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Tuesday, April 9, 2024 4:34 PM\nTo: Caroline Hodge <caroline.hodge@ftpartners.com>\nSubject: Re: FT Partners Super Day Confirmation\n\nHello Caroline,\n\nI hope this message finds you well. Thank you for keeping me informed about my recruitment status; my interest in joining FT Partners remains very strong. I'm looking forward to any updates you might have later this week. Additionally, I wanted to mention that I'm likely to have a super day towards the end of this week or very early next week. I will share any other relevant details as they arise.\n\nBest,\nJonathan Nachman\n\nOn Tue, Apr 9, 2024 at 3:00 PM Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>> wrote:\nHi Jonathan,\n\nI hope your week is going well!\n\nThank you again for making the time to meet with the team on Friday. We are collecting feedback internally and hope to have an update for you later this week.\n\nIn the meantime, can you please let us know if you have any upcoming Superdays or exploding offers we should be aware of?\n\nThank you!\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Lindsey Box <lindsey.box@ftpartners.com<mailto:lindsey.box@ftpartners.com>>\nSent: Monday, April 1, 2024 5:16 PM\nTo: jnachman17@gmail.com<mailto:jnachman17@gmail.com>\nCc: Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>>; Lindsey Box <lindsey.box@ftpartners.com<mailto:lindsey.box@ftpartners.com>>; Christina Celestino <christina.celestino@ftpartners.com<mailto:christina.celestino@ftpartners.com>>\nSubject: FT Partners Super Day Confirmation\n\nHi Jonathan,\n\nThank you for submitting your availability for the 2025 Summer Analyst, Investment Banking (New York) position!\n\nYour interviews will take place on Friday April 5, 12:00pm - 1:00pm; 3:30pm CDT via Zoom. Please find all Zoom information below.\n\nInterview Schedule:\nDate/Time: Apr 5, 2024 12:00pm-12:30pm CDT\nInterviewers: Brady Flynn\nZoom: https://ftpartners.zoom.us/j/93963749770<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_93963749770&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=IJNgAsBw8V5x654acmOYOCfy9D7IzLRbIe968iqT0X8&e=>\n\nMeeting ID: 939 6374 9770\n\nPasscode: 734569\n\nDate/Time: Apr 5, 2024 12:30pm-1:00pm CDT\nInterviewers: Sebastian Plate\nZoom: https://ftpartners.zoom.us/j/99807451859?pwd=UVZCc1FLYWxkd24wemJJWnhTajlzQT09<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_99807451859-3Fpwd-3DUVZCc1FLYWxkd24wemJJWnhTajlzQT09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=exBoWIpcLdnRQJOSpe2mJnE9qRuRtIqiW0UKWTt6-v4&e=>\n\nMeeting ID: 998 0745 1859\n\nPasscode: 129960\n\nDate/Time: Apr 5, 2024 3:30pm-4:00pm CDT\nInterviewers: Sam Daddeh\nZoom: https://ftpartners.zoom.us/j/91456859498?pwd=S3FyR0hTa2NrdE94ZldidnJRN2VyZz09<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_91456859498-3Fpwd-3DS3FyR0hTa2NrdE94ZldidnJRN2VyZz09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=ZyWhRUgZnff4ZEs168DQccguiE_Uoa2lXxkyR1Izg_I&e=>\n\nMeeting ID: 914 5685 9498\n\nPasscode: 824444\n\nPlease let me or one of my team members know if you have any questions prior to your interviews. We are looking forward to meeting you!\n\nLindsey\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ecf06cace887d3",
+     "date": "2024-04-11T21:18:32Z",
+     "internal_date": "1712870312000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "caroline.hodge@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: FT Partners Super Day Confirmation",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "~WRD0004.jpg",
+       "mimeType": "image/jpeg"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Caroline,\n\nI hope you are doing well. I appreciate you getting back to me with an\nupdate. While I am disappointed to not receive placement in the New York\noffice, I am still very passionate about your firm; I would love to\ncontinue recruiting with FT Partners for a San Francisco position. It would\nbe helpful if you could provide additional information explaining the\ndetails of this recruitment transition (do I undergo the interview process\nagain with bankers from the San Francisco Office? etc...). Any\nclarification would be greatly appreciated.\n\nBest,\nJonathan\n\nOn Thu, Apr 11, 2024 at 4:08 PM Caroline Hodge <\ncaroline.hodge@ftpartners.com> wrote:\n\n> Hi Jonathan,\n>\n> I hope your week is going well!\n>\n> As an update on our 2025 IBD Summer Analyst interview process, we were\n> fortunate to have all of our offers that had previously been extended\n> accepted and we recently filled our NY class. While we are positive on your\n> candidacy, we are can no longer consider you for our New York opportunity.\n>\n> That being said, we are still recruiting for Summer Analysts to join our\n> San Francisco cohort. Would you be interested in being considered for our\n> San Francisco opportunity?\n>\n> Please let us know if this is of interest to you!\n>\n> Best,\n>\n> Caroline\n>\n>\n>\n> _______________________________\n>\n> *Caroline Hodge *\n> Campus Recruiter\n>\n> (929) 480-7710 (office)\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Tuesday, April 9, 2024 4:34 PM\n> *To:* Caroline Hodge <caroline.hodge@ftpartners.com>\n> *Subject:* Re: FT Partners Super Day Confirmation\n>\n>\n>\n> Hello Caroline,\n>\n> I hope this message finds you well. Thank you for keeping me informed\n> about my recruitment status; my interest in joining FT Partners remains\n> very strong. I'm looking forward to any updates you might have later this\n> week. Additionally, I wanted to mention that I'm likely to have a super day\n> towards the end of this week or very early next week. I will share any\n> other relevant details as they arise.\n>\n>\n>\n> Best,\n>\n> Jonathan Nachman\n>\n>\n>\n> On Tue, Apr 9, 2024 at 3:00 PM Caroline Hodge <\n> caroline.hodge@ftpartners.com> wrote:\n>\n> Hi Jonathan,\n>\n>\n>\n> I hope your week is going well!\n>\n>\n>\n> Thank you again for making the time to meet with the team on Friday. We\n> are collecting feedback internally and hope to have an update for you later\n> this week.\n>\n>\n>\n> In the meantime, can you please let us know if you have any upcoming\n> Superdays or exploding offers we should be aware of?\n>\n>\n>\n> Thank you!\n>\n> Caroline\n>\n>\n>\n> _______________________________\n>\n> *Caroline Hodge *\n> Campus Recruiter\n>\n> (929) 480-7710 (office)\n>\n>\n>\n> *From:* Lindsey Box <lindsey.box@ftpartners.com>\n> *Sent:* Monday, April 1, 2024 5:16 PM\n> *To:* jnachman17@gmail.com\n> *Cc:* Caroline Hodge <caroline.hodge@ftpartners.com>; Lindsey Box <\n> lindsey.box@ftpartners.com>; Christina Celestino <\n> christina.celestino@ftpartners.com>\n> *Subject:* FT Partners Super Day Confirmation\n>\n>\n>\n> Hi Jonathan,\n>\n> Thank you for submitting your availability for the *2025 Summer Analyst,\n> Investment Banking (New York)* position!\n>\n> Your interviews will take place on *Friday April 5, 12:00pm - 1:00pm;\n> 3:30pm CDT via Zoom. *Please find all Zoom information below.\n>\n> *Interview Schedule:*\n> Date/Time: Apr 5, 2024 12:00pm-12:30pm CDT\n> Interviewers: Brady Flynn\n> Zoom: https://ftpartners.zoom.us/j/93963749770\n> <https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_93963749770&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=IJNgAsBw8V5x654acmOYOCfy9D7IzLRbIe968iqT0X8&e=>\n>\n> Meeting ID: 939 6374 9770\n>\n> Passcode: 734569\n>\n> Date/Time: Apr 5, 2024 12:30pm-1:00pm CDT\n> Interviewers: Sebastian Plate\n> Zoom:\n> https://ftpartners.zoom.us/j/99807451859?pwd=UVZCc1FLYWxkd24wemJJWnhTajlzQT09\n> <https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_99807451859-3Fpwd-3DUVZCc1FLYWxkd24wemJJWnhTajlzQT09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=exBoWIpcLdnRQJOSpe2mJnE9qRuRtIqiW0UKWTt6-v4&e=>\n>\n> Meeting ID: 998 0745 1859\n>\n> Passcode: 129960\n>\n> Date/Time: Apr 5, 2024 3:30pm-4:00pm CDT\n> Interviewers: Sam Daddeh\n> Zoom:\n> https://ftpartners.zoom.us/j/91456859498?pwd=S3FyR0hTa2NrdE94ZldidnJRN2VyZz09\n> <https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_91456859498-3Fpwd-3DS3FyR0hTa2NrdE94ZldidnJRN2VyZz09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=ZyWhRUgZnff4ZEs168DQccguiE_Uoa2lXxkyR1Izg_I&e=>\n>\n> Meeting ID: 914 5685 9498\n>\n> Passcode: 824444\n>\n>\n>\n> Please let me or one of my team members know if you have any questions\n> prior to your interviews. We are looking forward to meeting you!\n>\n> Lindsey\n>\n> [image: Image removed by sender.]\n>\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ed3285d1c6086e",
+     "date": "2024-04-12T16:33:39Z",
+     "internal_date": "1712939619000",
+     "direction": "inbound",
+     "sender": "caroline.hodge@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "Christina.Celestino@ftpartners.com",
+      "Lindsay.McEachern@ftpartners.com"
+     ],
+     "subject": "RE: FT Partners Super Day Confirmation",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.jpg",
+       "mimeType": "image/jpeg"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Jonathan,\n\nThank you for letting us know. In terms of next steps, we would like you to complete 1-2 more interviews with bankers from our San Francisco office so they have the opportunity to assess you and you can get to know them. Please note this will not be a full interview process.\n\nPlease let us know your availability for next week and we will set this up.\n\nThank you!\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Thursday, April 11, 2024 5:19 PM\nTo: Caroline Hodge <caroline.hodge@ftpartners.com>\nSubject: Re: FT Partners Super Day Confirmation\n\nHello Caroline,\n\nI hope you are doing well. I appreciate you getting back to me with an update. While I am disappointed to not receive placement in the New York office, I am still very passionate about your firm; I would love to continue recruiting with FT Partners for a San Francisco position. It would be helpful if you could provide additional information explaining the details of this recruitment transition (do I undergo the interview process again with bankers from the San Francisco Office? etc...). Any clarification would be greatly appreciated.\n\nBest,\nJonathan\n\nOn Thu, Apr 11, 2024 at 4:08 PM Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>> wrote:\nHi Jonathan,\nI hope your week is going well!\nAs an update on our 2025 IBD Summer Analyst interview process, we were fortunate to have all of our offers that had previously been extended accepted and we recently filled our NY class. While we are positive on your candidacy, we are can no longer consider you for our New York opportunity.\nThat being said, we are still recruiting for Summer Analysts to join our San Francisco cohort. Would you be interested in being considered for our San Francisco opportunity?\nPlease let us know if this is of interest to you!\nBest,\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Tuesday, April 9, 2024 4:34 PM\nTo: Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>>\nSubject: Re: FT Partners Super Day Confirmation\n\nHello Caroline,\n\nI hope this message finds you well. Thank you for keeping me informed about my recruitment status; my interest in joining FT Partners remains very strong. I'm looking forward to any updates you might have later this week. Additionally, I wanted to mention that I'm likely to have a super day towards the end of this week or very early next week. I will share any other relevant details as they arise.\n\nBest,\nJonathan Nachman\n\nOn Tue, Apr 9, 2024 at 3:00 PM Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>> wrote:\nHi Jonathan,\n\nI hope your week is going well!\n\nThank you again for making the time to meet with the team on Friday. We are collecting feedback internally and hope to have an update for you later this week.\n\nIn the meantime, can you please let us know if you have any upcoming Superdays or exploding offers we should be aware of?\n\nThank you!\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Lindsey Box <lindsey.box@ftpartners.com<mailto:lindsey.box@ftpartners.com>>\nSent: Monday, April 1, 2024 5:16 PM\nTo: jnachman17@gmail.com<mailto:jnachman17@gmail.com>\nCc: Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>>; Lindsey Box <lindsey.box@ftpartners.com<mailto:lindsey.box@ftpartners.com>>; Christina Celestino <christina.celestino@ftpartners.com<mailto:christina.celestino@ftpartners.com>>\nSubject: FT Partners Super Day Confirmation\n\nHi Jonathan,\n\nThank you for submitting your availability for the 2025 Summer Analyst, Investment Banking (New York) position!\n\nYour interviews will take place on Friday April 5, 12:00pm - 1:00pm; 3:30pm CDT via Zoom. Please find all Zoom information below.\n\nInterview Schedule:\nDate/Time: Apr 5, 2024 12:00pm-12:30pm CDT\nInterviewers: Brady Flynn\nZoom: https://ftpartners.zoom.us/j/93963749770<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_93963749770&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=IJNgAsBw8V5x654acmOYOCfy9D7IzLRbIe968iqT0X8&e=>\n\nMeeting ID: 939 6374 9770\n\nPasscode: 734569\n\nDate/Time: Apr 5, 2024 12:30pm-1:00pm CDT\nInterviewers: Sebastian Plate\nZoom: https://ftpartners.zoom.us/j/99807451859?pwd=UVZCc1FLYWxkd24wemJJWnhTajlzQT09<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_99807451859-3Fpwd-3DUVZCc1FLYWxkd24wemJJWnhTajlzQT09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=exBoWIpcLdnRQJOSpe2mJnE9qRuRtIqiW0UKWTt6-v4&e=>\n\nMeeting ID: 998 0745 1859\n\nPasscode: 129960\n\nDate/Time: Apr 5, 2024 3:30pm-4:00pm CDT\nInterviewers: Sam Daddeh\nZoom: https://ftpartners.zoom.us/j/91456859498?pwd=S3FyR0hTa2NrdE94ZldidnJRN2VyZz09<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_91456859498-3Fpwd-3DS3FyR0hTa2NrdE94ZldidnJRN2VyZz09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=ZyWhRUgZnff4ZEs168DQccguiE_Uoa2lXxkyR1Izg_I&e=>\n\nMeeting ID: 914 5685 9498\n\nPasscode: 824444\n\nPlease let me or one of my team members know if you have any questions prior to your interviews. We are looking forward to meeting you!\n\nLindsey\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ed39af0abc77ad",
+     "date": "2024-04-12T18:38:50Z",
+     "internal_date": "1712947130000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "caroline.hodge@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: FT Partners Super Day Confirmation",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.jpg",
+       "mimeType": "image/jpeg"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Again Caroline,\n\nI am excited to speak with some members from the San Francisco office. Here\nare some times (CT) that work for me next week:\n\nMonday (4/15): 12:00 pm onwards\nTuesday (4/16): 10:30 am - 1:00 pm & 6:00 pm onwards\nWednesday (4/17): 12:00 pm onwards\nThursday (4/18): 10:30 am - 1:00 pm & 6:00 pm onwards\n\nPlease let me know if any of these times work and if you have any\nquestions.\n\nBest,\nJonathan\n\nOn Fri, Apr 12, 2024 at 11:33 AM Caroline Hodge <\ncaroline.hodge@ftpartners.com> wrote:\n\n> Hi Jonathan,\n>\n>\n>\n> Thank you for letting us know. In terms of next steps, we would like you\n> to complete 1-2 more interviews with bankers from our San Francisco office\n> so they have the opportunity to assess you and you can get to know them.\n> Please note this will not be a full interview process.\n>\n>\n>\n> Please let us know your availability for next week and we will set this\n> up.\n>\n>\n>\n> Thank you!\n>\n> Caroline\n>\n>\n>\n> _______________________________\n>\n> *Caroline Hodge *\n> Campus Recruiter\n>\n> (929) 480-7710 (office)\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Thursday, April 11, 2024 5:19 PM\n> *To:* Caroline Hodge <caroline.hodge@ftpartners.com>\n> *Subject:* Re: FT Partners Super Day Confirmation\n>\n>\n>\n> Hello Caroline,\n>\n>\n>\n> I hope you are doing well. I appreciate you getting back to me with an\n> update. While I am disappointed to not receive placement in the New York\n> office, I am still very passionate about your firm; I would love to\n> continue recruiting with FT Partners for a San Francisco position. It would\n> be helpful if you could provide additional information explaining the\n> details of this recruitment transition (do I undergo the interview process\n> again with bankers from the San Francisco Office? etc...). Any\n> clarification would be greatly appreciated.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Thu, Apr 11, 2024 at 4:08 PM Caroline Hodge <\n> caroline.hodge@ftpartners.com> wrote:\n>\n> Hi Jonathan,\n>\n> I hope your week is going well!\n>\n> As an update on our 2025 IBD Summer Analyst interview process, we were\n> fortunate to have all of our offers that had previously been extended\n> accepted and we recently filled our NY class. While we are positive on your\n> candidacy, we are can no longer consider you for our New York opportunity.\n>\n> That being said, we are still recruiting for Summer Analysts to join our\n> San Francisco cohort. Would you be interested in being considered for our\n> San Francisco opportunity?\n>\n> Please let us know if this is of interest to you!\n>\n> Best,\n>\n> Caroline\n>\n>\n>\n> _______________________________\n>\n> *Caroline Hodge *\n> Campus Recruiter\n>\n> (929) 480-7710 (office)\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Tuesday, April 9, 2024 4:34 PM\n> *To:* Caroline Hodge <caroline.hodge@ftpartners.com>\n> *Subject:* Re: FT Partners Super Day Confirmation\n>\n>\n>\n> Hello Caroline,\n>\n> I hope this message finds you well. Thank you for keeping me informed\n> about my recruitment status; my interest in joining FT Partners remains\n> very strong. I'm looking forward to any updates you might have later this\n> week. Additionally, I wanted to mention that I'm likely to have a super day\n> towards the end of this week or very early next week. I will share any\n> other relevant details as they arise.\n>\n>\n>\n> Best,\n>\n> Jonathan Nachman\n>\n>\n>\n> On Tue, Apr 9, 2024 at 3:00 PM Caroline Hodge <\n> caroline.hodge@ftpartners.com> wrote:\n>\n> Hi Jonathan,\n>\n>\n>\n> I hope your week is going well!\n>\n>\n>\n> Thank you again for making the time to meet with the team on Friday. We\n> are collecting feedback internally and hope to have an update for you later\n> this week.\n>\n>\n>\n> In the meantime, can you please let us know if you have any upcoming\n> Superdays or exploding offers we should be aware of?\n>\n>\n>\n> Thank you!\n>\n> Caroline\n>\n>\n>\n> _______________________________\n>\n> *Caroline Hodge *\n> Campus Recruiter\n>\n> (929) 480-7710 (office)\n>\n>\n>\n> *From:* Lindsey Box <lindsey.box@ftpartners.com>\n> *Sent:* Monday, April 1, 2024 5:16 PM\n> *To:* jnachman17@gmail.com\n> *Cc:* Caroline Hodge <caroline.hodge@ftpartners.com>; Lindsey Box <\n> lindsey.box@ftpartners.com>; Christina Celestino <\n> christina.celestino@ftpartners.com>\n> *Subject:* FT Partners Super Day Confirmation\n>\n>\n>\n> Hi Jonathan,\n>\n> Thank you for submitting your availability for the *2025 Summer Analyst,\n> Investment Banking (New York)* position!\n>\n> Your interviews will take place on *Friday April 5, 12:00pm - 1:00pm;\n> 3:30pm CDT via Zoom. *Please find all Zoom information below.\n>\n> *Interview Schedule:*\n> Date/Time: Apr 5, 2024 12:00pm-12:30pm CDT\n> Interviewers: Brady Flynn\n> Zoom: https://ftpartners.zoom.us/j/93963749770\n> <https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_93963749770&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=IJNgAsBw8V5x654acmOYOCfy9D7IzLRbIe968iqT0X8&e=>\n>\n> Meeting ID: 939 6374 9770\n>\n> Passcode: 734569\n>\n> Date/Time: Apr 5, 2024 12:30pm-1:00pm CDT\n> Interviewers: Sebastian Plate\n> Zoom:\n> https://ftpartners.zoom.us/j/99807451859?pwd=UVZCc1FLYWxkd24wemJJWnhTajlzQT09\n> <https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_99807451859-3Fpwd-3DUVZCc1FLYWxkd24wemJJWnhTajlzQT09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=exBoWIpcLdnRQJOSpe2mJnE9qRuRtIqiW0UKWTt6-v4&e=>\n>\n> Meeting ID: 998 0745 1859\n>\n> Passcode: 129960\n>\n> Date/Time: Apr 5, 2024 3:30pm-4:00pm CDT\n> Interviewers: Sam Daddeh\n> Zoom:\n> https://ftpartners.zoom.us/j/91456859498?pwd=S3FyR0hTa2NrdE94ZldidnJRN2VyZz09\n> <https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_91456859498-3Fpwd-3DS3FyR0hTa2NrdE94ZldidnJRN2VyZz09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=ZyWhRUgZnff4ZEs168DQccguiE_Uoa2lXxkyR1Izg_I&e=>\n>\n> Meeting ID: 914 5685 9498\n>\n> Passcode: 824444\n>\n>\n>\n> Please let me or one of my team members know if you have any questions\n> prior to your interviews. We are looking forward to meeting you!\n>\n> Lindsey\n>\n> [image: Image removed by sender.]\n>\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ee71787838192b",
+     "date": "2024-04-16T13:27:38Z",
+     "internal_date": "1713274058000",
+     "direction": "inbound",
+     "sender": "Christina.Celestino@ftpartners.com",
+     "to": [
+      "Caroline.Hodge@ftpartners.com",
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "Lindsay.McEachern@ftpartners.com"
+     ],
+     "subject": "RE: FT Partners Super Day Confirmation",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.jpg",
+       "mimeType": "image/jpeg"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Good morning Jonathan,\n\nBy way of introduction, I am the Head of Campus Recruiting at FT Partners. It’s a pleasure to e-meet you.\n\nI just tried giving you a call but there was no answer, and I did not leave a message. Would you please give me a ring as soon as you are able, 929-286-9523?\n\nThanks!\nChristina\n______________________________\nChristina Celestino\nHead of Campus Recruiting Programs\n(929) 286-9523 (office)\n\nFrom: Caroline Hodge <caroline.hodge@ftpartners.com>\nSent: Friday, April 12, 2024 12:34 PM\nTo: Jonathan Nachman <jnachman17@gmail.com>\nCc: Christina Celestino <Christina.Celestino@ftpartners.com>; Lindsay McEachern <Lindsay.McEachern@ftpartners.com>\nSubject: RE: FT Partners Super Day Confirmation\n\nHi Jonathan,\n\nThank you for letting us know. In terms of next steps, we would like you to complete 1-2 more interviews with bankers from our San Francisco office so they have the opportunity to assess you and you can get to know them. Please note this will not be a full interview process.\n\nPlease let us know your availability for next week and we will set this up.\n\nThank you!\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Thursday, April 11, 2024 5:19 PM\nTo: Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>>\nSubject: Re: FT Partners Super Day Confirmation\n\nHello Caroline,\n\nI hope you are doing well. I appreciate you getting back to me with an update. While I am disappointed to not receive placement in the New York office, I am still very passionate about your firm; I would love to continue recruiting with FT Partners for a San Francisco position. It would be helpful if you could provide additional information explaining the details of this recruitment transition (do I undergo the interview process again with bankers from the San Francisco Office? etc...). Any clarification would be greatly appreciated.\n\nBest,\nJonathan\n\nOn Thu, Apr 11, 2024 at 4:08 PM Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>> wrote:\nHi Jonathan,\nI hope your week is going well!\nAs an update on our 2025 IBD Summer Analyst interview process, we were fortunate to have all of our offers that had previously been extended accepted and we recently filled our NY class. While we are positive on your candidacy, we are can no longer consider you for our New York opportunity.\nThat being said, we are still recruiting for Summer Analysts to join our San Francisco cohort. Would you be interested in being considered for our San Francisco opportunity?\nPlease let us know if this is of interest to you!\nBest,\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Tuesday, April 9, 2024 4:34 PM\nTo: Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>>\nSubject: Re: FT Partners Super Day Confirmation\n\nHello Caroline,\n\nI hope this message finds you well. Thank you for keeping me informed about my recruitment status; my interest in joining FT Partners remains very strong. I'm looking forward to any updates you might have later this week. Additionally, I wanted to mention that I'm likely to have a super day towards the end of this week or very early next week. I will share any other relevant details as they arise.\n\nBest,\nJonathan Nachman\n\nOn Tue, Apr 9, 2024 at 3:00 PM Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>> wrote:\nHi Jonathan,\n\nI hope your week is going well!\n\nThank you again for making the time to meet with the team on Friday. We are collecting feedback internally and hope to have an update for you later this week.\n\nIn the meantime, can you please let us know if you have any upcoming Superdays or exploding offers we should be aware of?\n\nThank you!\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Lindsey Box <lindsey.box@ftpartners.com<mailto:lindsey.box@ftpartners.com>>\nSent: Monday, April 1, 2024 5:16 PM\nTo: jnachman17@gmail.com<mailto:jnachman17@gmail.com>\nCc: Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>>; Lindsey Box <lindsey.box@ftpartners.com<mailto:lindsey.box@ftpartners.com>>; Christina Celestino <christina.celestino@ftpartners.com<mailto:christina.celestino@ftpartners.com>>\nSubject: FT Partners Super Day Confirmation\n\nHi Jonathan,\n\nThank you for submitting your availability for the 2025 Summer Analyst, Investment Banking (New York) position!\n\nYour interviews will take place on Friday April 5, 12:00pm - 1:00pm; 3:30pm CDT via Zoom. Please find all Zoom information below.\n\nInterview Schedule:\nDate/Time: Apr 5, 2024 12:00pm-12:30pm CDT\nInterviewers: Brady Flynn\nZoom: https://ftpartners.zoom.us/j/93963749770<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_93963749770&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=IJNgAsBw8V5x654acmOYOCfy9D7IzLRbIe968iqT0X8&e=>\n\nMeeting ID: 939 6374 9770\n\nPasscode: 734569\n\nDate/Time: Apr 5, 2024 12:30pm-1:00pm CDT\nInterviewers: Sebastian Plate\nZoom: https://ftpartners.zoom.us/j/99807451859?pwd=UVZCc1FLYWxkd24wemJJWnhTajlzQT09<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_99807451859-3Fpwd-3DUVZCc1FLYWxkd24wemJJWnhTajlzQT09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=exBoWIpcLdnRQJOSpe2mJnE9qRuRtIqiW0UKWTt6-v4&e=>\n\nMeeting ID: 998 0745 1859\n\nPasscode: 129960\n\nDate/Time: Apr 5, 2024 3:30pm-4:00pm CDT\nInterviewers: Sam Daddeh\nZoom: https://ftpartners.zoom.us/j/91456859498?pwd=S3FyR0hTa2NrdE94ZldidnJRN2VyZz09<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_91456859498-3Fpwd-3DS3FyR0hTa2NrdE94ZldidnJRN2VyZz09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=ZyWhRUgZnff4ZEs168DQccguiE_Uoa2lXxkyR1Izg_I&e=>\n\nMeeting ID: 914 5685 9498\n\nPasscode: 824444\n\nPlease let me or one of my team members know if you have any questions prior to your interviews. We are looking forward to meeting you!\n\nLindsey\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ef15a3a69767c9",
+     "date": "2024-04-18T13:16:43Z",
+     "internal_date": "1713446203000",
+     "direction": "inbound",
+     "sender": "Christina.Celestino@ftpartners.com",
+     "to": [
+      "Caroline.Hodge@ftpartners.com",
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "Lindsay.McEachern@ftpartners.com"
+     ],
+     "subject": "RE: FT Partners Super Day Confirmation",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.jpg",
+       "mimeType": "image/jpeg"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Good morning Jonathan,\n\nCongratulations on your accepted offer! We are thrilled to have you joining us in SF next summer! Your executed documents have been received. We’re currently working to wrap up the process and will be back in touch after that.\n\nCongrats again!\nChristina\n______________________________\nChristina Celestino\nHead of Campus Recruiting Programs\n(929) 286-9523 (office)\n\nFrom: Christina Celestino <Christina.Celestino@ftpartners.com>\nSent: Tuesday, April 16, 2024 9:28 AM\nTo: Caroline Hodge <Caroline.Hodge@ftpartners.com>; Jonathan Nachman <jnachman17@gmail.com>\nCc: Lindsay McEachern <Lindsay.McEachern@ftpartners.com>\nSubject: RE: FT Partners Super Day Confirmation\n\nGood morning Jonathan,\n\nBy way of introduction, I am the Head of Campus Recruiting at FT Partners. It’s a pleasure to e-meet you.\n\nI just tried giving you a call but there was no answer, and I did not leave a message. Would you please give me a ring as soon as you are able, 929-286-9523?\n\nThanks!\nChristina\n______________________________\nChristina Celestino\nHead of Campus Recruiting Programs\n(929) 286-9523 (office)\n\nFrom: Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>>\nSent: Friday, April 12, 2024 12:34 PM\nTo: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nCc: Christina Celestino <Christina.Celestino@ftpartners.com<mailto:Christina.Celestino@ftpartners.com>>; Lindsay McEachern <Lindsay.McEachern@ftpartners.com<mailto:Lindsay.McEachern@ftpartners.com>>\nSubject: RE: FT Partners Super Day Confirmation\n\nHi Jonathan,\n\nThank you for letting us know. In terms of next steps, we would like you to complete 1-2 more interviews with bankers from our San Francisco office so they have the opportunity to assess you and you can get to know them. Please note this will not be a full interview process.\n\nPlease let us know your availability for next week and we will set this up.\n\nThank you!\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Thursday, April 11, 2024 5:19 PM\nTo: Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>>\nSubject: Re: FT Partners Super Day Confirmation\n\nHello Caroline,\n\nI hope you are doing well. I appreciate you getting back to me with an update. While I am disappointed to not receive placement in the New York office, I am still very passionate about your firm; I would love to continue recruiting with FT Partners for a San Francisco position. It would be helpful if you could provide additional information explaining the details of this recruitment transition (do I undergo the interview process again with bankers from the San Francisco Office? etc...). Any clarification would be greatly appreciated.\n\nBest,\nJonathan\n\nOn Thu, Apr 11, 2024 at 4:08 PM Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>> wrote:\nHi Jonathan,\nI hope your week is going well!\nAs an update on our 2025 IBD Summer Analyst interview process, we were fortunate to have all of our offers that had previously been extended accepted and we recently filled our NY class. While we are positive on your candidacy, we are can no longer consider you for our New York opportunity.\nThat being said, we are still recruiting for Summer Analysts to join our San Francisco cohort. Would you be interested in being considered for our San Francisco opportunity?\nPlease let us know if this is of interest to you!\nBest,\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Tuesday, April 9, 2024 4:34 PM\nTo: Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>>\nSubject: Re: FT Partners Super Day Confirmation\n\nHello Caroline,\n\nI hope this message finds you well. Thank you for keeping me informed about my recruitment status; my interest in joining FT Partners remains very strong. I'm looking forward to any updates you might have later this week. Additionally, I wanted to mention that I'm likely to have a super day towards the end of this week or very early next week. I will share any other relevant details as they arise.\n\nBest,\nJonathan Nachman\n\nOn Tue, Apr 9, 2024 at 3:00 PM Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>> wrote:\nHi Jonathan,\n\nI hope your week is going well!\n\nThank you again for making the time to meet with the team on Friday. We are collecting feedback internally and hope to have an update for you later this week.\n\nIn the meantime, can you please let us know if you have any upcoming Superdays or exploding offers we should be aware of?\n\nThank you!\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Lindsey Box <lindsey.box@ftpartners.com<mailto:lindsey.box@ftpartners.com>>\nSent: Monday, April 1, 2024 5:16 PM\nTo: jnachman17@gmail.com<mailto:jnachman17@gmail.com>\nCc: Caroline Hodge <caroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>>; Lindsey Box <lindsey.box@ftpartners.com<mailto:lindsey.box@ftpartners.com>>; Christina Celestino <christina.celestino@ftpartners.com<mailto:christina.celestino@ftpartners.com>>\nSubject: FT Partners Super Day Confirmation\n\nHi Jonathan,\n\nThank you for submitting your availability for the 2025 Summer Analyst, Investment Banking (New York) position!\n\nYour interviews will take place on Friday April 5, 12:00pm - 1:00pm; 3:30pm CDT via Zoom. Please find all Zoom information below.\n\nInterview Schedule:\nDate/Time: Apr 5, 2024 12:00pm-12:30pm CDT\nInterviewers: Brady Flynn\nZoom: https://ftpartners.zoom.us/j/93963749770<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_93963749770&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=IJNgAsBw8V5x654acmOYOCfy9D7IzLRbIe968iqT0X8&e=>\n\nMeeting ID: 939 6374 9770\n\nPasscode: 734569\n\nDate/Time: Apr 5, 2024 12:30pm-1:00pm CDT\nInterviewers: Sebastian Plate\nZoom: https://ftpartners.zoom.us/j/99807451859?pwd=UVZCc1FLYWxkd24wemJJWnhTajlzQT09<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_99807451859-3Fpwd-3DUVZCc1FLYWxkd24wemJJWnhTajlzQT09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=exBoWIpcLdnRQJOSpe2mJnE9qRuRtIqiW0UKWTt6-v4&e=>\n\nMeeting ID: 998 0745 1859\n\nPasscode: 129960\n\nDate/Time: Apr 5, 2024 3:30pm-4:00pm CDT\nInterviewers: Sam Daddeh\nZoom: https://ftpartners.zoom.us/j/91456859498?pwd=S3FyR0hTa2NrdE94ZldidnJRN2VyZz09<https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_91456859498-3Fpwd-3DS3FyR0hTa2NrdE94ZldidnJRN2VyZz09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=ZyWhRUgZnff4ZEs168DQccguiE_Uoa2lXxkyR1Izg_I&e=>\n\nMeeting ID: 914 5685 9498\n\nPasscode: 824444\n\nPlease let me or one of my team members know if you have any questions prior to your interviews. We are looking forward to meeting you!\n\nLindsey\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ef15db713a2789",
+     "date": "2024-04-18T13:20:34Z",
+     "internal_date": "1713446434000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Christina.Celestino@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: FT Partners Super Day Confirmation",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.jpg",
+       "mimeType": "image/jpeg"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Christina,\n\nThanks for reaching out! I'm incredibly excited to be joining the team in\nSan Francisco, and I really appreciate your help during this process. I'll\nbe on the lookout for the next steps.\n\nBest,\nJonathan Nachman\n\nOn Thu, Apr 18, 2024 at 8:16 AM Christina Celestino <\nChristina.Celestino@ftpartners.com> wrote:\n\n> Good morning Jonathan,\n>\n>\n>\n> Congratulations on your accepted offer! We are thrilled to have you\n> joining us in SF next summer! Your executed documents have been received.\n> We’re currently working to wrap up the process and will be back in touch\n> after that.\n>\n>\n>\n> Congrats again!\n>\n> Christina\n>\n> ______________________________\n>\n> *Christina Celestino*\n> Head of Campus Recruiting Programs\n> (929) 286-9523 (office)\n>\n>\n>\n> *From:* Christina Celestino <Christina.Celestino@ftpartners.com>\n> *Sent:* Tuesday, April 16, 2024 9:28 AM\n> *To:* Caroline Hodge <Caroline.Hodge@ftpartners.com>; Jonathan Nachman <\n> jnachman17@gmail.com>\n> *Cc:* Lindsay McEachern <Lindsay.McEachern@ftpartners.com>\n> *Subject:* RE: FT Partners Super Day Confirmation\n>\n>\n>\n> Good morning Jonathan,\n>\n>\n>\n> By way of introduction, I am the Head of Campus Recruiting at FT Partners.\n> It’s a pleasure to e-meet you.\n>\n>\n>\n> I just tried giving you a call but there was no answer, and I did not\n> leave a message. Would you please give me a ring as soon as you are able,\n> 929-286-9523?\n>\n>\n>\n> Thanks!\n>\n> Christina\n>\n> ______________________________\n>\n> *Christina Celestino*\n> Head of Campus Recruiting Programs\n> (929) 286-9523 (office)\n>\n>\n>\n> *From:* Caroline Hodge <caroline.hodge@ftpartners.com>\n> *Sent:* Friday, April 12, 2024 12:34 PM\n> *To:* Jonathan Nachman <jnachman17@gmail.com>\n> *Cc:* Christina Celestino <Christina.Celestino@ftpartners.com>; Lindsay\n> McEachern <Lindsay.McEachern@ftpartners.com>\n> *Subject:* RE: FT Partners Super Day Confirmation\n>\n>\n>\n> Hi Jonathan,\n>\n>\n>\n> Thank you for letting us know. In terms of next steps, we would like you\n> to complete 1-2 more interviews with bankers from our San Francisco office\n> so they have the opportunity to assess you and you can get to know them.\n> Please note this will not be a full interview process.\n>\n>\n>\n> Please let us know your availability for next week and we will set this\n> up.\n>\n>\n>\n> Thank you!\n>\n> Caroline\n>\n>\n>\n> _______________________________\n>\n> *Caroline Hodge *\n> Campus Recruiter\n>\n> (929) 480-7710 (office)\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Thursday, April 11, 2024 5:19 PM\n> *To:* Caroline Hodge <caroline.hodge@ftpartners.com>\n> *Subject:* Re: FT Partners Super Day Confirmation\n>\n>\n>\n> Hello Caroline,\n>\n>\n>\n> I hope you are doing well. I appreciate you getting back to me with an\n> update. While I am disappointed to not receive placement in the New York\n> office, I am still very passionate about your firm; I would love to\n> continue recruiting with FT Partners for a San Francisco position. It would\n> be helpful if you could provide additional information explaining the\n> details of this recruitment transition (do I undergo the interview process\n> again with bankers from the San Francisco Office? etc...). Any\n> clarification would be greatly appreciated.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Thu, Apr 11, 2024 at 4:08 PM Caroline Hodge <\n> caroline.hodge@ftpartners.com> wrote:\n>\n> Hi Jonathan,\n>\n> I hope your week is going well!\n>\n> As an update on our 2025 IBD Summer Analyst interview process, we were\n> fortunate to have all of our offers that had previously been extended\n> accepted and we recently filled our NY class. While we are positive on your\n> candidacy, we are can no longer consider you for our New York opportunity.\n>\n> That being said, we are still recruiting for Summer Analysts to join our\n> San Francisco cohort. Would you be interested in being considered for our\n> San Francisco opportunity?\n>\n> Please let us know if this is of interest to you!\n>\n> Best,\n>\n> Caroline\n>\n>\n>\n> _______________________________\n>\n> *Caroline Hodge *\n> Campus Recruiter\n>\n> (929) 480-7710 (office)\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Tuesday, April 9, 2024 4:34 PM\n> *To:* Caroline Hodge <caroline.hodge@ftpartners.com>\n> *Subject:* Re: FT Partners Super Day Confirmation\n>\n>\n>\n> Hello Caroline,\n>\n> I hope this message finds you well. Thank you for keeping me informed\n> about my recruitment status; my interest in joining FT Partners remains\n> very strong. I'm looking forward to any updates you might have later this\n> week. Additionally, I wanted to mention that I'm likely to have a super day\n> towards the end of this week or very early next week. I will share any\n> other relevant details as they arise.\n>\n>\n>\n> Best,\n>\n> Jonathan Nachman\n>\n>\n>\n> On Tue, Apr 9, 2024 at 3:00 PM Caroline Hodge <\n> caroline.hodge@ftpartners.com> wrote:\n>\n> Hi Jonathan,\n>\n>\n>\n> I hope your week is going well!\n>\n>\n>\n> Thank you again for making the time to meet with the team on Friday. We\n> are collecting feedback internally and hope to have an update for you later\n> this week.\n>\n>\n>\n> In the meantime, can you please let us know if you have any upcoming\n> Superdays or exploding offers we should be aware of?\n>\n>\n>\n> Thank you!\n>\n> Caroline\n>\n>\n>\n> _______________________________\n>\n> *Caroline Hodge *\n> Campus Recruiter\n>\n> (929) 480-7710 (office)\n>\n>\n>\n> *From:* Lindsey Box <lindsey.box@ftpartners.com>\n> *Sent:* Monday, April 1, 2024 5:16 PM\n> *To:* jnachman17@gmail.com\n> *Cc:* Caroline Hodge <caroline.hodge@ftpartners.com>; Lindsey Box <\n> lindsey.box@ftpartners.com>; Christina Celestino <\n> christina.celestino@ftpartners.com>\n> *Subject:* FT Partners Super Day Confirmation\n>\n>\n>\n> Hi Jonathan,\n>\n> Thank you for submitting your availability for the *2025 Summer Analyst,\n> Investment Banking (New York)* position!\n>\n> Your interviews will take place on *Friday April 5, 12:00pm - 1:00pm;\n> 3:30pm CDT via Zoom. *Please find all Zoom information below.\n>\n> *Interview Schedule:*\n> Date/Time: Apr 5, 2024 12:00pm-12:30pm CDT\n> Interviewers: Brady Flynn\n> Zoom: https://ftpartners.zoom.us/j/93963749770\n> <https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_93963749770&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=IJNgAsBw8V5x654acmOYOCfy9D7IzLRbIe968iqT0X8&e=>\n>\n> Meeting ID: 939 6374 9770\n>\n> Passcode: 734569\n>\n> Date/Time: Apr 5, 2024 12:30pm-1:00pm CDT\n> Interviewers: Sebastian Plate\n> Zoom:\n> https://ftpartners.zoom.us/j/99807451859?pwd=UVZCc1FLYWxkd24wemJJWnhTajlzQT09\n> <https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_99807451859-3Fpwd-3DUVZCc1FLYWxkd24wemJJWnhTajlzQT09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=exBoWIpcLdnRQJOSpe2mJnE9qRuRtIqiW0UKWTt6-v4&e=>\n>\n> Meeting ID: 998 0745 1859\n>\n> Passcode: 129960\n>\n> Date/Time: Apr 5, 2024 3:30pm-4:00pm CDT\n> Interviewers: Sam Daddeh\n> Zoom:\n> https://ftpartners.zoom.us/j/91456859498?pwd=S3FyR0hTa2NrdE94ZldidnJRN2VyZz09\n> <https://urldefense.proofpoint.com/v2/url?u=https-3A__ftpartners.zoom.us_j_91456859498-3Fpwd-3DS3FyR0hTa2NrdE94ZldidnJRN2VyZz09&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=GjcnFbhEoNxPPpI3QLTE1DdipK7D1KzScy-Vi9nmkwHSF9S5DXzw5Bc4pe6oN5KX&s=ZyWhRUgZnff4ZEs168DQccguiE_Uoa2lXxkyR1Izg_I&e=>\n>\n> Meeting ID: 914 5685 9498\n>\n> Passcode: 824444\n>\n>\n>\n> Please let me or one of my team members know if you have any questions\n> prior to your interviews. We are looking forward to meeting you!\n>\n> Lindsey\n>\n> [image: Image removed by sender.]\n>\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>\n>\n> * This message is intended only for the personal and confidential use of\n> the designated recipient(s) named above. If you are not the intended\n> recipient of this message you are hereby notified that any review,\n> dissemination, distribution or copying of this message is strictly\n> prohibited. Please delete it and any attachments and notify the sender\n> that you have received it in error. Unintended recipients are prohibited\n> from taking action on the basis of information in this e-mail. This\n> communication is for informational purposes only and should not be regarded\n> as an offer to sell or as a solicitation of an offer to buy any financial\n> product. No representation is being made that the information presented is\n> accurate, current or complete, and such information is at all times subject\n> to change without notice. *\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18ed3c29c5843f07",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  },
+  {
+   "thread_id": "18ed3a6a2aacf5a7",
+   "capture": "supplement",
+   "subject": "Financial Technology Partners Interview Next Steps",
+   "messages": [
+    {
+     "message_id": "18ed3a6a2aacf5a7",
+     "date": "2024-04-12T18:51:36Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "lindsay.mceachern@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "caroline.hodge@ftpartners.com",
+      "lindsay.mceachern@ftpartners.com"
+     ],
+     "subject": "Financial Technology Partners Interview Next Steps",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan,\n\nWe're excited to move you forward in the interview process for the 2025 Summer Analyst, Investment Banking (San Francisco) position!\n\nTo help us schedule, please let us know when you're available by selecting the online calendar link below.\n\nWe plan to schedule you for two 30-min interviews with team members in our San Francisco office, and we will confirm exact time and duration with you once calendars are coordinated.\n\nRegards,\nLindsay\n\n[Greenhouse availability link]",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ed3a9246e16b9d",
+     "date": "2024-04-12T18:54:14Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "lindsay.mceachern@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "Caroline.Hodge@ftpartners.com"
+     ],
+     "subject": "RE: Financial Technology Partners Interview Next Steps",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan,\n\nPlease disregard my email below! Caroline forwarded me your availability for next week, and I’ll send a formal confirmation email once schedules are coordinated.\n\nThank you.\n\nBest,\nLindsay\n\nLindsay McEachern, Executive Assistant",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "A retraction sent 2m38s after the message it retracts. Both remain in the mailbox. Any rule reading the latest inbound as the live request would have acted on the wrong one for under three minutes.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ed3b6d66bca99b",
+     "date": "2024-04-12T19:09:18Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "lindsay.mceachern@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Financial Technology Partners Interview Next Steps",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Lindsay,\n\nI appreciate the update! I look forward to speaking with some members from the San Francisco office next week.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18ee7428909c8560",
+   "capture": "spilled",
+   "subject": "FT Partners Offer Letter - Jonathan Nachman",
+   "messages": [
+    {
+     "message_id": "18ee7428909c8560",
+     "date": "2024-04-16T14:14:40Z",
+     "internal_date": "1713276880000",
+     "direction": "inbound",
+     "sender": "dse_NA3@docusign.net",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "FT Partners Offer Letter - Jonathan Nachman",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Jonathan Nachman,\n\nCaroline Hodge has sent you a new DocuSign document to view and sign. Please click on the link below to begin signing.\n\nJonathan,\n\nI’m excited to present you with your offer letter! &nbsp;We have been very impressed by you in the interview process and certainly hope that you’ll be joining us!\n\nPlease feel free to contact me or anyone at FT Partners with any questions. We hope to hear from you soon.\n\nEncls.:\n\nOffer Letter\n\nProprietary Information and Inventions Agreement (PIIA)\n\nArbitration Agreement\n\nI-9 Form, Employment Eligibility Verification\n\nEmployee Handbook\n\nAll the best,\n\nCaroline\n\nREVIEW DOCUMENTS\n\nhttps://na3.docusign.net/Signing/EmailStart.aspx?a8d91a3-2f4c-4ce4-8af1-259395366e6f&acct�5684a7-fd14-4ba9-8424-e8a38f5480c9&erw1afd28-1ed7-42bb-9437-ac02ffb122ea\n\nIf clicking the link does not work, you can highlight and copy the entire line above and paste it into your browser to get started.\n\nThis message was sent to you by Caroline Hodge who is using the DocuSign Electronic Signature Service. If you would rather not receive email from this sender you may contact the sender with your request.\n\nDo Not Share This Email\nThis email contains a secure link to DocuSign. Please do not share this email, link, or access code with others.\n\nQuestions about the Document?\nIf you need to modify the document or have questions about the details in the document, please reach out to the sender by emailing them directly.\n\nStop receiving this email\nReport this email https://protect.docusign.net/report-abuse?e=AUtomjpFak9GlbPL0zFFi11QuH7l6erUeTnglf_p_6Y8_1I96SsiRt8nS0qvB8OMbOEg1u9XLU2sfrP059v4jVPBggTQmJNJyCwVCajkKT61vk9pxVtabmSPM6sOSaqaNjjB-q1LRa6veOHigtz6R5DCBAOmCQiWbBjVPWAdnnHTgINPu3LHCV2UH_JzXtumaGE1ipGmvBpYGYxBuS8xvryIJqMMES08dDhHiE0P6QIADjB6jz3sWrSwO2hk9DsPtwL7UdE4qrTdTNgpSpMIz90eVTRB2bLBaBCOhs_HZHSNi6Do9JMkzzWAt3BCqMUbgTI-A6PHi_0I0nx7HPiYY-wjupNEUBhA1kLtKP89aOrtXF-IlKdjmJRSsgfrrDohYtNaFzUC6EAIiYn7KXw1H0ZsBj-vYino85UMPWjn20yMj2FvHWNwauC-4cHVaXe1uA&lang=en\nDeclining to sign\nManaging notifications\n\nIf you are having trouble signing the document, please visit the Help with Signing page on our Support Center.\nhttps://support.docusign.com/s/articles/How-do-I-sign-a-DocuSign-document-Basic-Signing?language=en_US&#38;utm_campaign=GBL_XX_DBU_UPS_2211_SignNotificationEmailFooter&#38;utm_medium=product&#38;utm_source=postsend",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ef155ce43dc1ae",
+     "date": "2024-04-18T13:11:56Z",
+     "internal_date": "1713445916000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "caroline.hodge@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: FT Partners Offer Letter - Jonathan Nachman",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Caroline,\n\nI hope you are doing well. I just wanted to send you a brief email letting\nyou know that I have formally accepted the offer and completed the\nDocuSign. I am incredibly excited to begin my time with FT, and I greatly\nappreciate all of your help throughout this process! Please let me know if\nyou have any questions.\n\nBest,\nJonathan Nachman\n\nOn Tue, Apr 16, 2024 at 9:14 AM Caroline Hodge via DocuSign <\ndse_NA3@docusign.net> wrote:\n\n> [image: DocuSign]\n> Caroline Hodge sent you a document to review and sign.\n>\n> REVIEW DOCUMENTS\n> <https://na3.docusign.net/Signing/EmailStart.aspx?a8d91a3-2f4c-4ce4-8af1-259395366e6f&acct�5684a7-fd14-4ba9-8424-e8a38f5480c9&erw1afd28-1ed7-42bb-9437-ac02ffb122ea>\n> Caroline Hodge\n> caroline.hodge@ftpartners.com\n> Jonathan,\n>\n> I’m excited to present you with your offer letter! We have been very\n> impressed by you in the interview process and certainly hope that you’ll be\n> joining us!\n>\n> Please feel free to contact me or anyone at FT Partners with any\n> questions. We hope to hear from you soon.\n>\n> Encls.:\n> Offer Letter\n> Proprietary Information and Inventions Agreement (PIIA)\n> Arbitration Agreement\n> I-9 Form, Employment Eligibility Verification\n> Employee Handbook\n>\n> All the best,\n> Caroline\n>\n> *Do Not Share This Email*\n> This email contains a secure link to DocuSign. Please do not share this\n> email, link, or access code with others.\n>\n> *Alternate Signing Method*\n> Visit DocuSign.com, click 'Access Documents', and enter the security code:\n> 7F8D91A32F4C4CE48AF1259395366E6F3\n>\n> *About DocuSign*\n> Sign documents electronically in just minutes. It's safe, secure, and\n> legally binding. Whether you're in an office, at home, on-the-go -- or even\n> across the globe -- DocuSign provides a professional trusted solution for\n> Digital Transaction Management™.\n>\n> *Questions about the Document?*\n> If you need to modify the document or have questions about the details in\n> the document, please reach out to the sender by emailing them directly.\n>\n> *Stop receiving this email*\n> Report this email\n> <https://protect.docusign.net/report-abuse?e=AUtomjpFak9GlbPL0zFFi11QuH7l6erUeTnglf_p_6Y8_1I96SsiRt8nS0qvB8OMbOEg1u9XLU2sfrP059v4jVPBggTQmJNJyCwVCajkKT61vk9pxVtabmSPM6sOSaqaNjjB-q1LRa6veOHigtz6R5DCBAOmCQiWbBjVPWAdnnHTgINPu3LHCV2UH_JzXtumaGE1ipGmvBpYGYxBuS8xvryIJqMMES08dDhHiE0P6QIADjB6jz3sWrSwO2hk9DsPtwL7UdE4qrTdTNgpSpMIz90eVTRB2bLBaBCOhs_HZHSNi6Do9JMkzzWAt3BCqMUbgTI-A6PHi_0I0nx7HPiYY-wjupNEUBhA1kLtKP89aOrtXF-IlKdjmJRSsgfrrDohYtNaFzUC6EAIiYn7KXw1H0ZsBj-vYino85UMPWjn20yMj2FvHWNwauC-4cHVaXe1uA&lang=en>\n> or read more about Declining to sign\n> <https://support.docusign.com/en/guides/Declining-to-sign-DocuSign-Signer-Guide>\n> and Managing notifications\n> <https://support.docusign.com/en/articles/How-do-I-manage-my-email-notifications>\n> .\n>\n> If you are having trouble signing the document, please visit the Help\n> with Signing\n> <https://support.docusign.com/s/articles/How-do-I-sign-a-DocuSign-document-Basic-Signing?language=en_US&utm_campaign=GBL_XX_DBU_UPS_2211_SignNotificationEmailFooter&utm_medium=product&utm_source=postsend>\n> page on our Support Center <https://www.docusign.com/support>.\n>\n> Download the DocuSign App\n> <https://www.docusign.com/features-and-benefits/mobile?utm_campaign=GBL_XX_DBU_UPS_2211_SignNotificationEmailFooter&utm_medium=product&utm_source=postsend>\n>\n> This message was sent to you by Caroline Hodge who is using the DocuSign\n> Electronic Signature Service. If you would rather not receive email from\n> this sender you may contact the sender with your request.\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ef199c99f197b5",
+     "date": "2024-04-18T14:26:05Z",
+     "internal_date": "1713450365000",
+     "direction": "inbound",
+     "sender": "caroline.hodge@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "Christina.Celestino@ftpartners.com"
+     ],
+     "subject": "RE: FT Partners Offer Letter - Jonathan Nachman",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "~WRD3524.jpg",
+       "mimeType": "image/jpeg"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Jonathan,\n\nCongratulations on accepting your offer!\n\nThe team is thrilled that you will be joining the Firm next summer! Confirming we received your completed paperwork. A member from the People Ops team will be in touch in early 2025 regarding onboarding but in the meantime please feel free to reach out with any questions.\n\nCongratulations again!\n\nBest,\nCaroline\n\n_______________________________\nCaroline Hodge\nCampus Recruiter\n(929) 480-7710 (office)\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Thursday, April 18, 2024 9:12 AM\nTo: Caroline Hodge <caroline.hodge@ftpartners.com>\nSubject: Re: FT Partners Offer Letter - Jonathan Nachman\n\nHello Caroline,\n\nI hope you are doing well. I just wanted to send you a brief email letting you know that I have formally accepted the offer and completed the DocuSign. I am incredibly excited to begin my time with FT, and I greatly appreciate all of your help throughout this process! Please let me know if you have any questions.\n\nBest,\nJonathan Nachman\n\nOn Tue, Apr 16, 2024 at 9:14 AM Caroline Hodge via DocuSign <dse_NA3@docusign.net<mailto:dse_NA3@docusign.net>> wrote:\n[Image removed by sender. DocuSign]\n[Image removed by sender.]\nCaroline Hodge sent you a document to review and sign.\n\nREVIEW DOCUMENTS <https://urldefense.proofpoint.com/v2/url?u=https-3A__na3.docusign.net_Signing_EmailStart.aspx-3Fa-3D7f8d91a3-2D2f4c-2D4ce4-2D8af1-2D259395366e6f-26acct-3Dc35684a7-2Dfd14-2D4ba9-2D8424-2De8a38f5480c9-26er-3D771afd28-2D1ed7-2D42bb-2D9437-2Dac02ffb122ea&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=FY7nbUIAaiUeZXF4hlvGg8m4P5N2PWlZOfjbJ8noF_Hwf6RaX52mdVFXdVXdBncb&s=5VjoCZS1bORecy1vHeZ-Qq0-yMLNYLAKoESdidFfevw&e=>\nCaroline Hodge\ncaroline.hodge@ftpartners.com<mailto:caroline.hodge@ftpartners.com>\nJonathan,\n\nI’m excited to present you with your offer letter! We have been very impressed by you in the interview process and certainly hope that you’ll be joining us!\n\nPlease feel free to contact me or anyone at FT Partners with any questions. We hope to hear from you soon.\n\nEncls.:\nOffer Letter\nProprietary Information and Inventions Agreement (PIIA)\nArbitration Agreement\nI-9 Form, Employment Eligibility Verification\nEmployee Handbook\n\nAll the best,\nCaroline\n\nDo Not Share This Email\nThis email contains a secure link to DocuSign. Please do not share this email, link, or access code with others.\n\nAlternate Signing Method\nVisit DocuSign.com<https://urldefense.proofpoint.com/v2/url?u=http-3A__DocuSign.com&d=DwQFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=FY7nbUIAaiUeZXF4hlvGg8m4P5N2PWlZOfjbJ8noF_Hwf6RaX52mdVFXdVXdBncb&s=mAeSv4PG7QNqeP7J1jqJj32Nx2ETy-4NEFbt8XVSzsI&e=>, click 'Access Documents', and enter the security code:\n7F8D91A32F4C4CE48AF1259395366E6F3\n\nAbout DocuSign\nSign documents electronically in just minutes. It's safe, secure, and legally binding. Whether you're in an office, at home, on-the-go -- or even across the globe -- DocuSign provides a professional trusted solution for Digital Transaction Management™.\n\nQuestions about the Document?\nIf you need to modify the document or have questions about the details in the document, please reach out to the sender by emailing them directly.\n\nStop receiving this email\nReport this email<https://urldefense.proofpoint.com/v2/url?u=https-3A__protect.docusign.net_report-2Dabuse-3Fe-3DAUtomjpFak9GlbPL0zFFi11QuH7l6erUeTnglf-5Fp-5F6Y8-5F1I96SsiRt8nS0qvB8OMbOEg1u9XLU2sfrP059v4jVPBggTQmJNJyCwVCajkKT61vk9pxVtabmSPM6sOSaqaNjjB-2Dq1LRa6veOHigtz6R5DCBAOmCQiWbBjVPWAdnnHTgINPu3LHCV2UH-5FJzXtumaGE1ipGmvBpYGYxBuS8xvryIJqMMES08dDhHiE0P6QIADjB6jz3sWrSwO2hk9DsPtwL7UdE4qrTdTNgpSpMIz90eVTRB2bLBaBCOhs-5FHZHSNi6Do9JMkzzWAt3BCqMUbgTI-2DA6PHi-5F0I0nx7HPiYY-2DwjupNEUBhA1kLtKP89aOrtXF-2DIlKdjmJRSsgfrrDohYtNaFzUC6EAIiYn7KXw1H0ZsBj-2DvYino85UMPWjn20yMj2FvHWNwauC-2D4cHVaXe1uA-26lang-3Den&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=FY7nbUIAaiUeZXF4hlvGg8m4P5N2PWlZOfjbJ8noF_Hwf6RaX52mdVFXdVXdBncb&s=8GglZaHwwOoBI8yJlUMeo1NgGx37j3HC0G8Go_Sqdgc&e=> or read more about Declining to sign<https://urldefense.proofpoint.com/v2/url?u=https-3A__support.docusign.com_en_guides_Declining-2Dto-2Dsign-2DDocuSign-2DSigner-2DGuide&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=FY7nbUIAaiUeZXF4hlvGg8m4P5N2PWlZOfjbJ8noF_Hwf6RaX52mdVFXdVXdBncb&s=2RWhVsBLcbA4BpwOPBOIciAFU-ojq1UFDTfqsBRQ_G4&e=> and Managing notifications<https://urldefense.proofpoint.com/v2/url?u=https-3A__support.docusign.com_en_articles_How-2Ddo-2DI-2Dmanage-2Dmy-2Demail-2Dnotifications&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=FY7nbUIAaiUeZXF4hlvGg8m4P5N2PWlZOfjbJ8noF_Hwf6RaX52mdVFXdVXdBncb&s=VSpy0ytSQ2XHOXDADHCIW9ioqO9PKVrdOGHJAJGzpjk&e=>.\n\nIf you are having trouble signing the document, please visit the Help with Signing<https://urldefense.proofpoint.com/v2/url?u=https-3A__support.docusign.com_s_articles_How-2Ddo-2DI-2Dsign-2Da-2DDocuSign-2Ddocument-2DBasic-2DSigning-3Flanguage-3Den-5FUS-26utm-5Fcampaign-3DGBL-5FXX-5FDBU-5FUPS-5F2211-5FSignNotificationEmailFooter-26utm-5Fmedium-3Dproduct-26utm-5Fsource-3Dpostsend&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=FY7nbUIAaiUeZXF4hlvGg8m4P5N2PWlZOfjbJ8noF_Hwf6RaX52mdVFXdVXdBncb&s=zSZDfOBJT8bHwIUcePNbioPnwQB5pVO1rmdM14iWpnI&e=> page on our Support Center<https://urldefense.proofpoint.com/v2/url?u=https-3A__www.docusign.com_support&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=FY7nbUIAaiUeZXF4hlvGg8m4P5N2PWlZOfjbJ8noF_Hwf6RaX52mdVFXdVXdBncb&s=K70peBLW1RQwrh91TSzhFeXjLhEeMZ10SU_L0LCXUzE&e=>.\n\n[Image removed by sender.]Download the DocuSign App <https://urldefense.proofpoint.com/v2/url?u=https-3A__www.docusign.com_features-2Dand-2Dbenefits_mobile-3Futm-5Fcampaign-3DGBL-5FXX-5FDBU-5FUPS-5F2211-5FSignNotificationEmailFooter-26utm-5Fmedium-3Dproduct-26utm-5Fsource-3Dpostsend&d=DwMFaQ&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=dv4a84QxxgCP6X-I0YmHzuXrYyeOPkvnDHlrKmIl9Po&m=FY7nbUIAaiUeZXF4hlvGg8m4P5N2PWlZOfjbJ8noF_Hwf6RaX52mdVFXdVXdBncb&s=9Kzxp6qGEegMFwkFf4pAitYU75a1g90y43X_EXvG9iM&e=>\n\nThis message was sent to you by Caroline Hodge who is using the DocuSign Electronic Signature Service. If you would rather not receive email from this sender you may contact the sender with your request.\n\nThis message is intended only for the personal and confidential use of the designated recipient(s) named above. If you are not the intended recipient of this message you are hereby notified that any review, dissemination, distribution or copying of this message is strictly prohibited. Please delete it and any attachments and notify the sender that you have received it in error. Unintended recipients are prohibited from taking action on the basis of information in this e-mail. This communication is for informational purposes only and should not be regarded as an offer to sell or as a solicitation of an offer to buy any financial product. No representation is being made that the information presented is accurate, current or complete, and such information is at all times subject to change without notice.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18eafe21f17ade9f",
+   "capture": "supplement",
+   "subject": "Enjoyed Our Conversation",
+   "messages": [
+    {
+     "message_id": "18eafe2fcc8957c8",
+     "date": "2024-04-05T20:11:12Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Brady.flynn@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Enjoyed Our Conversation",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Brady,\n\nI hope all is well. I just wanted to send a brief email expressing my appreciation for the time you spent with me over the phone today. I enjoyed learning more about the firm and your experience there. Congratulations on your recent promotion!\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Thank-you note, same day as the call. The call itself is one of the three 2024-04-05 'Interview with Financial Technology Partners' calendar events, which carry no attendee and no interviewer name.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ec0f6c84ad730f",
+     "date": "2024-04-09T03:46:18Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Brady.flynn@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Enjoyed Our Conversation",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Jonathan, thanks for the note. Enjoyed chatting with you as well!\n\nBrady Flynn, Analyst, Financial Technology Partners LP",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18eed53a069593eb",
+     "date": "2024-04-17T18:31:00Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Brady.Flynn@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Enjoyed Our Conversation",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Jonathan – congrats on the offer, well deserved! Happy to chat if I can be helpful while you think through the decision.\n\nBrady Flynn, Analyst",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Sender address casing differs from the earlier message in the same thread (Brady.flynn@ vs Brady.Flynn@). Case-sensitive address matching would treat these as two people.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ef158ab0b6358f",
+     "date": "2024-04-18T13:15:03Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Brady.Flynn@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Enjoyed Our Conversation",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Brady,\n\nI appreciate you reaching out to me and offering your willingness to speak. I have since signed the offer. Thank you for your help throughout this process.\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ef180f37ddd749",
+     "date": "2024-04-18T13:59:00Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Brady.Flynn@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Enjoyed Our Conversation",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Great to hear - congrats, Jonathan!\n\nBrady Flynn, Analyst",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18eafe3187a2aa6d",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  },
+  {
+   "thread_id": "18eb015e0368678f",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  },
+  {
+   "thread_id": "18e9b536702e6775",
+   "capture": "supplement",
+   "subject": "Enjoyed Our Conversation",
+   "messages": [
+    {
+     "message_id": "18e9b57a8bb42ace",
+     "date": "2024-04-01T20:26:37Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "billy.barber@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Enjoyed Our Conversation",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Billy,\n\nI hope all is well. I just wanted to send a brief email expressing my appreciation for the time you spent with me over the phone today. I enjoyed learning more about the firm and its culture from your perspective. I wish you well in your new position later this year!\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Thank-you note, same day as the call. Corresponds to a 2024-04-01 'Interview with Financial Technology Partners' calendar event with zero attendees.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ee79fc5c116a27",
+     "date": "2024-04-16T15:56:25Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Billy.Barber@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Re: Enjoyed Our Conversation",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Jonathan,\n\nGreat meeting you. Heard you got the offer, congrats!\n\nLet me know if I can be helpful in your decision process in any way. Happy to hop on the phone and discuss any questions you may have to help you decide.\n\nThanks,\nBilly\n\nBilly Barber, Analyst",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "A reply 15 days after the thank-you note, reviving a thread that by any silence rule was dead. The trigger was an external event (the offer), not anything in the thread.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ee8490543e1fb0",
+     "date": "2024-04-16T19:01:23Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Billy.Barber@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Enjoyed Our Conversation",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Billy,\n\nI appreciate you reaching back out. I'll let you know if I have any questions about the offer and would like to speak with you.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

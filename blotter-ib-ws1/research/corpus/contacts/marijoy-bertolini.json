@@ -1,0 +1,291 @@
+{
+ "slug": "marijoy-bertolini",
+ "name": "Marijoy Bertolini",
+ "firm": "Aeris Partners",
+ "title": "VP, Talent and Human Resources",
+ "addresses_seen": [
+  "mjb@aerispartners.com",
+  "Marijoy.Bertolini@aerispartners.com",
+  "bm@aerispartners.com"
+ ],
+ "relationship_opened": "Cold email; first two address guesses both bounced",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 4,
+  "messages": 9,
+  "outbound": 4,
+  "inbound": 5,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-02-08T04:24:42Z",
+ "last_activity": "2024-03-26T13:03:10Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d869220d90d01e",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+   "messages": [
+    {
+     "message_id": "18d86f5f94ad0e0e",
+     "date": "2024-02-08T04:24:42Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Marijoy.Bertolini@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Good Evening Marijoy,\n\nI hope this email finds you well. I am emailing to emphasize my interest in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am from Los Angeles, and I'm now studying Economics and Business at the University of Texas - Austin. I'm sure your firm doesn't receive many applications from UT students, if any at all, so I wanted to send this email to reaffirm my interest in Aeris, having already submitted my online application.\n\nA week ago, a close friend of mine studying at USC Marshall shared with me that Aeris had directly reached out to him for recruitment purposes. This conversation piqued my interest in your firm. I have since spent some time learning more about Aeris Partners. My interest is twofold:\n\n1) I am particularly interested in boutique tech banks. Aeries stands out as a SaaS M&A bank as I believe very strongly in the future of the SaaS industry.\n2) Through learning more about your firm through talking to my buddy who had a coffee chat with Aeris and your website, it is abundantly clear that your firm places a tremendous emphasis on company culture and personal fit, transcending beyond the superficial culture narrative of most banks. This is very unique to your firm and genuinely appeals to me.\n\nI hope I have demonstrated my sincere interest in your firm and you consider my application. I also attached my resume below.\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d86f6262e228ee",
+     "date": "2024-02-08T04:24:55Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "mailer-daemon@googlemail.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Delivery Status Notification (Failure)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "icon.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "** Address not found **\n\nYour message wasn't delivered to Marijoy.Bertolini@aerispartners.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 5.1.1 <Marijoy.Bertolini@aerispartners.com>: Recipient address rejected: User unknown\nFinal-Recipient: rfc822; Marijoy.Bertolini@aerispartners.com\nAction: failed\nStatus: 5.1.1\nRemote-MTA: dns; mx1-us1.ppe-hosted.com.\nDiagnostic-Code: smtp; 550 5.1.1 <Marijoy.Bertolini@aerispartners.com>: Recipient address rejected: User unknown\nLast-Attempt-Date: Wed, 07 Feb 2024 20:24:55 -0800 (PST)",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": {
+      "failed_recipient": "Marijoy.Bertolini@aerispartners.com",
+      "status": "5.1.1",
+      "action": "failed",
+      "latency_seconds": 13
+     },
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d870306f73048e",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+   "messages": [
+    {
+     "message_id": "18d870434c19f943",
+     "date": "2024-02-08T04:40:15Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "bm@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "[same outreach text as the message to Marijoy.Bertolini@aerispartners.com 16 minutes earlier]",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Second guess at the same person's address after the first bounced.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d8704625bfd255",
+     "date": "2024-02-08T04:40:27Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "mailer-daemon@googlemail.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Delivery Status Notification (Failure)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "** Address not found **\n\nYour message wasn't delivered to bm@aerispartners.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 5.1.1 : Recipient address rejected: User unknown",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": {
+      "failed_recipient": "bm@aerispartners.com",
+      "status": "5.1.1",
+      "action": "failed",
+      "latency_seconds": 12
+     },
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18df66aeebda31cd",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Aeris Partners | Next steps",
+   "messages": [
+    {
+     "message_id": "18df66aeebda31cd",
+     "date": "2024-02-29T19:50:15Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "mjb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Aeris Partners | Next steps",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan,\n\nThank you for your interest in Aeris Partners. We are impressed with your background and would like to move forward in the interview process.\n\nThe next step is a technical and behavioral interview over Teams, so please let me know your availability for this week and next.\n\nWe look forward to hearing from you!\n\nThanks,\nMarijoy\n\nMarijoy Bertolini, Aeris Partners LLC",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18df67c8b4089ada",
+     "date": "2024-02-29T20:09:33Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "mjb@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Aeris Partners | Next steps",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Marijoy,\n\nI appreciate you reaching out to me, and I'm excited to continue recruiting with Aeris. Ideally, I'd prefer to interview in the latter half of next week given I have two midterms during the first portion of the week. Here are some proposed times next week (CT):\n\nWednesday (3/6): 1:45 pm onwards\nThursday (3/7): 10:00 am - 1:00 pm & 5:30 pm onwards\nFriday (3/8): 8:30 am - 12:00 pm\n\nIf these times aren't convenient, or if you prefer that I interview sooner, please let me know; I'm confident we'll be able to work something out.\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18df6de6bd28c289",
+     "date": "2024-02-29T21:56:27Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "mjb@aerispartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Aeris Partners | Next steps",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello again Marijoy,\n\nI am following up on my previous email as Paige Butters has just scheduled my interview for next Wednesday (2/6) at 2:00 p.m. CT. I simply wanted to update you to prevent any confusion and ensure everyone is aligned.\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18df6e7384314797",
+     "date": "2024-02-29T22:06:02Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "mjb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Aeris Partners | Next steps",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Thank you, Jonathan. I appreciate the email!",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18e7adb9abe872ba",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Aeris Partners Application Update",
+   "messages": [
+    {
+     "message_id": "18e7adb9abe872ba",
+     "date": "2024-03-26T13:03:10Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "mjb@aerispartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Aeris Partners Application Update",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Dear Jonathan,\n\nThank you for your application; we appreciate your interest in the Summer Analyst role at Aeris Partners.\n\nI am reaching out to let you know that we will not be moving forward with any more interviews, as we have recently filled all of our Summer Analyst 2025 openings in both the Boston and San Francisco offices.\n\nPlease feel free to keep in touch ~ if you see any openings in the future that pique your interest, don't hesitate to reach out. We'd love to hear from you!\n\nAgain, thank you for your time and interest.\n\nSincerely,\nMarijoy Bertolini, Vice President, Talent and Human Resources, Aeris Partners LLC",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Rejection. Arrives two hours BEFORE Paige Butters' same-day 'hopefully more to come' message in thread 18e6263c7bf30b98. Two people at one firm, opposite states, same morning.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

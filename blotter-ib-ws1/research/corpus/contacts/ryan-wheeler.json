@@ -1,0 +1,86 @@
+{
+ "slug": "ryan-wheeler",
+ "name": "Ryan Wheeler",
+ "firm": "Guggenheim",
+ "title": "Analyst",
+ "addresses_seen": [
+  "ryan.wheeler@guggenheimpartners.com"
+ ],
+ "relationship_opened": "Cold email, Texas KA angle",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 2,
+  "outbound": 2,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-17T05:44:45Z",
+ "last_activity": "2024-01-20T00:15:08Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d15f110fb6db53",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Texas KA Interested in Energy Banking @ Guggenheim",
+   "messages": [
+    {
+     "message_id": "18d15f3561969d19",
+     "date": "2024-01-17T05:44:45Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "ryan.wheeler@guggenheimpartners.com"
+     ],
+     "cc": [],
+     "subject": "Texas KA Interested in Energy Banking @ Guggenheim",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Ryan,\n\nI hope you are doing well. I am a PC ‘22 KA studying Business and Economics and am pursuing a career in Energy Investment Banking in Houston. I'd love to talk to you to learn more about your experience at Guggenheim.\n\nIf you have any free time in the next week, I would like to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d2438a38d3d3eb",
+     "date": "2024-01-20T00:15:08Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "ryan.wheeler@guggenheimpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: Texas KA Interested in Energy Banking @ Guggenheim",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Ryan,\n\nBumping my email I sent on Tuesday. I'm trying to speak with someone at Guggenheim as quickly as possible given interviews have already begun. Would love to talk to you or any other appropriate person to learn more about the recruitment process and hopefully boost my path to a first round. Apologies for the dual email.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

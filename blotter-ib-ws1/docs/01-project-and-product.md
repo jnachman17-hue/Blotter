@@ -77,7 +77,19 @@ Load-bearing, and must be stated accurately in any public copy.
 
 Blotter does not read personal email. It checks who mail is from and only reads recruiting mail from the specific people the user tracks. Any copy implying broader inbox access is wrong and damaging.
 
-## Gmail capture, technically
+## Gmail capture, technically — AMENDED September 1, 2026
+
+> **A third option now precedes the intermediary, ratified by Jon on
+> September 1, 2026.** Blotter's first build runs **inside the student's own
+> Google account** as a Google Sheets script, under their own authorization,
+> with the rules held on Blotter's server. No Google token, no message body and
+> no CASA obligation ever reaches Blotter, because the mail never leaves Google.
+>
+> **The intermediary is not withdrawn — it is the destination, not the first
+> step.** The paragraph below is correct about a hosted build and wrong only in
+> assuming a hosted build must come first. Reasoning, the courier-and-rulebook
+> split, and what the ruling does *not* settle are in `04-decision-log.md`,
+> session 11.
 
 The original plan was a three-stage direct Google OAuth rollout. That plan is dead.
 

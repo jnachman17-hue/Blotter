@@ -1,0 +1,220 @@
+{
+ "slug": "carson-harris",
+ "name": "Carson Harris",
+ "firm": "J.P. Morgan",
+ "title": "Analyst, Energy IB",
+ "addresses_seen": [
+  "carson.harris@jpmorgan.com"
+ ],
+ "relationship_opened": "Inbound; contact info passed along via referral",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 2,
+  "messages": 8,
+  "outbound": 4,
+  "inbound": 4,
+  "calendar_events": 1
+ },
+ "first_activity": "2024-01-19T22:19:55Z",
+ "last_activity": "2024-01-24T06:04:37Z",
+ "calendar_event_ids": [
+  "174nj2k6lljafhesbghibecnlt"
+ ],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d23cf387a81adc",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "JPM 2025 summer analyst program",
+   "messages": [
+    {
+     "message_id": "18d23cf387a81adc",
+     "date": "2024-01-19T22:19:55Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "carson.harris@jpmorgan.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "JPM 2025 summer analyst program",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Jonathan,\n\nMy name is Carson Harris and I am investment banking analyst with JPM's energy coverage group in Houston. Your contact info was passed along with respect to the 2025 summer analyst recruitment process.\n\nLet me know if you have some availability next week and happy to hop on the phone to discuss.\n\nCarson\n\nCarson Harris | Analyst | Energy Investment Banking | J.P. Morgan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d2416e92e9af34",
+     "date": "2024-01-19T23:38:17Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "carson.harris@jpmorgan.com"
+     ],
+     "cc": [],
+     "subject": "Re: JPM 2025 summer analyst program",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Carson,\n\nI appreciate you reaching out. I'd love to hop on a quick call with you and learn a little more about JPM's recruitment process. Here are some times that work for me next week:\n\nMonday (1/22) : 3 - 6 pm & 7 pm onwards\nTuesday (1/23): 10 am - 1 pm & 5 pm onwards\nWednesday(1/24): 11 am - 2 pm & 3 pm onwards\n\nPlease let me know if any of these times are convenient for you. I look forward to speaking with you.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d31eff9a07e097",
+     "date": "2024-01-22T16:10:10Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "carson.harris@jpmorgan.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: [EXTERNAL]Re: JPM 2025 summer analyst program",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "How is tomorrow at 6pm? If that works for you please send a calendar invite and you can reach me at my cell below. Thanks.\n\nCarson",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d326fa819f826d",
+     "date": "2024-01-22T18:29:54Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "carson.harris@jpmorgan.com"
+     ],
+     "cc": [],
+     "subject": "Re: [EXTERNAL]Re: JPM 2025 summer analyst program",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Carson – tomorrow at 6 pm works perfectly. I'll send you a calendar invite and look forward to speaking with you then.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d3a120d552d7af",
+     "date": "2024-01-24T06:04:37Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "carson.harris@jpmorgan.com"
+     ],
+     "cc": [],
+     "subject": "Re: [EXTERNAL]Re: JPM 2025 summer analyst program",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Carson,\n\nI really appreciate you taking some time to hop on a call with me tonight – you provided some very valuable insight as I navigate the recruitment process and begin to strategically choose between EBs/MMs/BBs. The details you offered regarding the significant responsibilities offered to analysts along with the ability to work closely alongside senior bankers at JPM Houston really excites me. I will be submitting my application in the coming days. To that end, I would greatly appreciate it if you could connect me with someone else from your office, or pass along their contact information, as I look to gain more insight. Thanks again!\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d38c210dd28bf1",
+   "capture": "spilled",
+   "shared_thread": false,
+   "subject": "RE: [EXTERNAL]Updated invitation: Carson - Jonathan JPM IB Call  @ Tue Jan 23, 2024 6pm - 6:30pm (CST) (carson.harris@jpmorgan.com)",
+   "messages": [
+    {
+     "message_id": "18d38c210dd28bf1",
+     "date": "2024-01-23T23:57:35Z",
+     "internal_date": "1706054255000",
+     "direction": "inbound",
+     "sender": "carson.harris@jpmorgan.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: [EXTERNAL]Updated invitation: Carson - Jonathan JPM IB Call  @ Tue Jan 23, 2024 6pm - 6:30pm (CST) (carson.harris@jpmorgan.com)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Jonathan – apologies, can we push this to 8 or 9pm CT? Thank you for understanding\n\nCarson Harris | Analyst | Energy Investment Banking | J.P. Morgan | carson.harris@jpmorgan.com\n712 Main St., 5th Floor, Houston, TX 77002 | T: (713)-216-5452 | C: (210)-391-6909\n\n-----Original Appointment-----\nFrom: Google Calendar <calendar-notification@google.com> On Behalf Of Jonathan Nachman\nSent: Monday, January 22, 2024 12:31 PM\nTo: Jonathan Nachman; Harris, Carson (CIB IBC, USA)\nSubject: [EXTERNAL]Updated invitation: Carson - Jonathan JPM IB Call @ Tue Jan 23, 2024 6pm - 6:30pm (CST) (carson.harris@jpmorgan.com)\nWhen: Tuesday, January 23, 2024 6:00 PM-6:30 PM America/Chicago.\nWhere:\n\nCarson - Jonathan JPM IB Call\nJoin with Google Meet – You have been invited by Jonathan Nachman to attend an event named Carson - Jonathan JPM IB Call on Tuesday Jan 23, 2024 ⋅ 6pm – 6:30pm (Central Time - Chicago).\n\nThis event has been updated\n\nChanged: title\n\nJoin with Google Meet<https://secureweb.jpmchase.net/readonly/https:/meet.google.com/gur-fkkp-hud?hs=224>\nMeeting link\nmeet.google.com/gur-fkkp-hud<https://secureweb.jpmchase.net/readonly/https:/meet.google.com/gur-fkkp-hud?hs=224>\nWhen\nTuesday Jan 23, 2024 ⋅ 6pm – 6:30pm (Central Time - Chicago)\nGuests\nJonathan Nachman<mailto:jnachman17@gmail.com> - organizer\ncarson.harris@jpmorgan.com<mailto:carson.harris@jpmorgan.com>\nView all guest info<https://secureweb.jpmchase.net/readonly/https:/calendar.google.com/calendar/event?action=VIEW&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\nReply for carson.harris@jpmorgan.com<mailto:carson.harris@jpmorgan.com>\nYes<https://secureweb.jpmchase.net/readonly/https:/calendar.google.com/calendar/event?action=RESPOND&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&rst=1&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\nNo<https://secureweb.jpmchase.net/readonly/https:/calendar.google.com/calendar/event?action=RESPOND&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&rst=2&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\nMaybe<https://secureweb.jpmchase.net/readonly/https:/calendar.google.com/calendar/event?action=RESPOND&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&rst=3&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\n\nMore options<https://secureweb.jpmchase.net/readonly/https:/calendar.google.com/calendar/event?action=VIEW&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\n\nInvitation from Google Calendar<https://secureweb.jpmchase.net/readonly/https:/calendar.google.com/calendar/>\n\nYou are receiving this email because you are an attendee on the event. To stop receiving future updates for this event, decline this event.\n\nForwarding this invitation could allow any recipient to send a response to the organizer, be added to the guest list, invite others regardless of their own invitation status, or modify your RSVP. Learn more<https://secureweb.jpmchase.net/readonly/https:/support.google.com/calendar/answer/37135#forwarding>\n\nThis message is confidential and subject to terms at: https://www.jpmorgan.com/emaildisclaimer including on confidential, privileged or legal entity information, malicious content and monitoring of electronic messages. If you are not the intended recipient, please delete this message and notify the sender immediately. Any unauthorized use is strictly prohibited.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d38c3a97b3c236",
+     "date": "2024-01-23T23:59:23Z",
+     "internal_date": "1706054363000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "carson.harris@jpmorgan.com"
+     ],
+     "cc": [],
+     "subject": "Re: [EXTERNAL]Updated invitation: Carson - Jonathan JPM IB Call  @ Tue Jan 23, 2024 6pm - 6:30pm (CST) (carson.harris@jpmorgan.com)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Yea, no worries. Let's do 8 pm CT. I'll shoot you a call then.\n\nOn Tue, Jan 23, 2024 at 5:57 PM carson.harris@jpmorgan.com <\ncarson.harris@jpmorgan.com> wrote:\n\n> Jonathan – apologies, can we push this to 8 or 9pm CT? Thank you for\n> understanding\n>\n>\n>\n> *Carson Harris *| Analyst | Energy Investment Banking | *J.P. Morgan* |\n> carson.harris@jpmorgan.com\n>\n> 712 Main St., 5th Floor, Houston, TX 77002 | T: (713)-216-5452 |\n> C: (210)-391-6909\n>\n>\n>\n> -----Original Appointment-----\n> *From:* Google Calendar <calendar-notification@google.com> *On Behalf Of *\n> Jonathan Nachman\n> *Sent:* Monday, January 22, 2024 12:31 PM\n> *To:* Jonathan Nachman; Harris, Carson (CIB IBC, USA)\n> *Subject:* [EXTERNAL]Updated invitation: Carson - Jonathan JPM IB Call @\n> Tue Jan 23, 2024 6pm - 6:30pm (CST) (carson.harris@jpmorgan.com)\n> *When:* Tuesday, January 23, 2024 6:00 PM-6:30 PM America/Chicago.\n> *Where:*\n>\n>\n>\n> Carson - Jonathan JPM IB Call\n>\n> Join with Google Meet – You have been invited by Jonathan Nachman to\n> attend an event named Carson - Jonathan JPM IB Call on Tuesday Jan 23, 2024\n> ⋅ 6pm – 6:30pm (Central Time - Chicago).\n>\n>\n>\n>\n>\n> *This event has been updated*\n>\n> *Changed:* title\n>\n>\n>\n>\n>\n>\n>\n> *Join with Google Meet* <https://meet.google.com/gur-fkkp-hud?hs\"4>\n> Meeting link\n>\n> meet.google.com/gur-fkkp-hud <https://meet.google.com/gur-fkkp-hud?hs\"4>\n> When\n>\n> Tuesday Jan 23, 2024 ⋅ 6pm – 6:30pm (Central Time - Chicago)\n> Guests\n>\n> Jonathan Nachman <jnachman17@gmail.com> - organizer\n>\n> carson.harris@jpmorgan.com\n>\n> *View all guest info*\n> <https://calendar.google.com/calendar/event?action=VIEW&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\n>\n> *Reply* for carson.harris@jpmorgan.com\n>\n> Yes\n> <https://calendar.google.com/calendar/event?action=RESPOND&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&rst=1&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\n>\n> No\n> <https://calendar.google.com/calendar/event?action=RESPOND&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&rst=2&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\n>\n> Maybe\n> <https://calendar.google.com/calendar/event?action=RESPOND&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&rst=3&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\n>\n>\n>\n> More options\n> <https://calendar.google.com/calendar/event?action=VIEW&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\n>\n>\n>\n> Invitation from Google Calendar <https://calendar.google.com/calendar/>\n>\n> You are receiving this email because you are an attendee on the event. To\n> stop receiving future updates for this event, decline this event.\n>\n> Forwarding this invitation could allow any recipient to send a response to\n> the organizer, be added to the guest list, invite others regardless of\n> their own invitation status, or modify your RSVP. Learn more\n> <https://support.google.com/calendar/answer/37135#forwarding>\n>\n>\n>\n> This message is confidential and subject to terms at:\n> https://www.jpmorgan.com/emaildisclaimer including on confidential,\n> privileged or legal entity information, malicious content and monitoring of\n> electronic messages. If you are not the intended recipient, please delete\n> this message and notify the sender immediately. Any unauthorized use is\n> strictly prohibited.\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d38e8281495b66",
+     "date": "2024-01-24T00:39:10Z",
+     "internal_date": "1706056750000",
+     "direction": "inbound",
+     "sender": "carson.harris@jpmorgan.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: [EXTERNAL]Updated invitation: Carson - Jonathan JPM IB Call @ Tue Jan 23, 2024 6pm - 6:30pm (CST) (carson.harris@jpmorgan.com)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Sounds good thanks\n\nCarson Harris | Analyst | Energy Investment Banking | J.P. Morgan | carson.harris@jpmorgan.com\n712 Main St., 5th Floor, Houston, TX 77002 | T: (713)-216-5452 | C: (210)-391-6909\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Tuesday, January 23, 2024 5:59 PM\nTo: Harris, Carson (CIB IBC, USA) <carson.harris@jpmorgan.com>\nSubject: Re: [EXTERNAL]Updated invitation: Carson - Jonathan JPM IB Call @ Tue Jan 23, 2024 6pm - 6:30pm (CST) (carson.harris@jpmorgan.com)\n\nYea, no worries. Let's do 8 pm CT. I'll shoot you a call then.\n\nOn Tue, Jan 23, 2024 at 5:57 PM carson.harris@jpmorgan.com<mailto:carson.harris@jpmorgan.com> <carson.harris@jpmorgan.com<mailto:carson.harris@jpmorgan.com>> wrote:\nJonathan – apologies, can we push this to 8 or 9pm CT? Thank you for understanding\n\nCarson Harris | Analyst | Energy Investment Banking | J.P. Morgan | carson.harris@jpmorgan.com<mailto:carson.harris@jpmorgan.com>\n712 Main St., 5th Floor, Houston, TX 77002 | T: (713)-216-5452 | C: (210)-391-6909\n\n-----Original Appointment-----\nFrom: Google Calendar <calendar-notification@google.com<mailto:calendar-notification@google.com>> On Behalf Of Jonathan Nachman\nSent: Monday, January 22, 2024 12:31 PM\nTo: Jonathan Nachman; Harris, Carson (CIB IBC, USA)\nSubject: [EXTERNAL]Updated invitation: Carson - Jonathan JPM IB Call @ Tue Jan 23, 2024 6pm - 6:30pm (CST) (carson.harris@jpmorgan.com<mailto:carson.harris@jpmorgan.com>)\nWhen: Tuesday, January 23, 2024 6:00 PM-6:30 PM America/Chicago.\nWhere:\n\nCarson - Jonathan JPM IB Call\nJoin with Google Meet – You have been invited by Jonathan Nachman to attend an event named Carson - Jonathan JPM IB Call on Tuesday Jan 23, 2024 ⋅ 6pm – 6:30pm (Central Time - Chicago).\n\nThis event has been updated\nChanged: title\n\nJoin with Google Meet<https://secureweb.jpmchase.net/readonly/https:/meet.google.com/gur-fkkp-hud?hs=224>\nMeeting link\nmeet.google.com/gur-fkkp-hud<https://secureweb.jpmchase.net/readonly/https:/meet.google.com/gur-fkkp-hud?hs=224>\nWhen\nTuesday Jan 23, 2024 ⋅ 6pm – 6:30pm (Central Time - Chicago)\nGuests\nJonathan Nachman<mailto:jnachman17@gmail.com> - organizer\ncarson.harris@jpmorgan.com<mailto:carson.harris@jpmorgan.com>\nView all guest info<https://secureweb.jpmchase.net/readonly/https:/calendar.google.com/calendar/event?action=VIEW&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\nReply for carson.harris@jpmorgan.com<mailto:carson.harris@jpmorgan.com>\nYes<https://secureweb.jpmchase.net/readonly/https:/calendar.google.com/calendar/event?action=RESPOND&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&rst=1&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\nNo<https://secureweb.jpmchase.net/readonly/https:/calendar.google.com/calendar/event?action=RESPOND&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&rst=2&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\nMaybe<https://secureweb.jpmchase.net/readonly/https:/calendar.google.com/calendar/event?action=RESPOND&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&rst=3&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\n\nMore options<https://secureweb.jpmchase.net/readonly/https:/calendar.google.com/calendar/event?action=VIEW&eid=MTc0bmoyazZsbGphZmhlc2JnaGliZWNubHQgY2Fyc29uLmhhcnJpc0BqcG1vcmdhbi5jb20&tok=MjAjam5hY2htYW4xN0BnbWFpbC5jb20wNGNjN2JlM2JiZDNiNWI1NmM0ZTVkMTRiYWUxMWNmOGVjMTEyYzNk&ctz=America%2FChicago&hl=en&es=0>\n\nInvitation from Google Calendar<https://secureweb.jpmchase.net/readonly/https:/calendar.google.com/calendar/>\n\nYou are receiving this email because you are an attendee on the event. To stop receiving future updates for this event, decline this event.\n\nForwarding this invitation could allow any recipient to send a response to the organizer, be added to the guest list, invite others regardless of their own invitation status, or modify your RSVP. Learn more<https://secureweb.jpmchase.net/readonly/https:/support.google.com/calendar/answer/37135#forwarding>\n\nThis message is confidential and subject to terms at: https://www.jpmorgan.com/emaildisclaimer including on confidential, privileged or legal entity information, malicious content and monitoring of electronic messages. If you are not the intended recipient, please delete this message and notify the sender immediately. Any unauthorized use is strictly prohibited.\n\nThis message is confidential and subject to terms at: https://www.jpmorgan.com/emaildisclaimer including on confidential, privileged or legal entity information, malicious content and monitoring of electronic messages. If you are not the intended recipient, please delete this message and notify the sender immediately. Any unauthorized use is strictly prohibited.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

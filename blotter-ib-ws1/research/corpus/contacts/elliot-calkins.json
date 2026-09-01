@@ -1,0 +1,110 @@
+{
+ "slug": "elliot-calkins",
+ "name": "Elliot Calkins",
+ "firm": "Guggenheim Securities",
+ "title": "Associate, IB",
+ "addresses_seen": [
+  "Elliot.Calkins@guggenheimpartners.com",
+  "elliot.calkins@guggenheimpartners.com"
+ ],
+ "relationship_opened": "Cold email, referred by Jon's twin brother Andrew",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 3,
+  "outbound": 2,
+  "inbound": 1,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-02-29T18:49:07Z",
+ "last_activity": "2024-03-13T22:27:18Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18df629cb1adf518",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "[Andrew Nachman's Brother] UT Austin Student Interested in Banking @ Guggenheim NY",
+   "messages": [
+    {
+     "message_id": "18df632e656d3e16",
+     "date": "2024-02-29T18:49:07Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "elliot.calkins@guggenheimpartners.com"
+     ],
+     "cc": [],
+     "subject": "[Andrew Nachman's Brother] UT Austin Student Interested in Banking @ Guggenheim NY",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "_Jonathan Nachman Internship Resume (1).pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Good Afternoon Elliot,\n\nI hope you are doing well. I was given your contact information by my twin brother, Andrew Nachman, who recently signed with Guggenheim. I am an Economics and Business student at the University of Texas - Austin, and I'm pursuing a career in banking. I am particularly interested in working for a bulge bracket bank in New York, so I'd really value the chance to have a conversation with you.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18e2f05d943c22d2",
+     "date": "2024-03-11T19:38:12Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Elliot.Calkins@guggenheimpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: [Andrew Nachman's Brother] UT Austin Student Interested in Banking @ Guggenheim NY",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey man! Happy to connect.\n\nCan you send me a few slots that work for you on Thursday?\n\nBest,\nElliot\n\nElliot Calkins, Associate | Investment Banking, Guggenheim Securities, LLC",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Reply arrives 11 days after the outbound. The longest reply gap in the mailbox that still produced a live conversation.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18e39ed5423e4ae2",
+     "date": "2024-03-13T22:27:18Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Elliot.Calkins@guggenheimpartners.com"
+     ],
+     "cc": [],
+     "subject": "Re: [Andrew Nachman's Brother] UT Austin Student Interested in Banking @ Guggenheim NY",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Elliot,\n\nApologies for the delayed response, I have been out of the country on my Spring Break and don’t return until Friday. Do you have any availability to chat next week? I am pretty free and can likely accommodate to your schedule.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

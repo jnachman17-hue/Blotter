@@ -1,0 +1,26 @@
+{
+ "slug": "owen-sherry",
+ "name": "Owen Sherry",
+ "firm": "Houlihan Lokey",
+ "title": "Restructuring banker, New York",
+ "addresses_seen": [],
+ "relationship_opened": "A completed call with NO email address anywhere in either mailbox and NO calendar invite. Booked by a shared recruiting mailbox on his behalf; he phoned Jon directly. Evidenced only by a confirmation email naming him and a solo calendar block Jon typed. Recorded as a contact because the call demonstrably happened.",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 0,
+  "messages": 0,
+  "outbound": 0,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": null,
+ "last_activity": null,
+ "calendar_event_ids": [],
+ "missing_outbound": true,
+ "missing_outbound_note": "No outbound to this contact exists in jnachman17@gmail.com. Both mailboxes have now been read.",
+ "threads": []
+}

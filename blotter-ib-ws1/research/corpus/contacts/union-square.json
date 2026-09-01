@@ -1,0 +1,53 @@
+{
+ "slug": "union-square",
+ "name": "Union Square Advisors - cold application email",
+ "firm": null,
+ "title": null,
+ "addresses_seen": [],
+ "relationship_opened": "Firm-level recruiting process, not a single person",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "record_type": "firm_process",
+ "counts": {
+  "threads": 1,
+  "messages": 1,
+  "outbound": 1,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-04-11T22:20:48Z",
+ "last_activity": "2024-04-11T22:20:48Z",
+ "threads": [
+  {
+   "thread_id": "18ecf3a300f09e45",
+   "capture": "supplement",
+   "subject": "UT Austin Student Highly Interested in Union Square Advisors' Summer 2025 Internship Program",
+   "messages": [
+    {
+     "message_id": "18ecf3fca3fec32f",
+     "date": "2024-04-11T22:20:48Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "info@usadvisors.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Highly Interested in Union Square Advisors' Summer 2025 Internship Program",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Union Square Advisors Recruiting Team,\n\nI hope this email finds you well. I am emailing to emphasize my interest in recruiting with USA for the Summer Analyst 2025 Program. I am from Los Angeles, and I'm now studying Economics and Business at the University of Texas - Austin. I'm sure your firm doesn't receive many applications from UT students, if any at all, so I wanted to send this email to reaffirm my interest in your firm, having already submitted my online application.\n\nI am particularly interested in a boutique, tech-focused firm and was very pleased to learn about the offerings of your internship program as they greatly align with what I am looking for. I hope this email highlights my strong interest in recruiting with Union Square Advisors. Please feel free to reach out to me with any additional questions.\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Sent to a shared inbox (info@), not a person. Never answered.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

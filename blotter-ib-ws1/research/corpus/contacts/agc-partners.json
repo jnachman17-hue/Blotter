@@ -1,0 +1,62 @@
+{
+ "slug": "agc-partners",
+ "name": "AGC Partners - cold application email",
+ "firm": null,
+ "title": null,
+ "addresses_seen": [],
+ "relationship_opened": "Firm-level recruiting process, not a single person",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "record_type": "firm_process",
+ "counts": {
+  "threads": 1,
+  "messages": 1,
+  "outbound": 1,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-04-07T23:43:47Z",
+ "last_activity": "2024-04-07T23:43:47Z",
+ "threads": [
+  {
+   "thread_id": "18ebaecfb7cfb36e",
+   "capture": "supplement",
+   "subject": "UT Austin Student Interested in Summer 2025 Internship Porgram",
+   "messages": [
+    {
+     "message_id": "18ebaf25492dba49",
+     "date": "2024-04-07T23:43:47Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "internships@agcpartners.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested in Summer 2025 Internship Porgram",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "_Jonathan Nachman Internship Resume (2).pdf",
+       "mimeType": "application/pdf"
+      },
+      {
+       "filename": "UT_Austin_PDF_Transcript.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello AGC Recruiting Team,\n\nI hope this email finds you well. I am reaching out to express my interest in your Summer 2025 Internship Program. I am a Sophomore studying Economics and Business at the University of Texas, Austin. I am particularly interested in a boutique, tech-focused firm, which makes AGC especially exciting. Attached below is my resume and a copy of my transcript. Please let me know if you have any further questions, and I look forward to the recruitment process!\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Sent to a shared inbox (internships@), not a person. Never answered. Subject line contains a typo, 'Porgram'.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

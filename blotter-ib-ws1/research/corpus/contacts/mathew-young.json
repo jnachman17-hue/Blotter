@@ -1,0 +1,58 @@
+{
+ "slug": "mathew-young",
+ "name": "Mathew (Mat) Young",
+ "firm": "Citi",
+ "title": "Analyst, Power",
+ "addresses_seen": [
+  "mathew.young@citi.com"
+ ],
+ "relationship_opened": "Referred by Carrie Cruces",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 1,
+  "outbound": 0,
+  "inbound": 1,
+  "calendar_events": 1
+ },
+ "first_activity": "2024-01-22T21:58:58Z",
+ "last_activity": "2024-01-22T21:58:58Z",
+ "calendar_event_ids": [
+  "5g20kmm2m13hcafuva844f1hq1"
+ ],
+ "missing_outbound": true,
+ "missing_outbound_note": "No outbound to this contact exists in jnachman17@gmail.com. Both mailboxes have now been read.",
+ "threads": [
+  {
+   "thread_id": "18d332f300b19767",
+   "capture": "metadata_only",
+   "shared_thread": false,
+   "subject": "Accepted: Invitation: Mat - Jonathan Citi NY IB Call @ Fri Jan 26, 2024 2pm - 2:30pm (CST) (mathew.young@citi.com)",
+   "messages": [
+    {
+     "message_id": "18d332f300b19767",
+     "date": "2024-01-22T21:58:58Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "mathew.young@citi.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Accepted: Invitation: Mat - Jonathan Citi NY IB Call @ Fri Jan 26, 2024 2pm - 2:30pm (CST) (mathew.young@citi.com)",
+     "labels": [],
+     "attachments": [],
+     "has_attachment": null,
+     "body": null,
+     "body_source": "metadata_only",
+     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

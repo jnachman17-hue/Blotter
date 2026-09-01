@@ -1,0 +1,64 @@
+{
+ "slug": "keaton-cruzcosa",
+ "name": "Keaton Cruzcosa",
+ "firm": "Piper Sandler",
+ "title": "Analyst, Energy",
+ "addresses_seen": [
+  "Keaton.cruzcosa@psc.com"
+ ],
+ "relationship_opened": "Referred by Joseph Candelario on a call held in the GMAIL account",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 1,
+  "outbound": 1,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-20T00:25:17Z",
+ "last_activity": "2024-01-20T00:25:17Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d243bc54342dec",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Referral by Joseph Candelario (UT Student interested in Banking @ Piper Sandler Houston)",
+   "messages": [
+    {
+     "message_id": "18d2441f2c611082",
+     "date": "2024-01-20T00:25:17Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "Keaton.cruzcosa@psc.com"
+     ],
+     "cc": [],
+     "subject": "Referral by Joseph Candelario (UT Student interested in Banking @ Piper Sandler Houston)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Keaton,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I spoke with Joseph Candelario today, and he suggested talking to you to learn more about the firm and recruiting process.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "CROSS-ACCOUNT REFERRAL. The Joseph Candelario call that produced this referral happened on 2024-01-19 and lives entirely in the GMAIL account. The referral it generated was acted on from utexas the next day. Neither account contains the whole chain. Appears twice in the tracker, as 'Keaton Cruzcosa' and 'Keaton Kruzcosa'.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

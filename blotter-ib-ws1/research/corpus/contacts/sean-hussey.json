@@ -1,0 +1,83 @@
+{
+ "slug": "sean-hussey",
+ "name": "Sean Hussey",
+ "firm": "FT Partners",
+ "title": null,
+ "addresses_seen": [
+  "sean.hussey@ftpartners.com",
+  "Sean.Hussey@ftpartners.com"
+ ],
+ "relationship_opened": "Thank-you note only; the call that preceded it has no calendar event and no prior email",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 2,
+  "outbound": 1,
+  "inbound": 1,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-04-19T01:13:50Z",
+ "last_activity": "2024-04-19T01:35:36Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18ef3e4e7373be13",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Enjoyed Our Conversation",
+   "messages": [
+    {
+     "message_id": "18ef3eabcc379f7a",
+     "date": "2024-04-19T01:13:50Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "sean.hussey@ftpartners.com"
+     ],
+     "cc": [],
+     "subject": "Enjoyed Our Conversation",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Sean,\n\nI hope you are doing well. I wanted to send a brief email thanking you for speaking with me over the phone yesterday. The additional insight you provided into FT was useful in making my decision. Since we spoke, I have officially signed the offer. I look forward to meeting you next summer!\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Thank-you note for a call that has NO calendar event anywhere in the window.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ef3feb6c995582",
+     "date": "2024-04-19T01:35:36Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Sean.Hussey@ftpartners.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Re: Enjoyed Our Conversation",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan - Great to hear! Congrats! Very excited that you are joining the team. Look forward to connecting when you get here. Let us know if you need anything in the meantime.\n\nSean",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

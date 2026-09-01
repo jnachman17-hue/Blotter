@@ -1,0 +1,386 @@
+{
+ "slug": "kate-borden",
+ "name": "Kate Borden",
+ "firm": "Houlihan Lokey",
+ "title": "Financial Analyst",
+ "addresses_seen": [
+  "kate.borden@hl.com",
+  "Kate.Borden@hl.com"
+ ],
+ "relationship_opened": "Cold email, Chadwick School alumni angle",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 3,
+  "messages": 16,
+  "outbound": 7,
+  "inbound": 9,
+  "calendar_events": 1
+ },
+ "first_activity": "2024-01-17T18:45:34Z",
+ "last_activity": "2024-02-08T23:08:23Z",
+ "calendar_event_ids": [
+  "49dsnoorh99106tf64bgfpmr4j"
+ ],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d18bd284cdd493",
+   "capture": "spilled",
+   "shared_thread": false,
+   "subject": "Chadwick Alumni Interested in Banking @ Houlihan",
+   "messages": [
+    {
+     "message_id": "18d18be34b9c8805",
+     "date": "2024-01-17T18:45:34Z",
+     "internal_date": "1705517134000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "kate.borden@hl.com"
+     ],
+     "cc": [],
+     "subject": "Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Kate,\n\nI hope you are doing well. I am a Chadwick Class of '22 graduate and\ncurrently attend UT Austin studying Business and Economics. I'm pursuing a\ncareer in Investment Banking, so I'd love to learn more about your\nexperience with Houlihan in LA.\n\nIf you have any free time in the next week, it would be great to set up a\nquick phone call with you. I am pretty open and can likely adjust my\nschedule to accommodate whatever works best for you. Please let me know if\nyou would be willing to do this. Attached is my resume.\n\nBest,\n\nJonathan",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d1e0b57ff6fa3f",
+     "date": "2024-01-18T19:27:49Z",
+     "internal_date": "1705606069000",
+     "direction": "inbound",
+     "sender": "Kate.Borden@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Jonathan,\n\nIt is good to hear from you. How exciting! Would a call work at 4pm PT on Monday 1/22?\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Wednesday, January 17, 2024 10:46 AM\nTo: Borden, Kate <Kate.Borden@HL.com>\nSubject: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nHi Kate,\n\nI hope you are doing well. I am a Chadwick Class of '22 graduate and currently attend UT Austin studying Business and Economics. I'm pursuing a career in Investment Banking, so I'd love to learn more about your experience with Houlihan in LA.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\n\nJonathan\n\nHOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC BUSINESS COMMUNICATION VIA HL.COM E-MAIL ADDRESSES, BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING, SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS COMMUNICATION PURPOSES.\n\nPlease consider the environment before printing.\n\nHoulihan Lokey is a trade name for Houlihan Lokey, Inc., and its subsidiaries and affiliates, which include in the United States: Houlihan Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an SEC-registered broker-dealer and member of FINRA (www.finra.org) and SIPC (www.sipc.org) (investment banking services); and Houlihan Lokey Financial Advisors, Inc. (financial advisory services). Houlihan Lokey affiliates may share information and resources with other Houlihan Lokey affiliates to bring relevant resources to bear on its various engagements and such affiliates may perform services in connection with such engagements. This e-mail message and any attachments are for the sole use of the intended recipient(s) and may contain confidential information. If you are not an intended recipient, or an intended recipient's authorized agent, you are hereby notified that any dissemination, distribution or copying of this e-mail message or any attachments is strictly prohibited. If you have received this message in error, please notify the sender by reply e-mail and delete this e-mail message and any attachments from your computer system.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d1e28e5b8611a7",
+     "date": "2024-01-18T20:00:12Z",
+     "internal_date": "1705608012000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Kate.Borden@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Perfect! Monday at 4 pm PT works for me. I'll send you a calendar invite\nand I look forward to meeting with you.\n\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Thu, Jan 18, 2024 at 1:27 PM Borden, Kate <Kate.Borden@hl.com> wrote:\n\n> Hey Jonathan,\n>\n>\n>\n> It is good to hear from you. How exciting! Would a call work at *4pm PT\n> on Monday 1/22*?\n>\n>\n>\n> Best,\n>\n> *Kate Borden *\n> Financial Analyst\n>\n> *Houlihan Lokey*\n> +1.310.938.2911 *Work *\n> kate.borden@hl.com\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Wednesday, January 17, 2024 10:46 AM\n> *To:* Borden, Kate <Kate.Borden@HL.com>\n> *Subject:* Chadwick Alumni Interested in Banking @ Houlihan\n>\n>\n>\n> *This message is from an external sender.*\n> ------------------------------\n>\n> Hi Kate,\n>\n>\n>\n> I hope you are doing well. I am a Chadwick Class of '22 graduate and\n> currently attend UT Austin studying Business and Economics. I'm pursuing a\n> career in Investment Banking, so I'd love to learn more about your\n> experience with Houlihan in LA.\n>\n>\n>\n> If you have any free time in the next week, it would be great to set up a\n> quick phone call with you. I am pretty open and can likely adjust my\n> schedule to accommodate whatever works best for you. Please let me know if\n> you would be willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n> *HOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC\n> BUSINESS COMMUNICATION VIA HL.COM <http://HL.COM> E-MAIL ADDRESSES,\n> BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING,\n> SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF\n> COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS\n> COMMUNICATION PURPOSES.*\n>\n> Please consider the environment before printing.\n>\n> Houlihan Lokey is a trade name for Houlihan Lokey, Inc., and its\n> subsidiaries and affiliates, which include in the United States: Houlihan\n> Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an\n> SEC-registered broker-dealer and member of FINRA (www.finra.org) and SIPC\n> (www.sipc.org) (investment banking services); and Houlihan Lokey\n> Financial Advisors, Inc. (financial advisory services). Houlihan Lokey\n> affiliates may share information and resources with other Houlihan Lokey\n> affiliates to bring relevant resources to bear on its various engagements\n> and such affiliates may perform services in connection with such\n> engagements. This e-mail message and any attachments are for the sole use\n> of the intended recipient(s) and may contain confidential information. If\n> you are not an intended recipient, or an intended recipient's authorized\n> agent, you are hereby notified that any dissemination, distribution or\n> copying of this e-mail message or any attachments is strictly prohibited.\n> If you have received this message in error, please notify the sender by\n> reply e-mail and delete this e-mail message and any attachments from your\n> computer system.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d1e35a258c5085",
+     "date": "2024-01-18T20:13:58Z",
+     "internal_date": "1705608838000",
+     "direction": "inbound",
+     "sender": "Kate.Borden@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Apologies, but it seems that the invite is presently set for 6pm PT. I have sent a time proposal that should hopefully make it easy to change. Thanks!\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Thursday, January 18, 2024 12:00 PM\nTo: Borden, Kate <Kate.Borden@HL.com>\nSubject: Re: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nPerfect! Monday at 4 pm PT works for me. I'll send you a calendar invite and I look forward to meeting with you.\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Thu, Jan 18, 2024 at 1:27 PM Borden, Kate <Kate.Borden@hl.com<mailto:Kate.Borden@hl.com>> wrote:\nHey Jonathan,\n\nIt is good to hear from you. How exciting! Would a call work at 4pm PT on Monday 1/22?\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Wednesday, January 17, 2024 10:46 AM\nTo: Borden, Kate <Kate.Borden@HL.com<mailto:Kate.Borden@HL.com>>\nSubject: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nHi Kate,\n\nI hope you are doing well. I am a Chadwick Class of '22 graduate and currently attend UT Austin studying Business and Economics. I'm pursuing a career in Investment Banking, so I'd love to learn more about your experience with Houlihan in LA.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\n\nJonathan\n\nHOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC BUSINESS COMMUNICATION VIA HL.COM<http://HL.COM> E-MAIL ADDRESSES, BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING, SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS COMMUNICATION PURPOSES.\n\nPlease consider the environment before printing.\n\nHoulihan Lokey is a trade name for Houlihan Lokey, Inc., and its subsidiaries and affiliates, which include in the United States: Houlihan Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an SEC-registered broker-dealer and member of FINRA (www.finra.org<http://www.finra.org>) and SIPC (www.sipc.org<http://www.sipc.org>) (investment banking services); and Houlihan Lokey Financial Advisors, Inc. (financial advisory services). Houlihan Lokey affiliates may share information and resources with other Houlihan Lokey affiliates to bring relevant resources to bear on its various engagements and such affiliates may perform services in connection with such engagements. This e-mail message and any attachments are for the sole use of the intended recipient(s) and may contain confidential information. If you are not an intended recipient, or an intended recipient's authorized agent, you are hereby notified that any dissemination, distribution or copying of this e-mail message or any attachments is strictly prohibited. If you have received this message in error, please notify the sender by reply e-mail and delete this e-mail message and any attachments from your computer system.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d1e4073c291b22",
+     "date": "2024-01-18T20:25:56Z",
+     "internal_date": "1705609556000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Kate.Borden@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Sorry about that - error on my end. I accepted your adjusted time proposal.\n\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Thu, Jan 18, 2024 at 2:14 PM Borden, Kate <Kate.Borden@hl.com> wrote:\n\n> Apologies, but it seems that the invite is presently set for 6pm PT. I\n> have sent a time proposal that should hopefully make it easy to change.\n> Thanks!\n>\n>\n>\n> Best,\n>\n> *Kate Borden *\n> Financial Analyst\n>\n> *Houlihan Lokey*\n> +1.310.938.2911 *Work *\n> kate.borden@hl.com\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Thursday, January 18, 2024 12:00 PM\n> *To:* Borden, Kate <Kate.Borden@HL.com>\n> *Subject:* Re: Chadwick Alumni Interested in Banking @ Houlihan\n>\n>\n>\n> *This message is from an external sender.*\n> ------------------------------\n>\n> Perfect! Monday at 4 pm PT works for me. I'll send you a calendar invite\n> and I look forward to meeting with you.\n>\n>\n>\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n>\n>\n> On Thu, Jan 18, 2024 at 1:27 PM Borden, Kate <Kate.Borden@hl.com> wrote:\n>\n> Hey Jonathan,\n>\n>\n>\n> It is good to hear from you. How exciting! Would a call work at *4pm PT\n> on Monday 1/22*?\n>\n>\n>\n> Best,\n>\n> *Kate Borden *\n> Financial Analyst\n>\n> *Houlihan Lokey*\n> +1.310.938.2911 *Work *\n> kate.borden@hl.com\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Wednesday, January 17, 2024 10:46 AM\n> *To:* Borden, Kate <Kate.Borden@HL.com>\n> *Subject:* Chadwick Alumni Interested in Banking @ Houlihan\n>\n>\n>\n> *This message is from an external sender.*\n> ------------------------------\n>\n> Hi Kate,\n>\n>\n>\n> I hope you are doing well. I am a Chadwick Class of '22 graduate and\n> currently attend UT Austin studying Business and Economics. I'm pursuing a\n> career in Investment Banking, so I'd love to learn more about your\n> experience with Houlihan in LA.\n>\n>\n>\n> If you have any free time in the next week, it would be great to set up a\n> quick phone call with you. I am pretty open and can likely adjust my\n> schedule to accommodate whatever works best for you. Please let me know if\n> you would be willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> *HOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC\n> BUSINESS COMMUNICATION VIA **HL.COM* <http://HL.COM>* E-MAIL ADDRESSES,\n> BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING,\n> SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF\n> COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS\n> COMMUNICATION PURPOSES.*\n>\n> Please consider the environment before printing.\n>\n> Houlihan Lokey is a trade name for Houlihan Lokey, Inc., and its\n> subsidiaries and affiliates, which include in the United States: Houlihan\n> Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an\n> SEC-registered broker-dealer and member of FINRA (www.finra.org) and SIPC\n> (www.sipc.org) (investment banking services); and Houlihan Lokey\n> Financial Advisors, Inc. (financial advisory services). Houlihan Lokey\n> affiliates may share information and resources with other Houlihan Lokey\n> affiliates to bring relevant resources to bear on its various engagements\n> and such affiliates may perform services in connection with such\n> engagements. This e-mail message and any attachments are for the sole use\n> of the intended recipient(s) and may contain confidential information. If\n> you are not an intended recipient, or an intended recipient's authorized\n> agent, you are hereby notified that any dissemination, distribution or\n> copying of this e-mail message or any attachments is strictly prohibited.\n> If you have received this message in error, please notify the sender by\n> reply e-mail and delete this e-mail message and any attachments from your\n> computer system.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d1e491acdde3be",
+     "date": "2024-01-18T20:35:17Z",
+     "internal_date": "1705610117000",
+     "direction": "inbound",
+     "sender": "Kate.Borden@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "No worries.\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Thursday, January 18, 2024 12:26 PM\nTo: Borden, Kate <Kate.Borden@HL.com>\nSubject: Re: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nSorry about that - error on my end. I accepted your adjusted time proposal.\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Thu, Jan 18, 2024 at 2:14 PM Borden, Kate <Kate.Borden@hl.com<mailto:Kate.Borden@hl.com>> wrote:\nApologies, but it seems that the invite is presently set for 6pm PT. I have sent a time proposal that should hopefully make it easy to change. Thanks!\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Thursday, January 18, 2024 12:00 PM\nTo: Borden, Kate <Kate.Borden@HL.com<mailto:Kate.Borden@HL.com>>\nSubject: Re: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nPerfect! Monday at 4 pm PT works for me. I'll send you a calendar invite and I look forward to meeting with you.\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Thu, Jan 18, 2024 at 1:27 PM Borden, Kate <Kate.Borden@hl.com<mailto:Kate.Borden@hl.com>> wrote:\nHey Jonathan,\n\nIt is good to hear from you. How exciting! Would a call work at 4pm PT on Monday 1/22?\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Wednesday, January 17, 2024 10:46 AM\nTo: Borden, Kate <Kate.Borden@HL.com<mailto:Kate.Borden@HL.com>>\nSubject: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nHi Kate,\n\nI hope you are doing well. I am a Chadwick Class of '22 graduate and currently attend UT Austin studying Business and Economics. I'm pursuing a career in Investment Banking, so I'd love to learn more about your experience with Houlihan in LA.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\n\nJonathan\n\nHOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC BUSINESS COMMUNICATION VIA HL.COM<http://HL.COM> E-MAIL ADDRESSES, BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING, SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS COMMUNICATION PURPOSES.\n\nPlease consider the environment before printing.\n\nHoulihan Lokey is a trade name for Houlihan Lokey, Inc., and its subsidiaries and affiliates, which include in the United States: Houlihan Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an SEC-registered broker-dealer and member of FINRA (www.finra.org<http://www.finra.org>) and SIPC (www.sipc.org<http://www.sipc.org>) (investment banking services); and Houlihan Lokey Financial Advisors, Inc. (financial advisory services). Houlihan Lokey affiliates may share information and resources with other Houlihan Lokey affiliates to bring relevant resources to bear on its various engagements and such affiliates may perform services in connection with such engagements. This e-mail message and any attachments are for the sole use of the intended recipient(s) and may contain confidential information. If you are not an intended recipient, or an intended recipient's authorized agent, you are hereby notified that any dissemination, distribution or copying of this e-mail message or any attachments is strictly prohibited. If you have received this message in error, please notify the sender by reply e-mail and delete this e-mail message and any attachments from your computer system.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d33b16e7a1433c",
+     "date": "2024-01-23T00:21:17Z",
+     "internal_date": "1705969277000",
+     "direction": "inbound",
+     "sender": "Kate.Borden@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Jonathan,\n\nGood talking to you. The analyst that I would recommend emailing is Danny Shin (danny.shin@hl.com<mailto:danny.shin@hl.com>). Feel free to email / text me with any other questions as well.\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Wednesday, January 17, 2024 10:46 AM\nTo: Borden, Kate <Kate.Borden@HL.com>\nSubject: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nHi Kate,\n\nI hope you are doing well. I am a Chadwick Class of '22 graduate and currently attend UT Austin studying Business and Economics. I'm pursuing a career in Investment Banking, so I'd love to learn more about your experience with Houlihan in LA.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\n\nJonathan\n\nHOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC BUSINESS COMMUNICATION VIA HL.COM E-MAIL ADDRESSES, BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING, SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS COMMUNICATION PURPOSES.\n\nPlease consider the environment before printing.\n\nHoulihan Lokey is a trade name for Houlihan Lokey, Inc., and its subsidiaries and affiliates, which include in the United States: Houlihan Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an SEC-registered broker-dealer and member of FINRA (www.finra.org) and SIPC (www.sipc.org) (investment banking services); and Houlihan Lokey Financial Advisors, Inc. (financial advisory services). Houlihan Lokey affiliates may share information and resources with other Houlihan Lokey affiliates to bring relevant resources to bear on its various engagements and such affiliates may perform services in connection with such engagements. This e-mail message and any attachments are for the sole use of the intended recipient(s) and may contain confidential information. If you are not an intended recipient, or an intended recipient's authorized agent, you are hereby notified that any dissemination, distribution or copying of this e-mail message or any attachments is strictly prohibited. If you have received this message in error, please notify the sender by reply e-mail and delete this e-mail message and any attachments from your computer system.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d33cb2b64d0171",
+     "date": "2024-01-23T00:49:28Z",
+     "internal_date": "1705970968000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Kate.Borden@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Kate – I greatly appreciate you spending some time to talk with me and\nexpressing your willingness to be a point of contact in the future. I know\nyou're very busy so I will be respectful of that. Anyways, I am super\ninterested in your group and will reach out to Danny tomorrow. Thanks again!\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 6:21 PM Borden, Kate <Kate.Borden@hl.com> wrote:\n\n> Hey Jonathan,\n>\n>\n>\n> Good talking to you. The analyst that I would recommend emailing is Danny\n> Shin (danny.shin@hl.com). Feel free to email / text me with any other\n> questions as well.\n>\n>\n>\n> Best,\n>\n> *Kate Borden *\n> Financial Analyst\n>\n> *Houlihan Lokey*\n> +1.310.938.2911 *Work *\n> kate.borden@hl.com\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Wednesday, January 17, 2024 10:46 AM\n> *To:* Borden, Kate <Kate.Borden@HL.com>\n> *Subject:* Chadwick Alumni Interested in Banking @ Houlihan\n>\n>\n>\n> *This message is from an external sender.*\n> ------------------------------\n>\n> Hi Kate,\n>\n>\n>\n> I hope you are doing well. I am a Chadwick Class of '22 graduate and\n> currently attend UT Austin studying Business and Economics. I'm pursuing a\n> career in Investment Banking, so I'd love to learn more about your\n> experience with Houlihan in LA.\n>\n>\n>\n> If you have any free time in the next week, it would be great to set up a\n> quick phone call with you. I am pretty open and can likely adjust my\n> schedule to accommodate whatever works best for you. Please let me know if\n> you would be willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n> *HOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC\n> BUSINESS COMMUNICATION VIA HL.COM <http://HL.COM> E-MAIL ADDRESSES,\n> BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING,\n> SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF\n> COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS\n> COMMUNICATION PURPOSES.*\n>\n> Please consider the environment before printing.\n>\n> Houlihan Lokey is a trade name for Houlihan Lokey, Inc., and its\n> subsidiaries and affiliates, which include in the United States: Houlihan\n> Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an\n> SEC-registered broker-dealer and member of FINRA (www.finra.org) and SIPC\n> (www.sipc.org) (investment banking services); and Houlihan Lokey\n> Financial Advisors, Inc. (financial advisory services). Houlihan Lokey\n> affiliates may share information and resources with other Houlihan Lokey\n> affiliates to bring relevant resources to bear on its various engagements\n> and such affiliates may perform services in connection with such\n> engagements. This e-mail message and any attachments are for the sole use\n> of the intended recipient(s) and may contain confidential information. If\n> you are not an intended recipient, or an intended recipient's authorized\n> agent, you are hereby notified that any dissemination, distribution or\n> copying of this e-mail message or any attachments is strictly prohibited.\n> If you have received this message in error, please notify the sender by\n> reply e-mail and delete this e-mail message and any attachments from your\n> computer system.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d37728eaf702e3",
+     "date": "2024-01-23T17:51:06Z",
+     "internal_date": "1706032266000",
+     "direction": "inbound",
+     "sender": "Kate.Borden@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "No problem! Keep me posted on how things go.\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Monday, January 22, 2024 4:49 PM\nTo: Borden, Kate <Kate.Borden@HL.com>\nSubject: Re: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nKate – I greatly appreciate you spending some time to talk with me and expressing your willingness to be a point of contact in the future. I know you're very busy so I will be respectful of that. Anyways, I am super interested in your group and will reach out to Danny tomorrow. Thanks again!\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 6:21 PM Borden, Kate <Kate.Borden@hl.com<mailto:Kate.Borden@hl.com>> wrote:\nHey Jonathan,\n\nGood talking to you. The analyst that I would recommend emailing is Danny Shin (danny.shin@hl.com<mailto:danny.shin@hl.com>). Feel free to email / text me with any other questions as well.\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Wednesday, January 17, 2024 10:46 AM\nTo: Borden, Kate <Kate.Borden@HL.com<mailto:Kate.Borden@HL.com>>\nSubject: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nHi Kate,\n\nI hope you are doing well. I am a Chadwick Class of '22 graduate and currently attend UT Austin studying Business and Economics. I'm pursuing a career in Investment Banking, so I'd love to learn more about your experience with Houlihan in LA.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\n\nJonathan\n\nHOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC BUSINESS COMMUNICATION VIA HL.COM<http://HL.COM> E-MAIL ADDRESSES, BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING, SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS COMMUNICATION PURPOSES.\n\nPlease consider the environment before printing.\n\nHoulihan Lokey is a trade name for Houlihan Lokey, Inc., and its subsidiaries and affiliates, which include in the United States: Houlihan Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an SEC-registered broker-dealer and member of FINRA (www.finra.org<http://www.finra.org>) and SIPC (www.sipc.org<http://www.sipc.org>) (investment banking services); and Houlihan Lokey Financial Advisors, Inc. (financial advisory services). Houlihan Lokey affiliates may share information and resources with other Houlihan Lokey affiliates to bring relevant resources to bear on its various engagements and such affiliates may perform services in connection with such engagements. This e-mail message and any attachments are for the sole use of the intended recipient(s) and may contain confidential information. If you are not an intended recipient, or an intended recipient's authorized agent, you are hereby notified that any dissemination, distribution or copying of this e-mail message or any attachments is strictly prohibited. If you have received this message in error, please notify the sender by reply e-mail and delete this e-mail message and any attachments from your computer system.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d86fa66d971a79",
+     "date": "2024-02-08T04:29:33Z",
+     "internal_date": "1707366573000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Kate.Borden@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Kate,\n\nI hope you are doing well. I have a 1st round with Houlihan LA - CFR on\nFriday. I'm very excited for the interview, but briefly wanted to see if\nyou could offer any advice/expectations to me beforehand. If it is easier\nto hop on a quick call than type out an email, I'm happy to do so tomorrow.\nIf not, it would be super helpful if you could write me back a brief email.\nThank you!\n\nBest,\nJonathan\n\nOn Tue, Jan 23, 2024 at 11:51 AM Borden, Kate <Kate.Borden@hl.com> wrote:\n\n> No problem! Keep me posted on how things go.\n>\n>\n>\n> Best,\n>\n> *Kate Borden *\n> Financial Analyst\n>\n> *Houlihan Lokey*\n> +1.310.938.2911 *Work *\n> kate.borden@hl.com\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Monday, January 22, 2024 4:49 PM\n> *To:* Borden, Kate <Kate.Borden@HL.com>\n> *Subject:* Re: Chadwick Alumni Interested in Banking @ Houlihan\n>\n>\n>\n> *This message is from an external sender.*\n> ------------------------------\n>\n> Kate – I greatly appreciate you spending some time to talk with me and\n> expressing your willingness to be a point of contact in the future. I know\n> you're very busy so I will be respectful of that. Anyways, I am super\n> interested in your group and will reach out to Danny tomorrow. Thanks again!\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Mon, Jan 22, 2024 at 6:21 PM Borden, Kate <Kate.Borden@hl.com> wrote:\n>\n> Hey Jonathan,\n>\n>\n>\n> Good talking to you. The analyst that I would recommend emailing is Danny\n> Shin (danny.shin@hl.com). Feel free to email / text me with any other\n> questions as well.\n>\n>\n>\n> Best,\n>\n> *Kate Borden *\n> Financial Analyst\n>\n> *Houlihan Lokey*\n> +1.310.938.2911 *Work *\n> kate.borden@hl.com\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Wednesday, January 17, 2024 10:46 AM\n> *To:* Borden, Kate <Kate.Borden@HL.com>\n> *Subject:* Chadwick Alumni Interested in Banking @ Houlihan\n>\n>\n>\n> *This message is from an external sender.*\n> ------------------------------\n>\n> Hi Kate,\n>\n>\n>\n> I hope you are doing well. I am a Chadwick Class of '22 graduate and\n> currently attend UT Austin studying Business and Economics. I'm pursuing a\n> career in Investment Banking, so I'd love to learn more about your\n> experience with Houlihan in LA.\n>\n>\n>\n> If you have any free time in the next week, it would be great to set up a\n> quick phone call with you. I am pretty open and can likely adjust my\n> schedule to accommodate whatever works best for you. Please let me know if\n> you would be willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> *HOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC\n> BUSINESS COMMUNICATION VIA HL.COM <http://HL.COM> E-MAIL ADDRESSES,\n> BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING,\n> SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF\n> COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS\n> COMMUNICATION PURPOSES.*\n>\n> Please consider the environment before printing.\n>\n> Houlihan Lokey is a trade name for Houlihan Lokey, Inc., and its\n> subsidiaries and affiliates, which include in the United States: Houlihan\n> Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an\n> SEC-registered broker-dealer and member of FINRA (www.finra.org) and SIPC\n> (www.sipc.org) (investment banking services); and Houlihan Lokey\n> Financial Advisors, Inc. (financial advisory services). Houlihan Lokey\n> affiliates may share information and resources with other Houlihan Lokey\n> affiliates to bring relevant resources to bear on its various engagements\n> and such affiliates may perform services in connection with such\n> engagements. This e-mail message and any attachments are for the sole use\n> of the intended recipient(s) and may contain confidential information. If\n> you are not an intended recipient, or an intended recipient's authorized\n> agent, you are hereby notified that any dissemination, distribution or\n> copying of this e-mail message or any attachments is strictly prohibited.\n> If you have received this message in error, please notify the sender by\n> reply e-mail and delete this e-mail message and any attachments from your\n> computer system.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d89b31b1bc9485",
+     "date": "2024-02-08T17:10:26Z",
+     "internal_date": "1707412226000",
+     "direction": "inbound",
+     "sender": "Kate.Borden@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan,\n\nLet’s talk briefly this afternoon for 5-10 minutes. Does 3:30pm work? If so, I will give you a call then.\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.424.389.3228 Direct\n+1.310.938.2911 Mobile\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Wednesday, February 7, 2024 8:30 PM\nTo: Borden, Kate <Kate.Borden@HL.com>\nSubject: Re: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nHey Kate,\n\nI hope you are doing well. I have a 1st round with Houlihan LA - CFR on Friday. I'm very excited for the interview, but briefly wanted to see if you could offer any advice/expectations to me beforehand. If it is easier to hop on a quick call than type out an email, I'm happy to do so tomorrow. If not, it would be super helpful if you could write me back a brief email. Thank you!\n\nBest,\nJonathan\n\nOn Tue, Jan 23, 2024 at 11:51 AM Borden, Kate <Kate.Borden@hl.com<mailto:Kate.Borden@hl.com>> wrote:\nNo problem! Keep me posted on how things go.\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Monday, January 22, 2024 4:49 PM\nTo: Borden, Kate <Kate.Borden@HL.com<mailto:Kate.Borden@HL.com>>\nSubject: Re: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nKate – I greatly appreciate you spending some time to talk with me and expressing your willingness to be a point of contact in the future. I know you're very busy so I will be respectful of that. Anyways, I am super interested in your group and will reach out to Danny tomorrow. Thanks again!\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 6:21 PM Borden, Kate <Kate.Borden@hl.com<mailto:Kate.Borden@hl.com>> wrote:\nHey Jonathan,\n\nGood talking to you. The analyst that I would recommend emailing is Danny Shin (danny.shin@hl.com<mailto:danny.shin@hl.com>). Feel free to email / text me with any other questions as well.\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Wednesday, January 17, 2024 10:46 AM\nTo: Borden, Kate <Kate.Borden@HL.com<mailto:Kate.Borden@HL.com>>\nSubject: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nHi Kate,\n\nI hope you are doing well. I am a Chadwick Class of '22 graduate and currently attend UT Austin studying Business and Economics. I'm pursuing a career in Investment Banking, so I'd love to learn more about your experience with Houlihan in LA.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\n\nJonathan\n\nHOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC BUSINESS COMMUNICATION VIA HL.COM<http://HL.COM> E-MAIL ADDRESSES, BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING, SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS COMMUNICATION PURPOSES.\n\nPlease consider the environment before printing.\n\nHoulihan Lokey is a trade name for Houlihan Lokey, Inc., and its subsidiaries and affiliates, which include in the United States: Houlihan Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an SEC-registered broker-dealer and member of FINRA (www.finra.org<http://www.finra.org>) and SIPC (www.sipc.org<http://www.sipc.org>) (investment banking services); and Houlihan Lokey Financial Advisors, Inc. (financial advisory services). Houlihan Lokey affiliates may share information and resources with other Houlihan Lokey affiliates to bring relevant resources to bear on its various engagements and such affiliates may perform services in connection with such engagements. This e-mail message and any attachments are for the sole use of the intended recipient(s) and may contain confidential information. If you are not an intended recipient, or an intended recipient's authorized agent, you are hereby notified that any dissemination, distribution or copying of this e-mail message or any attachments is strictly prohibited. If you have received this message in error, please notify the sender by reply e-mail and delete this e-mail message and any attachments from your computer system.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d8a19f4b164a66",
+     "date": "2024-02-08T19:02:53Z",
+     "internal_date": "1707418973000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "kate.borden@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Kate,\n\n3:30 pm works for me. I’ll talk to you then.\n\nThanks,\nJonathan\n\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Thu, Feb 8, 2024 at 11:10 AM Borden, Kate <Kate.Borden@hl.com> wrote:\n\n> Hi Jonathan,\n>\n>\n>\n> Let’s talk briefly this afternoon for 5-10 minutes. Does 3:30pm work? If\n> so, I will give you a call then.\n>\n>\n>\n> Best,\n>\n> *Kate Borden *\n> Financial Analyst\n>\n> *Houlihan Lokey*\n> +1.424.389.3228 *Direct*\n>\n> +1.310.938.2911 *Mobile*\n> kate.borden@hl.com\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Wednesday, February 7, 2024 8:30 PM\n> *To:* Borden, Kate <Kate.Borden@HL.com>\n> *Subject:* Re: Chadwick Alumni Interested in Banking @ Houlihan\n>\n>\n>\n> *This message is from an external sender.*\n> ------------------------------\n>\n> Hey Kate,\n>\n>\n>\n> I hope you are doing well. I have a 1st round with Houlihan LA - CFR on\n> Friday. I'm very excited for the interview, but briefly wanted to see if\n> you could offer any advice/expectations to me beforehand. If it is easier\n> to hop on a quick call than type out an email, I'm happy to do so tomorrow.\n> If not, it would be super helpful if you could write me back a brief email.\n> Thank you!\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Tue, Jan 23, 2024 at 11:51 AM Borden, Kate <Kate.Borden@hl.com> wrote:\n>\n> No problem! Keep me posted on how things go.\n>\n>\n>\n> Best,\n>\n> *Kate Borden *\n> Financial Analyst\n>\n> *Houlihan Lokey*\n> +1.310.938.2911 *Work *\n> kate.borden@hl.com\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Monday, January 22, 2024 4:49 PM\n> *To:* Borden, Kate <Kate.Borden@HL.com>\n> *Subject:* Re: Chadwick Alumni Interested in Banking @ Houlihan\n>\n>\n>\n> *This message is from an external sender.*\n> ------------------------------\n>\n> Kate – I greatly appreciate you spending some time to talk with me and\n> expressing your willingness to be a point of contact in the future. I know\n> you're very busy so I will be respectful of that. Anyways, I am super\n> interested in your group and will reach out to Danny tomorrow. Thanks again!\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> On Mon, Jan 22, 2024 at 6:21 PM Borden, Kate <Kate.Borden@hl.com> wrote:\n>\n> Hey Jonathan,\n>\n>\n>\n> Good talking to you. The analyst that I would recommend emailing is Danny\n> Shin (danny.shin@hl.com). Feel free to email / text me with any other\n> questions as well.\n>\n>\n>\n> Best,\n>\n> *Kate Borden *\n> Financial Analyst\n>\n> *Houlihan Lokey*\n> +1.310.938.2911 *Work *\n> kate.borden@hl.com\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Wednesday, January 17, 2024 10:46 AM\n> *To:* Borden, Kate <Kate.Borden@HL.com>\n> *Subject:* Chadwick Alumni Interested in Banking @ Houlihan\n>\n>\n>\n> *This message is from an external sender.*\n> ------------------------------\n>\n> Hi Kate,\n>\n>\n>\n> I hope you are doing well. I am a Chadwick Class of '22 graduate and\n> currently attend UT Austin studying Business and Economics. I'm pursuing a\n> career in Investment Banking, so I'd love to learn more about your\n> experience with Houlihan in LA.\n>\n>\n>\n> If you have any free time in the next week, it would be great to set up a\n> quick phone call with you. I am pretty open and can likely adjust my\n> schedule to accommodate whatever works best for you. Please let me know if\n> you would be willing to do this. Attached is my resume.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n>\n> *HOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC\n> BUSINESS COMMUNICATION VIA HL.COM <http://HL.COM> E-MAIL ADDRESSES,\n> BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING,\n> SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF\n> COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS\n> COMMUNICATION PURPOSES.*\n>\n> Please consider the environment before printing.\n>\n> Houlihan Lokey is a trade name for Houlihan Lokey, Inc., and its\n> subsidiaries and affiliates, which include in the United States: Houlihan\n> Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an\n> SEC-registered broker-dealer and member of FINRA (www.finra.org) and SIPC\n> (www.sipc.org) (investment banking services); and Houlihan Lokey\n> Financial Advisors, Inc. (financial advisory services). Houlihan Lokey\n> affiliates may share information and resources with other Houlihan Lokey\n> affiliates to bring relevant resources to bear on its various engagements\n> and such affiliates may perform services in connection with such\n> engagements. This e-mail message and any attachments are for the sole use\n> of the intended recipient(s) and may contain confidential information. If\n> you are not an intended recipient, or an intended recipient's authorized\n> agent, you are hereby notified that any dissemination, distribution or\n> copying of this e-mail message or any attachments is strictly prohibited.\n> If you have received this message in error, please notify the sender by\n> reply e-mail and delete this e-mail message and any attachments from your\n> computer system.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d8af60ea2859f0",
+     "date": "2024-02-08T23:03:17Z",
+     "internal_date": "1707433397000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "kate.borden@hl.com"
+     ],
+     "cc": [],
+     "subject": "Re: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Just realized I never mentioned my cell. Feel free to give me a call at\n(310) 292 4712.\n\nOn Thu, Feb 8, 2024 at 1:02 PM Jonathan Nachman <jnachman17@gmail.com>\nwrote:\n\n> Hey Kate,\n>\n> 3:30 pm works for me. I’ll talk to you then.\n>\n> Thanks,\n> Jonathan\n>\n> *Jonathan Nachman *\n> University of Texas, Austin\n> Economics & Business\n> M: (310)-292-4712\n>\n>\n> On Thu, Feb 8, 2024 at 11:10 AM Borden, Kate <Kate.Borden@hl.com> wrote:\n>\n>> Hi Jonathan,\n>>\n>>\n>>\n>> Let’s talk briefly this afternoon for 5-10 minutes. Does 3:30pm work? If\n>> so, I will give you a call then.\n>>\n>>\n>>\n>> Best,\n>>\n>> *Kate Borden *\n>> Financial Analyst\n>>\n>> *Houlihan Lokey*\n>> +1.424.389.3228 *Direct*\n>>\n>> +1.310.938.2911 *Mobile*\n>> kate.borden@hl.com\n>>\n>>\n>>\n>> *From:* Jonathan Nachman <jnachman17@gmail.com>\n>> *Sent:* Wednesday, February 7, 2024 8:30 PM\n>> *To:* Borden, Kate <Kate.Borden@HL.com>\n>> *Subject:* Re: Chadwick Alumni Interested in Banking @ Houlihan\n>>\n>>\n>>\n>> *This message is from an external sender.*\n>> ------------------------------\n>>\n>> Hey Kate,\n>>\n>>\n>>\n>> I hope you are doing well. I have a 1st round with Houlihan LA - CFR on\n>> Friday. I'm very excited for the interview, but briefly wanted to see if\n>> you could offer any advice/expectations to me beforehand. If it is easier\n>> to hop on a quick call than type out an email, I'm happy to do so tomorrow.\n>> If not, it would be super helpful if you could write me back a brief email.\n>> Thank you!\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>>\n>> On Tue, Jan 23, 2024 at 11:51 AM Borden, Kate <Kate.Borden@hl.com> wrote:\n>>\n>> No problem! Keep me posted on how things go.\n>>\n>>\n>>\n>> Best,\n>>\n>> *Kate Borden *\n>> Financial Analyst\n>>\n>> *Houlihan Lokey*\n>> +1.310.938.2911 *Work *\n>> kate.borden@hl.com\n>>\n>>\n>>\n>> *From:* Jonathan Nachman <jnachman17@gmail.com>\n>> *Sent:* Monday, January 22, 2024 4:49 PM\n>> *To:* Borden, Kate <Kate.Borden@HL.com>\n>> *Subject:* Re: Chadwick Alumni Interested in Banking @ Houlihan\n>>\n>>\n>>\n>> *This message is from an external sender.*\n>> ------------------------------\n>>\n>> Kate – I greatly appreciate you spending some time to talk with me and\n>> expressing your willingness to be a point of contact in the future. I know\n>> you're very busy so I will be respectful of that. Anyways, I am super\n>> interested in your group and will reach out to Danny tomorrow. Thanks again!\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>>\n>> On Mon, Jan 22, 2024 at 6:21 PM Borden, Kate <Kate.Borden@hl.com> wrote:\n>>\n>> Hey Jonathan,\n>>\n>>\n>>\n>> Good talking to you. The analyst that I would recommend emailing is Danny\n>> Shin (danny.shin@hl.com). Feel free to email / text me with any other\n>> questions as well.\n>>\n>>\n>>\n>> Best,\n>>\n>> *Kate Borden *\n>> Financial Analyst\n>>\n>> *Houlihan Lokey*\n>> +1.310.938.2911 *Work *\n>> kate.borden@hl.com\n>>\n>>\n>>\n>> *From:* Jonathan Nachman <jnachman17@gmail.com>\n>> *Sent:* Wednesday, January 17, 2024 10:46 AM\n>> *To:* Borden, Kate <Kate.Borden@HL.com>\n>> *Subject:* Chadwick Alumni Interested in Banking @ Houlihan\n>>\n>>\n>>\n>> *This message is from an external sender.*\n>> ------------------------------\n>>\n>> Hi Kate,\n>>\n>>\n>>\n>> I hope you are doing well. I am a Chadwick Class of '22 graduate and\n>> currently attend UT Austin studying Business and Economics. I'm pursuing a\n>> career in Investment Banking, so I'd love to learn more about your\n>> experience with Houlihan in LA.\n>>\n>>\n>>\n>> If you have any free time in the next week, it would be great to set up a\n>> quick phone call with you. I am pretty open and can likely adjust my\n>> schedule to accommodate whatever works best for you. Please let me know if\n>> you would be willing to do this. Attached is my resume.\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>>\n>> *HOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC\n>> BUSINESS COMMUNICATION VIA HL.COM <http://HL.COM> E-MAIL ADDRESSES,\n>> BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING,\n>> SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF\n>> COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS\n>> COMMUNICATION PURPOSES.*\n>>\n>> Please consider the environment before printing.\n>>\n>> Houlihan Lokey is a trade name for Houlihan Lokey, Inc., and its\n>> subsidiaries and affiliates, which include in the United States: Houlihan\n>> Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an\n>> SEC-registered broker-dealer and member of FINRA (www.finra.org) and\n>> SIPC (www.sipc.org) (investment banking services); and Houlihan Lokey\n>> Financial Advisors, Inc. (financial advisory services). Houlihan Lokey\n>> affiliates may share information and resources with other Houlihan Lokey\n>> affiliates to bring relevant resources to bear on its various engagements\n>> and such affiliates may perform services in connection with such\n>> engagements. This e-mail message and any attachments are for the sole use\n>> of the intended recipient(s) and may contain confidential information. If\n>> you are not an intended recipient, or an intended recipient's authorized\n>> agent, you are hereby notified that any dissemination, distribution or\n>> copying of this e-mail message or any attachments is strictly prohibited.\n>> If you have received this message in error, please notify the sender by\n>> reply e-mail and delete this e-mail message and any attachments from your\n>> computer system.\n>>\n>>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d8afb08eea7e96",
+     "date": "2024-02-08T23:08:23Z",
+     "internal_date": "1707433703000",
+     "direction": "inbound",
+     "sender": "Kate.Borden@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Chadwick Alumni Interested in Banking @ Houlihan",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Thank you! Although don’t worry, I still had access via your resume. Talk soon.\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.424.389.3228 Direct\n+1.310.938.2911 Mobile\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Thursday, February 8, 2024 3:03 PM\nTo: Borden, Kate <Kate.Borden@HL.com>\nSubject: Re: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nJust realized I never mentioned my cell. Feel free to give me a call at (310) 292 4712.\n\nOn Thu, Feb 8, 2024 at 1:02 PM Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>> wrote:\nHey Kate,\n\n3:30 pm works for me. I’ll talk to you then.\n\nThanks,\nJonathan\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Thu, Feb 8, 2024 at 11:10 AM Borden, Kate <Kate.Borden@hl.com<mailto:Kate.Borden@hl.com>> wrote:\nHi Jonathan,\n\nLet’s talk briefly this afternoon for 5-10 minutes. Does 3:30pm work? If so, I will give you a call then.\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.424.389.3228 Direct\n+1.310.938.2911 Mobile\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Wednesday, February 7, 2024 8:30 PM\nTo: Borden, Kate <Kate.Borden@HL.com<mailto:Kate.Borden@HL.com>>\nSubject: Re: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nHey Kate,\n\nI hope you are doing well. I have a 1st round with Houlihan LA - CFR on Friday. I'm very excited for the interview, but briefly wanted to see if you could offer any advice/expectations to me beforehand. If it is easier to hop on a quick call than type out an email, I'm happy to do so tomorrow. If not, it would be super helpful if you could write me back a brief email. Thank you!\n\nBest,\nJonathan\n\nOn Tue, Jan 23, 2024 at 11:51 AM Borden, Kate <Kate.Borden@hl.com<mailto:Kate.Borden@hl.com>> wrote:\nNo problem! Keep me posted on how things go.\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Monday, January 22, 2024 4:49 PM\nTo: Borden, Kate <Kate.Borden@HL.com<mailto:Kate.Borden@HL.com>>\nSubject: Re: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nKate – I greatly appreciate you spending some time to talk with me and expressing your willingness to be a point of contact in the future. I know you're very busy so I will be respectful of that. Anyways, I am super interested in your group and will reach out to Danny tomorrow. Thanks again!\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 6:21 PM Borden, Kate <Kate.Borden@hl.com<mailto:Kate.Borden@hl.com>> wrote:\nHey Jonathan,\n\nGood talking to you. The analyst that I would recommend emailing is Danny Shin (danny.shin@hl.com<mailto:danny.shin@hl.com>). Feel free to email / text me with any other questions as well.\n\nBest,\n\nKate Borden\nFinancial Analyst\n\nHoulihan Lokey\n+1.310.938.2911 Work\nkate.borden@hl.com <mailto:kate.borden@hl.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nSent: Wednesday, January 17, 2024 10:46 AM\nTo: Borden, Kate <Kate.Borden@HL.com<mailto:Kate.Borden@HL.com>>\nSubject: Chadwick Alumni Interested in Banking @ Houlihan\n\nThis message is from an external sender.\n________________________________\nHi Kate,\n\nI hope you are doing well. I am a Chadwick Class of '22 graduate and currently attend UT Austin studying Business and Economics. I'm pursuing a career in Investment Banking, so I'd love to learn more about your experience with Houlihan in LA.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\n\nJonathan\n\nHOULIHAN LOKEY EMPLOYEES ARE ONLY AUTHORIZED TO CONDUCT ELECTRONIC BUSINESS COMMUNICATION VIA HL.COM<http://HL.COM> E-MAIL ADDRESSES, BLOOMBERG MESSAGE OR MICROSOFT TEAMS. PLEASE DO NOT USE TEXT MESSAGING, SOCIAL MEDIA APPS, INSTANT MESSAGING APPS, OR ANY OTHER MEANS OF COMMUNICATION WITH HOULIHAN LOKEY EMPLOYEES FOR ELECTRONIC BUSINESS COMMUNICATION PURPOSES.\n\nPlease consider the environment before printing.\n\nHoulihan Lokey is a trade name for Houlihan Lokey, Inc., and its subsidiaries and affiliates, which include in the United States: Houlihan Lokey Capital, Inc., and Houlihan Lokey Advisors, LLC, each an SEC-registered broker-dealer and member of FINRA (www.finra.org<http://www.finra.org>) and SIPC (www.sipc.org<http://www.sipc.org>) (investment banking services); and Houlihan Lokey Financial Advisors, Inc. (financial advisory services). Houlihan Lokey affiliates may share information and resources with other Houlihan Lokey affiliates to bring relevant resources to bear on its various engagements and such affiliates may perform services in connection with such engagements. This e-mail message and any attachments are for the sole use of the intended recipient(s) and may contain confidential information. If you are not an intended recipient, or an intended recipient's authorized agent, you are hereby notified that any dissemination, distribution or copying of this e-mail message or any attachments is strictly prohibited. If you have received this message in error, please notify the sender by reply e-mail and delete this e-mail message and any attachments from your computer system.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d1e34c8a12e95e",
+   "capture": "metadata_only",
+   "shared_thread": false,
+   "subject": "New Time Proposed: Kate - Jonathan Houlihan IB Call",
+   "messages": [
+    {
+     "message_id": "18d1e34c8a12e95e",
+     "date": "2024-01-18T20:13:07Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Kate.Borden@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "New Time Proposed: Kate - Jonathan Houlihan IB Call",
+     "labels": [],
+     "attachments": [],
+     "has_attachment": null,
+     "body": null,
+     "body_source": "metadata_only",
+     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d1e35c96921376",
+   "capture": "metadata_only",
+   "shared_thread": false,
+   "subject": "Accepted: Kate - Jonathan Houlihan IB Call",
+   "messages": [
+    {
+     "message_id": "18d1e35c96921376",
+     "date": "2024-01-18T20:14:12Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Kate.Borden@hl.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Accepted: Kate - Jonathan Houlihan IB Call",
+     "labels": [],
+     "attachments": [],
+     "has_attachment": null,
+     "body": null,
+     "body_source": "metadata_only",
+     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

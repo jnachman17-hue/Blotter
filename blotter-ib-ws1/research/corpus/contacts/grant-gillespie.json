@@ -1,0 +1,172 @@
+{
+ "slug": "grant-gillespie",
+ "name": "Grant Gillespie",
+ "firm": "Morgan Stanley",
+ "title": "Analyst",
+ "addresses_seen": [
+  "Grant.Gillespie@morganstanley.com"
+ ],
+ "relationship_opened": "Inbound, unsolicited; fellow Longhorn",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 2,
+  "messages": 6,
+  "outbound": 3,
+  "inbound": 3,
+  "calendar_events": 1
+ },
+ "first_activity": "2024-01-22T20:28:01Z",
+ "last_activity": "2024-01-26T01:15:14Z",
+ "calendar_event_ids": [
+  "15gegepcub0vbvg41lfc1fb36r"
+ ],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d32dbd8a80bd39",
+   "capture": "spilled",
+   "shared_thread": false,
+   "subject": "2025 Summer Analyst Program - Morgan Stanley (HOU)",
+   "messages": [
+    {
+     "message_id": "18d32dbd8a80bd39",
+     "date": "2024-01-22T20:28:01Z",
+     "internal_date": "1705955281000",
+     "direction": "inbound",
+     "sender": "Grant.Gillespie@morganstanley.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "2025 Summer Analyst Program - Morgan Stanley (HOU)",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Jonathan,\n\nI hope all is well. I'm an analyst here at Morgan Stanley Houston and fellow Longhorn reaching out to see if you were interested in learning more about the 2025 Summer Analyst process. Let me know if you have a window to chat later this week or next.\n\nThanks, and hope to talk soon.\n\nGrant\n\nGrant Gillespie, Analyst\nMorgan Stanley | Investment Banking Division\n600 Travis Street, Suite 3700, 37th Floor | Houston, TX 77002\nPhone: +1 713 512-4501\nMobile: +1 917 923-6022\nGrant.Gillespie@morganstanley.com<mailto:Grant.Gillespie@morganstanley.com>\n\n________________________________\nIMPORTANT INFORMATION: This information has been prepared solely for information purposes and is not an offer to buy or sell or a solicitation of an offer to buy or sell any security or instrument. This information may be confidential and/or material non-public information and is being distributed solely to the intended recipient hereof. If you have received this communication in error, please destroy all electronic and paper copies and notify the sender immediately. Mistransmission is not intended to waive confidentiality or privilege. Morgan Stanley reserves the right, to the extent permitted under applicable law, to monitor electronic communications. No representation or warranty can be given with respect to the accuracy or completeness of the information, or with respect to the terms of any future offer of transactions conforming to the terms hereof. We do not undertake to update this information. Morgan Stanley and its affiliates disclaim any and all liability relating to this information, including without limitation, any express or implied representations or warranties for statements contained in, or omissions from, this information. Morgan Stanley does not give investment, tax, accounting and legal or regulatory advice, and prospective investors should consult with their professional advisors. This communication is not a product of Morgan Stanley's Research Department. It is directed only to those persons who are eligible counterparties or professional clients. This communication is not intended to be provided to and may not be used by any person or entity in any jurisdiction where the provision or use thereof would be contrary to applicable laws, rules, or regulations and is not intended to be and must not be acted on or relied upon by retail clients (as defined in the FCA Handbook). This message is subject to the Morgan Stanley general disclaimers available at the following link http://www.morganstanley.com/disclaimers If you cannot access this link, please notify us by reply message and we will send the contents to you. By messaging with Morgan Stanley you acknowledge that you have read, understand and consent (where applicable) to the foregoing and the Morgan Stanley general disclaimers. You may have certain rights regarding the information that Morgan Stanley collects about you. Please see our Privacy Pledge http://www.morganstanley.com/privacy-pledge for more information about your rights.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d3303b62becc5e",
+     "date": "2024-01-22T21:11:37Z",
+     "internal_date": "1705957897000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Grant.Gillespie@morganstanley.com"
+     ],
+     "cc": [],
+     "subject": "Re: 2025 Summer Analyst Program - Morgan Stanley (HOU)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Grant,\n\nI hope you are doing well. I would love the opportunity to speak with you\nto learn more about Morgan Stanley's 2025 Summer Analyst\nInternship program. Here are some times (CST) that work for me:\n\nTuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards\n\nWednesday (1/24): 3 pm onwards\n\nThursday (1/25): 10 am - 1pm & 5 pm onwards\n\nFriday (1/26): 2:45 pm onwards\n\nPlease let me know if any of these times are convenient for you. I look\nforward to speaking with you.\n\nBest,\nJonathan\n\n*Jonathan Nachman *\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Mon, Jan 22, 2024 at 2:28 PM <Grant.Gillespie@morganstanley.com> wrote:\n\n> Hey Jonathan,\n>\n>\n>\n> I hope all is well. I’m an analyst here at Morgan Stanley Houston and\n> fellow Longhorn reaching out to see if you were interested in learning more\n> about the 2025 Summer Analyst process. Let me know if you have a window to\n> chat later this week or next.\n>\n>\n>\n> Thanks, and hope to talk soon.\n>\n>\n>\n> Grant\n>\n>\n>\n>\n> *Grant Gillespie, Analyst *Morgan Stanley | Investment Banking Division\n> 600 Travis Street, Suite 3700, 37th Floor | Houston, TX 77002\n>\n> Phone: +1 713 512-4501\n> Mobile: +1 917 923-6022\n> Grant.Gillespie@morganstanley.com\n>\n>\n>\n> ------------------------------\n> IMPORTANT INFORMATION: This information has been prepared solely for\n> information purposes and is not an offer to buy or sell or a solicitation\n> of an offer to buy or sell any security or instrument. This information may\n> be confidential and/or material non-public information and is being\n> distributed solely to the intended recipient hereof. If you have received\n> this communication in error, please destroy all electronic and paper copies\n> and notify the sender immediately. Mistransmission is not intended to waive\n> confidentiality or privilege. Morgan Stanley reserves the right, to the\n> extent permitted under applicable law, to monitor electronic\n> communications. No representation or warranty can be given with respect to\n> the accuracy or completeness of the information, or with respect to the\n> terms of any future offer of transactions conforming to the terms hereof.\n> We do not undertake to update this information. Morgan Stanley and its\n> affiliates disclaim any and all liability relating to this information,\n> including without limitation, any express or implied representations or\n> warranties for statements contained in, or omissions from, this\n> information. Morgan Stanley does not give investment, tax, accounting and\n> legal or regulatory advice, and prospective investors should consult with\n> their professional advisors. This communication is not a product of Morgan\n> Stanley's Research Department. It is directed only to those persons who are\n> eligible counterparties or professional clients. This communication is not\n> intended to be provided to and may not be used by any person or entity in\n> any jurisdiction where the provision or use thereof would be contrary to\n> applicable laws, rules, or regulations and is not intended to be and must\n> not be acted on or relied upon by retail clients (as defined in the FCA\n> Handbook). This message is subject to the Morgan Stanley general\n> disclaimers available at the following link\n> http://www.morganstanley.com/disclaimers If you cannot access this link,\n> please notify us by reply message and we will send the contents to you. By\n> messaging with Morgan Stanley you acknowledge that you have read,\n> understand and consent (where applicable) to the foregoing and the Morgan\n> Stanley general disclaimers. You may have certain rights regarding the\n> information that Morgan Stanley collects about you. Please see our Privacy\n> Pledge http://www.morganstanley.com/privacy-pledge for more information\n> about your rights.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d346298de9f89a",
+     "date": "2024-01-23T03:34:48Z",
+     "internal_date": "1705980888000",
+     "direction": "inbound",
+     "sender": "Grant.Gillespie@morganstanley.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: 2025 Summer Analyst Program - Morgan Stanley (HOU)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Thanks, Jonathan. Thursday at 5pm should work here. I’ll give you a call then – mind sending across a calendar hold when you get a chance?\n\nLooking forward to it.\n\nGrant Gillespie, Analyst\nMorgan Stanley | Investment Banking Division\n600 Travis Street, Suite 3700, 37th Floor | Houston, TX 77002\nPhone: +1 713 512-4501\nMobile: +1 917 923-6022\nGrant.Gillespie@morganstanley.com<mailto:Grant.Gillespie@morganstanley.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Monday, January 22, 2024 3:12 PM\nTo: Gillespie, Grant R (IBD) <Grant.Gillespie@morganstanley.com>\nSubject: Re: 2025 Summer Analyst Program - Morgan Stanley (HOU)\n\nHi Grant,\n\nI hope you are doing well. I would love the opportunity to speak with you to learn more about Morgan Stanley's 2025 Summer Analyst Internship program. Here are some times (CST) that work for me:\n\nTuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards\n\nWednesday (1/24): 3 pm onwards\n\nThursday (1/25): 10 am - 1pm & 5 pm onwards\n\nFriday (1/26): 2:45 pm onwards\n\nPlease let me know if any of these times are convenient for you. I look forward to speaking with you.\n\nBest,\nJonathan\n\nJonathan Nachman\nUniversity of Texas, Austin\nEconomics & Business\nM: (310)-292-4712\n\nOn Mon, Jan 22, 2024 at 2:28 PM <Grant.Gillespie@morganstanley.com<mailto:Grant.Gillespie@morganstanley.com>> wrote:\nHey Jonathan,\n\nI hope all is well. I’m an analyst here at Morgan Stanley Houston and fellow Longhorn reaching out to see if you were interested in learning more about the 2025 Summer Analyst process. Let me know if you have a window to chat later this week or next.\n\nThanks, and hope to talk soon.\n\nGrant\n\nGrant Gillespie, Analyst\nMorgan Stanley | Investment Banking Division\n600 Travis Street, Suite 3700, 37th Floor | Houston, TX 77002\nPhone: +1 713 512-4501\nMobile: +1 917 923-6022\nGrant.Gillespie@morganstanley.com<mailto:Grant.Gillespie@morganstanley.com>\n\n________________________________\nIMPORTANT INFORMATION: This information has been prepared solely for information purposes and is not an offer to buy or sell or a solicitation of an offer to buy or sell any security or instrument. This information may be confidential and/or material non-public information and is being distributed solely to the intended recipient hereof. If you have received this communication in error, please destroy all electronic and paper copies and notify the sender immediately. Mistransmission is not intended to waive confidentiality or privilege. Morgan Stanley reserves the right, to the extent permitted under applicable law, to monitor electronic communications. No representation or warranty can be given with respect to the accuracy or completeness of the information, or with respect to the terms of any future offer of transactions conforming to the terms hereof. We do not undertake to update this information. Morgan Stanley and its affiliates disclaim any and all liability relating to this information, including without limitation, any express or implied representations or warranties for statements contained in, or omissions from, this information. Morgan Stanley does not give investment, tax, accounting and legal or regulatory advice, and prospective investors should consult with their professional advisors. This communication is not a product of Morgan Stanley's Research Department. It is directed only to those persons who are eligible counterparties or professional clients. This communication is not intended to be provided to and may not be used by any person or entity in any jurisdiction where the provision or use thereof would be contrary to applicable laws, rules, or regulations and is not intended to be and must not be acted on or relied upon by retail clients (as defined in the FCA Handbook). This message is subject to the Morgan Stanley general disclaimers available at the following link http://www.morganstanley.com/disclaimers If you cannot access this link, please notify us by reply message and we will send the contents to you. By messaging with Morgan Stanley you acknowledge that you have read, understand and consent (where applicable) to the foregoing and the Morgan Stanley general disclaimers. You may have certain rights regarding the information that Morgan Stanley collects about you. Please see our Privacy Pledge http://www.morganstanley.com/privacy-pledge for more information about your rights.\n\n________________________________\nIMPORTANT INFORMATION: This information has been prepared solely for information purposes and is not an offer to buy or sell or a solicitation of an offer to buy or sell any security or instrument. This information may be confidential and/or material non-public information and is being distributed solely to the intended recipient hereof. If you have received this communication in error, please destroy all electronic and paper copies and notify the sender immediately. Mistransmission is not intended to waive confidentiality or privilege. Morgan Stanley reserves the right, to the extent permitted under applicable law, to monitor electronic communications. No representation or warranty can be given with respect to the accuracy or completeness of the information, or with respect to the terms of any future offer of transactions conforming to the terms hereof. We do not undertake to update this information. Morgan Stanley and its affiliates disclaim any and all liability relating to this information, including without limitation, any express or implied representations or warranties for statements contained in, or omissions from, this information. Morgan Stanley does not give investment, tax, accounting and legal or regulatory advice, and prospective investors should consult with their professional advisors. This communication is not a product of Morgan Stanley’s Research Department. It is directed only to those persons who are eligible counterparties or professional clients. This communication is not intended to be provided to and may not be used by any person or entity in any jurisdiction where the provision or use thereof would be contrary to applicable laws, rules, or regulations and is not intended to be and must not be acted on or relied upon by retail clients (as defined in the FCA Handbook). This message is subject to the Morgan Stanley general disclaimers available at the following link http://www.morganstanley.com/disclaimers If you cannot access this link, please notify us by reply message and we will send the contents to you. By messaging with Morgan Stanley you acknowledge that you have read, understand and consent (where applicable) to the foregoing and the Morgan Stanley general disclaimers. You may have certain rights regarding the information that Morgan Stanley collects about you. Please see our Privacy Pledge http://www.morganstanley.com/privacy-pledge for more information about your rights.",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d3493231109791",
+     "date": "2024-01-23T04:27:54Z",
+     "internal_date": "1705984074000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Grant.Gillespie@morganstanley.com"
+     ],
+     "cc": [],
+     "subject": "Re: 2025 Summer Analyst Program - Morgan Stanley (HOU)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Perfect. I'll send over a calendar invite now, and I look forward to\nspeaking with you soon.\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 9:34 PM <Grant.Gillespie@morganstanley.com> wrote:\n\n> Thanks, Jonathan. Thursday at 5pm should work here. I’ll give you a call\n> then – mind sending across a calendar hold when you get a chance?\n>\n>\n>\n> Looking forward to it.\n>\n>\n>\n>\n> *Grant Gillespie, Analyst *Morgan Stanley | Investment Banking Division\n> 600 Travis Street, Suite 3700, 37th Floor | Houston, TX 77002\n>\n> Phone: +1 713 512-4501\n> Mobile: +1 917 923-6022\n> Grant.Gillespie@morganstanley.com\n>\n>\n>\n> *From:* Jonathan Nachman <jnachman17@gmail.com>\n> *Sent:* Monday, January 22, 2024 3:12 PM\n> *To:* Gillespie, Grant R (IBD) <Grant.Gillespie@morganstanley.com>\n> *Subject:* Re: 2025 Summer Analyst Program - Morgan Stanley (HOU)\n>\n>\n>\n> Hi Grant,\n>\n>\n>\n> I hope you are doing well. I would love the opportunity to speak with you\n> to learn more about Morgan Stanley's 2025 Summer Analyst\n> Internship program. Here are some times (CST) that work for me:\n>\n>\n>\n> Tuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards\n>\n> Wednesday (1/24): 3 pm onwards\n>\n> Thursday (1/25): 10 am - 1pm & 5 pm onwards\n>\n> Friday (1/26): 2:45 pm onwards\n>\n>\n>\n> Please let me know if any of these times are convenient for you. I look\n> forward to speaking with you.\n>\n>\n>\n> Best,\n>\n> Jonathan\n>\n>\n> *Jonathan Nachman *\n>\n> University of Texas, Austin\n>\n> Economics & Business\n>\n> M: (310)-292-4712\n>\n>\n>\n>\n>\n> On Mon, Jan 22, 2024 at 2:28 PM <Grant.Gillespie@morganstanley.com> wrote:\n>\n> Hey Jonathan,\n>\n>\n>\n> I hope all is well. I’m an analyst here at Morgan Stanley Houston and\n> fellow Longhorn reaching out to see if you were interested in learning more\n> about the 2025 Summer Analyst process. Let me know if you have a window to\n> chat later this week or next.\n>\n>\n>\n> Thanks, and hope to talk soon.\n>\n>\n>\n> Grant\n>\n>\n>\n>\n> *Grant Gillespie, Analyst *Morgan Stanley | Investment Banking Division\n> 600 Travis Street, Suite 3700, 37th Floor | Houston, TX 77002\n>\n> Phone: +1 713 512-4501\n> Mobile: +1 917 923-6022\n> Grant.Gillespie@morganstanley.com\n>\n>\n> ------------------------------\n>\n> IMPORTANT INFORMATION: This information has been prepared solely for\n> information purposes and is not an offer to buy or sell or a solicitation\n> of an offer to buy or sell any security or instrument. This information may\n> be confidential and/or material non-public information and is being\n> distributed solely to the intended recipient hereof. If you have received\n> this communication in error, please destroy all electronic and paper copies\n> and notify the sender immediately. Mistransmission is not intended to waive\n> confidentiality or privilege. Morgan Stanley reserves the right, to the\n> extent permitted under applicable law, to monitor electronic\n> communications. No representation or warranty can be given with respect to\n> the accuracy or completeness of the information, or with respect to the\n> terms of any future offer of transactions conforming to the terms hereof.\n> We do not undertake to update this information. Morgan Stanley and its\n> affiliates disclaim any and all liability relating to this information,\n> including without limitation, any express or implied representations or\n> warranties for statements contained in, or omissions from, this\n> information. Morgan Stanley does not give investment, tax, accounting and\n> legal or regulatory advice, and prospective investors should consult with\n> their professional advisors. This communication is not a product of Morgan\n> Stanley's Research Department. It is directed only to those persons who are\n> eligible counterparties or professional clients. This communication is not\n> intended to be provided to and may not be used by any person or entity in\n> any jurisdiction where the provision or use thereof would be contrary to\n> applicable laws, rules, or regulations and is not intended to be and must\n> not be acted on or relied upon by retail clients (as defined in the FCA\n> Handbook). This message is subject to the Morgan Stanley general\n> disclaimers available at the following link\n> http://www.morganstanley.com/disclaimers If you cannot access this link,\n> please notify us by reply message and we will send the contents to you. By\n> messaging with Morgan Stanley you acknowledge that you have read,\n> understand and consent (where applicable) to the foregoing and the Morgan\n> Stanley general disclaimers. You may have certain rights regarding the\n> information that Morgan Stanley collects about you. Please see our Privacy\n> Pledge http://www.morganstanley.com/privacy-pledge for more information\n> about your rights.\n>\n> ------------------------------\n> IMPORTANT INFORMATION: This information has been prepared solely for\n> information purposes and is not an offer to buy or sell or a solicitation\n> of an offer to buy or sell any security or instrument. This information may\n> be confidential and/or material non-public information and is being\n> distributed solely to the intended recipient hereof. If you have received\n> this communication in error, please destroy all electronic and paper copies\n> and notify the sender immediately. Mistransmission is not intended to waive\n> confidentiality or privilege. Morgan Stanley reserves the right, to the\n> extent permitted under applicable law, to monitor electronic\n> communications. No representation or warranty can be given with respect to\n> the accuracy or completeness of the information, or with respect to the\n> terms of any future offer of transactions conforming to the terms hereof.\n> We do not undertake to update this information. Morgan Stanley and its\n> affiliates disclaim any and all liability relating to this information,\n> including without limitation, any express or implied representations or\n> warranties for statements contained in, or omissions from, this\n> information. Morgan Stanley does not give investment, tax, accounting and\n> legal or regulatory advice, and prospective investors should consult with\n> their professional advisors. This communication is not a product of Morgan\n> Stanley’s Research Department. It is directed only to those persons who are\n> eligible counterparties or professional clients. This communication is not\n> intended to be provided to and may not be used by any person or entity in\n> any jurisdiction where the provision or use thereof would be contrary to\n> applicable laws, rules, or regulations and is not intended to be and must\n> not be acted on or relied upon by retail clients (as defined in the FCA\n> Handbook). This message is subject to the Morgan Stanley general\n> disclaimers available at the following link\n> http://www.morganstanley.com/disclaimers If you cannot access this link,\n> please notify us by reply message and we will send the contents to you. By\n> messaging with Morgan Stanley you acknowledge that you have read,\n> understand and consent (where applicable) to the foregoing and the Morgan\n> Stanley general disclaimers. You may have certain rights regarding the\n> information that Morgan Stanley collects about you. Please see our Privacy\n> Pledge http://www.morganstanley.com/privacy-pledge for more information\n> about your rights.\n>\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d4355d39bf7283",
+     "date": "2024-01-26T01:15:14Z",
+     "internal_date": "1706231714000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Grant.Gillespie@morganstanley.com"
+     ],
+     "cc": [],
+     "subject": "Re: 2025 Summer Analyst Program - Morgan Stanley (HOU)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Grant – I greatly appreciate you spending the time to hop on the phone with\nme this afternoon. Your insight not only into Morgan Stanley, but also\ngeneral advice on the recruitment process is super valuable to me. To that\nend, Morgan Stanley sounds like a very exciting firm, and I certainly would\nlike to continue pursuing this avenue. If you have anybody else in your\noffice that would make sense to talk to, I would greatly appreciate it if\nyou could pass along their contact info as I aim to continue networking and\nlearn more. Thanks again!\n\nBest,\nJonathan\n\nOn Mon, Jan 22, 2024 at 10:27 PM Jonathan Nachman <jnachman17@gmail.com>\nwrote:\n\n> Perfect. I'll send over a calendar invite now, and I look forward to\n> speaking with you soon.\n>\n> Best,\n> Jonathan\n>\n> On Mon, Jan 22, 2024 at 9:34 PM <Grant.Gillespie@morganstanley.com> wrote:\n>\n>> Thanks, Jonathan. Thursday at 5pm should work here. I’ll give you a call\n>> then – mind sending across a calendar hold when you get a chance?\n>>\n>>\n>>\n>> Looking forward to it.\n>>\n>>\n>>\n>>\n>> *Grant Gillespie, Analyst *Morgan Stanley | Investment Banking\n>> Division\n>> 600 Travis Street, Suite 3700, 37th Floor | Houston, TX 77002\n>>\n>> Phone: +1 713 512-4501\n>> Mobile: +1 917 923-6022\n>> Grant.Gillespie@morganstanley.com\n>>\n>>\n>>\n>> *From:* Jonathan Nachman <jnachman17@gmail.com>\n>> *Sent:* Monday, January 22, 2024 3:12 PM\n>> *To:* Gillespie, Grant R (IBD) <Grant.Gillespie@morganstanley.com>\n>> *Subject:* Re: 2025 Summer Analyst Program - Morgan Stanley (HOU)\n>>\n>>\n>>\n>> Hi Grant,\n>>\n>>\n>>\n>> I hope you are doing well. I would love the opportunity to speak with you\n>> to learn more about Morgan Stanley's 2025 Summer Analyst\n>> Internship program. Here are some times (CST) that work for me:\n>>\n>>\n>>\n>> Tuesday (1/23): 10 am - 1 pm, 5 pm - 6pm & 6:30 pm onwards\n>>\n>> Wednesday (1/24): 3 pm onwards\n>>\n>> Thursday (1/25): 10 am - 1pm & 5 pm onwards\n>>\n>> Friday (1/26): 2:45 pm onwards\n>>\n>>\n>>\n>> Please let me know if any of these times are convenient for you. I look\n>> forward to speaking with you.\n>>\n>>\n>>\n>> Best,\n>>\n>> Jonathan\n>>\n>>\n>> *Jonathan Nachman *\n>>\n>> University of Texas, Austin\n>>\n>> Economics & Business\n>>\n>> M: (310)-292-4712\n>>\n>>\n>>\n>>\n>>\n>> On Mon, Jan 22, 2024 at 2:28 PM <Grant.Gillespie@morganstanley.com>\n>> wrote:\n>>\n>> Hey Jonathan,\n>>\n>>\n>>\n>> I hope all is well. I’m an analyst here at Morgan Stanley Houston and\n>> fellow Longhorn reaching out to see if you were interested in learning more\n>> about the 2025 Summer Analyst process. Let me know if you have a window to\n>> chat later this week or next.\n>>\n>>\n>>\n>> Thanks, and hope to talk soon.\n>>\n>>\n>>\n>> Grant\n>>\n>>\n>>\n>>\n>> *Grant Gillespie, Analyst *Morgan Stanley | Investment Banking\n>> Division\n>> 600 Travis Street, Suite 3700, 37th Floor | Houston, TX 77002\n>>\n>> Phone: +1 713 512-4501\n>> Mobile: +1 917 923-6022\n>> Grant.Gillespie@morganstanley.com\n>>\n>>\n>> ------------------------------\n>>\n>> IMPORTANT INFORMATION: This information has been prepared solely for\n>> information purposes and is not an offer to buy or sell or a solicitation\n>> of an offer to buy or sell any security or instrument. This information may\n>> be confidential and/or material non-public information and is being\n>> distributed solely to the intended recipient hereof. If you have received\n>> this communication in error, please destroy all electronic and paper copies\n>> and notify the sender immediately. Mistransmission is not intended to waive\n>> confidentiality or privilege. Morgan Stanley reserves the right, to the\n>> extent permitted under applicable law, to monitor electronic\n>> communications. No representation or warranty can be given with respect to\n>> the accuracy or completeness of the information, or with respect to the\n>> terms of any future offer of transactions conforming to the terms hereof.\n>> We do not undertake to update this information. Morgan Stanley and its\n>> affiliates disclaim any and all liability relating to this information,\n>> including without limitation, any express or implied representations or\n>> warranties for statements contained in, or omissions from, this\n>> information. Morgan Stanley does not give investment, tax, accounting and\n>> legal or regulatory advice, and prospective investors should consult with\n>> their professional advisors. This communication is not a product of Morgan\n>> Stanley's Research Department. It is directed only to those persons who are\n>> eligible counterparties or professional clients. This communication is not\n>> intended to be provided to and may not be used by any person or entity in\n>> any jurisdiction where the provision or use thereof would be contrary to\n>> applicable laws, rules, or regulations and is not intended to be and must\n>> not be acted on or relied upon by retail clients (as defined in the FCA\n>> Handbook). This message is subject to the Morgan Stanley general\n>> disclaimers available at the following link\n>> http://www.morganstanley.com/disclaimers If you cannot access this link,\n>> please notify us by reply message and we will send the contents to you. By\n>> messaging with Morgan Stanley you acknowledge that you have read,\n>> understand and consent (where applicable) to the foregoing and the Morgan\n>> Stanley general disclaimers. You may have certain rights regarding the\n>> information that Morgan Stanley collects about you. Please see our Privacy\n>> Pledge http://www.morganstanley.com/privacy-pledge for more information\n>> about your rights.\n>>\n>> ------------------------------\n>> IMPORTANT INFORMATION: This information has been prepared solely for\n>> information purposes and is not an offer to buy or sell or a solicitation\n>> of an offer to buy or sell any security or instrument. This information may\n>> be confidential and/or material non-public information and is being\n>> distributed solely to the intended recipient hereof. If you have received\n>> this communication in error, please destroy all electronic and paper copies\n>> and notify the sender immediately. Mistransmission is not intended to waive\n>> confidentiality or privilege. Morgan Stanley reserves the right, to the\n>> extent permitted under applicable law, to monitor electronic\n>> communications. No representation or warranty can be given with respect to\n>> the accuracy or completeness of the information, or with respect to the\n>> terms of any future offer of transactions conforming to the terms hereof.\n>> We do not undertake to update this information. Morgan Stanley and its\n>> affiliates disclaim any and all liability relating to this information,\n>> including without limitation, any express or implied representations or\n>> warranties for statements contained in, or omissions from, this\n>> information. Morgan Stanley does not give investment, tax, accounting and\n>> legal or regulatory advice, and prospective investors should consult with\n>> their professional advisors. This communication is not a product of Morgan\n>> Stanley’s Research Department. It is directed only to those persons who are\n>> eligible counterparties or professional clients. This communication is not\n>> intended to be provided to and may not be used by any person or entity in\n>> any jurisdiction where the provision or use thereof would be contrary to\n>> applicable laws, rules, or regulations and is not intended to be and must\n>> not be acted on or relied upon by retail clients (as defined in the FCA\n>> Handbook). This message is subject to the Morgan Stanley general\n>> disclaimers available at the following link\n>> http://www.morganstanley.com/disclaimers If you cannot access this link,\n>> please notify us by reply message and we will send the contents to you. By\n>> messaging with Morgan Stanley you acknowledge that you have read,\n>> understand and consent (where applicable) to the foregoing and the Morgan\n>> Stanley general disclaimers. You may have certain rights regarding the\n>> information that Morgan Stanley collects about you. Please see our Privacy\n>> Pledge http://www.morganstanley.com/privacy-pledge for more information\n>> about your rights.\n>>\n>>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d3625b3395166e",
+   "capture": "metadata_only",
+   "shared_thread": false,
+   "subject": "Accepted: Grant - Jonathan Morgan Stanley IB Call",
+   "messages": [
+    {
+     "message_id": "18d3625b3395166e",
+     "date": "2024-01-23T11:47:32Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Grant.Gillespie@morganstanley.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Accepted: Grant - Jonathan Morgan Stanley IB Call",
+     "labels": [],
+     "attachments": [],
+     "has_attachment": null,
+     "body": null,
+     "body_source": "metadata_only",
+     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "slug": "maura-vestal",
+ "name": "Maura Vestal",
+ "firm": "Houlihan Lokey",
+ "title": "Senior Campus Recruiter",
+ "addresses_seen": [
+  "Maura.Vestal@hl.com"
+ ],
+ "relationship_opened": "Inbound; routed Jon to the FR campus recruiting shared mailbox",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 1,
+  "outbound": 0,
+  "inbound": 1,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-29T20:16:09Z",
+ "last_activity": "2024-01-29T20:16:09Z",
+ "calendar_event_ids": [],
+ "missing_outbound": true,
+ "missing_outbound_note": "No outbound to this contact exists in jnachman17@gmail.com. Both mailboxes have now been read.",
+ "threads": [
+  {
+   "thread_id": "18d56dd8d8c5e518",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Houlihan Lokey | 2025 Summer Analyst Recruiting Introductory Call",
+   "messages": [
+    {
+     "message_id": "18d56dd8d8c5e518",
+     "date": "2024-01-29T20:16:09Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Maura.Vestal@hl.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Houlihan Lokey | 2025 Summer Analyst Recruiting Introductory Call",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "image001.png",
+       "mimeType": "image/png"
+      },
+      {
+       "filename": "image002.gif",
+       "mimeType": "image/gif"
+      },
+      {
+       "filename": "image003.gif",
+       "mimeType": "image/gif"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hi Jonathan,\n\nHope you are well! We understand that you are interested in our 2025 New York Financial Restructuring Summer Analyst opportunities at Houlihan Lokey and would like to set up a 30-minute introductory call with one of our bankers over the next few weeks. If you are interested, could you please email FRcampusrecruiting@hl.com with your availability for the next two weeks? We will respond back to you as soon as we can with a confirmation of your scheduled date/time.\n\nIn the meantime, if you have any questions, please do not hesitate to reach out.\n\nBest,\nMaura Vestal, Senior Campus Recruiter",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Inbound from a fourth Houlihan party, instructing Jon to write to a fifth (a shared mailbox). Houlihan Lokey is represented in this corpus by SEVEN distinct addresses across both mailboxes.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

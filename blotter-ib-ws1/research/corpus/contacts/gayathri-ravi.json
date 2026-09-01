@@ -1,0 +1,82 @@
+{
+ "slug": "gayathri-ravi",
+ "name": "Gayathri Ravi",
+ "firm": "Goldman Sachs",
+ "title": "Recruiting",
+ "addresses_seen": [
+  "Gayathri.Ravi@gs.com"
+ ],
+ "relationship_opened": "Jon reported an impersonation scam to Goldman recruiting",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 2,
+  "outbound": 1,
+  "inbound": 1,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-02-10T21:38:26Z",
+ "last_activity": "2024-02-12T10:30:47Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d94eacfae08858",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Potential Goldman IB NY RX Group Recruiting Scam",
+   "messages": [
+    {
+     "message_id": "18d94f516bd01d39",
+     "date": "2024-02-10T21:38:26Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "gs-hcm-recruiting-coo@ny.email.gs.com"
+     ],
+     "cc": [],
+     "subject": "Potential Goldman IB NY RX Group Recruiting Scam",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Goldman Representatives,\n\nI hope you are doing well. I am emailing you to inform you of a potential scam I have been subject to regarding a Goldman employee posing as a member of the New York Restructuring Group offering 1st round virtual interviews. Last night, I received an ambiguous text from a NY number, claiming to be someone by the name of Jacob Goldwich. This individual reached out via iMessage and claimed to be with Goldman, asking me to call him when I have a moment. I immediately looked up his name on LinkedIn and there was no profile matching his name, which I immediately deemed suspicious. Furthermore, it is very atypical for bankers to reach out over text, especially given your office hasn't opened applications, and I have not had any coffee chats with Goldman. I, however, called this individual and he claimed another NY bank I had been recruiting with shared my information and put in a recommendation behind my name. He said due to privacy contracts, he could not disclose which bank shared my information. Nonetheless, he said his office would like to offer me a virtual 1st round this upcoming Monday. He claimed HR would email me this morning to confirm a time for this interview, to which no email from HR was received. I am fairly confident this was a recruiting scam, yet I do not understand how this individual benefits from the scam as he did not ask me to hand over any personal information. However, he did know a fair bit about me, addressing me by my nickname which I have not included on any recruiting applications, as well as some of my basic background information. I found your webpage online titled \"Recruiting Scams Alert\" and it described this situation. Therefore, I am emailing this address to simply let you know of this occurrence. Hopefully, this email provided some valuable information to your office. Please let me know if you have any questions.\n\nAll the best,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "A phone number appearing in the source has been omitted here. Recruiting activity that began entirely off-channel, by SMS.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d9cdf2bfaa653d",
+     "date": "2024-02-12T10:30:47Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Gayathri.Ravi@gs.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: Potential Goldman IB NY RX Group Recruiting Scam",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan,\n\nThanks for reaching out to us. Confirming that the below contact is not legit and does not represent Goldman Sachs. If you’re interested in pursuing a career at Goldman Sachs, please visit our careers site.\n\nRegards,\nGayathri Ravi, Goldman Sachs Recruiting",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

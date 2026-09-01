@@ -1,0 +1,63 @@
+{
+ "slug": "barclays-process",
+ "name": "Barclays - application status",
+ "firm": null,
+ "title": null,
+ "addresses_seen": [],
+ "relationship_opened": "Firm-level recruiting process, not a single person",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "record_type": "firm_process",
+ "counts": {
+  "threads": 2,
+  "messages": 1,
+  "outbound": 1,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-04-08T19:53:56Z",
+ "last_activity": "2024-04-08T19:53:56Z",
+ "threads": [
+  {
+   "thread_id": "18ec4b3231fbada0",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  },
+  {
+   "thread_id": "18ebf3d89c07dea0",
+   "capture": "supplement",
+   "subject": "Follow-Up on Banking Analyst Internship Programs (2025) Application",
+   "messages": [
+    {
+     "message_id": "18ebf4644a835c72",
+     "date": "2024-04-08T19:53:56Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "yourresourcingsupport@barclays.com"
+     ],
+     "cc": [],
+     "subject": "Follow-Up on Banking Analyst Internship Programs (2025) Application",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "_Jonathan Nachman Internship Resume (2) (2).pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Barclays Recruitment Team,\n\nI am emailing to highlight my continued interest in Barclays recruiting. I submitted my applications for numerous Banking Analyst Internship Programs (2025) and subsequently completed the online assessments, but have not heard back with any next steps. I am still incredibly interested in continuing to pursue recruitment with Barclays if at all possible. Additionally, an updated copy of my resume is attached to this email.\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Never answered.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

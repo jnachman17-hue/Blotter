@@ -3739,3 +3739,333 @@ indexing applies to the privacy policy directly: a reader who wants to check the
 data story days after seeing a post should be able to find it. `13` recommends
 the same. **`/contact` stays `noindex`** — an indexed contact form attracts
 scrapers and has no recall value.
+
+## Session 11 — September 1, 2026 — the build architecture is ratified
+
+The first session since August 13, and the first about the product rather than
+the page. Jon opened by asking what it would actually take to build Blotter for
+real: effort, timeline, steps, and gates.
+
+**Nothing about the page, the funnel, the event set or the read rules changes
+in this entry.** Round one's instrument is untouched.
+
+### What was ruled
+
+**A three-part build architecture, ratified by Jon on September 1, 2026.**
+
+1. **The student's own Google account does the reading.** Blotter ships as a
+   Google Sheets script that runs inside the student's account, under their own
+   authorization, against their own Gmail and Calendar. Blotter's servers never
+   hold a Google token and never see a message body.
+2. **The rules live on Blotter's server, not in the sheet.** The script is a
+   courier: wake on a timer, read headers and calendar events, send them to
+   Blotter, write back whatever comes home. Every judgment — what counts as
+   `Replied`, when a follow-up is overdue, what the next move is, how the
+   Outstanding tab groups — is server-side.
+3. **Distribution is a template each student copies**, not one published add-on
+   that many students authorize.
+
+**The vocabulary is Jon's and later sessions should keep it.** The thing in the
+student's sheet is the **courier**; the thing on Blotter's server is the
+**rulebook**. The distinction survived four rounds of explanation and it is
+the one he ratified, so do not rename it.
+
+### The reasoning
+
+**Custody is the whole argument.** The earlier framing in `01` and `02` — that
+a backend build means Nylas or Unipile — treats the Google connection as the
+hard part. It is not. The hard part is that a hosted backend means Blotter
+*holds students' recruiting email data on its own infrastructure*, and
+everything expensive follows from that one fact: token storage and refresh,
+multi-tenant isolation, a deletion pipeline, background job infrastructure,
+monitoring, and a quality floor that forbids shipping anything scrappy. That
+delta is roughly eight to eleven of the ten-to-fourteen weeks a hosted build
+costs. **The state engine is identical on both paths.**
+
+Running inside the student's account removes all of it. It also makes the
+page's existing privacy claims true by construction rather than by promise:
+`never reads your personal email` and `does not retain full email bodies` are
+architectural facts when the mail never leaves Google.
+
+**Splitting courier from rulebook is what makes the ruling reversible.** Jon's
+objection was the right one — *if it runs in their account, can I still fix
+bugs, see failures, and cut off access?* The answer is yes, because what the
+student owns is about a page of instructions that almost never changes, and
+what Blotter owns is every rule that will ever need fixing. Change a
+follow-up window on the server and every student has it on their next run.
+Stop answering and their sheet stops updating.
+
+The same split is what turns the eventual move to a hosted build from a rewrite
+into a swap. **The hosted architecture is already "the server does the
+thinking."** Building that half now means the later migration replaces only
+where the facts arrive from — an ingestion adapter, roughly two to four weeks —
+rather than rebuilding the product. Written the other way, with the rules
+tangled into the Sheets-only commands for reading mail, the migration is
+mostly a rewrite. **That cost is decided in week one and cannot be recovered
+later.**
+
+### What this ruling does *not* settle
+
+Recorded because the risk here is a later session reading a ratified
+architecture as a decision to build.
+
+- **It is not a decision to build.** The demand evidence has not moved: 63
+  visitors, 9 leads, 1 waitlist join, **zero checkout starts ever**, and eight
+  of nine leads stopped before the price screen. This entry settles *how*, not
+  *whether* or *when*.
+- **Free versus paid is not ruled.** Jon raised free distribution to as many IB
+  students as possible and did not decide it. It is a strategy change, not a
+  distribution one: WS3's entire instrument measures willingness to pay, and
+  going free withdraws the question round one exists to answer. `06` carries it.
+- **The 100-user question is untested.** See `06`.
+
+### Amendments this forces
+
+- **`01-project-and-product.md`, "Gmail capture, technically"** and
+  **`02-strategy-and-test.md`, "Later product work"** both state that Gmail
+  access goes through an intermediary such as Nylas or Unipile if validation
+  justifies a build. **A third option now precedes it** and neither file
+  contemplated it. The intermediary assumption is not withdrawn — it remains
+  the destination — but it is no longer the first step.
+- **The provider sentence is now in active conflict with the plan.** The live
+  page reads `Blotter connects to Google through an established connection
+  provider whose Google application has passed Google's CASA security
+  assessment.` Under the ratified architecture there is no provider and no
+  CASA. It was already carried as the page's one unverified claim, gated on
+  provider selection; **it is now not merely unverified but contradicted by the
+  build plan.** Surfaced per `CLAUDE.md`: the spec governs and the sentence
+  stands until Jon rules, but it cannot survive a Path C launch. `06` carries
+  the gate.
+
+### Rejected, and why
+
+- **Going straight to a hosted backend on Nylas or Unipile.** Not rejected as
+  wrong — it is the destination — but rejected as the *first* build. Three to
+  four months, per-account provider fees against a `$9.99` price that have
+  never been quoted, and data custody, all before a single student has used
+  anything.
+- **Putting the rules inside the sheet.** Simpler to build and it forfeits bug
+  fixes, observability, billing enforcement, and the cheap migration. Rejected
+  on all four.
+- **A published Google Workspace add-on.** One application many students
+  authorize is exactly the shape Google caps and reviews.
+- **A separate Phase 0 spike against Jon's own inbox.** Proposed and withdrawn
+  in the same conversation. Jon: he recruited over two years ago and has no
+  live mail flowing, so a spike would not mimic real recruiting. **He is right
+  about the live half and it changed the plan** — the pilot *is* the spike, run
+  against students recruiting now. His archive keeps two narrower uses that do
+  not decay: it answers the calendar-coverage question retrospectively, and 742
+  emails with known outcomes make a labelled regression corpus.
+
+### The estimate this was decided against
+
+Focused weeks, solo with AI assistance, at roughly 25 to 30 hours.
+
+| | Build work | Calendar to students using it |
+|---|---|---|
+| Hosted backend, own Google application | 12 to 18 weeks | 5 to 7 months |
+| Hosted backend, provider's application | 10 to 14 weeks | 3 to 4 months |
+| **Ratified architecture** | **5 to 7 weeks** | **6 to 9 weeks** |
+
+**Fall 2026 began ten days ago** and the price screen tells nine people that is
+when Blotter opens. Only the ratified path lands inside it.
+
+⚠ **The Google verification rules, scope classifications and CASA tiers behind
+these numbers were not verified against Google's current policy this session.**
+They are the highest-consequence facts in the plan and the ones least safe to
+take from an assistant's recall. Check the current Google API Services User Data
+Policy before planning a single week around them.
+
+### Two rulings the same day, and one correction to the estimate
+
+**1. Claim-versus-reality discrepancies are not a gate.** Jon: *"Don't worry
+about discrepancies between claims on the live landing page and actual
+infrastructure. We can change claims to fit reality. There is no binding
+commitment and no one has signed up."*
+
+This closes the provider sentence opened hours earlier and **generalises past
+it.** Every claim gate carried in `06` rests on the same footing: the page
+markets a product that does not exist, nobody has paid, and copy is the cheapest
+thing in the project to change. The gates were written when a provider was
+thought imminent and the page was about to meet traffic; neither turned out to
+be true. **They revert to live gates the moment a real student connects a real
+inbox**, which is a different and much later moment than public traffic.
+
+Do not read this as licence to write anything. It says the copy follows the
+build rather than constraining it — not that accuracy stops mattering once
+someone is actually using the thing.
+
+**2. Calendar coverage is total.** Jon, from his own recruiting season: *"All
+coffee chats lived on calendar. Literally all of them."*
+
+This answers the largest product-truth question in the build on the day it was
+opened, and it answers it in the product's favour. `Call scheduled`,
+`Call completed` and the `Send thank-you` that follows a completed call all have
+a real trigger. Section 3's calendar beat and Section 4's thank-you group are
+describing something that will actually fire.
+
+**Why this generalises past one person, which matters because it is n=1.** The
+student does not create the event — the banker does, and the invite arrives in
+the student's calendar whether or not the student is organised. **It is the
+exact inverse of the tracker's own failure mode**, which decays precisely
+because upkeep depends on the student. The signal Blotter needs is the one
+signal in this process that arrives without the student doing anything.
+
+Residual to watch in the pilot, and it is small: ad-hoc calls agreed in email
+prose and never invited.
+
+**3. Correction: the 100-user cap test was over-ranked.** It was flagged three
+times in one conversation as the thing to do before anything else. That was
+wrong on priority, and the reasoning was not checked before it was repeated.
+
+**The cap binds at 100 students. Blotter has 9 leads.** It gates nothing for
+months, and gates nothing at all unless free-to-everyone is ruled. What is
+genuinely worth seeing from that test is not the cap but **the unverified-app
+warning screen** — day-one friction on the *first* pilot student, not a problem
+at student 101 — and that is met by installing the pilot for a real student
+rather than by a standalone exercise. **Folded into the first pilot install.**
+
+### Jon corrects the tracker's evidentiary value, and it contradicts `01`
+
+Recorded September 1, 2026, while writing the Learn-phase brief.
+
+**`01-project-and-product.md` says** the tracker's value is *"the decay curve:
+state columns maintained early, then abandoned as the season got busy."*
+
+**Jon now says otherwise:** *"The states on the tracker were from a template. I
+never really followed them whatsoever and color coding states became stale and I
+didn't use it. Really just noise."*
+
+**That is not decay. It is a state layer that was dead on arrival** — inherited
+with a template, never once trusted. And it is a *better* fact for the product
+than the one on file: gradual decay says manual upkeep fails under load, while
+never-started says manual state tracking is so unnatural that a motivated
+student who built a nineteen-column tracker never even began.
+
+**Not amended into `01` yet, deliberately.** Both versions are Jon's own recall
+of a season two and a half years past, and the file itself can settle it — when
+each state cell was actually filled is a fact, and the Learn phase has been told
+to resolve it against the evidence rather than pick a side. `01` gets amended
+once there is data, not once there is a second recollection.
+
+**Two consequences already applied to the brief:**
+
+- **The tracker is no longer the answer key**, and its eleven-state legend is
+  now explicitly barred from Pass One's category derivation. Feeding a template's
+  vocabulary into a bottom-up derivation would contaminate exactly the thing the
+  two-pass method exists to protect. It keeps two real uses: the contact list,
+  and the column structure a real student actually built.
+- **The mail is now the only source of truth about what happened**, which raises
+  what the Learn phase is carrying.
+
+### Jon recruited from two addresses, and did not know it
+
+`jnachman17@gmail.com` **and** `jnachman@utexas.edu`. Found in the tracker's
+`Email Sent From` column while reading the file's structure to write the brief.
+Jon: *"Oh shoot, a ton of emails were sent from jnachman@utexas.edu. Didn't
+realize that."*
+
+**This is the largest product finding so far and it came from a spreadsheet
+header.** A product watching one address gets every downstream state wrong on
+the other's threads: it sees a banker's reply with no outbound before it, or
+scores a thread as silent when an email was in fact sent. **Onboarding must ask
+every student for every address they send from**, and no amount of engine
+accuracy compensates for missing one.
+
+Only one Gmail account connects to the assistant at a time, so **Pass One is now
+two stages** — gmail, pause for Jon to switch the connector, then utexas — with
+merge and deduplication rules, a `source_mailbox` field on every record, and a
+Stage A interim report written to disk so Stage B can resume in a cold chat.
+
+## Session 12 — September 1, 2026 — the Learn phase, and the engine rules
+
+The Learn phase ran and the engine rules were written from its findings and
+ratified the same day. `workstreams/ws9-build/` holds the brief, the Stage A
+interim report, the findings, and `04-ENGINE-RULES.md`, which is the engine.
+
+### The Learn phase delivered, and was checked rather than trusted
+
+**67 contacts, 325 messages, 126 threads, 35 calendar events**, both mailboxes,
+January to April 2024. Verified by the conductor chat against the corpus:
+message count exact, Pass One free of both the tracker's vocabulary and the
+website's, no existing document edited, nothing in `web/` touched.
+
+**K1 Investment Management was removed on Jon's ruling** — it is the K-1 the
+brief excluded. 8 messages, one contact record, dropped from the index and the
+build script.
+
+### What the data changed
+
+**Sender-matching is dead.** The rule that Blotter reads only mail *from* people
+in the tracker missed **29% of real inbound** — assistants answering for their
+banker, colleagues cc'd in, shared recruiting mailboxes, capitalisation
+differences — and made bounces **structurally invisible**, because
+`mailer-daemon` is in nobody's tracker. Blotter would have told Jon to chase a
+dead address three times. **The engine reads whole conversations instead**,
+which fixes both at once without touching unrelated mail.
+
+**No day thresholds anywhere.** Jon's ruling, and the data is unambiguous: real
+replies arrived at 6.8, 11, 13.2 and **21.6** days, and the 21.6-day one opened
+four interview rounds. The live site's `No reply for 5 days` would have chased
+her sixteen days early. **Blotter shows what is true and how long it has been
+true, sorted longest first, and the student decides.** `Next move` and
+`Bump thread` are cut.
+
+**`Call done` absorbs the thank-you.** Jon went back and forth on a
+`Thank-you owed` state and landed on not having one. The resolution: `Call done`
+holds until somebody writes, so sending the thank-you clears it automatically.
+The state *means* the obligation without naming it.
+
+**Version one tracks people, not firms.** Jon's ruling. It drops 7 of 35 real
+calendar events and all 9 firm records — **including all four interview rounds
+at the firm Jon joined.** Recorded loudly in `04-ENGINE-RULES.md` §1: Blotter
+version one goes quiet exactly when recruiting becomes interviews. Deliberate,
+and the most likely thing to want back.
+
+**Referrals are modelled for the first time.** 108 of 325 messages carry
+introduction language; Chris Miller alone produced nine contacts. New people
+found in a contact's thread go to a **"found these" area for approval** rather
+than straight into the sheet — Jon's ruling, and the data supports it, since
+automatic adding would have inserted three assistants and coordinators who
+mattered but were not people being networked with.
+
+### The setup scan, which Jon found and the rules did not have
+
+Jon: *"when you first connect this is a logistics issue. It must read back every
+email and gather which ones it thinks recruiting is."*
+
+**He is right and it broke the reading rule as written** — Blotter cannot scope
+to threads containing your contacts before it has any contacts. Resolved as
+**two different reads**: one wide scan of the last 3 months at setup, proposing
+a list the student approves, and narrow thread-scoped reading every 15 minutes
+forever after.
+
+**The wide scan is not hypothetical.** The Learn phase performed exactly it on a
+real inbox and pulled 59 people out while never opening roughly 7,500 threads of
+newsletters. Its limit is equally known: bankers on personal addresses match no
+bank domain and are missed.
+
+### Two corrections to earlier work
+
+**The bump count was wrong and Jon caught it.** The findings said 12; Jon said it
+was far more. Counted directly from the corpus: **30 within threads, 22 counting
+each contact's mail together, 9 of which use follow-up language** — which is
+where 12 came from. The rules carry all three numbers rather than one.
+
+**The conductor's calendar reasoning was wrong**, recorded in session 11 as
+*"the banker creates the invite… the one signal that arrives without the student
+doing anything."* **Jon organised 23 of 35 events** and bankers repeatedly asked
+him to. The events are real; the reason given for trusting them was not. Session
+11's paragraph should be read as superseded.
+
+### Deferred with reasons, not dropped
+
+- **AI reading a thread to recognise a natural ending.** Testable against the
+  325 real messages before anything is built.
+- **Remembering who introduced whom.** Version one notices new people; it does
+  not model the referral graph.
+- **`01-project-and-product.md`'s decay curve.** The file settles it: every
+  `Initial Contact` date falls in a fifteen-day band and the tracker stops dead
+  on 1 February while the mail runs to 23 April. Not gradual decay, not never
+  started — **abandoned in one motion**, which Jon attributes to falling volume.
+  Left unamended pending his ruling on the wording.

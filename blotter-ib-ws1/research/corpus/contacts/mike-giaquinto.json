@@ -1,0 +1,91 @@
+{
+ "slug": "mike-giaquinto",
+ "name": "Mike Giaquinto",
+ "firm": "Leerink",
+ "title": "MD, Health Care",
+ "addresses_seen": [
+  "mike.giaquinto@leerink.com"
+ ],
+ "relationship_opened": "Family friend, first spoken to in June 2023. Two outbounds, zero inbounds — but the relationship progressed by phone through Jon's mother.",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 2,
+  "outbound": 2,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-18T04:01:01Z",
+ "last_activity": "2024-02-26T03:03:53Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d1ab2a62e46654",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Interested in Banking @ Leerink",
+   "messages": [
+    {
+     "message_id": "18d1ababd203090c",
+     "date": "2024-01-18T04:01:01Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "mike.giaquinto@leerink.com"
+     ],
+     "cc": [],
+     "subject": "Interested in Banking @ Leerink",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Mike,\n\nI hope you are doing well. Last time we spoke was in June of this past summer where you provided some insight into entering Banking. I have since decided to fully pursue this, beginning with a Summer 2025 Analyst Internship. With that, I am interested in learning more about Leerink and would love the opportunity to hop on a quick phone call with you.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18de35e6ebe58e6b",
+     "date": "2024-02-26T03:03:53Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "mike.giaquinto@leerink.com"
+     ],
+     "cc": [],
+     "subject": "Re: Interested in Banking @ Leerink",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "_Jonathan Nachman Internship Resume (1).pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Mike,\n\nI hope you are doing well and enjoyed your weekend in Vegas. I was just on the phone with my parents and they were telling me how incredible of an experience The Sphere was; I am very envious of your trip. Anyways, my mother mentioned you wanted me to send over a copy of my resume. Attached to this email is an updated copy of my resume, and I also submitted my Leerink application online.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "39 days after the unanswered first email. The thread shows two outbounds and zero inbounds — by any silence rule, dead. It was not: the relationship was live and progressing THROUGH JON'S MOTHER, by phone. The email record is the wrong record. The tracker row for Mike Giaquinto is marked in red, 'FOLLOW UP'.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

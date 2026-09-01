@@ -1,0 +1,844 @@
+{
+ "stage": "A+B",
+ "source_mailbox": [
+  "jnachman17@gmail.com",
+  "jnachman@utexas.edu"
+ ],
+ "calendar_id": "jnachman17@gmail.com",
+ "calendar_note": "The jnachman@utexas.edu calendar was also read (during Stage A, when the Calendar connector was still pointed at that account). It holds FOUR events in the whole window and none are recruiting. Every recruiting event is in the gmail calendar, including for relationships whose email lived only in utexas.",
+ "window": {
+  "from": "2023-12-01",
+  "to": "2024-04-30"
+ },
+ "in_scope_count": 35,
+ "excluded_count": 149,
+ "excluded_note": "Classes, tutoring, flights, spring break and personal events. Titles and start times only are kept in _calendar_excluded.json so the scoping decision can be re-checked.",
+ "events": [
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g74o32gpm750j8cpk6gsk8g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g6osj6c1j8kpjih248p33ic9k650j4d1m68r4acpl8oqj6h2264og",
+   "summary": "Joseph - Jonathan Intro Call",
+   "start": "2024-01-19T12:30:00-08:00",
+   "end": "2024-01-19T13:00:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-19T00:55:53Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "joseph.candelario@psc.com",
+   "organizer_is_jon": false,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "joseph.candelario@psc.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": "346-516-8711",
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "1uj4ac7352hs804tu78e8grqc9",
+   "summary": "Josh - Jonathan FT Partners IB Call ",
+   "start": "2024-01-22T11:00:00-08:00",
+   "end": "2024-01-22T11:30:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-19T02:48:13Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "joshua.gumm@ftpartners.com",
+     "responseStatus": "needsAction"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "3qrpn59m0kc0j384e56nfcvfb4",
+   "summary": "Carrie - Jonathan Citi IB Call ",
+   "start": "2024-01-22T12:00:00-08:00",
+   "end": "2024-01-22T12:30:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-19T23:19:41Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "carrie.cruces@citi.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "49dsnoorh99106tf64bgfpmr4j",
+   "summary": "Kate - Jonathan Houlihan IB Call ",
+   "start": "2024-01-22T16:00:00-08:00",
+   "end": "2024-01-22T16:30:00-08:00",
+   "timezone": "UTC",
+   "status": "confirmed",
+   "created": "2024-01-18T20:07:35Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "kate.borden@hl.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g70o30gq58gs3eha56gp48g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g8cpjgca56514ccph6cs42e1k8csjihi561246c1h7113gdpp6d1g",
+   "summary": "FW: UT Austin 2025 Summer Analyst Information Session",
+   "start": "2024-01-22T17:00:00-08:00",
+   "end": "2024-01-22T18:00:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-22T15:51:52Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "sarah.marks@citi.com",
+   "organizer_is_jon": false,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "needsAction"
+    },
+    {
+     "email": "sarah.marks@citi.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": "Zoom: Meeting ID: 704 140 6278 / Password: 796597",
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "5sojt2vr83gms3r6cqcbp6dbq6",
+   "summary": "Gary - Jonathan Intrepid IB Call ",
+   "start": "2024-01-23T10:30:00-08:00",
+   "end": "2024-01-23T11:00:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-22T22:02:53Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "horton@intrepidfp.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "174nj2k6lljafhesbghibecnlt",
+   "summary": "Carson - Jonathan JPM IB Call ",
+   "start": "2024-01-23T16:00:00-08:00",
+   "end": "2024-01-23T16:30:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-22T18:30:51Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "carson.harris@jpmorgan.com",
+     "responseStatus": "needsAction"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "35cotclfim6dflhme14pr6qj38",
+   "summary": "David - Jonathan RJ IB Call",
+   "start": "2024-01-24T13:30:00-08:00",
+   "end": "2024-01-24T14:00:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-23T02:54:53Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "david.talbot@raymondjames.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "550nk40kuhmpr20nnulvbpg2qb",
+   "summary": "Will - Jonathan Intrepid IB Call ",
+   "start": "2024-01-25T11:00:00-08:00",
+   "end": "2024-01-25T11:30:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-22T19:38:36Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "robinson@intrepidfp.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "15gegepcub0vbvg41lfc1fb36r",
+   "summary": "Grant - Jonathan Morgan Stanley IB Call",
+   "start": "2024-01-25T15:00:00-08:00",
+   "end": "2024-01-25T15:30:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-23T04:28:31Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "grant.gillespie@morganstanley.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "3aqqe9582g7ppm22q57hgnbit3",
+   "summary": "Nick - Jonathan Citi IB Call",
+   "start": "2024-01-26T08:00:00-08:00",
+   "end": "2024-01-26T08:30:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-21T23:15:15Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "ngerstein99@gmail.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g8h132cq660q32dho6gsk8g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g6gq3ah9i8go32hhk70qk6h9k8l13cda48kojgd9i6kqjedpo6h20",
+   "summary": "Catch up with Jonathan Nachman / Doug Melsheimer",
+   "start": "2024-01-26T11:30:00-08:00",
+   "end": "2024-01-26T12:00:00-08:00",
+   "timezone": "America/New_York",
+   "status": "confirmed",
+   "created": "2024-01-17T17:11:59Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "douglas.melsheimer@barclays.com",
+   "organizer_is_jon": false,
+   "attendees": [
+    {
+     "email": "douglas.melsheimer@barclays.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": "Microsoft Teams Meeting",
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "5g20kmm2m13hcafuva844f1hq1",
+   "summary": "Mat - Jonathan Citi NY IB Call ",
+   "start": "2024-01-26T12:00:00-08:00",
+   "end": "2024-01-26T12:30:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-22T21:19:05Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "mathew.young@citi.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "06knmtt002mqgonvc5jsa7072v",
+   "summary": "Danny - Jonathan Houlihan LA IB Call",
+   "start": "2024-01-29T15:00:00-08:00",
+   "end": "2024-01-29T15:30:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-27T02:58:18Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "danny.shin@hl.com",
+     "responseStatus": "needsAction"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "14h65j8g4c44ivu8o8q1hi6ab5",
+   "summary": "Matt - Jonathan Morgan Stanley 1st Round",
+   "start": "2024-01-30T08:00:00-08:00",
+   "end": "2024-01-30T08:30:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-29T16:55:44Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "matt.manriquez@morganstanley.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "66pu0bocvdoujv218unu5bopjb",
+   "summary": "Kevin - Jonathan Houlihan IB Call ",
+   "start": "2024-01-30T10:00:00-08:00",
+   "end": "2024-01-30T10:30:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-23T02:51:23Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "kstephens@hl.com",
+     "responseStatus": "needsAction"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "mt5biosnpecd3drk5dp5b5kss4",
+   "summary": "Jonathan - Wall Street Mastermind Strategy Session",
+   "start": "2024-01-31T06:00:00-08:00",
+   "end": "2024-01-31T07:00:00-08:00",
+   "timezone": "America/New_York",
+   "status": "confirmed",
+   "created": "2024-01-30T17:44:13Z",
+   "creator": "patrick@wallstmastermind.com",
+   "organizer": "patrick@wallstmastermind.com",
+   "organizer_is_jon": false,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": "https://us06web.zoom.us/j/82652970788?pwd=fEHygwNxQ5s5WnWOvKvAQFxgWiHfcK.1",
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "5rien8vjbd24n4hf2bcdlu8ecc",
+   "summary": "Ethan - Jonathan FT Partners IB Call",
+   "start": "2024-02-02T09:30:00-08:00",
+   "end": "2024-02-02T10:00:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-30T20:42:40Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "ethan.marnhout@ftpartners.com",
+     "responseStatus": "needsAction"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "54q85o92hinu8venrnu0cf6uh9",
+   "summary": "Jonathan - Owen Sherry Houlihan RX Intro Call",
+   "start": "2024-02-02T11:30:00-08:00",
+   "end": "2024-02-02T12:00:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-31T03:25:30Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g70o46gpl74p4aca56kq48g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g8cpjae236sr3egpk8os3ighk88s4cg9l6p24ae9p6gpj2ghg6t1g",
+   "summary": "Katrina/Jonathan: K1 Intro ",
+   "start": "2024-02-02T13:00:00-08:00",
+   "end": "2024-02-02T13:30:00-08:00",
+   "timezone": "America/Los_Angeles",
+   "status": "confirmed",
+   "created": "2024-01-31T16:19:56Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "kyuzefpolsky@k1ops.com",
+   "organizer_is_jon": false,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "kyuzefpolsky@k1ops.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": "Microsoft Teams Meeting",
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "0clu6dne5fjvncbrkt46badihv",
+   "summary": "Intrepid Info Session ",
+   "start": "2024-02-06T15:30:00-08:00",
+   "end": "2024-02-06T16:30:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-01-20T18:32:03Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [],
+   "location": null,
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "5bbceiv8dev2tlg0gmkvacc09q",
+   "summary": "Grace - Jonathan Barclays IB Call",
+   "start": "2024-02-08T08:30:00-08:00",
+   "end": "2024-02-08T09:00:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-02-05T15:58:32Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "grace.steelman@barclays.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "0bca8i0gkg2dq6p6mkccm8g3ci",
+   "summary": "Wells Fargo Handshake IB WestCoast Info Session",
+   "start": "2024-02-08T17:00:00-08:00",
+   "end": "2024-02-08T18:00:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-02-05T16:02:13Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "13tinnbl4ti2jj28oslc9o1rsn",
+   "summary": "Houlihan LA CFR OOH 1st Round Interview",
+   "start": "2024-02-09T10:00:00-08:00",
+   "end": "2024-02-09T11:00:00-08:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-02-06T21:35:06Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [],
+   "location": null,
+   "has_description": false
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g60o3ig9j6p242ca56l348g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g6913ie1o691jee9p84r46h9k84skcdpi6oqjcghk651j2hhm84q0",
+   "summary": "Steve McLaughlin/Jonathan Nachman intro",
+   "start": "2024-02-19T12:30:00-08:00",
+   "end": "2024-02-19T12:45:00-08:00",
+   "timezone": "America/Los_Angeles",
+   "status": "confirmed",
+   "created": "2024-02-15T20:25:40Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "liz.ream@ftpartners.com",
+   "organizer_is_jon": false,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "needsAction"
+    },
+    {
+     "email": "liz.ream@ftpartners.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "steve.mclaughlin@ftpartners.com",
+     "responseStatus": "needsAction"
+    }
+   ],
+   "location": "https://ftpartners.zoom.us/j/93495208753?pwd=ZGo5c3pGVDdwSkVqQWcyT2M2MEp2Zz09",
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g8gsk4d9n8oq3cgpn6osk8g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g6csj2da588q48da36co32e1k6l134ga46spj4e218op48ci48l2g",
+   "summary": "Coffee Chat with Aeris Partners",
+   "start": "2024-02-29T07:00:00-08:00",
+   "end": "2024-02-29T07:30:00-08:00",
+   "timezone": "America/New_York",
+   "status": "confirmed",
+   "created": "2024-02-27T21:52:37Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "pgb@aerispartners.com",
+   "organizer_is_jon": false,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "pgb@aerispartners.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g70oj6ca18l13ad9j6p148g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g6l236h9l8d238h9m691j6gpk650j6hhp74rj6h236oq48c1m8kr0",
+   "summary": "Technical Interview with Aeris Partners",
+   "start": "2024-03-06T12:00:00-08:00",
+   "end": "2024-03-06T12:30:00-08:00",
+   "timezone": "America/New_York",
+   "status": "confirmed",
+   "created": "2024-02-29T21:10:24Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "pgb@aerispartners.com",
+   "organizer_is_jon": false,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "pgb@aerispartners.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "_60q30c1g60o30e1i60o4ac1g60rj8gpl88rj2c1h84s34h9g60s30c1g60o30c1g70q3cda18csj0h256spk8g9g64o30c1g60o30c1g60o30c1g60o32c1g60o30c1g8p2jegpi88sj4chi6srj2c1k84s3igpn84rj6d1h6sqj0e1n751g",
+   "summary": "Industry-Specific / Behavioral Interview with Aeris Partners",
+   "start": "2024-03-18T12:00:00-07:00",
+   "end": "2024-03-18T12:30:00-07:00",
+   "timezone": "America/New_York",
+   "status": "confirmed",
+   "created": "2024-03-11T18:04:31Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "pgb@aerispartners.com",
+   "organizer_is_jon": false,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    },
+    {
+     "email": "pgb@aerispartners.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": null,
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "3hp673rpmho62qm1saphskf3je",
+   "summary": "Interview with Financial Technology Partners",
+   "start": "2024-03-25T11:30:00-07:00",
+   "end": "2024-03-25T11:45:00-07:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-03-21T18:37:24Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [],
+   "location": "https://ftpartners.zoom.us/j/91835440656?pwd=TGJxaldrZGd3SWdqNlQxSnNKQ3kxUT09",
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "4fi9aib75ai3lv1l0qt53k164j",
+   "summary": "Interview with Financial Technology Partners",
+   "start": "2024-04-01T12:00:00-07:00",
+   "end": "2024-04-01T12:30:00-07:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-03-27T16:38:11Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [],
+   "location": "https://ftpartners.zoom.us/j/92964665647?pwd=b1BDSXphZ2FzUjM2QkhheDNaSUtrQT09",
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "7v1ph04gri8kasbg9nfun0fjdc",
+   "summary": "Interview with Financial Technology Partners",
+   "start": "2024-04-01T12:00:00-07:00",
+   "end": "2024-04-01T12:30:00-07:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-04-01T16:52:37Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [],
+   "location": "https://ftpartners.zoom.us/j/92964665647?pwd=b1BDSXphZ2FzUjM2QkhheDNaSUtrQT09",
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "_cdh6ce9k74sj2bb2ckqjeb9k70r32bb2c4pm4b9icpj62dhpc4s30c346g",
+   "summary": "Interview with Financial Technology Partners",
+   "start": "2024-04-05T10:00:00-07:00",
+   "end": "2024-04-05T10:30:00-07:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-04-01T21:16:22Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "unknownorganizer@calendar.google.com",
+   "organizer_is_jon": false,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": "https://ftpartners.zoom.us/j/93963749770",
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "_70q3gc9i70pj8b9gc4o3eb9kckrj2b9p60qm6b9nc9gj0dpn6gs32dhp6s",
+   "summary": "Interview with Financial Technology Partners",
+   "start": "2024-04-05T10:30:00-07:00",
+   "end": "2024-04-05T11:00:00-07:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-04-01T21:16:22Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "unknownorganizer@calendar.google.com",
+   "organizer_is_jon": false,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": "https://ftpartners.zoom.us/j/99807451859?pwd=UVZCc1FLYWxkd24wemJJWnhTajlzQT09",
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "_70p66d1j61i62b9l6hh66b9kc8rj8b9o6li3gb9m74p66c1g64pj4c1lc4",
+   "summary": "Interview with Financial Technology Partners",
+   "start": "2024-04-05T13:30:00-07:00",
+   "end": "2024-04-05T14:00:00-07:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-04-01T21:16:22Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "unknownorganizer@calendar.google.com",
+   "organizer_is_jon": false,
+   "attendees": [
+    {
+     "email": "jnachman17@gmail.com",
+     "responseStatus": "accepted"
+    }
+   ],
+   "location": "https://ftpartners.zoom.us/j/91456859498?pwd=S3FyR0hTa2NrdE94ZldidnJRN2VyZz09",
+   "has_description": true
+  },
+  {
+   "source_mailbox": "jnachman17@gmail.com",
+   "calendar_id": "jnachman17@gmail.com",
+   "event_id": "4k358bcljn7is99e6qelie4p0f",
+   "summary": "Interview with Financial Technology Partners",
+   "start": "2024-04-17T14:00:00-07:00",
+   "end": "2024-04-17T15:00:00-07:00",
+   "timezone": "America/Chicago",
+   "status": "confirmed",
+   "created": "2024-04-14T01:28:52Z",
+   "creator": "jnachman17@gmail.com",
+   "organizer": "jnachman17@gmail.com",
+   "organizer_is_jon": true,
+   "attendees": [],
+   "location": null,
+   "has_description": true
+  }
+ ]
+}

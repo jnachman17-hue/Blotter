@@ -1,0 +1,209 @@
+{
+ "slug": "wells-fargo-process",
+ "name": "Wells Fargo - application, video interview, first round, withdrawal",
+ "firm": null,
+ "title": null,
+ "addresses_seen": [],
+ "relationship_opened": "Firm-level recruiting process, not a single person",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "record_type": "firm_process",
+ "counts": {
+  "threads": 5,
+  "messages": 7,
+  "outbound": 1,
+  "inbound": 6,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-04-05T21:41:15Z",
+ "last_activity": "2024-04-22T15:08:10Z",
+ "threads": [
+  {
+   "thread_id": "18eb03a799ad4481",
+   "capture": "supplement",
+   "subject": "Action Required: Wells Fargo 2025 Summer Internship - Investment Banking (San Francisco) | Preference Form",
+   "messages": [
+    {
+     "message_id": "18eb03a799ad4481",
+     "date": "2024-04-05T21:41:15Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "CIBUniversityRecruiting@wellsfargo.com",
+     "to": [],
+     "cc": [
+      "CIBUniversityRecruiting@wellsfargo.com",
+      "Abey.T.Dessie@wellsfargo.com"
+     ],
+     "subject": "Action Required: Wells Fargo 2025 Summer Internship - Investment Banking (San Francisco) | Preference Form",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Good afternoon,\n\nWe hope this email finds you well. Thank you for applying to the Wells Fargo 2025 Summer Investment Banking Internship Program (San Francisco).\n\nTo remain in the process and indicate your group preference, you will need to complete the below group preference form. Please complete it by noon EST on Monday, April 8.\n\n[Preference survey link]\n\nAbey T. Dessie, Recruiter - Early Careers, Corporate and Investment Banking",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "toRecipients is EMPTY - Jon is a bcc recipient. A product that attributes mail by To/Cc match would not connect this message to Jon at all. It also carries a hard deadline ('Action Required', complete by noon Monday).",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18eb0472a5d3851c",
+     "date": "2024-04-05T21:51:17Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Abey.T.Dessie@wellsfargo.com",
+     "to": [],
+     "cc": [
+      "CIBUniversityRecruiting@wellsfargo.com",
+      "Abey.T.Dessie@wellsfargo.com"
+     ],
+     "subject": "RE: Action Required: Wells Fargo 2025 Summer Internship - Investment Banking (San Francisco) | Preference Form",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Good afternoon,\n\nThank you to those that have reached out. We will be sending out a new form on Monday. Please disregard the prior email. Enjoy your weekend.\n\nAbey T. Dessie",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Retracts the deadline set 10 minutes earlier. Also bcc.",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ebe97e38035839",
+     "date": "2024-04-08T16:36:06Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "Abey.T.Dessie@wellsfargo.com",
+     "to": [],
+     "cc": [
+      "CIBUniversityRecruiting@wellsfargo.com",
+      "Abey.T.Dessie@wellsfargo.com"
+     ],
+     "subject": "RE: Action Required: Wells Fargo 2025 Summer Internship - Investment Banking (San Francisco) | Preference Form",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Good afternoon,\n\nThank you all for our patience. Here is the link to the updated group preference form. The access code is: 2025IBSanFrancisco.\n\nTo remain in the process, you will need to complete the form by 1pm EST on Tuesday, April 9.\n\nAbey T. Dessie",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Third version of the same deadline. Also bcc.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18ecf646aa41f32b",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  },
+  {
+   "thread_id": "18eed2a3967defb2",
+   "capture": "spilled",
+   "subject": "Wells Fargo: First Round Investment Banking Interview Invitation (San Francisco)",
+   "messages": [
+    {
+     "message_id": "18eed2a3967defb2",
+     "date": "2024-04-17T17:45:16Z",
+     "internal_date": "1713375916000",
+     "direction": "inbound",
+     "sender": "Jonathan.Savicky@wellsfargo.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "Jarrett.B.Kleeman@wellsfargo.com"
+     ],
+     "subject": "Wells Fargo: First Round Investment Banking Interview Invitation (San Francisco)",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Congratulations! You have been selected to receive a first-round interview for the Investment Banking track as part of the Wells Fargo CIB 2025 Summer Analyst internship program. This role is based in San Francisco.\n\nPlease let us know your availability for a 30-minute video interview. Available scheduling times are below. We will email you back to confirm a time that works with our schedule with a meeting invite that includes the video-conferencing link. If you have any scheduling constraints, please let us know.\n\nMonday (4/22) - 1:30pm-4:30pm EST\nTuesday (4/23) - 10am-12pm EST; 2pm-6pm EST\nWednesday (4/24) - 10am-6pm EST\n\nPlease note, Wells Fargo will only consider candidates who are presently authorized to work for any employer in the United States and who will not require work visa sponsorship from Wells Fargo now or in the future in order to retain their authorization to work in the United States.\n\nBest regards,\nJon\n\nJon Savicky\n\nAssociate\nTechnology, Media & Telecom Investment Banking\n\nWells Fargo Corporate & Investment Banking\n30 Hudson Yards, 64th Floor | New York, NY 10001\nCell: 203.216.6671 | Office: 332.214.6308\n\njonathan.savicky@wellsfargo.com<mailto:jonathan.savicky@wellsfargo.com>\n\n________________________________\n\nAll messages sent to and from Wells Fargo employees are retained and subject to monitoring, review, and/or disclosure. This electronic communication is subject to a disclaimer, please click on the following link or cut and paste the link into the address bar of your browser.\n\nhttps://www.wellsfargo.com/com/disclaimer/ged5",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18f061c567253180",
+     "date": "2024-04-22T14:01:07Z",
+     "internal_date": "1713794467000",
+     "direction": "inbound",
+     "sender": "Jonathan.Savicky@wellsfargo.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "Jarrett.B.Kleeman@wellsfargo.com"
+     ],
+     "subject": "RE: Wells Fargo: First Round Investment Banking Interview Invitation (San Francisco)",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Jonathan,\n\nWe wanted to follow up on our first round interview invitation below. Please let us know if you are still considering a Summer Analyst position at Wells Fargo.\n\nBest,\nJon\n\nJon Savicky\n\nAssociate\nTechnology, Media & Telecom Investment Banking\n\nWells Fargo Corporate & Investment Banking\n30 Hudson Yards, 64th Floor | New York, NY 10001\nCell: 203.216.6671 | Office: 332.214.6308\n\njonathan.savicky@wellsfargo.com<mailto:jonathan.savicky@wellsfargo.com>\n\nFrom: Savicky, Jon\nSent: Wednesday, April 17, 2024 1:45 PM\nTo: 'jnachman17@gmail.com' <jnachman17@gmail.com>\nCc: Kleeman, Jarrett B. <Jarrett.B.Kleeman@wellsfargo.com>\nSubject: Wells Fargo: First Round Investment Banking Interview Invitation (San Francisco)\n\nCongratulations! You have been selected to receive a first-round interview for the Investment Banking track as part of the Wells Fargo CIB 2025 Summer Analyst internship program. This role is based in San Francisco.\n\nPlease let us know your availability for a 30-minute video interview. Available scheduling times are below. We will email you back to confirm a time that works with our schedule with a meeting invite that includes the video-conferencing link. If you have any scheduling constraints, please let us know.\n\nMonday (4/22) - 1:30pm-4:30pm EST\nTuesday (4/23) - 10am-12pm EST; 2pm-6pm EST\nWednesday (4/24) - 10am-6pm EST\n\nPlease note, Wells Fargo will only consider candidates who are presently authorized to work for any employer in the United States and who will not require work visa sponsorship from Wells Fargo now or in the future in order to retain their authorization to work in the United States.\n\nBest regards,\nJon\n\nJon Savicky\n\nAssociate\nTechnology, Media & Telecom Investment Banking\n\nWells Fargo Corporate & Investment Banking\n30 Hudson Yards, 64th Floor | New York, NY 10001\nCell: 203.216.6671 | Office: 332.214.6308\n\njonathan.savicky@wellsfargo.com<mailto:jonathan.savicky@wellsfargo.com>\n\n________________________________\n\nAll messages sent to and from Wells Fargo employees are retained and subject to monitoring, review, and/or disclosure. This electronic communication is subject to a disclaimer, please click on the following link or cut and paste the link into the address bar of your browser.\n\nhttps://www.wellsfargo.com/com/disclaimer/ged5",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18f0656e1ce944a5",
+     "date": "2024-04-22T15:05:07Z",
+     "internal_date": "1713798307000",
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Jonathan.Savicky@wellsfargo.com"
+     ],
+     "cc": [],
+     "subject": "Re: Wells Fargo: First Round Investment Banking Interview Invitation (San Francisco)",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jon,\n\nI apologize for the lack of my response – I recently accepted an offer\nelsewhere, so I will no longer be recruiting with Wells Fargo. Best of luck\nin your search.\n\nSincerely,\nJonathan\n\nOn Mon, Apr 22, 2024 at 9:01 AM <Jonathan.Savicky@wellsfargo.com> wrote:\n\n> Jonathan,\n>\n>\n>\n> We wanted to follow up on our first round interview invitation below.\n> Please let us know if you are still considering a Summer Analyst position\n> at Wells Fargo.\n>\n>\n>\n> Best,\n>\n> Jon\n>\n>\n>\n> *Jon Savicky*\n>\n> Associate\n>\n> Technology, Media & Telecom Investment Banking\n>\n>\n> Wells Fargo Corporate & Investment Banking\n>\n> 30 Hudson Yards, 64th Floor | New York, NY 10001\n>\n> Cell: 203.216.6671 | Office: 332.214.6308\n>\n>\n>\n> jonathan.savicky@wellsfargo.com\n>\n>\n>\n> *From:* Savicky, Jon\n> *Sent:* Wednesday, April 17, 2024 1:45 PM\n> *To:* 'jnachman17@gmail.com' <jnachman17@gmail.com>\n> *Cc:* Kleeman, Jarrett B. <Jarrett.B.Kleeman@wellsfargo.com>\n> *Subject:* Wells Fargo: First Round Investment Banking Interview\n> Invitation (San Francisco)\n>\n>\n>\n> Congratulations! You have been selected to receive a first-round interview\n> for the Investment Banking track as part of the Wells Fargo CIB 2025 Summer\n> Analyst internship program. *This role is based in San Francisco*.\n>\n>\n>\n> Please let us know your availability for a 30-minute video interview.\n> Available scheduling times are below. We will email you back to confirm a\n> time that works with our schedule with a meeting invite that includes the\n> video-conferencing link. If you have any scheduling constraints, please let\n> us know.\n>\n>\n>\n> *Monday (4/22) – 1:30pm-4:30pm EST*\n>\n> *Tuesday (4/23) – 10am-12pm EST; 2pm-6pm EST*\n>\n> *Wednesday (4/24) – 10am-6pm EST*\n>\n>\n>\n> *Please note, Wells Fargo will only consider candidates who are presently\n> authorized to work for any employer in the United States and who will not\n> require work visa sponsorship from Wells Fargo now or in the future in\n> order to retain their authorization to work in the United States.*\n>\n>\n>\n> Best regards,\n>\n> Jon\n>\n>\n>\n> *Jon Savicky*\n>\n> Associate\n>\n> Technology, Media & Telecom Investment Banking\n>\n>\n> Wells Fargo Corporate & Investment Banking\n>\n> 30 Hudson Yards, 64th Floor | New York, NY 10001\n>\n> Cell: 203.216.6671 | Office: 332.214.6308\n>\n>\n>\n> jonathan.savicky@wellsfargo.com\n>\n>\n>\n> ------------------------------\n>\n> All messages sent to and from Wells Fargo employees are retained and\n> subject to monitoring, review, and/or disclosure. This electronic\n> communication is subject to a disclaimer, please click on the following\n> link or cut and paste the link into the address bar of your browser.\n>\n> https://www.wellsfargo.com/com/disclaimer/ged5\n>",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18f0659bc7903f8e",
+     "date": "2024-04-22T15:08:10Z",
+     "internal_date": "1713798490000",
+     "direction": "inbound",
+     "sender": "Jonathan.Savicky@wellsfargo.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [
+      "Jarrett.B.Kleeman@wellsfargo.com"
+     ],
+     "subject": "RE: Wells Fargo: First Round Investment Banking Interview Invitation (San Francisco)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "No problem, Jonathan. Thanks for letting us know. Best of luck with your internship next summer.\n\nBest,\nJon\n\nJon Savicky\n\nAssociate\nTechnology, Media & Telecom Investment Banking\n\nWells Fargo Corporate & Investment Banking\n30 Hudson Yards, 64th Floor | New York, NY 10001\nCell: 203.216.6671 | Office: 332.214.6308\n\njonathan.savicky@wellsfargo.com<mailto:jonathan.savicky@wellsfargo.com>\n\nFrom: Jonathan Nachman <jnachman17@gmail.com>\nSent: Monday, April 22, 2024 11:05 AM\nTo: Savicky, Jon <Jonathan.Savicky@wellsfargo.com>\nSubject: Re: Wells Fargo: First Round Investment Banking Interview Invitation (San Francisco)\n\nHi Jon, I apologize for the lack of my response – I recently accepted an offer elsewhere, so I will no longer be recruiting with Wells Fargo. Best of luck in your search. Sincerely, Jonathan On Mon, Apr 22, 2024 at 9: 01 AM <Jonathan. Savicky@ wellsfargo. com>\n\nHi Jon,\n\nI apologize for the lack of my response – I recently accepted an offer elsewhere, so I will no longer be recruiting with Wells Fargo. Best of luck in your search.\n\nSincerely,\nJonathan\n\nOn Mon, Apr 22, 2024 at 9:01 AM <Jonathan.Savicky@wellsfargo.com<mailto:Jonathan.Savicky@wellsfargo.com>> wrote:\nJonathan,\n\nWe wanted to follow up on our first round interview invitation below. Please let us know if you are still considering a Summer Analyst position at Wells Fargo.\n\nBest,\nJon\n\nJon Savicky\n\nAssociate\nTechnology, Media & Telecom Investment Banking\n\nWells Fargo Corporate & Investment Banking\n30 Hudson Yards, 64th Floor | New York, NY 10001\nCell: 203.216.6671 | Office: 332.214.6308\n\njonathan.savicky@wellsfargo.com<mailto:jonathan.savicky@wellsfargo.com>\n\nFrom: Savicky, Jon\nSent: Wednesday, April 17, 2024 1:45 PM\nTo: 'jnachman17@gmail.com<mailto:jnachman17@gmail.com>' <jnachman17@gmail.com<mailto:jnachman17@gmail.com>>\nCc: Kleeman, Jarrett B. <Jarrett.B.Kleeman@wellsfargo.com<mailto:Jarrett.B.Kleeman@wellsfargo.com>>\nSubject: Wells Fargo: First Round Investment Banking Interview Invitation (San Francisco)\n\nCongratulations! You have been selected to receive a first-round interview for the Investment Banking track as part of the Wells Fargo CIB 2025 Summer Analyst internship program. This role is based in San Francisco.\n\nPlease let us know your availability for a 30-minute video interview. Available scheduling times are below. We will email you back to confirm a time that works with our schedule with a meeting invite that includes the video-conferencing link. If you have any scheduling constraints, please let us know.\n\nMonday (4/22) – 1:30pm-4:30pm EST\nTuesday (4/23) – 10am-12pm EST; 2pm-6pm EST\nWednesday (4/24) – 10am-6pm EST\n\nPlease note, Wells Fargo will only consider candidates who are presently authorized to work for any employer in the United States and who will not require work visa sponsorship from Wells Fargo now or in the future in order to retain their authorization to work in the United States.\n\nBest regards,\nJon\n\nJon Savicky\n\nAssociate\nTechnology, Media & Telecom Investment Banking\n\nWells Fargo Corporate & Investment Banking\n30 Hudson Yards, 64th Floor | New York, NY 10001\nCell: 203.216.6671 | Office: 332.214.6308\n\njonathan.savicky@wellsfargo.com<mailto:jonathan.savicky@wellsfargo.com>\n\n________________________________\n\nAll messages sent to and from Wells Fargo employees are retained and subject to monitoring, review, and/or disclosure. This electronic communication is subject to a disclaimer, please click on the following link or cut and paste the link into the address bar of your browser.\n\nhttps://www.wellsfargo.com/com/disclaimer/ged5",
+     "body_source": "verbatim_full",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  },
+  {
+   "thread_id": "18e37dbd2dc969c0",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  },
+  {
+   "thread_id": "18e37c66b732e713",
+   "capture": "NOT CAPTURED - metadata held in 02-LEARN-STAGE-A.md thread inventory only",
+   "messages": []
+  }
+ ]
+}

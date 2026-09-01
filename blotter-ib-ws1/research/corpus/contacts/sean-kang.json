@@ -1,0 +1,226 @@
+{
+ "slug": "sean-kang",
+ "name": "Sean Kang",
+ "firm": "Stifel",
+ "title": "Analyst (unconfirmed)",
+ "addresses_seen": [
+  "sean.kang@stifel.com",
+  "kang.s@stifel.com",
+  "s.kang@stifel.com"
+ ],
+ "relationship_opened": "Three address guesses in 3 minutes 38 seconds. All three bounced. Never reached.",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 3,
+  "messages": 6,
+  "outbound": 3,
+  "inbound": 3,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-31T05:15:19Z",
+ "last_activity": "2024-01-31T05:19:10Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d5defb8924ec0a",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin Student Interested in Pursuing Banking @ Stifel NY",
+   "messages": [
+    {
+     "message_id": "18d5df16fb10d3f0",
+     "date": "2024-01-31T05:15:19Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "sean.kang@stifel.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested in Pursuing Banking @ Stifel NY",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Sean,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I'd love to talk to you to learn more about your experience at Stifel given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d5df1a40ccc1e2",
+     "date": "2024-01-31T05:15:32Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "mailer-daemon@googlemail.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Delivery Status Notification (Failure)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "icon.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "** Address not found **\n\nYour message wasn't delivered to sean.kang@stifel.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 #5.1.0 Address rejected.\nFinal-Recipient: rfc822; sean.kang@stifel.com\nAction: failed\nStatus: 4.4.2\nRemote-MTA: dns; smtp.gslb.stifel.com.\nDiagnostic-Code: smtp; 550 #5.1.0 Address rejected.\nLast-Attempt-Date: Tue, 30 Jan 2024 21:15:32 -0800 (PST)",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": {
+      "failed_recipient": "sean.kang@stifel.com",
+      "status": "4.4.2",
+      "smtp_code": "550 #5.1.0",
+      "action": "failed",
+      "latency_seconds": 13
+     },
+     "note": "IMPORTANT FOR BOUNCE DETECTION. The machine-readable Status field says 4.4.2, which is a TEMPORARY failure class, while the SMTP response is 550 (permanent) and the human text says 'Address not found'. The three Aeris/Citi bounces in the gmail account all said Status: 5.1.1. A rule that keys on 'Status: 5.' would silently miss all three Stifel bounces.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d5df31eecb185c",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin Student Interested in Banking @ Stifel NY",
+   "messages": [
+    {
+     "message_id": "18d5df378de6f3a8",
+     "date": "2024-01-31T05:17:33Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "kang.s@stifel.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested in Banking @ Stifel NY",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "[same outreach text as the message to sean.kang@stifel.com two minutes earlier]",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Second address guess for the same person.",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d5df3afb88ab97",
+     "date": "2024-01-31T05:17:46Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "mailer-daemon@googlemail.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Delivery Status Notification (Failure)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "** Address not found **\n\nYour message wasn't delivered to kang.s@stifel.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 #5.1.0 Address rejected.",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": {
+      "failed_recipient": "kang.s@stifel.com",
+      "smtp_code": "550 #5.1.0",
+      "action": "failed",
+      "latency_seconds": 13
+     },
+     "note": null,
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d5df457c604827",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin Student Interested in Banking @ Stifel NY",
+   "messages": [
+    {
+     "message_id": "18d5df4c34dfa869",
+     "date": "2024-01-31T05:18:57Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "s.kang@stifel.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested in Banking @ Stifel NY",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "[same outreach text as the two previous attempts]",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "THIRD address guess for the same person, 3 minutes 38 seconds after the first. All three bounced. Jon never reached Sean Kang. The tracker row for Sean Kang has a blank Email column and no colour.",
+     "source_mailbox": "jnachman@utexas.edu"
+    },
+    {
+     "message_id": "18d5df4f7043267d",
+     "date": "2024-01-31T05:19:10Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "mailer-daemon@googlemail.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Delivery Status Notification (Failure)",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "** Address not found **\n\nYour message wasn't delivered to s.kang@stifel.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 #5.1.0 Address rejected.",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": {
+      "failed_recipient": "s.kang@stifel.com",
+      "smtp_code": "550 #5.1.0",
+      "action": "failed",
+      "latency_seconds": 13
+     },
+     "note": null,
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+{
+ "slug": "piper-sandler-ats",
+ "name": "Piper Sandler - applicant tracking acknowledgement",
+ "firm": null,
+ "title": null,
+ "addresses_seen": [],
+ "relationship_opened": "Firm-level recruiting process, not a single person",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "record_type": "firm_process",
+ "counts": {
+  "threads": 1,
+  "messages": 1,
+  "outbound": 0,
+  "inbound": 1,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-20T21:20:49Z",
+ "last_activity": "2024-01-20T21:20:49Z",
+ "threads": [
+  {
+   "thread_id": "18d28c00a8dc8131",
+   "capture": "metadata_only",
+   "subject": "Thank You",
+   "messages": [
+    {
+     "message_id": "18d28c00a8dc8131",
+     "date": "2024-01-20T21:20:49Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "applicant@psc.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Thank You",
+     "labels": [],
+     "attachments": [],
+     "has_attachment": null,
+     "body": null,
+     "body_source": "metadata_only",
+     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

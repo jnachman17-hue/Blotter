@@ -1,0 +1,64 @@
+{
+ "slug": "nicholas-perez",
+ "name": "Nicholas Perez",
+ "firm": "Guggenheim",
+ "title": "Analyst, Power/Utilities/Renewables",
+ "addresses_seen": [
+  "nicholas.perez@guggenheimpartners.com"
+ ],
+ "relationship_opened": "Cold email, Texas angle",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 1,
+  "outbound": 1,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-17T23:28:26Z",
+ "last_activity": "2024-01-17T23:28:26Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d19bee85547c65",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin Student Interested in Investment Banking @ Guggenheim",
+   "messages": [
+    {
+     "message_id": "18d19c12ebd2c807",
+     "date": "2024-01-17T23:28:26Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "nicholas.perez@guggenheimpartners.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested in Investment Banking @ Guggenheim",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Nicholas,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I'd love to talk to you to learn more about your experience at Guggenheim especially given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

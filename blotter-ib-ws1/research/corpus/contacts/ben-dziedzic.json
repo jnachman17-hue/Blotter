@@ -1,0 +1,149 @@
+{
+ "slug": "ben-dziedzic",
+ "name": "Ben Dziedzic",
+ "firm": "RBC Capital Markets",
+ "title": "Analyst",
+ "addresses_seen": [
+  "ben.dziedzic@rbccm.com"
+ ],
+ "relationship_opened": "Cold email, referred by Jon's brother Jared",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 5,
+  "outbound": 3,
+  "inbound": 2,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-04-10T00:04:39Z",
+ "last_activity": "2024-04-11T17:06:37Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18ec54bf34ccbd7c",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "[Jared Nachman Referral] UT Austin Student Interested in RBC New York",
+   "messages": [
+    {
+     "message_id": "18ec55228e72c4cf",
+     "date": "2024-04-10T00:04:39Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "ben.dziedzic@rbccm.com"
+     ],
+     "cc": [],
+     "subject": "[Jared Nachman Referral] UT Austin Student Interested in RBC New York",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Ben,\n\nI hope you are doing well. My name is Jonathan Nachman, and I am Jared Nachman's younger brother. Jared sent over your contact details with me given I'm interested in recruiting with RBC New York. I am currently a sophomore at the University of Texas at Austin and just recently applied to your firm.\n\nI would love the opportunity to briefly chat with you over the phone to learn more about your recruiting experience and time as an analyst with RBC. I am largely free this week and can likely accommodate my schedule to fit yours. Please let me know if this is something you would be willing to do.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ec97a40e92ed54",
+     "date": "2024-04-10T19:26:53Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "ben.dziedzic@rbccm.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: [Jared Nachman Referral] UT Austin Student Interested in RBC New York",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hi Jonathan,\n\nHappy to connect. How does tomorrow at 4:30pm ET sound?\n\nBen Dziedzic, RBC Capital Markets",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ec9a158b503f12",
+     "date": "2024-04-10T20:09:37Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "ben.dziedzic@rbccm.com"
+     ],
+     "cc": [],
+     "subject": "Re: [Jared Nachman Referral] UT Austin Student Interested in RBC New York",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Ben,\n\nI appreciate you getting back to me - 4:30pm ET works for me. I'll send you a calendar invite. I look forward to speaking with you then.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ec9a373e67cd5d",
+     "date": "2024-04-10T20:11:51Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "ben.dziedzic@rbccm.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: [Jared Nachman Referral] UT Austin Student Interested in RBC New York",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Thanks can you please give me a ring at the mobile below.\n\nBen Dziedzic, RBC Capital Markets",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ece20261a4608d",
+     "date": "2024-04-11T17:06:37Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "ben.dziedzic@rbccm.com"
+     ],
+     "cc": [],
+     "subject": "Re: [Jared Nachman Referral] UT Austin Student Interested in RBC New York",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hey Ben,\n\nI want to apologize in advance as I am going to go ahead and cancel our call this afternoon. Upon preparing for our chat, I realized I unintentionally recently applied to a position within RBC that I am not eligible to recruit for (I applied to a newly released NY position that just opened, but it is for Summer Associates, not Summer Analysts). I am incredibly sorry about this and hope I did not cause any significant disruptions to your schedule today. I appreciate your willingness to speak with me nonetheless.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Call agreed in email prose and then cancelled in email prose. No calendar event was ever created despite Jon saying he would send one.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

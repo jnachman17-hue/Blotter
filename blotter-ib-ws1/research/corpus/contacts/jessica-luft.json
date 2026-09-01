@@ -1,0 +1,95 @@
+{
+ "slug": "jessica-luft",
+ "name": "Jessica (Jess) Luft",
+ "firm": "Bank of America",
+ "title": "HR / Campus",
+ "addresses_seen": [
+  "jessica.luft@bofa.com"
+ ],
+ "relationship_opened": "Met in person at a UT networking event, 2024-01-18",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 2,
+  "messages": 2,
+  "outbound": 1,
+  "inbound": 1,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-19T23:44:46Z",
+ "last_activity": "2024-01-19T23:45:06Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d24187bbb92508",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Nice Meeting You & Potential Call",
+   "messages": [
+    {
+     "message_id": "18d241cdc4f135db",
+     "date": "2024-01-19T23:44:46Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "jessica.luft@bofa.com"
+     ],
+     "cc": [],
+     "subject": "Nice Meeting You & Potential Call",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Jess,\n\nIt was great to meet you yesterday – I appreciate you spending the time to provide me with some valuable insight. I know you spoke with many students yesterday, so you likely don't specifically remember me. I particularly asked you about the feasibility of UT to BofA New York (as opposed to Houston). You offered your willingness to pass along my information to an appropriate New York analyst to set up a potential coffee chat. I am following up on that if it is still a possibility. I handed you my resume in person, but will attach it to this email as well. I would greatly appreciate it if you could pass it along to a New York analyst with the hopes of setting up a coffee chat. Thanks again!\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Gmail placed the auto-reply in a SEPARATE thread (18d241d911df6645) from the outbound that triggered it. Thread-based correlation misses the link.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  },
+  {
+   "thread_id": "18d241d911df6645",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Automatic reply: Nice Meeting You & Potential Call",
+   "messages": [
+    {
+     "message_id": "18d241d911df6645",
+     "date": "2024-01-19T23:45:06Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "jessica.luft@bofa.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Automatic reply: Nice Meeting You & Potential Call",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello,\n\nThank you for your message. I am OOO traveling and attending events, please expect a delay in response and I will get back with you as soon as possible.\n\nBest,\nJess Luft",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "An out-of-office auto-reply, arriving 20 SECONDS after the outbound. It is an inbound message from the contact's own address, but it is not a reply. No human reply ever came. Any rule that treats 'inbound from the contact' as engagement would score this relationship as answered when it was never answered.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

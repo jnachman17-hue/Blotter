@@ -1,0 +1,1434 @@
+{
+  "stage": "A+B",
+  "source_mailbox": [
+    "jnachman17@gmail.com",
+    "jnachman@utexas.edu"
+  ],
+  "window": {
+    "from": "2023-12-01",
+    "to": "2024-04-30"
+  },
+  "generated_by": "blotter-ib-ws1/research/scripts/build_corpus.py",
+  "totals": {
+    "records": 68,
+    "person_contacts": 59,
+    "firm_process_records": 9,
+    "messages": 352,
+    "outbound": 176,
+    "inbound": 176,
+    "threads": 131,
+    "calendar_events_in_scope": 35
+  },
+  "records": [
+    {
+      "slug": "micah-poag",
+      "name": "Micah Poag",
+      "firm": "Houlihan Lokey",
+      "title": null,
+      "addresses_seen": [
+        "mpoag@hl.com",
+        "MPoag@hl.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 5,
+        "outbound": 3,
+        "inbound": 2,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-16T05:48:10Z",
+      "last_activity": "2024-01-17T22:18:18Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/micah-poag.json"
+    },
+    {
+      "slug": "joseph-candelario",
+      "name": "Joseph Candelario",
+      "firm": "Piper Sandler (Simmons Energy)",
+      "title": "Associate",
+      "addresses_seen": [
+        "joseph.candelario@psc.com"
+      ],
+      "counts": {
+        "threads": 3,
+        "messages": 14,
+        "outbound": 6,
+        "inbound": 8,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-17T02:41:56Z",
+      "last_activity": "2024-01-22T00:56:11Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/joseph-candelario.json"
+    },
+    {
+      "slug": "ryan-wheeler",
+      "name": "Ryan Wheeler",
+      "firm": "Guggenheim",
+      "title": "Analyst",
+      "addresses_seen": [
+        "ryan.wheeler@guggenheimpartners.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 2,
+        "outbound": 2,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T05:44:45Z",
+      "last_activity": "2024-01-20T00:15:08Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/ryan-wheeler.json"
+    },
+    {
+      "slug": "barbara-barman",
+      "name": "Barbara Barman",
+      "firm": "Goldman Sachs",
+      "title": "Analyst",
+      "addresses_seen": [
+        "barman.barbara@gmail.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T06:07:17Z",
+      "last_activity": "2024-01-17T06:07:17Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/barbara-barman.json"
+    },
+    {
+      "slug": "olivia-henderson",
+      "name": "Olivia Henderson",
+      "firm": "Morgan Stanley",
+      "title": "Analyst",
+      "addresses_seen": [
+        "Olivialeigh31@gmail.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T06:13:17Z",
+      "last_activity": "2024-01-17T06:13:17Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/olivia-henderson.json"
+    },
+    {
+      "slug": "anna-giesler",
+      "name": "Anna Giesler",
+      "firm": "Rothschild & Co",
+      "title": "Analyst",
+      "addresses_seen": [
+        "Anna.e.giesler@gmail.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T06:18:11Z",
+      "last_activity": "2024-01-17T06:18:11Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/anna-giesler.json"
+    },
+    {
+      "slug": "quincy-steele",
+      "name": "Quincy Steele",
+      "firm": "Morgan Stanley",
+      "title": "Analyst",
+      "addresses_seen": [
+        "steelequincy@gmail.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T06:24:04Z",
+      "last_activity": "2024-01-17T06:24:04Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/quincy-steele.json"
+    },
+    {
+      "slug": "alice-watts",
+      "name": "Alice Watts",
+      "firm": "Perella Weinberg Partners",
+      "title": "Analyst",
+      "addresses_seen": [
+        "alicewatts419@gmail.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T06:30:15Z",
+      "last_activity": "2024-01-17T06:30:15Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/alice-watts.json"
+    },
+    {
+      "slug": "noble-nash",
+      "name": "Noble Nash",
+      "firm": "Intrepid",
+      "title": "Analyst",
+      "addresses_seen": [
+        "Noble.nash@me.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T06:35:02Z",
+      "last_activity": "2024-01-17T06:35:02Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/noble-nash.json"
+    },
+    {
+      "slug": "victoria-daly",
+      "name": "Victoria Daly",
+      "firm": "Goldman Sachs (London)",
+      "title": "Analyst",
+      "addresses_seen": [
+        "victoriad@utexas.edu"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T06:44:07Z",
+      "last_activity": "2024-01-17T06:44:07Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/victoria-daly.json"
+    },
+    {
+      "slug": "kathryn-dzierzanowski",
+      "name": "Kathryn Dzierzanowski",
+      "firm": "Cain Brothers",
+      "title": "Analyst",
+      "addresses_seen": [
+        "kathryndzierzanowski@gmail.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 2,
+        "outbound": 2,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T06:56:32Z",
+      "last_activity": "2024-01-31T05:35:30Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/kathryn-dzierzanowski.json"
+    },
+    {
+      "slug": "douglas-melsheimer",
+      "name": "Douglas Melsheimer",
+      "firm": "Barclays",
+      "title": "Managing Director, Technology IB",
+      "addresses_seen": [
+        "douglas.melsheimer@barclays.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 8,
+        "outbound": 4,
+        "inbound": 4,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-17T14:57:38Z",
+      "last_activity": "2024-01-30T20:55:56Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/douglas-melsheimer.json"
+    },
+    {
+      "slug": "kleopatra-kirkland",
+      "name": "Kleopatra Kirkland",
+      "firm": "Barclays",
+      "title": "Executive Assistant, Global Technology Group",
+      "addresses_seen": [
+        "kleopatra.kirkland@barclays.com"
+      ],
+      "counts": {
+        "threads": 3,
+        "messages": 6,
+        "outbound": 1,
+        "inbound": 5,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T15:37:58Z",
+      "last_activity": "2024-01-17T17:19:15Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/kleopatra-kirkland.json"
+    },
+    {
+      "slug": "sam-susser",
+      "name": "Sam Susser",
+      "firm": "Goldman Sachs",
+      "title": "Analyst",
+      "addresses_seen": [
+        "same@susser.us"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T18:37:30Z",
+      "last_activity": "2024-01-17T18:37:30Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/sam-susser.json"
+    },
+    {
+      "slug": "kate-borden",
+      "name": "Kate Borden",
+      "firm": "Houlihan Lokey",
+      "title": "Financial Analyst",
+      "addresses_seen": [
+        "kate.borden@hl.com",
+        "Kate.Borden@hl.com"
+      ],
+      "counts": {
+        "threads": 3,
+        "messages": 16,
+        "outbound": 7,
+        "inbound": 9,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-17T18:45:34Z",
+      "last_activity": "2024-02-08T23:08:23Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/kate-borden.json"
+    },
+    {
+      "slug": "sam-ward",
+      "name": "Samuel Ward",
+      "firm": "Houlihan Lokey",
+      "title": "Restructuring, New York",
+      "addresses_seen": [
+        "SPWard@hl.com",
+        "spward@hl.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 4,
+        "outbound": 3,
+        "inbound": 1,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T22:44:54Z",
+      "last_activity": "2024-01-23T05:01:39Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/sam-ward.json"
+    },
+    {
+      "slug": "luke-skelly",
+      "name": "Luke Skelly",
+      "firm": "Guggenheim",
+      "title": "Associate, Tech",
+      "addresses_seen": [
+        "lukes5061@gmail.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T23:22:47Z",
+      "last_activity": "2024-01-17T23:22:47Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/luke-skelly.json"
+    },
+    {
+      "slug": "nicholas-perez",
+      "name": "Nicholas Perez",
+      "firm": "Guggenheim",
+      "title": "Analyst, Power/Utilities/Renewables",
+      "addresses_seen": [
+        "nicholas.perez@guggenheimpartners.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T23:28:26Z",
+      "last_activity": "2024-01-17T23:28:26Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/nicholas-perez.json"
+    },
+    {
+      "slug": "michael-liou",
+      "name": "Michael Liou",
+      "firm": "Guggenheim",
+      "title": "Associate",
+      "addresses_seen": [
+        "Michael.liou@guggenheimpartners.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 2,
+        "outbound": 2,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-17T23:33:05Z",
+      "last_activity": "2024-01-31T05:37:36Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/michael-liou.json"
+    },
+    {
+      "slug": "joshua-gumm",
+      "name": "Joshua Gumm",
+      "firm": "FT Partners",
+      "title": "Analyst, Tech",
+      "addresses_seen": [
+        "joshua.gumm@ftpartners.com",
+        "Joshua.Gumm@ftpartners.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 8,
+        "outbound": 5,
+        "inbound": 3,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-18T01:24:03Z",
+      "last_activity": "2024-01-22T21:27:22Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/joshua-gumm.json"
+    },
+    {
+      "slug": "mike-giaquinto",
+      "name": "Mike Giaquinto",
+      "firm": "Leerink",
+      "title": "MD, Health Care",
+      "addresses_seen": [
+        "mike.giaquinto@leerink.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 2,
+        "outbound": 2,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-18T04:01:01Z",
+      "last_activity": "2024-02-26T03:03:53Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/mike-giaquinto.json"
+    },
+    {
+      "slug": "chris-miller",
+      "name": "Chris Miller",
+      "firm": "Citi",
+      "title": "Managing Director / Vice Chairman, Energy IB",
+      "addresses_seen": [
+        "chris.miller@citi.com"
+      ],
+      "counts": {
+        "threads": 4,
+        "messages": 23,
+        "outbound": 9,
+        "inbound": 14,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-18T16:51:22Z",
+      "last_activity": "2024-01-26T22:54:45Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/chris-miller.json"
+    },
+    {
+      "slug": "turner-gauntt",
+      "name": "Turner Gauntt",
+      "firm": "Jefferies",
+      "title": "Analyst, Tech",
+      "addresses_seen": [
+        "tgauntt@jefferies.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 2,
+        "outbound": 2,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-19T02:58:58Z",
+      "last_activity": "2024-01-31T05:33:04Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/turner-gauntt.json"
+    },
+    {
+      "slug": "nick-gerstein",
+      "name": "Nick Gerstein",
+      "firm": "Citi",
+      "title": "Analyst, M&A",
+      "addresses_seen": [
+        "ngerstein99@gmail.com",
+        "NGerstein99@gmail.com"
+      ],
+      "counts": {
+        "threads": 3,
+        "messages": 9,
+        "outbound": 5,
+        "inbound": 4,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-19T04:07:40Z",
+      "last_activity": "2024-01-26T23:03:24Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/nick-gerstein.json"
+    },
+    {
+      "slug": "grey-bianca",
+      "name": "Grey Bianca",
+      "firm": "Mizuho",
+      "title": "Analyst, Energy IB",
+      "addresses_seen": [
+        "Grey.Bianca@mizuhogroup.com"
+      ],
+      "counts": {
+        "threads": 2,
+        "messages": 7,
+        "outbound": 3,
+        "inbound": 4,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-19T17:36:10Z",
+      "last_activity": "2024-01-23T02:47:46Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/grey-bianca.json"
+    },
+    {
+      "slug": "carrie-cruces",
+      "name": "Carrie Cruces",
+      "firm": "Citi",
+      "title": "Analyst, Global Energy Group",
+      "addresses_seen": [
+        "carrie.cruces@citi.com"
+      ],
+      "counts": {
+        "threads": 3,
+        "messages": 16,
+        "outbound": 7,
+        "inbound": 9,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-19T17:40:52Z",
+      "last_activity": "2024-01-26T22:54:45Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/carrie-cruces.json"
+    },
+    {
+      "slug": "carson-harris",
+      "name": "Carson Harris",
+      "firm": "J.P. Morgan",
+      "title": "Analyst, Energy IB",
+      "addresses_seen": [
+        "carson.harris@jpmorgan.com"
+      ],
+      "counts": {
+        "threads": 2,
+        "messages": 8,
+        "outbound": 4,
+        "inbound": 4,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-19T22:19:55Z",
+      "last_activity": "2024-01-24T06:04:37Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/carson-harris.json"
+    },
+    {
+      "slug": "jessica-luft",
+      "name": "Jessica (Jess) Luft",
+      "firm": "Bank of America",
+      "title": "HR / Campus",
+      "addresses_seen": [
+        "jessica.luft@bofa.com"
+      ],
+      "counts": {
+        "threads": 2,
+        "messages": 2,
+        "outbound": 1,
+        "inbound": 1,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-19T23:44:46Z",
+      "last_activity": "2024-01-19T23:45:06Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/jessica-luft.json"
+    },
+    {
+      "slug": "john-sellingsloh",
+      "name": "John Sellingsloh",
+      "firm": "Intrepid",
+      "title": "VP, Energy",
+      "addresses_seen": [
+        "sellingsloh@intrepidfp.com",
+        "Sellingsloh@intrepidfp.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 3,
+        "outbound": 2,
+        "inbound": 1,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-19T23:52:03Z",
+      "last_activity": "2024-01-20T18:37:54Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/john-sellingsloh.json"
+    },
+    {
+      "slug": "keaton-cruzcosa",
+      "name": "Keaton Cruzcosa",
+      "firm": "Piper Sandler",
+      "title": "Analyst, Energy",
+      "addresses_seen": [
+        "Keaton.cruzcosa@psc.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-20T00:25:17Z",
+      "last_activity": "2024-01-20T00:25:17Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/keaton-cruzcosa.json"
+    },
+    {
+      "slug": "gary-horton",
+      "name": "Gary Horton",
+      "firm": "Intrepid",
+      "title": null,
+      "addresses_seen": [
+        "horton@intrepidfp.com"
+      ],
+      "counts": {
+        "threads": 2,
+        "messages": 7,
+        "outbound": 4,
+        "inbound": 3,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-20T18:50:22Z",
+      "last_activity": "2024-01-23T19:52:01Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/gary-horton.json"
+    },
+    {
+      "slug": "will-robinson",
+      "name": "Will Robinson",
+      "firm": "Intrepid",
+      "title": "Analyst",
+      "addresses_seen": [
+        "Robinson@intrepidfp.com"
+      ],
+      "counts": {
+        "threads": 2,
+        "messages": 6,
+        "outbound": 3,
+        "inbound": 3,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-20T19:09:10Z",
+      "last_activity": "2024-01-25T20:15:58Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/will-robinson.json"
+    },
+    {
+      "slug": "piper-sandler-ats",
+      "name": "Piper Sandler - applicant tracking acknowledgement",
+      "firm": null,
+      "title": null,
+      "addresses_seen": [],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 0,
+        "inbound": 1,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-20T21:20:49Z",
+      "last_activity": "2024-01-20T21:20:49Z",
+      "missing_outbound": true,
+      "scope_flag": null,
+      "record_type": "firm_process",
+      "file": "contacts/piper-sandler-ats.json"
+    },
+    {
+      "slug": "david-talbot",
+      "name": "David Talbot",
+      "firm": "Raymond James",
+      "title": "Analyst, Energy IB",
+      "addresses_seen": [
+        "David.Talbot@raymondjames.com"
+      ],
+      "counts": {
+        "threads": 2,
+        "messages": 8,
+        "outbound": 3,
+        "inbound": 5,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-22T20:24:10Z",
+      "last_activity": "2024-01-26T01:20:56Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/david-talbot.json"
+    },
+    {
+      "slug": "grant-gillespie",
+      "name": "Grant Gillespie",
+      "firm": "Morgan Stanley",
+      "title": "Analyst",
+      "addresses_seen": [
+        "Grant.Gillespie@morganstanley.com"
+      ],
+      "counts": {
+        "threads": 2,
+        "messages": 6,
+        "outbound": 3,
+        "inbound": 3,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-22T20:28:01Z",
+      "last_activity": "2024-01-26T01:15:14Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/grant-gillespie.json"
+    },
+    {
+      "slug": "mathew-young",
+      "name": "Mathew (Mat) Young",
+      "firm": "Citi",
+      "title": "Analyst, Power",
+      "addresses_seen": [
+        "mathew.young@citi.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 0,
+        "inbound": 1,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-22T21:58:58Z",
+      "last_activity": "2024-01-22T21:58:58Z",
+      "missing_outbound": true,
+      "scope_flag": null,
+      "file": "contacts/mathew-young.json"
+    },
+    {
+      "slug": "kevin-stephens",
+      "name": "Kevin Stephens",
+      "firm": "Houlihan Lokey",
+      "title": "MD, Financial Sponsors",
+      "addresses_seen": [
+        "kstephens@hl.com",
+        "KStephens@hl.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 6,
+        "outbound": 3,
+        "inbound": 3,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-23T00:45:46Z",
+      "last_activity": "2024-01-30T20:06:22Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/kevin-stephens.json"
+    },
+    {
+      "slug": "ethan-marnhout",
+      "name": "Ethan Marnhout",
+      "firm": "FT Partners",
+      "title": "Analyst, Fintech",
+      "addresses_seen": [
+        "ethan.marnhout@ftpartners.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 6,
+        "outbound": 4,
+        "inbound": 2,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-24T01:13:07Z",
+      "last_activity": "2024-02-06T14:29:53Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/ethan-marnhout.json"
+    },
+    {
+      "slug": "danny-shin",
+      "name": "Danny Shin",
+      "firm": "Houlihan Lokey",
+      "title": "Financial Analyst",
+      "addresses_seen": [
+        "danny.shin@hl.com",
+        "Danny.Shin@hl.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 6,
+        "outbound": 4,
+        "inbound": 2,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-24T01:26:38Z",
+      "last_activity": "2024-01-30T00:10:21Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/danny-shin.json"
+    },
+    {
+      "slug": "matt-manriquez",
+      "name": "Matt Manriquez",
+      "firm": "Morgan Stanley",
+      "title": "Associate, IBD Houston",
+      "addresses_seen": [
+        "Matt.Manriquez@morganstanley.com"
+      ],
+      "counts": {
+        "threads": 2,
+        "messages": 7,
+        "outbound": 3,
+        "inbound": 4,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-28T21:21:12Z",
+      "last_activity": "2024-01-30T23:38:58Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/matt-manriquez.json"
+    },
+    {
+      "slug": "maura-vestal",
+      "name": "Maura Vestal",
+      "firm": "Houlihan Lokey",
+      "title": "Senior Campus Recruiter",
+      "addresses_seen": [
+        "Maura.Vestal@hl.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 0,
+        "inbound": 1,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-29T20:16:09Z",
+      "last_activity": "2024-01-29T20:16:09Z",
+      "missing_outbound": true,
+      "scope_flag": null,
+      "file": "contacts/maura-vestal.json"
+    },
+    {
+      "slug": "houlihan-rx-process",
+      "name": "Houlihan Lokey NY Restructuring - shared-mailbox recruiting process",
+      "firm": null,
+      "title": null,
+      "addresses_seen": [],
+      "counts": {
+        "threads": 3,
+        "messages": 4,
+        "outbound": 1,
+        "inbound": 3,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-29T20:16:09Z",
+      "last_activity": "2024-01-31T03:09:12Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "record_type": "firm_process",
+      "file": "contacts/houlihan-rx-process.json"
+    },
+    {
+      "slug": "lynell-velten",
+      "name": "Lynell Velten",
+      "firm": "Houlihan Lokey",
+      "title": "VP, CF Campus Recruiting",
+      "addresses_seen": [
+        "Lynell.Velten@hl.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 3,
+        "outbound": 1,
+        "inbound": 2,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-30T19:13:24Z",
+      "last_activity": "2024-01-30T20:21:08Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/lynell-velten.json"
+    },
+    {
+      "slug": "grace-steelman",
+      "name": "Grace Steelman",
+      "firm": "Barclays",
+      "title": "Analyst, Tech",
+      "addresses_seen": [
+        "grace.steelman@barclays.com"
+      ],
+      "counts": {
+        "threads": 3,
+        "messages": 12,
+        "outbound": 6,
+        "inbound": 6,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-01-30T20:53:41Z",
+      "last_activity": "2024-02-09T18:41:45Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/grace-steelman.json"
+    },
+    {
+      "slug": "jay-klein",
+      "name": "Jay Klein",
+      "firm": "Barclays",
+      "title": "Analyst, Tech",
+      "addresses_seen": [
+        "jay.klein@barclays.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 4,
+        "outbound": 2,
+        "inbound": 2,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-30T20:53:41Z",
+      "last_activity": "2024-02-01T02:24:13Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/jay-klein.json"
+    },
+    {
+      "slug": "sean-kang",
+      "name": "Sean Kang",
+      "firm": "Stifel",
+      "title": "Analyst (unconfirmed)",
+      "addresses_seen": [
+        "sean.kang@stifel.com",
+        "kang.s@stifel.com",
+        "s.kang@stifel.com"
+      ],
+      "counts": {
+        "threads": 3,
+        "messages": 6,
+        "outbound": 3,
+        "inbound": 3,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-31T05:15:19Z",
+      "last_activity": "2024-01-31T05:19:10Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/sean-kang.json"
+    },
+    {
+      "slug": "kyle-gunnison",
+      "name": "Kyle Gunnison",
+      "firm": "Raymond James",
+      "title": "Director",
+      "addresses_seen": [
+        "Kyle.Gunnison@raymondjames.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-31T05:27:15Z",
+      "last_activity": "2024-01-31T05:27:15Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/kyle-gunnison.json"
+    },
+    {
+      "slug": "kammeh-valliani",
+      "name": "Kammeh Valliani",
+      "firm": "Jefferies",
+      "title": "Associate",
+      "addresses_seen": [
+        "kvalliani@jefferies.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-31T05:43:23Z",
+      "last_activity": "2024-01-31T05:43:23Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/kammeh-valliani.json"
+    },
+    {
+      "slug": "sara-laracca",
+      "name": "Sara Laracca",
+      "firm": "Houlihan Lokey",
+      "title": "Recruiting Analyst",
+      "addresses_seen": [
+        "Sara.Laracca@hl.com"
+      ],
+      "counts": {
+        "threads": 2,
+        "messages": 3,
+        "outbound": 1,
+        "inbound": 2,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-01-31T17:40:50Z",
+      "last_activity": "2024-02-01T23:33:45Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/sara-laracca.json"
+    },
+    {
+      "slug": "marijoy-bertolini",
+      "name": "Marijoy Bertolini",
+      "firm": "Aeris Partners",
+      "title": "VP, Talent and Human Resources",
+      "addresses_seen": [
+        "mjb@aerispartners.com",
+        "Marijoy.Bertolini@aerispartners.com",
+        "bm@aerispartners.com"
+      ],
+      "counts": {
+        "threads": 4,
+        "messages": 9,
+        "outbound": 4,
+        "inbound": 5,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-02-08T04:24:42Z",
+      "last_activity": "2024-03-26T13:03:10Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/marijoy-bertolini.json"
+    },
+    {
+      "slug": "paige-butters",
+      "name": "Paige Butters",
+      "firm": "Aeris Partners",
+      "title": "Director of Operations",
+      "addresses_seen": [
+        "pgb@aerispartners.com"
+      ],
+      "counts": {
+        "threads": 8,
+        "messages": 24,
+        "outbound": 11,
+        "inbound": 13,
+        "calendar_events": 3
+      },
+      "first_activity": "2024-02-08T04:46:31Z",
+      "last_activity": "2024-03-26T15:04:32Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/paige-butters.json"
+    },
+    {
+      "slug": "lonnie-kauppila",
+      "name": "Lonnie Kauppila",
+      "firm": "Houlihan Lokey",
+      "title": null,
+      "addresses_seen": [
+        "Lonnie.Kauppila@hl.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-02-10T21:06:14Z",
+      "last_activity": "2024-02-10T21:06:14Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/lonnie-kauppila.json"
+    },
+    {
+      "slug": "gayathri-ravi",
+      "name": "Gayathri Ravi",
+      "firm": "Goldman Sachs",
+      "title": "Recruiting",
+      "addresses_seen": [
+        "Gayathri.Ravi@gs.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 2,
+        "outbound": 1,
+        "inbound": 1,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-02-10T21:38:26Z",
+      "last_activity": "2024-02-12T10:30:47Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/gayathri-ravi.json"
+    },
+    {
+      "slug": "steve-mclaughlin",
+      "name": "Steve McLaughlin",
+      "firm": "FT Partners",
+      "title": "CEO",
+      "addresses_seen": [
+        "steve.mclaughlin@ftpartners.com"
+      ],
+      "counts": {
+        "threads": 4,
+        "messages": 11,
+        "outbound": 4,
+        "inbound": 7,
+        "calendar_events": 1
+      },
+      "first_activity": "2024-02-14T00:00:00Z",
+      "last_activity": "2024-02-20T02:58:20Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/steve-mclaughlin.json"
+    },
+    {
+      "slug": "elliot-calkins",
+      "name": "Elliot Calkins",
+      "firm": "Guggenheim Securities",
+      "title": "Associate, IB",
+      "addresses_seen": [
+        "Elliot.Calkins@guggenheimpartners.com",
+        "elliot.calkins@guggenheimpartners.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 3,
+        "outbound": 2,
+        "inbound": 1,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-02-29T18:49:07Z",
+      "last_activity": "2024-03-13T22:27:18Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/elliot-calkins.json"
+    },
+    {
+      "slug": "ft-partners-process",
+      "name": "FT Partners - application, interviews, super day, offer",
+      "firm": null,
+      "title": null,
+      "addresses_seen": [],
+      "counts": {
+        "threads": 14,
+        "messages": 29,
+        "outbound": 12,
+        "inbound": 17,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-03-18T14:52:04Z",
+      "last_activity": "2024-04-18T14:26:05Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "record_type": "firm_process",
+      "file": "contacts/ft-partners-process.json"
+    },
+    {
+      "slug": "wells-fargo-process",
+      "name": "Wells Fargo - application, video interview, first round, withdrawal",
+      "firm": null,
+      "title": null,
+      "addresses_seen": [],
+      "counts": {
+        "threads": 5,
+        "messages": 7,
+        "outbound": 1,
+        "inbound": 6,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-04-05T21:41:15Z",
+      "last_activity": "2024-04-22T15:08:10Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "record_type": "firm_process",
+      "file": "contacts/wells-fargo-process.json"
+    },
+    {
+      "slug": "agc-partners",
+      "name": "AGC Partners - cold application email",
+      "firm": null,
+      "title": null,
+      "addresses_seen": [],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-04-07T23:43:47Z",
+      "last_activity": "2024-04-07T23:43:47Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "record_type": "firm_process",
+      "file": "contacts/agc-partners.json"
+    },
+    {
+      "slug": "bofa-process",
+      "name": "Bank of America - application",
+      "firm": null,
+      "title": null,
+      "addresses_seen": [],
+      "counts": {
+        "threads": 3,
+        "messages": 3,
+        "outbound": 2,
+        "inbound": 1,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-04-08T17:16:05Z",
+      "last_activity": "2024-04-08T18:31:18Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "record_type": "firm_process",
+      "file": "contacts/bofa-process.json"
+    },
+    {
+      "slug": "barclays-process",
+      "name": "Barclays - application status",
+      "firm": null,
+      "title": null,
+      "addresses_seen": [],
+      "counts": {
+        "threads": 2,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-04-08T19:53:56Z",
+      "last_activity": "2024-04-08T19:53:56Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "record_type": "firm_process",
+      "file": "contacts/barclays-process.json"
+    },
+    {
+      "slug": "emily-saunders",
+      "name": "Emily Saunders",
+      "firm": "Harris Williams",
+      "title": "Analyst Recruiter",
+      "addresses_seen": [
+        "esaunders@harriswilliams.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 2,
+        "outbound": 1,
+        "inbound": 1,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-04-09T04:11:37Z",
+      "last_activity": "2024-04-09T14:40:31Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/emily-saunders.json"
+    },
+    {
+      "slug": "ben-dziedzic",
+      "name": "Ben Dziedzic",
+      "firm": "RBC Capital Markets",
+      "title": "Analyst",
+      "addresses_seen": [
+        "ben.dziedzic@rbccm.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 5,
+        "outbound": 3,
+        "inbound": 2,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-04-10T00:04:39Z",
+      "last_activity": "2024-04-11T17:06:37Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/ben-dziedzic.json"
+    },
+    {
+      "slug": "citi-process",
+      "name": "Citi - application status inquiry (bounced)",
+      "firm": null,
+      "title": null,
+      "addresses_seen": [],
+      "counts": {
+        "threads": 1,
+        "messages": 2,
+        "outbound": 1,
+        "inbound": 1,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-04-10T00:11:18Z",
+      "last_activity": "2024-04-10T00:11:32Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "record_type": "firm_process",
+      "file": "contacts/citi-process.json"
+    },
+    {
+      "slug": "union-square",
+      "name": "Union Square Advisors - cold application email",
+      "firm": null,
+      "title": null,
+      "addresses_seen": [],
+      "counts": {
+        "threads": 1,
+        "messages": 1,
+        "outbound": 1,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-04-11T22:20:48Z",
+      "last_activity": "2024-04-11T22:20:48Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "record_type": "firm_process",
+      "file": "contacts/union-square.json"
+    },
+    {
+      "slug": "bradley-cagle",
+      "name": "Bradley Cagle",
+      "firm": "FT Partners",
+      "title": "Analyst",
+      "addresses_seen": [
+        "Bradley.Cagle@ftpartners.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 2,
+        "outbound": 1,
+        "inbound": 1,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-04-18T16:46:35Z",
+      "last_activity": "2024-04-18T18:09:07Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/bradley-cagle.json"
+    },
+    {
+      "slug": "sean-hussey",
+      "name": "Sean Hussey",
+      "firm": "FT Partners",
+      "title": null,
+      "addresses_seen": [
+        "sean.hussey@ftpartners.com",
+        "Sean.Hussey@ftpartners.com"
+      ],
+      "counts": {
+        "threads": 1,
+        "messages": 2,
+        "outbound": 1,
+        "inbound": 1,
+        "calendar_events": 0
+      },
+      "first_activity": "2024-04-19T01:13:50Z",
+      "last_activity": "2024-04-19T01:35:36Z",
+      "missing_outbound": false,
+      "scope_flag": null,
+      "file": "contacts/sean-hussey.json"
+    },
+    {
+      "slug": "owen-sherry",
+      "name": "Owen Sherry",
+      "firm": "Houlihan Lokey",
+      "title": "Restructuring banker, New York",
+      "addresses_seen": [],
+      "counts": {
+        "threads": 0,
+        "messages": 0,
+        "outbound": 0,
+        "inbound": 0,
+        "calendar_events": 0
+      },
+      "first_activity": null,
+      "last_activity": null,
+      "missing_outbound": true,
+      "scope_flag": null,
+      "file": "contacts/owen-sherry.json"
+    }
+  ]
+}

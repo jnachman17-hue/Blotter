@@ -1,0 +1,64 @@
+{
+ "slug": "kammeh-valliani",
+ "name": "Kammeh Valliani",
+ "firm": "Jefferies",
+ "title": "Associate",
+ "addresses_seen": [
+  "kvalliani@jefferies.com"
+ ],
+ "relationship_opened": "Cold email, Texas angle",
+ "source_mailbox": [
+  "jnachman@utexas.edu"
+ ],
+ "stage": "B",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 1,
+  "outbound": 1,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-31T05:43:23Z",
+ "last_activity": "2024-01-31T05:43:23Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d5e094e9f83fb2",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "Fellow Longhorn Interested in Pursuing Banking @ Jefferies NY",
+   "messages": [
+    {
+     "message_id": "18d5e0b219252902",
+     "date": "2024-01-31T05:43:23Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman@utexas.edu",
+     "to": [
+      "kvalliani@jefferies.com"
+     ],
+     "cc": [],
+     "subject": "Fellow Longhorn Interested in Pursuing Banking @ Jefferies NY",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Kameesh,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I'd love to talk to you to learn more about your experience at Jefferies especially given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "Tracker spells the name 'Kammeh Valliani'; Jon's salutation reads 'Kameesh'. Never answered.",
+     "source_mailbox": "jnachman@utexas.edu"
+    }
+   ]
+  }
+ ]
+}

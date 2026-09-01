@@ -1,0 +1,64 @@
+{
+ "slug": "noble-nash",
+ "name": "Noble Nash",
+ "firm": "Intrepid",
+ "title": "Analyst",
+ "addresses_seen": [
+  "Noble.nash@me.com"
+ ],
+ "relationship_opened": "Cold email, PGN angle",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 1,
+  "outbound": 1,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-17T06:35:02Z",
+ "last_activity": "2024-01-17T06:35:02Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d161ee11364e9a",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin Student & PGN Member Interested in Banking @ Intrepid Partners",
+   "messages": [
+    {
+     "message_id": "18d162161efd333d",
+     "date": "2024-01-17T06:35:02Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "Noble.nash@me.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student & PGN Member Interested in Banking @ Intrepid Partners",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Noble,\n\nI hope you are doing well. I am a Fall PC ‘22 PGN member studying Business and Economics, and I'm pursuing a career in Investment Banking. I'd love to talk to you to learn more about your experience at Intrepid in New York. I am particularly interested in Banking in New York at an Elite Boutique, so I would greatly appreciate the opportunity to speak with you.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

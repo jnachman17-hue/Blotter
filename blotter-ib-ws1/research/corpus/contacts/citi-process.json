@@ -1,0 +1,85 @@
+{
+ "slug": "citi-process",
+ "name": "Citi - application status inquiry (bounced)",
+ "firm": null,
+ "title": null,
+ "addresses_seen": [],
+ "relationship_opened": "Firm-level recruiting process, not a single person",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "record_type": "firm_process",
+ "counts": {
+  "threads": 1,
+  "messages": 2,
+  "outbound": 1,
+  "inbound": 1,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-04-10T00:11:18Z",
+ "last_activity": "2024-04-10T00:11:32Z",
+ "threads": [
+  {
+   "thread_id": "18ec5537db918d3f",
+   "capture": "supplement",
+   "subject": "Inquiry Regarding Status of Application",
+   "messages": [
+    {
+     "message_id": "18ec5583f1c3f51a",
+     "date": "2024-04-10T00:11:18Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "sarah.marks@citi.com"
+     ],
+     "cc": [],
+     "subject": "Inquiry Regarding Status of Application",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Sarah,\n\nI hope this email finds you well. My name is Jonathan Nachman, and I'm a Sophomore at the University of Texas at Austin. I completed applications to numerous Citi roles (Job Req: 24728207, 24733934, 24728192, 24728059), but have not heard back regarding any subsequent steps. I wanted to reach out to you to emphasize my continued interest in recruiting with Citi. Please let me know if there is anything else you need on my end. Thank you!\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ec55874c38fca0",
+     "date": "2024-04-10T00:11:32Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "mailer-daemon@googlemail.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Delivery Status Notification (Failure)",
+     "labels": [
+      "INBOX"
+     ],
+     "attachments": [
+      {
+       "filename": "icon.png",
+       "mimeType": "image/png"
+      }
+     ],
+     "has_attachment": true,
+     "body": "** Address not found **\n\nYour message wasn't delivered to sarah.marks@citi.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 5.1.1 User Unknown\nFinal-Recipient: rfc822; sarah.marks@citi.com\nAction: failed\nStatus: 5.1.1\nRemote-MTA: dns; mx-a.mail.citi.com.\nDiagnostic-Code: smtp; 550 5.1.1 User Unknown\nLast-Attempt-Date: Tue, 09 Apr 2024 17:11:32 -0700 (PDT)",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": {
+      "failed_recipient": "sarah.marks@citi.com",
+      "status": "5.1.1",
+      "action": "failed",
+      "latency_seconds": 14
+     },
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "slug": "emily-saunders",
+ "name": "Emily Saunders",
+ "firm": "Harris Williams",
+ "title": "Analyst Recruiter",
+ "addresses_seen": [
+  "esaunders@harriswilliams.com"
+ ],
+ "relationship_opened": "Cold email to the recruiter",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 2,
+  "outbound": 1,
+  "inbound": 1,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-04-09T04:11:37Z",
+ "last_activity": "2024-04-09T14:40:31Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18ec107c0057b5e6",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin Student Interested In Harris Williams Summer 2025 Recruiting",
+   "messages": [
+    {
+     "message_id": "18ec10de60cb7c50",
+     "date": "2024-04-09T04:11:37Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "esaunders@harriswilliams.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested In Harris Williams Summer 2025 Recruiting",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "_Jonathan Nachman Internship Resume (2) (2).pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Emily,\n\nI hope this message finds you well. My name is Jonathan Nachman, and I'm currently pursuing a degree in Economics and Business as a Sophomore at the University of Texas at Austin.\n\nI am eager to understand more about the recruitment process for Summer 2025 internships with Harris Williams. I am unsure of where I land on your firm's recruitment timeline, or if it is still feasible to begin the process with Harris Willaims at this time. I would greatly appreciate any insight you have into this process. Attached below is a copy of my resume.\n\nBest,\nJonathan Nachman",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18ec34dcba3f1280",
+     "date": "2024-04-09T14:40:31Z",
+     "internal_date": null,
+     "direction": "inbound",
+     "sender": "esaunders@harriswilliams.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "RE: UT Austin Student Interested In Harris Williams Summer 2025 Recruiting",
+     "labels": [
+      "IMPORTANT",
+      "INBOX"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Jonathan,\n\nWe’ve completed the hiring process for our Boston, Minneapolis, San Francisco, and New York 10 week. If you’re interested in our Richmond office, we will recruit for our two week boot camp in the fall. Please reach out over the summer and we can discuss boot camp then.\n\nBest,\nEmily\n\nEmily Saunders, Analyst Recruiter, Harris Williams",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": "A soft rejection that also contains a future re-open instruction ('reach out over the summer'). Neither a reply-owed state nor a dead state describes this.",
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}

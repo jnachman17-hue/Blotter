@@ -1,0 +1,86 @@
+{
+ "slug": "kathryn-dzierzanowski",
+ "name": "Kathryn Dzierzanowski",
+ "firm": "Cain Brothers",
+ "title": "Analyst",
+ "addresses_seen": [
+  "kathryndzierzanowski@gmail.com"
+ ],
+ "relationship_opened": "Cold email, PGN angle",
+ "source_mailbox": [
+  "jnachman17@gmail.com"
+ ],
+ "stage": "A",
+ "scope_flag": null,
+ "counts": {
+  "threads": 1,
+  "messages": 2,
+  "outbound": 2,
+  "inbound": 0,
+  "calendar_events": 0
+ },
+ "first_activity": "2024-01-17T06:56:32Z",
+ "last_activity": "2024-01-31T05:35:30Z",
+ "calendar_event_ids": [],
+ "missing_outbound": false,
+ "missing_outbound_note": null,
+ "threads": [
+  {
+   "thread_id": "18d1631c05dc81e3",
+   "capture": "supplement",
+   "shared_thread": false,
+   "subject": "UT Austin Student & PGN Member Interested in Banking @ Cain Brothers",
+   "messages": [
+    {
+     "message_id": "18d1635118b83bea",
+     "date": "2024-01-17T06:56:32Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "kathryndzierzanowski@gmail.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student & PGN Member Interested in Banking @ Cain Brothers",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [
+      {
+       "filename": "Jonathan-Nachman-IB-Resume.pdf",
+       "mimeType": "application/pdf"
+      }
+     ],
+     "has_attachment": true,
+     "body": "Hello Kathryn,\n\nI hope you are doing well. I am a Fall PC ‘22 PGN member studying Business and Economics, and I'm pursuing a career in Investment Banking. I'd love to talk to you to learn more about your experience at Cain Brothers in New York. I am particularly interested in Banking in New York at a Boutique, so I would greatly appreciate the opportunity to speak with you.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    },
+    {
+     "message_id": "18d5e03e99660732",
+     "date": "2024-01-31T05:35:30Z",
+     "internal_date": null,
+     "direction": "outbound",
+     "sender": "jnachman17@gmail.com",
+     "to": [
+      "kathryndzierzanowski@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Re: UT Austin Student & PGN Member Interested in Banking @ Cain Brothers",
+     "labels": [
+      "SENT"
+     ],
+     "attachments": [],
+     "has_attachment": false,
+     "body": "Hello Kathryn,\n\nI hope all is well. I wanted to politely bump my original email as I am still very interested in pursuing Banking at Cain Brothers in New York. If you would be willing to chat that would be greatly appreciated.\n\nBest,\nJonathan",
+     "body_source": "own_text_only_quoted_history_omitted",
+     "bounce": null,
+     "note": null,
+     "source_mailbox": "jnachman17@gmail.com"
+    }
+   ]
+  }
+ ]
+}
