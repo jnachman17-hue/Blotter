@@ -1,7 +1,8 @@
 # The engine rules
 
 Date: September 1, 2026
-Version: **2.** Draft 1 is superseded; every open question in it is now ruled.
+Version: **3.** Amended September 1, 2026 with two rulings Jon made during the
+build — how a day is counted (§4) and calendar RSVPs as machine mail (§6).
 Status: **Ratified by Jon, September 1, 2026**, except §11.
 
 This document is the engine. Build chats turn it into code and **add nothing** —
@@ -116,6 +117,20 @@ picked would be wrong for someone**, so we do not pick one.
 | **Call done** | A call has happened and nobody has written since | Days since the call |
 | **Closed** | You marked it closed | — |
 
+### How a day is counted
+
+**A day turns at midnight in the student's timezone.** `days` is a subtraction of
+calendar dates, not of elapsed hours. A call tomorrow morning is `1` day away
+however few hours remain tonight.
+
+**Ruled by Jon, September 1, 2026**, when the engine and the independently
+written answer key disagreed by exactly one on 98 values. The engine's reading
+was upheld.
+
+**This binds the courier:** every timestamp it sends must carry the student's own
+offset. Sent as UTC, a late-evening email lands on tomorrow's date and the engine
+cannot know better.
+
 ### When two are true at once
 
 ```
@@ -170,6 +185,15 @@ count that looked for that language reported 12 and was wrong.
   after Jon's email, from the contact's own address. A naive rule calls that
   `Replied`. She never answered. Blotter marks an auto-reply where it can tell,
   and otherwise says nothing.
+- **A calendar acceptance is not a reply.** `Accepted:`, `Declined:`,
+  `Tentatively accepted:`, `Invitation:`, `Updated invitation:`, `Canceled
+  event:` and `New time proposed:` are machine mail in either direction: never a
+  reply, never an attempt, never `last_contact`. Clicking Accept is not writing
+  back, and the meeting facts are already in the calendar events Blotter reads.
+
+  **Ruled by Jon, September 1, 2026.** Found by the answer key disagreeing with
+  the engine over Mat Young, who accepted an invite minutes after Jon's last
+  email — which the engine had counted as him writing back.
 - **Anything by phone, text or in person.** At least three consequential
   relationships in the real season ran this way. One produced the job.
 - **Whether a call went well.**

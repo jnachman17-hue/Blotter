@@ -4069,3 +4069,99 @@ him to. The events are real; the reason given for trusting them was not. Session
   on 1 February while the mail runs to 23 April. Not gradual decay, not never
   started — **abandoned in one motion**, which Jon attributes to falling volume.
   Left unamended pending his ruling on the wording.
+
+## Session 13 — September 1, 2026 — the build ran, and the engine is right
+
+Three chats ran in parallel worktrees. All three delivered. **Everything landed
+on `ws9-learn-and-engine-rules`**, not the worktree branches — the isolation
+worked for files, and the branches were merged rather than kept.
+
+### The result, and it is the thing worth knowing
+
+The engine and the answer key were built **independently** — the test chat never
+read the engine's code, per its brief — and then run against each other over
+Jon's whole real 2024 season.
+
+**106 mismatches. Every single one is `days` (98) or `last_call` (8). Zero of
+anything else.**
+
+Verified by the conductor, not taken on report: **every status, every attempts
+count, every `last_contact`, every `next_call`, and every found-list membership
+agrees**, across 67 real contacts at four points in the season. Two things built
+from the same English document, by chats that could not see each other, produce
+the same answer about a real recruiting season.
+
+The 106 are one arithmetic convention, ruled below, and the fixtures have not
+been regenerated since the ruling. **`run-fixtures.ts` reports 15 of 31 passing
+and will keep doing so until they are.** That number is not a quality signal.
+
+### Rulings made during the build
+
+Recorded from the build chats' notes; each is second-hand to this chat and
+auditable in `09-RULEBOOK-NOTES.md` and `11-COURIER-NOTES.md`.
+
+1. **A day turns at midnight in the student's timezone.** `days` subtracts
+   calendar dates, not elapsed hours. The engine's reading upheld over the
+   fixtures'. **Amended into `04-ENGINE-RULES.md` §4** as version 3.
+2. **A calendar acceptance is machine mail** — never a reply, never an attempt,
+   never `last_contact`. Found because Mat Young accepted an invite minutes
+   after Jon's last email and the engine counted it as him writing back.
+   **Amended into §6.** The rules were silent; the answer key was right and the
+   engine was wrong. **This is the independent check paying for itself.**
+3. **A bounce is about the last word, not a permanent mark.** When someone later
+   writes from an address that works — Marijoy Bertolini did — the row moves to
+   `Replied`.
+4. **Version one uses a Blotter template**, not the student's existing tracker.
+   Column mapping deferred.
+5. **The approve flow may append a new Contacts row** with Name and Email. This
+   resolves a real conflict inside the ratified rules: §8 says approved people
+   become contacts, §9 says Blotter never writes student columns. Jon ruled §9
+   means "never touch an existing student cell." No existing row is ever
+   modified.
+
+### What was built
+
+| | |
+|---|---|
+| **Rulebook** | `POST /api/engine`, six files, stateless, no new env var, no database, no new service. 65 self-test checks pass. `tsc`, `eslint` and `next build` clean, every existing page untouched |
+| **Answer key** | 31 request/expected pairs — 15 targeted cases, 4 whole-season snapshots — derived from the rules and the corpus without seeing the engine |
+| **Courier** | `courier/`, one `Code.gs` for a single paste, a read-only manifest, a sheet template, and a 189-line install guide |
+
+**The courier's manifest is the read-only guarantee**: `gmail.readonly`,
+`calendar.readonly`, `spreadsheets.currentonly`. No write scope on mail or
+calendar exists for the script to abuse. That is stronger than a promise in
+prose.
+
+### Gaps, in order of how much they matter
+
+1. **The setup scan was never built.** `04-ENGINE-RULES.md` §2 defines it; the
+   contract has no request shape for it and the courier brief's duty list is the
+   15-minute loop only. **Both chats surfaced it rather than inventing one**,
+   which is correct. Until it exists a student types their starting contacts by
+   hand and `Found` grows the list from there. Needs a contract change.
+2. **Nothing has run live.** No real inbox, no real Google account, no real
+   round trip. Everything is verified against a frozen archive.
+3. **Sorting is unowned.** §4 says longest-waiting first; nobody sorts. Sorting
+   the tab would reorder student rows, and row number is the join key.
+4. **The 15-minute cadence is quota-risky on consumer Gmail** — roughly 43,000
+   read operations a day against a 20,000 limit, and 96 runs against 90 minutes
+   of trigger time. **When it trips the run throws before the write phase, so
+   the sheet goes stale rather than wrong.** A 60-minute cadence sits inside
+   both budgets.
+5. **`next_call` / `last_call` format** is unsettled between the contract's bare
+   dates and §9's `1/17 @ 2:00 PM`. Whatever the server sends is what students
+   see.
+6. **13 rules questions** the answer-key chat could not settle, listed in
+   `10-TEST-CASE-NOTES.md` §7.
+
+### On the install being 22 steps
+
+Jon's objection — *"no student in their right mind is gonna follow a twenty two
+step process"* — reads Part A of `INSTALL.md`, which is **Jon building the master
+sheet once**. **Part B, what a pilot student does, is already four steps**: make
+a copy, reload, authorise, fill in your addresses. The courier chat solved this
+before it was raised.
+
+The irreducible friction is Google's unverified-app warning, three or four
+screens, and **nobody has seen it yet.** `INSTALL.md` step 16 asks Jon to
+screenshot the real thing on first install.
