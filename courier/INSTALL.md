@@ -23,7 +23,10 @@ broken when you see it.
    shown in the top-right corner is the one you recruit from.
 2. Click the big **+ Blank spreadsheet** tile. A new empty spreadsheet opens.
 3. Click **Untitled spreadsheet** in the top-left corner, type
-   **Blotter**, and press Enter.
+   **Blotter**, and press Enter. Then click **File → Settings** and check
+   that **Time zone** is set to where you actually live — Blotter counts
+   "days waiting" by *your* midnight, and this setting is what tells it
+   where midnight is. Click **Save settings**.
 
 ### Put the script inside it
 
@@ -178,6 +181,10 @@ authorize it against their own account. Blotter never sees their login.
    fine."
 4. They fill **Settings → Your email addresses** with every address they send
    from, add their contacts, run once, then **Start automatic updates.**
+5. **One trap:** a copied sheet keeps the *master's* time zone. They should
+   click **File → Settings** and set **Time zone** to where they live —
+   otherwise their "days waiting" counts turn over at someone else's
+   midnight.
 
 ---
 

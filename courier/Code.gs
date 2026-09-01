@@ -673,9 +673,26 @@ function isTruthyCell_(value) {
   return s === 'true' || s === 'yes' || s === 'x' || s === '1';
 }
 
-/** ISO 8601 in UTC — the contract requires a timezone on every timestamp. */
+/**
+ * ISO 8601 carrying the student's own timezone offset (e.g. -05:00), never
+ * bare UTC. Engine rules v3 §4: a day turns at midnight in the student's
+ * timezone, and this binds the courier — sent as UTC, a late-evening email
+ * lands on tomorrow's date and the engine cannot know better. The
+ * spreadsheet's own timezone (File → Settings) is the authority.
+ */
+var studentTimeZoneCache_ = null;
+function studentTimeZone_() {
+  if (!studentTimeZoneCache_) {
+    studentTimeZoneCache_ =
+      SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone() ||
+      Session.getScriptTimeZone() ||
+      'Etc/UTC';
+  }
+  return studentTimeZoneCache_;
+}
+
 function toIso_(date) {
-  return Utilities.formatDate(date, 'Etc/UTC', "yyyy-MM-dd'T'HH:mm:ss'Z'");
+  return Utilities.formatDate(date, studentTimeZone_(), "yyyy-MM-dd'T'HH:mm:ssXXX");
 }
 
 /** "Jamie Diamond <jamie@x.com>" → "jamie@x.com". */

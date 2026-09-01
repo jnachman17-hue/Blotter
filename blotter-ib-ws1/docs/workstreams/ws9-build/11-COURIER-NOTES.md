@@ -194,3 +194,28 @@ warning-screen wording, and a real round-trip to `/api/engine` (which did not
 exist yet). **The first install, per the decision log, is the test** — Jon's
 own account, following `INSTALL.md` to the letter, with the rulebook deployed
 first so step 22 has something to talk to.
+
+---
+
+## Addendum, September 1, 2026 — brought up to engine rules v3
+
+Written after the conductor's reconciliation (`00c6232`) amended the rules to
+v3 with the midnight ruling: *"every timestamp [the courier] sends must carry
+the student's own offset"* (§4). The courier as first committed sent UTC —
+correct under the contract's letter, wrong under v3, and worth being loud
+about because it produces exactly the off-by-one the fixtures caught 98 times.
+
+**Fixed:** `toIso_()` now formats every timestamp — `now`, message dates,
+event start/end — in the **spreadsheet's own timezone** with an ISO offset
+(`2026-09-01T20:05:00-05:00`), falling back to the script timezone, then UTC.
+The spreadsheet timezone (File → Settings) is the authority on where the
+student's midnight is.
+
+**Trap this creates, handled in `INSTALL.md`:** a copied sheet inherits the
+*master's* timezone, so every pilot student outside Jon's timezone would get
+midnight in the wrong place. Part A step 3 has the master check it; Part B
+step 5 has each student set their own.
+
+The calendar-RSVP ruling (§6, `Accepted:` etc. as machine mail) needs nothing
+from the courier — it sends those messages like any other and the server
+classifies them, which is the division of labor working as designed.
