@@ -62,11 +62,47 @@ rulings. They are kept in place, marked, so the numbering in earlier
 discussion stays valid. **Eleven questions remain open**, and §7 names the
 three that would most change a real student's sheet.
 
+### 0.1 — Jon's follow-up rulings, same day, after the 31-of-31 report
+
+Jon answered the three questions in plain terms. Two of them settled things:
+
+- **The nine firm-process records are not rows — RESOLVES 3.13.** Jon:
+  *"We are not tracking anything at a firm-level or interviews. We will still
+  have a column for firm name purely for UI to match contacts with firm."*
+  The season fixtures were regenerated to the **58 tracked people**; the nine
+  firm records (applications, ATS acknowledgements, the FT interview process)
+  no longer appear as rows. Their mail was already invisible to the engine —
+  no tracked address occurs in it — so requests are unchanged except the
+  contact list; every expected value for the 58 is untouched, and the run is
+  **still 31 of 31**. `firm` remains a plain text column on a person's row.
+  Unchanged and worth restating: a calendar event *with a tracked person on
+  it* still lands on that person's row even when it is an interview (Matt
+  Manriquez's Morgan Stanley first round, Paige Butters's two Aeris
+  interviews) — that is §7's attendee rule, ratified and engine-agreed; only
+  firm-level events with no person attach to nothing.
+- **`attempts` — definition confirmed, RESOLVES 3.5 and most of 3.4.** Jon:
+  every email sent since they last wrote back is an attempt; the
+  final-thank-you-on-a-dead-thread situation is handled by marking the row
+  `Closed` ("correspondence over"), not by special-casing the count. That is
+  exactly what the fixtures encode (bounced sends count — Sean Kang is 3;
+  thank-yous count; `Closed` retires the row). **One sliver stays open**, now
+  the tail of 3.4: whether a send to a *third party* inside the contact's
+  single-contact conversation counts (Sam Ward's thread forwarded to family
+  currently adds an attempt). Put back to Jon as a one-line yes/no.
+- **`found.name` (3.7) was re-explained in plain English** — the "found
+  these" approval card can currently show only a bare email address, because
+  the agreed courier→engine format carries no display names. Still awaiting
+  Jon's ruling; a fix is a contract change (name fields on messages), and one
+  more honest caveat now recorded: the corpus captured bare addresses only,
+  so even after a contract change these fixtures could not carry real display
+  names without re-fetching mail.
+
 What exists now:
 
 - **62 fixture files** in `web/app/api/engine/__fixtures__/` — 31 request/expected
   pairs plus a README that defines comparison semantics.
-- **4 season fixtures**: all 67 corpus records as one sheet, asked what was true
+- **4 season fixtures**: the **58 tracked people** as one sheet (the corpus's 9
+  firm-process records are not rows — Jon's ruling, §0.1), asked what was true
   on 2024-01-25 (peak), 2024-02-15 (just after the tracker died), 2024-03-15
   (the quiet stretch), 2024-04-30 (season end). Same rows, same order, four
   clocks.
@@ -83,16 +119,18 @@ Season expected-state counts, as a shape check:
 
 | `now` | Sent | Replied | Call sched. | Call done | Bounced | Not emailed | found |
 |---|---|---|---|---|---|---|---|
-| 2024-01-25 | 26 | 5 | 6 | 1 | 0 | 29 | 7 |
-| 2024-02-15 | 38 | 11 | 0 | 1 | 2 | 15 | 10 |
-| 2024-03-15 | 38 | 12 | 1 | 1 | 1 | 14 | 10 |
-| 2024-04-30 | 40 | 15 | 0 | 1 | 1 | 10 | 10 |
+| 2024-01-25 | 26 | 5 | 6 | 1 | 0 | 20 | 7 |
+| 2024-02-15 | 38 | 11 | 0 | 1 | 2 | 6 | 10 |
+| 2024-03-15 | 38 | 12 | 1 | 1 | 1 | 5 | 10 |
+| 2024-04-30 | 40 | 15 | 0 | 1 | 1 | 1 | 10 |
 
-Two of those numbers are the season's story told back by the rules: on the
-peak day six calls are scheduled at once and nothing has ever bounced; by
-season end **40 of 67 rows sit in `Sent`, most of them 90-plus-day-old January
-cold emails** — the backlog is real, nothing nags about it (no threshold
-exists, §4), and `Closed` is the only way a student clears it (§10).
+(The sole season-end `Not emailed` is Lonnie Kauppila — the corpus capture
+gap, §4 below.) Two of those numbers are the season's story told back by the
+rules: on the peak day six calls are scheduled at once and nothing has ever
+bounced; by season end **40 of 58 rows sit in `Sent`, most of them
+90-plus-day-old January cold emails** — the backlog is real, nothing nags
+about it (no threshold exists, §4), and `Closed` is the only way a student
+clears it (§10).
 
 ---
 
@@ -111,7 +149,7 @@ exists, §4), and `Closed` is the only way a student clears it (§10).
 | Three bcc'd Wells Fargo messages, empty `To` | `cases/10` | They attach via From/Cc (§3); `Replied` |
 | Carrie Cruces / Chris Miller / Paige Butters attempts | `cases/11`, `cases/12` | Rule-derived values — **see §4.2, the brief's premise doesn't survive §5 as written** |
 | A contact marked `Closed` | `cases/04` (constructed, labelled) | `Closed` beats even `Bounced`, the top of §4's chain |
-| Every contact with no mail at all | season fixtures + `cases/05` | `Not emailed`, never an error (29 such rows on 2024-01-25) |
+| Every contact with no mail at all | season fixtures + `cases/05` | `Not emailed`, never an error (20 such rows on 2024-01-25) |
 
 Extra cases the corpus demanded: `cases/13` (Sellingsloh's one cc line
 creating five referral suggestions, plus the ignored-list suppression),
@@ -179,23 +217,24 @@ attempt, never `last_contact`. Found via Mat Young. One wording residue is
 recorded in §0: a bare-title invite email with none of those prefixes would
 slip the list as written; no expected value here depends on one.
 
-**3.4 — What exactly does `attempts` count?** §5: "how many times you have
-written since they last wrote back." Three sub-questions the corpus makes
-concrete: (a) does a bounced send count? (the key says yes — Sean Kang is 3,
-which is §4's whole story); (b) in a single-contact conversation, does an
-outbound to a third party count? (§3 says everything in the conversation is
-that person's activity, so the key says yes — Sam Ward's attempts is 2, one of
-which is Jon forwarding the thread to family); (c) see 3.5. If either answer
-is meant to be no, §5 needs a sentence.
+**3.4 — What exactly does `attempts` count? — MOSTLY RESOLVED, §0.1.** Jon
+confirmed §5 in plain terms: every email sent since they last wrote back is an
+attempt (so bounced sends count — Sean Kang is 3), and the
+final-thank-you-then-silence endgame is handled by marking `Closed`, not by
+special-casing the count. **The one sliver still open:** in a single-contact
+conversation, does an outbound to a *third party* count? §3 says everything in
+the conversation is that person's activity, so the key says yes — Sam Ward's
+attempts is 2, one of which is Jon forwarding the thread to family. One-line
+yes/no from Jon settles it; "no" changes exactly one value (Sam Ward 2→1)
+plus a sentence in §5.
 
-**3.5 — The brief's "highest attempts" trio doesn't survive §5 as written.**
-The brief names Carrie Cruces, Chris Miller, Paige Butters. Those are the
-highest **total message counts** in the corpus index. Under §5's definition —
-writes since they last wrote back — the highest at the four reference dates
-are **Sean Kang (3, all bounced)** and **Nick Gerstein (3)**, with Paige
-peaking at 3 only on 2024-02-27 (that snapshot is in `cases/12`). At the four
-dates, Carrie is 1, Chris is 0, Paige is at most 1. If Jon wants a
-"total outreach" number, that is a different column and a new rule.
+**3.5 — The round-1 brief's "highest attempts" trio — RESOLVED, §0.1.** The
+brief named Carrie Cruces, Chris Miller, Paige Butters — the highest **total
+message counts** in the corpus index, which is a different number. Jon
+confirmed the §5 definition (since they last wrote back), under which the
+highest at the four reference dates are **Sean Kang (3, all bounced)** and
+**Nick Gerstein (3)**, with Paige peaking at 3 only on 2024-02-27
+(`cases/12`). No "total outreach" column exists or is asked for.
 
 **3.6 — Marijoy: the brief says "never anything worse than `Sent`"; the rules
 say `Bounced`.** Both of her guessed addresses really bounced on Feb 8, and §4
@@ -247,18 +286,19 @@ no corpus thread, so fixtures carry two `student.addresses`; onboarding still
 has to ask for every alias or §8 will one day suggest the student to
 themselves.
 
-**3.13 — §1 versus the 67 rows.** §1 removes firms from version one, yet the
-brief's mandate is "what Blotter should say about each of the 67", nine of
-which are firm processes. Resolution used: the nine ride as rows with no
-addresses → `Not emailed` at every date, and their mail is invisible (the
-season-end request contains 274 of the corpus's 325 messages; the missing 51
-are exactly the firm threads, Lonnie's broken capture, and two invite-only
-threads). If Jon would rather the nine not appear at all, it is a one-line
-change in the script. Related, recorded: because the engine reads whole
+**3.13 — §1 versus the 67 rows — RESOLVED, §0.1.** Jon ruled the nine
+firm-process records are not rows at all: nothing is tracked at firm level,
+and `firm` is purely a text column on a person's row for the UI. The season
+fixtures now carry the 58 people. The firm records' mail stays invisible
+either way (the season-end request contains 274 of the corpus's 325 messages;
+the missing 51 are exactly the firm threads, Lonnie's broken capture, and two
+invite-only threads). Still true and recorded: because the engine reads whole
 conversations only when a tracked address appears in them (§2), Liz Ream's
 two calendar-invite emails and the `FRCampusRecruiting@hl.com` scheduling
 thread are structurally invisible — the meeting facts arrive via the calendar
-instead. As ruled, not a bug.
+instead. As ruled, not a bug. And the corollary stands, now sharper: **the
+sheet has no row on which the FT Partners interview season can appear at
+all** — version one goes quiet exactly there, by design (§1).
 
 ---
 
@@ -339,10 +379,11 @@ several tracked people); calendar per §7; found per §8.
   wins over everything else present (§4), clock since the bounce, and the
   Stifel `Status: 4.4.2` texts are in the request bodies precisely so a
   status-code-keyed engine fails loudly (§4's cut of `5.x`-keying, Learn Q5).
-- **The firm-process rows** (nine): `Not emailed` ×4 — §1's ruling made
-  visible, including at the exact moment (mid-April) the real season was all
-  FT Partners interviews. Blotter v1 goes quiet there by design; the season
-  key states it rather than hiding it.
+- **The nine firm-process records: not rows at all** (Jon's ruling, §0.1) —
+  the sheet is the 58 people. Their mail matches no tracked address, so it
+  appears in no request; in mid-April, when the real season was all FT
+  Partners interviews, the sheet simply has nothing to show. Blotter v1 goes
+  quiet there by design (§1); the key states it rather than hiding it.
 - **found** (§8): seven suggestions by Jan 25 (Jon's father from "Potential
   favor", his mother's address from Chris Miller's thread, brother Andrew from
   Kleopatra's, the three un-tracked Intrepid bankers from Sellingsloh's cc
@@ -484,47 +525,30 @@ permanent).
 
 ---
 
-## 7. Unsettled, awaiting Jon — eleven remain
+## 7. Unsettled, awaiting Jon — eight and a half remain
 
 Round 2 resolved the day rule (3.1, 3.2) and the calendar-RSVP rule (3.3).
-The full statements of the rest are in §3; the one-line list, so nothing
-hides:
+Jon's same-day follow-up (§0.1) resolved the firm-rows question (3.13), the
+"highest attempts" discrepancy (3.5), and most of the attempts definition
+(3.4). What is left, one line each; full statements in §3:
 
-1. `attempts` sub-definitions: bounced sends, third-party sends (3.4).
-2. "Highest attempts" as the round-1 brief meant it vs §5 as written (3.5).
-3. Marijoy: `Bounced` in the gap vs the brief's "never worse than `Sent`" (3.6).
-4. `found.name` is unproducible from the contract's request (3.7).
-5. §8: headers only, or bodies too? (3.8)
-6. `warnings`: shape and obligations, or explicitly untestable (3.9) — and
-   the same now goes for `found.context` wording, per §0.
-7. `Closed` rows: blank the columns or keep the facts (3.10).
-8. Mid-call `now` (3.11).
-9. `next_call` format; declined invites; nullable `firm`; Bounced
+1. The 3.4 sliver: does a send to a third party inside the contact's
+   conversation count as an attempt? (One value in the key rides on it —
+   Sam Ward.)
+2. Marijoy: `Bounced` in the gap vs the round-1 brief's "never worse than
+   `Sent`" (3.6) — the key follows the rules (`Bounced`).
+3. **`found.name` is unproducible from the contract's request (3.7)** — the
+   "found these" card can only show a bare address today. The one still-open
+   question that most changes what a student sees; re-explained to Jon in
+   plain English, awaiting his call. A yes means a contract change (display
+   names on messages) and, honestly, a corpus re-fetch if the fixtures are
+   ever to carry real names.
+4. §8: headers only, or bodies too? (3.8)
+5. `warnings` shape — and `found.context` wording — testable or explicitly
+   not (3.9, §0).
+6. `Closed` rows: blank the columns or keep the facts (3.10).
+7. Mid-call `now` (3.11).
+8. `next_call` format; declined invites; nullable `firm`; Bounced
    `last_contact`; the utmail alias (3.12).
-10. Firm-process rows: keep the nine as address-less rows, or drop them (3.13).
-11. Not a rule question but needing an action: Lonnie's broken capture (§4)
-    should be re-fetched, or her row's answer stays a fiction.
-
-### The three that would most change a real student's sheet
-
-Picked per the round-2 brief; the rest stay on the list, unresolved.
-
-1. **The nine firm rows, and the tracker going quiet during interviews
-   (3.13).** As ruled, version one does not track firms — so in the real
-   April, when everything that mattered was FT Partners interviews, the sheet
-   shows nothing moving. Keep that scope, drop the nine rows entirely, or
-   pull firm processes into version one? Whole rows appear or vanish on this
-   answer.
-2. **The "found these" list has no names (3.7).** The approval screen the
-   rules promise ("Liz Ream") can only show bare email addresses under the
-   current contract, because the mail data arrives with addresses only.
-   Either the courier starts sending display names, or the student approves
-   `liz.ream@ftpartners.com` sight unseen. Every referral suggestion a
-   student ever sees looks different on this answer.
-3. **What `Attempts` actually counts (3.4 + 3.5).** Today it counts every
-   send since the person last wrote — including sends that bounced (Sean
-   Kang: 3) and, in a one-contact conversation, mail to third parties (Sam
-   Ward gains an attempt for a thread Jon forwarded to family). And it is
-   *not* the "total outreach" number the round-1 brief expected for
-   Carrie/Chris/Paige. One sentence from Jon fixes the column's meaning;
-   until then the number a student reads is quietly ambiguous.
+9. Not a rule question but needing an action: Lonnie's broken capture (§4)
+   should be re-fetched, or her row's answer stays a fiction.

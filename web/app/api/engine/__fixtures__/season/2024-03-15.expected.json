@@ -291,15 +291,6 @@
   },
   {
    "row": 34,
-   "status": "Not emailed",
-   "days": null,
-   "last_contact": null,
-   "attempts": 0,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 35,
    "status": "Replied",
    "days": 50,
    "last_contact": "2024-01-25",
@@ -308,7 +299,7 @@
    "last_call": "2024-01-24"
   },
   {
-   "row": 36,
+   "row": 35,
    "status": "Sent",
    "days": 50,
    "last_contact": "2024-01-25",
@@ -317,7 +308,7 @@
    "last_call": "2024-01-25"
   },
   {
-   "row": 37,
+   "row": 36,
    "status": "Sent",
    "days": 49,
    "last_contact": "2024-01-26",
@@ -326,7 +317,7 @@
    "last_call": "2024-01-26"
   },
   {
-   "row": 38,
+   "row": 37,
    "status": "Sent",
    "days": 45,
    "last_contact": "2024-01-30",
@@ -335,7 +326,7 @@
    "last_call": "2024-01-30"
   },
   {
-   "row": 39,
+   "row": 38,
    "status": "Sent",
    "days": 38,
    "last_contact": "2024-02-06",
@@ -344,7 +335,7 @@
    "last_call": "2024-02-02"
   },
   {
-   "row": 40,
+   "row": 39,
    "status": "Sent",
    "days": 46,
    "last_contact": "2024-01-29",
@@ -353,7 +344,7 @@
    "last_call": "2024-01-29"
   },
   {
-   "row": 41,
+   "row": 40,
    "status": "Sent",
    "days": 45,
    "last_contact": "2024-01-30",
@@ -362,7 +353,7 @@
    "last_call": "2024-01-30"
   },
   {
-   "row": 42,
+   "row": 41,
    "status": "Replied",
    "days": 46,
    "last_contact": "2024-01-29",
@@ -371,16 +362,7 @@
    "last_call": null
   },
   {
-   "row": 43,
-   "status": "Not emailed",
-   "days": null,
-   "last_contact": null,
-   "attempts": 0,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 44,
+   "row": 42,
    "status": "Replied",
    "days": 45,
    "last_contact": "2024-01-30",
@@ -389,7 +371,7 @@
    "last_call": null
   },
   {
-   "row": 45,
+   "row": 43,
    "status": "Sent",
    "days": 35,
    "last_contact": "2024-02-09",
@@ -398,7 +380,7 @@
    "last_call": "2024-02-08"
   },
   {
-   "row": 46,
+   "row": 44,
    "status": "Sent",
    "days": 44,
    "last_contact": "2024-01-31",
@@ -407,7 +389,7 @@
    "last_call": null
   },
   {
-   "row": 47,
+   "row": 45,
    "status": "Bounced",
    "days": 45,
    "last_contact": "2024-01-30",
@@ -416,25 +398,25 @@
    "last_call": null
   },
   {
+   "row": 46,
+   "status": "Sent",
+   "days": 45,
+   "last_contact": "2024-01-30",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 47,
+   "status": "Sent",
+   "days": 45,
+   "last_contact": "2024-01-30",
+   "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
    "row": 48,
-   "status": "Sent",
-   "days": 45,
-   "last_contact": "2024-01-30",
-   "attempts": 1,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 49,
-   "status": "Sent",
-   "days": 45,
-   "last_contact": "2024-01-30",
-   "attempts": 1,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 50,
    "status": "Replied",
    "days": 43,
    "last_contact": "2024-02-01",
@@ -443,7 +425,7 @@
    "last_call": null
   },
   {
-   "row": 51,
+   "row": 49,
    "status": "Replied",
    "days": 15,
    "last_contact": "2024-02-29",
@@ -452,7 +434,7 @@
    "last_call": null
   },
   {
-   "row": 52,
+   "row": 50,
    "status": "Call scheduled",
    "days": 3,
    "last_contact": "2024-03-11",
@@ -461,7 +443,7 @@
    "last_call": "2024-03-06"
   },
   {
-   "row": 53,
+   "row": 51,
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
@@ -470,7 +452,7 @@
    "last_call": null
   },
   {
-   "row": 54,
+   "row": 52,
    "status": "Replied",
    "days": 32,
    "last_contact": "2024-02-12",
@@ -479,7 +461,7 @@
    "last_call": null
   },
   {
-   "row": 55,
+   "row": 53,
    "status": "Replied",
    "days": 25,
    "last_contact": "2024-02-19",
@@ -488,11 +470,29 @@
    "last_call": "2024-02-19"
   },
   {
-   "row": 56,
+   "row": 54,
    "status": "Sent",
    "days": 2,
    "last_contact": "2024-03-13",
    "attempts": 1,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 55,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
+   "next_call": null,
+   "last_call": null
+  },
+  {
+   "row": 56,
+   "status": "Not emailed",
+   "days": null,
+   "last_contact": null,
+   "attempts": 0,
    "next_call": null,
    "last_call": null
   },
@@ -516,87 +516,6 @@
   },
   {
    "row": 59,
-   "status": "Not emailed",
-   "days": null,
-   "last_contact": null,
-   "attempts": 0,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 60,
-   "status": "Not emailed",
-   "days": null,
-   "last_contact": null,
-   "attempts": 0,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 61,
-   "status": "Not emailed",
-   "days": null,
-   "last_contact": null,
-   "attempts": 0,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 62,
-   "status": "Not emailed",
-   "days": null,
-   "last_contact": null,
-   "attempts": 0,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 63,
-   "status": "Not emailed",
-   "days": null,
-   "last_contact": null,
-   "attempts": 0,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 64,
-   "status": "Not emailed",
-   "days": null,
-   "last_contact": null,
-   "attempts": 0,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 65,
-   "status": "Not emailed",
-   "days": null,
-   "last_contact": null,
-   "attempts": 0,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 66,
-   "status": "Not emailed",
-   "days": null,
-   "last_contact": null,
-   "attempts": 0,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 67,
-   "status": "Not emailed",
-   "days": null,
-   "last_contact": null,
-   "attempts": 0,
-   "next_call": null,
-   "last_call": null
-  },
-  {
-   "row": 68,
    "status": "Call done",
    "days": 42,
    "last_contact": null,

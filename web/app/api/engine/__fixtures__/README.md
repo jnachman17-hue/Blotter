@@ -19,12 +19,14 @@ hand and lives in that script as data, not logic.
 
 ## Layout
 
-- `season/<date>.request.json` + `season/<date>.expected.json` — all 67
-  corpus records as one sheet, asked "what was true on this day?" at four real
-  dates: **2024-01-25** (peak), **2024-02-15** (just after the tracker was
-  abandoned), **2024-03-15** (the quiet stretch), **2024-04-30** (season end).
-  Same 67 rows in the same order at every date, so a state can be watched
-  moving.
+- `season/<date>.request.json` + `season/<date>.expected.json` — the **58
+  tracked people** as one sheet, asked "what was true on this day?" at four
+  real dates: **2024-01-25** (peak), **2024-02-15** (just after the tracker
+  was abandoned), **2024-03-15** (the quiet stretch), **2024-04-30** (season
+  end). Same 58 rows in the same order at every date, so a state can be
+  watched moving. (The corpus's nine firm-process records are not rows —
+  Jon's ruling: nothing is tracked at firm level, and `firm` is a plain text
+  column on a person's row.)
 - `cases/<nn-name>/<date>.request.json` + `.expected.json` — fifteen focused
   cases, one per hard situation the Learn phase found. Each directory's cases
   are self-contained requests.
@@ -91,12 +93,15 @@ hand and lives in that script as data, not logic.
   calendar — the other 149 events of that window were captured
   title-and-start only, and could not be converted faithfully. Engines must
   ignore unmatched events regardless (rules §7).
-- The nine firm-process records ride as rows with **no email addresses**,
-  per rules §1 (version one does not track firms): expected `Not emailed` at
-  every date. Their threads are therefore absent from season requests —
+- The nine firm-process records in the corpus (applications, ATS
+  acknowledgements, the FT Partners interview process) appear in **no**
+  fixture as rows — Jon ruled nothing is tracked at firm level. Their mail
+  contains no tracked address, so it is absent from season requests too:
   as-ruled blindness, not an oversight. The shared-mailbox situations the
-  brief names are exercised in `cases/09` and `cases/10`, where a student
-  tracks the mailbox address on a row.
+  round-1 brief names are exercised in `cases/09` and `cases/10` with real
+  mail on rows a student keeps — the mechanics they test (case-insensitive
+  matching, empty `To` lines) are rules §3's own cited examples and apply to
+  any row whatever it names.
 - Lonnie Kauppila's one real message was captured with an empty `To` line
   (corpus gap, notes §5): as recorded it attaches to nobody, so her row is
   expected `Not emailed`. If the engine is "wrong" about Lonnie, re-fetch that

@@ -354,18 +354,15 @@ SEASON_ANSWERS = {
     # -- Owen Sherry: no email address anywhere; reachable only through the
     #    event title (rules §7 rule 2). Call done with no mail is not an error.
     "owen-sherry":           arc(NE, CD(E(19), None, 0)),
-    # -- the nine firm-process records: version one does not track firms
-    #    (rules §1), their rows carry no address, so nothing ever attaches.
-    "piper-sandler-ats":     same(NE),
-    "houlihan-rx-process":   same(NE),
-    "ft-partners-process":   same(NE),
-    "wells-fargo-process":   same(NE),
-    "agc-partners":          same(NE),
-    "bofa-process":          same(NE),
-    "barclays-process":      same(NE),
-    "citi-process":          same(NE),
-    "union-square":          same(NE),
 }
+
+# The corpus's nine firm-process records (applications, ATS acknowledgements,
+# the FT Partners interview process) are NOT rows. Jon's ruling, September 1,
+# 2026 follow-up: "We are not tracking anything at a firm-level or interviews.
+# We will still have a column for firm name purely for UI to match contacts
+# with firm." So the sheet is the 58 people; `firm` stays as a text field on a
+# person's row. The firm records' mail was already invisible to the engine
+# (no tracked address appears in it — rules §1, §2); now the rows are gone too.
 
 # Season "found" (rules §8): every new address that appears in a conversation
 # belonging to a tracked contact, minus the exclusions (bounce senders,
@@ -637,15 +634,14 @@ CASES = [
 # ---------------------------------------------------------------- assembling
 
 def roster_row(index_rec, record, row_num):
-    if index_rec.get("record_type") == "firm_process":
-        emails = []  # rules §1: version one does not track firms
-    else:
-        emails = dedupe_addresses_keep_first_casing(record.get("addresses_seen") or [])
+    # Only people are rows (rules §1; Jon's follow-up ruling — firm-process
+    # records are not tracked at all).
+    assert index_rec.get("record_type") != "firm_process", index_rec["slug"]
     return {
         "row": row_num,
         "name": index_rec["name"],
         "firm": index_rec.get("firm"),
-        "emails": emails,
+        "emails": dedupe_addresses_keep_first_casing(record.get("addresses_seen") or []),
         "closed": False,
     }
 
@@ -733,9 +729,10 @@ def main():
         contact_dates[slug] = dates
     # Custom-row anchors validate against the global message set only.
 
-    season_order = [r["slug"] for r in index["records"]]
-    assert len(season_order) == 67, f"expected 67 records, index lists {len(season_order)}"
-    assert set(season_order) == set(SEASON_ANSWERS), "season answers do not cover the index exactly"
+    assert len(index["records"]) == 67, f"expected 67 corpus records, index lists {len(index['records'])}"
+    season_order = [r["slug"] for r in index["records"] if r.get("record_type") != "firm_process"]
+    assert len(season_order) == 58, f"expected 58 tracked people, got {len(season_order)}"
+    assert set(season_order) == set(SEASON_ANSWERS), "season answers do not cover the tracked people exactly"
 
     written = []
 
@@ -803,10 +800,7 @@ def main():
                 n_custom += 1
             else:
                 rec = next(r for r in index["records"] if r["slug"] == slug)
-                row = roster_row(rec, records[slug], j + 2)
-                if slug in ("wells-fargo-process", "bofa-process"):
-                    pass  # cases use custom rows for these instead
-                rows.append((slug, row))
+                rows.append((slug, roster_row(rec, records[slug], j + 2)))
         for slug in case.get("closed", []):
             for s, row in rows:
                 if s == slug:

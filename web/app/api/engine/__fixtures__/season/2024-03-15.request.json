@@ -298,13 +298,6 @@
   },
   {
    "row": 34,
-   "name": "Piper Sandler - applicant tracking acknowledgement",
-   "firm": null,
-   "emails": [],
-   "closed": false
-  },
-  {
-   "row": 35,
    "name": "David Talbot",
    "firm": "Raymond James",
    "emails": [
@@ -313,7 +306,7 @@
    "closed": false
   },
   {
-   "row": 36,
+   "row": 35,
    "name": "Grant Gillespie",
    "firm": "Morgan Stanley",
    "emails": [
@@ -322,7 +315,7 @@
    "closed": false
   },
   {
-   "row": 37,
+   "row": 36,
    "name": "Mathew (Mat) Young",
    "firm": "Citi",
    "emails": [
@@ -331,7 +324,7 @@
    "closed": false
   },
   {
-   "row": 38,
+   "row": 37,
    "name": "Kevin Stephens",
    "firm": "Houlihan Lokey",
    "emails": [
@@ -340,7 +333,7 @@
    "closed": false
   },
   {
-   "row": 39,
+   "row": 38,
    "name": "Ethan Marnhout",
    "firm": "FT Partners",
    "emails": [
@@ -349,7 +342,7 @@
    "closed": false
   },
   {
-   "row": 40,
+   "row": 39,
    "name": "Danny Shin",
    "firm": "Houlihan Lokey",
    "emails": [
@@ -358,7 +351,7 @@
    "closed": false
   },
   {
-   "row": 41,
+   "row": 40,
    "name": "Matt Manriquez",
    "firm": "Morgan Stanley",
    "emails": [
@@ -367,7 +360,7 @@
    "closed": false
   },
   {
-   "row": 42,
+   "row": 41,
    "name": "Maura Vestal",
    "firm": "Houlihan Lokey",
    "emails": [
@@ -376,14 +369,7 @@
    "closed": false
   },
   {
-   "row": 43,
-   "name": "Houlihan Lokey NY Restructuring - shared-mailbox recruiting process",
-   "firm": null,
-   "emails": [],
-   "closed": false
-  },
-  {
-   "row": 44,
+   "row": 42,
    "name": "Lynell Velten",
    "firm": "Houlihan Lokey",
    "emails": [
@@ -392,7 +378,7 @@
    "closed": false
   },
   {
-   "row": 45,
+   "row": 43,
    "name": "Grace Steelman",
    "firm": "Barclays",
    "emails": [
@@ -401,7 +387,7 @@
    "closed": false
   },
   {
-   "row": 46,
+   "row": 44,
    "name": "Jay Klein",
    "firm": "Barclays",
    "emails": [
@@ -410,7 +396,7 @@
    "closed": false
   },
   {
-   "row": 47,
+   "row": 45,
    "name": "Sean Kang",
    "firm": "Stifel",
    "emails": [
@@ -421,7 +407,7 @@
    "closed": false
   },
   {
-   "row": 48,
+   "row": 46,
    "name": "Kyle Gunnison",
    "firm": "Raymond James",
    "emails": [
@@ -430,7 +416,7 @@
    "closed": false
   },
   {
-   "row": 49,
+   "row": 47,
    "name": "Kammeh Valliani",
    "firm": "Jefferies",
    "emails": [
@@ -439,7 +425,7 @@
    "closed": false
   },
   {
-   "row": 50,
+   "row": 48,
    "name": "Sara Laracca",
    "firm": "Houlihan Lokey",
    "emails": [
@@ -448,7 +434,7 @@
    "closed": false
   },
   {
-   "row": 51,
+   "row": 49,
    "name": "Marijoy Bertolini",
    "firm": "Aeris Partners",
    "emails": [
@@ -459,7 +445,7 @@
    "closed": false
   },
   {
-   "row": 52,
+   "row": 50,
    "name": "Paige Butters",
    "firm": "Aeris Partners",
    "emails": [
@@ -468,7 +454,7 @@
    "closed": false
   },
   {
-   "row": 53,
+   "row": 51,
    "name": "Lonnie Kauppila",
    "firm": "Houlihan Lokey",
    "emails": [
@@ -477,7 +463,7 @@
    "closed": false
   },
   {
-   "row": 54,
+   "row": 52,
    "name": "Gayathri Ravi",
    "firm": "Goldman Sachs",
    "emails": [
@@ -486,7 +472,7 @@
    "closed": false
   },
   {
-   "row": 55,
+   "row": 53,
    "name": "Steve McLaughlin",
    "firm": "FT Partners",
    "emails": [
@@ -495,7 +481,7 @@
    "closed": false
   },
   {
-   "row": 56,
+   "row": 54,
    "name": "Elliot Calkins",
    "firm": "Guggenheim Securities",
    "emails": [
@@ -504,42 +490,7 @@
    "closed": false
   },
   {
-   "row": 57,
-   "name": "FT Partners - application, interviews, super day, offer",
-   "firm": null,
-   "emails": [],
-   "closed": false
-  },
-  {
-   "row": 58,
-   "name": "Wells Fargo - application, video interview, first round, withdrawal",
-   "firm": null,
-   "emails": [],
-   "closed": false
-  },
-  {
-   "row": 59,
-   "name": "AGC Partners - cold application email",
-   "firm": null,
-   "emails": [],
-   "closed": false
-  },
-  {
-   "row": 60,
-   "name": "Bank of America - application",
-   "firm": null,
-   "emails": [],
-   "closed": false
-  },
-  {
-   "row": 61,
-   "name": "Barclays - application status",
-   "firm": null,
-   "emails": [],
-   "closed": false
-  },
-  {
-   "row": 62,
+   "row": 55,
    "name": "Emily Saunders",
    "firm": "Harris Williams",
    "emails": [
@@ -548,7 +499,7 @@
    "closed": false
   },
   {
-   "row": 63,
+   "row": 56,
    "name": "Ben Dziedzic",
    "firm": "RBC Capital Markets",
    "emails": [
@@ -557,21 +508,7 @@
    "closed": false
   },
   {
-   "row": 64,
-   "name": "Citi - application status inquiry (bounced)",
-   "firm": null,
-   "emails": [],
-   "closed": false
-  },
-  {
-   "row": 65,
-   "name": "Union Square Advisors - cold application email",
-   "firm": null,
-   "emails": [],
-   "closed": false
-  },
-  {
-   "row": 66,
+   "row": 57,
    "name": "Bradley Cagle",
    "firm": "FT Partners",
    "emails": [
@@ -580,7 +517,7 @@
    "closed": false
   },
   {
-   "row": 67,
+   "row": 58,
    "name": "Sean Hussey",
    "firm": "FT Partners",
    "emails": [
@@ -589,7 +526,7 @@
    "closed": false
   },
   {
-   "row": 68,
+   "row": 59,
    "name": "Owen Sherry",
    "firm": "Houlihan Lokey",
    "emails": [],
