@@ -2,7 +2,7 @@
 
 Written September 1, 2026 by the Test-cases chat, from the real 2024 corpus
 (`blotter-ib-ws1/research/corpus/`) against **`04-ENGINE-RULES.md`** and the
-shapes in **`05-CONTRACT.md`**. **Current expected run: 36 of 36.**
+shapes in **`05-CONTRACT.md`**. **Current expected run: 38 of 38.**
 
 **Cases 01 to 15 and the four season snapshots were written by a chat
 forbidden from reading the engine's code**, and that independence caught two
@@ -14,14 +14,17 @@ case, with rule citations. **Do not edit an expected file to go green** — work
 out whether the code, the fixture or the rules document is wrong, and say
 which.
 
-**Cases 16 and 17 are different, and it is stated rather than hidden.** They
-were added in Phase A (September 2, 2026) by a chat that had read the engine,
-because they cover behaviour ruled that day which the 2024 season never
-produced: a declined invite (`Call cancelled`) and a call flipping to
-`Call done` at its start. Their expected values were derived from §4's text
-before the engine was run. They carry less authority than the fifteen above,
-and the reason those fifteen exist is exactly the discipline these two cannot
-supply.
+**Cases 16, 17 and 18 are different, and it is stated rather than hidden.**
+They were added in Phase A (September 2, 2026) by a chat that had read the
+engine, because they cover behaviour ruled that day which the 2024 season
+never produced: a declined invite (`Call cancelled`), a call flipping to
+`Call done` at its start, and what the clock counts from once a call is
+cancelled. Their expected values were derived from §4's text before the engine
+was run. They carry less authority than the fifteen above, and the reason those
+fifteen exist is exactly the discipline these three cannot supply — case 18
+proved the point immediately: its first hand-derived `attempts` was wrong,
+because the derivation used one contact's own corpus file while the builder
+merges canonical threads across records. The engine was right.
 
 Regenerate with, from the repo root:
 
@@ -40,13 +43,14 @@ hand and lives in that script as data, not logic.
   watched moving. (The corpus's nine firm-process records are not rows —
   Jon's ruling: nothing is tracked at firm level, and `firm` is a plain text
   column on a person's row.)
-- `cases/<nn-name>/<date>.request.json` + `.expected.json` — seventeen focused
-  cases, one per hard situation the Learn phase found, plus the two Phase A
+- `cases/<nn-name>/<date>.request.json` + `.expected.json` — eighteen focused
+  cases, one per hard situation the Learn phase found, plus the three Phase A
   additions. Each directory's cases are self-contained requests.
 
 ## Contract versions in these files
 
-Every fixture except `16-nick-gerstein-declined` is **`version: 1`**, and that
+Every fixture except `16-nick-gerstein-declined` and
+`18-doug-melsheimer-declined-late` is **`version: 1`**, and that
 is deliberate: contract v2 is additive, and those files are the suite's
 standing proof that the server still understands a version-1 payload exactly
 as it always did. Case 16 is `version: 2` because it carries `declined`, the
@@ -92,23 +96,29 @@ one field the new state needs.
 
 4. **A call is `Call done` from the moment it STARTS**, not from its end
    (`cases/17`). "Nobody has written since" is measured from the start too.
-5. **A declined invite is `Call cancelled`** (`cases/16`), which holds only
-   until somebody writes. Either side declining counts — the student or the
-   contact — and a third party on the invite declining counts for nobody. A
-   cancelled call is neither `Next call` nor `Last call`: it did not happen.
-   Its clock is days since the call was due, **floored at zero**, because a
-   call declined a week ahead is cancelled today rather than in negative days.
-6. **A `Closed` row** keeps its factual columns (`last_contact`, `attempts`,
+5. **A declined invite is `Call cancelled`** (`cases/16`, `cases/18`), which
+   holds only until somebody writes. Either side declining counts — the student
+   or the contact — and a third party on the invite declining counts for
+   nobody. A cancelled call is neither `Next call` nor `Last call`: it did not
+   happen.
+6. **`Days` counts from the last thing that ACTUALLY happened** — an email
+   either way, or a call that took place. **A cancelled call is a non-event**:
+   it does not anchor the clock, does not reset it and does not touch it, so a
+   `Call cancelled` row shows exactly the number `Sent` or `Replied` would.
+   `null` when nothing has ever happened. `cases/18` is the demonstration:
+   eight days, then nine, where an anchor on the call itself would have read 0
+   on both days.
+7. **A `Closed` row** keeps its factual columns (`last_contact`, `attempts`,
    calls); only `days` is null, per the §4 table. The sheet renders that null
    as a dash.
 
 **Still provisional (flagged in the notes §3):**
 
-7. **`next_call`** = the matched upcoming event's `start` exactly as it
+8. **`next_call`** = the matched upcoming event's `start` exactly as it
    appears in the request (ISO 8601 with offset). The contract never shows a
    non-null example; §9's sheet renders a time of day, so a bare date would
    lose information.
-8. **Bounced rows'** `last_contact` = the date of the final send attempt.
+9. **Bounced rows'** `last_contact` = the date of the final send attempt.
 
 ## Provenance rules these files obey
 
@@ -118,15 +128,16 @@ one field the new state needs.
   messages carry `""` bodies (none of them matters for bounce or auto-reply
   detection); two Sean Kang outbound bodies are the corpus's bracketed
   transcription placeholders.
-- **Three constructed elements exist, every one labelled**: the `closed: true`
+- **Four constructed elements exist, every one labelled**: the `closed: true`
   flag in `cases/04-closed-wins` (the corpus has no closed contact; the state
   must win over everything else), the single `ignored` entry in
   `cases/13-sellingsloh-cc-five/2024-01-25-ignored.*`, and the `declined` list
-  on Nick Gerstein's real invite in `cases/16-nick-gerstein-declined` (the
-  corpus contains no declined invite, so the state cannot be tested from real
-  data alone). Every message, address and timestamp in all three is still the
-  real season. `cases/17` constructs nothing — only its two clocks are chosen,
-  as every fixture's `now` is.
+  on a real invite in each of `cases/16-nick-gerstein-declined` and
+  `cases/18-doug-melsheimer-declined-late` (the corpus contains no declined
+  invite, so the state cannot be tested from real data alone). Every message,
+  address, timestamp and event in all four is still the real season.
+  `cases/17` constructs nothing — only its two clocks are chosen, as every
+  fixture's `now` is.
 - Season requests include only the 35 recruiting calendar events (each request
   carries those with `created ≤ now`). A live courier would send the whole
   calendar — the other 149 events of that window were captured

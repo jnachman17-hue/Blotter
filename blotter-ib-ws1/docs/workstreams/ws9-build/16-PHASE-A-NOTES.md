@@ -8,10 +8,10 @@ Jon reconnected it.
 
 | Check | Result |
 |---|---|
-| `npx tsx web/app/api/engine/run-fixtures.ts` | **36 of 36 pass** (31 existing + 5 new) |
-| `npx tsx web/app/api/engine/selftest.ts` | **105 of 105 pass** (was 71) |
+| `npx tsx web/app/api/engine/run-fixtures.ts` | **38 of 38 pass** (31 existing + 7 new) |
+| `npx tsx web/app/api/engine/selftest.ts` | **113 of 113 pass** (was 71) |
 | `node courier/helpers.test.js` | **57 of 57 pass** (new file — the courier had no tests) |
-| Expected values changed | **12, all one row.** Lonnie Kauppila at three dates. See §3 |
+| Expected values changed | **13.** Lonnie Kauppila at three dates, and one `days` value under the September 2 clock ruling. See §3 |
 | `tsc --noEmit`, `eslint`, `next build` | Clean |
 | `node --check` on `Code.gs` | Clean |
 
@@ -136,10 +136,16 @@ Precedence implemented exactly as ruled:
   upcoming and it did not happen.
 - The courier accepts the eighth status (`VALID_STATUSES`).
 
-**One judgment call inside this, and Jon should see it — see §5.1.** The rules
-say the clock is "days since it was declined." **Google exposes no timestamp
-for when someone answered an invite**, in Apps Script or in the Calendar API.
-So the clock is days since **the call was due**, floored at zero.
+**The clock was ruled separately on September 2 and is now built to that
+ruling — see §5.1.** `Days` counts from the **last thing that actually
+happened**: an email in either direction, or a call that took place. **A
+cancelled call is a non-event** — it does not anchor the clock, does not reset
+it and does not touch it. Only the status changes.
+
+So a `Call cancelled` row shows exactly the number `Sent` or `Replied` would
+show for that contact, and it can be large. That is the point: a decline
+landing thirty days after the last email reads 30, which is the fact worth
+knowing. `null` when nothing has ever happened at all.
 
 ### 2.3 A call flips to `Call done` at its start — done
 
@@ -270,8 +276,10 @@ authorising ruling is §2.9.** Nothing else moved.
 | `season/2024-03-15.expected.json` | 51, Lonnie Kauppila | same | `Sent`, days `34`, last contact `2024-02-10`, attempts `1` |
 | `season/2024-04-30.expected.json` | 51, Lonnie Kauppila | same | `Sent`, days `80`, last contact `2024-02-10`, attempts `1` |
 
-**Authorised by:** §2.9, which says in terms what her row should read — `Sent`,
-attempts 1, clock from the thank-you. The three `days` values are date
+| `cases/16-nick-gerstein-declined/2024-01-25.expected.json` | 2, Nick Gerstein | `Call cancelled`, days `0` | `Call cancelled`, days **`4`** |
+
+**Authorised by:** §2.9 for Lonnie's twelve, which says in terms what her row
+should read — `Sent`, attempts 1, clock from the thank-you. The three `days` values are date
 subtractions from **2024-02-10**, her thank-you's date in Austin time, and
 were derived from §4 before the engine was run. `2024-01-25` is unchanged: the
 thank-you had not been sent yet, so `Not emailed` was always right there.
@@ -279,6 +287,12 @@ thank-you had not been sent yet, so `Not emailed` was always right there.
 The matching request files gained her thread, which they never carried before —
 with an empty `To` line it contained no tracked address, so `courier_threads`
 correctly excluded it.
+
+**And the September 2 clock ruling for the thirteenth** (§5.1). Nick's last
+email was four days before the `now` in that fixture; under the anchor this
+replaced, the row read 0. Nothing else moved: case 16's other two dates already
+computed to the same numbers under both anchors, which is why only one file
+changed.
 
 **One number worth noticing.** Season-end `Not emailed` was 1 and is now **0**.
 That single row was Lonnie, and the fixtures README called it out as the corpus
@@ -361,55 +375,72 @@ those files stay byte-identical.
 
 ## 5. Findings — things Jon should rule on
 
-### 5.1 `Call cancelled`'s clock cannot be what the rules ask for
+### 5.1 `Call cancelled`'s clock — raised, then ruled, and the ruling was better
 
-`04-ENGINE-RULES.md` §4 gives `Call cancelled` the clock **"Days since it was
-declined."** That number is not obtainable. **Google exposes no timestamp for
-when an attendee answered an invite** — not through Apps Script's `EventGuest`,
-and not through the Calendar API. The contract cannot carry a field the
-courier can never fill.
+**Resolved. This section is kept because the reasoning is the useful part.**
 
-**What is implemented instead: days since the call was due, floored at zero** —
-the same anchor `Call done` uses, which keeps the pair that sits at one
-precedence level symmetric. A call declined a week in advance reads
-`Call cancelled` with **0 days** until its date passes, then counts up.
+**What was found.** `04-ENGINE-RULES.md` §4 gave `Call cancelled` the clock
+"days since it was declined", and that number is **not obtainable**: Google
+publishes no timestamp for when an attendee answered an invite — not through
+Apps Script's `EventGuest`, not through the Calendar API. A contract cannot
+carry a field the courier can never fill. The first build therefore counted
+from **the call's own date, floored at zero**, and that was reported as a
+judgment needing Jon's eye rather than quietly shipped.
 
-**The consequence worth Jon's eye.** Because the anchor is the call's date and
-not the decline, a decline that happens *before* the call date cannot be
-cleared by writing until that date arrives. Concretely: invite for Friday,
-banker declines Monday, banker writes Tuesday "can we do next week?" — on
-Wednesday the row reads `Call cancelled`, where `Replied` would be more useful.
-**After the call's date the state clears normally**, so this is a bounded
-window, not a dead end. The brief said to make it behave "exactly as
-`Call done` behaves", and that is what this is.
+**What Jon ruled, September 2, 2026.** *"Days since is one of the most
+important features but for emails. Not calls… When it's a live contact days
+since email is super important to know when to bump the thread… If you decline
+a call or the banker declined a call it says call cancelled. Resets to days
+since if email comes either way."*
 
-**A fix exists if Jon wants it, and it is not free.** The decline usually
-arrives as an email — `Declined: Invitation: …` — which the engine already
-classifies as machine mail and which carries a real timestamp. Using it would
-close the window, but it couples two mechanisms and only works when that mail
-exists (it does not when the student declines their own invite). Not built, on
-the brief's instruction not to invent.
+**The rule, and it unifies rather than special-cases.** `Days` counts from the
+**last thing that actually happened** — an email in either direction, or a call
+that took place. **A cancelled call is a non-event**: it does not anchor the
+clock, does not reset it, does not touch it. Only the status changes.
 
-**A ruling is pending, and this clock is very likely to change.** Jon pushed
-back on the whole idea of a counter here — *"if a call was cancelled the state
-remains call cancelled until an inbound or outbound email switches it, why do
-we need a days since call counter"* — and he is right that the current number
-reads strangely: decline on Monday for a Friday call and it says 0 all week.
-The likely replacement is **days since the last message in the relationship,
-either direction**, which is always available, needs no Google timestamp, and
-is arguably the number `Call done` is really measuring too. **Not changed on
-this pass** — the conductor holds the ruling. When it lands, the places to
-change are `computeRow`'s `Call cancelled` branch in `rules.ts`, `render_row`
-in `build_fixtures.py`, `cases/16`'s three expected rows, and the three
-`Call cancelled` self-tests.
+**Why it is better than what was built, kept so the reasoning survives.** The
+old anchor read 0 for a call declined on Monday and due on Friday — all week —
+when the useful fact was that nobody had communicated since Monday. Jon's
+version needs no Google timestamp at all, behaves identically whether the
+banker or the student declined, and makes `Days` mean one thing in every state
+instead of two. **The fix was not to find the missing timestamp; it was that
+the clock never needed one.**
 
-### 5.2 The `days` clamp is a judgment, and it is small but real
+**Built as ruled.** `Call done` is untouched — a call that happened is one of
+the things that actually happened. The `Math.max(0, …)` clamp on
+`Call cancelled` is **gone rather than left as a silent no-op**: the anchor is
+always in the past, so it was dead code. `cases/18-doug-melsheimer-declined-late`
+is the demonstration on real data — eight days, then nine, where the old anchor
+read 0 on both.
 
-`Math.max(0, …)` on `Call cancelled`. The alternative — negative days for a
-call still ahead — reads badly and sorts strangely under "longest-waiting
-first". Recorded so it is a decision rather than an accident.
+**One consequence the ruling introduces, and it is the honest answer.** When a
+contact has never exchanged a message and their only call was declined, there
+is nothing that ever happened, so `days` is `null` and the sheet shows a dash.
+Pinned in the self-tests.
 
-### 5.3 The recipient cap changes what a contact's row can know
+### 5.1b The residue: a decline in advance still holds until the call's date
+
+**Not ruled, and unchanged by the clock ruling. Raised again because it is now
+the only open piece.**
+
+Whether the status `Call cancelled` *holds* is still tested against the
+**event's start** — "has anyone written after the call was due?" — because that
+is the only moment available. So: invite for Friday, banker declines Monday,
+banker writes Tuesday "can we do next week?" — on Wednesday the row still reads
+`Call cancelled` where `Replied` would be more useful. After the call's date it
+clears normally, so this is a bounded window rather than a dead end.
+
+**The clock ruling improved this without closing it.** That row now reads
+`Call cancelled, 1` (one day since their email) rather than `Call cancelled, 0`,
+so the number is at least meaningful while the status is stale.
+
+Closing it properly needs the same thing the clock turned out not to need: a
+moment for the decline. The `Declined: Invitation: …` email carries one and the
+engine already classifies those as machine mail — but it exists only when the
+counterparty declines, not when the student declines their own invite. **Not
+built, and not urgent.**
+
+### 5.2 The recipient cap changes what a contact's row can know
 
 Stated again because it is the one change that can *remove* information:
 skipping a thread whole means a contact who only ever appeared on a mass
@@ -491,9 +522,11 @@ either side, using Node's real timezone data as a stand-in for `Utilities`.
 - **Run `node courier/helpers.test.js` after touching `Code.gs`.** It is not
   wired into anything — nothing in this repo runs tests automatically — so it
   only helps if it is remembered.
-- **`Call cancelled`'s clock is very likely to change** (§5.1). Jon has pushed
-  back on it and the conductor holds the ruling. Four places move together
-  when it lands; they are listed there.
+- **`Call cancelled`'s clock is ruled and built** (§5.1): days since the last
+  thing that actually happened, never since the call that did not. If you find
+  yourself reaching for the event as an anchor there, that is the reading Jon
+  replaced. **What is still open is 5.1b** — whether the *status* should clear
+  before the call's date when a decline lands early.
 - **D16 in `14-DESIGN-DECISIONS.md` has a wrong reason** (§2.9). Sara Laracca
   *is* a tracked contact, so her confirmation thread is not invisible — it is
   on her row. Lonnie is unreachable from it for a different reason: she is
@@ -517,9 +550,11 @@ either side, using Node's real timezone data as a stand-in for `Utilities`.
 Recorded for the conductor to reconcile upward — this chat does not edit
 `04-ENGINE-RULES.md` or `14-DESIGN-DECISIONS.md`.
 
-1. **§4's `Call cancelled` clock** — "days since it was declined" is not
-   obtainable; the implementation uses the call's own date, floored at zero
-   (§5.1). §4 needs one sentence.
+1. **§4's `Call cancelled` clock — ruled September 2, and §4 still says the
+   old thing.** The table gives it "Days since it was declined", which is not
+   obtainable and is no longer what the engine does. It now counts from the
+   last thing that actually happened — an email either way, or a call that took
+   place (§5.1). **The conductor owns that sentence.**
 2. **The start-time flip also moved the "nobody has written since" anchor**
    from the event's end to its start (§2.3). §4 says only that the *status*
    flips.
@@ -529,7 +564,9 @@ Recorded for the conductor to reconcile upward — this chat does not edit
 4. **D17's unstated details** (§6): a pretend date with no time means the end
    of that day, and a date-formatted cell's midnight counts as "no time
    given". Both are documented for the student in `INSTALL.md`.
-5. **D16's reason is wrong** (§2.9). Sara Laracca is a tracked contact; the
+5. **A decline in advance does not clear the status until the call's date**
+   (§5.1b) — unaddressed by the clock ruling and the last open piece of it.
+6. **D16's reason is wrong** (§2.9). Sara Laracca is a tracked contact; the
    confirmation thread is visible on her row and reaches Lonnie only through
    body text, which §8/D15 forbids reading. The ruling's conclusion stands;
    its explanation does not.

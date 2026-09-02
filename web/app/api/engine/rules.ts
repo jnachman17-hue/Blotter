@@ -495,6 +495,11 @@ function bounceFor(
  * **`Call cancelled` clears itself the same way, and that is the point** —
  * without it, a declined invite would be a dead end nothing ever removes.
  *
+ * `Days` is the one number that means the same thing in every state: how long
+ * since the last thing that actually happened. `Call done` counts from the
+ * call, because a call that happened is one of those things. A cancelled call
+ * is not, so it counts from the last email instead.
+ *
  * A `Closed` row keeps everything else it knows (§4): `last_contact`,
  * `attempts` and both call dates are still computed and returned. Only the
  * clock is dropped. You closed the relationship, you did not delete it, and a
@@ -553,6 +558,25 @@ function computeRow(contact: ContactIn, activity: ContactActivity, now: string):
     .filter((t) => t.cancelled)
     .sort((a, b) => b.startEpoch - a.startEpoch)[0];
 
+  /* §4, ruled by Jon on September 2, 2026: **the last thing that actually
+     happened** — an email in either direction, or a call that took place.
+
+     A cancelled call is a non-event. It does not anchor this clock, does not
+     reset it and does not touch it; the only thing a decline changes is the
+     status. That is what keeps `Days` meaning one thing everywhere: "how long
+     since anybody actually did anything", which on a live relationship is the
+     number that tells you whether to bump the thread.
+
+     `null` when nothing has ever happened — a contact whose only calendar
+     event was declined and who has never exchanged a message really has no
+     clock, and a dash says so honestly. */
+  const lastRealActivity =
+    last !== null && (lastPast === undefined || last.epoch >= lastPast.startEpoch)
+      ? last.msg.date
+      : lastPast !== undefined
+        ? lastPast.event.start
+        : null;
+
   const nextCall = upcoming === undefined ? null : upcoming.event.start;
   /* `Last call` keeps its date permanently in its own column regardless of
      state (§4) — dated by the day the call was on. A declined call never
@@ -579,10 +603,16 @@ function computeRow(contact: ContactIn, activity: ContactActivity, now: string):
     !correspondence.some((m) => m.epoch > lastCancelled.startEpoch)
   ) {
     /* §4: the most recent call was declined by either side, and nobody has
-       written since. Clamped at 0 because a call declined a week before it
-       was due is cancelled today, not in negative days. */
+       written since. The clock is days since the last thing that actually
+       happened — never since the call that did not, which is why no clamp is
+       needed here: the anchor is always in the past.
+
+       So this reads exactly the number `Sent` or `Replied` would read for the
+       same contact, and it can be large. A decline landing thirty days after
+       the last email shows 30, and that is the useful fact: thirty days since
+       anybody communicated, and now the call is off too. */
     status = "Call cancelled";
-    days = Math.max(0, daysBetween(lastCancelled.event.start, now));
+    days = lastRealActivity === null ? null : daysBetween(lastRealActivity, now);
   } else if (
     lastPast !== undefined &&
     !correspondence.some((m) => m.epoch > lastPast.startEpoch)

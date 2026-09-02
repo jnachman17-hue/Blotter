@@ -131,11 +131,6 @@ def date_diff(a, b):
     return days
 
 
-def not_after(a, b):
-    """True when a's student calendar date is on or before b's."""
-    return parse_iso(a).astimezone(STUDENT_TZ).date() <= parse_iso(b).astimezone(STUDENT_TZ).date()
-
-
 def msg_addresses(m):
     addrs = [m["sender"]] + list(m.get("to") or []) + list(m.get("cc") or [])
     return {a.lower() for a in addrs if a}
@@ -235,6 +230,15 @@ DATES = ["jan", "feb", "mar", "apr"]
 E = lambda n: ("event", n)  # noqa: E731  (event #n, 1-based position in calendar.json)
 
 NE = ("Not emailed", None, None, 0, None, None)
+
+# Everyone the Potential favor conversation introduces when Doug is the only
+# tracked person on it (cases/18). Jon's father started the thread, Kleopatra
+# is cc'd into it, and Jon's brother is on the second branch of it.
+DOUG_FOUND = [
+    ("dnachman@fastspring.com", "2024-01-17", "Appeared in a thread with Douglas Melsheimer"),
+    ("kleopatra.kirkland@barclays.com", "2024-01-17", "Appeared in a thread with Douglas Melsheimer"),
+    ("andrew.nachman@wisc.edu", "2024-01-17", "Appeared in a thread with Douglas Melsheimer"),
+]
 
 
 def S(anchor, lc, att, last_call=None):
@@ -664,24 +668,26 @@ CASES = [
     # ------------------------------------------------------------------ #
     {
         "id": "16-nick-gerstein-declined",
-        "why": "A declined invite. Before this ruling the row read Call scheduled forever for a meeting nobody would attend (rules §4, decision D10). Three moments: declined the day before, declined at the hour it would have run, and then cleared by Jon writing — because a state nothing ever removes is a dead end.",
+        "why": "A declined invite. Before this ruling the row read Call scheduled forever for a meeting nobody would attend (rules §4, decision D10). Three moments: declined the day before, declined at the hour it would have run, and then cleared by Jon writing — because a state nothing ever removes is a dead end. The clock counts from the last EMAIL throughout: the call that did not happen never anchors anything.",
         "constructed": "Nick's real Jan 26 invite marked declined by him is the ONE constructed element; every message, address and timestamp is the real season. The corpus contains no declined invite, so this behaviour cannot be tested from real data alone.",
         "roster": [("nick-gerstein", None)],
         "events": [11],
         "declined": {11: ["ngerstein99@gmail.com"]},
         "nows": {
             # The call is tomorrow at 10 and he has declined it. Not
-            # `Call scheduled` — that is the whole defect. Clock floored at
-            # zero: it is cancelled today, not in negative days.
+            # `Call scheduled` — that is the whole defect. Four days on the
+            # clock, because Jon's last email was four days ago; the call
+            # tomorrow that is not happening does not reset anything.
             "2024-01-25": {"now": NOW["jan"],
-                           "rows": {"nick-gerstein": ("Call cancelled", E(11), "2024-01-21", 1, None, None)},
+                           "rows": {"nick-gerstein": ("Call cancelled", "2024-01-22T03:57:20Z", "2024-01-21", 1, None, None)},
                            "found": []},
             # 10:15 on the day, fifteen minutes into a call that is not
             # happening. Jon's 09:56 note came BEFORE it was due, so it does
-            # not clear the state — and a call that never happened is never
-            # `Last call`.
+            # not clear the state — but it IS the last thing that happened, so
+            # the clock runs from it. A call that never happened is never
+            # `Last call` either.
             "2024-01-26-during": {"now": "2024-01-26T16:15:00Z",
-                                  "rows": {"nick-gerstein": ("Call cancelled", E(11), "2024-01-26", 2, None, None)},
+                                  "rows": {"nick-gerstein": ("Call cancelled", "2024-01-26T15:56:04Z", "2024-01-26", 2, None, None)},
                                   "found": []},
             # That evening Jon writes again, after the hour the call was due.
             # Somebody has written, so it clears to `Sent` exactly as
@@ -689,6 +695,29 @@ CASES = [
             "2024-01-26-evening": {"now": "2024-01-27T00:00:00Z",
                                    "rows": {"nick-gerstein": ("Sent", "2024-01-26T23:03:24Z", "2024-01-26", 3, None, None)},
                                    "found": []},
+        },
+    },
+    {
+        "id": "18-doug-melsheimer-declined-late",
+        "why": "The case that shows what the clock is FOR (rules §4, ruled September 2, 2026). The Potential favor conversation went quiet on 17 January; the call was booked for the 26th, nine days later. Decline it and the row must say EIGHT then NINE — days since anybody actually communicated, which is the number that tells you whether to bump the thread. Under the anchor this replaced it read 0 on both days, because it counted from a call that never took place. Note attempts 0 and not 1: with Doug the only tracked person here, §3 makes the whole conversation his, and Kleopatra wrote after Jon did.",
+        "constructed": "Doug's real 26 January invite marked declined by him is the ONE constructed element; every message, address, timestamp and the event itself are the real season.",
+        "roster": [("douglas-melsheimer", None)],
+        "events": [12],
+        "declined": {12: ["douglas.melsheimer@barclays.com"]},
+        "nows": {
+            # The day before. The clock is already at eight and counting, where
+            # the old anchor sat at zero waiting for a call that would never
+            # arrive.
+            "2024-01-25": {"now": NOW["jan"],
+                           "rows": {"douglas-melsheimer": ("Call cancelled", "2024-01-17T17:19:15Z", "2024-01-17", 0, None, None)},
+                           "found": DOUG_FOUND},
+            # 3pm on the day, ninety minutes after the call would have started
+            # and two hours before Jon next writes. Nine — one more than
+            # yesterday. The hour the call was due passing changes nothing,
+            # because nothing happened at it.
+            "2024-01-26-after-the-hour": {"now": "2024-01-26T21:00:00Z",
+                                          "rows": {"douglas-melsheimer": ("Call cancelled", "2024-01-17T17:19:15Z", "2024-01-17", 0, None, None)},
+                                          "found": DOUG_FOUND},
         },
     },
     {
@@ -742,11 +771,13 @@ def render_row(row_num, entry, now, events_by_pos):
     elif status == "Call done":
         days = date_diff(ev_start(anchor), now)
     elif status == "Call cancelled":
-        # Days since the call that is not happening was due, floored at zero:
-        # a call declined a week before it was booked for is cancelled today,
-        # not in negative days. `date_diff` refuses to run backwards on
-        # purpose, so the direction is decided first.
-        days = date_diff(ev_start(anchor), now) if not_after(ev_start(anchor), now) else 0
+        # Ruled by Jon, September 2, 2026: days since the last thing that
+        # ACTUALLY HAPPENED — an email either way (a message anchor), or a call
+        # that took place (an event anchor). Never the cancelled call itself: a
+        # non-event does not start a clock. `None` when nothing has happened at
+        # all. No clamp is possible or needed — the anchor is always past.
+        days = None if anchor is None else date_diff(
+            anchor if isinstance(anchor, str) else ev_start(anchor), now)
     return {
         "row": row_num,
         "status": status,

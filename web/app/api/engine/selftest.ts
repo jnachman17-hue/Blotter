@@ -349,16 +349,22 @@ const GMAIL_BOUNCE = (failed: string) =>
   };
   const jamie = [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])];
 
+  /* §4, ruled by Jon on September 2, 2026: the clock counts from the last
+     thing that ACTUALLY HAPPENED. A cancelled call is a non-event — it changes
+     the status and touches nothing else. So this reads exactly the number
+     `Sent` would read: six days since Jon's email of the 14th. */
   const ahead = computeEngine(req(jamie, [thread], [declinedByThem])).rows[0];
   check("declined in advance: cancelled, not scheduled", ahead.status, "Call cancelled");
-  check("declined in advance: clamped at zero, never negative", ahead.days, 0);
+  check("declined in advance: days since the last EMAIL", ahead.days, 1);
   check("a cancelled call is not the next call", ahead.next_call, null);
   check("a cancelled call is not the last call either", ahead.last_call, null);
   check("a cancelled call does not disturb attempts", ahead.attempts, 1);
 
+  /* The hour the call was due passing changes nothing, because nothing
+     happened at it. The clock is still counting from the email. */
   const after = computeEngine(req(jamie, [thread], [declinedByThem], "2024-02-25T17:00:00Z")).rows[0];
-  check("once the date passes, the clock runs", after.status, "Call cancelled");
-  check("once the date passes, days since it was due", after.days, 5);
+  check("the call's hour passing changes the status not at all", after.status, "Call cancelled");
+  check("and the clock still counts from the email", after.days, 11);
 
   /* The whole point of the state: it clears itself, exactly as `Call done`
      does. Without that it would be a dead end nothing ever removes. */
@@ -379,6 +385,59 @@ const GMAIL_BOUNCE = (failed: string) =>
     ),
   ).rows[0];
   check("somebody writes and it clears", wrote.status, "Replied");
+}
+
+/* The other half of "the last thing that actually happened": a call that took
+   place outranks an older email as the anchor. A call happened on the 10th,
+   nobody wrote after it, a second call on the 20th was declined — the clock
+   counts from the call that happened, not from the email that preceded it and
+   not from the call that did not. */
+{
+  const r = computeEngine(
+    req(
+      [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])],
+      [{ thread_id: "t1", messages: [out("2024-02-01T14:00:00Z", ["jamie@jpmorgan.com"])] }],
+      [
+        evt({ id: "e1", start: "2024-02-10T19:00:00Z", end: "2024-02-10T19:30:00Z" }),
+        evt({
+          id: "e2",
+          start: "2024-02-13T19:00:00Z",
+          end: "2024-02-13T19:30:00Z",
+          declined: ["jamie@jpmorgan.com"],
+        }),
+      ],
+    ),
+  );
+  check("a completed call outranks the older email", r.rows[0].status, "Call cancelled");
+  check("and it is what the clock counts from", r.rows[0].days, 5);
+  check("the call that happened is still Last call", r.rows[0].last_call, "2024-02-10");
+}
+
+/* And when nothing has ever actually happened, there is no clock to show. A
+   contact whose only calendar event was declined and who has never exchanged a
+   message really has nothing to count from; `null` becomes a dash in the
+   sheet, which says exactly that. */
+{
+  const r = computeEngine(
+    req(
+      [contact(7, "Owen Sherry", "Houlihan Lokey", [])],
+      [],
+      [
+        evt({
+          title: "Jonathan - Owen Sherry Houlihan RX Intro Call",
+          start: "2024-02-20T20:00:00Z",
+          end: "2024-02-20T20:30:00Z",
+          attendees: [],
+          declined: ["student@gmail.com"],
+        }),
+      ],
+    ),
+  );
+  check("nothing ever happened: still cancelled", r.rows[0].status, "Call cancelled");
+  check("nothing ever happened: no clock at all", r.rows[0].days, null);
+  check("nothing ever happened: nothing invented", r.rows[0].last_contact, null);
+  check("nothing ever happened: no attempts", r.rows[0].attempts, 0);
+  check("nothing ever happened: no last call", r.rows[0].last_call, null);
 }
 
 /* Either side. The student declining cancels the call just as the banker
