@@ -1,8 +1,11 @@
 # The engine rules
 
 Date: September 1, 2026
-Version: **3.** Amended September 1, 2026 with two rulings Jon made during the
-build — how a day is counted (§4) and calendar RSVPs as machine mail (§6).
+Version: **4.** Amended twice on September 1, 2026. v3 added how a day is
+counted (§4) and calendar RSVPs as machine mail (§6). **v4 adds the forwarding
+rule (§3) and what counts as an attempt (§5)** — both ruled by Jon after the
+first live run, both already implemented in the engine and the answer key, and
+both missing from this document until now.
 Status: **Ratified by Jon, September 1, 2026**, except §11.
 
 This document is the engine. Build chats turn it into code and **add nothing** —
@@ -96,6 +99,25 @@ relationships**. So:
 **Outbound** is any message from one of your own addresses. **Inbound** is
 everything else.
 
+### Inbound counts thread-wide. Outbound only counts when addressed to them.
+
+**In a conversation involving exactly one of your contacts:**
+
+- **Everything arriving counts as their side of it**, whoever sent it. This is
+  what lets an assistant's reply advance the banker's row.
+- **Your own messages count only when that contact is actually addressed** — on
+  the To or Cc line.
+
+**Ruled by Jon, September 1, 2026.** Found in his own live data: he forwarded
+Samuel Ward's reply to a family member inside the same thread, and the engine
+counted that forward as him writing to Samuel. **Forwarding a reply to your
+family is not writing to the banker.**
+
+**The consequence to know:** an email to a guessed address counts, and its
+bounce lands, only when that guess is stored on the contact's row. Every real
+case already does this — the three dead Stifel addresses were all in the sheet —
+but a student who guesses without recording the guess gets nothing back.
+
 ---
 
 ## 4. The states
@@ -170,6 +192,9 @@ site today. At five days Blotter would have chased Jon about Marijoy Bertolini
 
 A first email and a third email are not the same situation and no state can tell
 them apart.
+
+**A send only counts when the contact is on the message**, per §3. Ruled by
+Jon, September 1, 2026, at the same time and for the same reason.
 
 **The real number, counted from the corpus rather than recalled:** 22 to 30
 depending on how you count, across 17 to 22 contacts. Within a single thread it
