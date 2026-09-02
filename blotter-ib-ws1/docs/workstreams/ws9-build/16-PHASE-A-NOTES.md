@@ -8,8 +8,8 @@ Jon reconnected it.
 
 | Check | Result |
 |---|---|
-| `npx tsx web/app/api/engine/run-fixtures.ts` | **38 of 38 pass** (31 existing + 7 new) |
-| `npx tsx web/app/api/engine/selftest.ts` | **113 of 113 pass** (was 71) |
+| `npx tsx web/app/api/engine/run-fixtures.ts` | **40 of 40 pass** (31 existing + 9 new) |
+| `npx tsx web/app/api/engine/selftest.ts` | **120 of 120 pass** (was 71) |
 | `node courier/helpers.test.js` | **67 of 67 pass** (new file — the courier had no tests) |
 | Expected values changed | **13.** Lonnie Kauppila at three dates, and one `days` value under the September 2 clock ruling. See §3 |
 | `tsc --noEmit`, `eslint`, `next build` | Clean |
@@ -418,27 +418,51 @@ contact has never exchanged a message and their only call was declined, there
 is nothing that ever happened, so `days` is `null` and the sheet shows a dash.
 Pinned in the self-tests.
 
-### 5.1b The residue: a decline in advance still holds until the call's date
+### 5.1b A decline that lands before the call's date — ruled, built, and it needed a mechanism nobody had named
 
-**Not ruled, and unchanged by the clock ruling. Raised again because it is now
-the only open piece.**
+**Jon's ruling, September 2, 2026:** *"It should not be call cancelled until
+Friday passes. It should flip immediately to replied if they send a new email
+suggesting a new time instead of Monday."* So `Call cancelled` clears the
+moment anybody writes, **even while the call's own date is still ahead**.
 
-Whether the status `Call cancelled` *holds* is still tested against the
-**event's start** — "has anyone written after the call was due?" — because that
-is the only moment available. So: invite for Friday, banker declines Monday,
-banker writes Tuesday "can we do next week?" — on Wednesday the row still reads
-`Call cancelled` where `Replied` would be more useful. After the call's date it
-clears normally, so this is a bounded window rather than a dead end.
+**Built. But the ruling as relayed could not be implemented as stated, and that
+is the finding worth keeping.**
 
-**The clock ruling improved this without closing it.** That row now reads
-`Call cancelled, 1` (one day since their email) rather than `Call cancelled, 0`,
-so the number is at least meaningful while the status is stale.
+The instruction that came with it was that "the cancelled call's date is not an
+input" to the status. **That is not achievable from the calendar alone**, and
+the reason is worth writing down because it will come up again:
 
-Closing it properly needs the same thing the clock turned out not to need: a
-moment for the decline. The `Declined: Invitation: …` email carries one and the
-engine already classifies those as machine mail — but it exists only when the
-counterparty declines, not when the student declines their own invite. **Not
-built, and not urgent.**
+Consider what the engine can see on Wednesday in the two cases that must differ.
+**(A)** Declined Monday, nobody has written since — last email was a week ago.
+**(B)** Declined Monday, they wrote Tuesday — last email was Tuesday.
+The only difference between them is **how recent the last email is**. To tell
+which case you are in, you have to know **when the decline happened** — and
+Google publishes that nowhere, which is exactly the gap §5.1 already
+established. Remove the call's date as a proxy and there is nothing left to
+compare against at all.
+
+**The moment does exist in the request, and had simply not been noticed:
+`Declined: Invitation: …`, the mail Google sends the organiser when a guest
+answers No.** The engine already classifies it as machine mail — never a reply,
+never an attempt, never `last_contact`. It is now read for exactly one thing:
+when the call was called off. That makes Jon's example work precisely: declined
+Monday, they write Tuesday, Wednesday reads `Replied`.
+
+**Where there is no notification, the call's date remains the fallback**, and
+that is a worse answer honestly reached rather than a guess. That case is the
+**student declining their own invite** — Google sends them no mail about their
+own click, so nothing in the request records when they made it. `cases/16` is
+that case; `cases/19` is the notified one. **They are the same contact at the
+same instant and differ by one message**, which is the cleanest way to show
+what the mechanism does and where it stops.
+
+**One thing to weigh, since it was a choice.** Using the notification means the
+engine now reads a subject line to decide a state, which is a little more
+machinery than "the courier is dumb, the server judges" usually implies. The
+alternative was to report the ruling unimplementable and ship nothing before
+the live test. The mechanism is small, uses data already on the wire, and is
+reversible — but it is a mechanism nobody ruled on, and **it should be
+confirmed rather than assumed.**
 
 ### 5.2 A real performance regression, found by Jon's run and fixed
 

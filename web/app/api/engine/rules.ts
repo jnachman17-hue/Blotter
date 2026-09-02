@@ -176,6 +176,21 @@ function isCalendarRsvpSubject(subject: string): boolean {
   return CALENDAR_RSVP_STARTS.some((marker) => s.startsWith(marker));
 }
 
+/**
+ * A decline notification — `Declined: Invitation: …`, the mail Google sends the
+ * organiser when a guest answers No.
+ *
+ * It is still machine mail and still never a reply, an attempt or a
+ * `last_contact`. It is read for exactly one thing: **when the decline
+ * happened.** §4 says `Call cancelled` holds only until somebody writes, and
+ * "since when" has no other answer — Google publishes no timestamp for an
+ * invite response anywhere in Calendar, and the calendar event itself carries
+ * only the date the call was due, which is not when it was called off.
+ */
+function isDeclineNotificationSubject(subject: string): boolean {
+  return subject.trim().toLowerCase().startsWith("declined:");
+}
+
 /* ------------------------------------------------------------------ *
  * §3 — How mail attaches to a person
  * ------------------------------------------------------------------ */
@@ -252,6 +267,8 @@ interface ContactActivity {
   correspondence: ClassifiedMessage[];
   bounces: ClassifiedMessage[];
   events: MatchedEvent[];
+  /** Decline notifications. Read only for when a call was called off (§4). */
+  declines: ClassifiedMessage[];
 }
 
 /**
@@ -473,6 +490,31 @@ function bounceFor(
 }
 
 /**
+ * When the call was called off, as well as this can be known.
+ *
+ * §4: `Call cancelled` holds **only until somebody writes**. Deciding that
+ * needs a moment to measure from, and the calendar does not supply one —
+ * Google publishes no timestamp for an invite response, and the event carries
+ * only the date the call was *due*, which is a different thing entirely.
+ *
+ * **The decline notification is the only carrier of that moment** and it is
+ * already in the request: `Declined: Invitation: …`, the mail Google sends the
+ * organiser. So an email arriving after the decline clears the row exactly as
+ * §4 says it should, even while the call's own date is still ahead — a banker
+ * who declines on Monday and writes on Tuesday proposing a new time leaves the
+ * row reading `Replied` on Wednesday, not `Call cancelled`.
+ *
+ * **When no notification exists the call's date is the fallback**, and it is a
+ * worse answer honestly reached rather than a guess. That case is the student
+ * declining their own invite: Google sends them no mail about their own click,
+ * so nothing in the request records when they made it.
+ */
+function cancelledAtEpoch(cancelled: EventTimes, activity: ContactActivity): number {
+  const notice = activity.declines[activity.declines.length - 1];
+  return notice === undefined ? cancelled.startEpoch : notice.epoch;
+}
+
+/**
  * One contact's row, per §4.
  *
  * `Closed` is the student's ruling and beats everything (§9, §10). After
@@ -600,12 +642,13 @@ function computeRow(contact: ContactIn, activity: ContactActivity, now: string):
   } else if (
     lastCancelled !== undefined &&
     lastCancelled.startEpoch >= (lastPast?.startEpoch ?? -Infinity) &&
-    !correspondence.some((m) => m.epoch > lastCancelled.startEpoch)
+    !correspondence.some((m) => m.epoch > cancelledAtEpoch(lastCancelled, activity))
   ) {
     /* §4: the most recent call was declined by either side, and nobody has
-       written since. The clock is days since the last thing that actually
-       happened — never since the call that did not, which is why no clamp is
-       needed here: the anchor is always in the past.
+       written since **the decline** — not since the call's own date, which is
+       when it would have happened rather than when it was called off. The
+       clock is days since the last thing that actually happened, which is why
+       no clamp is needed here: that anchor is always in the past.
 
        So this reads exactly the number `Sent` or `Replied` would read for the
        same contact, and it can be large. A decline landing thirty days after
@@ -719,6 +762,7 @@ export function computeEngine(request: EngineRequest): EngineResponse {
     correspondence: [],
     bounces: [],
     events: [],
+    declines: [],
   }));
 
   /* Every raw spelling seen for each address, for the capitalisation warning
@@ -758,6 +802,9 @@ export function computeEngine(request: EngineRequest): EngineResponse {
         attributed.add(m.order);
         if (m.kind === "outbound" || m.kind === "inbound") activity.correspondence.push(m);
         if (m.kind === "bounce") activity.bounces.push(m);
+        if (m.kind === "calendar_rsvp" && isDeclineNotificationSubject(m.msg.subject)) {
+          activity.declines.push(m);
+        }
       }
     }
 
@@ -821,6 +868,7 @@ export function computeEngine(request: EngineRequest): EngineResponse {
   for (const activity of activities) {
     activity.correspondence.sort((a, b) => a.epoch - b.epoch || a.order - b.order);
     activity.bounces.sort((a, b) => a.epoch - b.epoch || a.order - b.order);
+    activity.declines.sort((a, b) => a.epoch - b.epoch || a.order - b.order);
   }
 
   for (const event of request.events) {

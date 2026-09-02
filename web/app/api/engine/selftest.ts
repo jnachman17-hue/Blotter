@@ -387,6 +387,87 @@ const GMAIL_BOUNCE = (failed: string) =>
   check("somebody writes and it clears", wrote.status, "Replied");
 }
 
+/* §4, ruled September 2, 2026: `Call cancelled` clears the moment anybody
+   writes, **even while the call's own date is still ahead**. Deciding that
+   needs a moment to measure from, and the calendar has none — so the decline
+   notification Google sends the organiser is what supplies it. */
+{
+  const jamie = [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])];
+  const declined = evt({
+    start: "2024-02-20T19:00:00Z",
+    end: "2024-02-20T19:30:00Z",
+    attendees: ["jamie@jpmorgan.com", "student@gmail.com"],
+    declined: ["jamie@jpmorgan.com"],
+  });
+  const notice = msg({
+    date: "2024-02-12T10:00:00Z",
+    from: "jamie@jpmorgan.com",
+    subject: "Declined: Invitation: Jamie - Alex JPM IB Call @ Tue Feb 20, 2024",
+  });
+  const outreach = out("2024-02-08T14:00:00Z", ["jamie@jpmorgan.com"]);
+
+  /* Declined on the 12th, nothing since: the row says so, even though the
+     call itself is still eight days away. */
+  const quiet = computeEngine(
+    req(jamie, [{ thread_id: "t1", messages: [outreach, notice] }], [declined], "2024-02-15T17:00:00Z"),
+  ).rows[0];
+  check("declined, nothing written since: cancelled", quiet.status, "Call cancelled");
+  check("and the clock counts from the email, not the notice", quiet.days, 7);
+  check("the decline notice is not a reply", quiet.attempts, 1);
+
+  /* They write the next day proposing a new time. The row clears immediately —
+     it does not wait for the call's date to pass, which is what the anchor this
+     replaced did wrong. */
+  const answered = computeEngine(
+    req(
+      jamie,
+      [{
+        thread_id: "t1",
+        messages: [outreach, notice, msg({ date: "2024-02-13T10:00:00Z", from: "jamie@jpmorgan.com" })],
+      }],
+      [declined],
+      "2024-02-15T17:00:00Z",
+    ),
+  ).rows[0];
+  check("they write after declining: cleared, not cancelled", answered.status, "Replied");
+  check("and the clock is theirs", answered.days, 2);
+
+  /* An email BEFORE the decline does not clear it — the order is what matters,
+     not merely that mail exists. */
+  const earlier = computeEngine(
+    req(
+      jamie,
+      [{
+        thread_id: "t1",
+        messages: [outreach, msg({ date: "2024-02-10T10:00:00Z", from: "jamie@jpmorgan.com" }), notice],
+      }],
+      [declined],
+      "2024-02-15T17:00:00Z",
+    ),
+  ).rows[0];
+  check("an email before the decline does not clear it", earlier.status, "Call cancelled");
+
+  /* With no notification — the student declining their own invite, which
+     Google tells nobody about — the call's date is the honest fallback. */
+  const noNotice = computeEngine(
+    req(
+      jamie,
+      [{
+        thread_id: "t1",
+        messages: [outreach, msg({ date: "2024-02-13T10:00:00Z", from: "jamie@jpmorgan.com" })],
+      }],
+      [evt({
+        start: "2024-02-20T19:00:00Z",
+        end: "2024-02-20T19:30:00Z",
+        attendees: ["jamie@jpmorgan.com", "student@gmail.com"],
+        declined: ["student@gmail.com"],
+      })],
+      "2024-02-15T17:00:00Z",
+    ),
+  ).rows[0];
+  check("no notification: falls back to the call's date", noNotice.status, "Call cancelled");
+}
+
 /* The other half of "the last thing that actually happened": a call that took
    place outranks an older email as the anchor. A call happened on the 10th,
    nobody wrote after it, a second call on the 20th was declined — the clock
