@@ -1,7 +1,11 @@
 # The engine rules
 
 Date: September 1, 2026
-Version: **4.** Amended twice on September 1, 2026. v3 added how a day is
+Version: **5.** Amended September 2, 2026 with the seven open questions ruled —
+a cancelled call (§4), calls flipping at their start (§4), what a closed row
+shows (§4), and headers-only referral discovery (§8).
+
+Previously: version 4, amended twice on September 1, 2026. v3 added how a day is
 counted (§4) and calendar RSVPs as machine mail (§6). **v4 adds the forwarding
 rule (§3) and what counts as an attempt (§5)** — both ruled by Jon after the
 first live run, both already implemented in the engine and the answer key, and
@@ -137,7 +141,8 @@ picked would be wrong for someone**, so we do not pick one.
 | **Replied** | They wrote last, you have not answered | Days since **they** wrote |
 | **Call scheduled** | A calendar event with them is upcoming | Days until it |
 | **Call done** | A call has happened and nobody has written since | Days since the call |
-| **Closed** | You marked it closed | — |
+| **Call cancelled** | The most recent call was declined by either side, and nobody has written since | Days since it was declined |
+| **Closed** | You marked it closed | A dash |
 
 ### How a day is counted
 
@@ -156,8 +161,35 @@ cannot know better.
 ### When two are true at once
 
 ```
-Bounced  >  Call scheduled  >  Call done  >  Replied / Sent
+Bounced  >  Call scheduled  >  Call done | Call cancelled  >  Replied / Sent
 ```
+
+`Call done` and `Call cancelled` cannot both apply — the most recent event either
+happened or was declined.
+
+### A call counts as done the moment it starts
+
+At 2:01pm on a 2:00 to 2:30 call the row reads `Call done`, not `Call scheduled`.
+**Ruled by Jon, September 2, 2026**, replacing an unratified convention that
+waited for the end time.
+
+### A cancelled call clears itself, like a completed one
+
+**Ruled by Jon, September 2, 2026.** A declined invite left the row reading
+`Call scheduled` forever for a call that was never going to happen.
+
+`Call cancelled` holds only until somebody writes — then it becomes `Sent` or
+`Replied` like anything else. **Without that it would be a dead end**, the same
+disease as a backlog nothing ever removes.
+
+**This needs the contract to carry whether an invite was accepted or declined.
+It does not today**, which makes it the one genuine defect among the seven.
+
+### A closed row keeps its history
+
+`Status` is `Closed` and `Days` shows a dash. Everything else — last contact,
+attempts, the call dates — is still recomputed and shown. **You closed the
+relationship, you did not delete it**, and a row of empty cells reads as broken.
 
 ### `Call done` is how a thank-you gets tracked
 
@@ -259,6 +291,12 @@ the real season automatic adding would have dropped Liz Ream, Kleopatra
 Kirkland and Caroline Hodge straight into the sheet. All three are real and
 consequential — assistants and recruiting coordinators — and none is a banker
 being networked with.
+
+**Headers only. Blotter never reads an email's text looking for people.**
+Ruled by Jon, September 2, 2026. Micah Poag really did give three referral
+addresses inside a message body and those are genuinely lost — but every
+signature, legal disclaimer and quoted footer in a mailbox is full of addresses,
+and mining them would bury the real suggestions.
 
 **Never suggested at all:** bounce senders, `no-reply` and `do-not-reply`
 addresses, your own addresses, calendar notification senders, and anything
