@@ -266,16 +266,21 @@ the order they were diagnosed:
    kind plus an honest "…and N more" count), and the courier's
    write-nothing-on-failure promise does not hold once its own write phase is
    the thing that throws — its failure dialog claimed "it changed nothing" when
-   most of the sheet had in fact been written. **Courier hardening handed off:**
-   truncate defensively before `setValue`, and make the failure message honest
-   about a mid-write fault.
+   most of the sheet had in fact been written. **Courier hardening applied by
+   this chat on Jon's authorization, September 1, 2026** (the courier chat's
+   ownership acknowledged, not forgotten): `writeSetting_` truncates before
+   `setValue`, and both failure paths say "may be partially updated — the next
+   successful run rewrites every Blotter column" once the write phase begins.
 2. **The courier's Gmail fetch has no date window.** `fetchThreads_` searches
    `from:/to:/cc:` with no `after:`, so contacts stored under personal gmail
    addresses dragged in a 2022 club-listserv thread, and §8 dutifully suggested
    ~170 classmates in the Found tab. The engine rules §2 set the setup scan at
-   3 months; the courier fetches all time. **Handed off:** a
-   `Mail looks back (days)` setting mirroring the calendar pair (Jon needs
-   ~1,100 for the archive test; a live student the §2 default).
+   3 months; the courier fetched all time. **Fixed by this chat on Jon's
+   authorization, September 1, 2026:** a `Mail looks back (days)` setting
+   (default 365 — a stateless run must carry the season's history; Jon sets
+   1,100 for the archive test), applied as a parenthesised `after:` clause —
+   unwrapped, Gmail applies the date to the last OR term only. `INSTALL.md`
+   does not yet mention the new setting; the courier chat owns that doc.
 3. **Verified correct in production:** every `Days`/`Last contact` pair is
    internally consistent; Jay Klein's 1/31 (an 8:24pm CT send that is 2:24am
    UTC) proves the timezone chain carries the student's offset end to end; Owen

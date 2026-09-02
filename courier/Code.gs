@@ -51,6 +51,7 @@ var SETTING_LAST_RUN = 'Last successful run';
 var SETTING_WARNINGS = 'Last run warnings';
 var SETTING_CAL_BACK = 'Calendar looks back (days)';
 var SETTING_CAL_FORWARD = 'Calendar looks ahead (days)';
+var SETTING_MAIL_BACK = 'Mail looks back (days)';
 var SETTING_RUN_TOOK = 'Last run took';
 var SETTING_RUN_FETCHED = 'Last run fetched';
 var SETTING_GMAIL_CALLS = 'Gmail calls last run';
@@ -68,6 +69,14 @@ var runMetrics_ = null;
 var EVENT_DAYS_BACK_DEFAULT = 365;
 var EVENT_DAYS_FORWARD_DEFAULT = 180;
 
+// The mail search needs the same cap. Without one, the first live run asked
+// Gmail for every conversation ever involving a contact's address, reached a
+// 2022 club mailing list through three contacts stored under personal gmail
+// addresses, and suggested ~170 classmates in the Found tab (Jon's ruling,
+// September 1, 2026, after that run). A year covers a season's history; Jon
+// sets 1100 in Settings for the 2024 archive test, like the calendar pair.
+var MAIL_DAYS_BACK_DEFAULT = 365;
+
 // The hybrid cadence — Jon's ruling, September 1, 2026 (13-BRIEF-COURIER-2
 // §1), and adjustable here. Apps Script timers cannot vary by time of day,
 // so the trigger still fires every 15 minutes and the run decides at the top
@@ -83,6 +92,12 @@ var NIGHT_EVERY_MINUTES = 120;
 // bookkeeping only — it is not the sheet, so the write-nothing-on-failure
 // rule is untouched.
 var PROP_LAST_WORKED_MS = 'blotterLastWorkedMs';
+
+// True from the first sheet write of a pass until it finishes. The
+// write-nothing-on-failure promise only holds for throws before this point;
+// the first live run proved a write-phase throw leaves the sheet partly
+// updated, and the failure message must not claim otherwise.
+var writePhaseBegun_ = false;
 
 // Gmail search queries are built in chunks of this many addresses so no
 // single query grows past what Gmail search accepts.
@@ -166,6 +181,7 @@ function setupSheet() {
   ensureSettingRow_(settings, SETTING_WARNINGS, '');
   ensureSettingRow_(settings, SETTING_CAL_BACK, EVENT_DAYS_BACK_DEFAULT);
   ensureSettingRow_(settings, SETTING_CAL_FORWARD, EVENT_DAYS_FORWARD_DEFAULT);
+  ensureSettingRow_(settings, SETTING_MAIL_BACK, MAIL_DAYS_BACK_DEFAULT);
   ensureSettingRow_(settings, SETTING_RUN_TOOK, '');
   ensureSettingRow_(settings, SETTING_RUN_FETCHED, '');
   ensureSettingRow_(settings, SETTING_GMAIL_CALLS, '');
@@ -214,10 +230,17 @@ function runNow() {
     var summary = courierPass_();
     SpreadsheetApp.getUi().alert('Blotter ran.\n\n' + summary);
   } catch (e) {
+    // Honest about how far it got. Before the write phase the sheet really is
+    // untouched; after it, claiming so would be false — the safe advice in
+    // both cases is that the next successful run rewrites every Blotter
+    // column, so nothing is lost either way.
+    var state = writePhaseBegun_
+      ? 'Blotter hit a problem partway through writing, so the sheet may be partially updated.\n\n' +
+        'Nothing is lost: the next successful run rewrites every Blotter column. Reason:\n'
+      : 'Blotter could not update the sheet, so it changed nothing.\n\n' +
+        'The sheet is exactly as it was. Reason:\n';
     SpreadsheetApp.getUi().alert(
-      'Blotter could not update the sheet, so it changed nothing.\n\n' +
-      'The sheet is exactly as it was. Reason:\n' +
-      (e && e.message ? e.message : e) + '\n\n(Failed' + metricsSuffix_() + ')'
+      state + (e && e.message ? e.message : e) + '\n\n(Failed' + metricsSuffix_() + ')'
     );
   }
 }
@@ -229,7 +252,8 @@ function runCourier() {
     courierPass_();
   } catch (e) {
     // A stale "Last successful run" in Settings is the visible signal.
-    console.error('Courier run failed, sheet untouched: ' +
+    console.error('Courier run failed, sheet ' +
+      (writePhaseBegun_ ? 'may be partially written (a later run rewrites it): ' : 'untouched: ') +
       (e && e.message ? e.message : e) + metricsSuffix_());
   }
 }
@@ -292,6 +316,7 @@ function courierPass_() {
   }
   try {
     runMetrics_ = { startedMs: new Date().getTime(), searches: 0, threadFetches: 0, threads: 0, messages: 0 };
+    writePhaseBegun_ = false;
     PropertiesService.getScriptProperties()
       .setProperty(PROP_LAST_WORKED_MS, String(runMetrics_.startedMs));
 
@@ -301,7 +326,7 @@ function courierPass_() {
     var foundState = readFoundTab_(ss);
 
     // --- Fetch (read-only) ---
-    var threads = fetchThreads_(sheetState.allContactEmails);
+    var threads = fetchThreads_(sheetState.allContactEmails, settings.mailDaysBack);
     markOutbound_(threads, settings.addresses);
     var events = fetchEvents_(settings.calendarDaysBack, settings.calendarDaysForward);
 
@@ -319,6 +344,7 @@ function courierPass_() {
     validateResponse_(response, sheetState.contacts);
 
     // --- Write phase. Everything below is prepared; nothing above wrote. ---
+    writePhaseBegun_ = true;
     writeBlotterColumns_(sheetState, response.rows);
     var added = addApprovedContacts_(ss, sheetState, foundState);
     var suggested = writeFoundSuggestions_(ss, sheetState, foundState, response.found || []);
@@ -374,7 +400,8 @@ function readSettings_(ss) {
     addresses: addresses,
     serverUrl: serverUrl,
     calendarDaysBack: positiveOrDefault_(byLabel[SETTING_CAL_BACK], EVENT_DAYS_BACK_DEFAULT),
-    calendarDaysForward: positiveOrDefault_(byLabel[SETTING_CAL_FORWARD], EVENT_DAYS_FORWARD_DEFAULT)
+    calendarDaysForward: positiveOrDefault_(byLabel[SETTING_CAL_FORWARD], EVENT_DAYS_FORWARD_DEFAULT),
+    mailDaysBack: positiveOrDefault_(byLabel[SETTING_MAIL_BACK], MAIL_DAYS_BACK_DEFAULT)
   };
 }
 
@@ -500,15 +527,21 @@ function readFoundTab_(ss) {
  * threads, which is exactly the rule: one matching message brings in the
  * whole conversation, assistants and bounces included.
  */
-function fetchThreads_(contactEmails) {
+function fetchThreads_(contactEmails, daysBack) {
   if (contactEmails.length === 0) return [];
+
+  // The window. Gmail's after: reads the whole ORed chain only when it is
+  // parenthesised — unwrapped, "from:a OR to:a after:X" applies the date to
+  // the last term alone and quietly un-windows the rest.
+  var cutoff = new Date(new Date().getTime() - daysBack * 24 * 60 * 60 * 1000);
+  var afterClause = ' after:' + Utilities.formatDate(cutoff, studentTimeZone_(), 'yyyy/MM/dd');
 
   var threadsById = {};
   for (var i = 0; i < contactEmails.length; i += ADDRESSES_PER_SEARCH) {
     var chunk = contactEmails.slice(i, i + ADDRESSES_PER_SEARCH);
-    var query = chunk.map(function (a) {
+    var query = '(' + chunk.map(function (a) {
       return 'from:' + a + ' OR to:' + a + ' OR cc:' + a;
-    }).join(' OR ');
+    }).join(' OR ') + ')' + afterClause;
 
     var start = 0;
     var PAGE = 100;
@@ -725,6 +758,12 @@ function writeFoundSuggestions_(ss, sheetState, foundState, found) {
 }
 
 function writeSetting_(ss, label, value) {
+  // A cell holds at most 50,000 characters, and the first live run learned it
+  // the hard way: an oversized warnings string threw mid-write. The engine
+  // now caps its warnings, and this guard makes the cell safe regardless.
+  if (typeof value === 'string' && value.length > 45000) {
+    value = value.slice(0, 45000) + ' … [shortened to fit this cell]';
+  }
   var sheet = ss.getSheetByName(TAB_SETTINGS);
   var lastRow = sheet.getLastRow();
   if (lastRow < 1) {
