@@ -159,3 +159,74 @@ Open as to whether that is acceptable, not as to whether it is true.
 - **Simulated live email tests** from accounts Jon creates — the only way to test
   mail arriving without a real student.
 - **Uploading an existing tracker** instead of the Blotter template.
+
+---
+
+## Ruled September 2, 2026 — the seven open questions, closed
+
+All seven decided. Those that change engine behaviour are in
+`04-ENGINE-RULES.md` **version 5**; the rest live here.
+
+### D9. Found and the setup diff are two features, not one. Both kept.
+
+Jon first described Found as "addresses on the To line of sent mail," then
+withdrew it once they were separated — *"I was mixing it up. Yes, keep both
+doing different jobs."*
+
+- **Ongoing Found stays as built**: anyone appearing in a conversation that
+  already involves a contact. This is the feature that catches a referral — John
+  Sellingsloh cc'd five colleagues in one line and two became completed calls.
+  **Narrowing it to people the student has already emailed kills exactly that**,
+  and would only ever surface people they already know about.
+- **The setup diff (O1) stays separate and unbuilt.**
+
+**Noise is D2's recipient cap's job, not the source's.**
+
+### D10. A declined invite gives `Call cancelled` — an eighth status. **Not built.**
+
+The one genuine defect of the seven: a declined invite left a row reading
+`Call scheduled` forever for a meeting nobody would attend.
+
+**It holds only until somebody writes.** That self-clearing is what stops it
+being a dead end. **Needs a `05-CONTRACT.md` version bump** — events do not
+carry accepted-or-declined today.
+
+### D11. A bounced address reads `Bounced`, even if they later reply elsewhere.
+
+Marijoy's two guessed addresses both bounced; she wrote three weeks later from a
+third. In between, `Bounced` is both true and the useful thing to say.
+
+### D12. A closed row keeps its history; `Days` shows a dash. **Not built.**
+
+### D13. A call flips to `Call done` the moment it starts. **Not built.**
+
+At 2:01 on a 2:00–2:30 call. Replaces an unratified convention that waited for
+the end time.
+
+### D14. Warnings stay free-form and untested.
+
+Sentences for a person to read. Locking the wording turns every improvement into
+a broken test; the things that must be exact already are.
+
+### D15. Referral discovery reads headers only, never bodies.
+
+Micah Poag's three referral addresses live in body text and are genuinely lost.
+Accepted: every signature and disclaimer in a mailbox is full of addresses.
+
+### D16. Lonnie Kauppila's record is a fiction and needs re-fetching. **Not fixed.**
+
+Two real threads, which between them show the version-one scope decision better
+than any argument:
+
+- **An interview confirmation from `Sara.Laracca@hl.com`** naming Lonnie as
+  interviewer **in the body**. Lonnie is not an addressee and Sara is not a
+  contact, so **the whole thread matches nobody and is invisible.**
+- **Jon's thank-you, sent straight to Lonnie**, which is the only message that
+  counts. She never replied.
+
+**Her row reads `Sent`, attempts 1**, clock running from the thank-you, and the
+interview appears nowhere at all. Working exactly as ruled.
+
+The date needs the real fetch rather than inference: the confirmation says
+2/9/2024, the thank-you says "yesterday" and "have a good weekend," and those do
+not obviously agree.
