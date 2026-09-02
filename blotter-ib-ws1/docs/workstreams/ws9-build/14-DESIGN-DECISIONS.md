@@ -230,3 +230,72 @@ interview appears nowhere at all. Working exactly as ruled.
 The date needs the real fetch rather than inference: the confirmation says
 2/9/2024, the thank-you says "yesterday" and "have a good weekend," and those do
 not obviously agree.
+
+---
+
+## Phase B decisions, September 2, 2026
+
+### D17. A `Pretend today is` setting gives the live test a time machine. **Not built.**
+
+Jon asked whether altering his computer's clock would simulate elapsed time.
+**It would not, and the reason is worth recording:** every clock in this system
+is Google's. The trigger fires on Google's infrastructure with the laptop shut,
+`now` is Apps Script's server time, mail timestamps are Gmail's and events are
+Calendar's. **The student's machine is not in the loop anywhere.**
+
+**But `now` is already a field the courier sends** — a deliberate contract choice
+that is exactly what lets the fixtures ask what was true on a past date. So the
+workaround is a Settings row: blank in normal use; when filled, the courier sends
+that date as `now`.
+
+- **Gives:** day counters at any date, a future event becoming a past one so
+  `Call done` fires, a fresh thread aged to a month, instantly and repeatably
+- **Cannot give:** new mail. That is still sent by hand, which takes minutes
+- **Must not ship to a student unmarked.** A date typed in by accident produces a
+  sheet full of confident nonsense
+
+**This collapses the live test from a two-week wait to an afternoon of sending
+plus time-jumps**, with two or three real days at the end only to prove the timer
+fires unattended and a real midnight rolls over.
+
+**Sequencing:** a courier change, and Phase A is editing `Code.gs` now. Hand it
+to that chat when it reports rather than making Jon paste the script twice.
+
+### D18. The live test runs before the UI work.
+
+Jon agreed. The test changes what the instructions need to say; writing them
+first documents assumptions rather than what actually confuses a person.
+
+### D19. The sheet matches the website's cosmetics. **Not built.**
+
+Jon: *"Match site's cosmetics as much as possible. Need to look extremely neat
+and pretty and be hyper formatted… also easy to use and understand and navigate
+and be digestible."*
+
+Colour-coded status is the landing page's most recognisable visual and the sheet
+should use the same colours. **It is also the first point at which the product
+and the marketing agree about anything**, which makes it the opening move of
+Phase C rather than a formatting pass.
+
+Scoped as its own design job, after the test.
+
+### D20. What the live test is actually for — and what it must not re-prove.
+
+**The fixtures already prove the engine's judgment** across a real season at four
+dates against an independently written answer key. **The live test must not
+re-litigate any of it.** It exists for what fixtures structurally cannot reach:
+
+the courier finding new mail · the timer firing unattended · writing to a real
+sheet · `Found` approval across two runs and a human edit · an ignore that
+persists · `Closed` obeyed · **real Gmail search behaviour, which is what
+produced the 170 classmates** · real quota and run duration · a run that fails
+halfway · **and the install itself on a fresh account, which is the only way
+anyone ever sees Google's unverified-app screen.**
+
+**Three or four throwaway consumer Gmail accounts**, confirmed available. One is
+the student, the rest are bankers. Consumer deliberately — the tighter quota
+tier, so what works there works everywhere.
+
+**Written as a script, not a session**: what to send, from whom, at which
+pretend-date, and what the sheet must say after each step. It is the fixture idea
+made live, and re-runnable whenever anything changes.
