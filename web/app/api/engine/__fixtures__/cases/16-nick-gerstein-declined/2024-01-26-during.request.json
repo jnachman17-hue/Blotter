@@ -1,0 +1,151 @@
+{
+ "version": 2,
+ "now": "2024-01-26T10:15:00-06:00",
+ "student": {
+  "addresses": [
+   "jnachman17@gmail.com",
+   "jnachman@utexas.edu"
+  ]
+ },
+ "contacts": [
+  {
+   "row": 2,
+   "name": "Nick Gerstein",
+   "firm": "Citi",
+   "emails": [
+    "ngerstein99@gmail.com"
+   ],
+   "closed": false
+  }
+ ],
+ "threads": [
+  {
+   "thread_id": "18d1fe4be1135868",
+   "messages": [
+    {
+     "id": "18d1fe72f5816977",
+     "date": "2024-01-18T22:07:40-06:00",
+     "from": "jnachman@utexas.edu",
+     "to": [
+      "NGerstein99@gmail.com"
+     ],
+     "cc": [],
+     "subject": "UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
+     "body": "Hello Nicholas,\n\nI hope you are doing well. I am emailing after coincidently learning from your sister (gf of my roommate) that you are an analyst at Citi. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I'd love to talk to you to learn more about your experience at Citi given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "is_outbound": true
+    },
+    {
+     "id": "18d2e2d12fbb865b",
+     "date": "2024-01-21T16:38:29-06:00",
+     "from": "ngerstein99@gmail.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Re: UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
+     "body": "Hi Jonathan,\n\nNice to hear from you and hope you’re doing well too!\n\nI’d love to chat and give you a bit of background on my experience in the industry and during the recruiting process. Thursday or Friday morning would work best on my end. Are you available at 10 am cst (11 am est) on Thursday?\n\nLook forward to chatting.\n\nBest,\nNick Gerstein",
+     "is_outbound": false
+    },
+    {
+     "id": "18d2e4de37c4c88d",
+     "date": "2024-01-21T17:14:32-06:00",
+     "from": "jnachman@utexas.edu",
+     "to": [
+      "ngerstein99@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Re: UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
+     "body": "Nick – I appreciate the response. Thursday (1/25) at 10 am cst is perfect. I'll send you a calendar invite, and I look forward to talking with you then.\n\nBest,\nJonathan",
+     "is_outbound": true
+    },
+    {
+     "id": "18d2eeaa5dc1bc16",
+     "date": "2024-01-21T20:05:33-06:00",
+     "from": "ngerstein99@gmail.com",
+     "to": [
+      "jnachman@utexas.edu"
+     ],
+     "cc": [],
+     "subject": "Re: UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
+     "body": "Hey Jonathan,\n\nSorry for changing but can we do same time Friday instead? I just got a call scheduled for this time on Thursday.\n\nThanks,\nNick Gerstein",
+     "is_outbound": false
+    },
+    {
+     "id": "18d2f50cac7a5635",
+     "date": "2024-01-21T21:57:20-06:00",
+     "from": "jnachman@utexas.edu",
+     "to": [
+      "ngerstein99@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Re: UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
+     "body": "Nick,\n\nNo worries. Friday at 10 am cst still works for me. I'll adjust the calendar invite and talk to you then.\n\nBest,\nJonathan",
+     "is_outbound": true
+    },
+    {
+     "id": "18d467c3ea7934b0",
+     "date": "2024-01-26T09:56:04-06:00",
+     "from": "jnachman@utexas.edu",
+     "to": [
+      "ngerstein99@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Re: UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
+     "body": "Nick – just realized I emailed your personal email and thus don't have you # from your email signature. Could you either shoot me a call at 10 or send over your number? Thanks.",
+     "is_outbound": true
+    }
+   ]
+  },
+  {
+   "thread_id": "18d2ee690c885bae",
+   "messages": [
+    {
+     "id": "18d2ee690c885bae",
+     "date": "2024-01-21T20:01:17-06:00",
+     "from": "ngerstein99@gmail.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Accepted: Nick - Jonathan Citi IB Call @ Thu Jan 25, 2024 10am - 10:30am (CST) (jnachman17@gmail.com)",
+     "body": "",
+     "is_outbound": false
+    }
+   ]
+  },
+  {
+   "thread_id": "18d310cc6682d747",
+   "messages": [
+    {
+     "id": "18d310cc6682d747",
+     "date": "2024-01-22T06:02:17-06:00",
+     "from": "ngerstein99@gmail.com",
+     "to": [
+      "jnachman17@gmail.com"
+     ],
+     "cc": [],
+     "subject": "Accepted: Nick - Jonathan Citi IB Call @ Fri Jan 26, 2024 10am - 10:30am (CST) (jnachman17@gmail.com)",
+     "body": "",
+     "is_outbound": false
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "id": "3aqqe9582g7ppm22q57hgnbit3",
+   "title": "Nick - Jonathan Citi IB Call",
+   "start": "2024-01-26T10:00:00-06:00",
+   "end": "2024-01-26T10:30:00-06:00",
+   "attendees": [
+    "jnachman17@gmail.com",
+    "ngerstein99@gmail.com"
+   ],
+   "organizer": "jnachman17@gmail.com",
+   "declined": [
+    "ngerstein99@gmail.com"
+   ]
+  }
+ ],
+ "ignored": []
+}

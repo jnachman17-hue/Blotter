@@ -66,6 +66,19 @@ function contact(row: number, name: string, firm: string, emails: string[], clos
   return { row, name, firm, emails, closed };
 }
 
+/** A calendar event. `declined` is empty unless a test is about a declined invite. */
+function evt(overrides: Partial<EventIn> & { start: string; end: string }): EventIn {
+  return {
+    id: overrides.id ?? "e1",
+    title: overrides.title ?? "Jamie - Alex JPM IB Call",
+    start: overrides.start,
+    end: overrides.end,
+    attendees: overrides.attendees ?? ["jamie@jpmorgan.com"],
+    declined: overrides.declined ?? [],
+    organizer: overrides.organizer ?? "student@gmail.com",
+  };
+}
+
 const GMAIL_BOUNCE = (failed: string) =>
   `** Address not found **\n\nYour message wasn't delivered to ${failed} because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 #5.1.0 Address rejected.\nFinal-Recipient: rfc822; ${failed}\nAction: failed\nStatus: 4.4.2`;
 
@@ -210,14 +223,11 @@ const GMAIL_BOUNCE = (failed: string) =>
 
 /* Call scheduled outranks Replied and Sent, and the clock runs forward. */
 {
-  const event: EventIn = {
-    id: "e1",
-    title: "Jamie - Alex JPM IB Call",
+  const event = evt({
     start: "2024-02-17T19:00:00Z",
     end: "2024-02-17T19:30:00Z",
     attendees: ["jamie@jpmorgan.com", "student@gmail.com"],
-    organizer: "student@gmail.com",
-  };
+  });
   const r = computeEngine(
     req(
       [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])],
@@ -242,14 +252,7 @@ const GMAIL_BOUNCE = (failed: string) =>
 /* Call done holds until somebody writes — that is how a thank-you gets
    tracked without a state for it — and Last call keeps its date regardless. */
 {
-  const event: EventIn = {
-    id: "e1",
-    title: "Jamie - Alex JPM IB Call",
-    start: "2024-02-10T19:00:00Z",
-    end: "2024-02-10T19:30:00Z",
-    attendees: ["jamie@jpmorgan.com"],
-    organizer: "student@gmail.com",
-  };
+  const event = evt({ start: "2024-02-10T19:00:00Z", end: "2024-02-10T19:30:00Z" });
   const before = computeEngine(
     req(
       [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])],
@@ -282,6 +285,218 @@ const GMAIL_BOUNCE = (failed: string) =>
   check("thank-you clears it: last_call survives", after.rows[0].last_call, "2024-02-10");
 }
 
+/* §4, ruled September 2, 2026: a call counts as done the moment it STARTS.
+   At 2:01pm on a 2:00-2:30 call the row reads `Call done`, not `Call
+   scheduled` — replacing the old convention that waited for the end time. */
+{
+  const event = evt({ start: "2024-02-15T20:00:00Z", end: "2024-02-15T20:30:00Z" });
+  const rows = (now: string) =>
+    computeEngine(
+      req(
+        [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])],
+        [{ thread_id: "t1", messages: [out("2024-02-14T14:00:00Z", ["jamie@jpmorgan.com"])] }],
+        [event],
+        now,
+      ),
+    ).rows[0];
+
+  check("a minute before the call: still scheduled", rows("2024-02-15T19:59:00Z").status, "Call scheduled");
+  check("a minute after it starts: done", rows("2024-02-15T20:01:00Z").status, "Call done");
+  check("a minute after it starts: zero days", rows("2024-02-15T20:01:00Z").days, 0);
+  check("a minute after it starts: no next call", rows("2024-02-15T20:01:00Z").next_call, null);
+  check("a minute after it starts: last_call is set", rows("2024-02-15T20:01:00Z").last_call, "2024-02-15");
+  check("after the end: still done", rows("2024-02-15T21:00:00Z").status, "Call done");
+}
+
+/* The corollary of the start-time flip: "nobody has written since" is measured
+   from the start too. A thank-you sent while the call is still nominally
+   running is the student speaking last; under the old end-time anchor it could
+   never clear the row at all. */
+{
+  const event = evt({ start: "2024-02-15T20:00:00Z", end: "2024-02-15T20:30:00Z" });
+  const r = computeEngine(
+    req(
+      [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])],
+      [
+        {
+          thread_id: "t1",
+          messages: [
+            out("2024-02-15T20:20:00Z", ["jamie@jpmorgan.com"], { subject: "Enjoyed Our Conversation" }),
+          ],
+        },
+      ],
+      [event],
+      "2024-02-16T17:00:00Z",
+    ),
+  );
+  check("a thank-you sent during the call clears it", r.rows[0].status, "Sent");
+  check("and last_call still keeps the date", r.rows[0].last_call, "2024-02-15");
+}
+
+/* §4/D10, contract v2: `Call cancelled`, the eighth status. A declined invite
+   used to leave a row reading `Call scheduled` forever for a meeting nobody
+   would attend. Either side declining cancels the call. */
+{
+  const declinedByThem = evt({
+    start: "2024-02-20T19:00:00Z",
+    end: "2024-02-20T19:30:00Z",
+    attendees: ["jamie@jpmorgan.com", "student@gmail.com"],
+    declined: ["jamie@jpmorgan.com"],
+  });
+  const thread: ThreadIn = {
+    thread_id: "t1",
+    messages: [out("2024-02-14T14:00:00Z", ["jamie@jpmorgan.com"])],
+  };
+  const jamie = [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])];
+
+  const ahead = computeEngine(req(jamie, [thread], [declinedByThem])).rows[0];
+  check("declined in advance: cancelled, not scheduled", ahead.status, "Call cancelled");
+  check("declined in advance: clamped at zero, never negative", ahead.days, 0);
+  check("a cancelled call is not the next call", ahead.next_call, null);
+  check("a cancelled call is not the last call either", ahead.last_call, null);
+  check("a cancelled call does not disturb attempts", ahead.attempts, 1);
+
+  const after = computeEngine(req(jamie, [thread], [declinedByThem], "2024-02-25T17:00:00Z")).rows[0];
+  check("once the date passes, the clock runs", after.status, "Call cancelled");
+  check("once the date passes, days since it was due", after.days, 5);
+
+  /* The whole point of the state: it clears itself, exactly as `Call done`
+     does. Without that it would be a dead end nothing ever removes. */
+  const wrote = computeEngine(
+    req(
+      jamie,
+      [
+        {
+          thread_id: "t1",
+          messages: [
+            out("2024-02-14T14:00:00Z", ["jamie@jpmorgan.com"]),
+            msg({ date: "2024-02-21T10:00:00Z", from: "jamie@jpmorgan.com" }),
+          ],
+        },
+      ],
+      [declinedByThem],
+      "2024-02-25T17:00:00Z",
+    ),
+  ).rows[0];
+  check("somebody writes and it clears", wrote.status, "Replied");
+}
+
+/* Either side. The student declining cancels the call just as the banker
+   declining does. */
+{
+  const r = computeEngine(
+    req(
+      [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])],
+      [{ thread_id: "t1", messages: [out("2024-02-14T14:00:00Z", ["jamie@jpmorgan.com"])] }],
+      [
+        evt({
+          start: "2024-02-20T19:00:00Z",
+          end: "2024-02-20T19:30:00Z",
+          attendees: ["jamie@jpmorgan.com", "student@gmail.com"],
+          declined: ["student@gmail.com"],
+        }),
+      ],
+    ),
+  );
+  check("the student declining cancels it too", r.rows[0].status, "Call cancelled");
+}
+
+/* But only the two sides of the call. A third party on the invite declining
+   cancels nobody's call. */
+{
+  const r = computeEngine(
+    req(
+      [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])],
+      [{ thread_id: "t1", messages: [out("2024-02-14T14:00:00Z", ["jamie@jpmorgan.com"])] }],
+      [
+        evt({
+          start: "2024-02-20T19:00:00Z",
+          end: "2024-02-20T19:30:00Z",
+          attendees: ["jamie@jpmorgan.com", "student@gmail.com", "someone.else@jpmorgan.com"],
+          declined: ["someone.else@jpmorgan.com"],
+        }),
+      ],
+    ),
+  );
+  check("a third party declining changes nothing", r.rows[0].status, "Call scheduled");
+  check("and the call is still the next call", r.rows[0].next_call, "2024-02-20T19:00:00Z");
+}
+
+/* Precedence: a live call still to come outranks a cancelled one, and a call
+   that happened after a cancelled one wins the `Call done | Call cancelled`
+   tier — the most recent call either happened or was called off. */
+{
+  const jamie = [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])];
+  const cancelled = evt({
+    id: "e1",
+    start: "2024-02-10T19:00:00Z",
+    end: "2024-02-10T19:30:00Z",
+    declined: ["jamie@jpmorgan.com"],
+  });
+  const rescheduled = evt({ id: "e2", start: "2024-02-20T19:00:00Z", end: "2024-02-20T19:30:00Z" });
+
+  const withUpcoming = computeEngine(req(jamie, [], [cancelled, rescheduled])).rows[0];
+  check("a rescheduled call outranks the cancelled one", withUpcoming.status, "Call scheduled");
+  check("and the cancelled one is not last_call", withUpcoming.last_call, null);
+
+  const bothPast = computeEngine(
+    req(jamie, [], [cancelled, rescheduled], "2024-02-25T17:00:00Z"),
+  ).rows[0];
+  check("the later call happened, so: done", bothPast.status, "Call done");
+  check("and it is the last call", bothPast.last_call, "2024-02-20");
+}
+
+/* Contract v2: a display name on a header is passed through to `found`, and
+   only ever a real one. */
+{
+  const r = computeEngine(
+    req(
+      [contact(2, "Steve McLaughlin", "FT Partners", ["steve@ftpartners.com"])],
+      [
+        {
+          thread_id: "t1",
+          messages: [
+            out("2024-02-01T14:00:00Z", ["steve@ftpartners.com"]),
+            msg({
+              date: "2024-02-02T10:00:00Z",
+              from: "Barbara Barman <boone2002@att.net>",
+              cc: ["boone.jr@att.net"],
+            }),
+          ],
+        },
+      ],
+    ),
+  );
+  const byEmail = new Map(r.found.map((f) => [f.email.toLowerCase(), f]));
+  check("a real display name is used", byEmail.get("boone2002@att.net")?.name, "Barbara Barman");
+  check("the address itself is kept bare", byEmail.get("boone2002@att.net")?.email, "boone2002@att.net");
+  check("a bare address gets no invented name", byEmail.get("boone.jr@att.net")?.name, null);
+  check("a display name never breaks matching", r.rows[0].status, "Replied");
+}
+
+/* §4: a closed row keeps its history. Only the clock is dropped. */
+{
+  const r = computeEngine(
+    req(
+      [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"], true)],
+      [
+        {
+          thread_id: "t1",
+          messages: [
+            out("2024-02-08T14:00:00Z", ["jamie@jpmorgan.com"]),
+            out("2024-02-12T14:00:00Z", ["jamie@jpmorgan.com"]),
+          ],
+        },
+      ],
+      [evt({ start: "2024-02-10T19:00:00Z", end: "2024-02-10T19:30:00Z" })],
+    ),
+  );
+  check("closed: the clock is a dash", r.rows[0].days, null);
+  check("closed: last contact survives", r.rows[0].last_contact, "2024-02-12");
+  check("closed: attempts survive", r.rows[0].attempts, 2);
+  check("closed: the call date survives", r.rows[0].last_call, "2024-02-10");
+}
+
 /* Owen Sherry: a call that demonstrably happened, and no email address
    anywhere. Reachable only through first name plus firm in the title. */
 {
@@ -290,14 +505,12 @@ const GMAIL_BOUNCE = (failed: string) =>
       [contact(7, "Owen Sherry", "Houlihan Lokey", [])],
       [],
       [
-        {
-          id: "e1",
+        evt({
           title: "Jonathan - Owen Sherry Houlihan RX Intro Call",
           start: "2024-02-01T20:00:00Z",
           end: "2024-02-01T20:30:00Z",
           attendees: [],
-          organizer: "student@gmail.com",
-        },
+        }),
       ],
     ),
   );
@@ -328,14 +541,7 @@ const GMAIL_BOUNCE = (failed: string) =>
         },
       ],
       [
-        {
-          id: "e1",
-          title: "Jamie - Alex JPM IB Call",
-          start: "2024-02-20T19:00:00Z",
-          end: "2024-02-20T19:30:00Z",
-          attendees: ["jamie@jpmorgan.com"],
-          organizer: "student@gmail.com",
-        },
+        evt({ start: "2024-02-20T19:00:00Z", end: "2024-02-20T19:30:00Z" }),
       ],
     ),
   );
@@ -371,7 +577,10 @@ const GMAIL_BOUNCE = (failed: string) =>
     r.found.map((f) => f.email),
     ["liz.ream@ftpartners.com"],
   );
-  check("found name derived from the address", r.found[0].name, "Liz Ream");
+  /* §8/D4, ruled September 2, 2026: a real name or nothing. The header here
+     carries no display name, so the cell stays blank rather than becoming
+     "Liz Ream" — an invention that reads exactly like a fact. */
+  check("found name is never derived from the address", r.found[0].name, null);
   check("found context names the contact", r.found[0].context, "Appeared in a thread with Steve McLaughlin");
 }
 
@@ -530,14 +739,12 @@ check("firm: Citi does not match Houlihan", firmInTitle("Citi", "Danny - Jonatha
       [contact(2, "Mat Young", "Citi", [])],
       [],
       [
-        {
-          id: "e1",
+        evt({
           title: "Jonathan - Wall Street Mastermind Strategy Session",
           start: "2024-02-01T20:00:00Z",
           end: "2024-02-01T21:00:00Z",
           attendees: [],
-          organizer: "student@gmail.com",
-        },
+        }),
       ],
     ),
   );
@@ -600,14 +807,15 @@ check("firm: Citi does not match Houlihan", firmInTitle("Citi", "Danny - Jonatha
    calendar, and one warning per non-recruiting event once overflowed the
    50,000-character sheet cell the courier writes into. */
 {
-  const events: EventIn[] = Array.from({ length: 15 }, (_, i) => ({
-    id: `e${i}`,
-    title: `Dentist visit ${i}`,
-    start: "2024-02-01T20:00:00Z",
-    end: "2024-02-01T21:00:00Z",
-    attendees: [],
-    organizer: "student@gmail.com",
-  }));
+  const events: EventIn[] = Array.from({ length: 15 }, (_, i) =>
+    evt({
+      id: `e${i}`,
+      title: `Dentist visit ${i}`,
+      start: "2024-02-01T20:00:00Z",
+      end: "2024-02-01T21:00:00Z",
+      attendees: [],
+    }),
+  );
   const r = computeEngine(req([contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])], [], events));
   const eventWarnings = r.warnings.filter((w) => w.startsWith("Calendar event"));
   check("warnings capped: ten examples shown", eventWarnings.length, 10);
@@ -646,11 +854,31 @@ check("firm: Citi does not match Houlihan", firmInTitle("Citi", "Danny - Jonatha
 {
   let error = "";
   try {
-    parseEngineRequest({ version: 2, now: "2024-02-15T17:00:00Z", student: { addresses: ["s@x.com"] } });
+    parseEngineRequest({ version: 3, now: "2024-02-15T17:00:00Z", student: { addresses: ["s@x.com"] } });
   } catch (e) {
     error = e instanceof RequestError ? e.message : "wrong error type";
   }
-  check("version mismatch is loud", error.includes("must be 1"), true);
+  check("an unknown version is loud", error.includes("must be 1 or 2"), true);
+}
+
+/* Contract v2: both versions are understood, and the answer comes back in the
+   version it was asked in — which is what lets a version-1 courier keep
+   working against this server while its half of the world catches up. */
+{
+  const v1 = computeEngine(req([contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])], []));
+  check("version 1 is still understood", v1.version, 1);
+  const asked = { ...req([contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])], []), version: 2 as const };
+  check("version 2 is answered in version 2", computeEngine(asked).version, 2);
+  check(
+    "a version-1 payload with no declines still parses",
+    parseEngineRequest({
+      version: 1,
+      now: "2024-02-15T17:00:00Z",
+      student: { addresses: ["s@x.com"] },
+      events: [{ id: "e1", title: "x", start: "2024-02-15T17:00:00Z", end: "2024-02-15T18:00:00Z" }],
+    }).events[0].declined,
+    [],
+  );
 }
 
 {

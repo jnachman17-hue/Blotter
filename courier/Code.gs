@@ -17,10 +17,10 @@
  *     a half-written one is not.
  *
  * The contract this speaks is
- * blotter-ib-ws1/docs/workstreams/ws9-build/05-CONTRACT.md, version 1.
+ * blotter-ib-ws1/docs/workstreams/ws9-build/05-CONTRACT.md, version 2.
  */
 
-var CONTRACT_VERSION = 1;
+var CONTRACT_VERSION = 2;
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -40,8 +40,17 @@ var BLOTTER_COLUMNS = ['Status', 'Days', 'Last contact', 'Attempts', 'Next call'
 var COL_CLOSED = 'Closed';
 
 // The only statuses the contract allows. Anything else means the response is
-// bad, and a bad response means we write nothing.
-var VALID_STATUSES = ['Not emailed', 'Bounced', 'Sent', 'Replied', 'Call scheduled', 'Call done', 'Closed'];
+// bad, and a bad response means we write nothing. "Call cancelled" is the
+// eighth, added with contract version 2: a declined invite used to leave a row
+// reading "Call scheduled" forever for a meeting nobody would attend.
+var VALID_STATUSES = ['Not emailed', 'Bounced', 'Sent', 'Replied', 'Call scheduled',
+                      'Call done', 'Call cancelled', 'Closed'];
+
+// What an empty clock looks like in the sheet. ENGINE-RULES §4 gives both
+// "Not emailed" and "Closed" a dash rather than a blank, because a blank cell
+// reads as "Blotter has not run" and a dash reads as "there is no clock here".
+// An em dash, not a hyphen: a leading hyphen is how you start a formula.
+var NO_CLOCK = '\u2014';
 
 var FOUND_HEADERS = ['Add?', 'Name', 'Email', 'First seen', 'Context'];
 
@@ -102,6 +111,15 @@ var writePhaseBegun_ = false;
 // Gmail search queries are built in chunks of this many addresses so no
 // single query grows past what Gmail search accepts.
 var ADDRESSES_PER_SEARCH = 10;
+
+// Conversations with more recipients than this are skipped whole — not sent to
+// the server, and never harvested for names. Jon's ruling, September 2, 2026
+// (decision D2), and it is the real fix for the incident that produced it: a
+// 2022 club listserv that one contact happened to be on made Blotter suggest
+// ~170 classmates as recruiting contacts. A mail window made that rarer; this
+// makes the whole class of problem impossible. Counted as distinct addresses
+// across To and Cc on any single message in the conversation.
+var MAX_THREAD_RECIPIENTS = 10;
 
 // ---------------------------------------------------------------------------
 // Menu
@@ -315,7 +333,7 @@ function courierPass_() {
     throw new Error('Another Blotter run is already in progress. Nothing was changed.');
   }
   try {
-    runMetrics_ = { startedMs: new Date().getTime(), searches: 0, threadFetches: 0, threads: 0, messages: 0 };
+    runMetrics_ = { startedMs: new Date().getTime(), searches: 0, threadFetches: 0, threads: 0, messages: 0, skipped: 0 };
     writePhaseBegun_ = false;
     PropertiesService.getScriptProperties()
       .setProperty(PROP_LAST_WORKED_MS, String(runMetrics_.startedMs));
@@ -356,7 +374,9 @@ function courierPass_() {
     var seconds = Math.round((new Date().getTime() - runMetrics_.startedMs) / 1000);
     writeSetting_(ss, SETTING_RUN_TOOK, seconds + ' seconds');
     writeSetting_(ss, SETTING_RUN_FETCHED,
-      runMetrics_.threads + ' conversations, ' + runMetrics_.messages + ' messages');
+      runMetrics_.threads + ' conversations, ' + runMetrics_.messages + ' messages' +
+      (runMetrics_.skipped ? ' (' + runMetrics_.skipped + ' skipped: more than ' +
+        MAX_THREAD_RECIPIENTS + ' recipients)' : ''));
     writeSetting_(ss, SETTING_GMAIL_CALLS,
       (runMetrics_.searches + runMetrics_.threadFetches) +
       ' (' + runMetrics_.searches + ' searches, ' + runMetrics_.threadFetches + ' conversation fetches)');
@@ -558,23 +578,56 @@ function fetchThreads_(contactEmails, daysBack) {
   Object.keys(threadsById).forEach(function (id) {
     var thread = threadsById[id];
     runMetrics_.threadFetches++;
+    // Addresses keep their display names (contract v2): the server cannot
+    // invent a name for a person it finds, and the header is the only honest
+    // source of one.
     var messages = thread.getMessages().map(function (m) {
       return {
         id: m.getId(),
         date: toIso_(m.getDate()),
-        from: firstAddress_(m.getFrom()),
-        to: addressList_(m.getTo()),
-        cc: addressList_(m.getCc()),
+        from: firstNamedAddress_(m.getFrom()),
+        to: namedAddressList_(m.getTo()),
+        cc: namedAddressList_(m.getCc()),
         subject: m.getSubject() || '',
         body: stripQuotedHistory_(m.getPlainBody() || ''),
         is_outbound: false // set below, once, against the student's addresses
       };
     });
+
+    // A mass mailing is not a recruiting conversation. Skipped whole: not
+    // sent, and so never harvested for names either.
+    if (exceedsRecipientCap_(messages)) {
+      runMetrics_.skipped++;
+      return;
+    }
+
     runMetrics_.threads++;
     runMetrics_.messages += messages.length;
     out.push({ thread_id: id, messages: messages });
   });
   return out;
+}
+
+/**
+ * True when any single message in the conversation is addressed to more than
+ * MAX_THREAD_RECIPIENTS distinct people across To and Cc. One listserv message
+ * condemns the whole conversation, which is the point: the names on it are a
+ * mailing list, not a relationship.
+ */
+function exceedsRecipientCap_(messages) {
+  for (var i = 0; i < messages.length; i++) {
+    var seen = {};
+    var count = 0;
+    var everyone = messages[i].to.concat(messages[i].cc);
+    for (var j = 0; j < everyone.length; j++) {
+      var address = bareAddress_(everyone[j]).toLowerCase();
+      if (address === '' || seen[address]) continue;
+      seen[address] = true;
+      count++;
+      if (count > MAX_THREAD_RECIPIENTS) return true;
+    }
+  }
+  return false;
 }
 
 /** Marks is_outbound per the contract: from is one of the student's addresses. */
@@ -583,7 +636,7 @@ function markOutbound_(threads, studentAddresses) {
   studentAddresses.forEach(function (a) { mine[a.toLowerCase()] = true; });
   threads.forEach(function (t) {
     t.messages.forEach(function (m) {
-      m.is_outbound = !!mine[(m.from || '').toLowerCase()];
+      m.is_outbound = !!mine[bareAddress_(m.from).toLowerCase()];
     });
   });
 }
@@ -599,15 +652,46 @@ function fetchEvents_(daysBack, daysForward) {
   var to = new Date(now.getTime() + daysForward * 24 * 60 * 60 * 1000);
   return CalendarApp.getDefaultCalendar().getEvents(from, to).map(function (e) {
     var creators = e.getCreators();
+    var guests = e.getGuestList(true); // one call: each one is an API hit
     return {
       id: e.getId(),
       title: e.getTitle() || '',
       start: toIso_(e.getStartTime()),
       end: toIso_(e.getEndTime()),
-      attendees: e.getGuestList(true).map(function (g) { return g.getEmail(); }),
+      attendees: guests.map(function (g) { return g.getEmail(); }),
+      declined: declinedGuests_(e, guests),
       organizer: creators && creators.length ? creators[0] : ''
     };
   });
+}
+
+/**
+ * Who answered No to this invite (contract v2). Declines only — no rule reads
+ * accepted, tentative or not-yet-answered, so none is sent.
+ *
+ * The student's own answer is asked for separately, because where they are the
+ * organiser the guest list reports them as OWNER whatever they clicked, and
+ * ENGINE-RULES §4 counts a decline from either side.
+ */
+function declinedGuests_(event, guests) {
+  var declined = [];
+  var seen = {};
+  guests.forEach(function (g) {
+    if (g.getGuestStatus() !== CalendarApp.GuestStatus.NO) return;
+    var address = g.getEmail();
+    if (!address || seen[address.toLowerCase()]) return;
+    seen[address.toLowerCase()] = true;
+    declined.push(address);
+  });
+  try {
+    if (event.getMyStatus() === CalendarApp.GuestStatus.NO) {
+      var me = Session.getEffectiveUser().getEmail();
+      if (me && !seen[me.toLowerCase()]) declined.push(me);
+    }
+  } catch (err) {
+    // An event with no guests has no "my status". Nothing to add.
+  }
+  return declined;
 }
 
 // ---------------------------------------------------------------------------
@@ -689,7 +773,10 @@ function writeBlotterColumns_(sheetState, rows) {
 
   var perColumn = {
     'Status': function (r) { return r.status; },
-    'Days': function (r) { return r.days === null || r.days === undefined ? '' : r.days; },
+    // A dash, not a blank: ENGINE-RULES §4 gives a clockless row a dash, and a
+    // blank cell reads as "Blotter has not run yet" instead of "there is no
+    // clock here". A closed row keeps every other fact it had.
+    'Days': function (r) { return r.days === null || r.days === undefined ? NO_CLOCK : r.days; },
     'Last contact': function (r) { return r.last_contact === null || r.last_contact === undefined ? '' : r.last_contact; },
     'Attempts': function (r) { return r.attempts === null || r.attempts === undefined ? '' : r.attempts; },
     'Next call': function (r) { return r.next_call === null || r.next_call === undefined ? '' : r.next_call; },
@@ -823,6 +910,8 @@ function toIso_(date) {
   return Utilities.formatDate(date, studentTimeZone_(), "yyyy-MM-dd'T'HH:mm:ssXXX");
 }
 
+var ONE_ADDRESS = /[A-Za-z0-9._%+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/;
+
 /** "Jamie Diamond <jamie@x.com>" → "jamie@x.com". */
 function firstAddress_(headerValue) {
   var list = addressList_(headerValue);
@@ -832,8 +921,80 @@ function firstAddress_(headerValue) {
 /** A To/Cc header into bare addresses. */
 function addressList_(headerValue) {
   if (!headerValue) return [];
-  var matches = String(headerValue).match(/[A-Za-z0-9._%+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/g);
+  var matches = String(headerValue).match(new RegExp(ONE_ADDRESS.source, 'g'));
   return matches || [];
+}
+
+/** The bare address inside any header value, named or not. '' if there is none. */
+function bareAddress_(value) {
+  var m = String(value || '').match(ONE_ADDRESS);
+  return m ? m[0] : '';
+}
+
+/**
+ * A header split into its individual recipients, on commas and semicolons that
+ * are not inside quotes or angle brackets — so a name written "Barman,
+ * Barbara" stays one person instead of becoming two.
+ */
+function splitHeaderParts_(headerValue) {
+  var text = String(headerValue || '');
+  var parts = [];
+  var current = '';
+  var inQuotes = false;
+  var inAngles = false;
+  for (var i = 0; i < text.length; i++) {
+    var ch = text.charAt(i);
+    if (ch === '"') inQuotes = !inQuotes;
+    else if (ch === '<') inAngles = true;
+    else if (ch === '>') inAngles = false;
+    if ((ch === ',' || ch === ';') && !inQuotes && !inAngles) {
+      parts.push(current);
+      current = '';
+      continue;
+    }
+    current += ch;
+  }
+  parts.push(current);
+  return parts;
+}
+
+/**
+ * One recipient as the contract's version-2 form: "Barbara Barman
+ * <boone2002@att.net>" when the header carries a name, the bare address when
+ * it does not. '' when the part holds no address at all.
+ *
+ * The name is passed through because the server cannot invent one, and
+ * inventing one is what it used to do: "Boone2002@att.net" became "Boone2002"
+ * in a student's tracker (ENGINE-RULES §8, decision D4).
+ */
+function namedAddress_(part) {
+  var text = String(part || '');
+  var address = bareAddress_(text);
+  if (address === '') return '';
+  var name = text.slice(0, text.indexOf(address))
+    .replace(/[<>"]/g, ' ')
+    .replace(/,\s*$/, '')
+    .trim();
+  // A "name" that is itself an address is the mail client repeating itself.
+  if (name === '' || name.indexOf('@') !== -1) return address;
+  return name + ' <' + address + '>';
+}
+
+/** A To/Cc header into addresses that keep their display names. */
+function namedAddressList_(headerValue) {
+  if (!headerValue) return [];
+  var out = [];
+  splitHeaderParts_(headerValue).forEach(function (part) {
+    var one = namedAddress_(part);
+    if (one !== '') out.push(one);
+  });
+  return out;
+}
+
+/** A From header, keeping its display name. */
+function firstNamedAddress_(headerValue) {
+  var list = namedAddressList_(headerValue);
+  return list.length > 0 ? list[0] : '';
 }
 
 /**

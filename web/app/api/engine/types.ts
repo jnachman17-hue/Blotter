@@ -10,8 +10,11 @@
  * be traced from the wire to the code without a translation table.
  */
 
+/** The contract versions this server speaks. Version 1 is still understood. */
+export type ContractVersion = 1 | 2;
+
 export interface EngineRequest {
-  version: 1;
+  version: ContractVersion;
   /** From the courier, never from the server's clock. ISO 8601 with timezone. */
   now: string;
   student: { addresses: string[] };
@@ -65,12 +68,25 @@ export interface EventIn {
   /** ISO 8601 with timezone. */
   end: string;
   attendees: string[];
+  /**
+   * Contract version 2: the addresses that answered **No** to this invite.
+   * Empty on a version-1 request, which is exactly what a version-1 request
+   * meant — nobody is known to have declined.
+   *
+   * Declines only. Accepted, tentative and no-answer-yet are deliberately not
+   * carried, because no rule reads them.
+   */
+  declined: string[];
   organizer: string;
 }
 
 /**
- * Exactly one of these seven, per the contract. No other value is ever valid,
+ * Exactly one of these eight, per the contract. No other value is ever valid,
  * and no build may add one.
+ *
+ * `Call cancelled` is the eighth, added with contract version 2. It can only
+ * arise from an event's `declined` list, which only a version-2 request
+ * carries — so a version-1 client is never handed a status it does not know.
  */
 export type Status =
   | "Not emailed"
@@ -79,6 +95,7 @@ export type Status =
   | "Replied"
   | "Call scheduled"
   | "Call done"
+  | "Call cancelled"
   | "Closed";
 
 export interface RowOut {
@@ -103,14 +120,20 @@ export interface RowOut {
 
 export interface FoundPerson {
   email: string;
-  name: string;
+  /**
+   * The display name the header carried, or `null`. **Never derived from the
+   * address**: `Boone2002@att.net` → "Boone2002" is garbage, and a blank cell
+   * a student fills in themselves beats an invented name (rules §8, D4).
+   */
+  name: string | null;
   /** ISO date (YYYY-MM-DD) of the message where the address first appeared. */
   first_seen: string;
   context: string;
 }
 
 export interface EngineResponse {
-  version: 1;
+  /** Echoes the request's version: asked in 1, answered in 1. */
+  version: ContractVersion;
   /** One row per requested contact, in the same order. Never fewer. */
   rows: RowOut[];
   /** New people for the student to approve. Never auto-added. */
