@@ -473,10 +473,36 @@ that already answers must make **one**, and otherwise one per guest plus one.
 A future change that reintroduces a per-event call fails the test rather than
 showing up as a slow run three weeks later.
 
-**The measurement rows are the check.** `Settings → Last run took` should come
-back down. If it does not, the next thing to read is
-`Gmail calls last run` — if that number is unchanged from before this build,
-the remaining time is Calendar, not Gmail.
+**Measured, after the fix: 83 seconds → 44.** Jon re-ran it on September 2.
+
+**Accepted at 44, and the reasoning is worth keeping.**
+
+- **The budget is ~82 seconds a run** (`11-COURIER-NOTES.md` §3). 44 leaves
+  roughly half of it spare.
+- **This is the worst-case shape, not a typical one.** Jon's archive
+  configuration is 1,100 days of look-back on *both* mail and calendar, 58
+  contacts at full end-of-season scale, against three years of a personal
+  calendar. A real student in their first month is a small fraction of it.
+- **The remaining ~14 seconds over the old baseline is a real feature's real
+  cost**, not waste: finding out who declined means asking Google about every
+  event that has guests, and that question did not exist before this build.
+
+**Why it was not optimised further, deliberately.** The obvious next cut is to
+compute `declined` only for events whose guests include a contact — which would
+skip most of a personal calendar. **It was rejected: that is the courier making
+a judgment about which events matter, and the courier is dumb by design.** §7's
+title match exists precisely because the courier cannot know which events reach
+a person. The cheap and legitimate cuts (no guests, already-answered) are taken;
+the rest would buy speed with the architecture.
+
+**The lever that is free, if a run ever does run hot:** `Calendar looks back
+(days)`. Jon holds it at 1,100 for the archive comparison; the default is 365,
+and a live student never touches it. Dropping it cuts the event count directly.
+
+**This measurement replaces arithmetic.** `11-COURIER-NOTES.md` §3 said its
+per-run figures were estimates awaiting a real observation. There are now two:
+83 seconds before this fix, 44 after, on the heaviest configuration that
+exists.
 
 ### 5.3 The recipient cap changes what a contact's row can know
 
