@@ -354,9 +354,18 @@ SEASON_ANSWERS = {
                                  S("2024-02-09T18:46:52Z", "2024-02-09", 1),
                                  CS(E(28), "2024-03-11", 0, E(27)),
                                  R("2024-03-26T15:04:32Z", "2024-03-26", 0, E(28))),
-    # -- Lonnie: her one real message was captured with an empty To line, so as
-    #    recorded it belongs to no conversation of hers. Corpus gap, flagged.
-    "lonnie-kauppila":       same(NE),
+    # -- Lonnie: her ONE real message, and it is the whole relationship. The
+    #    Houlihan LA first-round interview happened Friday 2024-02-09; Jon's
+    #    thank-you went the next afternoon and she never answered. The Feb 1
+    #    confirmation from Sara Laracca names Lonnie as the interviewer in BODY
+    #    TEXT ONLY, and referral discovery is headers-only (§8, D15) — so that
+    #    thread reaches Sara's row and never Lonnie's. Corpus re-fetched
+    #    2026-09-02: the Stage A capture had an empty To line, which detached
+    #    this message from her and made every date read Not emailed.
+    "lonnie-kauppila":       arc(NE,
+                                 S("2024-02-10T21:06:14Z", "2024-02-10", 1),
+                                 S("2024-02-10T21:06:14Z", "2024-02-10", 1),
+                                 S("2024-02-10T21:06:14Z", "2024-02-10", 1)),
     # -- Steve McLaughlin: the assistant-advances-the-row case, then the
     #    thank-you clearing Call done by itself (rules §3, §4).
     "steve-mclaughlin":      arc(NE,

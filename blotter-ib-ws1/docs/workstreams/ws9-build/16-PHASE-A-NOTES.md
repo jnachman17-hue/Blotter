@@ -2,14 +2,16 @@
 
 Date: September 2, 2026
 Brief: `15-BRIEF-PHASE-A.md`
-Status: **Eight of the nine changes are built and green. §2.9 is blocked and
-needs one thing from Jon** (§6 below).
+Status: **All nine changes are built and green**, plus D17, the time machine.
+§2.9 was blocked on a Gmail account and was completed in a second pass once
+Jon reconnected it.
 
 | Check | Result |
 |---|---|
 | `npx tsx web/app/api/engine/run-fixtures.ts` | **36 of 36 pass** (31 existing + 5 new) |
 | `npx tsx web/app/api/engine/selftest.ts` | **105 of 105 pass** (was 71) |
-| Expected values changed in the existing 31 | **None. Zero.** See §3 |
+| `node courier/helpers.test.js` | **57 of 57 pass** (new file — the courier had no tests) |
+| Expected values changed | **12, all one row.** Lonnie Kauppila at three dates. See §3 |
 | `tsc --noEmit`, `eslint`, `next build` | Clean |
 | `node --check` on `Code.gs` | Clean |
 
@@ -28,7 +30,15 @@ What was actually checked, in order:
 | `GET https://blotterib.com/api/engine` | **405** | The route exists (POST-only) |
 | `GET https://blotterib.com/api/definitely-not-a-route` | 404 | A 405 is meaningful, not a catch-all |
 | `git ls-tree origin/main web/app/api/` | contains **`engine`** | It was merged to `main` already |
-| A live POST of a one-contact request | `attempts: 1`, warnings capped at ten | The deployed build carries `752cddd` (the forward ruling) and `5078da2` (the warnings cap) — the branch head's code |
+| A live POST of a one-contact request | `attempts: 1`, warnings capped at ten | The deployed build carries `752cddd` (the forward ruling) and `5078da2` (the warnings cap) — `origin/main`'s code |
+| A live POST of `{"version": 2}` | `must be 1 — this server speaks contract version 1, got 2` | **The deployed engine is the pre-Phase-A one.** Confirmed by the conductor chat, September 2 |
+
+**Both halves of this matter and neither alone is the whole truth.** The brief
+was wrong that the endpoint is a 404 — it is deployed and answering. This
+chat's first report was right that it is deployed, but the build sitting there
+is the **version-1** engine from `origin/main`, not the Phase A one. The
+practical consequence is the same either way and is the instruction below:
+**ship the server first.**
 
 **The mistake is easy to see and worth recording.** The *local* `main` branch
 in this working copy is stale — it sits at `ef7bbda`, months behind. `git
@@ -205,24 +215,83 @@ Stale counts corrected throughout: "67 rows" → 58, and the Houlihan
 shared-mailbox row removed from the utexas-only list (it was one of the nine
 firm rows).
 
-### 2.9 Lonnie Kauppila — BLOCKED. See §6.
+### 2.9 Lonnie Kauppila — done, and the dates do agree
 
----
+Blocked on the first pass: the Gmail connector was on `jnachman@utexas.edu`
+and both threads live in `jnachman17@gmail.com`. Jon reconnected it; the
+mailbox was confirmed before searching, and both authorised threads were
+fetched. **Nothing was inferred.**
+
+**What the Stage A capture had wrong.** Her one message was recorded
+`metadata_only`, with **an empty `To` line** and **the thread id in place of
+the message id**. The empty `To` is what broke her: with no address on it the
+message belonged to no conversation of hers, so every date read `Not emailed`.
+
+**The real message** (`18d94d79abfedbed`, thread `18d94d171c639c3c`):
+outbound `jnachman17@gmail.com` → **`Lonnie.Kauppila@hl.com`**,
+2024-02-10T21:06:14Z, subject "Enjoyed Yesterday's Conversation", body now
+captured verbatim, and **no reply** — she never answered.
+
+**The date question the brief said needed the real fetch: the two dates agree.**
+The brief flagged that the confirmation says 2/9/2024 while the thank-you says
+both "yesterday" and "have a good weekend", which do not obviously fit.
+Converted to Jon's own clock they fit exactly:
+
+| | Austin time |
+|---|---|
+| The interview | **Friday 9 February 2024, 12:00pm** (10:00am PST, as Sara's email says) |
+| The thank-you | **Saturday 10 February 2024, 3:06pm** |
+
+"Yesterday" is Friday. "Have a good weekend" is what you write on a Saturday
+afternoon. **The apparent disagreement was the UTC timestamp** — 21:06Z reads
+as a different day than the clock Jon was actually looking at.
+
+**A correction to D16, and it matters.** `14-DESIGN-DECISIONS.md` D16 says the
+confirmation thread "matches nobody and is invisible" because "Sara is not a
+contact." **Sara Laracca is a contact** — row 48 of the season fixtures, and
+one of the 58 tracked people. So that thread is **not** invisible: it lands on
+Sara's row like any other mail of hers.
+
+**The conclusion D16 draws is still right, by a different mechanism.** The
+thread never reaches *Lonnie*, because Lonnie is named only in the **body**
+("Interviewer: Lonnie Kauppila") and referral discovery is **headers only**
+(§8, D15). So the interview appears nowhere on her row, exactly as ruled — but
+the reason is the headers-only rule, not an unmatched thread. For the
+conductor to reconcile.
 
 ## 3. The fixtures — and what changed in them
 
-**Every expected value in the original 31 fixtures is unchanged. Not one was
-edited.** This is verifiable rather than asserted: `build_fixtures.py` is
-reproducible (regenerating before any change produced byte-identical files),
-so `git status` on `__fixtures__/` is the whole audit, and it shows only the
-README and two new directories.
+**Exactly twelve expected values changed, all of them one contact, and the
+authorising ruling is §2.9.** Nothing else moved.
 
-**Nothing needed to change, which is the interesting result.** All four
-behaviour changes are either new states the 2024 season never produced
-(`Call cancelled`), boundaries no fixture sat on (the start-time flip — the
-key deliberately avoided mid-event `now`s), already-correct behaviour
-(`Closed` keeping its history), or a move *towards* what the key already said
-(`found.name: null`).
+| File | Row | Was | Now |
+|---|---|---|---|
+| `season/2024-02-15.expected.json` | 51, Lonnie Kauppila | `Not emailed`, days `null`, last contact `null`, attempts `0` | `Sent`, days `5`, last contact `2024-02-10`, attempts `1` |
+| `season/2024-03-15.expected.json` | 51, Lonnie Kauppila | same | `Sent`, days `34`, last contact `2024-02-10`, attempts `1` |
+| `season/2024-04-30.expected.json` | 51, Lonnie Kauppila | same | `Sent`, days `80`, last contact `2024-02-10`, attempts `1` |
+
+**Authorised by:** §2.9, which says in terms what her row should read — `Sent`,
+attempts 1, clock from the thank-you. The three `days` values are date
+subtractions from **2024-02-10**, her thank-you's date in Austin time, and
+were derived from §4 before the engine was run. `2024-01-25` is unchanged: the
+thank-you had not been sent yet, so `Not emailed` was always right there.
+
+The matching request files gained her thread, which they never carried before —
+with an empty `To` line it contained no tracked address, so `courier_threads`
+correctly excluded it.
+
+**One number worth noticing.** Season-end `Not emailed` was 1 and is now **0**.
+That single row was Lonnie, and the fixtures README called it out as the corpus
+capture gap. The gap is closed.
+
+**Nothing else needed to change, which is the interesting result.** All four
+behaviour changes from §2 are either new states the 2024 season never produced
+(`Call cancelled`), boundaries no fixture sat on (the start-time flip — the key
+deliberately avoided mid-event `now`s), already-correct behaviour (`Closed`
+keeping its history), or a move *towards* what the key already said
+(`found.name: null`). This is verifiable rather than asserted:
+`build_fixtures.py` is reproducible, so `git status` on `__fixtures__/` is the
+whole audit.
 
 ### The two new fixtures, and an honest label on them
 
@@ -268,15 +337,25 @@ those files stay byte-identical.
   and "version mismatch is loud" (which used version 2 as its example of an
   invalid version). Neither was a passing test made to pass differently — both
   asserted the old rule.
-- **The courier's pure helpers were exercised in Node** — 27 checks over the
-  display-name parsing and the recipient cap. The courier has no test file in
-  the repo, so this ran from a scratch harness; the helpers are pure, so any
-  chat can redo it by evaluating `Code.gs` in a `new Function` and calling
-  `namedAddressList_`, `bareAddress_` and `exceedsRecipientCap_` directly.
-  Cases covered include `"Barman, Barbara" <b@x.com>` (a comma inside a quoted
-  name must not split one person into two), `jamie@x.com <jamie@x.com>` (a
-  mail client repeating the address as the name), exactly-ten vs eleven
-  recipients, and duplicate and mixed-capitalisation recipients.
+- **`courier/helpers.test.js` is new, and it is the courier's first test of any
+  kind.** 57 checks, run with `node courier/helpers.test.js` from the repo
+  root. It was added rather than left in a scratch directory because Phase B
+  depends on exactly this code and two pieces of it are safety-critical: the
+  `Pretend today is` parser, where accepting something unreadable is worse than
+  failing, and the timezone conversion, which is the same class of bug that
+  once put 98 fixture values out by a day.
+
+  It covers the display-name parsing (`"Barman, Barbara" <b@x.com>` — a comma
+  inside a quoted name must not become two people; `jamie@x.com <jamie@x.com>`
+  — a mail client repeating itself), the recipient cap (ten versus eleven,
+  duplicates, capitalisation, one listserv message condemning a whole thread),
+  contract-v2 bookkeeping, and the time machine's accepted formats, ten refusal
+  cases, and both 2026 DST changeovers from either side.
+
+  **What it cannot reach**, and this is stated in the file itself: everything
+  that needs Apps Script — `GuestStatus`, `getMyStatus`, the Gmail and Calendar
+  calls, the sheet writes. Those are still only testable by running it for
+  real.
 
 ---
 
@@ -311,6 +390,19 @@ close the window, but it couples two mechanisms and only works when that mail
 exists (it does not when the student declines their own invite). Not built, on
 the brief's instruction not to invent.
 
+**A ruling is pending, and this clock is very likely to change.** Jon pushed
+back on the whole idea of a counter here — *"if a call was cancelled the state
+remains call cancelled until an inbound or outbound email switches it, why do
+we need a days since call counter"* — and he is right that the current number
+reads strangely: decline on Monday for a Friday call and it says 0 all week.
+The likely replacement is **days since the last message in the relationship,
+either direction**, which is always available, needs no Google timestamp, and
+is arguably the number `Call done` is really measuring too. **Not changed on
+this pass** — the conductor holds the ruling. When it lands, the places to
+change are `computeRow`'s `Call cancelled` branch in `rules.ts`, `render_row`
+in `build_fixtures.py`, `cases/16`'s three expected rows, and the three
+`Call cancelled` self-tests.
+
 ### 5.2 The `days` clamp is a judgment, and it is small but real
 
 `Math.max(0, …)` on `Call cancelled`. The alternative — negative days for a
@@ -326,43 +418,58 @@ measurement — but a student could in principle notice a row going quiet.
 
 ---
 
-## 6. §2.9 — Lonnie Kauppila is blocked, and the unblock is one thing
+## 6. D17 — the time machine, built
 
-**Not done. Nothing about Lonnie was changed** — not her corpus record, not her
-fixture, not her expected value. She still reads `Not emailed`.
+`Settings → Pretend today is (TESTING - leave blank)`. Blank in normal use.
+When it holds a date, the courier sends that as `now` and **nothing else
+changes** — the Gmail search window and the calendar fetch window still run on
+real time, so it ages what is there rather than conjuring mail that is not.
 
-**Why: the connected Gmail account is the wrong one of Jon's two.** The Gmail
-connector in this session is authenticated as **`jnachman@utexas.edu`**. Both
-of the threads the brief authorises live in **`jnachman17@gmail.com`** — the
-corpus records both under `source_mailbox: jnachman17@gmail.com`.
+The three requirements, and how each is met:
 
-What was searched, and found empty:
+1. **Visibly marked as a testing setting.** Three places, because one is not
+   enough. The **label itself** carries the warning — the row reads
+   `Pretend today is (TESTING - leave blank)`, so it cannot be mistaken for an
+   ordinary setting even by someone who never read the guide. A **third column
+   beside it** explains what it does. And whenever it is on, **the run says
+   so**: the summary box opens with a starred line naming the pretended date,
+   and `Settings → Last run warnings` carries the same sentence as its first
+   entry, where it stays until the next run.
+2. **`INSTALL.md` tells a student to leave it blank** — in Part B step 3, which
+   is one of the four steps a student actually reads, not only in the section
+   about the feature.
+3. **An unreadable value fails the run loudly.** `pretendNowIso_` throws from
+   inside `readSettings_`, which runs **before the first Gmail read** and long
+   before the write phase, so nothing is touched. The message names the cell,
+   quotes what was typed, and says plainly why Blotter will not guess. Ten
+   refusal cases are pinned in `courier/helpers.test.js`, including
+   `2026-02-30`, `2025-02-29`, `25:00`, a raw spreadsheet serial, and prose.
 
-| Query | Result |
-|---|---|
-| `to:Lonnie.Kauppila@hl.com OR from:Lonnie.Kauppila@hl.com` | nothing |
-| `Kauppila in:anywhere` | nothing |
-| `subject:"Enjoyed Yesterday's Conversation"` | nothing |
-| `Laracca OR "First Round Interview Confirmation"` | nothing |
-| `from:hl.com in:anywhere` | 6 threads, **all `jnachman@utexas.edu`**, none from Sara Laracca |
+**Two judgments inside this that the ruling left open, both documented for the
+student:**
 
-The account is not empty and it is not the wrong search — it holds plenty of
-real January 2024 Houlihan Lokey mail, including the Samuel Ward thread with
-the forward to `dmnachman@gmail.com` that produced the §3 forwarding ruling.
-**It simply is not the mailbox those two threads are in.**
+- **A date with no time means the end of that day** (23:59:59). This is what
+  makes the setting do its stated job: a call booked for 2pm on the pretend
+  date has already happened, so `Call done` and `Call cancelled` fire instead
+  of the row landing back on `Call scheduled`. A specific moment can still be
+  asked for — `2026-09-05 13:00` — and is respected.
+- **A date-formatted cell reads back as midnight**, which Sheets uses to mean
+  a bare date. Midnight *from a Date cell* is therefore treated as "no time
+  given"; a midnight typed as text is respected. The consequence is that
+  exactly 00:00:00 cannot be requested from a date cell.
 
-**What was deliberately not done, and why.** The recipient is not actually in
-doubt — the brief, the corpus's `addresses_seen` and the thread's filing all
-say the thank-you went to Lonnie — so adding the missing `To` line would flip
-her row to `Sent`/attempts 1 as the brief says it should. **That was not done
-on purpose.** It would put a `days` value into the answer key computed from
-`2024-02-10`, the exact date the brief flags as unverified ("the confirmation
-says 2/9/2024 and the thank-you says 'yesterday' and 'have a good weekend',
-which do not obviously agree"). Writing an unverified number into the answer
-key is the thing `15-BRIEF-PHASE-A.md` §3 exists to prevent.
+**Accepted formats:** `2026-09-05`, `2026-09-05 14:30`, `2026-09-05T14:30:09`,
+`9/5/2026`, `09/05/2026 08:15`, and a real Sheets date cell. Everything else
+throws.
 
-**To unblock: connect `jnachman17@gmail.com` to the Gmail connector,** and the
-fix is then small — two threads, one corpus record, one regeneration.
+**The part most able to be quietly wrong is the timezone**, and it is tested.
+`isoInStudentZone_` builds an ISO timestamp whose **offset follows the pretend
+date, not today's** — so a January pretend-date gets `-06:00` and a July one
+gets `-05:00`, which is the difference between the fixtures being right and
+being out by a day. It works by guessing the instant and correcting twice
+against what the student's zone actually shows, which settles the DST
+boundaries. `courier/helpers.test.js` pins both 2026 changeover days from
+either side, using Node's real timezone data as a stand-in for `Utilities`.
 
 ---
 
@@ -378,8 +485,20 @@ fix is then small — two threads, one corpus record, one regeneration.
   against `CalendarApp.GuestStatus.NO`, and the `getMyStatus()` fallback for
   the student's own decline (wrapped in `try/catch` — an event with no guests
   has no "my status"). **The first live run with a genuinely declined invite
-  is the test.** Everything else in `Code.gs` that changed is pure string
-  handling and was exercised in Node.
+  is the test**, and Phase B's time machine makes that a five-minute check
+  rather than a wait. Everything else in `Code.gs` that changed is pure string
+  or date handling and is covered by `courier/helpers.test.js`.
+- **Run `node courier/helpers.test.js` after touching `Code.gs`.** It is not
+  wired into anything — nothing in this repo runs tests automatically — so it
+  only helps if it is remembered.
+- **`Call cancelled`'s clock is very likely to change** (§5.1). Jon has pushed
+  back on it and the conductor holds the ruling. Four places move together
+  when it lands; they are listed there.
+- **D16 in `14-DESIGN-DECISIONS.md` has a wrong reason** (§2.9). Sara Laracca
+  *is* a tracked contact, so her confirmation thread is not invisible — it is
+  on her row. Lonnie is unreachable from it for a different reason: she is
+  named in body text and discovery is headers-only. Same outcome, different
+  mechanism, and the conductor owns that file.
 - **`build_fixtures.py` is reproducible and should stay that way.** Run it and
   check `git status` is empty before making any fixture change; that is what
   makes "which expected values changed" answerable rather than argued.
@@ -407,3 +526,10 @@ Recorded for the conductor to reconcile upward — this chat does not edit
 3. **The dash for `days: null` is rendered by the courier**, uniformly for
    `Closed` and `Not emailed`. §4's table implies it for both; §9's column
    list does not mention it.
+4. **D17's unstated details** (§6): a pretend date with no time means the end
+   of that day, and a date-formatted cell's midnight counts as "no time
+   given". Both are documented for the student in `INSTALL.md`.
+5. **D16's reason is wrong** (§2.9). Sara Laracca is a tracked contact; the
+   confirmation thread is visible on her row and reaches Lonnie only through
+   body text, which §8/D15 forbids reading. The ruling's conclusion stands;
+   its explanation does not.

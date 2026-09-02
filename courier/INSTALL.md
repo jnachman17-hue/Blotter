@@ -322,6 +322,11 @@ authorize it against their own account. Blotter never sees their login.
    send from, and set **File → Settings → Time zone** to where they live —
    a copied sheet keeps the *master's* time zone, and "days waiting" turns
    over at midnight in whatever time zone this says.
+
+   **They leave `Pretend today is` blank.** It says so on the row. It is a
+   testing setting, and a date typed into it by accident makes every Status
+   and every Days number on the sheet answer a day that is not today —
+   wrong, but wrong in a way that looks completely normal.
 4. They add their contacts to the **Contacts** tab (a Name and an Email
    each), click **Blotter → Step 2: Run once now**, then
    **Blotter → Start automatic updates.**
@@ -375,6 +380,51 @@ updated and how long it took. Then check the sheet:
 If instead you get a box saying Blotter could not update the sheet, **read
 the reason and send it back**. A failure before the write phase leaves the
 sheet exactly as it was, and the message says which case you are in.
+
+---
+
+## The time machine — for testing only
+
+**Settings → `Pretend today is (TESTING - leave blank)`.**
+
+Normally this is blank and Blotter uses the real date. Put a date in it and
+**Blotter works out every row as if that were today.**
+
+That is the whole trick. It exists because most of what Blotter does is about
+time passing — someone went quiet for two weeks, a call happened, an invite
+was declined — and the only other way to test any of it is to wait two weeks.
+
+**What it changes:** only what Blotter thinks today is. A thread you sent this
+morning can be aged to a month old. A call you put on next Friday's calendar
+becomes a call that already happened, so `Call done` and `Call cancelled`
+appear straight away instead of after a week of waiting.
+
+**What it does not change:** which mail and which calendar events Blotter goes
+and fetches. Those still use the real date. So it ages what is there; it does
+not conjure up mail that does not exist. **Sending the test emails is still
+done by hand** — that part takes minutes, not days.
+
+### Using it
+
+1. Open the **Settings** tab.
+2. In the cell next to **`Pretend today is (TESTING - leave blank)`**, type a
+   date like `2026-09-05`. (`9/5/2026` works too.)
+3. Click **Blotter → Step 2: Run once now**.
+4. The summary box opens with a line in stars saying testing mode was on and
+   which date it pretended. **Settings → Last run warnings** says the same
+   thing, and stays there.
+5. **When you are finished, delete what you typed** and run once more. The
+   sheet goes back to the truth.
+
+Two details worth knowing:
+
+- **A date with no time means the end of that day.** So a call booked for 2pm
+  on the date you typed has already happened. That is deliberate — it is what
+  makes calls resolve instead of sitting on `Call scheduled` again. If you want
+  a specific moment, type one: `2026-09-05 13:00`.
+- **If Blotter cannot read what you typed, the run stops and says so**, and
+  nothing is written. It will not quietly fall back to today, because a run
+  that silently ignored your date would look exactly like one that worked.
 
 ---
 

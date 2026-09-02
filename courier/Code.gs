@@ -65,6 +65,21 @@ var SETTING_RUN_TOOK = 'Last run took';
 var SETTING_RUN_FETCHED = 'Last run fetched';
 var SETTING_GMAIL_CALLS = 'Gmail calls last run';
 
+// The time machine (decision D17). Blank in normal use. When it holds a date,
+// the courier sends THAT as `now` in the request and nothing else changes —
+// the Gmail search window and the calendar fetch window still run on real
+// time. `now` is already a field the contract carries, which is exactly what
+// makes this possible without touching a rule.
+//
+// The label carries its own warning because this setting cannot be allowed to
+// look like an ordinary one: a date typed in by accident produces a sheet full
+// of confident nonsense that looks exactly like a working sheet.
+var SETTING_PRETEND_TODAY = 'Pretend today is (TESTING - leave blank)';
+var PRETEND_TODAY_HELP =
+  'FOR TESTING ONLY. Leave this blank. A date here makes Blotter compute every ' +
+  'row as if that were today, so Status and Days will be wrong for the real ' +
+  'world. Clear the cell and run again to go back to normal.';
+
 // Per-run measurement (13-BRIEF-COURIER-2 §2): nobody knows what a run
 // actually costs until one is watched. Written to Settings on success; on
 // failure it goes to the execution log instead, because a failed run writes
@@ -203,6 +218,7 @@ function setupSheet() {
   ensureSettingRow_(settings, SETTING_RUN_TOOK, '');
   ensureSettingRow_(settings, SETTING_RUN_FETCHED, '');
   ensureSettingRow_(settings, SETTING_GMAIL_CALLS, '');
+  ensureSettingRow_(settings, SETTING_PRETEND_TODAY, '', PRETEND_TODAY_HELP);
   settings.autoResizeColumn(1);
 
   SpreadsheetApp.getUi().alert(
@@ -227,7 +243,7 @@ function ensureHeaders_(sheet, wanted) {
   }
 }
 
-function ensureSettingRow_(sheet, label, defaultValue) {
+function ensureSettingRow_(sheet, label, defaultValue, help) {
   var lastRow = sheet.getLastRow();
   if (lastRow > 0) {
     var labels = sheet.getRange(1, 1, lastRow, 1).getValues();
@@ -235,7 +251,7 @@ function ensureSettingRow_(sheet, label, defaultValue) {
       if (String(labels[i][0]).trim() === label) return;
     }
   }
-  sheet.appendRow([label, defaultValue]);
+  sheet.appendRow(help ? [label, defaultValue, help] : [label, defaultValue]);
 }
 
 // ---------------------------------------------------------------------------
@@ -351,7 +367,10 @@ function courierPass_() {
     // --- Ask the server what it all means ---
     var request = {
       version: CONTRACT_VERSION,
-      now: toIso_(new Date()),
+      // The time machine (D17): only `now` moves. The Gmail search window and
+      // the calendar fetch window above already ran on real time, deliberately
+      // — the point is to age a real relationship, not to hide it.
+      now: settings.pretendNow || toIso_(new Date()),
       student: { addresses: settings.addresses },
       contacts: sheetState.contacts,
       threads: threads,
@@ -367,8 +386,17 @@ function courierPass_() {
     var added = addApprovedContacts_(ss, sheetState, foundState);
     var suggested = writeFoundSuggestions_(ss, sheetState, foundState, response.found || []);
     writeSetting_(ss, SETTING_LAST_RUN, new Date());
-    writeSetting_(ss, SETTING_WARNINGS,
-      (response.warnings && response.warnings.length) ? response.warnings.join(' | ') : 'None');
+    // When the time machine is on, say so first and say so loudly. Every
+    // number on this sheet is now an answer to a question about a day that is
+    // not today, and nothing else about the sheet reveals that.
+    var pretendWarning = settings.pretendNow
+      ? 'TESTING MODE: this run pretended today was ' + settings.pretendNow.slice(0, 10) +
+        '. Every Status and Days value on this sheet answers that date, not today. ' +
+        'Clear Settings → "' + SETTING_PRETEND_TODAY + '" and run again to go back to normal.'
+      : '';
+    var warningLines = (response.warnings || []).slice();
+    if (pretendWarning) warningLines.unshift(pretendWarning);
+    writeSetting_(ss, SETTING_WARNINGS, warningLines.length ? warningLines.join(' | ') : 'None');
 
     // The measurement (13-BRIEF-COURIER-2 §2): what a run actually costs.
     var seconds = Math.round((new Date().getTime() - runMetrics_.startedMs) / 1000);
@@ -381,7 +409,8 @@ function courierPass_() {
       (runMetrics_.searches + runMetrics_.threadFetches) +
       ' (' + runMetrics_.searches + ' searches, ' + runMetrics_.threadFetches + ' conversation fetches)');
 
-    return 'Updated ' + response.rows.length + ' contact row(s). ' +
+    return (pretendWarning ? '*** ' + pretendWarning + ' ***\n\n' : '') +
+      'Updated ' + response.rows.length + ' contact row(s). ' +
       'Added ' + added + ' approved contact(s). ' +
       'Suggested ' + suggested + ' new name(s) in the Found tab. ' +
       'Took ' + seconds + ' seconds.';
@@ -421,8 +450,114 @@ function readSettings_(ss) {
     serverUrl: serverUrl,
     calendarDaysBack: positiveOrDefault_(byLabel[SETTING_CAL_BACK], EVENT_DAYS_BACK_DEFAULT),
     calendarDaysForward: positiveOrDefault_(byLabel[SETTING_CAL_FORWARD], EVENT_DAYS_FORWARD_DEFAULT),
-    mailDaysBack: positiveOrDefault_(byLabel[SETTING_MAIL_BACK], MAIL_DAYS_BACK_DEFAULT)
+    mailDaysBack: positiveOrDefault_(byLabel[SETTING_MAIL_BACK], MAIL_DAYS_BACK_DEFAULT),
+    // '' in normal use. Anything unreadable throws from here — before a single
+    // Gmail read, and long before the write phase.
+    pretendNow: pretendNowIso_(byLabel[SETTING_PRETEND_TODAY])
   };
+}
+
+/**
+ * The time machine (D17). Turns the `Pretend today is` cell into the `now` the
+ * request carries, or '' when the cell is blank.
+ *
+ * **An unreadable value throws.** It must never quietly fall back to today: a
+ * silent fallback would make a broken test look like a passing one, which is
+ * the worst outcome available here — worse than the run failing, because a
+ * failing run says so.
+ *
+ * A date with no time means **the end of that day**. That is what makes the
+ * setting do its job: a call booked for 2pm on the pretend date has already
+ * happened, so `Call done` and `Call cancelled` fire instead of the row
+ * sitting on `Call scheduled` all over again.
+ */
+function pretendNowIso_(raw) {
+  var parts = pretendTodayParts_(raw);
+  return parts ? isoInStudentZone_(parts) : '';
+}
+
+function pretendTodayParts_(raw) {
+  if (raw === null || raw === undefined) return null;
+  // Sheets hands back a real Date when the cell is date-formatted, and a
+  // string when it was typed as text. Both have to work.
+  if (Object.prototype.toString.call(raw) === '[object Date]') {
+    if (isNaN(raw.getTime())) {
+      throw new Error(badPretendValue_(raw));
+    }
+    // Read it back in the student's own zone: a date cell is midnight there,
+    // and midnight from a date cell means "no time was given".
+    return parsePretendText_(Utilities.formatDate(raw, studentTimeZone_(), 'yyyy-MM-dd HH:mm:ss'), true);
+  }
+  var text = String(raw).trim();
+  if (text === '') return null;
+  return parsePretendText_(text, false);
+}
+
+/**
+ * `2026-09-05`, `2026-09-05 14:30`, `9/5/2026` and `9/5/2026 14:30`. Anything
+ * else throws. Pure string work — no Apps Script globals — so it is testable
+ * outside the editor.
+ *
+ * `midnightMeansAllDay` is true only for a date-formatted cell, where 00:00:00
+ * is Sheets storing a bare date rather than the student asking for midnight.
+ */
+function parsePretendText_(text, midnightMeansAllDay) {
+  var iso = /^(\d{4})-(\d{1,2})-(\d{1,2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/.exec(text);
+  var us = /^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/.exec(text);
+  var y, mo, d, h, mi, sec, hadTime;
+  if (iso) {
+    y = +iso[1]; mo = +iso[2]; d = +iso[3];
+    hadTime = iso[4] !== undefined;
+    h = hadTime ? +iso[4] : 0; mi = hadTime ? +iso[5] : 0; sec = hadTime && iso[6] ? +iso[6] : 0;
+  } else if (us) {
+    mo = +us[1]; d = +us[2]; y = +us[3];
+    hadTime = us[4] !== undefined;
+    h = hadTime ? +us[4] : 0; mi = hadTime ? +us[5] : 0; sec = hadTime && us[6] ? +us[6] : 0;
+  } else {
+    throw new Error(badPretendValue_(text));
+  }
+
+  // A shape that parses is not yet a date: 2026-02-30 and 25:00 both do.
+  var roundTrip = new Date(Date.UTC(y, mo - 1, d, h, mi, sec));
+  if (roundTrip.getUTCFullYear() !== y || roundTrip.getUTCMonth() !== mo - 1 ||
+      roundTrip.getUTCDate() !== d || h > 23 || mi > 59 || sec > 59) {
+    throw new Error(badPretendValue_(text));
+  }
+
+  if (!hadTime || (midnightMeansAllDay && h === 0 && mi === 0 && sec === 0)) {
+    h = 23; mi = 59; sec = 59;
+  }
+  return { y: y, mo: mo, d: d, h: h, mi: mi, s: sec };
+}
+
+function badPretendValue_(value) {
+  return 'Settings → "' + SETTING_PRETEND_TODAY + '" says "' + value + '", which is not a date ' +
+    'Blotter can read. Nothing was changed.\n\n' +
+    'Use a date like 2026-09-05, or clear the cell to go back to normal.\n\n' +
+    'Blotter will not guess here: guessing would silently compute the whole sheet ' +
+    'against today and look exactly like a working run.';
+}
+
+/**
+ * A wall-clock time in the student's timezone, as an ISO string with the right
+ * offset for that date — so a pretend date in November gets November's offset,
+ * not today's.
+ *
+ * Two passes: guess the instant as if the zone were UTC, see what clock the
+ * student's zone actually shows for that instant, and shift by the difference.
+ * The second pass settles the DST boundary cases the first can land on.
+ */
+function isoInStudentZone_(p) {
+  var wanted = Date.UTC(p.y, p.mo - 1, p.d, p.h, p.mi, p.s);
+  var guess = new Date(wanted);
+  for (var i = 0; i < 2; i++) {
+    var shown = Utilities.formatDate(guess, studentTimeZone_(), 'yyyy-MM-dd HH:mm:ss')
+      .match(/\d+/g).map(Number);
+    var delta = wanted - Date.UTC(shown[0], shown[1] - 1, shown[2], shown[3], shown[4], shown[5]);
+    if (delta === 0) break;
+    guess = new Date(guess.getTime() + delta);
+  }
+  return toIso_(guess);
 }
 
 /** A positive whole number from a settings cell, or the default. */
