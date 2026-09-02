@@ -1,7 +1,10 @@
 # The engine rules
 
 Date: September 1, 2026
-Version: **5.** Amended September 2, 2026 with the seven open questions ruled —
+Version: **6.** Amended September 2, 2026 after the Phase A build reported six
+places the document had fallen behind the engine.
+
+Previously: version 5. Amended September 2, 2026 with the seven open questions ruled —
 a cancelled call (§4), calls flipping at their start (§4), what a closed row
 shows (§4), and headers-only referral discovery (§8).
 
@@ -141,7 +144,7 @@ picked would be wrong for someone**, so we do not pick one.
 | **Replied** | They wrote last, you have not answered | Days since **they** wrote |
 | **Call scheduled** | A calendar event with them is upcoming | Days until it |
 | **Call done** | A call has happened and nobody has written since | Days since the call |
-| **Call cancelled** | The most recent call was declined by either side, and nobody has written since | Days since it was declined |
+| **Call cancelled** | The most recent call was declined by either side, and nobody has written since | Days since the last thing that **actually happened** |
 | **Closed** | You marked it closed | A dash |
 
 ### How a day is counted
@@ -167,9 +170,29 @@ Bounced  >  Call scheduled  >  Call done | Call cancelled  >  Replied / Sent
 `Call done` and `Call cancelled` cannot both apply — the most recent event either
 happened or was declined.
 
+### The clock counts from the last thing that actually happened
+
+**An email either way, or a call that took place.** A cancelled call is a
+**non-event**: it does not anchor the clock, does not reset it, and does not
+touch it. Only the status changes.
+
+**Ruled by Jon, September 2, 2026**, replacing "days since it was declined" —
+which Google publishes nowhere and which no engine can obtain. His reasoning:
+*"Days since is one of the most important features but for emails. Not calls…
+When it's a live contact days since email is super important to know when to
+bump the thread."*
+
+So `Call cancelled` shows the same number `Sent` would. If the last email was
+thirty days ago and the decline landed this morning, it reads **30** — and that
+is the useful fact, because thirty days is how long since anyone communicated.
+
+**A dash is shown wherever `days` has no value** — `Closed` and `Not emailed`.
+
 ### A call counts as done the moment it starts
 
 At 2:01pm on a 2:00 to 2:30 call the row reads `Call done`, not `Call scheduled`.
+**The "nobody has written since" test moves with it** — it measures from the
+call's start, not its end, so a mid-call "running late" note clears the state.
 **Ruled by Jon, September 2, 2026**, replacing an unratified convention that
 waited for the end time.
 

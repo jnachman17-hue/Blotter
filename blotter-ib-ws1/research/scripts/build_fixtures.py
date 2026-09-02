@@ -178,6 +178,23 @@ def convert_event(e, declined=None):
     return out
 
 
+def constructed_threads(case, now):
+    """Threads a case invents, rendered like any other and filtered to `now`.
+
+    Used for exactly one thing: the decline notification Google sends when a
+    guest answers No. The corpus contains no declined invite at all, so the
+    mail announcing one cannot be quoted from it — and without that mail the
+    engine has no moment to measure "has anyone written since the decline"
+    against. Every such thread is labelled `constructed` on its case."""
+    out = []
+    for t in case.get("extra_threads", []):
+        msgs = [dict(m, date=student_render(m["date"]))
+                for m in t["messages"] if parse_iso(m["date"]) <= parse_iso(now)]
+        if msgs:
+            out.append({"thread_id": t["thread_id"], "messages": msgs})
+    return out
+
+
 def courier_threads(threads, roster_emails, now):
     """What the courier sends: every conversation that (as of `now`) contains a
     tracked address in From/To/Cc of any message, with all its messages up to
@@ -721,6 +738,43 @@ CASES = [
         },
     },
     {
+        "id": "19-nick-gerstein-declined-then-writes",
+        "why": "The last piece of the Call cancelled work (rules §4, ruled September 2, 2026): the state clears the moment anybody writes, EVEN WHILE THE CALL'S OWN DATE IS STILL AHEAD. Nick declines on the 24th; on the 25th nothing has happened since, so the row reads Call cancelled. At 10:15 on the 26th — during the half hour the call would have run — Jon has written at 09:56, and the row reads Sent. Compare `cases/16` at that identical instant, which says Call cancelled because no decline notification exists there to measure from.",
+        "constructed": "Two constructed elements, both the same fiction consistently told: Nick's real 26 January invite marked declined, and the `Declined:` notification Google would have sent Jon when he clicked it. The corpus contains no declined invite anywhere, so neither the decline nor its notification can be quoted from real mail. Every other message, address and timestamp is the real season.",
+        "roster": [("nick-gerstein", None)],
+        "events": [11],
+        "declined": {11: ["ngerstein99@gmail.com"]},
+        "extra_threads": [{
+            "thread_id": "constructed-nick-decline-notice",
+            "messages": [{
+                "id": "constructed-nick-decline-notice-1",
+                "date": "2024-01-24T18:00:00Z",
+                "from": "ngerstein99@gmail.com",
+                "to": ["jnachman17@gmail.com"],
+                "cc": [],
+                "subject": "Declined: Nick - Jonathan Citi IB Call @ Fri Jan 26, 2024 10am - 10:30am (CST) (jnachman17@gmail.com)",
+                "body": "",
+                "is_outbound": False,
+            }],
+        }],
+        "nows": {
+            # The 25th. He declined yesterday and nobody has written since, so
+            # the row is Call cancelled — and the clock reads four, days since
+            # the last email, exactly as `cases/16` does at this moment.
+            "2024-01-25": {"now": NOW["jan"],
+                           "rows": {"nick-gerstein": ("Call cancelled", "2024-01-22T03:57:20Z", "2024-01-21", 1, None, None)},
+                           "found": []},
+            # 10:15 on the 26th, inside the half hour the call would have run.
+            # Jon wrote at 09:56 — AFTER the decline and BEFORE the call's own
+            # date — so the state has already cleared. This is the exact case
+            # the old anchor got wrong: it waited for the call's date and read
+            # Call cancelled here.
+            "2024-01-26-wrote-before-the-call": {"now": "2024-01-26T16:15:00Z",
+                                                 "rows": {"nick-gerstein": ("Sent", "2024-01-26T15:56:04Z", "2024-01-26", 2, None, None)},
+                                                 "found": []},
+        },
+    },
+    {
         "id": "17-david-talbot-call-starts",
         "why": "A call counts as done the moment it STARTS (rules §4, decision D13), replacing the convention that waited for the end time. David's real 3:30-4:00pm call, asked at 3:29 and at 3:31. Entirely real data — only the two clocks are chosen, as every fixture's `now` is.",
         "roster": [("david-talbot", None)],
@@ -937,7 +991,8 @@ def main():
                 "now": student_render(now),
                 "student": {"addresses": STUDENT_ADDRESSES},
                 "contacts": [row for _, row in rows],
-                "threads": courier_threads(threads, roster_emails, now),
+                "threads": courier_threads(threads, roster_emails, now) +
+                           constructed_threads(case, now),
                 "events": [convert_event(events_by_pos[n], case.get("declined", {}).get(n))
                            for n in case["events"]
                            if parse_iso(events_by_pos[n]["created"]) <= parse_iso(now)],

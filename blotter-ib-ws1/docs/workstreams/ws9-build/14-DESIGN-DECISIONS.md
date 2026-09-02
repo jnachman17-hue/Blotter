@@ -219,8 +219,13 @@ Two real threads, which between them show the version-one scope decision better
 than any argument:
 
 - **An interview confirmation from `Sara.Laracca@hl.com`** naming Lonnie as
-  interviewer **in the body**. Lonnie is not an addressee and Sara is not a
-  contact, so **the whole thread matches nobody and is invisible.**
+  interviewer **in the body**.
+
+  ⚠ **The reason first given here was wrong** and the Phase A build caught it.
+  Sara Laracca **is** a tracked contact, so that thread is not invisible at all —
+  it sits on *her* row. **Lonnie is unreachable from it for a different reason:
+  she is named only in body text, and referral discovery is headers-only
+  (D15).** Same outcome, different mechanism. Corrected September 2, 2026.
 - **Jon's thank-you, sent straight to Lonnie**, which is the only message that
   counts. She never replied.
 
@@ -299,3 +304,36 @@ tier, so what works there works everywhere.
 **Written as a script, not a session**: what to send, from whom, at which
 pretend-date, and what the sheet must say after each step. It is the fixture idea
 made live, and re-runnable whenever anything changes.
+
+
+### D21. A decline that lands before the call's date. **OPEN — needs Jon.**
+
+Raised by the Phase A build as §5.1b, and the last loose thread in the
+`Call cancelled` work.
+
+A banker declines Monday for a call due Friday, then writes Tuesday saying "can
+we do next week?" **Today the row still reads `Call cancelled` until Friday
+passes**, where `Replied` would be more useful.
+
+The clock ruling fixed the *number* and left the *status* on the old anchor.
+
+**Options:** clear the status as soon as anyone writes, regardless of the call's
+date — which is what the state's self-clearing rule was meant to do everywhere
+else; or leave it, on the grounds that the call is still nominally on the
+calendar until its date passes. **Jon rules.**
+
+### D22. The time machine's small print, as built.
+
+A pretend date with **no time** means the end of that day, and a date-formatted
+cell's midnight counts as no time given. Documented for students in
+`INSTALL.md`.
+
+### D23. The run cost, measured rather than estimated.
+
+**44 seconds** on the heaviest configuration that exists — 1,100-day look-back
+on mail *and* calendar, 58 contacts, three years of personal calendar — against a
+budget of roughly 82. Down from 83 seconds before the calendar fix.
+
+**A real student is a fraction of this.** The quota arithmetic in
+`11-COURIER-NOTES.md` §3 was always flagged as an estimate awaiting an
+observation; there are now two.

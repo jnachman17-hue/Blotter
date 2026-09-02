@@ -8,8 +8,8 @@ Jon reconnected it.
 
 | Check | Result |
 |---|---|
-| `npx tsx web/app/api/engine/run-fixtures.ts` | **38 of 38 pass** (31 existing + 7 new) |
-| `npx tsx web/app/api/engine/selftest.ts` | **113 of 113 pass** (was 71) |
+| `npx tsx web/app/api/engine/run-fixtures.ts` | **40 of 40 pass** (31 existing + 9 new) |
+| `npx tsx web/app/api/engine/selftest.ts` | **120 of 120 pass** (was 71) |
 | `node courier/helpers.test.js` | **67 of 67 pass** (new file — the courier had no tests) |
 | Expected values changed | **13.** Lonnie Kauppila at three dates, and one `days` value under the September 2 clock ruling. See §3 |
 | `tsc --noEmit`, `eslint`, `next build` | Clean |
@@ -418,27 +418,51 @@ contact has never exchanged a message and their only call was declined, there
 is nothing that ever happened, so `days` is `null` and the sheet shows a dash.
 Pinned in the self-tests.
 
-### 5.1b The residue: a decline in advance still holds until the call's date
+### 5.1b A decline that lands before the call's date — ruled, built, and it needed a mechanism nobody had named
 
-**Not ruled, and unchanged by the clock ruling. Raised again because it is now
-the only open piece.**
+**Jon's ruling, September 2, 2026:** *"It should not be call cancelled until
+Friday passes. It should flip immediately to replied if they send a new email
+suggesting a new time instead of Monday."* So `Call cancelled` clears the
+moment anybody writes, **even while the call's own date is still ahead**.
 
-Whether the status `Call cancelled` *holds* is still tested against the
-**event's start** — "has anyone written after the call was due?" — because that
-is the only moment available. So: invite for Friday, banker declines Monday,
-banker writes Tuesday "can we do next week?" — on Wednesday the row still reads
-`Call cancelled` where `Replied` would be more useful. After the call's date it
-clears normally, so this is a bounded window rather than a dead end.
+**Built. But the ruling as relayed could not be implemented as stated, and that
+is the finding worth keeping.**
 
-**The clock ruling improved this without closing it.** That row now reads
-`Call cancelled, 1` (one day since their email) rather than `Call cancelled, 0`,
-so the number is at least meaningful while the status is stale.
+The instruction that came with it was that "the cancelled call's date is not an
+input" to the status. **That is not achievable from the calendar alone**, and
+the reason is worth writing down because it will come up again:
 
-Closing it properly needs the same thing the clock turned out not to need: a
-moment for the decline. The `Declined: Invitation: …` email carries one and the
-engine already classifies those as machine mail — but it exists only when the
-counterparty declines, not when the student declines their own invite. **Not
-built, and not urgent.**
+Consider what the engine can see on Wednesday in the two cases that must differ.
+**(A)** Declined Monday, nobody has written since — last email was a week ago.
+**(B)** Declined Monday, they wrote Tuesday — last email was Tuesday.
+The only difference between them is **how recent the last email is**. To tell
+which case you are in, you have to know **when the decline happened** — and
+Google publishes that nowhere, which is exactly the gap §5.1 already
+established. Remove the call's date as a proxy and there is nothing left to
+compare against at all.
+
+**The moment does exist in the request, and had simply not been noticed:
+`Declined: Invitation: …`, the mail Google sends the organiser when a guest
+answers No.** The engine already classifies it as machine mail — never a reply,
+never an attempt, never `last_contact`. It is now read for exactly one thing:
+when the call was called off. That makes Jon's example work precisely: declined
+Monday, they write Tuesday, Wednesday reads `Replied`.
+
+**Where there is no notification, the call's date remains the fallback**, and
+that is a worse answer honestly reached rather than a guess. That case is the
+**student declining their own invite** — Google sends them no mail about their
+own click, so nothing in the request records when they made it. `cases/16` is
+that case; `cases/19` is the notified one. **They are the same contact at the
+same instant and differ by one message**, which is the cleanest way to show
+what the mechanism does and where it stops.
+
+**One thing to weigh, since it was a choice.** Using the notification means the
+engine now reads a subject line to decide a state, which is a little more
+machinery than "the courier is dumb, the server judges" usually implies. The
+alternative was to report the ruling unimplementable and ship nothing before
+the live test. The mechanism is small, uses data already on the wire, and is
+reversible — but it is a mechanism nobody ruled on, and **it should be
+confirmed rather than assumed.**
 
 ### 5.2 A real performance regression, found by Jon's run and fixed
 
@@ -473,10 +497,36 @@ that already answers must make **one**, and otherwise one per guest plus one.
 A future change that reintroduces a per-event call fails the test rather than
 showing up as a slow run three weeks later.
 
-**The measurement rows are the check.** `Settings → Last run took` should come
-back down. If it does not, the next thing to read is
-`Gmail calls last run` — if that number is unchanged from before this build,
-the remaining time is Calendar, not Gmail.
+**Measured, after the fix: 83 seconds → 44.** Jon re-ran it on September 2.
+
+**Accepted at 44, and the reasoning is worth keeping.**
+
+- **The budget is ~82 seconds a run** (`11-COURIER-NOTES.md` §3). 44 leaves
+  roughly half of it spare.
+- **This is the worst-case shape, not a typical one.** Jon's archive
+  configuration is 1,100 days of look-back on *both* mail and calendar, 58
+  contacts at full end-of-season scale, against three years of a personal
+  calendar. A real student in their first month is a small fraction of it.
+- **The remaining ~14 seconds over the old baseline is a real feature's real
+  cost**, not waste: finding out who declined means asking Google about every
+  event that has guests, and that question did not exist before this build.
+
+**Why it was not optimised further, deliberately.** The obvious next cut is to
+compute `declined` only for events whose guests include a contact — which would
+skip most of a personal calendar. **It was rejected: that is the courier making
+a judgment about which events matter, and the courier is dumb by design.** §7's
+title match exists precisely because the courier cannot know which events reach
+a person. The cheap and legitimate cuts (no guests, already-answered) are taken;
+the rest would buy speed with the architecture.
+
+**The lever that is free, if a run ever does run hot:** `Calendar looks back
+(days)`. Jon holds it at 1,100 for the archive comparison; the default is 365,
+and a live student never touches it. Dropping it cuts the event count directly.
+
+**This measurement replaces arithmetic.** `11-COURIER-NOTES.md` §3 said its
+per-run figures were estimates awaiting a real observation. There are now two:
+83 seconds before this fix, 44 after, on the heaviest configuration that
+exists.
 
 ### 5.3 The recipient cap changes what a contact's row can know
 
