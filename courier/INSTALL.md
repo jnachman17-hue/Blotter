@@ -305,19 +305,34 @@ should match:
 
 ---
 
-## Part B — what a real student does (four steps)
+## Part B — what a real student does (five steps)
 
 Each student gets their own copy; the script travels with it, and they
 authorize it against their own account. Blotter never sees their login.
 
+**The order below matters.** Blotter refuses to run until it knows which
+addresses are yours — it is how it tells "you wrote" from "they wrote" — so
+filling Settings comes before the first run. Run it first and you get an error
+dialog on your very first click, which looks like a broken install and is not.
+
 1. Open the master Blotter sheet, click **File → Make a copy**, and send
    them the copy (or share a view-only master and have them copy it
    themselves).
-2. In *their* copy, signed in as *them*: reload the page, wait for the
-   **Blotter** menu, and click **Blotter → Step 2: Run once now.** They'll
-   hit the same permission flow as Part A steps 14–18, including the
-   unverified-app warning — send them that section, especially "Why this
-   is fine."
+
+   **Starting from nothing instead?** If there is no master sheet to copy —
+   the very first install on a new account — do Part A steps **1 to 11** to
+   create the sheet and put the script in it, then come back here. Skip Part
+   A's steps 20 to 23 entirely: those set up Jon's 2024 archive test and will
+   fill the sheet with somebody else's contacts and a two-and-a-half-year
+   look-back.
+2. In *their* copy, signed in as *them*: reload the page and wait for the
+   **Blotter** menu to appear. Click **Blotter → Step 1: Set up this sheet.**
+   (On a copied sheet the tabs already exist and this changes nothing — it is
+   safe either way, and it is what builds them on a brand-new one.)
+
+   This is where they hit the permission flow — the same one as Part A steps
+   14–18, including the unverified-app warning. **Send them that section,
+   especially "Why this is fine."**
 3. They fill **Settings → Your email addresses** with every address they
    send from, and set **File → Settings → Time zone** to where they live —
    a copied sheet keeps the *master's* time zone, and "days waiting" turns
@@ -327,9 +342,27 @@ authorize it against their own account. Blotter never sees their login.
    testing setting, and a date typed into it by accident makes every Status
    and every Days number on the sheet answer a day that is not today —
    wrong, but wrong in a way that looks completely normal.
-4. They add their contacts to the **Contacts** tab (a Name and an Email
-   each), click **Blotter → Step 2: Run once now**, then
+
+   They leave the three look-back numbers alone. The defaults are right for
+   somebody recruiting now; the large values in Part A exist only for the
+   2024 archive test.
+4. They add their contacts to the **Contacts** tab — a **Name** and an
+   **Email** each, one per row.
+5. **Blotter → Step 2: Run once now**, then
    **Blotter → Start automatic updates.**
+
+### What the first run looks like, so nothing normal gets reported as a bug
+
+- **Every row will say `Not emailed`, with a dash in `Days`.** That is correct
+  for a contact you have not written to yet. The dash means "there is no clock
+  here", not "Blotter has not run" — a blank cell would be the ambiguous one.
+- **`Found` will probably be empty.** It only suggests people who appear in
+  conversations that already involve one of your contacts, so it has nothing
+  to work from until there is mail.
+- **The run may take a few seconds and report 0 conversations.** A new account
+  has no recruiting mail to read yet. Nothing is wrong.
+- **Settings → Last successful run** filling in with a timestamp is the real
+  proof it worked.
 
 ---
 
