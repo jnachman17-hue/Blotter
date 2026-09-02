@@ -794,7 +794,11 @@ function fetchEvents_(daysBack, daysForward) {
       start: toIso_(e.getStartTime()),
       end: toIso_(e.getEndTime()),
       attendees: guests.map(function (g) { return g.getEmail(); }),
-      declined: declinedGuests_(e, guests),
+      // An event nobody was invited to cannot have been declined — there is no
+      // invitation to decline — so the whole question is skipped. That matters
+      // for speed, not tidiness: a student's real calendar is mostly solo
+      // events, and this window can hold thousands of them.
+      declined: guests.length === 0 ? [] : declinedGuests_(e, guests),
       organizer: creators && creators.length ? creators[0] : ''
     };
   });
@@ -804,9 +808,13 @@ function fetchEvents_(daysBack, daysForward) {
  * Who answered No to this invite (contract v2). Declines only — no rule reads
  * accepted, tentative or not-yet-answered, so none is sent.
  *
- * The student's own answer is asked for separately, because where they are the
- * organiser the guest list reports them as OWNER whatever they clicked, and
- * ENGINE-RULES §4 counts a decline from either side.
+ * Called only for events that actually have guests.
+ *
+ * The student's own answer needs a second question, because where they are the
+ * organiser the guest list can report them as OWNER whatever they clicked, and
+ * ENGINE-RULES §4 counts a decline from either side. **That question is asked
+ * only when the guest list has not already answered it** — every call here is
+ * a round trip to Google, and this runs against every event in the window.
  */
 function declinedGuests_(event, guests) {
   var declined = [];
@@ -818,15 +826,31 @@ function declinedGuests_(event, guests) {
     seen[address.toLowerCase()] = true;
     declined.push(address);
   });
+
+  var me = effectiveUserEmail_();
+  if (me && seen[me.toLowerCase()]) return declined; // already known: do not ask twice
+
   try {
-    if (event.getMyStatus() === CalendarApp.GuestStatus.NO) {
-      var me = Session.getEffectiveUser().getEmail();
-      if (me && !seen[me.toLowerCase()]) declined.push(me);
+    if (event.getMyStatus() === CalendarApp.GuestStatus.NO && me) {
+      declined.push(me);
     }
   } catch (err) {
-    // An event with no guests has no "my status". Nothing to add.
+    // Some events have no "my status" to report. Nothing to add.
   }
   return declined;
+}
+
+/** The account this script runs as. Asked once per run, not once per event. */
+var effectiveUserEmailCache_ = null;
+function effectiveUserEmail_() {
+  if (effectiveUserEmailCache_ === null) {
+    try {
+      effectiveUserEmailCache_ = Session.getEffectiveUser().getEmail() || '';
+    } catch (err) {
+      effectiveUserEmailCache_ = '';
+    }
+  }
+  return effectiveUserEmailCache_;
 }
 
 // ---------------------------------------------------------------------------

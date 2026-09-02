@@ -10,7 +10,7 @@ Jon reconnected it.
 |---|---|
 | `npx tsx web/app/api/engine/run-fixtures.ts` | **38 of 38 pass** (31 existing + 7 new) |
 | `npx tsx web/app/api/engine/selftest.ts` | **113 of 113 pass** (was 71) |
-| `node courier/helpers.test.js` | **57 of 57 pass** (new file — the courier had no tests) |
+| `node courier/helpers.test.js` | **67 of 67 pass** (new file — the courier had no tests) |
 | Expected values changed | **13.** Lonnie Kauppila at three dates, and one `days` value under the September 2 clock ruling. See §3 |
 | `tsc --noEmit`, `eslint`, `next build` | Clean |
 | `node --check` on `Code.gs` | Clean |
@@ -440,7 +440,45 @@ engine already classifies those as machine mail — but it exists only when the
 counterparty declines, not when the student declines their own invite. **Not
 built, and not urgent.**
 
-### 5.2 The recipient cap changes what a contact's row can know
+### 5.2 A real performance regression, found by Jon's run and fixed
+
+**Jon re-pasted the new `Code.gs` on September 2 and reported his run went from
+about 30 seconds to 83.** He offered "probably okay". It was not okay, and the
+cause was this build.
+
+**Why it mattered.** `11-COURIER-NOTES.md` §3 computes the trigger budget: 65
+worked runs a day against 90 minutes of trigger runtime allows **about 82
+seconds per run**, and says in terms that "a run averaging two minutes still
+breaks this budget". 83 seconds is not comfortable — **it is exactly the
+ceiling.**
+
+**What caused it.** `declinedGuests_` asked Google for the student's own answer
+— `event.getMyStatus()` — on **every event in the window**. Jon's window is
+1,100 days back and 180 forward of a personal calendar, which is thousands of
+events, and almost all of them are solo entries with no guests at all. For
+those, `getMyStatus()` **throws**, and the code caught it. Thousands of thrown
+and caught exceptions, one per dentist appointment.
+
+**The fix, and it is correctness-preserving rather than a trade.** An event
+nobody was invited to cannot have been declined — there is no invitation to
+decline — so `declinedGuests_` is not called at all when the guest list is
+empty. Two smaller ones alongside: `getMyStatus()` is skipped when the guest
+list has already reported the student as declined, and
+`Session.getEffectiveUser().getEmail()` is asked once per run instead of once
+per event.
+
+**The cost is now asserted, not just fixed.** `courier/helpers.test.js` counts
+the round trips: a solo event must make **zero** status calls, a guest list
+that already answers must make **one**, and otherwise one per guest plus one.
+A future change that reintroduces a per-event call fails the test rather than
+showing up as a slow run three weeks later.
+
+**The measurement rows are the check.** `Settings → Last run took` should come
+back down. If it does not, the next thing to read is
+`Gmail calls last run` — if that number is unchanged from before this build,
+the remaining time is Calendar, not Gmail.
+
+### 5.3 The recipient cap changes what a contact's row can know
 
 Stated again because it is the one change that can *remove* information:
 skipping a thread whole means a contact who only ever appeared on a mass
@@ -511,11 +549,14 @@ either side, using Node's real timezone data as a stand-in for `Utilities`.
 - **Deploy the server before the courier.** The new `Code.gs` sends
   `version: 2`; the deployed server today speaks only 1 and will 400. It fails
   safely, but the sheet goes stale until both sides ship.
-- **Two things in the courier are untestable from this machine and were
-  therefore written defensively rather than verified:** `getGuestStatus()`
-  against `CalendarApp.GuestStatus.NO`, and the `getMyStatus()` fallback for
-  the student's own decline (wrapped in `try/catch` — an event with no guests
-  has no "my status"). **The first live run with a genuinely declined invite
+- **The decline path talks to Google once per guest, and it runs against every
+  event in the window.** That window is thousands of events on a real
+  calendar, so anything added there is multiplied by thousands — which is
+  exactly how this build cost Jon 50 seconds a run before it was caught (§5.2).
+  The call counts are asserted in `courier/helpers.test.js`; keep them there.
+- **`getGuestStatus()` and `getMyStatus()` are still only verifiable for real.**
+  The stubs in the test file pin the shape and the cost, not Google's actual
+  behaviour. **The first live run with a genuinely declined invite
   is the test**, and Phase B's time machine makes that a five-minute check
   rather than a wait. Everything else in `Code.gs` that changed is pure string
   or date handling and is covered by `courier/helpers.test.js`.

@@ -58,7 +58,7 @@ global.Session = { getScriptTimeZone: () => TZ };
 
 const EXPORTS = [
   'namedAddressList_', 'firstNamedAddress_', 'bareAddress_', 'addressList_',
-  'exceedsRecipientCap_', 'parsePretendText_', 'pretendNowIso_',
+  'exceedsRecipientCap_', 'parsePretendText_', 'pretendNowIso_', 'declinedGuests_',
   'MAX_THREAD_RECIPIENTS', 'NO_CLOCK', 'VALID_STATUSES', 'CONTRACT_VERSION',
 ];
 const box = {};
@@ -199,6 +199,59 @@ eq('the end of the day the clocks go back',
 eq('a date from the 2024 season', box.pretendNowIso_('2024-02-15'), '2024-02-15T23:59:59-06:00');
 eq('a Sheets date cell becomes the end of that day',
   box.pretendNowIso_(new Date('2026-07-15T05:00:00Z')), '2026-07-15T23:59:59-05:00');
+
+/* ------------------------------------------------------------------ *
+ * Who declined — and what it COSTS to find out.
+ *
+ * This runs against every event in the window, and a student's calendar can
+ * hold thousands. The first version asked Google for the student's own answer
+ * on every one of them, including the solo events that cannot have been
+ * declined at all, and a real run went from about 30 seconds to 83. So the
+ * call count is asserted here, not just the answer.
+ * ------------------------------------------------------------------ */
+
+global.CalendarApp = { GuestStatus: { YES: 'YES', NO: 'NO', MAYBE: 'MAYBE', INVITED: 'INVITED', OWNER: 'OWNER' } };
+global.Session = { getEffectiveUser: () => ({ getEmail: () => 'student@gmail.com' }) };
+
+let statusCalls = 0;
+const guest = (email, status) => ({
+  getEmail: () => email,
+  getGuestStatus: () => { statusCalls += 1; return status; },
+});
+const event = (myStatus) => ({
+  getMyStatus: () => { statusCalls += 1; if (myStatus === undefined) throw new Error('no status'); return myStatus; },
+});
+const declinedBy = (guests, myStatus) => {
+  statusCalls = 0;
+  const out = guests.length === 0 ? [] : box.declinedGuests_(event(myStatus), guests);
+  return out;
+};
+
+eq('the banker declined',
+  declinedBy([guest('banker@firm.com', 'NO'), guest('student@gmail.com', 'OWNER')], 'OWNER'),
+  ['banker@firm.com']);
+eq('nobody declined',
+  declinedBy([guest('banker@firm.com', 'YES'), guest('student@gmail.com', 'OWNER')], 'OWNER'), []);
+eq('a maybe is not a decline',
+  declinedBy([guest('banker@firm.com', 'MAYBE')], 'OWNER'), []);
+eq('the student declined, reported as OWNER in the guest list',
+  declinedBy([guest('banker@firm.com', 'YES'), guest('student@gmail.com', 'OWNER')], 'NO'),
+  ['student@gmail.com']);
+eq('the student declined and the guest list says so',
+  declinedBy([guest('student@gmail.com', 'NO')], 'NO'), ['student@gmail.com']);
+eq('and it is not listed twice',
+  declinedBy([guest('student@gmail.com', 'NO'), guest('student@gmail.com', 'NO')], 'NO'),
+  ['student@gmail.com']);
+eq('an event with no my-status to report does not throw',
+  declinedBy([guest('banker@firm.com', 'NO')], undefined), ['banker@firm.com']);
+
+/* The cost, pinned. */
+declinedBy([], 'OWNER');
+eq('a solo event asks Google nothing at all', statusCalls, 0);
+declinedBy([guest('student@gmail.com', 'NO')], 'NO');
+eq('the guest list answering means my-status is not asked again', statusCalls, 1);
+declinedBy([guest('banker@firm.com', 'YES'), guest('student@gmail.com', 'OWNER')], 'OWNER');
+eq('otherwise: one call per guest, plus one for the student', statusCalls, 3);
 
 console.log(fails === 0
   ? `All ${checks} courier helper checks passed.`
