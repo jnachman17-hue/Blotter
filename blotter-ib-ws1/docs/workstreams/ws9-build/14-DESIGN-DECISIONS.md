@@ -35,7 +35,7 @@ The reasoning is his and it holds: the best case yields an email address, and th
 student still types Name, Firm and Title by hand — nearly the whole job — while
 every non-recruiting person they emailed lands in the queue.
 
-### D4. Found never invents a name from an address. **Not built.**
+### D4. Found never invents a name from an address. **Approved September 2. Not built.**
 
 `Boone2002@att.net` → "Boone2002" is what the engine does today and it is
 garbage. **Use the display name the email header carries; leave the cell blank
@@ -56,19 +56,63 @@ Outbound messages since they last wrote back. Initial outreach 1, a bump 2, they
 reply resets to 0. An out-of-office and a calendar acceptance do **not** reset
 it, because a machine answering is not the person writing back.
 
-### D7. One inbox, one address, is the normal case.
+### D7. One connected inbox, but several send-as aliases are supported and worth advertising.
 
-The `Your email addresses` setting exists only so the engine knows which messages
-are **from the student** — how it tells `Sent` from `Replied`. It cannot reach
-into a second account, and does not need to: a second entry is for a send-as
-alias on the same inbox, such as a `.edu` that forwards into Gmail. **Jon's
-two-account season is an anomaly and is not a design constraint.**
+The `Your email addresses` setting exists so the engine knows which messages are
+**from the student** — how it tells `Sent` from `Replied`. It cannot reach into a
+second Google account and does not need to.
+
+**But it fully handles the common real case**: a `.edu` that forwards into Gmail,
+where the student replies *as* the `.edu` from one inbox. Jon, September 2:
+*"maybe we do allow for multiple addresses for aliases when you send as
+different address but it all funnels to one primary inbox… Useful tool
+actually."* **Already built — the field takes a comma-separated list. It is the
+instructions that are missing.**
+
+Jon's own two-*account* season remains an anomaly and is not a design
+constraint.
+
+### D8. The student may add their own columns anywhere. **Already built, undocumented.**
+
+Jon: *"people like their own format for recruiting… you should be able to add a
+LinkedIn column, a notes column, or whatever else without it messing with the
+Blotter controlled side."*
+
+**This already works and nobody knew.** `findColumn_` locates every column by its
+header text rather than its position, and each Blotter column is written as a
+single column range. A student can insert, reorder or add columns freely; only
+the header names have to survive. **The work is documentation, not code.**
 
 ---
 
 ## Open, and being discussed
 
-### O1. The setup scan — what it is and whether it needs intelligence
+### O1. The setup scan — **reframed September 2, and it got much smaller**
+
+**Jon's answer to what is actually painful settles the shape of this:**
+
+> *"Every student in some form or another will have a personal tracker. No one
+> goes through this process without one. With that being said, the tracker likely
+> isn't perfect, will miss some contacts and might be stale."*
+
+**So setup is not a recall problem after all. It is a copying problem**, and
+nothing automates copying Name, Title and Firm out of a spreadsheet whose layout
+Blotter has never seen.
+
+**Which shrinks the scan from the main path to a gap-filler** — and suggests the
+right shape is a **diff, not a dump**:
+
+> After the student has pasted their tracker in, show them everyone they have
+> emailed **who is not already in Contacts.**
+
+That is a short, high-signal list — the handful their tracker missed or went
+stale on — rather than several hundred rows of everyone they have ever written
+to. It also runs on exactly the machinery `Found` already has.
+
+**Still open:** whether that is worth building at all, and whether it runs once
+at setup or stays available as a "what am I missing?" button.
+
+### O1b. The original tension, kept because the reasoning still applies
 
 **The tension Jon identified:** if Blotter is smart enough to find contacts at
 setup, why not run that forever? **Answer: a wrong guess costs once at setup and
