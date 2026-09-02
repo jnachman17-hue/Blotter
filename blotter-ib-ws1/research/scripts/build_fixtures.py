@@ -154,7 +154,7 @@ def convert_message(m):
     }
 
 
-def convert_event(e):
+def convert_event(e, declined=None):
     # The corpus stores start/end as the capture session rendered them
     # (Pacific offsets); the events' own `timezone` fields say
     # America/Chicago for Jon's calendar. Instants are exact either way —
@@ -162,7 +162,7 @@ def convert_event(e):
     # calendar DATE never moves in the process.
     assert student_date(e["start"]) == e["start"][:10], \
         f"event {e['event_id'][:12]} date shifts under America/Chicago"
-    return {
+    out = {
         "id": e["event_id"],
         "title": e["summary"],
         "start": student_render(e["start"]),
@@ -170,6 +170,12 @@ def convert_event(e):
         "attendees": [a["email"] for a in e.get("attendees", [])],
         "organizer": e.get("organizer"),
     }
+    # Contract v2 only, and only when somebody actually declined. Emitted
+    # conditionally so every version-1 fixture stays byte-for-byte what it was
+    # — which is the point: those 31 keep proving the version-1 path works.
+    if declined:
+        out["declined"] = list(declined)
+    return out
 
 
 def courier_threads(threads, roster_emails, now):
@@ -224,6 +230,15 @@ DATES = ["jan", "feb", "mar", "apr"]
 E = lambda n: ("event", n)  # noqa: E731  (event #n, 1-based position in calendar.json)
 
 NE = ("Not emailed", None, None, 0, None, None)
+
+# Everyone the Potential favor conversation introduces when Doug is the only
+# tracked person on it (cases/18). Jon's father started the thread, Kleopatra
+# is cc'd into it, and Jon's brother is on the second branch of it.
+DOUG_FOUND = [
+    ("dnachman@fastspring.com", "2024-01-17", "Appeared in a thread with Douglas Melsheimer"),
+    ("kleopatra.kirkland@barclays.com", "2024-01-17", "Appeared in a thread with Douglas Melsheimer"),
+    ("andrew.nachman@wisc.edu", "2024-01-17", "Appeared in a thread with Douglas Melsheimer"),
+]
 
 
 def S(anchor, lc, att, last_call=None):
@@ -343,9 +358,18 @@ SEASON_ANSWERS = {
                                  S("2024-02-09T18:46:52Z", "2024-02-09", 1),
                                  CS(E(28), "2024-03-11", 0, E(27)),
                                  R("2024-03-26T15:04:32Z", "2024-03-26", 0, E(28))),
-    # -- Lonnie: her one real message was captured with an empty To line, so as
-    #    recorded it belongs to no conversation of hers. Corpus gap, flagged.
-    "lonnie-kauppila":       same(NE),
+    # -- Lonnie: her ONE real message, and it is the whole relationship. The
+    #    Houlihan LA first-round interview happened Friday 2024-02-09; Jon's
+    #    thank-you went the next afternoon and she never answered. The Feb 1
+    #    confirmation from Sara Laracca names Lonnie as the interviewer in BODY
+    #    TEXT ONLY, and referral discovery is headers-only (§8, D15) — so that
+    #    thread reaches Sara's row and never Lonnie's. Corpus re-fetched
+    #    2026-09-02: the Stage A capture had an empty To line, which detached
+    #    this message from her and made every date read Not emailed.
+    "lonnie-kauppila":       arc(NE,
+                                 S("2024-02-10T21:06:14Z", "2024-02-10", 1),
+                                 S("2024-02-10T21:06:14Z", "2024-02-10", 1),
+                                 S("2024-02-10T21:06:14Z", "2024-02-10", 1)),
     # -- Steve McLaughlin: the assistant-advances-the-row case, then the
     #    thank-you clearing Call done by itself (rules §3, §4).
     "steve-mclaughlin":      arc(NE,
@@ -634,6 +658,87 @@ CASES = [
                            "found": []},
         },
     },
+    # ------------------------------------------------------------------ #
+    # 16 and 17 cover behaviour ruled on September 2, 2026 that the season
+    # never produced. Both were authored in Phase A, by a chat that had read
+    # the engine — unlike the fifteen above, whose independence caught two
+    # real bugs. That is stated rather than hidden: their expected values were
+    # derived from ENGINE-RULES §4's text before the engine was run, and the
+    # discipline they cannot supply is the reason the other fifteen exist.
+    # ------------------------------------------------------------------ #
+    {
+        "id": "16-nick-gerstein-declined",
+        "why": "A declined invite. Before this ruling the row read Call scheduled forever for a meeting nobody would attend (rules §4, decision D10). Three moments: declined the day before, declined at the hour it would have run, and then cleared by Jon writing — because a state nothing ever removes is a dead end. The clock counts from the last EMAIL throughout: the call that did not happen never anchors anything.",
+        "constructed": "Nick's real Jan 26 invite marked declined by him is the ONE constructed element; every message, address and timestamp is the real season. The corpus contains no declined invite, so this behaviour cannot be tested from real data alone.",
+        "roster": [("nick-gerstein", None)],
+        "events": [11],
+        "declined": {11: ["ngerstein99@gmail.com"]},
+        "nows": {
+            # The call is tomorrow at 10 and he has declined it. Not
+            # `Call scheduled` — that is the whole defect. Four days on the
+            # clock, because Jon's last email was four days ago; the call
+            # tomorrow that is not happening does not reset anything.
+            "2024-01-25": {"now": NOW["jan"],
+                           "rows": {"nick-gerstein": ("Call cancelled", "2024-01-22T03:57:20Z", "2024-01-21", 1, None, None)},
+                           "found": []},
+            # 10:15 on the day, fifteen minutes into a call that is not
+            # happening. Jon's 09:56 note came BEFORE it was due, so it does
+            # not clear the state — but it IS the last thing that happened, so
+            # the clock runs from it. A call that never happened is never
+            # `Last call` either.
+            "2024-01-26-during": {"now": "2024-01-26T16:15:00Z",
+                                  "rows": {"nick-gerstein": ("Call cancelled", "2024-01-26T15:56:04Z", "2024-01-26", 2, None, None)},
+                                  "found": []},
+            # That evening Jon writes again, after the hour the call was due.
+            # Somebody has written, so it clears to `Sent` exactly as
+            # `Call done` does. `Last call` stays empty: it never happened.
+            "2024-01-26-evening": {"now": "2024-01-27T00:00:00Z",
+                                   "rows": {"nick-gerstein": ("Sent", "2024-01-26T23:03:24Z", "2024-01-26", 3, None, None)},
+                                   "found": []},
+        },
+    },
+    {
+        "id": "18-doug-melsheimer-declined-late",
+        "why": "The case that shows what the clock is FOR (rules §4, ruled September 2, 2026). The Potential favor conversation went quiet on 17 January; the call was booked for the 26th, nine days later. Decline it and the row must say EIGHT then NINE — days since anybody actually communicated, which is the number that tells you whether to bump the thread. Under the anchor this replaced it read 0 on both days, because it counted from a call that never took place. Note attempts 0 and not 1: with Doug the only tracked person here, §3 makes the whole conversation his, and Kleopatra wrote after Jon did.",
+        "constructed": "Doug's real 26 January invite marked declined by him is the ONE constructed element; every message, address, timestamp and the event itself are the real season.",
+        "roster": [("douglas-melsheimer", None)],
+        "events": [12],
+        "declined": {12: ["douglas.melsheimer@barclays.com"]},
+        "nows": {
+            # The day before. The clock is already at eight and counting, where
+            # the old anchor sat at zero waiting for a call that would never
+            # arrive.
+            "2024-01-25": {"now": NOW["jan"],
+                           "rows": {"douglas-melsheimer": ("Call cancelled", "2024-01-17T17:19:15Z", "2024-01-17", 0, None, None)},
+                           "found": DOUG_FOUND},
+            # 3pm on the day, ninety minutes after the call would have started
+            # and two hours before Jon next writes. Nine — one more than
+            # yesterday. The hour the call was due passing changes nothing,
+            # because nothing happened at it.
+            "2024-01-26-after-the-hour": {"now": "2024-01-26T21:00:00Z",
+                                          "rows": {"douglas-melsheimer": ("Call cancelled", "2024-01-17T17:19:15Z", "2024-01-17", 0, None, None)},
+                                          "found": DOUG_FOUND},
+        },
+    },
+    {
+        "id": "17-david-talbot-call-starts",
+        "why": "A call counts as done the moment it STARTS (rules §4, decision D13), replacing the convention that waited for the end time. David's real 3:30-4:00pm call, asked at 3:29 and at 3:31. Entirely real data — only the two clocks are chosen, as every fixture's `now` is.",
+        "roster": [("david-talbot", None)],
+        "events": [8],
+        "nows": {
+            # 3:29pm Austin — one minute before it begins.
+            "2024-01-24-before-start": {"now": "2024-01-24T21:29:00Z",
+                                        "rows": {"david-talbot": ("Call scheduled", E(8), "2024-01-22", 0, E(8), None)},
+                                        "found": []},
+            # 3:31pm Austin — one minute after. `Call done`, and `Last call`
+            # already carries the date. Under the old end-time convention this
+            # same moment read `Call scheduled`, which is what makes this pair
+            # the discriminator between the two readings.
+            "2024-01-24-after-start": {"now": "2024-01-24T21:31:00Z",
+                                       "rows": {"david-talbot": ("Call done", E(8), "2024-01-22", 0, None, E(8))},
+                                       "found": []},
+        },
+    },
 ]
 
 
@@ -665,6 +770,14 @@ def render_row(row_num, entry, now, events_by_pos):
         days = date_diff(now, ev_start(anchor))
     elif status == "Call done":
         days = date_diff(ev_start(anchor), now)
+    elif status == "Call cancelled":
+        # Ruled by Jon, September 2, 2026: days since the last thing that
+        # ACTUALLY HAPPENED — an email either way (a message anchor), or a call
+        # that took place (an event anchor). Never the cancelled call itself: a
+        # non-event does not start a clock. `None` when nothing has happened at
+        # all. No clamp is possible or needed — the anchor is always past.
+        days = None if anchor is None else date_diff(
+            anchor if isinstance(anchor, str) else ev_start(anchor), now)
     return {
         "row": row_num,
         "status": status,
@@ -684,7 +797,8 @@ def render_found(entries):
 
 def validate_entry(slug, entry, now, all_msg_dates, events_by_pos, contact_dates):
     status, anchor, lc, att, nc, lcall = entry
-    valid = {"Not emailed", "Bounced", "Sent", "Replied", "Call scheduled", "Call done", "Closed"}
+    valid = {"Not emailed", "Bounced", "Sent", "Replied", "Call scheduled", "Call done",
+             "Call cancelled", "Closed"}
     assert status in valid, f"{slug}: bad status {status}"
     if isinstance(anchor, str):
         assert anchor in all_msg_dates, f"{slug}: anchor {anchor} matches no corpus message"
@@ -816,12 +930,16 @@ def main():
             now = spec["now"]
             roster_emails = [a for _, row in rows for a in row["emails"]]
             request = {
-                "version": 1,
+                # Version 2 only where a case needs a v2 field. The rest stay
+                # version 1 on purpose: they are this suite's proof that the
+                # server still understands a version-1 payload unchanged.
+                "version": 2 if case.get("declined") else 1,
                 "now": student_render(now),
                 "student": {"addresses": STUDENT_ADDRESSES},
                 "contacts": [row for _, row in rows],
                 "threads": courier_threads(threads, roster_emails, now),
-                "events": [convert_event(events_by_pos[n]) for n in case["events"]
+                "events": [convert_event(events_by_pos[n], case.get("declined", {}).get(n))
+                           for n in case["events"]
                            if parse_iso(events_by_pos[n]["created"]) <= parse_iso(now)],
                 "ignored": spec.get("ignored", []),
             }
@@ -831,7 +949,7 @@ def main():
                 validate_entry(s, entry, now, all_msg_dates, events_by_pos, contact_dates)
                 expected_rows.append(render_row(row["row"], entry, now, events_by_pos))
             expected = {
-                "version": 1,
+                "version": 2 if case.get("declined") else 1,
                 "rows": expected_rows,
                 "found": render_found(spec["found"]),
                 "warnings": [],

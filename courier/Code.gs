@@ -17,10 +17,10 @@
  *     a half-written one is not.
  *
  * The contract this speaks is
- * blotter-ib-ws1/docs/workstreams/ws9-build/05-CONTRACT.md, version 1.
+ * blotter-ib-ws1/docs/workstreams/ws9-build/05-CONTRACT.md, version 2.
  */
 
-var CONTRACT_VERSION = 1;
+var CONTRACT_VERSION = 2;
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -40,8 +40,17 @@ var BLOTTER_COLUMNS = ['Status', 'Days', 'Last contact', 'Attempts', 'Next call'
 var COL_CLOSED = 'Closed';
 
 // The only statuses the contract allows. Anything else means the response is
-// bad, and a bad response means we write nothing.
-var VALID_STATUSES = ['Not emailed', 'Bounced', 'Sent', 'Replied', 'Call scheduled', 'Call done', 'Closed'];
+// bad, and a bad response means we write nothing. "Call cancelled" is the
+// eighth, added with contract version 2: a declined invite used to leave a row
+// reading "Call scheduled" forever for a meeting nobody would attend.
+var VALID_STATUSES = ['Not emailed', 'Bounced', 'Sent', 'Replied', 'Call scheduled',
+                      'Call done', 'Call cancelled', 'Closed'];
+
+// What an empty clock looks like in the sheet. ENGINE-RULES §4 gives both
+// "Not emailed" and "Closed" a dash rather than a blank, because a blank cell
+// reads as "Blotter has not run" and a dash reads as "there is no clock here".
+// An em dash, not a hyphen: a leading hyphen is how you start a formula.
+var NO_CLOCK = '\u2014';
 
 var FOUND_HEADERS = ['Add?', 'Name', 'Email', 'First seen', 'Context'];
 
@@ -55,6 +64,21 @@ var SETTING_MAIL_BACK = 'Mail looks back (days)';
 var SETTING_RUN_TOOK = 'Last run took';
 var SETTING_RUN_FETCHED = 'Last run fetched';
 var SETTING_GMAIL_CALLS = 'Gmail calls last run';
+
+// The time machine (decision D17). Blank in normal use. When it holds a date,
+// the courier sends THAT as `now` in the request and nothing else changes —
+// the Gmail search window and the calendar fetch window still run on real
+// time. `now` is already a field the contract carries, which is exactly what
+// makes this possible without touching a rule.
+//
+// The label carries its own warning because this setting cannot be allowed to
+// look like an ordinary one: a date typed in by accident produces a sheet full
+// of confident nonsense that looks exactly like a working sheet.
+var SETTING_PRETEND_TODAY = 'Pretend today is (TESTING - leave blank)';
+var PRETEND_TODAY_HELP =
+  'FOR TESTING ONLY. Leave this blank. A date here makes Blotter compute every ' +
+  'row as if that were today, so Status and Days will be wrong for the real ' +
+  'world. Clear the cell and run again to go back to normal.';
 
 // Per-run measurement (13-BRIEF-COURIER-2 §2): nobody knows what a run
 // actually costs until one is watched. Written to Settings on success; on
@@ -102,6 +126,15 @@ var writePhaseBegun_ = false;
 // Gmail search queries are built in chunks of this many addresses so no
 // single query grows past what Gmail search accepts.
 var ADDRESSES_PER_SEARCH = 10;
+
+// Conversations with more recipients than this are skipped whole — not sent to
+// the server, and never harvested for names. Jon's ruling, September 2, 2026
+// (decision D2), and it is the real fix for the incident that produced it: a
+// 2022 club listserv that one contact happened to be on made Blotter suggest
+// ~170 classmates as recruiting contacts. A mail window made that rarer; this
+// makes the whole class of problem impossible. Counted as distinct addresses
+// across To and Cc on any single message in the conversation.
+var MAX_THREAD_RECIPIENTS = 10;
 
 // ---------------------------------------------------------------------------
 // Menu
@@ -185,6 +218,7 @@ function setupSheet() {
   ensureSettingRow_(settings, SETTING_RUN_TOOK, '');
   ensureSettingRow_(settings, SETTING_RUN_FETCHED, '');
   ensureSettingRow_(settings, SETTING_GMAIL_CALLS, '');
+  ensureSettingRow_(settings, SETTING_PRETEND_TODAY, '', PRETEND_TODAY_HELP);
   settings.autoResizeColumn(1);
 
   SpreadsheetApp.getUi().alert(
@@ -209,7 +243,7 @@ function ensureHeaders_(sheet, wanted) {
   }
 }
 
-function ensureSettingRow_(sheet, label, defaultValue) {
+function ensureSettingRow_(sheet, label, defaultValue, help) {
   var lastRow = sheet.getLastRow();
   if (lastRow > 0) {
     var labels = sheet.getRange(1, 1, lastRow, 1).getValues();
@@ -217,7 +251,7 @@ function ensureSettingRow_(sheet, label, defaultValue) {
       if (String(labels[i][0]).trim() === label) return;
     }
   }
-  sheet.appendRow([label, defaultValue]);
+  sheet.appendRow(help ? [label, defaultValue, help] : [label, defaultValue]);
 }
 
 // ---------------------------------------------------------------------------
@@ -315,7 +349,7 @@ function courierPass_() {
     throw new Error('Another Blotter run is already in progress. Nothing was changed.');
   }
   try {
-    runMetrics_ = { startedMs: new Date().getTime(), searches: 0, threadFetches: 0, threads: 0, messages: 0 };
+    runMetrics_ = { startedMs: new Date().getTime(), searches: 0, threadFetches: 0, threads: 0, messages: 0, skipped: 0 };
     writePhaseBegun_ = false;
     PropertiesService.getScriptProperties()
       .setProperty(PROP_LAST_WORKED_MS, String(runMetrics_.startedMs));
@@ -333,7 +367,10 @@ function courierPass_() {
     // --- Ask the server what it all means ---
     var request = {
       version: CONTRACT_VERSION,
-      now: toIso_(new Date()),
+      // The time machine (D17): only `now` moves. The Gmail search window and
+      // the calendar fetch window above already ran on real time, deliberately
+      // — the point is to age a real relationship, not to hide it.
+      now: settings.pretendNow || toIso_(new Date()),
       student: { addresses: settings.addresses },
       contacts: sheetState.contacts,
       threads: threads,
@@ -349,19 +386,31 @@ function courierPass_() {
     var added = addApprovedContacts_(ss, sheetState, foundState);
     var suggested = writeFoundSuggestions_(ss, sheetState, foundState, response.found || []);
     writeSetting_(ss, SETTING_LAST_RUN, new Date());
-    writeSetting_(ss, SETTING_WARNINGS,
-      (response.warnings && response.warnings.length) ? response.warnings.join(' | ') : 'None');
+    // When the time machine is on, say so first and say so loudly. Every
+    // number on this sheet is now an answer to a question about a day that is
+    // not today, and nothing else about the sheet reveals that.
+    var pretendWarning = settings.pretendNow
+      ? 'TESTING MODE: this run pretended today was ' + settings.pretendNow.slice(0, 10) +
+        '. Every Status and Days value on this sheet answers that date, not today. ' +
+        'Clear Settings → "' + SETTING_PRETEND_TODAY + '" and run again to go back to normal.'
+      : '';
+    var warningLines = (response.warnings || []).slice();
+    if (pretendWarning) warningLines.unshift(pretendWarning);
+    writeSetting_(ss, SETTING_WARNINGS, warningLines.length ? warningLines.join(' | ') : 'None');
 
     // The measurement (13-BRIEF-COURIER-2 §2): what a run actually costs.
     var seconds = Math.round((new Date().getTime() - runMetrics_.startedMs) / 1000);
     writeSetting_(ss, SETTING_RUN_TOOK, seconds + ' seconds');
     writeSetting_(ss, SETTING_RUN_FETCHED,
-      runMetrics_.threads + ' conversations, ' + runMetrics_.messages + ' messages');
+      runMetrics_.threads + ' conversations, ' + runMetrics_.messages + ' messages' +
+      (runMetrics_.skipped ? ' (' + runMetrics_.skipped + ' skipped: more than ' +
+        MAX_THREAD_RECIPIENTS + ' recipients)' : ''));
     writeSetting_(ss, SETTING_GMAIL_CALLS,
       (runMetrics_.searches + runMetrics_.threadFetches) +
       ' (' + runMetrics_.searches + ' searches, ' + runMetrics_.threadFetches + ' conversation fetches)');
 
-    return 'Updated ' + response.rows.length + ' contact row(s). ' +
+    return (pretendWarning ? '*** ' + pretendWarning + ' ***\n\n' : '') +
+      'Updated ' + response.rows.length + ' contact row(s). ' +
       'Added ' + added + ' approved contact(s). ' +
       'Suggested ' + suggested + ' new name(s) in the Found tab. ' +
       'Took ' + seconds + ' seconds.';
@@ -401,8 +450,114 @@ function readSettings_(ss) {
     serverUrl: serverUrl,
     calendarDaysBack: positiveOrDefault_(byLabel[SETTING_CAL_BACK], EVENT_DAYS_BACK_DEFAULT),
     calendarDaysForward: positiveOrDefault_(byLabel[SETTING_CAL_FORWARD], EVENT_DAYS_FORWARD_DEFAULT),
-    mailDaysBack: positiveOrDefault_(byLabel[SETTING_MAIL_BACK], MAIL_DAYS_BACK_DEFAULT)
+    mailDaysBack: positiveOrDefault_(byLabel[SETTING_MAIL_BACK], MAIL_DAYS_BACK_DEFAULT),
+    // '' in normal use. Anything unreadable throws from here — before a single
+    // Gmail read, and long before the write phase.
+    pretendNow: pretendNowIso_(byLabel[SETTING_PRETEND_TODAY])
   };
+}
+
+/**
+ * The time machine (D17). Turns the `Pretend today is` cell into the `now` the
+ * request carries, or '' when the cell is blank.
+ *
+ * **An unreadable value throws.** It must never quietly fall back to today: a
+ * silent fallback would make a broken test look like a passing one, which is
+ * the worst outcome available here — worse than the run failing, because a
+ * failing run says so.
+ *
+ * A date with no time means **the end of that day**. That is what makes the
+ * setting do its job: a call booked for 2pm on the pretend date has already
+ * happened, so `Call done` and `Call cancelled` fire instead of the row
+ * sitting on `Call scheduled` all over again.
+ */
+function pretendNowIso_(raw) {
+  var parts = pretendTodayParts_(raw);
+  return parts ? isoInStudentZone_(parts) : '';
+}
+
+function pretendTodayParts_(raw) {
+  if (raw === null || raw === undefined) return null;
+  // Sheets hands back a real Date when the cell is date-formatted, and a
+  // string when it was typed as text. Both have to work.
+  if (Object.prototype.toString.call(raw) === '[object Date]') {
+    if (isNaN(raw.getTime())) {
+      throw new Error(badPretendValue_(raw));
+    }
+    // Read it back in the student's own zone: a date cell is midnight there,
+    // and midnight from a date cell means "no time was given".
+    return parsePretendText_(Utilities.formatDate(raw, studentTimeZone_(), 'yyyy-MM-dd HH:mm:ss'), true);
+  }
+  var text = String(raw).trim();
+  if (text === '') return null;
+  return parsePretendText_(text, false);
+}
+
+/**
+ * `2026-09-05`, `2026-09-05 14:30`, `9/5/2026` and `9/5/2026 14:30`. Anything
+ * else throws. Pure string work — no Apps Script globals — so it is testable
+ * outside the editor.
+ *
+ * `midnightMeansAllDay` is true only for a date-formatted cell, where 00:00:00
+ * is Sheets storing a bare date rather than the student asking for midnight.
+ */
+function parsePretendText_(text, midnightMeansAllDay) {
+  var iso = /^(\d{4})-(\d{1,2})-(\d{1,2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/.exec(text);
+  var us = /^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/.exec(text);
+  var y, mo, d, h, mi, sec, hadTime;
+  if (iso) {
+    y = +iso[1]; mo = +iso[2]; d = +iso[3];
+    hadTime = iso[4] !== undefined;
+    h = hadTime ? +iso[4] : 0; mi = hadTime ? +iso[5] : 0; sec = hadTime && iso[6] ? +iso[6] : 0;
+  } else if (us) {
+    mo = +us[1]; d = +us[2]; y = +us[3];
+    hadTime = us[4] !== undefined;
+    h = hadTime ? +us[4] : 0; mi = hadTime ? +us[5] : 0; sec = hadTime && us[6] ? +us[6] : 0;
+  } else {
+    throw new Error(badPretendValue_(text));
+  }
+
+  // A shape that parses is not yet a date: 2026-02-30 and 25:00 both do.
+  var roundTrip = new Date(Date.UTC(y, mo - 1, d, h, mi, sec));
+  if (roundTrip.getUTCFullYear() !== y || roundTrip.getUTCMonth() !== mo - 1 ||
+      roundTrip.getUTCDate() !== d || h > 23 || mi > 59 || sec > 59) {
+    throw new Error(badPretendValue_(text));
+  }
+
+  if (!hadTime || (midnightMeansAllDay && h === 0 && mi === 0 && sec === 0)) {
+    h = 23; mi = 59; sec = 59;
+  }
+  return { y: y, mo: mo, d: d, h: h, mi: mi, s: sec };
+}
+
+function badPretendValue_(value) {
+  return 'Settings → "' + SETTING_PRETEND_TODAY + '" says "' + value + '", which is not a date ' +
+    'Blotter can read. Nothing was changed.\n\n' +
+    'Use a date like 2026-09-05, or clear the cell to go back to normal.\n\n' +
+    'Blotter will not guess here: guessing would silently compute the whole sheet ' +
+    'against today and look exactly like a working run.';
+}
+
+/**
+ * A wall-clock time in the student's timezone, as an ISO string with the right
+ * offset for that date — so a pretend date in November gets November's offset,
+ * not today's.
+ *
+ * Two passes: guess the instant as if the zone were UTC, see what clock the
+ * student's zone actually shows for that instant, and shift by the difference.
+ * The second pass settles the DST boundary cases the first can land on.
+ */
+function isoInStudentZone_(p) {
+  var wanted = Date.UTC(p.y, p.mo - 1, p.d, p.h, p.mi, p.s);
+  var guess = new Date(wanted);
+  for (var i = 0; i < 2; i++) {
+    var shown = Utilities.formatDate(guess, studentTimeZone_(), 'yyyy-MM-dd HH:mm:ss')
+      .match(/\d+/g).map(Number);
+    var delta = wanted - Date.UTC(shown[0], shown[1] - 1, shown[2], shown[3], shown[4], shown[5]);
+    if (delta === 0) break;
+    guess = new Date(guess.getTime() + delta);
+  }
+  return toIso_(guess);
 }
 
 /** A positive whole number from a settings cell, or the default. */
@@ -558,23 +713,56 @@ function fetchThreads_(contactEmails, daysBack) {
   Object.keys(threadsById).forEach(function (id) {
     var thread = threadsById[id];
     runMetrics_.threadFetches++;
+    // Addresses keep their display names (contract v2): the server cannot
+    // invent a name for a person it finds, and the header is the only honest
+    // source of one.
     var messages = thread.getMessages().map(function (m) {
       return {
         id: m.getId(),
         date: toIso_(m.getDate()),
-        from: firstAddress_(m.getFrom()),
-        to: addressList_(m.getTo()),
-        cc: addressList_(m.getCc()),
+        from: firstNamedAddress_(m.getFrom()),
+        to: namedAddressList_(m.getTo()),
+        cc: namedAddressList_(m.getCc()),
         subject: m.getSubject() || '',
         body: stripQuotedHistory_(m.getPlainBody() || ''),
         is_outbound: false // set below, once, against the student's addresses
       };
     });
+
+    // A mass mailing is not a recruiting conversation. Skipped whole: not
+    // sent, and so never harvested for names either.
+    if (exceedsRecipientCap_(messages)) {
+      runMetrics_.skipped++;
+      return;
+    }
+
     runMetrics_.threads++;
     runMetrics_.messages += messages.length;
     out.push({ thread_id: id, messages: messages });
   });
   return out;
+}
+
+/**
+ * True when any single message in the conversation is addressed to more than
+ * MAX_THREAD_RECIPIENTS distinct people across To and Cc. One listserv message
+ * condemns the whole conversation, which is the point: the names on it are a
+ * mailing list, not a relationship.
+ */
+function exceedsRecipientCap_(messages) {
+  for (var i = 0; i < messages.length; i++) {
+    var seen = {};
+    var count = 0;
+    var everyone = messages[i].to.concat(messages[i].cc);
+    for (var j = 0; j < everyone.length; j++) {
+      var address = bareAddress_(everyone[j]).toLowerCase();
+      if (address === '' || seen[address]) continue;
+      seen[address] = true;
+      count++;
+      if (count > MAX_THREAD_RECIPIENTS) return true;
+    }
+  }
+  return false;
 }
 
 /** Marks is_outbound per the contract: from is one of the student's addresses. */
@@ -583,7 +771,7 @@ function markOutbound_(threads, studentAddresses) {
   studentAddresses.forEach(function (a) { mine[a.toLowerCase()] = true; });
   threads.forEach(function (t) {
     t.messages.forEach(function (m) {
-      m.is_outbound = !!mine[(m.from || '').toLowerCase()];
+      m.is_outbound = !!mine[bareAddress_(m.from).toLowerCase()];
     });
   });
 }
@@ -599,15 +787,46 @@ function fetchEvents_(daysBack, daysForward) {
   var to = new Date(now.getTime() + daysForward * 24 * 60 * 60 * 1000);
   return CalendarApp.getDefaultCalendar().getEvents(from, to).map(function (e) {
     var creators = e.getCreators();
+    var guests = e.getGuestList(true); // one call: each one is an API hit
     return {
       id: e.getId(),
       title: e.getTitle() || '',
       start: toIso_(e.getStartTime()),
       end: toIso_(e.getEndTime()),
-      attendees: e.getGuestList(true).map(function (g) { return g.getEmail(); }),
+      attendees: guests.map(function (g) { return g.getEmail(); }),
+      declined: declinedGuests_(e, guests),
       organizer: creators && creators.length ? creators[0] : ''
     };
   });
+}
+
+/**
+ * Who answered No to this invite (contract v2). Declines only — no rule reads
+ * accepted, tentative or not-yet-answered, so none is sent.
+ *
+ * The student's own answer is asked for separately, because where they are the
+ * organiser the guest list reports them as OWNER whatever they clicked, and
+ * ENGINE-RULES §4 counts a decline from either side.
+ */
+function declinedGuests_(event, guests) {
+  var declined = [];
+  var seen = {};
+  guests.forEach(function (g) {
+    if (g.getGuestStatus() !== CalendarApp.GuestStatus.NO) return;
+    var address = g.getEmail();
+    if (!address || seen[address.toLowerCase()]) return;
+    seen[address.toLowerCase()] = true;
+    declined.push(address);
+  });
+  try {
+    if (event.getMyStatus() === CalendarApp.GuestStatus.NO) {
+      var me = Session.getEffectiveUser().getEmail();
+      if (me && !seen[me.toLowerCase()]) declined.push(me);
+    }
+  } catch (err) {
+    // An event with no guests has no "my status". Nothing to add.
+  }
+  return declined;
 }
 
 // ---------------------------------------------------------------------------
@@ -689,7 +908,10 @@ function writeBlotterColumns_(sheetState, rows) {
 
   var perColumn = {
     'Status': function (r) { return r.status; },
-    'Days': function (r) { return r.days === null || r.days === undefined ? '' : r.days; },
+    // A dash, not a blank: ENGINE-RULES §4 gives a clockless row a dash, and a
+    // blank cell reads as "Blotter has not run yet" instead of "there is no
+    // clock here". A closed row keeps every other fact it had.
+    'Days': function (r) { return r.days === null || r.days === undefined ? NO_CLOCK : r.days; },
     'Last contact': function (r) { return r.last_contact === null || r.last_contact === undefined ? '' : r.last_contact; },
     'Attempts': function (r) { return r.attempts === null || r.attempts === undefined ? '' : r.attempts; },
     'Next call': function (r) { return r.next_call === null || r.next_call === undefined ? '' : r.next_call; },
@@ -823,6 +1045,8 @@ function toIso_(date) {
   return Utilities.formatDate(date, studentTimeZone_(), "yyyy-MM-dd'T'HH:mm:ssXXX");
 }
 
+var ONE_ADDRESS = /[A-Za-z0-9._%+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/;
+
 /** "Jamie Diamond <jamie@x.com>" → "jamie@x.com". */
 function firstAddress_(headerValue) {
   var list = addressList_(headerValue);
@@ -832,8 +1056,80 @@ function firstAddress_(headerValue) {
 /** A To/Cc header into bare addresses. */
 function addressList_(headerValue) {
   if (!headerValue) return [];
-  var matches = String(headerValue).match(/[A-Za-z0-9._%+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/g);
+  var matches = String(headerValue).match(new RegExp(ONE_ADDRESS.source, 'g'));
   return matches || [];
+}
+
+/** The bare address inside any header value, named or not. '' if there is none. */
+function bareAddress_(value) {
+  var m = String(value || '').match(ONE_ADDRESS);
+  return m ? m[0] : '';
+}
+
+/**
+ * A header split into its individual recipients, on commas and semicolons that
+ * are not inside quotes or angle brackets — so a name written "Barman,
+ * Barbara" stays one person instead of becoming two.
+ */
+function splitHeaderParts_(headerValue) {
+  var text = String(headerValue || '');
+  var parts = [];
+  var current = '';
+  var inQuotes = false;
+  var inAngles = false;
+  for (var i = 0; i < text.length; i++) {
+    var ch = text.charAt(i);
+    if (ch === '"') inQuotes = !inQuotes;
+    else if (ch === '<') inAngles = true;
+    else if (ch === '>') inAngles = false;
+    if ((ch === ',' || ch === ';') && !inQuotes && !inAngles) {
+      parts.push(current);
+      current = '';
+      continue;
+    }
+    current += ch;
+  }
+  parts.push(current);
+  return parts;
+}
+
+/**
+ * One recipient as the contract's version-2 form: "Barbara Barman
+ * <boone2002@att.net>" when the header carries a name, the bare address when
+ * it does not. '' when the part holds no address at all.
+ *
+ * The name is passed through because the server cannot invent one, and
+ * inventing one is what it used to do: "Boone2002@att.net" became "Boone2002"
+ * in a student's tracker (ENGINE-RULES §8, decision D4).
+ */
+function namedAddress_(part) {
+  var text = String(part || '');
+  var address = bareAddress_(text);
+  if (address === '') return '';
+  var name = text.slice(0, text.indexOf(address))
+    .replace(/[<>"]/g, ' ')
+    .replace(/,\s*$/, '')
+    .trim();
+  // A "name" that is itself an address is the mail client repeating itself.
+  if (name === '' || name.indexOf('@') !== -1) return address;
+  return name + ' <' + address + '>';
+}
+
+/** A To/Cc header into addresses that keep their display names. */
+function namedAddressList_(headerValue) {
+  if (!headerValue) return [];
+  var out = [];
+  splitHeaderParts_(headerValue).forEach(function (part) {
+    var one = namedAddress_(part);
+    if (one !== '') out.push(one);
+  });
+  return out;
+}
+
+/** A From header, keeping its display name. */
+function firstNamedAddress_(headerValue) {
+  var list = namedAddressList_(headerValue);
+  return list.length > 0 ? list[0] : '';
 }
 
 /**

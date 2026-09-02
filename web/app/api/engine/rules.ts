@@ -230,6 +230,20 @@ interface ContactIndexEntry {
 }
 
 /**
+ * A calendar event matched to one contact, and whether it is off.
+ *
+ * `cancelled` is decided where the event is matched, because it needs the
+ * student's addresses as well as the contact's: **either side declining
+ * cancels the call** (§4). A third party on the invite declining cancels
+ * nobody's — the call is between two people and only those two can call it
+ * off.
+ */
+interface MatchedEvent {
+  event: EventIn;
+  cancelled: boolean;
+}
+
+/**
  * Everything the engine accumulates for one contact before the state is
  * decided: their attributed correspondence, their bounces, and their calendar.
  */
@@ -237,7 +251,7 @@ interface ContactActivity {
   /** Outbound and real inbound only, in time order. Machine mail excluded. */
   correspondence: ClassifiedMessage[];
   bounces: ClassifiedMessage[];
-  events: EventIn[];
+  events: MatchedEvent[];
 }
 
 /**
@@ -421,6 +435,7 @@ function matchEvent(event: EventIn, contactIndex: ContactIndexEntry[]): number[]
 
 interface EventTimes {
   event: EventIn;
+  cancelled: boolean;
   startEpoch: number;
   endEpoch: number;
 }
@@ -463,7 +478,10 @@ function bounceFor(
  * `Closed` is the student's ruling and beats everything (§9, §10). After
  * that, the ratified precedence for states simultaneously true:
  *
- *     Bounced  >  Call scheduled  >  Call done  >  Replied / Sent
+ *     Bounced  >  Call scheduled  >  Call done | Call cancelled  >  Replied / Sent
+ *
+ * `Call done` and `Call cancelled` cannot both apply: the most recent call
+ * either happened or was called off.
  *
  * There is deliberately no day threshold anywhere in here, for any purpose.
  * Real replies came back at 6.8, 11, 13.2 and 21.6 days, and the 21.6-day one
@@ -474,6 +492,18 @@ function bounceFor(
  * `Call done` holds until somebody writes, which is how a thank-you gets
  * tracked without a state for it: the moment the student sends the note they
  * are the last one who spoke, and the row becomes `Sent` on its own.
+ * **`Call cancelled` clears itself the same way, and that is the point** —
+ * without it, a declined invite would be a dead end nothing ever removes.
+ *
+ * `Days` is the one number that means the same thing in every state: how long
+ * since the last thing that actually happened. `Call done` counts from the
+ * call, because a call that happened is one of those things. A cancelled call
+ * is not, so it counts from the last email instead.
+ *
+ * A `Closed` row keeps everything else it knows (§4): `last_contact`,
+ * `attempts` and both call dates are still computed and returned. Only the
+ * clock is dropped. You closed the relationship, you did not delete it, and a
+ * row of empty cells reads as broken.
  */
 function computeRow(contact: ContactIn, activity: ContactActivity, now: string): RowOut {
   const nowEpoch = epochOf(now);
@@ -493,23 +523,64 @@ function computeRow(contact: ContactIn, activity: ContactActivity, now: string):
 
   const lastContact = last === null ? null : localDate(last.msg.date);
 
-  const times: EventTimes[] = activity.events.map((event) => ({
-    event,
-    startEpoch: epochOf(event.start),
-    endEpoch: epochOf(event.end),
+  const times: EventTimes[] = activity.events.map((matched) => ({
+    event: matched.event,
+    cancelled: matched.cancelled,
+    startEpoch: epochOf(matched.event.start),
+    endEpoch: epochOf(matched.event.end),
   }));
-  /* An event is upcoming until it has finished; a call in progress is still
-     the thing on the calendar, not yet a call that has happened. */
-  const upcoming = times
-    .filter((t) => t.endEpoch > nowEpoch)
+
+  /* A declined call is not on the calendar in any sense that matters: it is
+     not upcoming, it did not happen, and it is neither `Next call` nor
+     `Last call`. It has its own state (§4) and nothing else. */
+  const live = times.filter((t) => !t.cancelled);
+
+  /* §4: **a call counts as done the moment it starts.** At 2:01pm on a 2:00
+     to 2:30 call the row reads `Call done`, not `Call scheduled` — ruled by
+     Jon, September 2, 2026, replacing the earlier convention that waited for
+     the end time. The boundary is the start on both sides of this pair, and
+     "nobody has written since" is measured from the start too: a thank-you
+     sent while the call is still nominally running is still the student
+     speaking last, and under the old end-time anchor it could never clear
+     the row at all. */
+  const upcoming = live
+    .filter((t) => t.startEpoch > nowEpoch)
     .sort((a, b) => a.startEpoch - b.startEpoch)[0];
-  const lastPast = times
-    .filter((t) => t.endEpoch <= nowEpoch)
-    .sort((a, b) => b.endEpoch - a.endEpoch)[0];
+  const lastPast = live
+    .filter((t) => t.startEpoch <= nowEpoch)
+    .sort((a, b) => b.startEpoch - a.startEpoch)[0];
+
+  /* The most recent call that was called off, whenever it was due. A call
+     declined in advance counts from the moment the engine can see the
+     decline: the meeting is not happening, and saying so is the whole reason
+     this state exists. */
+  const lastCancelled = times
+    .filter((t) => t.cancelled)
+    .sort((a, b) => b.startEpoch - a.startEpoch)[0];
+
+  /* §4, ruled by Jon on September 2, 2026: **the last thing that actually
+     happened** — an email in either direction, or a call that took place.
+
+     A cancelled call is a non-event. It does not anchor this clock, does not
+     reset it and does not touch it; the only thing a decline changes is the
+     status. That is what keeps `Days` meaning one thing everywhere: "how long
+     since anybody actually did anything", which on a live relationship is the
+     number that tells you whether to bump the thread.
+
+     `null` when nothing has ever happened — a contact whose only calendar
+     event was declined and who has never exchanged a message really has no
+     clock, and a dash says so honestly. */
+  const lastRealActivity =
+    last !== null && (lastPast === undefined || last.epoch >= lastPast.startEpoch)
+      ? last.msg.date
+      : lastPast !== undefined
+        ? lastPast.event.start
+        : null;
 
   const nextCall = upcoming === undefined ? null : upcoming.event.start;
   /* `Last call` keeps its date permanently in its own column regardless of
-     state (§4) — dated by the day the call was on. */
+     state (§4) — dated by the day the call was on. A declined call never
+     happened, so it is never `Last call`. */
   const lastCall = lastPast === undefined ? null : localDate(lastPast.event.start);
 
   let status: Status;
@@ -527,8 +598,24 @@ function computeRow(contact: ContactIn, activity: ContactActivity, now: string):
     status = "Call scheduled";
     days = Math.max(0, daysBetween(now, upcoming.event.start));
   } else if (
+    lastCancelled !== undefined &&
+    lastCancelled.startEpoch >= (lastPast?.startEpoch ?? -Infinity) &&
+    !correspondence.some((m) => m.epoch > lastCancelled.startEpoch)
+  ) {
+    /* §4: the most recent call was declined by either side, and nobody has
+       written since. The clock is days since the last thing that actually
+       happened — never since the call that did not, which is why no clamp is
+       needed here: the anchor is always in the past.
+
+       So this reads exactly the number `Sent` or `Replied` would read for the
+       same contact, and it can be large. A decline landing thirty days after
+       the last email shows 30, and that is the useful fact: thirty days since
+       anybody communicated, and now the call is off too. */
+    status = "Call cancelled";
+    days = lastRealActivity === null ? null : daysBetween(lastRealActivity, now);
+  } else if (
     lastPast !== undefined &&
-    !correspondence.some((m) => m.epoch > lastPast.endEpoch)
+    !correspondence.some((m) => m.epoch > lastPast.startEpoch)
   ) {
     status = "Call done";
     days = daysBetween(lastPast.event.start, now);
@@ -571,14 +658,6 @@ function isCalendarNotificationSender(address: string): boolean {
     domain.endsWith(".calendar.google.com") ||
     domain.endsWith("calendar-server.bounces.google.com")
   );
-}
-
-/** "liz.ream" → "Liz Ream": the best name an address alone can offer. */
-function nameFromAddress(address: string): string {
-  const local = address.split("@")[0];
-  const parts = local.split(/[._-]+/).filter((p) => p.length > 0);
-  if (parts.length === 0) return address;
-  return parts.map((p) => p.charAt(0).toUpperCase() + p.slice(1)).join(" ");
 }
 
 function joinNames(names: string[]): string {
@@ -693,8 +772,14 @@ export function computeEngine(request: EngineRequest): EngineResponse {
     }
 
     /* §8 — a new address appearing in a conversation that belongs to a
-       contact. Headers only: the contract routes bodies to bounce and
-       auto-reply detection and nothing else. */
+       contact. **Headers only. Blotter never reads an email's text looking
+       for people** — ruled by Jon, September 2, 2026 (D15), and now explicit
+       in §8. Micah Poag really did give three referral addresses inside a
+       message body and those are genuinely lost; the trade is deliberate,
+       because every signature, legal disclaimer and quoted footer in a
+       mailbox is full of addresses and mining them would bury the real
+       suggestions. Bodies are read for bounce and auto-reply detection and
+       for nothing else, anywhere in this file. */
     const threadContactNames = [...attribution.keys()]
       .sort((a, b) => a - b)
       .map((i) => request.contacts[i].name);
@@ -715,8 +800,14 @@ export function computeEngine(request: EngineRequest): EngineResponse {
         found.set(address, {
           epoch: m.epoch,
           person: {
+            /* §8, ruled September 2, 2026 (D4): **a real name or nothing.**
+               The name is the one the header carried, and `null` when the
+               header carried none. Deriving one from the address turns
+               `Boone2002@att.net` into "Boone2002", which is garbage in a
+               student's tracker — a blank cell they fill in themselves is
+               better than a confident invention. */
             email: bare,
-            name: display ?? nameFromAddress(address),
+            name: display,
             first_seen: localDate(m.msg.date),
             context,
           },
@@ -740,7 +831,19 @@ export function computeEngine(request: EngineRequest): EngineResponse {
       );
       continue;
     }
-    for (const index of matched) activities[index].events.push(event);
+    /* §4: **either side declining cancels the call** — the student or the
+       counterparty. Decided here rather than in `computeRow` because it needs
+       the student's addresses as well as the contact's. A third party on the
+       invite declining cancels nobody's call: the meeting is between two
+       people and only those two can call it off. */
+    const declined = new Set(event.declined.map(addressOf).filter((a) => a.length > 0));
+    const studentDeclined = [...studentAddresses].some((a) => declined.has(a));
+    for (const index of matched) {
+      const cancelled =
+        declined.size > 0 &&
+        (studentDeclined || [...contactIndex[index].addresses].some((a) => declined.has(a)));
+      activities[index].events.push({ event, cancelled });
+    }
   }
 
   for (const [address, seen] of [...spellings].sort(([a], [b]) => (a < b ? -1 : 1))) {
@@ -768,5 +871,8 @@ export function computeEngine(request: EngineRequest): EngineResponse {
     .map((entry) => entry.person)
     .sort((a, b) => a.first_seen.localeCompare(b.first_seen) || a.email.localeCompare(b.email));
 
-  return { version: 1, rows, found: foundList, warnings };
+  /* The response answers in the version it was asked in (contract v2). That
+     is what lets a version-1 courier keep working against this server while
+     its own half of the world catches up. */
+  return { version: request.version, rows, found: foundList, warnings };
 }

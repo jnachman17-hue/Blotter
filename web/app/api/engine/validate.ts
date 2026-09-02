@@ -11,9 +11,9 @@ import type { ContactIn, EngineRequest, EventIn, MessageIn, ThreadIn } from "./t
  *
  * Two kinds of looseness are deliberately allowed, and only these:
  *
- * - **Absent lists become empty lists** (`cc`, `attendees`, `ignored`, and the
- *   top-level collections). "The courier saw none" and "the courier sent none"
- *   mean the same thing to a stateless engine.
+ * - **Absent lists become empty lists** (`cc`, `attendees`, `declined`,
+ *   `ignored`, and the top-level collections). "The courier saw none" and
+ *   "the courier sent none" mean the same thing to a stateless engine.
  * - **Absent text becomes empty text** (`subject`, `body`, `firm`, `title`,
  *   `organizer`). A missing subject is an odd message, not an uncomputable one.
  *
@@ -115,6 +115,9 @@ function event(value: unknown, path: string): EventIn {
     start,
     end,
     attendees: stringList(value.attendees, `${path}.attendees`),
+    /* Contract version 2. Absent on a version-1 request, and an absent list
+       means exactly what version 1 meant: nobody is known to have declined. */
+    declined: stringList(value.declined, `${path}.declined`),
     organizer: optionalStr(value.organizer, `${path}.organizer`),
   };
 }
@@ -133,9 +136,13 @@ export function parseEngineRequest(body: unknown): EngineRequest {
   if (!isRecord(body)) fail("request", "must be a JSON object");
 
   /* The version is in the request so a mismatch is loud rather than
-     mysterious. This server speaks version 1 and nothing else. */
-  if (body.version !== 1) {
-    fail("version", `must be 1 — this server speaks contract version 1, got ${JSON.stringify(body.version)}`);
+     mysterious. This server speaks 1 and 2: version 2 added display names on
+     addresses and `declined` on events, both optional and both additive, so a
+     version-1 payload still means exactly what it always meant. The response
+     answers in the version it was asked in, which is what lets a version-1
+     courier keep working while its half of the world catches up. */
+  if (body.version !== 1 && body.version !== 2) {
+    fail("version", `must be 1 or 2 — this server speaks contract versions 1 and 2, got ${JSON.stringify(body.version)}`);
   }
 
   const now = timestamp(body.now, "now");
@@ -147,7 +154,7 @@ export function parseEngineRequest(body: unknown): EngineRequest {
   }
 
   return {
-    version: 1,
+    version: body.version,
     now,
     student: { addresses },
     contacts: list(body.contacts, "contacts", contact),

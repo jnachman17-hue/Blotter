@@ -148,19 +148,28 @@ even a bug could not send or delete anything.
 
 ### Point it at 2024
 
-22. Still in **Settings**: change **Calendar looks back (days)** from `365`
-    to **`1100`**. Your recruiting calls happened in early 2024, which is
-    about 975 days ago — at 365 the calendar would return nothing and every
-    call column would come back empty, looking exactly like a bug. (A real
-    student never touches this setting.)
+22. Still in **Settings**, change **two** numbers from `365` to **`1100`**:
+
+    - **Calendar looks back (days)**
+    - **Mail looks back (days)**
+
+    Your recruiting happened in early 2024, about 975 days ago. At 365 both
+    windows stop short of it: the calendar would return nothing and every
+    call column would come back empty, and the mail search would find no
+    conversations at all — both looking exactly like a bug.
+
+    **A real student never touches either setting.** They exist so this
+    archive test can reach back to 2024. `Mail looks back` also has a second
+    job in normal use, which is why it is set to a year and not to forever:
+    it keeps ancient mail out of the search.
 
 ### Paste the season
 
 23. Open the **Contacts** tab and click cell **A2** (the first cell under
     the `Name` header). Copy the entire block below and paste it — Sheets
     will fan it out into the Name, Title, Firm and Email columns by itself.
-    These are the real 67 people and processes from your 2024 season,
-    matching the engine's answer key row for row:
+    These are the **58 real people** from your 2024 season, in the same order
+    as the engine's answer key, row for row:
 
     ```
     Micah Poag		Houlihan Lokey	mpoag@hl.com
@@ -195,7 +204,6 @@ even a bug could not send or delete anything.
     Keaton Cruzcosa		Piper Sandler	Keaton.cruzcosa@psc.com
     Gary Horton		Intrepid	horton@intrepidfp.com
     Will Robinson		Intrepid	Robinson@intrepidfp.com
-    Piper Sandler - applicant tracking acknowledgement			
     David Talbot		Raymond James	David.Talbot@raymondjames.com
     Grant Gillespie		Morgan Stanley	Grant.Gillespie@morganstanley.com
     Mathew (Mat) Young		Citi	mathew.young@citi.com
@@ -204,7 +212,6 @@ even a bug could not send or delete anything.
     Danny Shin		Houlihan Lokey	danny.shin@hl.com
     Matt Manriquez		Morgan Stanley	Matt.Manriquez@morganstanley.com
     Maura Vestal		Houlihan Lokey	Maura.Vestal@hl.com
-    Houlihan Lokey NY Restructuring - shared-mailbox recruiting process			
     Lynell Velten		Houlihan Lokey	Lynell.Velten@hl.com
     Grace Steelman		Barclays	grace.steelman@barclays.com
     Jay Klein		Barclays	jay.klein@barclays.com
@@ -218,29 +225,30 @@ even a bug could not send or delete anything.
     Gayathri Ravi		Goldman Sachs	Gayathri.Ravi@gs.com
     Steve McLaughlin		FT Partners	steve.mclaughlin@ftpartners.com
     Elliot Calkins		Guggenheim Securities	Elliot.Calkins@guggenheimpartners.com
-    FT Partners - application, interviews, super day, offer			
-    Wells Fargo - application, video interview, first round, withdrawal			
-    AGC Partners - cold application email			
-    Bank of America - application			
-    Barclays - application status			
     Emily Saunders		Harris Williams	esaunders@harriswilliams.com
     Ben Dziedzic		RBC Capital Markets	ben.dziedzic@rbccm.com
-    Citi - application status inquiry (bounced)			
-    Union Square Advisors - cold application email			
     Bradley Cagle		FT Partners	Bradley.Cagle@ftpartners.com
     Sean Hussey		FT Partners	sean.hussey@ftpartners.com
     Owen Sherry		Houlihan Lokey	
     ```
 
-    Two of these are deliberate oddities, not mistakes: **Owen Sherry has
-    no email address** (his call exists only on your calendar — finding him
-    anyway is one of the things this test proves), and a handful of rows
-    are firm processes rather than people.
+    **One deliberate oddity, not a mistake: Owen Sherry has no email
+    address.** His call exists only on your calendar, and finding him anyway
+    is one of the things this test proves.
+
+    **What is no longer here, and why.** Earlier versions of this guide also
+    pasted nine rows that were firms rather than people — "Barclays -
+    application status", "Bank of America - application", "Wells Fargo -
+    application, video interview, first round, withdrawal" and six more.
+    They are gone. You ruled that version one tracks **people, not firms or
+    interviews**, and those rows carried no email address, so they would read
+    `Not emailed` forever and never change. The answer key dropped them
+    already; this guide had not caught up.
 
 ### Run it
 
 24. Click **Blotter → Step 2: Run once now.** This first run reads two and
-    a half years back through 67 people's conversations — expect it to take
+    a half years back through 58 people's conversations — expect it to take
     **a few minutes**, and let it finish. When it's done you'll see a
     summary with how long it took, and the Status, Days and call columns
     fill in. (You do **not** need "Start automatic updates" for this test —
@@ -252,7 +260,7 @@ even a bug could not send or delete anything.
 
 ### Check it against the answer key
 
-The engine's test fixtures already encode the right answer for all 67 rows
+The engine's test fixtures already encode the right answer for all 58 rows
 as of the end of your season. Three things to know before comparing:
 
 - **The `Days` column will not match the key and that is correct.** The key
@@ -263,10 +271,12 @@ as of the end of your season. Three things to know before comparing:
   see: Danny Shin, Jess Luft, John Sellingsloh, Joshua Gumm, Kammeh
   Valliani, Keaton Cruzcosa, Kevin Stephens, Kyle Gunnison, Luke Skelly,
   Maura Vestal, Michael Liou, Mike Giaquinto, Nicholas Perez, Samuel Ward,
-  Sean Kang, Turner Gauntt, and the Houlihan Lokey shared-mailbox row. Most
-  will read `Not emailed`. (Gary Horton, Nick Gerstein and Will Robinson
-  had mail in both accounts, so their numbers may run low.)
-- The firm-process rows ("… - application" etc.) should read `Not emailed`.
+  Sean Kang and Turner Gauntt. Most will read `Not emailed`. (Gary Horton,
+  Nick Gerstein and Will Robinson had mail in both accounts, so their numbers
+  may run low.)
+- **`Days` shows a dash** on any row reading `Not emailed`, and on any row
+  you have ticked `Closed`. That is a clockless row saying so, not a blank
+  cell waiting to be filled.
 
 Now eyeball these specific rows — all from the gmail mailbox, so they
 should match:
@@ -312,9 +322,184 @@ authorize it against their own account. Blotter never sees their login.
    send from, and set **File → Settings → Time zone** to where they live —
    a copied sheet keeps the *master's* time zone, and "days waiting" turns
    over at midnight in whatever time zone this says.
+
+   **They leave `Pretend today is` blank.** It says so on the row. It is a
+   testing setting, and a date typed into it by accident makes every Status
+   and every Days number on the sheet answer a day that is not today —
+   wrong, but wrong in a way that looks completely normal.
 4. They add their contacts to the **Contacts** tab (a Name and an Email
    each), click **Blotter → Step 2: Run once now**, then
    **Blotter → Start automatic updates.**
+
+---
+
+## Updating a sheet you already installed
+
+**Use this when Blotter's script has changed and your sheet already works.**
+You are replacing the script only. Nothing else moves.
+
+**Before you start, one thing has to be true:** the new server has to be live
+before you paste the new script, because the new script speaks a newer version
+of the language the two halves share. Paste it first and every run fails
+safely — it writes nothing and says so — until the server catches up. If you
+are not sure the server is updated, do the paste last.
+
+1. Open your **Blotter** spreadsheet.
+2. Click **Extensions**, then **Apps Script**. The code editor opens in a new
+   tab, showing your existing `Code.gs`.
+3. Click anywhere in the code and press **Cmd+A** to select all of it, then
+   **Delete**. The file is now empty. (Nothing is lost — this file is only
+   ever a copy of the script, and the fresh copy replaces it.)
+4. Open `courier/Code.gs` from this project, select everything, copy it, and
+   paste it into the empty editor.
+5. Press **Cmd+S**. The tab title stops showing a dot when it has saved.
+6. Go back to your spreadsheet tab and **reload the page**. Wait for the
+   **Blotter** menu to appear in the menu bar — it can take a few seconds.
+7. Click **Blotter → Step 2: Run once now**, and wait for the summary box.
+
+### What re-pasting does and does not do
+
+| | |
+|---|---|
+| **Your sheet's data** | **Untouched.** Contacts, Found, Settings, your own columns — all of it stays exactly as it is |
+| **Your Settings values** | **Kept.** Your email addresses, Server URL, both look-back windows — the script reads them from the sheet, it does not store them |
+| **Re-authorising** | **Not needed**, as long as `appsscript.json` is unchanged. The permissions you granted are attached to the project, not to the code. If Google *does* ask again, it is because the permission list changed — read the screen and follow Part A steps 14–18 |
+| **Automatic updates** | **Still on.** The 15-minute timer belongs to the project and survives the paste. You do not need to start it again |
+| **What actually changes** | The next run recomputes and rewrites all six Blotter columns from scratch, which is what every run does anyway |
+
+### How to know it worked
+
+After step 7 you should see a summary box saying how many contact rows were
+updated and how long it took. Then check the sheet:
+
+- **Settings → Last successful run** shows a timestamp from the last minute
+- **Contacts → Status** is filled in for every row that has an email address
+- **Contacts → Days** shows a **dash** (—) rather than an empty cell on any
+  row you have ticked `Closed`, and on any row reading `Not emailed`
+
+If instead you get a box saying Blotter could not update the sheet, **read
+the reason and send it back**. A failure before the write phase leaves the
+sheet exactly as it was, and the message says which case you are in.
+
+---
+
+## The time machine — for testing only
+
+**Settings → `Pretend today is (TESTING - leave blank)`.**
+
+Normally this is blank and Blotter uses the real date. Put a date in it and
+**Blotter works out every row as if that were today.**
+
+That is the whole trick. It exists because most of what Blotter does is about
+time passing — someone went quiet for two weeks, a call happened, an invite
+was declined — and the only other way to test any of it is to wait two weeks.
+
+**What it changes:** only what Blotter thinks today is. A thread you sent this
+morning can be aged to a month old. A call you put on next Friday's calendar
+becomes a call that already happened, so `Call done` and `Call cancelled`
+appear straight away instead of after a week of waiting.
+
+**What it does not change:** which mail and which calendar events Blotter goes
+and fetches. Those still use the real date. So it ages what is there; it does
+not conjure up mail that does not exist. **Sending the test emails is still
+done by hand** — that part takes minutes, not days.
+
+### Using it
+
+1. Open the **Settings** tab.
+2. In the cell next to **`Pretend today is (TESTING - leave blank)`**, type a
+   date like `2026-09-05`. (`9/5/2026` works too.)
+3. Click **Blotter → Step 2: Run once now**.
+4. The summary box opens with a line in stars saying testing mode was on and
+   which date it pretended. **Settings → Last run warnings** says the same
+   thing, and stays there.
+5. **When you are finished, delete what you typed** and run once more. The
+   sheet goes back to the truth.
+
+Two details worth knowing:
+
+- **A date with no time means the end of that day.** So a call booked for 2pm
+  on the date you typed has already happened. That is deliberate — it is what
+  makes calls resolve instead of sitting on `Call scheduled` again. If you want
+  a specific moment, type one: `2026-09-05 13:00`.
+- **If Blotter cannot read what you typed, the run stops and says so**, and
+  nothing is written. It will not quietly fall back to today, because a run
+  that silently ignored your date would look exactly like one that worked.
+
+---
+
+## Two things Blotter already does that nobody has been told about
+
+Both of these have worked since the first build. Neither was ever written
+down, so nobody used them.
+
+### If you send from more than one address, list them all
+
+**Settings → Your email addresses takes a list, separated by commas.**
+
+```
+you@gmail.com, you@university.edu
+```
+
+This is what tells Blotter which messages are **from you**, which is how it
+knows the difference between *you wrote last* and *they wrote last*. Get it
+wrong and rows read backwards.
+
+**The case this is really for** is the common one: your university address
+forwards into Gmail, and when you reply you reply **as** the `.edu`. That is
+one mailbox with two addresses on it, and listing both makes Blotter read
+every one of those replies correctly.
+
+**Where it stops, plainly.** Blotter reads **one mailbox** — the account this
+sheet's script is signed in to. Several *send-as* addresses on that one
+mailbox: fully handled, list them all. A genuinely **separate second Google
+account**, with its own inbox: Blotter cannot see into it, and mail that
+exists only there is invisible to it. Listing the address does not change
+that; it only fixes how messages that *do* arrive are read.
+
+### Add any columns of your own, anywhere you like
+
+**It is your sheet.** Add a LinkedIn column, a Notes column, a "how we met"
+column — put them at the front, at the back, or in between two of Blotter's.
+Reorder what is there. Nothing breaks.
+
+Blotter finds its columns by **reading the header row**, not by counting
+positions, and it writes each of its own columns one at a time. It never
+touches a cell in a column it does not own.
+
+**The only rule: these nine headers must survive, spelled as they are.**
+
+| Header | Who writes it |
+|---|---|
+| `Name` | You |
+| `Email` | You |
+| `Status` | Blotter, every run |
+| `Days` | Blotter, every run |
+| `Last contact` | Blotter, every run |
+| `Attempts` | Blotter, every run |
+| `Next call` | Blotter, every run |
+| `Last call` | Blotter, every run |
+| `Closed` | **You** — Blotter only reads it |
+
+Rename one of those headers, or delete its column, and the run stops with a
+message naming exactly which one is missing — it does not guess, and it does
+not half-write the sheet.
+
+**`Firm` is the one in-between case.** It is not required, and Blotter runs
+fine without it. But it is what lets Blotter match a calendar event to a
+person when the invite has no email address on it — the way it found Owen
+Sherry, whose call is real and whose address appears nowhere in the mailbox.
+Keep it.
+
+Everything else on the sheet is yours.
+
+Two small things worth knowing while you are in there:
+
+- **`Closed` is the one control you have.** Tick it and the row keeps all its
+  history but drops its clock, which shows as a dash in `Days`. Blotter never
+  closes anything itself and never reopens what you closed.
+- **Do not sort or delete rows while a run is in progress.** Blotter matches
+  its answers to your rows by row number.
 
 ---
 

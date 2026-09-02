@@ -1,0 +1,16 @@
+{
+ "version": 2,
+ "rows": [
+  {
+   "row": 2,
+   "status": "Call cancelled",
+   "days": 0,
+   "last_contact": "2024-01-26",
+   "attempts": 2,
+   "next_call": null,
+   "last_call": null
+  }
+ ],
+ "found": [],
+ "warnings": []
+}

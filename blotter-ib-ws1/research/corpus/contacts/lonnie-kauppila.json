@@ -6,7 +6,7 @@
  "addresses_seen": [
   "Lonnie.Kauppila@hl.com"
  ],
- "relationship_opened": "Assigned as the Houlihan LA first-round interviewer",
+ "relationship_opened": "Assigned as the Houlihan LA first-round interviewer (named in the body of Sara Laracca's 2024-02-01 confirmation, not on any header)",
  "source_mailbox": [
   "jnachman17@gmail.com"
  ],
@@ -27,28 +27,33 @@
  "threads": [
   {
    "thread_id": "18d94d171c639c3c",
-   "capture": "metadata_only",
+   "capture": "supplement",
    "shared_thread": false,
    "subject": "Enjoyed Yesterday's Conversation",
    "messages": [
     {
-     "message_id": "18d94d171c639c3c",
+     "message_id": "18d94d79abfedbed",
      "date": "2024-02-10T21:06:14Z",
-     "internal_date": null,
+     "internal_date": "1707599174000",
      "direction": "outbound",
      "sender": "jnachman17@gmail.com",
-     "to": [],
+     "to": [
+      "Lonnie.Kauppila@hl.com"
+     ],
      "cc": [],
      "subject": "Enjoyed Yesterday's Conversation",
-     "labels": [],
+     "labels": [
+      "SENT"
+     ],
      "attachments": [],
-     "has_attachment": null,
-     "body": null,
-     "body_source": "metadata_only",
-     "body_captured_reason": "Not body-fetched in Stage A. These are calendar-notification and acknowledgement messages whose body is a meeting-invite block or a legal disclaimer with no informational content; the authoritative meeting facts are in calendar.json. Fetch with get_thread if a later pass needs the body.",
+     "has_attachment": false,
+     "body": "Good Afternoon Lonnie,\n\nI hope you are doing well. I just wanted to send a brief email thanking you\nfor the time you spent with me on the phone yesterday. I enjoyed learning\nmore about your background as well as gaining additional insight into\nHoulihan LA. I look forward to hearing any potential updates from\nyour office soon. Have a good weekend.\n\nBest,\nJonathan Nachman",
+     "body_source": "verbatim_full",
+     "body_captured_reason": "Re-fetched from Gmail on 2026-09-02 (WS9 Phase A §2.9). The Stage A capture recorded this message metadata-only with an EMPTY To line and the thread id in place of the message id, which detached it from Lonnie entirely and made her row read Not emailed. The To line, message id and body above are the real message.",
      "source_mailbox": "jnachman17@gmail.com"
     }
    ]
   }
- ]
+ ],
+ "capture_note": "Corrected 2026-09-02. The interview happened Friday 2024-02-09 at 10:00 PST (12:00 in Austin) and this thank-you went the next afternoon, Saturday 2024-02-10 at 15:06 Austin time — which is why it says both 'yesterday' and 'have a good weekend'. The two dates the brief flagged as not obviously agreeing do agree; the UTC timestamp (21:06Z) simply reads as a different day than Jon's own clock did. Lonnie is reachable ONLY through this message: she is named in Sara's confirmation in body text alone, and referral discovery is headers-only (rules §8, D15)."
 }

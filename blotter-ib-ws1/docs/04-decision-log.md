@@ -4165,3 +4165,77 @@ before it was raised.
 The irreducible friction is Google's unverified-app warning, three or four
 screens, and **nobody has seen it yet.** `INSTALL.md` step 16 asks Jon to
 screenshot the real thing on first install.
+
+## Session 14 — September 2, 2026 — reconciliation, and a process change
+
+The conductor chat re-read every build chat's output and verified the state by
+running it rather than by trusting reports.
+
+### Verified state
+
+**31 of 31 fixtures pass. 71 of 71 self-tests pass.** The engine agrees with an
+independently written answer key on every row of Jon's real season. Working tree
+clean, everything committed.
+
+### The rules had drifted, and this is the failure mode to watch
+
+**Two of Jon's rulings were live in the engine and in the fixtures for a day
+while `04-ENGINE-RULES.md` did not contain them.** Build chats correctly declined
+to edit the ratified spec and recorded the rulings in their own notes instead;
+nobody reconciled them upward. **Amended into version 4:**
+
+1. **§3 — inbound counts thread-wide, outbound only when addressed to them.**
+   Found in Jon's live data: he forwarded Samuel Ward's reply to a family member
+   inside the same thread, and the engine counted the forward as writing to
+   Samuel. **Forwarding a reply to your family is not writing to the banker.**
+   The consequence, worth knowing: an email to a guessed address counts, and its
+   bounce lands, only when that guess is stored on the contact's row.
+2. **§5 — a send counts as an attempt only when the contact is on the message.**
+   Same ruling, other clause.
+
+**The lesson is structural, not anyone's fault.** A build chat that cannot edit
+the spec will faithfully record a ruling somewhere the spec does not look. **The
+conductor reconciles upward, every session**, or the authoritative document
+quietly becomes the least accurate one in the repository.
+
+### Production day one
+
+**Jon installed the courier into a live Google account on September 1, 2026 and
+ran it.** Roadmap step 5, done. Three of its four findings could not have come
+from the archive at any effort:
+
+- **No date limit on the Gmail search.** Personal-gmail contacts dragged in a
+  2022 club listserv and Blotter suggested **~170 classmates**. Fixed with a
+  `Mail looks back (days)` setting
+- **The warnings cell killed the run** at Google's 50,000-character limit — one
+  warning per non-recruiting calendar event across three years. Fixed in the
+  engine: ten examples per kind plus a count
+- **"It changed nothing on failure" was false.** The throw happened *inside* the
+  write phase, with most of the sheet already written. The message now says so
+
+**And what worked:** the timezone chain end to end, Owen Sherry matched by
+calendar title on live data, and the utexas-only relationships correctly reading
+`Not emailed` in a gmail-only install.
+
+**The pattern is the finding.** The engine's *judgment* was right on day one.
+Everything that broke was plumbing meeting a real world that is messier than any
+archive — old mail, a personal calendar, a cell limit.
+
+### The process changes
+
+**Jon:** *"What isn't working for me is jumping between these three active side
+chats… those chats aren't communicating with each other, so there might be some
+overlap."*
+
+He is right, and it is a predictable failure. **Three parallel chats worked for
+building and stopped working the moment they needed his attention** — three
+chats asking one non-technical person questions, none able to see the others'
+answers, each assuming it had his full context.
+
+**From here: one chat at a time.** The conductor names one task, Jon runs one
+chat, Jon returns with the result, the conductor reconciles the documents. The
+parallel-worktree machinery stays available for work that genuinely does not
+need him mid-flight.
+
+**New: `workstreams/ws9-build/00-STATE-OF-PLAY.md`** is the single orientation
+file, verified rather than reported, and the conductor keeps it true.

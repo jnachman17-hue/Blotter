@@ -444,10 +444,10 @@
   },
   {
    "row": 51,
-   "status": "Not emailed",
-   "days": null,
-   "last_contact": null,
-   "attempts": 0,
+   "status": "Sent",
+   "days": 34,
+   "last_contact": "2024-02-10",
+   "attempts": 1,
    "next_call": null,
    "last_call": null
   },
