@@ -61,6 +61,11 @@ const EXPORTS = [
   'exceedsRecipientCap_', 'parsePretendText_', 'pretendNowIso_', 'declinedGuests_',
   'normaliseTyped_', 'unreadableAddressWarnings_', 'lastRowWithContact_',
   'MAX_THREAD_RECIPIENTS', 'NO_CLOCK', 'VALID_STATUSES', 'CONTRACT_VERSION',
+  // The look. Colour tables and widths are data, so they are testable — and a
+  // typo in a hex paints a cell black on somebody's real sheet.
+  'asSheetDate_', 'STATUS_STYLE', 'THEMES', 'CONTACTS_WIDTHS', 'FOUND_WIDTHS',
+  'COL_NAME', 'COL_TITLE', 'COL_FIRM', 'COL_EMAIL', 'COL_CLOSED',
+  'BLOTTER_COLUMNS', 'FOUND_HEADERS',
 ];
 const box = {};
 new Function('box', `${src}\nObject.assign(box, {${EXPORTS.join(', ')}});`)(box);
@@ -325,6 +330,107 @@ declinedBy([guest('student@gmail.com', 'NO')], 'NO');
 eq('the guest list answering means my-status is not asked again', statusCalls, 1);
 declinedBy([guest('banker@firm.com', 'YES'), guest('student@gmail.com', 'OWNER')], 'OWNER');
 eq('otherwise: one call per guest, plus one for the student', statusCalls, 3);
+
+
+// ---------------------------------------------------------------------------
+/** The harness asserts with eq(label, actual, expected); this is the boolean form. */
+function ok(label, actual) { eq(label, !!actual, true); }
+
+const { asSheetDate_, STATUS_STYLE, THEMES, CONTACTS_WIDTHS, FOUND_WIDTHS,
+        COL_NAME, COL_TITLE, COL_FIRM, COL_EMAIL, COL_CLOSED,
+        BLOTTER_COLUMNS, FOUND_HEADERS, VALID_STATUSES } = box;
+
+// asSheetDate_ — the fix for `Next call` rendering a raw ISO timestamp.
+//
+// The trap being guarded is the one this project has already paid for once:
+// `new Date('2026-09-02')` is UTC midnight, which is the evening of September
+// 1st anywhere in the Americas. A bare date must be built from its parts.
+// ---------------------------------------------------------------------------
+{
+  const bare = asSheetDate_('2026-09-02');
+  ok('bare date is a Date', bare instanceof Date);
+  ok('bare date keeps its own day, not UTC midnight', bare.getFullYear() === 2026 && bare.getMonth() === 8 && bare.getDate() === 2);
+  ok('bare date sits at local midnight', bare.getHours() === 0 && bare.getMinutes() === 0);
+
+  const stamped = asSheetDate_('2026-09-03T14:00:00-07:00');
+  ok('full timestamp is a Date', stamped instanceof Date);
+  ok('full timestamp keeps its instant', stamped.getTime() === Date.parse('2026-09-03T14:00:00-07:00'));
+
+  ok('null becomes an empty cell', asSheetDate_(null) === '');
+  ok('undefined becomes an empty cell', asSheetDate_(undefined) === '');
+  ok('empty string stays empty', asSheetDate_('') === '');
+
+  // Passing an unparseable value through untouched is the point: a visibly odd
+  // string is recoverable, a confidently wrong date is not.
+  ok('a dash is left alone', asSheetDate_('—') === '—');
+  ok('nonsense is left alone', asSheetDate_('next tuesday') === 'next tuesday');
+  ok('a nearly-ISO string is left alone', asSheetDate_('2026-13-45T99:00:00Z') === '2026-13-45T99:00:00Z');
+
+  // Every date the engine can send, across a DST boundary in both directions.
+  ['2026-01-15', '2026-03-08', '2026-03-09', '2026-11-01', '2026-12-31'].forEach((iso) => {
+    const d = asSheetDate_(iso);
+    const parts = iso.split('-').map(Number);
+    ok('round trip ' + iso, d.getFullYear() === parts[0] && d.getMonth() === parts[1] - 1 && d.getDate() === parts[2]);
+  });
+}
+
+// ---------------------------------------------------------------------------
+// The theme tables. Every status the contract allows must have a colour, and
+// every colour must be a real hex — a typo here paints a cell black.
+// ---------------------------------------------------------------------------
+{
+  VALID_STATUSES.forEach((status) => {
+    const style = STATUS_STYLE[status];
+    ok('status has a style: ' + status, !!style);
+    ok('status fill is a hex: ' + status, /^#[0-9a-f]{6}$/i.test(style.bg));
+    ok('status text is a hex: ' + status, /^#[0-9a-f]{6}$/i.test(style.fg));
+  });
+  ok('no style exists for a status the contract forbids',
+    Object.keys(STATUS_STYLE).every((k) => VALID_STATUSES.indexOf(k) !== -1));
+
+  ['hero', 'zoned'].forEach((name) => {
+    const t = THEMES[name];
+    ok('theme exists: ' + name, !!t);
+    ok('theme has both header tints: ' + name, /^#[0-9a-f]{6}$/i.test(t.manualHeader) && /^#[0-9a-f]{6}$/i.test(t.keptHeader));
+    ok('theme divider is a hex: ' + name, /^#[0-9a-f]{6}$/i.test(t.dividerColour));
+  });
+  ok('hero leaves data rows unfilled', THEMES.hero.manualRow === null && THEMES.hero.keptRow === null);
+  ok('zoned fills both zones', /^#[0-9a-f]{6}$/i.test(THEMES.zoned.manualRow) && /^#[0-9a-f]{6}$/i.test(THEMES.zoned.keptRow));
+
+  // Each zone's data fill must be a LIGHTER version of its own header tint —
+  // strictly between white and that header, on every channel.
+  //
+  // This is deliberately weaker than the rule the design research claimed. It
+  // said both fills sit 45% of the way from white to their header; that holds
+  // for the manual pair (0.44 / 0.46 / 0.43) and is simply untrue of the kept
+  // pair (0.25 / 0.39 / 0.57), which was picked by eye. The ratified colours
+  // are the colours, so the assertion had to become the invariant that
+  // actually matters: get a fill darker than its header and the two zones
+  // invert, which nothing else would catch.
+  const mix = (hex) => hex.slice(1).match(/../g).map((h) => parseInt(h, 16));
+  const lighterThanHeader = (row, header) => {
+    const r = mix(row), h = mix(header);
+    return [0, 1, 2].every((i) => r[i] > h[i] && r[i] < 255);
+  };
+  ok('manual fill is lighter than its header, and not white',
+    lighterThanHeader(THEMES.zoned.manualRow, THEMES.zoned.manualHeader));
+  ok('kept fill is lighter than its header, and not white',
+    lighterThanHeader(THEMES.zoned.keptRow, THEMES.zoned.keptHeader));
+
+  // The two zones must stay visibly different from each other, or the whole
+  // point of the split is lost to a rounding error.
+  ok('the two zone fills are not the same colour', THEMES.zoned.manualRow !== THEMES.zoned.keptRow);
+  ok('the two header tints are not the same colour', THEMES.zoned.manualHeader !== THEMES.zoned.keptHeader);
+
+  // A width for every column the sheet writes, or a column silently keeps
+  // Sheets' 100px default and the layout quietly drifts.
+  [COL_NAME, COL_TITLE, COL_FIRM, COL_EMAIL].concat(BLOTTER_COLUMNS).concat([COL_CLOSED]).forEach((h) => {
+    ok('a width is set for ' + h, typeof CONTACTS_WIDTHS[h] === 'number' && CONTACTS_WIDTHS[h] > 40);
+  });
+  FOUND_HEADERS.forEach((h) => {
+    ok('a Found width is set for ' + h, typeof FOUND_WIDTHS[h] === 'number' && FOUND_WIDTHS[h] > 40);
+  });
+}
 
 console.log(fails === 0
   ? `All ${checks} courier helper checks passed.`
