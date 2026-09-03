@@ -155,8 +155,17 @@ var MAX_THREAD_RECIPIENTS = 10;
 // the way down, split by a 3px Blotter-yellow rule.
 // ---------------------------------------------------------------------------
 
-/** Which drawing this sheet uses: 'hero' or 'zoned'. */
-var THEME = 'zoned';
+/**
+ * Which drawing this sheet uses.
+ *
+ * `bands` is Jon's, ruled September 3, 2026 after seeing the zoned version on a
+ * real sheet: the header bands carry the zone and the data rows stay white, but
+ * the divider keeps the Blotter yellow rather than reverting to grey. It is the
+ * hero's restraint with the zoned version's one strong line — *"I don't want
+ * the Blotter side to have the cell highlight colour in the background… however
+ * I do like the vertical bars you have that separate sections with colour."*
+ */
+var THEME = 'bands';
 
 var INK = '#14181f';
 var INK_MUTED = '#5f6368';
@@ -174,6 +183,15 @@ var THEMES = {
     keptRow: null,
     dividerColour: SHEET_BORDER,
     dividerWeight: 'medium'
+  },
+  // Jon's, and the default. White rows, tinted headers, yellow rule.
+  bands: {
+    manualHeader: '#edf2f8',
+    keptHeader: '#f7f2e8',
+    manualRow: null,
+    keptRow: null,
+    dividerColour: BLOTTER_YELLOW,
+    dividerWeight: 'thick'
   },
   // Section 02's tab. Both zones filled top to bottom, split in Blotter yellow.
   //
@@ -220,14 +238,25 @@ function dividerStyle_() {
  *     failure — the same weight as a thread going quiet.
  */
 var STATUS_STYLE = {
-  'Not emailed':    { bg: '#f8f9fa', fg: INK_FAINT },
+  // Nothing has been sent, and nothing is owed. No fill at all, so it recedes
+  // behind every row that wants something.
+  'Not emailed':    { bg: '#ffffff', fg: INK_FAINT },
   'Bounced':        { bg: '#fce8e6', fg: '#c5221f' },
-  'Sent':           { bg: '#e8eaed', fg: INK_MUTED },
+  // A real state with a real fill, and darker text than the film's.
+  //
+  // The film's pair was #e8eaed on #5f6368, and on a live sheet Jon could not
+  // read it and could not tell it from Closed or Not emailed — three greys
+  // doing three different jobs. The fill deepens a step and the text goes to
+  // near-ink; the other two lose their fill entirely. **Sent is now the only
+  // grey with a background**, which is what makes the three legible apart.
+  'Sent':           { bg: '#dfe3e8', fg: '#3c4043' },
   'Replied':        { bg: '#d7e7fb', fg: '#1a56a8' },
   'Call scheduled': { bg: '#e5ddf7', fg: '#5b3fa8' },
   'Call done':      { bg: '#d7f0dd', fg: '#1e6b34' },
   'Call cancelled': { bg: '#fbeacb', fg: '#8a5a00' },
-  'Closed':         { bg: '#f8f9fa', fg: INK_FAINT }
+  // Deliberately the faintest thing on the sheet. The whole row is greyed and
+  // struck through besides — see closedRowRule_.
+  'Closed':         { bg: '#ffffff', fg: INK_FAINT }
 };
 
 /** Column widths, in the order the Contacts headers are written. */
@@ -335,6 +364,7 @@ function formatContacts_(sheet) {
   SpreadsheetApp.flush();
 
   applyStatusColours_(sheet, col['Status'], maxRows);
+  applyClosedRowFade_(sheet, col[COL_CLOSED], maxRows, lastCol);
   sheet.setFrozenRows(1);
   if (col[COL_NAME] > 0) sheet.setFrozenColumns(col[COL_NAME]);
 }
@@ -380,6 +410,46 @@ function applyStatusColours_(sheet, statusCol, maxRows) {
   });
   sheet.setConditionalFormatRules(keep);
   range.setHorizontalAlignment('center');
+}
+
+/**
+ * A closed contact fades into the background, whole row.
+ *
+ * Jon's, September 3, 2026: *"when you tick closed for a contact that whole row
+ * kind of greys out or gets a strike through so it's more in the background."*
+ *
+ * Struck through **and** faded, not one or the other: the strike says the
+ * relationship is finished, the fade stops it competing with the rows that
+ * still want something. Conditional formatting can do both — it cannot change
+ * a fill and a font in separate rules on the same range without one winning,
+ * so both live on this one rule, and it is pushed last so it sits over the
+ * status colour on that row.
+ */
+function applyClosedRowFade_(sheet, closedCol, maxRows, lastCol) {
+  if (!closedCol || closedCol < 1) return;
+  var letter = columnLetter_(closedCol);
+  var range = sheet.getRange(2, 1, maxRows - 1, lastCol);
+  var rules = sheet.getConditionalFormatRules();
+  rules.push(SpreadsheetApp.newConditionalFormatRule()
+    // $ locks the column, the bare row stays relative to the range's first row.
+    .whenFormulaSatisfied('=$' + letter + '2=TRUE')
+    .setFontColor(INK_FAINT)
+    .setStrikethrough(true)
+    .setRanges([range])
+    .build());
+  sheet.setConditionalFormatRules(rules);
+}
+
+/** A1 column letter for a 1-based index. Sheets has no built-in for this. */
+function columnLetter_(index) {
+  var letter = '';
+  var n = index;
+  while (n > 0) {
+    var rem = (n - 1) % 26;
+    letter = String.fromCharCode(65 + rem) + letter;
+    n = Math.floor((n - 1) / 26);
+  }
+  return letter;
 }
 
 function formatFound_(sheet) {
@@ -496,14 +566,15 @@ function instructionRows_() {
     R('gap'),
 
     R('h2', 'The one thing to understand'),
-    R('body', 'You own the left of the Contacts tab. Blotter owns the right.'),
-    R('body', 'You type in who you are networking with. Blotter reads your Gmail and Calendar every 15 minutes and keeps their status, timing and calls current.'),
-    R('strong', 'Blotter never writes to your columns, and you never have to update Blotter’s.'),
+    R('strong', 'Blotter never edits your columns on the left — Name, Title, Firm, Email. You never have to touch the right — Status, Days, Last contact, Attempts, Next call, Last call.'),
+    R('body', 'You type in who you are networking with. Blotter reads your Gmail and Calendar every 15 minutes and keeps the right-hand side current.'),
+    R('note', 'Add any columns you like on the left — LinkedIn, Notes, where you met, anything. Put them anywhere. Blotter finds its own columns by their headings, not by position, so your own columns can sit wherever suits you and it will not touch them.'),
     R('gap'),
 
-    R('h2', 'Set up, four steps'),
-    R('step', '1.  Settings tab → put every email address you send from into “Your email addresses”. Most people have one.'),
-    R('step', '2.  File → Settings → Time zone → set it to where you live. Day counts turn over at midnight in whatever this says.'),
+    R('h2', 'Set up steps'),
+    R('step', '1.  Settings tab → “Your email addresses”. Put in every address you send recruiting email from, separated by commas.'),
+    R('note', 'Most people have one and are done. Add more only if you send from several addresses that all arrive in this one inbox — a university address you reply as, or a second “send mail as” alias. Blotter can only read the inbox it is installed in, so a genuinely separate account will not work. Miss an address you actually send from and every row on those threads reads wrong.'),
+    R('step', '2.  File → Settings → Time zone → set it to where you live. Day counts turn over at midnight in whatever this says, and a copied sheet keeps the time zone of whoever built it.'),
     R('step', '3.  Contacts tab → add the people you are networking with. Name and Email are the only two that matter.'),
     R('step', '4.  Blotter menu → Start automatic updates. That is the whole setup.'),
     R('note', 'Paste email addresses rather than typing them where you can. A hyphen your keyboard autocorrects is not the hyphen an email address uses, and Blotter will not be able to read it.'),
@@ -511,24 +582,29 @@ function instructionRows_() {
     R('gap'),
 
     R('h2', 'What the statuses mean'),
-    R('status', 'Not emailed', 'They are in your sheet. Nothing has been sent yet.'),
-    R('status', 'Sent', 'You wrote last. No answer yet.'),
+    R('status', 'Not emailed', 'They are in your tracker. No outreach has been sent yet.'),
+    R('status', 'Sent', 'You wrote last. No response yet.'),
     R('status', 'Replied', 'They wrote last. The ball is yours.'),
     R('status', 'Call scheduled', 'There is a calendar event with them coming up.'),
-    R('status', 'Call done', 'The call happened and nobody has written since — usually means you owe a thank-you.'),
-    R('status', 'Call cancelled', 'Someone declined the invite. Clears as soon as either of you writes.'),
+    R('status', 'Call done', 'The call happened and nobody has written an email since — usually means you owe a thank-you.'),
+    R('status', 'Call cancelled', 'Someone declined the call invite. Clears as soon as either of you sends a new email.'),
     R('status', 'Bounced', 'That address does not work. Find another one.'),
-    R('status', 'Closed', 'You ticked Closed. Blotter leaves the row alone.'),
+    R('status', 'Closed', 'You ticked Closed to signify the correspondence has naturally resolved — usually a coffee chat happened, you sent the thank-you, and nothing further is expected. Blotter leaves the row alone and fades it out of the way.'),
     R('gap'),
 
     R('h2', 'The two numbers'),
-    R('body', 'Days — how long it has been since the last thing that actually happened.'),
-    R('body', 'Attempts — how many times you have written since they last wrote back.'),
-    R('note', 'Both show a dash where there is nothing to count. Blotter never tells you when to follow up: it shows you what is true and how long it has been true, and you decide. Sort by Days.'),
+    R('body', 'Days — how long it has been since the last thing that actually happened on that contact. Which thing depends on the state: on Sent it counts from the email you sent, on Replied from the one they sent, on Call done from the call itself.'),
+    R('body', 'Attempts — how many times you have written since they last wrote back. In other words, how many times you have bumped the thread.'),
+    R('note', 'Both show a dash where there is nothing to count. Blotter never tells you when to follow up: it shows you what is true and how long it has been true, and you decide.'),
+    R('gap'),
+
+    R('h2', 'Sorting'),
+    R('body', 'Blotter menu → Sort contacts. Three ways: by what each contact is waiting on, by title from most junior, or grouped by firm.'),
+    R('note', 'Sorting moves whole rows and keeps everything you typed, including your own columns and any formulas in them.'),
     R('gap'),
 
     R('h2', 'The Found tab'),
-    R('body', 'When somebody new turns up in a conversation with one of your contacts — a colleague copied in, an assistant replying — Blotter puts them in Found rather than adding them.'),
+    R('body', 'When somebody new turns up in a conversation with one of your contacts — a colleague copied in, an assistant replying — Blotter puts them in Found rather than adding them to the Contacts tab.'),
     R('step', 'Yes  →  they become a contact on the next run.'),
     R('step', 'No   →  never suggested again.'),
     R('warn', 'Do not delete a row marked Ignored. That row is the memory that you said no. Delete it and they come back.'),
@@ -630,6 +706,145 @@ function formatInstructions_(sheet, rows) {
 }
 
 // ---------------------------------------------------------------------------
+// Sorting
+//
+// Jon's, September 3, 2026. Three ways to reorder Contacts: by seniority, by
+// firm, and by what each relationship currently wants from you.
+//
+// **These sort the sheet natively rather than reading values and writing them
+// back.** A read-write round trip would silently replace any formula a student
+// had put in one of their own cells with the value it happened to evaluate to
+// that morning. `Sheet.sort()` moves whole rows and keeps formulas, formatting
+// and validation intact.
+//
+// The mechanism is a scratch column past the last used one: write a rank, sort
+// on it, clear it. Row 1 is frozen, so it stays put.
+// ---------------------------------------------------------------------------
+
+/**
+ * Seniority, junior first — Jon's order: analyst, associate, VP, MD.
+ *
+ * Titles are free text a student typed, so this matches on substrings and
+ * checks the most specific first: `Senior Vice President` must not be read as
+ * an analyst because it ends in a word this list also contains. Anything
+ * unrecognised sorts to the bottom rather than being guessed at.
+ */
+function titleRank_(title) {
+  var t = String(title || '').toLowerCase();
+  if (t === '') return 90;
+  if (/managing\s*director|\bmd\b/.test(t)) return 40;
+  if (/vice\s*president|\bvp\b|\bsvp\b|\bevp\b/.test(t)) return 30;
+  if (/associate/.test(t)) return 20;
+  if (/analyst/.test(t)) return 10;
+  if (/partner|director|principal|head\b/.test(t)) return 35;
+  if (/intern/.test(t)) return 5;
+  return 80;
+}
+
+/**
+ * What the relationship wants from you, most-owed first.
+ *
+ * **This is not the order Jon sketched, and the difference is deliberate.** He
+ * offered "replied, sent, not emailed, calls done, calls scheduled, closed —
+ * or something like that". Ordering by what you owe puts the two states that
+ * are actually waiting on you at the top: a reply, then a thank-you. `Sent` and
+ * `Call scheduled` are both "nothing to do but wait", so they sit below
+ * everything actionable, and the three inert states sink.
+ *
+ * One constant away from his order if he prefers it.
+ */
+function stateRank_(status) {
+  var order = {
+    'Replied': 10,          // you owe a reply
+    'Call done': 20,        // you owe a thank-you
+    'Call cancelled': 30,   // needs rescheduling
+    'Bounced': 40,          // needs a working address
+    'Sent': 50,             // waiting on them
+    'Call scheduled': 60,   // booked, nothing to do
+    'Not emailed': 70,      // not started
+    'Closed': 80            // finished
+  };
+  var r = order[String(status || '').trim()];
+  return r === undefined ? 75 : r;
+}
+
+function sortContactsByTitle() { sortContacts_('title'); }
+function sortContactsByFirm()  { sortContacts_('firm'); }
+function sortContactsByState() { sortContacts_('state'); }
+
+function sortContacts_(mode) {
+  var lock = LockService.getScriptLock();
+  // A run may be mid-write. Sorting underneath one would hand Blotter's answers
+  // to the wrong people, so this waits for it rather than racing it.
+  if (!lock.tryLock(30000)) {
+    SpreadsheetApp.getUi().alert('Blotter is updating right now. Try again in a moment.');
+    return;
+  }
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName(TAB_CONTACTS);
+    if (!sheet) throw new Error('The "' + TAB_CONTACTS + '" tab is missing.');
+
+    var cols = {
+      name: findColumn_(sheet, COL_NAME),
+      title: findColumn_(sheet, COL_TITLE),
+      firm: findColumn_(sheet, COL_FIRM),
+      email: findColumn_(sheet, COL_EMAIL),
+      status: findColumn_(sheet, 'Status'),
+      days: findColumn_(sheet, 'Days'),
+      closed: findColumn_(sheet, COL_CLOSED)
+    };
+    var lastRow = sheet.getLastRow();
+    if (lastRow < 3) return;   // nothing to reorder
+
+    var lastCol = sheet.getLastColumn();
+    var scratch = lastCol + 1;
+    var height = lastRow - 1;
+    var data = sheet.getRange(2, 1, height, lastCol).getValues();
+
+    var keys = data.map(function (row) {
+      var name = cols.name > 0 ? String(row[cols.name - 1]).trim() : '';
+      var email = cols.email > 0 ? String(row[cols.email - 1]).trim() : '';
+      // Blank rows keep to the bottom whatever the sort.
+      if (name === '' && email === '') return ['￿'];
+
+      var title = cols.title > 0 ? row[cols.title - 1] : '';
+      var firm = cols.firm > 0 ? String(row[cols.firm - 1]).trim().toLowerCase() : '';
+      var status = cols.status > 0 ? row[cols.status - 1] : '';
+      // Longest-waiting first inside any group, which is the order
+      // ENGINE-RULES §4 asks for. A dash is not a number and sorts last.
+      var days = cols.days > 0 ? Number(row[cols.days - 1]) : NaN;
+      var stale = isNaN(days) ? 0 : 9999 - days;
+
+      if (mode === 'title') return [pad_(titleRank_(title)), firm, name.toLowerCase()];
+      if (mode === 'firm') return [firm || '￾', pad_(titleRank_(title)), name.toLowerCase()];
+      return [pad_(stateRank_(status)), pad_(stale), name.toLowerCase()];
+    });
+
+    sheet.getRange(2, scratch, height, 1)
+      .setValues(keys.map(function (k) { return [k.join('|')]; }));
+    sheet.sort(scratch, true);
+    sheet.getRange(2, scratch, height, 1).clearContent();
+
+    syncClosedCheckboxes_({ sheet: sheet, cols: cols });
+    SpreadsheetApp.getUi().alert('Sorted by ' + {
+      title: 'title, most junior first',
+      firm: 'firm',
+      state: 'what each contact is waiting on, most owed first'
+    }[mode] + '.');
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/** Zero-padded so a text sort orders numbers correctly. */
+function pad_(n) {
+  var s = String(Math.max(0, Math.round(n)));
+  while (s.length < 5) s = '0' + s;
+  return s;
+}
+
+// ---------------------------------------------------------------------------
 // Menu
 // ---------------------------------------------------------------------------
 
@@ -641,6 +856,11 @@ function onOpen() {
     .addSeparator()
     .addItem('Start automatic updates (every 15 min)', 'startAutomaticUpdates')
     .addItem('Stop automatic updates', 'stopAutomaticUpdates')
+    .addSeparator()
+    .addSubMenu(SpreadsheetApp.getUi().createMenu('Sort contacts')
+      .addItem('By what they are waiting on', 'sortContactsByState')
+      .addItem('By title (analyst first)', 'sortContactsByTitle')
+      .addItem('By firm', 'sortContactsByFirm'))
     .addSeparator()
     .addItem('Clear this sheet to hand to someone', 'prepareForHandover')
     .addToUi();

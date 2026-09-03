@@ -66,6 +66,9 @@ const EXPORTS = [
   'asSheetDate_', 'STATUS_STYLE', 'THEMES', 'CONTACTS_WIDTHS', 'FOUND_WIDTHS',
   'COL_NAME', 'COL_TITLE', 'COL_FIRM', 'COL_EMAIL', 'COL_CLOSED',
   'BLOTTER_COLUMNS', 'FOUND_HEADERS',
+  // Sorting: the two ranking functions are pure, and getting either subtly
+  // wrong reorders somebody's whole tracker without erroring.
+  'titleRank_', 'stateRank_', 'pad_', 'columnLetter_',
 ];
 const box = {};
 new Function('box', `${src}\nObject.assign(box, {${EXPORTS.join(', ')}});`)(box);
@@ -336,6 +339,7 @@ eq('otherwise: one call per guest, plus one for the student', statusCalls, 3);
 /** The harness asserts with eq(label, actual, expected); this is the boolean form. */
 function ok(label, actual) { eq(label, !!actual, true); }
 
+const { titleRank_, stateRank_, pad_, columnLetter_ } = box;
 const { asSheetDate_, STATUS_STYLE, THEMES, CONTACTS_WIDTHS, FOUND_WIDTHS,
         COL_NAME, COL_TITLE, COL_FIRM, COL_EMAIL, COL_CLOSED,
         BLOTTER_COLUMNS, FOUND_HEADERS, VALID_STATUSES } = box;
@@ -372,6 +376,53 @@ const { asSheetDate_, STATUS_STYLE, THEMES, CONTACTS_WIDTHS, FOUND_WIDTHS,
     const parts = iso.split('-').map(Number);
     ok('round trip ' + iso, d.getFullYear() === parts[0] && d.getMonth() === parts[1] - 1 && d.getDate() === parts[2]);
   });
+}
+
+// ---------------------------------------------------------------------------
+// Sorting. Titles are free text a student typed, so the ranking has to survive
+// real-world spellings — and must not read "Senior Vice President" as an
+// analyst because it happens to contain a word from a lower rank.
+// ---------------------------------------------------------------------------
+{
+  const rankOf = (t) => titleRank_(t);
+  ok('analyst is most junior', rankOf('Analyst') < rankOf('Associate'));
+  ok('associate below VP', rankOf('Associate') < rankOf('Vice President'));
+  ok('VP below MD', rankOf('Vice President') < rankOf('Managing Director'));
+
+  // The real spellings out of Jon's own 2024 tracker.
+  ['Analyst', 'analyst', 'Summer Analyst', 'Senior Analyst'].forEach((t) =>
+    ok('reads as analyst: ' + t, rankOf(t) === rankOf('Analyst')));
+  ['Associate', 'associate ', 'Senior Associate'].forEach((t) =>
+    ok('reads as associate: ' + t, rankOf(t) === rankOf('Associate')));
+  ['Vice President', 'VP', 'vp', 'SVP', 'Senior Vice President'].forEach((t) =>
+    ok('reads as VP: ' + t, rankOf(t) === rankOf('Vice President')));
+  ['MD', 'Managing Director', 'managing director'].forEach((t) =>
+    ok('reads as MD: ' + t, rankOf(t) === rankOf('Managing Director')));
+
+  // The trap: a longer title containing a more junior word.
+  ok('Senior Vice President is not an analyst', rankOf('Senior Vice President') > rankOf('Analyst'));
+  ok('Managing Director is not an associate', rankOf('Managing Director') > rankOf('Associate'));
+
+  ok('an empty title sinks', rankOf('') > rankOf('Managing Director'));
+  ok('an unknown title sinks', rankOf('Chief Vibes Officer') > rankOf('Managing Director'));
+
+  // State order: what you owe, first.
+  VALID_STATUSES.forEach((st) => ok('every status ranks: ' + st, typeof stateRank_(st) === 'number'));
+  ok('Replied outranks Sent', stateRank_('Replied') < stateRank_('Sent'));
+  ok('Call done outranks Sent', stateRank_('Call done') < stateRank_('Sent'));
+  ok('Sent outranks Not emailed', stateRank_('Sent') < stateRank_('Not emailed'));
+  ok('Closed sinks below everything', VALID_STATUSES.filter((s) => s !== 'Closed')
+    .every((s) => stateRank_(s) < stateRank_('Closed')));
+  ok('an unknown status does not outrank a real one', stateRank_('Banana') > stateRank_('Sent'));
+
+  // The sort key is text, so numbers must be padded or 10 sorts before 9.
+  ok('pad_ orders numerically as text', pad_(9) < pad_(10));
+  ok('pad_ orders 2 before 100', pad_(2) < pad_(100));
+  ok('pad_ is fixed width', pad_(1).length === pad_(99999).length);
+
+  // The closed-row rule builds an A1 reference by hand.
+  [[1, 'A'], [26, 'Z'], [27, 'AA'], [28, 'AB'], [52, 'AZ'], [53, 'BA']].forEach(([n, l]) =>
+    ok('column ' + n + ' is ' + l, columnLetter_(n) === l));
 }
 
 // ---------------------------------------------------------------------------
