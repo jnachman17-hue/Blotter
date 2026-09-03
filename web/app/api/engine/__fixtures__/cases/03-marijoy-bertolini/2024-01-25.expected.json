@@ -6,7 +6,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   }

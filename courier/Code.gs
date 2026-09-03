@@ -17,10 +17,10 @@
  *     a half-written one is not.
  *
  * The contract this speaks is
- * blotter-ib-ws1/docs/workstreams/ws9-build/05-CONTRACT.md, version 2.
+ * blotter-ib-ws1/docs/workstreams/ws9-build/05-CONTRACT.md, version 3.
  */
 
-var CONTRACT_VERSION = 2;
+var CONTRACT_VERSION = 3;
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -46,10 +46,10 @@ var COL_CLOSED = 'Closed';
 var VALID_STATUSES = ['Not emailed', 'Bounced', 'Sent', 'Replied', 'Call scheduled',
                       'Call done', 'Call cancelled', 'Closed'];
 
-// What an empty clock looks like in the sheet. ENGINE-RULES §4 gives both
-// "Not emailed" and "Closed" a dash rather than a blank, because a blank cell
-// reads as "Blotter has not run" and a dash reads as "there is no clock here".
-// An em dash, not a hyphen: a leading hyphen is how you start a formula.
+// What "no number here" looks like in the sheet, for Days and Attempts alike.
+// A blank cell reads as "Blotter has not run"; a dash reads as "there is
+// nothing to show here", which is what D24 wants said. An em dash, not a
+// hyphen: a leading hyphen is how you start a formula.
 var NO_CLOCK = '\u2014';
 
 var FOUND_HEADERS = ['Add?', 'Name', 'Email', 'First seen', 'Context'];
@@ -170,12 +170,19 @@ function setupSheet() {
   ensureHeaders_(contacts, wantedHeaders);
   contacts.setFrozenRows(1);
 
-  // Closed is a checkbox column so nobody has to remember magic words.
-  var closedCol = findColumn_(contacts, COL_CLOSED);
-  if (closedCol > 0 && contacts.getMaxRows() > 1) {
-    contacts.getRange(2, closedCol, contacts.getMaxRows() - 1, 1)
-      .insertCheckboxes();
-  }
+  // Closed is a checkbox column so nobody has to remember magic words — but
+  // only on rows that hold a person. Painting the whole column was the cause
+  // of the row-996 bug: an unticked checkbox stores FALSE, FALSE counts as
+  // content, and `getLastRow()` then reports ~995 on an almost-empty sheet.
+  // It also made a blank sheet look like clutter. Ruled by Jon (D25).
+  syncClosedCheckboxes_({
+    sheet: contacts,
+    cols: {
+      name: findColumn_(contacts, COL_NAME),
+      email: findColumn_(contacts, COL_EMAIL),
+      closed: findColumn_(contacts, COL_CLOSED)
+    }
+  });
   // Date-ish Blotter columns display like the examples in §9 (1/16/26).
   ['Last contact'].forEach(function (name) {
     var c = findColumn_(contacts, name);
@@ -227,6 +234,58 @@ function setupSheet() {
     'every address you send email from, separated by commas.\n\n' +
     'Then use Blotter → Step 2: Run once now.'
   );
+}
+
+/**
+ * Checkboxes on the `Closed` column of every row that holds a person, and on
+ * no other row.
+ *
+ * **Why here and not on edit.** An `onEdit` trigger would put a checkbox under
+ * the student's cursor the instant they type a name, which is nicer — but it
+ * needs its own installable trigger, another authorisation, and it does not
+ * run at all for rows Blotter itself appends. Doing it in the write phase (and
+ * in setup) covers every path with no new permissions: a row typed by hand
+ * gets its checkbox within one run, and a row Blotter appends gets it in the
+ * same breath.
+ *
+ * **It also cleans up.** A sheet built before this fix carries about a thousand
+ * unticked boxes; this clears the validation and the stored FALSE from every
+ * row with no person on it, which is what removes the cause of the row-996
+ * bug rather than working around it.
+ *
+ * A ticked box on a row with a person is never touched.
+ */
+function syncClosedCheckboxes_(sheetState) {
+  var sheet = sheetState.sheet;
+  var closedCol = sheetState.cols.closed;
+  var nameCol = sheetState.cols.name;
+  var emailCol = sheetState.cols.email;
+  if (!closedCol || !nameCol || !emailCol) return;
+
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 2) return;
+  var height = lastRow - 1;
+
+  var names = sheet.getRange(2, nameCol, height, 1).getValues();
+  var emails = sheet.getRange(2, emailCol, height, 1).getValues();
+
+  // One contiguous run of people, then everything below it. Two range writes
+  // rather than a thousand: each setDataValidation call is a round trip.
+  var lastPerson = 1;
+  for (var i = 0; i < height; i++) {
+    if (String(names[i][0]).trim() !== '' || String(emails[i][0]).trim() !== '') {
+      lastPerson = i + 2;
+    }
+  }
+
+  if (lastPerson >= 2) {
+    sheet.getRange(2, closedCol, lastPerson - 1, 1).insertCheckboxes();
+  }
+  if (lastRow > lastPerson) {
+    var blanks = sheet.getRange(lastPerson + 1, closedCol, lastRow - lastPerson, 1);
+    blanks.clearDataValidations();
+    blanks.clearContent();
+  }
 }
 
 function ensureHeaders_(sheet, wanted) {
@@ -384,6 +443,7 @@ function courierPass_() {
     writePhaseBegun_ = true;
     writeBlotterColumns_(sheetState, response.rows);
     var added = addApprovedContacts_(ss, sheetState, foundState);
+    syncClosedCheckboxes_(sheetState);
     var suggested = writeFoundSuggestions_(ss, sheetState, foundState, response.found || []);
     writeSetting_(ss, SETTING_LAST_RUN, new Date());
     // When the time machine is on, say so first and say so loudly. Every
@@ -394,7 +454,8 @@ function courierPass_() {
         '. Every Status and Days value on this sheet answers that date, not today. ' +
         'Clear Settings → "' + SETTING_PRETEND_TODAY + '" and run again to go back to normal.'
       : '';
-    var warningLines = (response.warnings || []).slice();
+    var addressWarnings = unreadableAddressWarnings_(sheetState.unreadableAddresses);
+    var warningLines = addressWarnings.concat(response.warnings || []);
     if (pretendWarning) warningLines.unshift(pretendWarning);
     writeSetting_(ss, SETTING_WARNINGS, warningLines.length ? warningLines.join(' | ') : 'None');
 
@@ -411,9 +472,16 @@ function courierPass_() {
 
     return (pretendWarning ? '*** ' + pretendWarning + ' ***\n\n' : '') +
       'Updated ' + response.rows.length + ' contact row(s). ' +
-      'Added ' + added + ' approved contact(s). ' +
+      'Added ' + added.added + ' approved contact(s). ' +
+      (added.skipped ? 'Skipped ' + added.skipped + ' already in Contacts. ' : '') +
       'Suggested ' + suggested + ' new name(s) in the Found tab. ' +
-      'Took ' + seconds + ' seconds.';
+      'Took ' + seconds + ' seconds.' +
+      // The student is looking at this dialog right now; a bad address in
+      // their sheet is worth interrupting them for.
+      (addressWarnings.length
+        ? '\n\nCHECK THESE ROW(S) — Blotter could not read an email address:\n• ' +
+          addressWarnings.join('\n• ')
+        : '');
   } finally {
     lock.releaseLock();
   }
@@ -596,12 +664,30 @@ function readContacts_(ss) {
   var contacts = [];
   var allEmails = {};
   var emailsInSheet = {};
+  var unreadableAddresses = [];
+
   rows.forEach(function (row, i) {
     var rowNumber = i + 2; // sheet row — the contract's join key
     var name = String(row[cols.name - 1]).trim();
     var firm = cols.firm > 0 ? String(row[cols.firm - 1]).trim() : '';
-    var emails = addressList_(row[cols.email - 1]);
-    if (name === '' && emails.length === 0) return; // blank padding row
+    var rawEmail = String(row[cols.email - 1] === null || row[cols.email - 1] === undefined
+      ? '' : row[cols.email - 1]).trim();
+    var emails = addressList_(rawEmail);
+    if (name === '' && emails.length === 0 && rawEmail === '') return; // blank padding row
+
+    // A row with a person on it and nothing Blotter can read as an address is
+    // the failure that has to be loud. Left silent it reads `Not emailed`
+    // forever, and looks exactly like somebody the student never wrote to —
+    // which is how a hand-typed en dash cost an afternoon in the first live
+    // install. Normalising known substitutions (above) fixes the characters we
+    // know about; this reports the ones we do not.
+    if (emails.length === 0) {
+      unreadableAddresses.push({
+        row: rowNumber,
+        name: name || '(no name)',
+        cell: rawEmail
+      });
+    }
 
     emails.forEach(function (a) {
       allEmails[a.toLowerCase()] = a;
@@ -622,8 +708,26 @@ function readContacts_(ss) {
     lastCol: lastCol,
     contacts: contacts,
     allContactEmails: Object.keys(allEmails).map(function (k) { return allEmails[k]; }),
-    emailsInSheet: emailsInSheet
+    emailsInSheet: emailsInSheet,
+    unreadableAddresses: unreadableAddresses
   };
+}
+
+/**
+ * The sentences the student sees about rows Blotter could not read an address
+ * from. Names the row and quotes the cell, because "something is wrong" sends
+ * somebody hunting and "row 7, Jane Doe, jane@acme,com" does not.
+ */
+function unreadableAddressWarnings_(unreadable) {
+  return unreadable.map(function (u) {
+    return u.cell === ''
+      ? 'Row ' + u.row + ' (' + u.name + ') has no email address, so Blotter cannot ' +
+        'find their mail and the row will stay "Not emailed".'
+      : 'Row ' + u.row + ' (' + u.name + '): "' + u.cell + '" is not an email address ' +
+        'Blotter can read, so the row will stay "Not emailed". Retyping it usually ' +
+        'fixes it — autocorrect sometimes replaces a hyphen with a dash that looks ' +
+        'identical.';
+  });
 }
 
 function readFoundTab_(ss) {
@@ -937,7 +1041,10 @@ function writeBlotterColumns_(sheetState, rows) {
     // clock here". A closed row keeps every other fact it had.
     'Days': function (r) { return r.days === null || r.days === undefined ? NO_CLOCK : r.days; },
     'Last contact': function (r) { return r.last_contact === null || r.last_contact === undefined ? '' : r.last_contact; },
-    'Attempts': function (r) { return r.attempts === null || r.attempts === undefined ? '' : r.attempts; },
+    // A dash, for the same reason Days uses one (D24): the server decides where
+    // a number means something and sends null everywhere else. The courier
+    // renders that and makes no judgment about which states deserve a count.
+    'Attempts': function (r) { return r.attempts === null || r.attempts === undefined ? NO_CLOCK : r.attempts; },
     'Next call': function (r) { return r.next_call === null || r.next_call === undefined ? '' : r.next_call; },
     'Last call': function (r) { return r.last_call === null || r.last_call === undefined ? '' : r.last_call; }
   };
@@ -965,22 +1072,57 @@ function writeBlotterColumns_(sheetState, rows) {
  */
 function addApprovedContacts_(ss, sheetState, foundState) {
   var added = 0;
+  var skipped = 0;
   foundState.approvals.forEach(function (a) {
     if (!sheetState.emailsInSheet[a.email.toLowerCase()]) {
       var newRow = [];
       for (var i = 0; i < sheetState.lastCol; i++) newRow.push('');
       newRow[sheetState.cols.name - 1] = a.name;
       newRow[sheetState.cols.email - 1] = a.email;
-      sheetState.sheet.appendRow(newRow);
+      // NOT appendRow. `getLastRow()` counts a column of unchecked checkboxes
+      // as content — an unticked box stores FALSE — so on the first live
+      // install an approved contact landed at row 996, nine hundred rows below
+      // the data, and the student saw "Added" with nothing added. Append after
+      // the last row that actually holds a person.
+      var target = lastRowWithContact_(sheetState) + 1;
+      sheetState.sheet.getRange(target, 1, 1, sheetState.lastCol).setValues([newRow]);
       sheetState.emailsInSheet[a.email.toLowerCase()] = true;
       added++;
+      foundState.sheet.getRange(a.rowNumber, foundState.cols.add).setValue('Added');
+    } else {
+      // The mark used to be set out here, outside the guard, so the sheet
+      // claimed an action it had not taken. A sheet that lies is worse than
+      // one that fails loudly.
+      skipped++;
+      foundState.sheet.getRange(a.rowNumber, foundState.cols.add)
+        .setValue('Already in Contacts');
     }
-    foundState.sheet.getRange(a.rowNumber, foundState.cols.add).setValue('Added');
   });
   foundState.rejections.forEach(function (rowNumber) {
     foundState.sheet.getRange(rowNumber, foundState.cols.add).setValue('Ignored');
   });
-  return added;
+  return { added: added, skipped: skipped };
+}
+
+/**
+ * The last row of Contacts that actually carries a person — a Name or an
+ * Email. Never `getLastRow()`, which counts formatting and unchecked
+ * checkboxes as content. Returns the header row when the sheet is empty, so
+ * the first contact lands at row 2.
+ */
+function lastRowWithContact_(sheetState) {
+  var sheet = sheetState.sheet;
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 2) return 1;
+  var names = sheet.getRange(2, sheetState.cols.name, lastRow - 1, 1).getValues();
+  var emails = sheet.getRange(2, sheetState.cols.email, lastRow - 1, 1).getValues();
+  var last = 1;
+  for (var i = 0; i < names.length; i++) {
+    var hasName = String(names[i][0]).trim() !== '';
+    var hasEmail = String(emails[i][0]).trim() !== '';
+    if (hasName || hasEmail) last = i + 2;
+  }
+  return last;
 }
 
 /**
@@ -1071,6 +1213,40 @@ function toIso_(date) {
 
 var ONE_ADDRESS = /[A-Za-z0-9._%+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/;
 
+/**
+ * What a person's keyboard and Google's autocorrect do to an address that a
+ * plain-ASCII pattern then refuses to see.
+ *
+ * Found in the first live install: Jon typed `jon@un-claude.com` by hand and
+ * the row read `Not emailed` forever. Pasting the identical address worked.
+ * Autocorrect had turned the hyphen into an **en dash**, which is not a
+ * hyphen, and the row failed silently — indistinguishable from a contact he
+ * had genuinely never written to.
+ *
+ * Deliberately short. Every entry is a character an editor substitutes for one
+ * a person actually typed: the dash family, the space family, and the zero
+ * width joiners that arrive with a copy-paste. **Capitalisation needs nothing
+ * here** — matching lowercases everywhere.
+ */
+var TYPED_SUBSTITUTIONS = [
+  [/[\u2010\u2011\u2012\u2013\u2014\u2015\u2212\uFE58\uFE63\uFF0D]/g, '-'], // dashes and minus signs
+  [/[\u00A0\u2007\u202F\u2000-\u200A\u3000]/g, ' '],                            // non-breaking and typographic spaces
+  [/[\u200B\u200C\u200D\uFEFF]/g, ''],                                          // zero-width, invisible entirely
+  [/[\u2018\u2019\u201A\u201B]/g, "'"],                                         // curly single quotes
+  [/[\u201C\u201D\u201E\u201F]/g, '"'],                                         // curly double quotes
+  [/[\uFF20]/g, '@'],                                                             // full-width at sign
+  [/[\uFF0E\u3002]/g, '.']                                                        // full-width and ideographic stops
+];
+
+/** A cell as typed, with the substitutions undone. Never changes a real address. */
+function normaliseTyped_(value) {
+  var text = String(value === null || value === undefined ? '' : value);
+  for (var i = 0; i < TYPED_SUBSTITUTIONS.length; i++) {
+    text = text.replace(TYPED_SUBSTITUTIONS[i][0], TYPED_SUBSTITUTIONS[i][1]);
+  }
+  return text;
+}
+
 /** "Jamie Diamond <jamie@x.com>" → "jamie@x.com". */
 function firstAddress_(headerValue) {
   var list = addressList_(headerValue);
@@ -1080,13 +1256,13 @@ function firstAddress_(headerValue) {
 /** A To/Cc header into bare addresses. */
 function addressList_(headerValue) {
   if (!headerValue) return [];
-  var matches = String(headerValue).match(new RegExp(ONE_ADDRESS.source, 'g'));
+  var matches = normaliseTyped_(headerValue).match(new RegExp(ONE_ADDRESS.source, 'g'));
   return matches || [];
 }
 
 /** The bare address inside any header value, named or not. '' if there is none. */
 function bareAddress_(value) {
-  var m = String(value || '').match(ONE_ADDRESS);
+  var m = normaliseTyped_(value).match(ONE_ADDRESS);
   return m ? m[0] : '';
 }
 
@@ -1096,7 +1272,7 @@ function bareAddress_(value) {
  * Barbara" stays one person instead of becoming two.
  */
 function splitHeaderParts_(headerValue) {
-  var text = String(headerValue || '');
+  var text = normaliseTyped_(headerValue);
   var parts = [];
   var current = '';
   var inQuotes = false;
@@ -1127,7 +1303,7 @@ function splitHeaderParts_(headerValue) {
  * in a student's tracker (ENGINE-RULES §8, decision D4).
  */
 function namedAddress_(part) {
-  var text = String(part || '');
+  var text = normaliseTyped_(part);
   var address = bareAddress_(text);
   if (address === '') return '';
   var name = text.slice(0, text.indexOf(address))

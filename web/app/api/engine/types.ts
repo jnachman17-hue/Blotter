@@ -10,8 +10,8 @@
  * be traced from the wire to the code without a translation table.
  */
 
-/** The contract versions this server speaks. Version 1 is still understood. */
-export type ContractVersion = 1 | 2;
+/** The contract versions this server speaks. Older ones are still understood. */
+export type ContractVersion = 1 | 2 | 3;
 
 export interface EngineRequest {
   version: ContractVersion;
@@ -101,12 +101,23 @@ export type Status =
 export interface RowOut {
   row: number;
   status: Status;
-  /** Whole days per the engine rules §4; null where the state has no clock. */
+  /**
+   * Whole days per the engine rules §4, and **`null` wherever a number would
+   * not mean anything** (D24). Only `Sent`, `Replied` and `Call done` carry
+   * one: everything else gets a dash in the sheet.
+   */
   days: number | null;
   /** ISO date (YYYY-MM-DD), or null. Never an empty string. */
   last_contact: string | null;
-  /** Times written since they last wrote back. 0 where nothing has been sent. */
-  attempts: number;
+  /**
+   * Times written since they last wrote back — **and `null` everywhere the
+   * number would not mean anything** (D24, contract version 3).
+   *
+   * In practice that is everywhere but `Sent`. `Replied` always has zero by
+   * definition and sending that zero is noise dressed as data; a bounced
+   * address is bounced whether it was guessed at once or three times.
+   */
+  attempts: number | null;
   /**
    * The next upcoming call's start, echoed as the ISO timestamp the courier
    * sent, or null. The timestamp rather than a bare date because the sheet

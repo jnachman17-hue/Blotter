@@ -4,9 +4,9 @@
   {
    "row": 2,
    "status": "Call cancelled",
-   "days": 8,
+   "days": null,
    "last_contact": "2024-01-17",
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   }

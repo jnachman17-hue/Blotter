@@ -337,3 +337,54 @@ budget of roughly 82. Down from 83 seconds before the calendar fix.
 **A real student is a fraction of this.** The quota arithmetic in
 `11-COURIER-NOTES.md` §3 was always flagged as an estimate awaiting an
 observation; there are now two.
+
+---
+
+## Live-test rulings, September 2, 2026
+
+### D24. `Days` and `Attempts` show a number only where it means something. **Not built.**
+
+| Status | Days | Attempts |
+|---|---|---|
+| Sent | since you wrote | **the count** |
+| Replied | since they wrote | — |
+| Call done | since the call — **the thank-you clock** | — |
+| Call scheduled · Call cancelled · Bounced · Closed · Not emailed | — | — |
+
+Jon found this on seeing `Call scheduled` count *down* to a call while every
+other state counted *up* from an email. **One column, two directions, nothing on
+the sheet to say which** — and redundant besides, since `Next call` already
+carries the date.
+
+He kept Days on `Call done` on the thank-you-clock argument and removed it
+everywhere else, including `Bounced`: *"If that address is bounced it's bounced,
+additional attempts are worthless."*
+
+**The principle:** a column shows a number only when that number means
+something. `Replied` always has zero attempts by definition, and printing that
+zero is noise dressed as data.
+
+### D25. No blank checkboxes. They appear when a row has content. **Not built.**
+
+Jon: *"we need to get rid of the blank checkboxes and have them autopopulate
+when you add content to a new row."*
+
+**This is the fix for defect 3, not just a cosmetic one.** `setupSheet` applies
+checkbox validation down the whole `Closed` column, an unchecked checkbox stores
+`FALSE`, `FALSE` counts as content, `getLastRow()` returns ~995, and an approved
+contact was appended at **row 996**.
+
+Applying checkboxes only to rows that have a Name or an Email removes the cause
+rather than working around it — and it fixes the clutter on an otherwise blank
+sheet at the same time.
+
+**Implementation is the build chat's call** (apply during the write phase, or on
+edit), but `addApprovedContacts_` should **also** stop trusting `getLastRow()`
+and append after the last row carrying a Name or Email. Two independent
+protections against the same class of fault.
+
+### D26. The `Added` mark must reflect what actually happened. **Not built.**
+
+The mark is currently set outside the `if` that guards the append, so the sheet
+reports an action it did not take. **A sheet that lies is worse than one that
+fails loudly.**

@@ -1,6 +1,6 @@
 import { computeEngine, firmInTitle } from "./rules";
 import { parseEngineRequest, RequestError } from "./validate";
-import type { ContactIn, EngineRequest, EventIn, MessageIn, ThreadIn } from "./types";
+import type { ContactIn, EngineRequest, EventIn, MessageIn, RowOut, ThreadIn } from "./types";
 
 /**
  * The engine's own plumbing tests.
@@ -90,7 +90,7 @@ const GMAIL_BOUNCE = (failed: string) =>
   const r = computeEngine(req([contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])], []));
   check("not emailed: status", r.rows[0].status, "Not emailed");
   check("not emailed: no clock", r.rows[0].days, null);
-  check("not emailed: attempts", r.rows[0].attempts, 0);
+  check("not emailed: no attempts to show", r.rows[0].attempts, null);
   check("not emailed: last_contact", r.rows[0].last_contact, null);
 }
 
@@ -124,7 +124,8 @@ const GMAIL_BOUNCE = (failed: string) =>
   );
   check("replied: status", r.rows[0].status, "Replied");
   check("replied: days since they wrote", r.rows[0].days, 10);
-  check("replied: attempts reset", r.rows[0].attempts, 0);
+  /* D24: Replied is always zero by definition, so it shows nothing at all. */
+  check("replied: no attempts, because it is always zero", r.rows[0].attempts, null);
 }
 
 /* An auto-reply is not a reply. The real one arrived 20 seconds after the
@@ -185,8 +186,12 @@ const GMAIL_BOUNCE = (failed: string) =>
     ),
   );
   check("bounced: status despite Status: 4.4.2", r.rows[0].status, "Bounced");
-  check("bounced: days since the bounce", r.rows[0].days, 10);
-  check("bounced: three attempts burned", r.rows[0].attempts, 3);
+  /* D24: a bounced address is unreachable; a clock on it says nothing useful. */
+  check("bounced: no clock", r.rows[0].days, null);
+  /* D24, in Jon's words: "If that address is bounced it's bounced, additional
+     attempts are worthless." The three guesses are still counted internally;
+     they are simply not worth a cell. */
+  check("bounced: no attempts shown", r.rows[0].attempts, null);
 }
 
 /* The revival: a bounced last email, then the person writes back from an
@@ -244,7 +249,9 @@ const GMAIL_BOUNCE = (failed: string) =>
     ),
   );
   check("call scheduled: status", r.rows[0].status, "Call scheduled");
-  check("call scheduled: days until it", r.rows[0].days, 2);
+  /* D24: the one state that counted FORWARDS, and `next_call` already carries
+     the date. It shows a dash now. */
+  check("call scheduled: no clock — next_call carries the date", r.rows[0].days, null);
   check("call scheduled: next_call echoes the start", r.rows[0].next_call, "2024-02-17T19:00:00Z");
   check("call scheduled: last_contact still the mail", r.rows[0].last_contact, "2024-02-12");
 }
@@ -355,16 +362,16 @@ const GMAIL_BOUNCE = (failed: string) =>
      `Sent` would read: six days since Jon's email of the 14th. */
   const ahead = computeEngine(req(jamie, [thread], [declinedByThem])).rows[0];
   check("declined in advance: cancelled, not scheduled", ahead.status, "Call cancelled");
-  check("declined in advance: days since the last EMAIL", ahead.days, 1);
+  check("declined in advance: no clock", ahead.days, null);
   check("a cancelled call is not the next call", ahead.next_call, null);
   check("a cancelled call is not the last call either", ahead.last_call, null);
-  check("a cancelled call does not disturb attempts", ahead.attempts, 1);
+  check("a cancelled call shows no attempts", ahead.attempts, null);
 
   /* The hour the call was due passing changes nothing, because nothing
      happened at it. The clock is still counting from the email. */
   const after = computeEngine(req(jamie, [thread], [declinedByThem], "2024-02-25T17:00:00Z")).rows[0];
   check("the call's hour passing changes the status not at all", after.status, "Call cancelled");
-  check("and the clock still counts from the email", after.days, 11);
+  check("and still no clock once the hour passes", after.days, null);
 
   /* The whole point of the state: it clears itself, exactly as `Call done`
      does. Without that it would be a dead end nothing ever removes. */
@@ -412,8 +419,8 @@ const GMAIL_BOUNCE = (failed: string) =>
     req(jamie, [{ thread_id: "t1", messages: [outreach, notice] }], [declined], "2024-02-15T17:00:00Z"),
   ).rows[0];
   check("declined, nothing written since: cancelled", quiet.status, "Call cancelled");
-  check("and the clock counts from the email, not the notice", quiet.days, 7);
-  check("the decline notice is not a reply", quiet.attempts, 1);
+  check("a cancelled call carries no clock", quiet.days, null);
+  check("the decline notice is not a reply", quiet.attempts, null);
 
   /* They write the next day proposing a new time. The row clears immediately —
      it does not wait for the call's date to pass, which is what the anchor this
@@ -490,7 +497,7 @@ const GMAIL_BOUNCE = (failed: string) =>
     ),
   );
   check("a completed call outranks the older email", r.rows[0].status, "Call cancelled");
-  check("and it is what the clock counts from", r.rows[0].days, 5);
+  check("and a cancelled call still carries no clock", r.rows[0].days, null);
   check("the call that happened is still Last call", r.rows[0].last_call, "2024-02-10");
 }
 
@@ -517,7 +524,7 @@ const GMAIL_BOUNCE = (failed: string) =>
   check("nothing ever happened: still cancelled", r.rows[0].status, "Call cancelled");
   check("nothing ever happened: no clock at all", r.rows[0].days, null);
   check("nothing ever happened: nothing invented", r.rows[0].last_contact, null);
-  check("nothing ever happened: no attempts", r.rows[0].attempts, 0);
+  check("nothing ever happened: no attempts", r.rows[0].attempts, null);
   check("nothing ever happened: no last call", r.rows[0].last_call, null);
 }
 
@@ -633,7 +640,7 @@ const GMAIL_BOUNCE = (failed: string) =>
   );
   check("closed: the clock is a dash", r.rows[0].days, null);
   check("closed: last contact survives", r.rows[0].last_contact, "2024-02-12");
-  check("closed: attempts survive", r.rows[0].attempts, 2);
+  check("closed: no attempts shown", r.rows[0].attempts, null);
   check("closed: the call date survives", r.rows[0].last_call, "2024-02-10");
 }
 
@@ -825,7 +832,7 @@ const GMAIL_BOUNCE = (failed: string) =>
     ),
   );
   check("forward: he still holds the last word", stopsAtForward.rows[0].status, "Replied");
-  check("forward: zero attempts since his reply", stopsAtForward.rows[0].attempts, 0);
+  check("forward: he replied, so no attempts are shown", stopsAtForward.rows[0].attempts, null);
 }
 
 /* A calendar RSVP is machine mail: accepting an invite is not writing back.
@@ -987,6 +994,55 @@ check("firm: Citi does not match Houlihan", firmInTitle("Citi", "Danny - Jonatha
   check("days: late evening to small hours is one day", r.rows[0].days, 1);
 }
 
+/* D24's table, walked end to end. It is stated as a table in the rules, so it
+   is pinned as one here: a column carries a number only where that number
+   means something, and null everywhere else. */
+{
+  const outreach = out("2024-02-08T14:00:00Z", ["jamie@jpmorgan.com"]);
+  const theirs = msg({ date: "2024-02-09T14:00:00Z", from: "jamie@jpmorgan.com" });
+  const past = evt({ start: "2024-02-10T19:00:00Z", end: "2024-02-10T19:30:00Z" });
+  const ahead = evt({ start: "2024-02-20T19:00:00Z", end: "2024-02-20T19:30:00Z" });
+  const off = evt({
+    start: "2024-02-20T19:00:00Z",
+    end: "2024-02-20T19:30:00Z",
+    attendees: ["jamie@jpmorgan.com", "student@gmail.com"],
+    declined: ["jamie@jpmorgan.com"],
+  });
+  const bounce = msg({
+    date: "2024-02-08T14:01:00Z",
+    from: "mailer-daemon@googlemail.com",
+    subject: "Delivery Status Notification (Failure)",
+    body: GMAIL_BOUNCE("jamie@jpmorgan.com"),
+  });
+  const row = (threads: ThreadIn[], events: EventIn[] = [], closed = false) =>
+    computeEngine(
+      req(
+        [contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"], closed)],
+        threads,
+        events,
+      ),
+    ).rows[0];
+  const t = (...messages: MessageIn[]): ThreadIn[] => [{ thread_id: "t1", messages }];
+  const shape = (r: RowOut) => [r.status, r.days, r.attempts];
+
+  check("D24 · Not emailed", shape(row([])), ["Not emailed", null, null]);
+  check("D24 · Sent — the only row carrying both", shape(row(t(outreach))), ["Sent", 7, 1]);
+  check("D24 · Replied — a clock, no count", shape(row(t(outreach, theirs))), ["Replied", 6, null]);
+  check("D24 · Call done — the thank-you clock", shape(row(t(outreach), [past])), ["Call done", 5, null]);
+  check("D24 · Call scheduled", shape(row(t(outreach), [ahead])), ["Call scheduled", null, null]);
+  check("D24 · Call cancelled", shape(row(t(outreach), [off])), ["Call cancelled", null, null]);
+  check("D24 · Bounced", shape(row(t(outreach, bounce))), ["Bounced", null, null]);
+  check("D24 · Closed", shape(row(t(outreach), [], true)), ["Closed", null, null]);
+
+  /* The count itself is still computed correctly — D24 governs whether it is
+     shown, not whether it is right. */
+  check(
+    "a second send still counts, and Sent still shows it",
+    row(t(outreach, out("2024-02-12T14:00:00Z", ["jamie@jpmorgan.com"]))).attempts,
+    2,
+  );
+}
+
 /* ---------------------------------------------------------------- *
  * The envelope
  * ---------------------------------------------------------------- */
@@ -994,11 +1050,11 @@ check("firm: Citi does not match Houlihan", firmInTitle("Citi", "Danny - Jonatha
 {
   let error = "";
   try {
-    parseEngineRequest({ version: 3, now: "2024-02-15T17:00:00Z", student: { addresses: ["s@x.com"] } });
+    parseEngineRequest({ version: 4, now: "2024-02-15T17:00:00Z", student: { addresses: ["s@x.com"] } });
   } catch (e) {
     error = e instanceof RequestError ? e.message : "wrong error type";
   }
-  check("an unknown version is loud", error.includes("must be 1 or 2"), true);
+  check("an unknown version is loud", error.includes("must be 1, 2 or 3"), true);
 }
 
 /* Contract v2: both versions are understood, and the answer comes back in the

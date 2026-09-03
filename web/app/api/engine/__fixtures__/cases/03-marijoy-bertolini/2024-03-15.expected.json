@@ -6,7 +6,7 @@
    "status": "Replied",
    "days": 15,
    "last_contact": "2024-02-29",
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   }
