@@ -40,6 +40,12 @@ one. `noticeRange_` takes `max(closedCol, lastColumn) + 1`.
 so it is visible from any tab; and a **manual** run puts the text at the top of
 the summary dialog.
 
+**A refused manual run leads with the notice** rather than burying it. "Status
+402" answers nothing; "your trial has ended" answers everything. It also drops
+the "the sheet is exactly as it was" line in that case, because a notice *was*
+written and that sentence would be false — the same honesty bug the partial-
+write dialog was fixed for once already.
+
 **The narrow exception to write-nothing-on-failure.** A `blocked` notice has to
 survive a refusal — that is what the level is for. `postToServer_` now attaches
 any notice it can parse to the error it throws, and `courierPass_` writes
@@ -85,8 +91,10 @@ untouched.
 
 ### ⚠ Jon must create the table, or nothing is counted
 
-Until this exists, the endpoint answers `{counted:false, reason:"not_configured"}`
-and every run is otherwise unaffected. **In the Supabase SQL editor:**
+**Verified against the live endpoint after deploy: it answers
+`{"counted":false,"reason":"insert_failed"}`, not `not_configured`** — so the
+Supabase credentials are already present and **the table is the only thing
+missing**. Every run is otherwise unaffected. **In the Supabase SQL editor:**
 
 ```sql
 create table if not exists blotter_installs (
