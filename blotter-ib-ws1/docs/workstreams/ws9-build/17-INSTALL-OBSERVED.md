@@ -116,3 +116,49 @@ reasoning about it.** The first thing a real student will do is open an empty
 sheet and expect it to know something. Recorded here because a user's own
 expectation, discovered by accident, is better evidence than the debate that
 produced D3.
+
+---
+
+## 5. LIVE TEST DEFECT 1 — a typed address can silently never match
+
+**Found September 2, 2026, minutes into the first real test.** Jon typed
+`jon@un-claude.com` into the Email cell by hand and the row read
+`Not emailed` with a dash. He pasted the same address from the chat and the row
+populated perfectly.
+
+**The cause, verified against `ONE_ADDRESS` in `Code.gs`:**
+
+| Typed | `addressList_` |
+|---|---|
+| `jon@un-claude.com` | matches |
+| leading or trailing space | matches |
+| `Jon@un-claude.com` | matches — **caps are safe**, the engine lowercases everywhere |
+| **en dash** `un–claude` (U+2013) | **no match** |
+| **non-breaking hyphen** `un‑claude` (U+2011) | **no match** |
+
+Jon's hypothesis was right about the dash and wrong about capitalisation.
+
+### The silent failure is the real defect
+
+When no address parses, **the row is still a contact — with an empty address
+list.** The engine correctly answers `Not emailed`, the courier writes it, and
+**nothing anywhere reports a problem.**
+
+A student types one contact containing a character Google autocorrected, and
+that person reads `Not emailed` forever while they wonder why Blotter never
+noticed the six emails they exchanged. **There is no error, no warning, and no
+way to tell it apart from a contact they genuinely have not written to.**
+
+### Two fixes, and the second is the one that matters
+
+1. **Normalise Unicode dashes** to ASCII before matching.
+2. **Warn when a row has a name but no parseable address.** There will always be
+   a character nobody anticipated; the fix is to stop failing silently. This is
+   the general defence and it is worth more than the specific one.
+
+### Why fixtures could never have caught this
+
+**Every fixture starts from a well-formed request.** The failure lives entirely
+in the gap between a human's fingers and the sheet — the one place the whole
+test apparatus has no reach. **This is the first defect the live test found, and
+it justifies the live test on its own.**
