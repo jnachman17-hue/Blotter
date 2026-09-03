@@ -97,25 +97,6 @@ function isBounceSender(address: string): boolean {
 }
 
 /**
- * Addresses named in a bounce body. The bounce rule is **sender plus the
- * failed recipient named in the body** — never the `Status:` code, which the
- * real data shows lying: a Stifel bounce reported `Status: 4.4.2`, a temporary
- * class, while its SMTP response was 550 and its text read "Address not
- * found". A rule trusting `Status: 5.x` misses exactly the address the
- * student burns three attempts on.
- */
-const ADDRESS_IN_TEXT = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;
-
-function failedRecipients(body: string): Set<string> {
-  const found = new Set<string>();
-  for (const match of body.match(ADDRESS_IN_TEXT) ?? []) {
-    const address = match.toLowerCase();
-    if (!isBounceSender(address)) found.add(address);
-  }
-  return found;
-}
-
-/**
  * An auto-reply is not a reply (§6). One real out-of-office arrived twenty
  * seconds after the outbound, from the contact's own address, and she never
  * answered; a naive rule calls that `Replied`.
@@ -228,7 +209,14 @@ function classify(msg: MessageIn, threadIndex: number, order: number): Classifie
     /* Machine mail from a delivery daemon is never a person writing back,
        whether or not the body names a recipient this request knows about. */
     kind = "bounce";
-    failed = failedRecipients(msg.body);
+    /* Contract version 4: the courier extracted these from the delivery-failure
+       notice and sent the addresses. The engine no longer sees the text.
+       The rule that stays here is what a bounce *means* — which outbound it
+       answers, and whether the row is `Bounced`; never the `Status:` code,
+       which the real data shows lying (a Stifel bounce reported `4.4.2`, a
+       temporary class, while its SMTP response was 550 and its text read
+       "Address not found"). */
+    failed = new Set(msg.failed_recipients.map(addressOf).filter((a) => a.length > 0));
   } else if (isAutoReplySubject(msg.subject)) {
     kind = "auto_reply";
   } else {
@@ -910,5 +898,5 @@ export function computeEngine(request: EngineRequest): EngineResponse {
   /* The response answers in the version it was asked in (contract v2). That
      is what lets a version-1 courier keep working against this server while
      its own half of the world catches up. */
-  return { version: request.version, rows, found: foundList, warnings };
+  return { version: request.version, rows, found: foundList, warnings, notice: null };
 }

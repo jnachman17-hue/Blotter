@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 4,
  "now": "2024-03-15T13:00:00-05:00",
  "student": {
   "addresses": [
@@ -33,7 +33,7 @@
      ],
      "cc": [],
      "subject": "UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
-     "body": "Good Evening Marijoy,\n\nI hope this email finds you well. I am emailing to emphasize my interest in recruiting at Aeris Partners for the Summer Analyst 2025 Program. I am from Los Angeles, and I'm now studying Economics and Business at the University of Texas - Austin. I'm sure your firm doesn't receive many applications from UT students, if any at all, so I wanted to send this email to reaffirm my interest in Aeris, having already submitted my online application.\n\nA week ago, a close friend of mine studying at USC Marshall shared with me that Aeris had directly reached out to him for recruitment purposes. This conversation piqued my interest in your firm. I have since spent some time learning more about Aeris Partners. My interest is twofold:\n\n1) I am particularly interested in boutique tech banks. Aeries stands out as a SaaS M&A bank as I believe very strongly in the future of the SaaS industry.\n2) Through learning more about your firm through talking to my buddy who had a coffee chat with Aeris and your website, it is abundantly clear that your firm places a tremendous emphasis on company culture and personal fit, transcending beyond the superficial culture narrative of most banks. This is very unique to your firm and genuinely appeals to me.\n\nI hope I have demonstrated my sincere interest in your firm and you consider my application. I also attached my resume below.\n\nBest,\nJonathan Nachman",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -45,7 +45,9 @@
      ],
      "cc": [],
      "subject": "Delivery Status Notification (Failure)",
-     "body": "** Address not found **\n\nYour message wasn't delivered to Marijoy.Bertolini@aerispartners.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 5.1.1 <Marijoy.Bertolini@aerispartners.com>: Recipient address rejected: User unknown\nFinal-Recipient: rfc822; Marijoy.Bertolini@aerispartners.com\nAction: failed\nStatus: 5.1.1\nRemote-MTA: dns; mx1-us1.ppe-hosted.com.\nDiagnostic-Code: smtp; 550 5.1.1 <Marijoy.Bertolini@aerispartners.com>: Recipient address rejected: User unknown\nLast-Attempt-Date: Wed, 07 Feb 2024 20:24:55 -0800 (PST)",
+     "failed_recipients": [
+      "marijoy.bertolini@aerispartners.com"
+     ],
      "is_outbound": false
     }
    ]
@@ -62,7 +64,7 @@
      ],
      "cc": [],
      "subject": "UT Austin Student Highly Interested in Aeris Partners' Summer 2025 Internship",
-     "body": "[same outreach text as the message to Marijoy.Bertolini@aerispartners.com 16 minutes earlier]",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -74,7 +76,9 @@
      ],
      "cc": [],
      "subject": "Delivery Status Notification (Failure)",
-     "body": "** Address not found **\n\nYour message wasn't delivered to bm@aerispartners.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 5.1.1 : Recipient address rejected: User unknown",
+     "failed_recipients": [
+      "bm@aerispartners.com"
+     ],
      "is_outbound": false
     }
    ]
@@ -91,7 +95,7 @@
      ],
      "cc": [],
      "subject": "Aeris Partners | Next steps",
-     "body": "Hi Jonathan,\n\nThank you for your interest in Aeris Partners. We are impressed with your background and would like to move forward in the interview process.\n\nThe next step is a technical and behavioral interview over Teams, so please let me know your availability for this week and next.\n\nWe look forward to hearing from you!\n\nThanks,\nMarijoy\n\nMarijoy Bertolini, Aeris Partners LLC",
+     "failed_recipients": [],
      "is_outbound": false
     },
     {
@@ -103,7 +107,7 @@
      ],
      "cc": [],
      "subject": "Re: Aeris Partners | Next steps",
-     "body": "Hello Marijoy,\n\nI appreciate you reaching out to me, and I'm excited to continue recruiting with Aeris. Ideally, I'd prefer to interview in the latter half of next week given I have two midterms during the first portion of the week. Here are some proposed times next week (CT):\n\nWednesday (3/6): 1:45 pm onwards\nThursday (3/7): 10:00 am - 1:00 pm & 5:30 pm onwards\nFriday (3/8): 8:30 am - 12:00 pm\n\nIf these times aren't convenient, or if you prefer that I interview sooner, please let me know; I'm confident we'll be able to work something out.\n\nBest,\nJonathan Nachman",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -115,7 +119,7 @@
      ],
      "cc": [],
      "subject": "Re: Aeris Partners | Next steps",
-     "body": "Hello again Marijoy,\n\nI am following up on my previous email as Paige Butters has just scheduled my interview for next Wednesday (2/6) at 2:00 p.m. CT. I simply wanted to update you to prevent any confusion and ensure everyone is aligned.\n\nBest,\nJonathan Nachman",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -127,7 +131,7 @@
      ],
      "cc": [],
      "subject": "RE: Aeris Partners | Next steps",
-     "body": "Thank you, Jonathan. I appreciate the email!",
+     "failed_recipients": [],
      "is_outbound": false
     }
    ]

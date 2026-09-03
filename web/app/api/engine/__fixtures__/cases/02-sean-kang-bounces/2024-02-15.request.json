@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 4,
  "now": "2024-02-15T12:00:00-06:00",
  "student": {
   "addresses": [
@@ -33,7 +33,7 @@
      ],
      "cc": [],
      "subject": "UT Austin Student Interested in Pursuing Banking @ Stifel NY",
-     "body": "Hello Sean,\n\nI hope you are doing well. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I'd love to talk to you to learn more about your experience at Stifel given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -45,7 +45,9 @@
      ],
      "cc": [],
      "subject": "Delivery Status Notification (Failure)",
-     "body": "** Address not found **\n\nYour message wasn't delivered to sean.kang@stifel.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 #5.1.0 Address rejected.\nFinal-Recipient: rfc822; sean.kang@stifel.com\nAction: failed\nStatus: 4.4.2\nRemote-MTA: dns; smtp.gslb.stifel.com.\nDiagnostic-Code: smtp; 550 #5.1.0 Address rejected.\nLast-Attempt-Date: Tue, 30 Jan 2024 21:15:32 -0800 (PST)",
+     "failed_recipients": [
+      "sean.kang@stifel.com"
+     ],
      "is_outbound": false
     }
    ]
@@ -62,7 +64,7 @@
      ],
      "cc": [],
      "subject": "UT Austin Student Interested in Banking @ Stifel NY",
-     "body": "[same outreach text as the message to sean.kang@stifel.com two minutes earlier]",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -74,7 +76,9 @@
      ],
      "cc": [],
      "subject": "Delivery Status Notification (Failure)",
-     "body": "** Address not found **\n\nYour message wasn't delivered to kang.s@stifel.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 #5.1.0 Address rejected.",
+     "failed_recipients": [
+      "kang.s@stifel.com"
+     ],
      "is_outbound": false
     }
    ]
@@ -91,7 +95,7 @@
      ],
      "cc": [],
      "subject": "UT Austin Student Interested in Banking @ Stifel NY",
-     "body": "[same outreach text as the two previous attempts]",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -103,7 +107,9 @@
      ],
      "cc": [],
      "subject": "Delivery Status Notification (Failure)",
-     "body": "** Address not found **\n\nYour message wasn't delivered to s.kang@stifel.com because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 #5.1.0 Address rejected.",
+     "failed_recipients": [
+      "s.kang@stifel.com"
+     ],
      "is_outbound": false
     }
    ]

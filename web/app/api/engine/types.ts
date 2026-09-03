@@ -10,8 +10,15 @@
  * be traced from the wire to the code without a translation table.
  */
 
-/** The contract versions this server speaks. Older ones are still understood. */
-export type ContractVersion = 1 | 2 | 3;
+/**
+ * The contract version this server speaks, and **only** this one.
+ *
+ * Every earlier bump kept older versions working. Version 4 cannot: it removes
+ * `body` from the wire, and a version-3 courier still sends one. Tolerating it
+ * would mean continuing to accept the text of people's email — which is the
+ * exact thing this version exists to stop. See `05-CONTRACT.md`.
+ */
+export type ContractVersion = 4;
 
 export interface EngineRequest {
   version: ContractVersion;
@@ -54,8 +61,18 @@ export interface MessageIn {
   to: string[];
   cc: string[];
   subject: string;
-  /** Plain text, no quoted history. Used for bounce and auto-reply detection and nothing else. */
-  body: string;
+  /**
+   * **Contract version 4: there is no `body` field, and there never will be
+   * one again.** The server does not receive the text of an email.
+   *
+   * The engine read a body in exactly one place — to find which address a
+   * delivery-failure notice was complaining about. The courier now does that
+   * extraction itself and sends the addresses, which is mechanical work on a
+   * machine-generated notice rather than a judgment about recruiting.
+   *
+   * Empty on every message that is not a delivery-failure notice.
+   */
+  failed_recipients: string[];
   /** Set by the courier: true when `from` is one of `student.addresses`. */
   is_outbound: boolean;
 }
@@ -142,6 +159,28 @@ export interface FoundPerson {
   context: string;
 }
 
+/**
+ * A message from the server to the student, shown in their sheet.
+ *
+ * The channel exists because a **timed** run has no UI context, so no dialog is
+ * possible — and a refused run writes nothing at all. Without this, a student
+ * whose access was withdrawn would watch their sheet quietly stop updating and
+ * conclude it had broken. Built before it is needed, because the moment a
+ * hundred people hold a copy, adding it means asking a hundred people to
+ * re-paste a script.
+ *
+ * `blocked` is the level that must survive a refused run: when the server says
+ * no, the courier writes nothing except this.
+ */
+export type NoticeLevel = "info" | "warning" | "blocked";
+
+export interface Notice {
+  level: NoticeLevel;
+  text: string;
+  /** Where to go about it, or null. Never a bare domain — a full https URL. */
+  url: string | null;
+}
+
 export interface EngineResponse {
   /** Echoes the request's version: asked in 1, answered in 1. */
   version: ContractVersion;
@@ -151,4 +190,10 @@ export interface EngineResponse {
   found: FoundPerson[];
   /** Things the student should know that are not errors. */
   warnings: string[];
+  /**
+   * A message for the student, or absent. The engine emits none today — it is
+   * stateless and has nothing to base one on — and the field exists so that
+   * whatever gains the authority to say something later has a way to say it.
+   */
+  notice?: Notice | null;
 }

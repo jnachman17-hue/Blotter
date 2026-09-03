@@ -1,7 +1,11 @@
 # The contract
 
 Date: September 1, 2026
-Version: **3.** Amended September 2, 2026 after the first live install:
+Version: **4.** Amended September 3, 2026, before anyone else gets a copy.
+**The server no longer receives the text of an email**, and the response gains
+a channel for telling a student something.
+
+Previously: version 3, September 2, 2026 —
 **`attempts` may now be `null`**, because D24 rules that a column shows a
 number only where that number means something.
 
@@ -11,9 +15,23 @@ were forced by rulings the engine could not otherwise obey: D4 (`found` never
 invents a name from an address) and D10 (`Call cancelled`, the eighth status).
 Status: **Binding.** This is the seam between the two halves of Blotter.
 
-**Older versions are still understood.** The server speaks 1, 2 and 3, and the
-response echoes back the version it was asked in, so a request in flight during
-a deploy is never rejected outright.
+## Version 4 refuses older versions, and that is a change of kind
+
+Every earlier bump was additive, so an older payload still meant what it always
+meant and the server kept accepting it. **Version 4 cannot afford that.**
+
+**It removes `body`, and a version-3 courier still sends one.** Accepting it
+would mean carrying on receiving the text of people's email — the exact thing
+this version exists to stop.
+
+**And the other direction fails silently, which is worse.** A version-4 courier
+talking to a version-3 server sends no bodies to a server that expects them:
+bounces simply stop being detected, with no error and nothing visibly
+different, leaving a row quietly reading `Sent` for an address that does not
+exist. **The version check is the only thing that turns that silence into a
+loud failure**, so it refuses rather than tolerates.
+
+**Ship the server first, then the courier.**
 
 **What the version number does and does not describe.** It describes the
 **shape of the wire** — which fields exist and what types they may hold. It has
@@ -62,7 +80,7 @@ rest on Blotter's infrastructure, ever.
 
 ```json
 {
-  "version": 2,
+  "version": 4,
   "now": "2026-09-01T17:00:00-05:00",
   "student": { "addresses": ["someone@gmail.com"] },
   "contacts": [
@@ -85,7 +103,7 @@ rest on Blotter's infrastructure, ever.
           "to": ["someone@gmail.com"],
           "cc": ["Liz Ream <liz.ream@jpmorgan.com>"],
           "subject": "Re: Intro",
-          "body": "Happy to chat. Send a calendar invite.",
+          "failed_recipients": [],
           "is_outbound": false
         }
       ]
@@ -147,13 +165,34 @@ answer is No.
 | `emails` | Every address known for that person. Matching **ignores capitalisation** |
 | `closed` | Read from the student's `Closed` column |
 | `is_outbound` | Courier sets this: true when `from` is one of `student.addresses` |
-| `body` | Plain text, no quoted history. Needed for bounce and auto-reply detection and nothing else. **Never read for anything else** — referral discovery is headers only (rules §8) |
+| `failed_recipients` | **Version 4.** The addresses a delivery-failure notice names. Empty on every other message. Replaces `body`, which no longer exists |
 | `ignored` | Addresses the student has already rejected in "found these". Never suggested again |
-| `version` | `1`, `2` or `3`. The server understands all three and **answers in the version it was asked in** |
+| `version` | `4`, and only `4`. Anything else is refused with a 400 naming the fix |
 | any address | May be bare (`a@b.com`) or named (`A B <a@b.com>`). Matching uses the address and ignores capitalisation; the name is only ever used to name a found person |
 | `declined` | **Version 2.** Addresses that answered No to this invite. Optional; absent means nobody declined |
 
 **Timestamps are ISO 8601 with a timezone. Always. No exceptions.**
+
+### Blotter's server never receives the text of an email
+
+**There is no `body` field. A request carrying one is rejected**, not quietly
+ignored — the difference matters, because a field silently dropped is a promise
+and a field refused is a guarantee.
+
+This is checkable rather than trusted: read the request shape above, and read
+`validate.ts`, which fails on `body` before anything else runs.
+
+**It is a small change because the engine barely used one.** It read a body in
+exactly one place, for exactly one purpose — finding which address a
+delivery-failure notice was complaining about. Auto-replies are detected from
+the **subject**, which is a header. Nothing else ever opened one.
+
+**The courier does that extraction now**, and only the addresses travel.
+**This does not break the dumb-courier rule**: pulling email addresses out of a
+machine-generated delivery notice is mechanical extraction, not a judgment
+about recruiting. *What a bounce means* — which outbound it answers, whether
+the row reads `Bounced`, and never the `Status:` code, which the real data
+shows lying — all of that stays on the server.
 
 ---
 
@@ -161,7 +200,7 @@ answer is No.
 
 ```json
 {
-  "version": 2,
+  "version": 4,
   "rows": [
     {
       "row": 2,
@@ -181,7 +220,12 @@ answer is No.
       "context": "Appeared in a thread with Jamie Diamond"
     }
   ],
-  "warnings": []
+  "warnings": [],
+  "notice": {
+    "level": "blocked",
+    "text": "Blotter is now a paid product. Your sheet has stopped updating.",
+    "url": "https://blotterib.com/billing"
+  }
 }
 ```
 
@@ -197,6 +241,7 @@ answer is No.
 | `found` | New people, for the student to approve. Never auto-added |
 | `found[].name` | The display name the header carried, or **`null`**. **Never derived from the address** (rules §8, decision D4) — a real name or nothing |
 | `warnings` | Things the student should know but that are not errors — an event that matched nobody, an address seen in two capitalisations |
+| `notice` | **Version 4.** A message from the server to the student, or absent. `level` is `info`, `warning` or `blocked`; `url` may be `null` |
 
 ### Where `days` and `attempts` carry a number (version 3, D24)
 
@@ -249,10 +294,66 @@ Any change is a change to two codebases at once. **It requires Jon's ruling and
 a version bump**, and both sides ship together. `version` is in the request and
 the response so a mismatch is loud rather than mysterious.
 
+### The notice channel, and why it is a sheet cell rather than a dialog
+
+**A timed run has no UI context, so it cannot open a dialog** — and a refused
+run writes nothing at all. Without this channel, a student whose access was
+withdrawn would watch their sheet quietly stop updating and conclude it had
+broken. They would be right to.
+
+**The courier writes it into row 1 of Contacts, in the columns past everything
+the sheet uses.** Row 1 is frozen, so it stays on screen however far down they
+scroll, and **it shifts nothing**: data still starts at row 2, and the row
+number is still this contract's join key. A banner row above the headers would
+move every data row down one and break that key in eleven places.
+
+**A `blocked` notice survives a refused run.** That is the entire point of the
+level existing: when the server says no, the courier writes nothing *except*
+the notice. It is a deliberate, narrow exception to the write-nothing-on-
+failure rule — the notice cell only — and it is commented as one in `Code.gs`.
+
+**The engine emits no notice today.** It is stateless and has nothing to base
+one on. The pipe is built now because the moment a hundred students hold a
+copy, adding it means asking a hundred people to re-paste a script.
+
+---
+
+## Counting installs happens somewhere else entirely
+
+**`POST /api/telemetry`, never a field on `/api/engine`, and the separation is
+the point rather than a preference.**
+
+The engine has no database, no logging and no file writes. **"The engine stores
+nothing" is therefore a fact anyone can verify by reading it, not a promise** —
+and putting a counter inside it would end that permanently, in exchange for
+saving one HTTP request.
+
+**What that endpoint may carry, exhaustively:** a random per-sheet install id,
+the two version strings, a timestamp, a count of contacts, a run duration, and
+whether the run worked.
+
+**What it may never carry:** a name, an address, a subject, a body, a firm —
+anything a person could be recognised from. The route takes an allow-list, so
+an unexpected field is dropped rather than stored.
+
+**The install id identifies a sheet, never a person.** It is a random UUID
+minted on first run and kept in the script's own properties; a copied sheet
+mints its own, which is correct, because a copy is a new install.
+
+**Telemetry failing must never fail a run.** The courier fires and forgets.
+
+---
+
 **Deploy order matters, and only in one direction.** The server understands
 every version, so a new server with an old courier is safe. The reverse is
 not: a courier sending a version its server does not know gets a 400 and writes
 nothing until the server catches up. **Ship the server first.**
+
+**Why version 4 does not keep older versions alive, when every bump before it
+did.** Because tolerance here means continuing to accept message bodies, and
+because the opposite mismatch — a new courier against an old server — loses
+bounce detection *silently*. Refusing is the only way either failure is
+visible.
 
 **Why version 3 was bumped for what is only a widened type.** `attempts` went
 from "always a number" to "sometimes absent". An un-bumped older courier would

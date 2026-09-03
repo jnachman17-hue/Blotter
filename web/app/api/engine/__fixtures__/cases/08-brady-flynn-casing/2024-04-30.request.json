@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 4,
  "now": "2024-04-30T13:00:00-05:00",
  "student": {
   "addresses": [
@@ -31,7 +31,7 @@
      ],
      "cc": [],
      "subject": "Enjoyed Our Conversation",
-     "body": "Hey Brady,\n\nI hope all is well. I just wanted to send a brief email expressing my appreciation for the time you spent with me over the phone today. I enjoyed learning more about the firm and your experience there. Congratulations on your recent promotion!\n\nBest,\nJonathan",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -43,7 +43,7 @@
      ],
      "cc": [],
      "subject": "RE: Enjoyed Our Conversation",
-     "body": "Hey Jonathan, thanks for the note. Enjoyed chatting with you as well!\n\nBrady Flynn, Analyst, Financial Technology Partners LP",
+     "failed_recipients": [],
      "is_outbound": false
     },
     {
@@ -55,7 +55,7 @@
      ],
      "cc": [],
      "subject": "RE: Enjoyed Our Conversation",
-     "body": "Hey Jonathan – congrats on the offer, well deserved! Happy to chat if I can be helpful while you think through the decision.\n\nBrady Flynn, Analyst",
+     "failed_recipients": [],
      "is_outbound": false
     },
     {
@@ -67,7 +67,7 @@
      ],
      "cc": [],
      "subject": "Re: Enjoyed Our Conversation",
-     "body": "Hey Brady,\n\nI appreciate you reaching out to me and offering your willingness to speak. I have since signed the offer. Thank you for your help throughout this process.\n\nBest,\nJonathan Nachman",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -79,7 +79,7 @@
      ],
      "cc": [],
      "subject": "RE: Enjoyed Our Conversation",
-     "body": "Great to hear - congrats, Jonathan!\n\nBrady Flynn, Analyst",
+     "failed_recipients": [],
      "is_outbound": false
     }
    ]

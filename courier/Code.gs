@@ -17,10 +17,14 @@
  *     a half-written one is not.
  *
  * The contract this speaks is
- * blotter-ib-ws1/docs/workstreams/ws9-build/05-CONTRACT.md, version 3.
+ * blotter-ib-ws1/docs/workstreams/ws9-build/05-CONTRACT.md, version 4.
  */
 
-var CONTRACT_VERSION = 3;
+var CONTRACT_VERSION = 4;
+
+// Which build of this script is running. Sent to the telemetry endpoint only,
+// so a count of installs can be split by version when something goes wrong.
+var COURIER_VERSION = '2026-09-03';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -38,6 +42,24 @@ var COL_EMAIL = 'Email';
 // exactly. The student sets Closed; Blotter only reads it.
 var BLOTTER_COLUMNS = ['Status', 'Days', 'Last contact', 'Attempts', 'Next call', 'Last call'];
 var COL_CLOSED = 'Closed';
+
+// The server's channel to the student, and the constraint that decides where
+// it lives: a TIMED run has no UI context, so no dialog is possible, and a
+// refused run writes nothing at all. Without this a student whose access was
+// withdrawn would watch the sheet quietly stop updating and conclude it broke.
+//
+// Row 1 of Contacts, in the columns past everything the sheet uses. Row 1 is
+// frozen, so it stays on screen however far down they scroll, and it shifts
+// NOTHING: data still starts at row 2 and the row number is still the
+// contract's join key. A banner row above the headers would move every data
+// row down one and break that key in eleven places.
+var NOTICE_WIDTH = 6;
+var NOTICE_STYLES = {
+  info:    { fill: '#e8f0fe', text: '#1a3d6d' },
+  warning: { fill: '#fdf0d5', text: '#7a4c00' },
+  blocked: { fill: '#fbe3e0', text: '#8c1d12' }
+};
+var NOTICE_TAB_COLOUR = { info: '#4a7fd4', warning: '#d9a441', blocked: '#c0392b' };
 
 // The only statuses the contract allows. Anything else means the response is
 // bad, and a bad response means we write nothing. "Call cancelled" is the
@@ -116,6 +138,21 @@ var NIGHT_EVERY_MINUTES = 120;
 // bookkeeping only — it is not the sheet, so the write-nothing-on-failure
 // rule is untouched.
 var PROP_LAST_WORKED_MS = 'blotterLastWorkedMs';
+
+// An anonymous id for THIS SHEET. Not a person, not an account, not an email —
+// a random UUID minted once and kept in this script's own properties. A copied
+// sheet mints its own on first run, which is correct: a copy is a new install.
+//
+// It answers one question and no others: how many separate sheets are running.
+var PROP_INSTALL_ID = 'blotterInstallId';
+
+// Telemetry goes to its OWN endpoint, and that separation is the point rather
+// than a preference. The engine has no database, no logging and no file
+// writes, so "the engine stores nothing" is literally true — and it can be
+// checked by reading it. Putting a counter inside it would end that, and the
+// claim is worth more than the convenience of one fewer request.
+var TELEMETRY_URL_DEFAULT = 'https://blotterib.com/api/telemetry';
+var SETTING_TELEMETRY = 'Usage counting endpoint';
 
 // True from the first sheet write of a pass until it finishes. The
 // write-nothing-on-failure promise only holds for throws before this point;
@@ -943,6 +980,10 @@ function setupSheet() {
   ensureSettingRow_(settings, SETTING_RUN_TOOK, '');
   ensureSettingRow_(settings, SETTING_RUN_FETCHED, '');
   ensureSettingRow_(settings, SETTING_GMAIL_CALLS, '');
+  ensureSettingRow_(settings, SETTING_TELEMETRY, TELEMETRY_URL_DEFAULT,
+    'Counts how many sheets are running. Sends a random id for this sheet and ' +
+    'a number of contacts — never a name, address, subject or message. Clear ' +
+    'this cell to switch it off.');
   ensureSettingRow_(settings, SETTING_PRETEND_TODAY, '', PRETEND_TODAY_HELP);
   settings.autoResizeColumn(1);
 
@@ -1079,6 +1120,130 @@ function prepareForHandover() {
  *
  * A ticked box on a row with a person is never touched.
  */
+/**
+ * Where the notice goes: row 1, immediately after the last column the sheet
+ * actually uses.
+ *
+ * Past `Closed` per the ruling, but past the last *used* header rather than a
+ * fixed offset, because a student may have added their own columns after it —
+ * `findColumn_` locates everything by header text precisely so they can.
+ */
+function noticeRange_(sheet) {
+  var closedCol = findColumn_(sheet, COL_CLOSED);
+  var start = Math.max(closedCol, sheet.getLastColumn()) + 1;
+  if (start + NOTICE_WIDTH - 1 > sheet.getMaxColumns()) {
+    sheet.insertColumnsAfter(sheet.getMaxColumns(),
+      start + NOTICE_WIDTH - 1 - sheet.getMaxColumns());
+  }
+  return sheet.getRange(1, start, 1, NOTICE_WIDTH);
+}
+
+/**
+ * Show the server's message, or clear the space when there is none.
+ *
+ * Called on every run including refused ones, so a notice that has been
+ * withdrawn disappears rather than lingering as a message that is no longer
+ * true.
+ */
+function writeNotice_(sheet, notice) {
+  var range = noticeRange_(sheet);
+  try { range.breakApart(); } catch (e) { /* not merged yet */ }
+  range.clearContent().clearNote();
+  range.setBackground(null).setFontColor(null).setFontWeight('normal');
+
+  if (!notice || !notice.text) {
+    try { sheet.setTabColor(null); } catch (e) { /* older sheets */ }
+    return false;
+  }
+
+  var level = NOTICE_STYLES[notice.level] ? notice.level : 'info';
+  var style = NOTICE_STYLES[level];
+  var text = String(notice.text);
+  if (notice.url) text += '   ' + notice.url;
+
+  range.merge();
+  range.setValue(text)
+    .setBackground(style.fill)
+    .setFontColor(style.text)
+    .setFontWeight(level === 'blocked' ? 'bold' : 'normal')
+    .setFontSize(11)
+    .setVerticalAlignment('middle')
+    .setHorizontalAlignment('left')
+    .setWrap(true);
+  // Visible from any tab, not only this one.
+  try { sheet.setTabColor(NOTICE_TAB_COLOUR[level]); } catch (e) { /* older sheets */ }
+  return true;
+}
+
+/** The notice on a response, if it carries one worth showing. */
+function noticeFrom_(response) {
+  var n = response && response.notice;
+  if (!n || typeof n !== 'object') return null;
+  var text = n.text === null || n.text === undefined ? '' : String(n.text).trim();
+  if (text === '') return null;
+  return {
+    level: NOTICE_STYLES[n.level] ? n.level : 'info',
+    text: text,
+    url: n.url ? String(n.url) : ''
+  };
+}
+
+/**
+ * This sheet's anonymous install id, minted once and kept forever.
+ *
+ * `Utilities.getUuid()` is random — it is derived from nothing about the
+ * student, so it cannot be reversed into a person even in principle.
+ */
+function installId_() {
+  var props = PropertiesService.getScriptProperties();
+  var id = props.getProperty(PROP_INSTALL_ID);
+  if (!id) {
+    id = Utilities.getUuid();
+    props.setProperty(PROP_INSTALL_ID, id);
+  }
+  return id;
+}
+
+/**
+ * Everything telemetry is allowed to know, built in one place so the whole
+ * list can be read at a glance.
+ *
+ * **It carries counts and nothing else. No name, no address, no subject, no
+ * body, no firm — nothing a person could be recognised from.** If a future
+ * change wants to add a field here, that is the moment to stop and ask whether
+ * it belongs, because this function is the entire boundary.
+ */
+function telemetryPayload_(contactCount, seconds, ok) {
+  return {
+    install_id: installId_(),
+    contract_version: CONTRACT_VERSION,
+    courier_version: COURIER_VERSION,
+    at: toIso_(new Date()),
+    contacts: contactCount,
+    seconds: seconds,
+    ok: !!ok
+  };
+}
+
+/**
+ * Fire and forget, and the forgetting is deliberate: a dead counter must never
+ * stop a student's sheet from updating. Every failure path here is swallowed.
+ */
+function sendTelemetry_(url, payload) {
+  if (!url) return;
+  try {
+    UrlFetchApp.fetch(url, {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify(payload),
+      muteHttpExceptions: true,
+      followRedirects: true
+    });
+  } catch (e) {
+    // Counting is not the student's problem.
+  }
+}
+
 function syncClosedCheckboxes_(sheetState) {
   var sheet = sheetState.sheet;
   var closedCol = sheetState.cols.closed;
@@ -1260,11 +1425,26 @@ function courierPass_() {
       events: events,
       ignored: foundState.ignoredEmails
     };
-    var response = postToServer_(settings.serverUrl, request);
+    var response;
+    try {
+      response = postToServer_(settings.serverUrl, request);
+    } catch (e) {
+      // The narrow exception to write-nothing-on-failure: if the refusal came
+      // with something to tell the student, tell them. Nothing else is
+      // written, and the error still stops the run.
+      if (e && e.blotterNotice) {
+        try { writeNotice_(sheetState.sheet, e.blotterNotice); } catch (ignored) {}
+      }
+      throw e;
+    }
     validateResponse_(response, sheetState.contacts);
+    var notice = noticeFrom_(response);
 
     // --- Write phase. Everything below is prepared; nothing above wrote. ---
     writePhaseBegun_ = true;
+    // First, because it is the thing the student most needs to see and it must
+    // land even if something below fails. Also clears a withdrawn notice.
+    writeNotice_(sheetState.sheet, notice);
     writeBlotterColumns_(sheetState, response.rows);
     var added = addApprovedContacts_(ss, sheetState, foundState);
     syncClosedCheckboxes_(sheetState);
@@ -1294,7 +1474,12 @@ function courierPass_() {
       (runMetrics_.searches + runMetrics_.threadFetches) +
       ' (' + runMetrics_.searches + ' searches, ' + runMetrics_.threadFetches + ' conversation fetches)');
 
-    return (pretendWarning ? '*** ' + pretendWarning + ' ***\n\n' : '') +
+    // Last, and outside everything that matters. Counts only.
+    sendTelemetry_(settings.telemetryUrl,
+      telemetryPayload_(sheetState.contacts.length, seconds, true));
+
+    return (notice ? notice.text + (notice.url ? '\n' + notice.url : '') + '\n\n' : '') +
+      (pretendWarning ? '*** ' + pretendWarning + ' ***\n\n' : '') +
       'Updated ' + response.rows.length + ' contact row(s). ' +
       'Added ' + added.added + ' approved contact(s). ' +
       (added.skipped ? 'Skipped ' + added.skipped + ' already in Contacts. ' : '') +
@@ -1306,6 +1491,15 @@ function courierPass_() {
         ? '\n\nCHECK THESE ROW(S) — Blotter could not read an email address:\n• ' +
           addressWarnings.join('\n• ')
         : '');
+  } catch (runError) {
+    // A run that failed is still a run that happened. Counting it is what makes
+    // "installs that stopped working" visible instead of guessed at, and it
+    // cannot affect the outcome — the error is rethrown untouched.
+    try {
+      var failedSeconds = Math.round((new Date().getTime() - runMetrics_.startedMs) / 1000);
+      sendTelemetry_(TELEMETRY_URL_DEFAULT, telemetryPayload_(0, failedSeconds, false));
+    } catch (ignored) {}
+    throw runError;
   } finally {
     lock.releaseLock();
   }
@@ -1345,7 +1539,11 @@ function readSettings_(ss) {
     mailDaysBack: positiveOrDefault_(byLabel[SETTING_MAIL_BACK], MAIL_DAYS_BACK_DEFAULT),
     // '' in normal use. Anything unreadable throws from here — before a single
     // Gmail read, and long before the write phase.
-    pretendNow: pretendNowIso_(byLabel[SETTING_PRETEND_TODAY])
+    pretendNow: pretendNowIso_(byLabel[SETTING_PRETEND_TODAY]),
+    // Blank switches counting off entirely, and that is a supported choice
+    // rather than a bug: the run does not depend on it.
+    telemetryUrl: String(byLabel[SETTING_TELEMETRY] === undefined ? TELEMETRY_URL_DEFAULT
+      : byLabel[SETTING_TELEMETRY]).trim()
   };
 }
 
@@ -1645,14 +1843,25 @@ function fetchThreads_(contactEmails, daysBack) {
     // invent a name for a person it finds, and the header is the only honest
     // source of one.
     var messages = thread.getMessages().map(function (m) {
+      var from = firstNamedAddress_(m.getFrom());
       return {
         id: m.getId(),
         date: toIso_(m.getDate()),
-        from: firstNamedAddress_(m.getFrom()),
+        from: from,
         to: namedAddressList_(m.getTo()),
         cc: namedAddressList_(m.getCc()),
         subject: m.getSubject() || '',
-        body: stripQuotedHistory_(m.getPlainBody() || ''),
+        // Contract version 4: **the body never leaves this account.** The
+        // server used to read one, in exactly one place, to find out which
+        // address a delivery-failure notice was complaining about. That
+        // extraction happens here now, and only the addresses travel.
+        //
+        // So `getPlainBody()` is called only for mail from a delivery daemon.
+        // Every other message's text is never even read, let alone sent —
+        // which is also why this is faster than it was.
+        failed_recipients: isBounceSender_(bareAddress_(from))
+          ? failedRecipientsFrom_(stripQuotedHistory_(m.getPlainBody() || ''))
+          : [],
         is_outbound: false // set below, once, against the student's addresses
       };
     });
@@ -1801,7 +2010,17 @@ function postToServer_(url, request) {
 
   var code = httpResponse.getResponseCode();
   if (code !== 200) {
-    throw new Error('The Blotter server answered with status ' + code + ' instead of 200.');
+    var refused = new Error('The Blotter server answered with status ' + code + ' instead of 200.');
+    // A refusal is exactly when the student most needs to be told why, so a
+    // notice on a non-200 is carried out with the error rather than discarded
+    // with the body. `courierPass_` writes it — the one deliberate exception
+    // to writing nothing on failure, and it is narrow: the notice cell only.
+    try {
+      refused.blotterNotice = noticeFrom_(JSON.parse(httpResponse.getContentText()));
+    } catch (e) {
+      refused.blotterNotice = null;
+    }
+    throw refused;
   }
   try {
     return JSON.parse(httpResponse.getContentText());
@@ -2065,6 +2284,42 @@ function toIso_(date) {
 }
 
 var ONE_ADDRESS = /[A-Za-z0-9._%+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/;
+
+/**
+ * Who a delivery-failure notice is complaining about.
+ *
+ * This is the one piece of work that moved from the server to here, so that
+ * message text stops crossing the wire (contract version 4). It is mechanical
+ * extraction from machine-generated mail, not a judgment about recruiting —
+ * **what a bounce means stays on the server**: which outbound it answers, and
+ * whether the row reads `Bounced`.
+ *
+ * Deliberately not keyed on the `Status:` code. The real data shows that code
+ * lying: a Stifel bounce reported `Status: 4.4.2`, a temporary class, while
+ * its SMTP response was 550 and its own text read "Address not found". An
+ * engine trusting `5.x` misses exactly the address a student burns three
+ * attempts on.
+ *
+ * The daemon's own address is excluded — it is the sender, not the failure.
+ */
+function failedRecipientsFrom_(bodyText) {
+  var matches = normaliseTyped_(bodyText).match(new RegExp(ONE_ADDRESS.source, 'g')) || [];
+  var seen = {};
+  var out = [];
+  matches.forEach(function (raw) {
+    var address = raw.toLowerCase();
+    if (seen[address] || isBounceSender_(address)) return;
+    seen[address] = true;
+    out.push(address);
+  });
+  return out;
+}
+
+/** Mail from a delivery daemon. The only mail whose text is ever opened. */
+function isBounceSender_(address) {
+  var local = String(address || '').toLowerCase().split('@')[0];
+  return local === 'mailer-daemon' || local === 'postmaster';
+}
 
 /**
  * What a person's keyboard and Google's autocorrect do to an address that a

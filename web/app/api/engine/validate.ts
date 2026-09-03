@@ -12,7 +12,7 @@ import type { ContactIn, EngineRequest, EventIn, MessageIn, ThreadIn } from "./t
  * Two kinds of looseness are deliberately allowed, and only these:
  *
  * - **Absent lists become empty lists** (`cc`, `attendees`, `declined`,
- *   `ignored`, and the top-level collections). "The courier saw none" and
+ *   `failed_recipients`, `ignored`, and the top-level collections). "The courier saw none" and
  *   "the courier sent none" mean the same thing to a stateless engine.
  * - **Absent text becomes empty text** (`subject`, `body`, `firm`, `title`,
  *   `organizer`). A missing subject is an odd message, not an uncomputable one.
@@ -66,6 +66,14 @@ function stringList(value: unknown, path: string): string[] {
 
 function message(value: unknown, path: string): MessageIn {
   if (!isRecord(value)) fail(path, "must be an object");
+  /* Contract version 4: the server does not accept the text of an email, and
+     this is where that stops being a promise and becomes a refusal. A caller
+     that sends one is told plainly rather than quietly having it ignored —
+     "our server never receives it" has to be checkable, and a field silently
+     dropped is not the same as a field rejected. */
+  if (value.body !== undefined) {
+    fail(`${path}.body`, "must not be sent — this server does not accept message bodies (contract version 4). Send `failed_recipients` on delivery-failure notices instead");
+  }
   return {
     id: optionalStr(value.id, `${path}.id`),
     date: timestamp(value.date, `${path}.date`),
@@ -73,7 +81,7 @@ function message(value: unknown, path: string): MessageIn {
     to: stringList(value.to, `${path}.to`),
     cc: stringList(value.cc, `${path}.cc`),
     subject: optionalStr(value.subject, `${path}.subject`),
-    body: optionalStr(value.body, `${path}.body`),
+    failed_recipients: stringList(value.failed_recipients, `${path}.failed_recipients`),
     is_outbound: bool(value.is_outbound, `${path}.is_outbound`),
   };
 }
@@ -136,14 +144,21 @@ export function parseEngineRequest(body: unknown): EngineRequest {
   if (!isRecord(body)) fail("request", "must be a JSON object");
 
   /* The version is in the request so a mismatch is loud rather than
-     mysterious. This server speaks 1, 2 and 3. Version 2 added display names on
-     addresses and `declined` on events; version 3 widened `attempts` on the way
-     back out. Every addition is optional and additive, so an older payload
-     still means exactly what it always meant, and the response answers in the
-     version it was asked in — which is what stops a request in flight during a
-     deploy from being rejected outright. */
-  if (body.version !== 1 && body.version !== 2 && body.version !== 3) {
-    fail("version", `must be 1, 2 or 3 — this server speaks contract versions 1 to 3, got ${JSON.stringify(body.version)}`);
+     mysterious — and version 4 is the first that cannot afford to be
+     forgiving. Earlier bumps were additive, so an older payload still meant
+     what it always meant and was accepted. **Version 4 removes `body`**, and a
+     version-3 courier still sends one; accepting it would mean carrying on
+     receiving the text of people's email, which is the whole thing this
+     version exists to stop.
+
+     There is a second reason, and it is the dangerous one. A version-4 courier
+     talking to a version-3 server would send no bodies to a server that
+     expects them, and bounces would simply stop being detected — no error,
+     nothing visibly different, a row quietly reading `Sent` for a dead
+     address. **The version check is the only thing that turns that silence
+     into a loud failure**, so it refuses rather than tolerates. */
+  if (body.version !== 4) {
+    fail("version", `must be 4 — this server speaks contract version 4 only, got ${JSON.stringify(body.version)}. Re-paste courier/Code.gs into the Apps Script editor`);
   }
 
   const now = timestamp(body.now, "now");

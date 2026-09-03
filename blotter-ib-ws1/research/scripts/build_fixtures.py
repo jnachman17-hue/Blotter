@@ -47,6 +47,7 @@ Writes into web/app/api/engine/__fixtures__/ (the one directory this chat owns).
 """
 
 import json
+import re
 import os
 import sys
 from datetime import datetime
@@ -149,9 +150,40 @@ def convert_message(m):
         "to": list(m.get("to") or []),
         "cc": list(m.get("cc") or []),
         "subject": m.get("subject") or "",
-        "body": m.get("body") or "",
+        # Contract v4: the body never crosses the wire. The one thing the
+        # engine used it for — which address a delivery-failure notice was
+        # complaining about — the courier extracts and sends instead. This
+        # mirrors `failedRecipientsFrom_` in Code.gs exactly, and the fact that
+        # every expected value survived the change is the proof the two agree.
+        "failed_recipients": failed_recipients_of(m),
         "is_outbound": is_out,
     }
+
+
+# Mirrors ONE_ADDRESS in courier/Code.gs.
+ONE_ADDRESS_RE = re.compile(r"[A-Za-z0-9._%+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
+
+
+def is_bounce_sender(address):
+    """Mail from a delivery daemon — the only mail whose text is ever read."""
+    return (address or "").lower().split("@")[0] in ("mailer-daemon", "postmaster")
+
+
+def failed_recipients_of(m):
+    """Addresses a delivery-failure notice names, and nothing from any other
+    message. Never keyed on the `Status:` code, which the real Stifel bounce
+    shows lying: it reported 4.4.2, a temporary class, while its SMTP response
+    was 550 and its own text read "Address not found"."""
+    if not is_bounce_sender(m.get("sender")):
+        return []
+    seen, out = set(), []
+    for raw in ONE_ADDRESS_RE.findall(m.get("body") or ""):
+        address = raw.lower()
+        if address in seen or is_bounce_sender(address):
+            continue
+        seen.add(address)
+        out.append(address)
+    return out
 
 
 def convert_event(e, declined=None):
@@ -753,7 +785,7 @@ CASES = [
                 "to": ["jnachman17@gmail.com"],
                 "cc": [],
                 "subject": "Declined: Nick - Jonathan Citi IB Call @ Fri Jan 26, 2024 10am - 10:30am (CST) (jnachman17@gmail.com)",
-                "body": "",
+                "failed_recipients": [],
                 "is_outbound": False,
             }],
         }],
@@ -932,7 +964,7 @@ def main():
         d10 = now[:10]
         roster_emails = [a for _, row in season_rows for a in row["emails"]]
         request = {
-            "version": 1,
+            "version": 4,
             "now": student_render(now),
             "student": {"addresses": STUDENT_ADDRESSES},
             "contacts": [row for _, row in season_rows],
@@ -955,7 +987,7 @@ def main():
                             f"{slug} marked Not emailed but {m['id']} carries their address"
             expected_rows.append(render_row(row["row"], entry, now, events_by_pos))
         expected = {
-            "version": 1,
+            "version": 4,
             "rows": expected_rows,
             "found": render_found(season_found(now)),
             "warnings": [],
@@ -990,7 +1022,7 @@ def main():
                 # Version 2 only where a case needs a v2 field. The rest stay
                 # version 1 on purpose: they are this suite's proof that the
                 # server still understands a version-1 payload unchanged.
-                "version": 2 if case.get("declined") else 1,
+                "version": 4,
                 "now": student_render(now),
                 "student": {"addresses": STUDENT_ADDRESSES},
                 "contacts": [row for _, row in rows],
@@ -1007,7 +1039,7 @@ def main():
                 validate_entry(s, entry, now, all_msg_dates, events_by_pos, contact_dates)
                 expected_rows.append(render_row(row["row"], entry, now, events_by_pos))
             expected = {
-                "version": 2 if case.get("declined") else 1,
+                "version": 4,
                 "rows": expected_rows,
                 "found": render_found(spec["found"]),
                 "warnings": [],

@@ -60,6 +60,7 @@ const EXPORTS = [
   'namedAddressList_', 'firstNamedAddress_', 'bareAddress_', 'addressList_',
   'exceedsRecipientCap_', 'parsePretendText_', 'pretendNowIso_', 'declinedGuests_',
   'normaliseTyped_', 'unreadableAddressWarnings_', 'lastRowWithContact_',
+  'failedRecipientsFrom_', 'isBounceSender_', 'installId_', 'telemetryPayload_', 'noticeFrom_',
   'MAX_THREAD_RECIPIENTS', 'NO_CLOCK', 'VALID_STATUSES', 'CONTRACT_VERSION',
   // The look. Colour tables and widths are data, so they are testable — and a
   // typo in a hex paints a cell black on somebody's real sheet.
@@ -153,7 +154,7 @@ eq('an empty conversation is fine', box.exceedsRecipientCap_([]), false);
  * Contract v2 bookkeeping
  * ------------------------------------------------------------------ */
 
-eq('the courier speaks version 3', box.CONTRACT_VERSION, 3);
+eq('the courier speaks version 4', box.CONTRACT_VERSION, 4);
 eq('eight statuses', box.VALID_STATUSES.length, 8);
 eq('Call cancelled is accepted', box.VALID_STATUSES.indexOf('Call cancelled') !== -1, true);
 eq('a clockless cell is an em dash', box.NO_CLOCK, '—');
@@ -488,6 +489,107 @@ const { asSheetDate_, STATUS_STYLE, THEMES, CONTACTS_WIDTHS, FOUND_WIDTHS,
     ok('a Found width is set for ' + h, typeof FOUND_WIDTHS[h] === 'number' && FOUND_WIDTHS[h] > 40);
   });
 }
+
+/* ------------------------------------------------------------------ *
+ * Contract v4 — the body never leaves the account.
+ *
+ * The engine read a body in exactly one place: to find which address a
+ * delivery-failure notice was complaining about. That extraction lives here
+ * now, so the text stops crossing the wire. The bounce below is the real one
+ * from the 2024 season, and its `Status:` code LIES — it reports 4.4.2, a
+ * temporary class, while its own text says the address does not exist. An
+ * engine keyed on `5.x` misses exactly the address a student burns three
+ * attempts on, which is why this is keyed on the named recipient instead.
+ * ------------------------------------------------------------------ */
+
+const STIFEL_BOUNCE =
+  "** Address not found **\n\nYour message wasn't delivered to sean.kang@stifel.com " +
+  "because the address couldn't be found, or is unable to receive mail.\n\n" +
+  "The response from the remote server was:\n550 #5.1.0 Address rejected.\n" +
+  "Final-Recipient: rfc822; sean.kang@stifel.com\nAction: failed\nStatus: 4.4.2\n" +
+  "Remote-MTA: dns; smtp.gslb.stifel.com.\n" +
+  "Diagnostic-Code: smtp; 550 #5.1.0 Address rejected.\n" +
+  "Last-Attempt-Date: Tue, 30 Jan 2024 21:15:32 -0800 (PST)";
+
+eq('the real Stifel bounce yields the dead address',
+  box.failedRecipientsFrom_(STIFEL_BOUNCE), ['sean.kang@stifel.com']);
+eq('named once, not once per mention',
+  box.failedRecipientsFrom_(STIFEL_BOUNCE).length, 1);
+eq('the daemon itself is never a failed recipient',
+  box.failedRecipientsFrom_('mailer-daemon@googlemail.com could not reach a@b.com'), ['a@b.com']);
+eq('postmaster likewise',
+  box.failedRecipientsFrom_('postmaster@x.com says c@d.com failed'), ['c@d.com']);
+eq('two dead addresses in one notice',
+  box.failedRecipientsFrom_('failed: a@x.com and also b@y.com'), ['a@x.com', 'b@y.com']);
+eq('a notice naming nobody yields nothing',
+  box.failedRecipientsFrom_('Delivery failed permanently.'), []);
+eq('an empty body yields nothing', box.failedRecipientsFrom_(''), []);
+eq('addresses come back lowercased, as matching expects',
+  box.failedRecipientsFrom_('Sean.Kang@Stifel.com failed'), ['sean.kang@stifel.com']);
+
+eq('mailer-daemon is a bounce sender', box.isBounceSender_('mailer-daemon@googlemail.com'), true);
+eq('postmaster is a bounce sender', box.isBounceSender_('POSTMASTER@x.com'), true);
+eq('a banker is not', box.isBounceSender_('jamie@jpmorgan.com'), false);
+eq('nothing is not', box.isBounceSender_(''), false);
+
+/* ------------------------------------------------------------------ *
+ * The install id, and what telemetry is allowed to carry.
+ * ------------------------------------------------------------------ */
+
+const props = {};
+global.PropertiesService = {
+  getScriptProperties: () => ({
+    getProperty: (k) => (k in props ? props[k] : null),
+    setProperty: (k, v) => { props[k] = v; },
+  }),
+};
+let uuidSeed = 0;
+global.Utilities.getUuid = () =>
+  `0000000${++uuidSeed}-0000-4000-8000-000000000000`;
+
+const first = box.installId_();
+eq('an install id is minted on first use', /^[0-9a-f-]{36}$/.test(first), true);
+eq('and never changes afterwards', box.installId_(), first);
+eq('nor on a third call', box.installId_(), first);
+
+// A copied sheet is a new install: its own properties, its own id.
+for (const k of Object.keys(props)) delete props[k];
+const second = box.installId_();
+eq('a copied sheet mints its own id', second !== first, true);
+
+const payload = box.telemetryPayload_(37, 44, true);
+eq('telemetry carries exactly these fields and no others',
+  Object.keys(payload).sort(),
+  ['at', 'contacts', 'contract_version', 'courier_version', 'install_id', 'ok', 'seconds']);
+eq('the contact count is a bare number', payload.contacts, 37);
+eq('and the duration', payload.seconds, 44);
+eq('and whether it worked', payload.ok, true);
+const serialised = JSON.stringify(payload).toLowerCase();
+for (const forbidden of ['@', 'name', 'subject', 'body', 'firm', 'email']) {
+  eq(`telemetry carries no "${forbidden}"`, serialised.includes(forbidden), false);
+}
+
+/* ------------------------------------------------------------------ *
+ * The notice channel — a timed run cannot open a dialog, so the sheet
+ * itself has to carry the message.
+ * ------------------------------------------------------------------ */
+
+eq('no notice at all', box.noticeFrom_({}), null);
+eq('a null notice', box.noticeFrom_({ notice: null }), null);
+eq('an empty text is not a notice', box.noticeFrom_({ notice: { level: 'info', text: '  ' } }), null);
+eq('an info notice',
+  box.noticeFrom_({ notice: { level: 'info', text: 'Blotter is now a paid product.' } }),
+  { level: 'info', text: 'Blotter is now a paid product.', url: '' });
+eq('a warning notice keeps its url',
+  box.noticeFrom_({ notice: { level: 'warning', text: 'Card expiring.', url: 'https://blotterib.com/billing' } }),
+  { level: 'warning', text: 'Card expiring.', url: 'https://blotterib.com/billing' });
+eq('a blocked notice — the one that must survive a refused run',
+  box.noticeFrom_({ notice: { level: 'blocked', text: 'Your trial has ended.' } }),
+  { level: 'blocked', text: 'Your trial has ended.', url: '' });
+eq('an unknown level falls back to info rather than vanishing',
+  box.noticeFrom_({ notice: { level: 'catastrophe', text: 'Something.' } }).level, 'info');
+eq('text is trimmed',
+  box.noticeFrom_({ notice: { level: 'info', text: '  padded  ' } }).text, 'padded');
 
 console.log(fails === 0
   ? `All ${checks} courier helper checks passed.`
