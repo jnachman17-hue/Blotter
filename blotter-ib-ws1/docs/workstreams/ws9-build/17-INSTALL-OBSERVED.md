@@ -278,3 +278,91 @@ a call scheduled for tomorrow.
 that needs event A to follow event B must put B in the *past* — move the
 calendar event backwards — rather than moving `now` forwards. **The time machine
 ages the world; it cannot reorder it.**
+
+---
+
+## 10. LIVE TEST DEFECT 3 — an approved contact lands at row 996
+
+**Jon approved `jnachman17@gmail.com` in Found. The row said `Added`. Nothing
+appeared in Contacts.** It had been appended at **row 996**, nine hundred rows
+below his data.
+
+### Cause
+
+`setupSheet` applies checkbox validation down the whole `Closed` column — around
+a thousand rows — and **an unchecked checkbox stores `FALSE`, which counts as
+content.** So `getLastRow()` returns ~995 and `appendRow` lands after it.
+
+Visible in every screenshot from this session: checkboxes marching down empty
+rows far below the data.
+
+### Fix
+
+**Append after the last row that has a Name or an Email**, not after the last
+row Sheets considers non-empty. And **do not pre-apply checkboxes to a thousand
+empty rows** — it also makes an otherwise blank sheet look like clutter (§7).
+
+### Why it matters more than it looks
+
+**This is the first thing a real student does after their first referral
+arrives.** They approve someone, the sheet says `Added`, nothing appears, and
+they conclude Blotter is broken. They would be right to.
+
+---
+
+## 11. LIVE TEST DEFECT 4 — the Found row is marked `Added` even when nothing was added
+
+Found while diagnosing defect 3, and **independent of it.**
+
+```js
+if (!sheetState.emailsInSheet[a.email.toLowerCase()]) {
+    ... appendRow ...
+    added++;
+}
+foundState.sheet.getRange(a.rowNumber, foundState.cols.add).setValue('Added');
+```
+
+**The `Added` mark is set outside the `if`.** When the append is skipped — the
+address is already in Contacts, or any future reason — the sheet still claims it
+happened.
+
+**A sheet that reports an action it did not take is worse than one that fails
+loudly.** The mark should reflect what actually occurred, and a skip should say
+so.
+
+---
+
+## 12. What the live test covered, and the one thing it could not
+
+**Everything the test was designed for, in one afternoon:**
+
+`Sent` · `Replied` · attempts and the bump · a real bounce from `mailer-daemon` ·
+`Call scheduled` · `Call done` · `Call cancelled` · a thank-you clearing
+`Call done` · **D21 — a decline followed by an email flipping to `Replied`** ·
+an out-of-office correctly refused · a referral appearing in `Found` · approve ·
+ignore · `Closed` · and the time machine.
+
+**Not covered, and it needs real elapsed time: the 15-minute timer firing
+unattended.** Every run in this test was triggered by hand. Whether the trigger
+survives a night, and what a run costs when nobody is watching, is still
+unobserved.
+
+**Also not covered: the 10-recipient cap (D2), because it is not built.**
+
+### The scoreboard
+
+**Four defects, and not one was findable from a fixture.**
+
+1. A typed address with a non-ASCII dash silently never matches, and the contact
+   reads `Not emailed` forever
+2. `Days` pointed two directions
+3. An approved contact lands at row 996
+4. The Found row claims `Added` when nothing was added
+
+**Every one lives in the gap between a person and the sheet** — fingers, a
+column heading, a checkbox, a status word. The engine's judgment was never
+wrong once: **every prediction the conductor committed to in advance was
+matched exactly**, including the bounce, the auto-reply, the cancelled call and
+the two time-machine jumps.
+
+**The engine is right. The product around it is what needs work.**
