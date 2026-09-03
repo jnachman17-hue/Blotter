@@ -1,7 +1,11 @@
 # The engine rules
 
 Date: September 1, 2026
-Version: **6.** Amended September 2, 2026 after the Phase A build reported six
+Version: **7.** Amended September 3, 2026: D24 replaced the whole clock
+section — `Days` and `Attempts` now show a number only where it means one, and
+`Call cancelled` shows a dash.
+
+Previously: version 6. Amended September 2, 2026 after the Phase A build reported six
 places the document had fallen behind the engine.
 
 Previously: version 5. Amended September 2, 2026 with the seven open questions ruled —
@@ -144,7 +148,7 @@ picked would be wrong for someone**, so we do not pick one.
 | **Replied** | They wrote last, you have not answered | Days since **they** wrote |
 | **Call scheduled** | A calendar event with them is upcoming | Days until it |
 | **Call done** | A call has happened and nobody has written since | Days since the call |
-| **Call cancelled** | The most recent call was declined by either side, and nobody has written since | Days since the last thing that **actually happened** |
+| **Call cancelled** | The most recent call was declined by either side, and nobody has written since | A dash |
 | **Closed** | You marked it closed | A dash |
 
 ### How a day is counted
@@ -170,25 +174,45 @@ Bounced  >  Call scheduled  >  Call done | Call cancelled  >  Replied / Sent
 `Call done` and `Call cancelled` cannot both apply — the most recent event either
 happened or was declined.
 
-### The clock counts from the last thing that actually happened
+### `Days` and `Attempts` show a number only where it means something
 
-**An email either way, or a call that took place.** A cancelled call is a
-**non-event**: it does not anchor the clock, does not reset it, and does not
-touch it. Only the status changes.
+**Ruled by Jon, September 2, 2026 (D24), during the first live test.** He found
+it on seeing `Call scheduled` count **down** to a call while every other state
+counted **up** from an email — one column, two directions, nothing on the sheet
+to say which, and redundant besides, because `Next call` already carries the
+date.
 
-**Ruled by Jon, September 2, 2026**, replacing "days since it was declined" —
-which Google publishes nowhere and which no engine can obtain. His reasoning:
-*"Days since is one of the most important features but for emails. Not calls…
-When it's a live contact days since email is super important to know when to
-bump the thread."*
+| Status | Days | Attempts |
+|---|---|---|
+| `Sent` | since **you** wrote | **the count** |
+| `Replied` | since **they** wrote | — |
+| `Call done` | since the call — **the thank-you clock** | — |
+| `Call scheduled` | — | — |
+| `Call cancelled` | — | — |
+| `Bounced` | — | — |
+| `Closed` | — | — |
+| `Not emailed` | — | — |
 
-So `Call cancelled` shows the same number `Sent` would. If the last email was
-thirty days ago and the decline landed this morning, it reads **30** — and that
-is the useful fact, because thirty days is how long since anyone communicated.
+**The principle: a column shows a number only when that number means something.**
+`Replied` always has zero attempts by definition, and printing that zero is
+noise dressed as data.
 
-**A dash is shown wherever `days` has no value** — `Closed` and `Not emailed`.
+`Attempts` appears in `Sent` and nowhere else. Jon on `Bounced`: *"If that
+address is bounced it's bounced, additional attempts are worthless."*
 
-### A call counts as done the moment it starts
+**Where the decision lives:** the engine returns `null`; the courier renders the
+dash. The courier makes no judgment about meaning.
+
+> ⚠ **This retired an earlier ruling made the same day, and the reasoning is
+> worth keeping.** `Call cancelled`'s clock was ruled at length to be *days
+> since the last thing that actually happened* — replacing *days since it was
+> declined*, which Google publishes nowhere. **D24 then removed the number
+> entirely**, so that anchor is no longer displayed. The *status* test still
+> needs to know when a call was called off and still reads the `Declined:`
+> notification; only the shown number went. **If a number is ever wanted back
+> on that row, the anchor to restore is in `16-PHASE-A-NOTES.md` §5.1.**
+
+### A call counts as done the moment it starts### A call counts as done the moment it starts
 
 At 2:01pm on a 2:00 to 2:30 call the row reads `Call done`, not `Call scheduled`.
 **The "nobody has written since" test moves with it** — it measures from the
