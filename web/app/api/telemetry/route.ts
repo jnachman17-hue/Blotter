@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import { guardWrite } from "@/lib/request-guard";
 import { supabaseAdmin, supabaseConfigured } from "@/lib/supabase-admin";
 
+import { pickInstallRow } from "./payload";
+
 /**
  * How many sheets are running. That is the whole question this answers.
  *
@@ -20,10 +22,11 @@ import { supabaseAdmin, supabaseConfigured } from "@/lib/supabase-admin";
  *
  * **What may never cross it:** a name, an email address, a subject, a message
  * body, a firm — anything at all from which a person could be recognised.
- * `pick()` below is the entire boundary, and it works by allow-list rather
- * than by removing known-bad fields, so a caller that sends something unwanted
- * has it dropped rather than stored. If a future change wants a new field
- * here, that is the moment to stop and ask whether it belongs.
+ * `pickInstallRow` in `payload.ts` is the entire boundary, and it works by
+ * allow-list rather than by removing known-bad fields, so a caller that sends
+ * something unwanted has it dropped rather than stored. It lives in its own
+ * file so it can be tested directly — see the note there about why that
+ * matters.
  *
  * **Storage is best-effort and must never fail a student's run.** Every path
  * returns 200. A sheet that cannot be counted is a data problem; a sheet that
@@ -33,64 +36,6 @@ import { supabaseAdmin, supabaseConfigured } from "@/lib/supabase-admin";
 
 /** Node rather than Edge: the Supabase client expects a Node runtime. */
 export const runtime = "nodejs";
-
-/** A UUID and nothing else. Anything shaped differently is not an install id. */
-const INSTALL_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-/** Version strings are short and printable; a long one is a caller misbehaving. */
-function version(value: unknown): string | null {
-  if (typeof value !== "string") return null;
-  const trimmed = value.trim();
-  if (trimmed.length === 0 || trimmed.length > 32) return null;
-  return /^[A-Za-z0-9._-]+$/.test(trimmed) ? trimmed : null;
-}
-
-function count(value: unknown, ceiling: number): number | null {
-  if (typeof value !== "number" || !Number.isFinite(value)) return null;
-  const whole = Math.trunc(value);
-  return whole >= 0 && whole <= ceiling ? whole : null;
-}
-
-interface InstallRow {
-  install_id: string;
-  contract_version: string;
-  courier_version: string;
-  contacts: number;
-  seconds: number;
-  ok: boolean;
-  last_seen: string;
-}
-
-/**
- * The allow-list. Nothing reaches the table that is not named here, and every
- * value is bounded — a caller cannot turn a count into a payload by sending a
- * very large one.
- */
-function pick(body: unknown): InstallRow | null {
-  if (typeof body !== "object" || body === null || Array.isArray(body)) return null;
-  const raw = body as Record<string, unknown>;
-
-  const id = typeof raw.install_id === "string" ? raw.install_id.trim() : "";
-  if (!INSTALL_ID.test(id)) return null;
-
-  const contract = version(raw.contract_version ?? String(raw.contract_version));
-  const courier = version(raw.courier_version);
-  const contacts = count(raw.contacts, 100_000);
-  const seconds = count(raw.seconds, 86_400);
-  if (contract === null || courier === null || contacts === null || seconds === null) return null;
-
-  return {
-    install_id: id.toLowerCase(),
-    contract_version: contract,
-    courier_version: courier,
-    contacts,
-    seconds,
-    ok: raw.ok === true,
-    /* The server's clock, not the caller's. A sheet with a wrong timezone must
-       not be able to write itself into next week and distort a churn figure. */
-    last_seen: new Date().toISOString(),
-  };
-}
 
 export async function POST(request: Request) {
   const rejected = guardWrite(request);
@@ -105,7 +50,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ counted: false, reason: "bad_request" }, { status: 200 });
   }
 
-  const row = pick(body);
+  const row = pickInstallRow(body);
   if (row === null) {
     return NextResponse.json({ counted: false, reason: "rejected" }, { status: 200 });
   }
