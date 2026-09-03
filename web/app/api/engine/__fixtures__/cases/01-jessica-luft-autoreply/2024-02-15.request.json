@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 4,
  "now": "2024-02-15T12:00:00-06:00",
  "student": {
   "addresses": [
@@ -31,7 +31,7 @@
      ],
      "cc": [],
      "subject": "Nice Meeting You & Potential Call",
-     "body": "Hello Jess,\n\nIt was great to meet you yesterday – I appreciate you spending the time to provide me with some valuable insight. I know you spoke with many students yesterday, so you likely don't specifically remember me. I particularly asked you about the feasibility of UT to BofA New York (as opposed to Houston). You offered your willingness to pass along my information to an appropriate New York analyst to set up a potential coffee chat. I am following up on that if it is still a possibility. I handed you my resume in person, but will attach it to this email as well. I would greatly appreciate it if you could pass it along to a New York analyst with the hopes of setting up a coffee chat. Thanks again!\n\nBest,\nJonathan",
+     "failed_recipients": [],
      "is_outbound": true
     }
    ]
@@ -48,7 +48,7 @@
      ],
      "cc": [],
      "subject": "Automatic reply: Nice Meeting You & Potential Call",
-     "body": "Hello,\n\nThank you for your message. I am OOO traveling and attending events, please expect a delay in response and I will get back with you as soon as possible.\n\nBest,\nJess Luft",
+     "failed_recipients": [],
      "is_outbound": false
     }
    ]

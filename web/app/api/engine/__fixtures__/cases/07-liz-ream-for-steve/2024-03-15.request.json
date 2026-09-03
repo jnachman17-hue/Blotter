@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 4,
  "now": "2024-03-15T13:00:00-05:00",
  "student": {
   "addresses": [
@@ -33,7 +33,7 @@
      ],
      "cc": [],
      "subject": "Introduction",
-     "body": "Steve - Thanks again for agreeing to talk to my son Jonathan. I know he is eager to apply to the FT Analyst program.\n\nLiz - I've copied Jonathan so that you can coordinate directly with him to find a time that works.\n\nThanks,\nDavid\n\nDavid Nachman, CEO, FastSpring",
+     "failed_recipients": [],
      "is_outbound": false
     },
     {
@@ -45,7 +45,7 @@
      ],
      "cc": [],
      "subject": "Re: Introduction",
-     "body": "Hello Liz,\n\nI hope you are doing well. I am following up on the introduction made by my father yesterday. I am very excited for the opportunity to speak with Steve over the phone. Here are some times (CT) that work for me in the next few days:\n\nFriday (2/16): 12:00 pm onwards\nMonday (2/19): 11:30 am onwards\nTuesday (2/20): 9:30 am - 1:30 pm & 5:00 pm onwards\nWednesday (2/21): 11:30 am onwards\nThursday (2/22) 9:30 am - 1:00 pm\n\nPlease let me know if any of these times are convenient for Steve. Thank you!\n\nBest,\nJonathan Nachman",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -57,7 +57,7 @@
      ],
      "cc": [],
      "subject": "RE: Introduction",
-     "body": "Hi Jonathan – Thanks for sending times. Let’s please go with Monday at 2:30 CT. I’ll send a calendar invite.\n\nLiz Ream, Executive Assistant",
+     "failed_recipients": [],
      "is_outbound": false
     },
     {
@@ -69,7 +69,7 @@
      ],
      "cc": [],
      "subject": "Re: Introduction",
-     "body": "Confirmed - thank you.",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -82,7 +82,7 @@
      ],
      "cc": [],
      "subject": "RE: Introduction",
-     "body": "Jonathan, hey! Great to meet and look forward to chatting. Liz (cc'd) can help find us 15 mins either next week or the week after.\n\nIf you haven't already done so, please officially apply for the analyst program (2025 Summer Analyst, Investment Banking (San Francisco) at Financial Technology Partners, via Greenhouse) so we can get you in the process.\n\nBest,\nSteve",
+     "failed_recipients": [],
      "is_outbound": false
     },
     {
@@ -94,7 +94,7 @@
      ],
      "cc": [],
      "subject": "Re: Introduction",
-     "body": "Hello Steve,\n\nGreat to hear from you! I coordinated with Liz directly to set up a time to call. She scheduled us for this upcoming Monday (1/19) at 2:30 pm CT. I'm hoping this aligns with your schedule, and I look forward to speaking with you then.\n\nBest,\nJonathan",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -108,7 +108,7 @@
       "liz.ream@ftpartners.com"
      ],
      "subject": "RE: Introduction",
-     "body": "Excellent! Look forward to it.\n\nSteve",
+     "failed_recipients": [],
      "is_outbound": false
     }
    ]
@@ -125,7 +125,7 @@
      ],
      "cc": [],
      "subject": "Enjoyed our Conversation",
-     "body": "Hey Steve,\n\nI just wanted to send a quick note of appreciation for the time you spent with me over the phone today. I appreciated gaining insight into the firm through the lens of someone with your extensive experience. You, along with Ethan and Josh, have done an incredible job of selling me on FT. Thanks again and enjoy the remainder of your time in Park City!\n\nBest,\nJonathan",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -137,7 +137,7 @@
      ],
      "cc": [],
      "subject": "Re: Enjoyed our Conversation",
-     "body": "Thanks Jonathan, enjoyed the convo!\n\nBest,\nSteve",
+     "failed_recipients": [],
      "is_outbound": false
     }
    ]

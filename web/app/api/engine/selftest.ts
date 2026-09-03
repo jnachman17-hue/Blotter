@@ -35,7 +35,7 @@ function msg(overrides: Partial<MessageIn> & { date: string; from: string }): Me
     to: overrides.to ?? ["student@gmail.com"],
     cc: overrides.cc ?? [],
     subject: overrides.subject ?? "Re: Intro",
-    body: overrides.body ?? "Sure.",
+    failed_recipients: overrides.failed_recipients ?? [],
     is_outbound: overrides.is_outbound ?? false,
   };
 }
@@ -52,7 +52,7 @@ function req(
   ignored: string[] = [],
 ): EngineRequest {
   return {
-    version: 1,
+    version: 4,
     now,
     student: { addresses: ["student@gmail.com", "student@utexas.edu"] },
     contacts,
@@ -79,8 +79,9 @@ function evt(overrides: Partial<EventIn> & { start: string; end: string }): Even
   };
 }
 
-const GMAIL_BOUNCE = (failed: string) =>
-  `** Address not found **\n\nYour message wasn't delivered to ${failed} because the address couldn't be found, or is unable to receive mail.\n\nThe response from the remote server was:\n550 #5.1.0 Address rejected.\nFinal-Recipient: rfc822; ${failed}\nAction: failed\nStatus: 4.4.2`;
+/* The real bounce text lives in `courier/helpers.test.js` now. Extracting an
+   address from a delivery-failure notice is the courier's job since contract
+   version 4 — the engine never sees the text, so it cannot be tested on it. */
 
 /* ---------------------------------------------------------------- *
  * The seven states
@@ -143,7 +144,6 @@ const GMAIL_BOUNCE = (failed: string) =>
               date: "2024-02-03T14:05:20Z",
               from: "jessica.luft@bofa.com",
               subject: "Automatic reply: Nice Meeting You & Potential Call",
-              body: "I am OOO traveling and attending events.",
             }),
           ],
         },
@@ -173,7 +173,7 @@ const GMAIL_BOUNCE = (failed: string) =>
         date: `2024-01-31T05:1${i}:13Z`,
         from: "mailer-daemon@googlemail.com",
         subject: "Delivery Status Notification (Failure)",
-        body: GMAIL_BOUNCE(address),
+        failed_recipients: [address],
       }),
     );
   });
@@ -209,7 +209,7 @@ const GMAIL_BOUNCE = (failed: string) =>
               date: "2024-02-08T04:24:13Z",
               from: "mailer-daemon@googlemail.com",
               subject: "Delivery Status Notification (Failure)",
-              body: GMAIL_BOUNCE("Marijoy.Bertolini@aerispartners.com"),
+              failed_recipients: ["Marijoy.Bertolini@aerispartners.com"],
             }),
           ],
         },
@@ -682,7 +682,7 @@ const GMAIL_BOUNCE = (failed: string) =>
               date: "2024-02-10T14:00:10Z",
               from: "mailer-daemon@googlemail.com",
               subject: "Delivery Status Notification (Failure)",
-              body: GMAIL_BOUNCE("jamie@jpmorgan.com"),
+              failed_recipients: ["jamie@jpmorgan.com"],
             }),
           ],
         },
@@ -1012,7 +1012,7 @@ check("firm: Citi does not match Houlihan", firmInTitle("Citi", "Danny - Jonatha
     date: "2024-02-08T14:01:00Z",
     from: "mailer-daemon@googlemail.com",
     subject: "Delivery Status Notification (Failure)",
-    body: GMAIL_BOUNCE("jamie@jpmorgan.com"),
+    failed_recipients: ["jamie@jpmorgan.com"],
   });
   const row = (threads: ThreadIn[], events: EventIn[] = [], closed = false) =>
     computeEngine(
@@ -1047,41 +1047,57 @@ check("firm: Citi does not match Houlihan", firmInTitle("Citi", "Danny - Jonatha
  * The envelope
  * ---------------------------------------------------------------- */
 
+/* Version 4 refuses every earlier version, and that is a change of kind.
+   Earlier bumps were additive so an old payload still meant what it meant.
+   This one removes `body`, and a version-3 courier still sends one — accepting
+   it would mean carrying on receiving the text of people's email.
+
+   The second reason is the dangerous one: a version-4 courier against a
+   version-3 server sends no bodies to a server that expects them, and bounces
+   silently stop being detected. The version check is the only thing standing
+   between that and a row quietly reading `Sent` for a dead address. */
+{
+  for (const stale of [1, 2, 3]) {
+    let error = "";
+    try {
+      parseEngineRequest({ version: stale, now: "2024-02-15T17:00:00Z", student: { addresses: ["s@x.com"] } });
+    } catch (e) {
+      error = e instanceof RequestError ? e.message : "wrong error type";
+    }
+    check(`version ${stale} is refused, not tolerated`, error.includes("must be 4"), true);
+    check(`version ${stale} refusal names the fix`, error.includes("Code.gs"), true);
+  }
+}
+
+/* And the promise that the server never receives the text of an email is a
+   refusal rather than a convention: a body is rejected, not quietly dropped. */
 {
   let error = "";
   try {
-    parseEngineRequest({ version: 4, now: "2024-02-15T17:00:00Z", student: { addresses: ["s@x.com"] } });
+    parseEngineRequest({
+      version: 4,
+      now: "2024-02-15T17:00:00Z",
+      student: { addresses: ["s@x.com"] },
+      threads: [{
+        thread_id: "t1",
+        messages: [{
+          date: "2024-02-01T10:00:00Z", from: "s@x.com", to: ["j@x.com"],
+          is_outbound: true, body: "please do not send me this",
+        }],
+      }],
+    });
   } catch (e) {
     error = e instanceof RequestError ? e.message : "wrong error type";
   }
-  check("an unknown version is loud", error.includes("must be 1, 2 or 3"), true);
-}
-
-/* Contract v2: both versions are understood, and the answer comes back in the
-   version it was asked in — which is what lets a version-1 courier keep
-   working against this server while its half of the world catches up. */
-{
-  const v1 = computeEngine(req([contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])], []));
-  check("version 1 is still understood", v1.version, 1);
-  const asked = { ...req([contact(2, "Jamie Diamond", "JPMorgan", ["jamie@jpmorgan.com"])], []), version: 2 as const };
-  check("version 2 is answered in version 2", computeEngine(asked).version, 2);
-  check(
-    "a version-1 payload with no declines still parses",
-    parseEngineRequest({
-      version: 1,
-      now: "2024-02-15T17:00:00Z",
-      student: { addresses: ["s@x.com"] },
-      events: [{ id: "e1", title: "x", start: "2024-02-15T17:00:00Z", end: "2024-02-15T18:00:00Z" }],
-    }).events[0].declined,
-    [],
-  );
+  check("a message body is refused outright", error.includes("must not be sent"), true);
+  check("and the refusal says what to send instead", error.includes("failed_recipients"), true);
 }
 
 {
   let error = "";
   try {
     parseEngineRequest({
-      version: 1,
+      version: 4,
       now: "2024-02-15 17:00:00",
       student: { addresses: ["s@x.com"] },
     });
@@ -1093,7 +1109,7 @@ check("firm: Citi does not match Houlihan", firmInTitle("Citi", "Danny - Jonatha
 
 {
   const parsed = parseEngineRequest({
-    version: 1,
+    version: 4,
     now: "2024-02-15T17:00:00Z",
     student: { addresses: ["s@x.com"] },
     contacts: [{ row: 2, name: "Jamie Diamond", emails: ["j@x.com"], closed: false }],

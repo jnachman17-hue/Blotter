@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 4,
  "now": "2024-02-15T12:00:00-06:00",
  "student": {
   "addresses": [
@@ -31,7 +31,7 @@
      ],
      "cc": [],
      "subject": "UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
-     "body": "Hello Nicholas,\n\nI hope you are doing well. I am emailing after coincidently learning from your sister (gf of my roommate) that you are an analyst at Citi. I am an undergraduate Economics & Business student at the University of Texas, and I'm pursuing a career in Investment Banking. I'd love to talk to you to learn more about your experience at Citi given I'm particularly interested in Banking in New York.\n\nIf you have any free time in the next week, it would be great to set up a quick phone call with you. I am pretty open and can likely adjust my schedule to accommodate whatever works best for you. Please let me know if you would be willing to do this. Attached is my resume.\n\nBest,\nJonathan",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -43,7 +43,7 @@
      ],
      "cc": [],
      "subject": "Re: UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
-     "body": "Hi Jonathan,\n\nNice to hear from you and hope you’re doing well too!\n\nI’d love to chat and give you a bit of background on my experience in the industry and during the recruiting process. Thursday or Friday morning would work best on my end. Are you available at 10 am cst (11 am est) on Thursday?\n\nLook forward to chatting.\n\nBest,\nNick Gerstein",
+     "failed_recipients": [],
      "is_outbound": false
     },
     {
@@ -55,7 +55,7 @@
      ],
      "cc": [],
      "subject": "Re: UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
-     "body": "Nick – I appreciate the response. Thursday (1/25) at 10 am cst is perfect. I'll send you a calendar invite, and I look forward to talking with you then.\n\nBest,\nJonathan",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -67,7 +67,7 @@
      ],
      "cc": [],
      "subject": "Re: UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
-     "body": "Hey Jonathan,\n\nSorry for changing but can we do same time Friday instead? I just got a call scheduled for this time on Thursday.\n\nThanks,\nNick Gerstein",
+     "failed_recipients": [],
      "is_outbound": false
     },
     {
@@ -79,7 +79,7 @@
      ],
      "cc": [],
      "subject": "Re: UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
-     "body": "Nick,\n\nNo worries. Friday at 10 am cst still works for me. I'll adjust the calendar invite and talk to you then.\n\nBest,\nJonathan",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -91,7 +91,7 @@
      ],
      "cc": [],
      "subject": "Re: UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
-     "body": "Nick – just realized I emailed your personal email and thus don't have you # from your email signature. Could you either shoot me a call at 10 or send over your number? Thanks.",
+     "failed_recipients": [],
      "is_outbound": true
     },
     {
@@ -103,7 +103,7 @@
      ],
      "cc": [],
      "subject": "Re: UT Austin Student Interested in Banking @ Citi (Referred by Miranda)",
-     "body": "Hey Nick,\n\nI really appreciate you spending the time to hop on the phone with me today. Your candid advice and general insight to my recruitment process were very useful, and I'm super appreciative of that. You provided me with some solid guidance as I continue my recruitment process. I wish you best of luck in your future endeavors as your transition beyond IB upon receiving your promotion. Thanks again!\n\nBest,\nJonathan",
+     "failed_recipients": [],
      "is_outbound": true
     }
    ]
@@ -120,7 +120,7 @@
      ],
      "cc": [],
      "subject": "Accepted: Nick - Jonathan Citi IB Call @ Thu Jan 25, 2024 10am - 10:30am (CST) (jnachman17@gmail.com)",
-     "body": "",
+     "failed_recipients": [],
      "is_outbound": false
     }
    ]
@@ -137,7 +137,7 @@
      ],
      "cc": [],
      "subject": "Accepted: Nick - Jonathan Citi IB Call @ Fri Jan 26, 2024 10am - 10:30am (CST) (jnachman17@gmail.com)",
-     "body": "",
+     "failed_recipients": [],
      "is_outbound": false
     }
    ]

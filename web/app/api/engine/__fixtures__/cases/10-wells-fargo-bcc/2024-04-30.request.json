@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 4,
  "now": "2024-04-30T13:00:00-05:00",
  "student": {
   "addresses": [
@@ -33,7 +33,7 @@
       "Abey.T.Dessie@wellsfargo.com"
      ],
      "subject": "Action Required: Wells Fargo 2025 Summer Internship - Investment Banking (San Francisco) | Preference Form",
-     "body": "Good afternoon,\n\nWe hope this email finds you well. Thank you for applying to the Wells Fargo 2025 Summer Investment Banking Internship Program (San Francisco).\n\nTo remain in the process and indicate your group preference, you will need to complete the below group preference form. Please complete it by noon EST on Monday, April 8.\n\n[Preference survey link]\n\nAbey T. Dessie, Recruiter - Early Careers, Corporate and Investment Banking",
+     "failed_recipients": [],
      "is_outbound": false
     },
     {
@@ -46,7 +46,7 @@
       "Abey.T.Dessie@wellsfargo.com"
      ],
      "subject": "RE: Action Required: Wells Fargo 2025 Summer Internship - Investment Banking (San Francisco) | Preference Form",
-     "body": "Good afternoon,\n\nThank you to those that have reached out. We will be sending out a new form on Monday. Please disregard the prior email. Enjoy your weekend.\n\nAbey T. Dessie",
+     "failed_recipients": [],
      "is_outbound": false
     },
     {
@@ -59,7 +59,7 @@
       "Abey.T.Dessie@wellsfargo.com"
      ],
      "subject": "RE: Action Required: Wells Fargo 2025 Summer Internship - Investment Banking (San Francisco) | Preference Form",
-     "body": "Good afternoon,\n\nThank you all for our patience. Here is the link to the updated group preference form. The access code is: 2025IBSanFrancisco.\n\nTo remain in the process, you will need to complete the form by 1pm EST on Tuesday, April 9.\n\nAbey T. Dessie",
+     "failed_recipients": [],
      "is_outbound": false
     }
    ]

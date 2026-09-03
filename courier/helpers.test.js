@@ -60,7 +60,16 @@ const EXPORTS = [
   'namedAddressList_', 'firstNamedAddress_', 'bareAddress_', 'addressList_',
   'exceedsRecipientCap_', 'parsePretendText_', 'pretendNowIso_', 'declinedGuests_',
   'normaliseTyped_', 'unreadableAddressWarnings_', 'lastRowWithContact_',
+  'failedRecipientsFrom_', 'isBounceSender_', 'installId_', 'telemetryPayload_', 'noticeFrom_',
   'MAX_THREAD_RECIPIENTS', 'NO_CLOCK', 'VALID_STATUSES', 'CONTRACT_VERSION',
+  // The look. Colour tables and widths are data, so they are testable — and a
+  // typo in a hex paints a cell black on somebody's real sheet.
+  'asSheetDate_', 'STATUS_STYLE', 'THEMES', 'CONTACTS_WIDTHS', 'FOUND_WIDTHS',
+  'COL_NAME', 'COL_TITLE', 'COL_FIRM', 'COL_EMAIL', 'COL_CLOSED',
+  'BLOTTER_COLUMNS', 'FOUND_HEADERS',
+  // Sorting: the two ranking functions are pure, and getting either subtly
+  // wrong reorders somebody's whole tracker without erroring.
+  'titleRank_', 'stateRank_', 'pad_', 'columnLetter_',
 ];
 const box = {};
 new Function('box', `${src}\nObject.assign(box, {${EXPORTS.join(', ')}});`)(box);
@@ -145,7 +154,7 @@ eq('an empty conversation is fine', box.exceedsRecipientCap_([]), false);
  * Contract v2 bookkeeping
  * ------------------------------------------------------------------ */
 
-eq('the courier speaks version 3', box.CONTRACT_VERSION, 3);
+eq('the courier speaks version 4', box.CONTRACT_VERSION, 4);
 eq('eight statuses', box.VALID_STATUSES.length, 8);
 eq('Call cancelled is accepted', box.VALID_STATUSES.indexOf('Call cancelled') !== -1, true);
 eq('a clockless cell is an em dash', box.NO_CLOCK, '—');
@@ -325,6 +334,262 @@ declinedBy([guest('student@gmail.com', 'NO')], 'NO');
 eq('the guest list answering means my-status is not asked again', statusCalls, 1);
 declinedBy([guest('banker@firm.com', 'YES'), guest('student@gmail.com', 'OWNER')], 'OWNER');
 eq('otherwise: one call per guest, plus one for the student', statusCalls, 3);
+
+
+// ---------------------------------------------------------------------------
+/** The harness asserts with eq(label, actual, expected); this is the boolean form. */
+function ok(label, actual) { eq(label, !!actual, true); }
+
+const { titleRank_, stateRank_, pad_, columnLetter_ } = box;
+const { asSheetDate_, STATUS_STYLE, THEMES, CONTACTS_WIDTHS, FOUND_WIDTHS,
+        COL_NAME, COL_TITLE, COL_FIRM, COL_EMAIL, COL_CLOSED,
+        BLOTTER_COLUMNS, FOUND_HEADERS, VALID_STATUSES } = box;
+
+// asSheetDate_ — the fix for `Next call` rendering a raw ISO timestamp.
+//
+// The trap being guarded is the one this project has already paid for once:
+// `new Date('2026-09-02')` is UTC midnight, which is the evening of September
+// 1st anywhere in the Americas. A bare date must be built from its parts.
+// ---------------------------------------------------------------------------
+{
+  const bare = asSheetDate_('2026-09-02');
+  ok('bare date is a Date', bare instanceof Date);
+  ok('bare date keeps its own day, not UTC midnight', bare.getFullYear() === 2026 && bare.getMonth() === 8 && bare.getDate() === 2);
+  ok('bare date sits at local midnight', bare.getHours() === 0 && bare.getMinutes() === 0);
+
+  const stamped = asSheetDate_('2026-09-03T14:00:00-07:00');
+  ok('full timestamp is a Date', stamped instanceof Date);
+  ok('full timestamp keeps its instant', stamped.getTime() === Date.parse('2026-09-03T14:00:00-07:00'));
+
+  ok('null becomes an empty cell', asSheetDate_(null) === '');
+  ok('undefined becomes an empty cell', asSheetDate_(undefined) === '');
+  ok('empty string stays empty', asSheetDate_('') === '');
+
+  // Passing an unparseable value through untouched is the point: a visibly odd
+  // string is recoverable, a confidently wrong date is not.
+  ok('a dash is left alone', asSheetDate_('—') === '—');
+  ok('nonsense is left alone', asSheetDate_('next tuesday') === 'next tuesday');
+  ok('a nearly-ISO string is left alone', asSheetDate_('2026-13-45T99:00:00Z') === '2026-13-45T99:00:00Z');
+
+  // Every date the engine can send, across a DST boundary in both directions.
+  ['2026-01-15', '2026-03-08', '2026-03-09', '2026-11-01', '2026-12-31'].forEach((iso) => {
+    const d = asSheetDate_(iso);
+    const parts = iso.split('-').map(Number);
+    ok('round trip ' + iso, d.getFullYear() === parts[0] && d.getMonth() === parts[1] - 1 && d.getDate() === parts[2]);
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Sorting. Titles are free text a student typed, so the ranking has to survive
+// real-world spellings — and must not read "Senior Vice President" as an
+// analyst because it happens to contain a word from a lower rank.
+// ---------------------------------------------------------------------------
+{
+  const rankOf = (t) => titleRank_(t);
+  ok('analyst is most junior', rankOf('Analyst') < rankOf('Associate'));
+  ok('associate below VP', rankOf('Associate') < rankOf('Vice President'));
+  ok('VP below MD', rankOf('Vice President') < rankOf('Managing Director'));
+
+  // The real spellings out of Jon's own 2024 tracker.
+  ['Analyst', 'analyst', 'Summer Analyst', 'Senior Analyst'].forEach((t) =>
+    ok('reads as analyst: ' + t, rankOf(t) === rankOf('Analyst')));
+  ['Associate', 'associate ', 'Senior Associate'].forEach((t) =>
+    ok('reads as associate: ' + t, rankOf(t) === rankOf('Associate')));
+  ['Vice President', 'VP', 'vp', 'SVP', 'Senior Vice President'].forEach((t) =>
+    ok('reads as VP: ' + t, rankOf(t) === rankOf('Vice President')));
+  ['MD', 'Managing Director', 'managing director'].forEach((t) =>
+    ok('reads as MD: ' + t, rankOf(t) === rankOf('Managing Director')));
+
+  // The trap: a longer title containing a more junior word.
+  ok('Senior Vice President is not an analyst', rankOf('Senior Vice President') > rankOf('Analyst'));
+  ok('Managing Director is not an associate', rankOf('Managing Director') > rankOf('Associate'));
+
+  ok('an empty title sinks', rankOf('') > rankOf('Managing Director'));
+  ok('an unknown title sinks', rankOf('Chief Vibes Officer') > rankOf('Managing Director'));
+
+  // State order: what you owe, first.
+  VALID_STATUSES.forEach((st) => ok('every status ranks: ' + st, typeof stateRank_(st) === 'number'));
+  // Jon's exact sequence, pinned in order so a future reshuffle has to be
+  // deliberate rather than accidental.
+  ['Replied', 'Sent', 'Not emailed', 'Bounced', 'Call done', 'Call scheduled',
+   'Call cancelled', 'Closed'].forEach((st, i, all) => {
+    if (i === 0) return;
+    ok(all[i - 1] + ' comes before ' + st, stateRank_(all[i - 1]) < stateRank_(st));
+  });
+  ok('the email states group ahead of the call states',
+    stateRank_('Bounced') < stateRank_('Call done'));
+  ok('Closed sinks below everything', VALID_STATUSES.filter((s) => s !== 'Closed')
+    .every((s) => stateRank_(s) < stateRank_('Closed')));
+  ok('an unknown status does not outrank a real one', stateRank_('Banana') > stateRank_('Sent'));
+
+  // The sort key is text, so numbers must be padded or 10 sorts before 9.
+  ok('pad_ orders numerically as text', pad_(9) < pad_(10));
+  ok('pad_ orders 2 before 100', pad_(2) < pad_(100));
+  ok('pad_ is fixed width', pad_(1).length === pad_(99999).length);
+
+  // The closed-row rule builds an A1 reference by hand.
+  [[1, 'A'], [26, 'Z'], [27, 'AA'], [28, 'AB'], [52, 'AZ'], [53, 'BA']].forEach(([n, l]) =>
+    ok('column ' + n + ' is ' + l, columnLetter_(n) === l));
+}
+
+// ---------------------------------------------------------------------------
+// The theme tables. Every status the contract allows must have a colour, and
+// every colour must be a real hex — a typo here paints a cell black.
+// ---------------------------------------------------------------------------
+{
+  VALID_STATUSES.forEach((status) => {
+    const style = STATUS_STYLE[status];
+    ok('status has a style: ' + status, !!style);
+    ok('status fill is a hex: ' + status, /^#[0-9a-f]{6}$/i.test(style.bg));
+    ok('status text is a hex: ' + status, /^#[0-9a-f]{6}$/i.test(style.fg));
+  });
+  ok('no style exists for a status the contract forbids',
+    Object.keys(STATUS_STYLE).every((k) => VALID_STATUSES.indexOf(k) !== -1));
+
+  ['hero', 'zoned'].forEach((name) => {
+    const t = THEMES[name];
+    ok('theme exists: ' + name, !!t);
+    ok('theme has both header tints: ' + name, /^#[0-9a-f]{6}$/i.test(t.manualHeader) && /^#[0-9a-f]{6}$/i.test(t.keptHeader));
+    ok('theme divider is a hex: ' + name, /^#[0-9a-f]{6}$/i.test(t.dividerColour));
+  });
+  ok('hero leaves data rows unfilled', THEMES.hero.manualRow === null && THEMES.hero.keptRow === null);
+  ok('zoned fills both zones', /^#[0-9a-f]{6}$/i.test(THEMES.zoned.manualRow) && /^#[0-9a-f]{6}$/i.test(THEMES.zoned.keptRow));
+
+  // Each zone's data fill must be a LIGHTER version of its own header tint —
+  // strictly between white and that header, on every channel.
+  //
+  // This is deliberately weaker than the rule the design research claimed. It
+  // said both fills sit 45% of the way from white to their header; that holds
+  // for the manual pair (0.44 / 0.46 / 0.43) and is simply untrue of the kept
+  // pair (0.25 / 0.39 / 0.57), which was picked by eye. The ratified colours
+  // are the colours, so the assertion had to become the invariant that
+  // actually matters: get a fill darker than its header and the two zones
+  // invert, which nothing else would catch.
+  const mix = (hex) => hex.slice(1).match(/../g).map((h) => parseInt(h, 16));
+  const lighterThanHeader = (row, header) => {
+    const r = mix(row), h = mix(header);
+    return [0, 1, 2].every((i) => r[i] > h[i] && r[i] < 255);
+  };
+  ok('manual fill is lighter than its header, and not white',
+    lighterThanHeader(THEMES.zoned.manualRow, THEMES.zoned.manualHeader));
+  ok('kept fill is lighter than its header, and not white',
+    lighterThanHeader(THEMES.zoned.keptRow, THEMES.zoned.keptHeader));
+
+  // The two zones must stay visibly different from each other, or the whole
+  // point of the split is lost to a rounding error.
+  ok('the two zone fills are not the same colour', THEMES.zoned.manualRow !== THEMES.zoned.keptRow);
+  ok('the two header tints are not the same colour', THEMES.zoned.manualHeader !== THEMES.zoned.keptHeader);
+
+  // A width for every column the sheet writes, or a column silently keeps
+  // Sheets' 100px default and the layout quietly drifts.
+  [COL_NAME, COL_TITLE, COL_FIRM, COL_EMAIL].concat(BLOTTER_COLUMNS).concat([COL_CLOSED]).forEach((h) => {
+    ok('a width is set for ' + h, typeof CONTACTS_WIDTHS[h] === 'number' && CONTACTS_WIDTHS[h] > 40);
+  });
+  FOUND_HEADERS.forEach((h) => {
+    ok('a Found width is set for ' + h, typeof FOUND_WIDTHS[h] === 'number' && FOUND_WIDTHS[h] > 40);
+  });
+}
+
+/* ------------------------------------------------------------------ *
+ * Contract v4 — the body never leaves the account.
+ *
+ * The engine read a body in exactly one place: to find which address a
+ * delivery-failure notice was complaining about. That extraction lives here
+ * now, so the text stops crossing the wire. The bounce below is the real one
+ * from the 2024 season, and its `Status:` code LIES — it reports 4.4.2, a
+ * temporary class, while its own text says the address does not exist. An
+ * engine keyed on `5.x` misses exactly the address a student burns three
+ * attempts on, which is why this is keyed on the named recipient instead.
+ * ------------------------------------------------------------------ */
+
+const STIFEL_BOUNCE =
+  "** Address not found **\n\nYour message wasn't delivered to sean.kang@stifel.com " +
+  "because the address couldn't be found, or is unable to receive mail.\n\n" +
+  "The response from the remote server was:\n550 #5.1.0 Address rejected.\n" +
+  "Final-Recipient: rfc822; sean.kang@stifel.com\nAction: failed\nStatus: 4.4.2\n" +
+  "Remote-MTA: dns; smtp.gslb.stifel.com.\n" +
+  "Diagnostic-Code: smtp; 550 #5.1.0 Address rejected.\n" +
+  "Last-Attempt-Date: Tue, 30 Jan 2024 21:15:32 -0800 (PST)";
+
+eq('the real Stifel bounce yields the dead address',
+  box.failedRecipientsFrom_(STIFEL_BOUNCE), ['sean.kang@stifel.com']);
+eq('named once, not once per mention',
+  box.failedRecipientsFrom_(STIFEL_BOUNCE).length, 1);
+eq('the daemon itself is never a failed recipient',
+  box.failedRecipientsFrom_('mailer-daemon@googlemail.com could not reach a@b.com'), ['a@b.com']);
+eq('postmaster likewise',
+  box.failedRecipientsFrom_('postmaster@x.com says c@d.com failed'), ['c@d.com']);
+eq('two dead addresses in one notice',
+  box.failedRecipientsFrom_('failed: a@x.com and also b@y.com'), ['a@x.com', 'b@y.com']);
+eq('a notice naming nobody yields nothing',
+  box.failedRecipientsFrom_('Delivery failed permanently.'), []);
+eq('an empty body yields nothing', box.failedRecipientsFrom_(''), []);
+eq('addresses come back lowercased, as matching expects',
+  box.failedRecipientsFrom_('Sean.Kang@Stifel.com failed'), ['sean.kang@stifel.com']);
+
+eq('mailer-daemon is a bounce sender', box.isBounceSender_('mailer-daemon@googlemail.com'), true);
+eq('postmaster is a bounce sender', box.isBounceSender_('POSTMASTER@x.com'), true);
+eq('a banker is not', box.isBounceSender_('jamie@jpmorgan.com'), false);
+eq('nothing is not', box.isBounceSender_(''), false);
+
+/* ------------------------------------------------------------------ *
+ * The install id, and what telemetry is allowed to carry.
+ * ------------------------------------------------------------------ */
+
+const props = {};
+global.PropertiesService = {
+  getScriptProperties: () => ({
+    getProperty: (k) => (k in props ? props[k] : null),
+    setProperty: (k, v) => { props[k] = v; },
+  }),
+};
+let uuidSeed = 0;
+global.Utilities.getUuid = () =>
+  `0000000${++uuidSeed}-0000-4000-8000-000000000000`;
+
+const first = box.installId_();
+eq('an install id is minted on first use', /^[0-9a-f-]{36}$/.test(first), true);
+eq('and never changes afterwards', box.installId_(), first);
+eq('nor on a third call', box.installId_(), first);
+
+// A copied sheet is a new install: its own properties, its own id.
+for (const k of Object.keys(props)) delete props[k];
+const second = box.installId_();
+eq('a copied sheet mints its own id', second !== first, true);
+
+const payload = box.telemetryPayload_(37, 44, true);
+eq('telemetry carries exactly these fields and no others',
+  Object.keys(payload).sort(),
+  ['at', 'contacts', 'contract_version', 'courier_version', 'install_id', 'ok', 'seconds']);
+eq('the contact count is a bare number', payload.contacts, 37);
+eq('and the duration', payload.seconds, 44);
+eq('and whether it worked', payload.ok, true);
+const serialised = JSON.stringify(payload).toLowerCase();
+for (const forbidden of ['@', 'name', 'subject', 'body', 'firm', 'email']) {
+  eq(`telemetry carries no "${forbidden}"`, serialised.includes(forbidden), false);
+}
+
+/* ------------------------------------------------------------------ *
+ * The notice channel — a timed run cannot open a dialog, so the sheet
+ * itself has to carry the message.
+ * ------------------------------------------------------------------ */
+
+eq('no notice at all', box.noticeFrom_({}), null);
+eq('a null notice', box.noticeFrom_({ notice: null }), null);
+eq('an empty text is not a notice', box.noticeFrom_({ notice: { level: 'info', text: '  ' } }), null);
+eq('an info notice',
+  box.noticeFrom_({ notice: { level: 'info', text: 'Blotter is now a paid product.' } }),
+  { level: 'info', text: 'Blotter is now a paid product.', url: '' });
+eq('a warning notice keeps its url',
+  box.noticeFrom_({ notice: { level: 'warning', text: 'Card expiring.', url: 'https://blotterib.com/billing' } }),
+  { level: 'warning', text: 'Card expiring.', url: 'https://blotterib.com/billing' });
+eq('a blocked notice — the one that must survive a refused run',
+  box.noticeFrom_({ notice: { level: 'blocked', text: 'Your trial has ended.' } }),
+  { level: 'blocked', text: 'Your trial has ended.', url: '' });
+eq('an unknown level falls back to info rather than vanishing',
+  box.noticeFrom_({ notice: { level: 'catastrophe', text: 'Something.' } }).level, 'info');
+eq('text is trimmed',
+  box.noticeFrom_({ notice: { level: 'info', text: '  padded  ' } }).text, 'padded');
 
 console.log(fails === 0
   ? `All ${checks} courier helper checks passed.`
