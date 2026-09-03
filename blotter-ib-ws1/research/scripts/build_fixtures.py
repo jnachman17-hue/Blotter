@@ -817,27 +817,30 @@ def render_row(row_num, entry, now, events_by_pos):
     def ev_start(ref):
         return events_by_pos[ref[1]]["start"]
 
+    # D24, ruled by Jon after the first live install: a column carries a number
+    # only where that number means something, and a dash where it does not.
+    # `days` survives on Sent, Replied and Call done; `attempts` on Sent alone.
+    #
+    # Call scheduled lost its clock because it was the only state counting
+    # FORWARDS — one column pointing two ways, with nothing on the sheet to say
+    # which — and `next_call` already carries the date. Replied's attempts is
+    # zero by definition, and a bounced address is bounced however many times
+    # it was guessed at.
+    #
+    # The anchors for the other states are still hand-authored above and still
+    # cross-checked against the corpus by validate_entry; they simply no longer
+    # reach the sheet.
     days = None
-    if status in ("Sent", "Replied", "Bounced"):
+    if status in ("Sent", "Replied"):
         days = date_diff(anchor, now)
-    elif status == "Call scheduled":
-        days = date_diff(now, ev_start(anchor))
     elif status == "Call done":
         days = date_diff(ev_start(anchor), now)
-    elif status == "Call cancelled":
-        # Ruled by Jon, September 2, 2026: days since the last thing that
-        # ACTUALLY HAPPENED — an email either way (a message anchor), or a call
-        # that took place (an event anchor). Never the cancelled call itself: a
-        # non-event does not start a clock. `None` when nothing has happened at
-        # all. No clamp is possible or needed — the anchor is always past.
-        days = None if anchor is None else date_diff(
-            anchor if isinstance(anchor, str) else ev_start(anchor), now)
     return {
         "row": row_num,
         "status": status,
         "days": days,
         "last_contact": lc,
-        "attempts": att,
+        "attempts": att if status == "Sent" else None,
         "next_call": student_render(ev_start(nc)) if nc else None,
         "last_call": student_date(ev_start(lcall)) if lcall else None,
     }

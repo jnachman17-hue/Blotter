@@ -59,6 +59,7 @@ global.Session = { getScriptTimeZone: () => TZ };
 const EXPORTS = [
   'namedAddressList_', 'firstNamedAddress_', 'bareAddress_', 'addressList_',
   'exceedsRecipientCap_', 'parsePretendText_', 'pretendNowIso_', 'declinedGuests_',
+  'normaliseTyped_', 'unreadableAddressWarnings_', 'lastRowWithContact_',
   'MAX_THREAD_RECIPIENTS', 'NO_CLOCK', 'VALID_STATUSES', 'CONTRACT_VERSION',
 ];
 const box = {};
@@ -144,10 +145,82 @@ eq('an empty conversation is fine', box.exceedsRecipientCap_([]), false);
  * Contract v2 bookkeeping
  * ------------------------------------------------------------------ */
 
-eq('the courier speaks version 2', box.CONTRACT_VERSION, 2);
+eq('the courier speaks version 3', box.CONTRACT_VERSION, 3);
 eq('eight statuses', box.VALID_STATUSES.length, 8);
 eq('Call cancelled is accepted', box.VALID_STATUSES.indexOf('Call cancelled') !== -1, true);
 eq('a clockless cell is an em dash', box.NO_CLOCK, '—');
+
+/* ------------------------------------------------------------------ *
+ * Live-test defect 1 — a hand-typed address that silently never matched.
+ *
+ * Jon typed `jon@un-claude.com` and the row read Not emailed forever; he
+ * pasted the identical address and it worked. Autocorrect had replaced the
+ * hyphen with an en dash. Capitalisation was never the problem — matching
+ * lowercases everywhere.
+ * ------------------------------------------------------------------ */
+
+eq('an ordinary typed address still works', box.addressList_('jon@un-claude.com'), ['jon@un-claude.com']);
+eq('en dash (U+2013), which is what autocorrect actually produced',
+  box.addressList_('jon@un–claude.com'), ['jon@un-claude.com']);
+eq('non-breaking hyphen (U+2011)',
+  box.addressList_('jon@un‑claude.com'), ['jon@un-claude.com']);
+eq('em dash (U+2014)', box.addressList_('jon@un—claude.com'), ['jon@un-claude.com']);
+eq('minus sign (U+2212)', box.addressList_('jon@un−claude.com'), ['jon@un-claude.com']);
+eq('a non-breaking space around it', box.addressList_(' jon@acme.com '), ['jon@acme.com']);
+eq('a zero-width space pasted into the middle',
+  box.addressList_('jon@ac​me.com'), ['jon@acme.com']);
+eq('a full-width at sign', box.addressList_('jon＠acme.com'), ['jon@acme.com']);
+eq('capitals are left exactly as typed — matching lowercases later',
+  box.addressList_('Jon@Un-Claude.com'), ['Jon@Un-Claude.com']);
+eq('a real address is never altered', box.normaliseTyped_('a-b@c-d.com'), 'a-b@c-d.com');
+eq('and the display-name path normalises too',
+  box.namedAddressList_('Jon <jon@un–claude.com>'), ['Jon <jon@un-claude.com>']);
+
+/* The general defence: say so when a row has a person and no usable address.
+   There will always be a character nobody anticipated. */
+eq('a garbled address names the row and quotes the cell',
+  box.unreadableAddressWarnings_([{ row: 7, name: 'Jane Doe', cell: 'jane@acme,com' }]),
+  ['Row 7 (Jane Doe): "jane@acme,com" is not an email address Blotter can read, ' +
+   'so the row will stay "Not emailed". Retyping it usually fixes it — autocorrect ' +
+   'sometimes replaces a hyphen with a dash that looks identical.']);
+eq('an empty address cell says something different and true',
+  box.unreadableAddressWarnings_([{ row: 3, name: 'Owen Sherry', cell: '' }]),
+  ['Row 3 (Owen Sherry) has no email address, so Blotter cannot find their mail ' +
+   'and the row will stay "Not emailed".']);
+eq('nothing wrong, nothing said', box.unreadableAddressWarnings_([]), []);
+
+/* ------------------------------------------------------------------ *
+ * Live-test defect 3 — an approved contact landed at row 996.
+ *
+ * `getLastRow()` counts a column of unticked checkboxes as content, because an
+ * unticked checkbox stores FALSE. The append must follow the last row that
+ * holds a person instead.
+ * ------------------------------------------------------------------ */
+
+const sheetOf = (names, emails, lastRow) => ({
+  sheet: {
+    getLastRow: () => lastRow,
+    getRange: (_row, col, height) => ({
+      getValues: () => (col === 1 ? names : emails).slice(0, height).map((v) => [v]),
+    }),
+  },
+  cols: { name: 1, email: 2 },
+});
+
+eq('three contacts and 900 rows of checkboxes below them',
+  box.lastRowWithContact_(sheetOf(['A', 'B', 'C', ...Array(900).fill('')],
+                                  ['a@x.com', 'b@x.com', 'c@x.com', ...Array(900).fill('')], 995)),
+  4);
+eq('a row with only an email still counts as a person',
+  box.lastRowWithContact_(sheetOf(['A', ''], ['a@x.com', 'b@x.com'], 995)), 3);
+eq('a row with only a name counts too (Owen Sherry has no address)',
+  box.lastRowWithContact_(sheetOf(['A', 'Owen Sherry'], ['a@x.com', ''], 995)), 3);
+eq('a gap in the middle does not truncate the list',
+  box.lastRowWithContact_(sheetOf(['A', '', 'C'], ['a@x.com', '', 'c@x.com'], 995)), 4);
+eq('an empty sheet appends at row 2',
+  box.lastRowWithContact_(sheetOf([], [], 1)), 1);
+eq('a sheet of nothing but checkboxes appends at row 2',
+  box.lastRowWithContact_(sheetOf(Array(900).fill(''), Array(900).fill(''), 901)), 1);
 
 /* ------------------------------------------------------------------ *
  * D17 — the time machine. What it accepts, and what it must refuse.

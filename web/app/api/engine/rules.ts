@@ -537,10 +537,11 @@ function cancelledAtEpoch(cancelled: EventTimes, activity: ContactActivity): num
  * **`Call cancelled` clears itself the same way, and that is the point** —
  * without it, a declined invite would be a dead end nothing ever removes.
  *
- * `Days` is the one number that means the same thing in every state: how long
- * since the last thing that actually happened. `Call done` counts from the
- * call, because a call that happened is one of those things. A cancelled call
- * is not, so it counts from the last email instead.
+ * **`Days` always counts backwards, and only where it means something** (D24).
+ * `Sent`, `Replied` and `Call done` carry it; every other state shows a dash.
+ * `Call scheduled` lost it because it was the one state counting *forwards* —
+ * one column pointing two ways — and `next_call` already carries the date.
+ * `Attempts` narrows further still, to `Sent` alone.
  *
  * A `Closed` row keeps everything else it knows (§4): `last_contact`,
  * `attempts` and both call dates are still computed and returned. Only the
@@ -600,25 +601,6 @@ function computeRow(contact: ContactIn, activity: ContactActivity, now: string):
     .filter((t) => t.cancelled)
     .sort((a, b) => b.startEpoch - a.startEpoch)[0];
 
-  /* §4, ruled by Jon on September 2, 2026: **the last thing that actually
-     happened** — an email in either direction, or a call that took place.
-
-     A cancelled call is a non-event. It does not anchor this clock, does not
-     reset it and does not touch it; the only thing a decline changes is the
-     status. That is what keeps `Days` meaning one thing everywhere: "how long
-     since anybody actually did anything", which on a live relationship is the
-     number that tells you whether to bump the thread.
-
-     `null` when nothing has ever happened — a contact whose only calendar
-     event was declined and who has never exchanged a message really has no
-     clock, and a dash says so honestly. */
-  const lastRealActivity =
-    last !== null && (lastPast === undefined || last.epoch >= lastPast.startEpoch)
-      ? last.msg.date
-      : lastPast !== undefined
-        ? lastPast.event.start
-        : null;
-
   const nextCall = upcoming === undefined ? null : upcoming.event.start;
   /* `Last call` keeps its date permanently in its own column regardless of
      state (§4) — dated by the day the call was on. A declined call never
@@ -630,15 +612,20 @@ function computeRow(contact: ContactIn, activity: ContactActivity, now: string):
 
   const bounce = last === null ? null : bounceFor(last, activity.bounces);
 
+  /* §4/D24: a column carries a number only where that number means something.
+     `days` survives on `Sent`, `Replied` and `Call done` and nowhere else —
+     `Call scheduled` used to count *down* to a call while every other state
+     counted *up* from an email, one column pointing two ways with nothing on
+     the sheet to say which, and `next_call` already carries the date. */
   if (contact.closed) {
     status = "Closed";
     days = null;
   } else if (bounce !== null) {
     status = "Bounced";
-    days = daysBetween(bounce.msg.date, now);
+    days = null;
   } else if (upcoming !== undefined) {
     status = "Call scheduled";
-    days = Math.max(0, daysBetween(now, upcoming.event.start));
+    days = null;
   } else if (
     lastCancelled !== undefined &&
     lastCancelled.startEpoch >= (lastPast?.startEpoch ?? -Infinity) &&
@@ -646,16 +633,12 @@ function computeRow(contact: ContactIn, activity: ContactActivity, now: string):
   ) {
     /* §4: the most recent call was declined by either side, and nobody has
        written since **the decline** — not since the call's own date, which is
-       when it would have happened rather than when it was called off. The
-       clock is days since the last thing that actually happened, which is why
-       no clamp is needed here: that anchor is always in the past.
+       when it would have happened rather than when it was called off.
 
-       So this reads exactly the number `Sent` or `Replied` would read for the
-       same contact, and it can be large. A decline landing thirty days after
-       the last email shows 30, and that is the useful fact: thirty days since
-       anybody communicated, and now the call is off too. */
+       No clock. D24 removed it: a call that is off is off, and the number was
+       only ever a restatement of what `Sent` or `Replied` would have said. */
     status = "Call cancelled";
-    days = lastRealActivity === null ? null : daysBetween(lastRealActivity, now);
+    days = null;
   } else if (
     lastPast !== undefined &&
     !correspondence.some((m) => m.epoch > lastPast.startEpoch)
@@ -675,7 +658,12 @@ function computeRow(contact: ContactIn, activity: ContactActivity, now: string):
     status,
     days,
     last_contact: lastContact,
-    attempts,
+    /* §5/D24: the count means something in exactly one state — `Sent`, where
+       a first email and a third are genuinely different situations. `Replied`
+       is always zero by definition, and a bounced address is bounced whether
+       it was guessed at once or three times: *"If that address is bounced
+       it's bounced, additional attempts are worthless."* */
+    attempts: status === "Sent" ? attempts : null,
     next_call: nextCall,
     last_call: lastCall,
   };

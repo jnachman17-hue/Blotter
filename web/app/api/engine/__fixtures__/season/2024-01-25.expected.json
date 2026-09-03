@@ -15,7 +15,7 @@
    "status": "Replied",
    "days": 4,
    "last_contact": "2024-01-21",
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": "2024-01-19"
   },
@@ -103,9 +103,9 @@
   {
    "row": 13,
    "status": "Call scheduled",
-   "days": 1,
+   "days": null,
    "last_contact": "2024-01-17",
-   "attempts": 0,
+   "attempts": null,
    "next_call": "2024-01-26T13:30:00-06:00",
    "last_call": null
   },
@@ -114,7 +114,7 @@
    "status": "Replied",
    "days": 8,
    "last_contact": "2024-01-17",
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -132,7 +132,7 @@
    "status": "Replied",
    "days": 2,
    "last_contact": "2024-01-23",
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": "2024-01-22"
   },
@@ -195,7 +195,7 @@
    "status": "Replied",
    "days": 3,
    "last_contact": "2024-01-22",
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -211,9 +211,9 @@
   {
    "row": 25,
    "status": "Call scheduled",
-   "days": 1,
+   "days": null,
    "last_contact": "2024-01-21",
-   "attempts": 1,
+   "attempts": null,
    "next_call": "2024-01-26T10:00:00-06:00",
    "last_call": null
   },
@@ -222,7 +222,7 @@
    "status": "Replied",
    "days": 3,
    "last_contact": "2024-01-22",
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -283,9 +283,9 @@
   {
    "row": 33,
    "status": "Call scheduled",
-   "days": 0,
+   "days": null,
    "last_contact": "2024-01-22",
-   "attempts": 0,
+   "attempts": null,
    "next_call": "2024-01-25T13:00:00-06:00",
    "last_call": null
   },
@@ -294,34 +294,34 @@
    "status": "Call done",
    "days": 1,
    "last_contact": "2024-01-22",
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": "2024-01-24"
   },
   {
    "row": 35,
    "status": "Call scheduled",
-   "days": 0,
+   "days": null,
    "last_contact": "2024-01-22",
-   "attempts": 1,
+   "attempts": null,
    "next_call": "2024-01-25T17:00:00-06:00",
    "last_call": null
   },
   {
    "row": 36,
    "status": "Call scheduled",
-   "days": 1,
+   "days": null,
    "last_contact": "2024-01-22",
-   "attempts": 1,
+   "attempts": null,
    "next_call": "2024-01-26T14:00:00-06:00",
    "last_call": null
   },
   {
    "row": 37,
    "status": "Call scheduled",
-   "days": 5,
+   "days": null,
    "last_contact": "2024-01-22",
-   "attempts": 1,
+   "attempts": null,
    "next_call": "2024-01-30T12:00:00-06:00",
    "last_call": null
   },
@@ -348,7 +348,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -357,7 +357,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -366,7 +366,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -375,7 +375,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -384,7 +384,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -393,7 +393,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -402,7 +402,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -411,7 +411,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -420,7 +420,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -429,7 +429,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -438,7 +438,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -447,7 +447,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -456,7 +456,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -465,7 +465,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -474,7 +474,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -483,7 +483,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -492,7 +492,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -501,7 +501,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -510,7 +510,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   },
@@ -519,7 +519,7 @@
    "status": "Not emailed",
    "days": null,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": null
   }

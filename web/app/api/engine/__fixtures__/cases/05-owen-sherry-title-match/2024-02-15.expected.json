@@ -6,7 +6,7 @@
    "status": "Call done",
    "days": 13,
    "last_contact": null,
-   "attempts": 0,
+   "attempts": null,
    "next_call": null,
    "last_call": "2024-02-02"
   }

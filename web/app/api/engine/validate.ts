@@ -136,13 +136,14 @@ export function parseEngineRequest(body: unknown): EngineRequest {
   if (!isRecord(body)) fail("request", "must be a JSON object");
 
   /* The version is in the request so a mismatch is loud rather than
-     mysterious. This server speaks 1 and 2: version 2 added display names on
-     addresses and `declined` on events, both optional and both additive, so a
-     version-1 payload still means exactly what it always meant. The response
-     answers in the version it was asked in, which is what lets a version-1
-     courier keep working while its half of the world catches up. */
-  if (body.version !== 1 && body.version !== 2) {
-    fail("version", `must be 1 or 2 — this server speaks contract versions 1 and 2, got ${JSON.stringify(body.version)}`);
+     mysterious. This server speaks 1, 2 and 3. Version 2 added display names on
+     addresses and `declined` on events; version 3 widened `attempts` on the way
+     back out. Every addition is optional and additive, so an older payload
+     still means exactly what it always meant, and the response answers in the
+     version it was asked in — which is what stops a request in flight during a
+     deploy from being rejected outright. */
+  if (body.version !== 1 && body.version !== 2 && body.version !== 3) {
+    fail("version", `must be 1, 2 or 3 — this server speaks contract versions 1 to 3, got ${JSON.stringify(body.version)}`);
   }
 
   const now = timestamp(body.now, "now");
