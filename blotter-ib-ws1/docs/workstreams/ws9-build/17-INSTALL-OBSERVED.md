@@ -162,3 +162,64 @@ way to tell it apart from a contact they genuinely have not written to.**
 in the gap between a human's fingers and the sheet — the one place the whole
 test apparatus has no reach. **This is the first defect the live test found, and
 it justifies the live test on its own.**
+
+---
+
+## 6. LIVE TEST DEFECT 2 — `Days` means two different things
+
+**Found by Jon on seeing `Call scheduled` show `1`.** In his words: *"That makes
+Days have two distinct meanings… one would be days until an upcoming call, and
+every other case it's days since an email interaction. I think days should only
+have one meaning."*
+
+**He is right, and the fault is directional.** Every other state answers *how
+long has this been sitting* — backwards. `Call scheduled` answers *how long
+until the call* — forwards. Same column, opposite direction, nothing on the
+sheet to say which.
+
+**And the countdown is redundant**: `Next call` already carries the date. Days
+was duplicating an existing column in a different unit and a different
+direction.
+
+### The rule, and the one change it needs
+
+**`Days` is time since the last thing that happened. Backwards, always.**
+
+| Status | Days | |
+|---|---|---|
+| Not emailed | — | nothing has happened |
+| **Call scheduled** | **—** | **the change.** `Next call` already says when |
+| Sent | since you wrote | |
+| Replied | since they wrote | |
+| Bounced | since the bounce | how long a contact has been unreachable |
+| Call done | since the call | **the thank-you clock** |
+| Call cancelled | since the last email | already correct, per the D-clock ruling |
+| Closed | — | |
+
+**Only `Call scheduled` changes.** Everything else already obeys the rule.
+
+**Open, awaiting Jon:** he suggested Days might belong only to `Sent` and
+`Replied`. The argument for keeping `Call done` and `Bounced` is that both are
+backwards-looking and both answer "how long has this needed me" — `Call done` is
+the thank-you nudge, and a 30-day-old bounce means a contact has been
+unreachable for a month unnoticed. Not yet ruled.
+
+---
+
+## 7. Formatting, as observed — the Phase B UI backlog
+
+Recorded from the live sheet on September 2, 2026, for the UI work. **Nothing
+here is a bug**; it is the raw state before any design pass.
+
+- **`Next call` renders a raw ISO timestamp**: `2026-09-03T14:00:00-07:00`.
+  Unreadable, and `04-ENGINE-RULES.md` §9 shows `1/17 @ 2:00 PM`. **The single
+  most visible formatting defect on the sheet.**
+- **`Last contact` renders `9/2/26`**, which is correct and matches the spec.
+- **No colour anywhere.** Status is plain text. The landing page's coloured
+  status chips are the product's most recognisable visual and the sheet shares
+  none of it — D19 is where this gets fixed.
+- **Column widths cut off email addresses** (`blotterib@gmail.` and similar).
+- **No frozen header row**, so the headers scroll away on a real-sized list.
+- **`Days` is right-aligned as a number**, which is correct.
+- **`Closed` checkboxes render on every empty row** below the data, which reads
+  as clutter on an otherwise blank sheet.
