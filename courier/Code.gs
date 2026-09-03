@@ -1312,6 +1312,18 @@ function runNow() {
     var summary = courierPass_();
     SpreadsheetApp.getUi().alert('Blotter ran.\n\n' + summary);
   } catch (e) {
+    // A refusal that came with something to tell the student leads, because
+    // "status 402" answers nothing and "your trial has ended" answers
+    // everything. This is the whole reason the notice channel exists.
+    var notice = e && e.blotterNotice;
+    if (notice) {
+      SpreadsheetApp.getUi().alert(
+        notice.text + (notice.url ? '\n\n' + notice.url : '') +
+        '\n\nYour sheet was not updated. It is also shown at the top of the ' +
+        'Contacts tab, so you will see it there on every run.'
+      );
+      return;
+    }
     // Honest about how far it got. Before the write phase the sheet really is
     // untouched; after it, claiming so would be false — the safe advice in
     // both cases is that the next successful run rewrites every Blotter
