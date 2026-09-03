@@ -408,9 +408,15 @@ const { asSheetDate_, STATUS_STYLE, THEMES, CONTACTS_WIDTHS, FOUND_WIDTHS,
 
   // State order: what you owe, first.
   VALID_STATUSES.forEach((st) => ok('every status ranks: ' + st, typeof stateRank_(st) === 'number'));
-  ok('Replied outranks Sent', stateRank_('Replied') < stateRank_('Sent'));
-  ok('Call done outranks Sent', stateRank_('Call done') < stateRank_('Sent'));
-  ok('Sent outranks Not emailed', stateRank_('Sent') < stateRank_('Not emailed'));
+  // Jon's exact sequence, pinned in order so a future reshuffle has to be
+  // deliberate rather than accidental.
+  ['Replied', 'Sent', 'Not emailed', 'Bounced', 'Call done', 'Call scheduled',
+   'Call cancelled', 'Closed'].forEach((st, i, all) => {
+    if (i === 0) return;
+    ok(all[i - 1] + ' comes before ' + st, stateRank_(all[i - 1]) < stateRank_(st));
+  });
+  ok('the email states group ahead of the call states',
+    stateRank_('Bounced') < stateRank_('Call done'));
   ok('Closed sinks below everything', VALID_STATUSES.filter((s) => s !== 'Closed')
     .every((s) => stateRank_(s) < stateRank_('Closed')));
   ok('an unknown status does not outrank a real one', stateRank_('Banana') > stateRank_('Sent'));

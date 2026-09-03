@@ -742,26 +742,29 @@ function titleRank_(title) {
 }
 
 /**
- * What the relationship wants from you, most-owed first.
+ * Jon's order, ruled September 3, 2026: replied, sent, not emailed, calls done,
+ * calls scheduled, closed.
  *
- * **This is not the order Jon sketched, and the difference is deliberate.** He
- * offered "replied, sent, not emailed, calls done, calls scheduled, closed —
- * or something like that". Ordering by what you owe puts the two states that
- * are actually waiting on you at the top: a reply, then a thank-you. `Sent` and
- * `Call scheduled` are both "nothing to do but wait", so they sit below
- * everything actionable, and the three inert states sink.
+ * It groups by **kind of thing** rather than by urgency — every email state
+ * together, then every call state, then the finished ones — and reading a
+ * tracker that way turns out to be how a person actually thinks about it.
  *
- * One constant away from his order if he prefers it.
+ * Two statuses he did not name are slotted into the group they belong to
+ * rather than appended at the end: `Bounced` is an outcome of sending, so it
+ * follows the email states; `Call cancelled` is a call state, so it joins those.
+ *
+ * *Superseded:* an earlier ordering by what you owe, which put `Call done`
+ * second on the grounds that a thank-you is outstanding. Jon preferred his.
  */
 function stateRank_(status) {
   var order = {
-    'Replied': 10,          // you owe a reply
-    'Call done': 20,        // you owe a thank-you
-    'Call cancelled': 30,   // needs rescheduling
-    'Bounced': 40,          // needs a working address
-    'Sent': 50,             // waiting on them
-    'Call scheduled': 60,   // booked, nothing to do
-    'Not emailed': 70,      // not started
+    'Replied': 10,          // they wrote last
+    'Sent': 20,             // you wrote last
+    'Not emailed': 30,      // nothing sent
+    'Bounced': 40,          // sent, and it failed
+    'Call done': 50,        // a call happened
+    'Call scheduled': 60,   // a call is coming
+    'Call cancelled': 70,   // a call was called off
     'Closed': 80            // finished
   };
   var r = order[String(status || '').trim()];
