@@ -223,3 +223,58 @@ here is a bug**; it is the raw state before any design pass.
 - **`Days` is right-aligned as a number**, which is correct.
 - **`Closed` checkboxes render on every empty row** below the data, which reads
   as clutter on an otherwise blank sheet.
+
+---
+
+## 8. Days and Attempts show a number only when it means something
+
+**Ruled by Jon, September 2, 2026**, completing §6.
+
+| Status | Days | Attempts |
+|---|---|---|
+| Sent | since you wrote | **the count** |
+| Replied | since they wrote | — |
+| Call done | **since the call — the thank-you clock** | — |
+| Call scheduled | — | — |
+| Call cancelled | — | — |
+| Bounced | — | — |
+| Closed | — | — |
+| Not emailed | — | — |
+
+**The principle, and it is worth keeping:** a column shows a number only when
+that number means something, and a dash when it does not. `Replied` always has
+zero attempts by definition — printing a zero there is noise dressed as data.
+
+Jon accepted the argument for keeping Days on `Call done`: it is the nudge that
+state exists to give. He removed it everywhere else, including `Bounced`.
+
+**Flagged, not argued:** `Bounced` losing its attempts count hides that a
+student burned three guesses on a dead address — the real Sean Kang case. The
+state communicates hopelessness either way, so the loss is small.
+
+---
+
+## 9. A test-design error worth recording, because the engine was right
+
+**The thank-you did not clear `Call done`, and the engine was correct.**
+
+```
+Sept 2  ~18:00   Marcus replies
+Sept 2  ~later   the thank-you is sent      <- real timestamp
+Sept 3  14:00    the call                    <- calendar
+Sept 4           pretend today
+```
+
+The thank-you was sent **the day before the call**, so "nobody has written since
+the call" remained true and `Call done` correctly held. **`Attempts` still went
+0 to 1**, because the thank-you *is* after Marcus's reply — two different
+anchors, both right at once.
+
+**The conductor designed the step wrongly.** The time machine moves *now*; it
+cannot move when an email was actually sent, so a thank-you will always predate
+a call scheduled for tomorrow.
+
+**The lesson for the rest of this test, and for any future one:** a scenario
+that needs event A to follow event B must put B in the *past* — move the
+calendar event backwards — rather than moving `now` forwards. **The time machine
+ages the world; it cannot reorder it.**
