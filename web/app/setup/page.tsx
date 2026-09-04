@@ -9,163 +9,133 @@ import { POLICY_HREF } from "@/lib/privacy-copy";
 /**
  * The setup page.
  *
- * Jon asked for it in `27-BRIEF-WEBSITE-AUDIT.md` §5 and ruled on it after
- * `28-WEBSITE-AUDIT.md`. It is the one page on this site written for somebody
- * who has already decided, and it exists because two screens between here and a
- * working sheet are where students give up.
+ * Written for somebody who has already decided. Two screens sit between here
+ * and a working sheet, and both are where students give up: the unverified-app
+ * warning and the permissions list. Both are answered head-on below.
  *
- * ## The two screens this page is really about
+ * Three rules this rewrite follows, from Jon on 3 September 2026:
  *
- * **The unverified-app warning.** `24-PRE-LAUNCH-READINESS.md` §2 calls it
- * *"the single biggest place a student gives up"*, and every word written about
- * it in this project before September 2, 2026 came from Google's documentation
- * rather than from a screen. `17-INSTALL-OBSERVED.md` §1 is the first real
- * transcription, and it contains the reassurance nobody had been using:
- * **the developer Google names on that screen is the student themselves.**
+ *   1. **Never say "script".** Nobody outside this repository knows what one
+ *      is. Where Google's own dialog says it, quote Google and then translate.
+ *   2. **Say what Blotter can see in the first screen of the page**, not in a
+ *      policy nobody opens. The honest answer is unusually reassuring — it
+ *      reads envelopes, not letters — and it was buried.
+ *   3. **Collapse the steps.** The previous version ran to roughly thirty
+ *      screens of scrolling, which reads as difficulty whatever the words say.
  *
- * **The permissions screen.** Five checkboxes, every one unchecked by default,
- * a `Select all` above them, and nothing anywhere saying all five are required.
- * A cautious student ticking two gets a product that fails in ways they cannot
- * diagnose. So this page says `Select all` in bold and then says what each one
- * is for, because "what breaks without it" is the only framing that stops
- * somebody being careful in the way that hurts them.
+ * The claims in "What Blotter can actually see" are checked against
+ * `courier/Code.gs`, not against intent: `getPlainBody()` is called in exactly
+ * one place, guarded by `isBounceSender_`, so a non-bounce message's text is
+ * never read at all. That is a stronger and simpler thing to say than any
+ * promise about what we do with it afterwards, so the page says it.
  *
- * ## Two steps the brief's outline did not have
- *
- * `courier/INSTALL.md` Part B is explicit that the order matters, and both of
- * the steps it puts before the first run fail silently:
- *
- *   - **The email addresses.** Blotter refuses to run until it knows which
- *     addresses are the student's, because that is how it tells "you wrote"
- *     from "they wrote". Run it first and the very first click produces an
- *     error dialog that looks exactly like a broken install.
- *   - **The time zone.** A copied sheet keeps the time zone of whoever built
- *     it. A student in New York on a Chicago template gets every `Days` value
- *     wrong at the boundary — silently, in a way that looks completely normal.
- *
- * Both live on the sheet's own `Start here` tab, so this page hands off rather
- * than duplicating them. **But it names them**, because a page that ends at
- * "now open the sheet" reads as "you are finished" and they are not.
- *
- * ## Why it takes `/privacy`'s shell
- *
- * Same header, same 900px measure, same quiet ground, for the reason
- * `app/contact/page.tsx` gives: these are the site's secondary surfaces and
- * they should read as one set. The landing page's bounded box and field
- * gradient would make instructions look like an argument.
- *
- * ## ⚠ Two things block this page going live
- *
- * 1. **`TEMPLATE_URL` is null.** There is no public template yet, and the
- *    master must not become one: `17-INSTALL-OBSERVED.md` §2 records that it
- *    ships carrying **58 real bankers' names and email addresses**. An empty
- *    master is a prerequisite, and it is a privacy problem rather than a tidying
- *    job.
- * 2. **The four screenshots.** Marked in place below rather than faked.
- *
- * The page renders correctly without either — it simply says so — so it can be
- * reviewed and finished in any order. **It is `noindex` until both land.**
+ * Still blocked: `TEMPLATE_URL` is null because no public template exists yet,
+ * and the master must not become one — it carries 58 real bankers' names and
+ * addresses. The page renders and says so. It stays `noindex` until that lands.
  */
 export const metadata: Metadata = {
   title: "Set up Blotter | Blotter",
   description:
-    "Copy the sheet, let it read your Gmail, and add the people you are networking with. About five minutes.",
-  /* Lifted when `TEMPLATE_URL` is set. An indexed setup page that cannot
-     complete the job is worse than no page. */
+    "Copy one sheet, give it permission, and your recruiting tracker keeps itself up to date. About five minutes.",
   robots: { index: false, follow: false },
 };
 
-/**
- * The public template a student copies.
- *
- * **Null until an empty master exists.** Set it to the sheet's share URL and
- * the page's first step becomes a button; leave it null and the page says
- * plainly that the link is not ready, which is better than a dead button.
- *
- * When it is set, add a tracking parameter to it. Telemetry fires on a sheet's
- * first *run*, so a student who copies and never finishes setup is invisible
- * today — and that drop-off is precisely the one worth measuring.
- * `24-PRE-LAUNCH-READINESS.md` §6 has the argument.
- */
+/** The public template a student copies. Null until an empty master exists. */
 const TEMPLATE_URL: string | null = null;
 
-/* --------------------------------------------------------------- primitives */
+const LINK =
+  "font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900";
+
+/* ------------------------------------------------------------------ pieces */
 
 function Step({
   n,
   title,
+  open,
   children,
 }: {
-  n: string;
+  n: number;
   title: string;
+  open?: boolean;
   children: React.ReactNode;
 }) {
   return (
-    <section className="border-t border-rule pt-8">
-      <h2 className="font-display flex gap-4 text-[1.25rem] leading-[1.35] font-semibold tracking-[-0.012em] text-ink">
+    <details open={open} className="group border-t border-rule">
+      <summary className="flex cursor-pointer list-none items-baseline gap-4 py-5 [&::-webkit-details-marker]:hidden">
         <span className="font-mono text-small font-normal text-ink-faint tabular-nums">
-          {n}
+          {String(n).padStart(2, "0")}
         </span>
-        {title}
-      </h2>
-      <div className="mt-4 max-w-[74ch] space-y-4 text-body leading-[1.65] text-ink-muted">
+        <span className="font-display flex-1 text-[1.18rem] leading-[1.35] font-semibold tracking-[-0.012em] text-ink">
+          {title}
+        </span>
+        <span
+          aria-hidden
+          className="mt-[0.15em] shrink-0 text-[1.15rem] leading-none text-ink-faint transition-transform duration-150 ease-out group-open:rotate-45"
+        >
+          +
+        </span>
+      </summary>
+      <div className="max-w-[68ch] space-y-4 pb-9 pl-[2.5rem] text-body leading-[1.65] text-ink-muted">
         {children}
       </div>
-    </section>
+    </details>
   );
 }
 
 /**
- * A screenshot, or a marked slot where one is still owed.
- *
- * Every shot here was taken from a **genuine fresh install** on an account that
- * had never seen Blotter, which is the only way to photograph the consent
- * screens at all — they never appear again once an account has approved.
- *
- * **The developer address in the warning shots is replaced with
- * `youremail@gmail.com`, and that is not a privacy edit.** The whole point of
- * that screen is that the developer Google is warning about is *the student*.
- * A reader who sees somebody else's address learns the opposite of the lesson.
- *
- * **The boxes are green rather than red**, deliberately: a red box on a screen
- * already headed *"Google hasn't verified this app"* reads as danger, when what
- * the reader needs to be told is that this is the way through.
+ * A screenshot, capped well below its natural width so it stays sharp. The
+ * sources are 429-525px wide; the previous version stretched them across a
+ * 74ch column, and that upscaling was the whole of the blur.
  */
-function Shot({ src, caption, width, height }: {
-  src?: string; caption: string; width?: number; height?: number;
+function Shot({
+  src,
+  alt,
+  caption,
+  width,
+  height,
+  wide,
+}: {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  /** For shots whose own text has to stay legible, such as the menu. */
+  wide?: boolean;
 }) {
-  if (!src) {
-    return (
-      <div className="grid min-h-[104px] place-items-center rounded-[6px] border border-dashed border-rule bg-white px-6 py-5 text-center">
-        <p className="text-small leading-[1.5] text-ink-faint">
-          [ screenshot: {caption} ]
-        </p>
-      </div>
-    );
-  }
   return (
-    <figure className="overflow-hidden rounded-[6px] border border-rule bg-white">
-      <Image
-        src={src}
-        alt={caption}
-        width={width ?? 900}
-        height={height ?? 600}
-        className="h-auto w-full"
-        unoptimized
-      />
-      <figcaption className="border-t border-rule px-4 py-2 text-small leading-[1.5] text-ink-faint">
+    <figure
+      className={`${wide ? "max-w-[540px]" : "max-w-[400px]"} overflow-hidden rounded-[6px] border border-rule bg-white`}
+    >
+      <Image src={src} alt={alt} width={width} height={height} className="h-auto w-full" unoptimized />
+      <figcaption className="border-t border-rule px-3 py-2 text-small leading-[1.5] text-ink-faint">
         {caption}
       </figcaption>
     </figure>
   );
 }
 
-/** Google's own words, quoted so a reader can match this page to their screen. */
+/** Words the student will see on their own screen, set apart from ours. */
 function Screen({ children }: { children: React.ReactNode }) {
   return (
-    <div className="border-l-2 border-rule bg-white py-4 pr-6 pl-5 text-body leading-[1.6] text-ink">
+    <div className="border-l-2 border-rule bg-white py-3 pr-5 pl-4 text-body leading-[1.6] text-ink">
       {children}
     </div>
+  );
+}
+
+function B({ children }: { children: React.ReactNode }) {
+  return <strong className="font-semibold text-ink">{children}</strong>;
+}
+
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <li className="flex gap-3">
+      <span aria-hidden className="mt-[0.62em] h-[3px] w-[3px] shrink-0 rounded-full bg-ink-faint" />
+      <span>
+        <span className="font-medium text-ink">{label}</span> {children}
+      </span>
+    </li>
   );
 }
 
@@ -177,50 +147,95 @@ export default function SetupPage() {
       <header className="border-b border-rule">
         <div className="mx-auto flex h-[60px] max-w-[900px] items-center justify-between px-6">
           <Link href="/" aria-label="Blotter, back to the home page" className="text-navy-900">
-            <BlotterLockup size={22} />
+            <BlotterLockup />
           </Link>
-          <Link
-            href="/"
-            className="text-small font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900"
-          >
-            Back to Blotter
+          <Link href={POLICY_HREF} className={`text-small ${LINK}`}>
+            Privacy
           </Link>
         </div>
       </header>
 
       <main className="mx-auto max-w-[900px] px-6 pt-16 pb-28">
         <h1 className="font-display text-h2 leading-[1.14] font-bold tracking-[-0.02em] text-ink">
-          Setting up Blotter
+          Set up Blotter
         </h1>
 
-        <div className="mt-6 max-w-[74ch] space-y-4 text-body leading-[1.65] text-ink-muted">
+        <div className="mt-6 max-w-[68ch] space-y-4 text-body leading-[1.65] text-ink-muted">
           <p>
-            Blotter is a Google Sheet with a script inside it. You make your own copy,
-            let it read your Gmail and Calendar, and add the people you are networking
-            with. It updates itself every 15 minutes after that.
+            You copy one spreadsheet into your own Google Drive and give it permission to look
+            at your email. From then on it follows your recruiting conversations and keeps the
+            tracker current — who replied, who went quiet, who you owe a follow-up.
           </p>
           <p>
-            About five minutes. You will need the Google account you actually recruit
-            from — the one your outreach is sent from and arrives in.
-          </p>
-          <p>
-            <strong className="font-semibold text-ink">
-              One thing to know before you start.
-            </strong>{" "}
-            Partway through, Google will show you a warning saying it has not verified
-            this app. That is normal, it is expected, and step 3 explains exactly why it
-            happens and why it is fine. It is the step most people stop at, so it is the
-            one written out in the most detail.
+            Five minutes, once. You will hit one alarming-looking warning from Google along
+            the way. <B>Step 3 explains it</B>, and it is a good deal less dramatic than it
+            looks.
           </p>
         </div>
 
-        {/* ------------------------------------------------------- the template */}
-        <div className="mt-10">
+        {/* The trust anchor. This used to live in the privacy policy, which is
+            to say nowhere. It is the reason somebody carries on past step 3. */}
+        <section className="mt-12 rounded-[6px] border border-rule bg-white px-7 py-7">
+          <h2 className="font-display text-[1.18rem] leading-[1.35] font-semibold tracking-[-0.012em] text-ink">
+            What Blotter can actually see
+          </h2>
+
+          <div className="mt-5 max-w-[68ch] space-y-5 text-body leading-[1.65] text-ink-muted">
+            <p>
+              <B>It reads the outside of your emails, not the inside.</B> For each message it
+              looks at who sent it, who it went to, when, and the subject line — the things
+              printed on an envelope. It does not open your email and read what you wrote.
+            </p>
+            <p>
+              There is one exception, and it works in your favour. When Google&rsquo;s mail
+              system sends back an automated <em>delivery failed</em> notice, Blotter opens
+              that one to find which address bounced, so it can tell you. Those notices are
+              written by a machine, not by a person.
+            </p>
+            <p>
+              <B>It reads your calendar</B> — event titles, times and who was invited — so it
+              can tell a call has been booked without you typing it in.
+            </p>
+            <p>
+              <B>It sees one spreadsheet: the copy you make.</B> The permission Google grants
+              here is for that single file. Blotter cannot open anything else in your Drive
+              and cannot see your other spreadsheets.
+            </p>
+
+            <div className="border-t border-rule pt-5">
+              <p>
+                <B>What it never does:</B> send an email, reply to one, delete anything, or
+                change your calendar. It has no ability to. Everything it can reach is
+                read-only, apart from writing into the one sheet you gave it.
+              </p>
+            </div>
+
+            <div className="border-t border-rule pt-5">
+              <p>
+                <B>Where it all goes.</B> Blotter&rsquo;s server receives the envelope details
+                above, works out what changed, and sends back a status — <em>replied</em>,{" "}
+                <em>waiting</em>, <em>bounced</em>. It never receives the text of your emails,
+                because that text is never opened in the first place. Your tracker stays in
+                your Google Drive, under your account, and the answers are written straight
+                back into it. We keep no copy of your sheet.
+              </p>
+            </div>
+          </div>
+
+          <p className="mt-6 text-small leading-[1.5] text-ink-faint">
+            The full detail is in the{" "}
+            <Link href={POLICY_HREF} className={LINK}>
+              privacy policy
+            </Link>
+            .
+          </p>
+        </section>
+
+        {/* ------------------------------------------------------------ CTA */}
+        <div className="mt-14">
           {TEMPLATE_URL ? (
             <a
               href={TEMPLATE_URL}
-              target="_blank"
-              rel="noreferrer"
               className="inline-flex min-h-12 items-center rounded-full bg-navy-900 px-7 text-body font-medium text-white transition-colors duration-150 ease-out hover:bg-navy-700"
             >
               Open the Blotter template
@@ -228,292 +243,230 @@ export default function SetupPage() {
           ) : (
             <div className="border-l-2 border-blotter-400 bg-white py-5 pr-8 pl-6">
               <p className="text-body leading-[1.62] text-ink">
-                <strong className="font-semibold">
-                  The template is not open to other people yet.
-                </strong>{" "}
-                Blotter is working, and it is running on one account — the one belonging
-                to the person who built it. When the sheet is ready for other people to
-                copy, the link goes here and the rest of this page is the instructions
-                that come with it.
+                <B>The template link is not live yet.</B> The steps below are final, so you can
+                read them through — but there is nothing to copy until it is published. Email{" "}
+                <a href={`mailto:${CONTACT_EMAIL}`} className={LINK}>
+                  {CONTACT_EMAIL}
+                </a>{" "}
+                and we will send it to you.
               </p>
             </div>
           )}
         </div>
 
-        <div className="mt-14 space-y-12">
-          <Step n="01" title="Make your own copy">
-            {/* Worded to read correctly whether or not `TEMPLATE_URL` is set —
-                "the template above" is a dangling reference when the block above
-                is the not-ready notice rather than a button. */}
+        {/* ---------------------------------------------------------- steps */}
+        <div className="mt-16">
+          <h2 className="font-display mb-2 text-[1.35rem] leading-[1.3] font-bold tracking-[-0.015em] text-ink">
+            The six steps
+          </h2>
+          <p className="mb-6 max-w-[68ch] text-body leading-[1.65] text-ink-muted">
+            Open each one as you get to it.
+          </p>
+
+          <Step n={1} title="Make your own copy of the sheet" open>
             <p>
-              Open the Blotter template and click{" "}
-              <strong className="font-semibold text-ink">File → Make a copy</strong>.
-              Give it whatever name you like.
+              Open the template, then choose <B>File → Make a copy</B> from the menu at the
+              top. Give it any name you like and click <B>Make a copy</B>.
             </p>
             <p>
-              The copy is yours. It lives in your own Google Drive, the script travels
-              inside it, and nothing you do to it touches anyone else&rsquo;s.
+              A yellow note appears in that box saying an{" "}
+              <em>Apps Script file and functionality will also be copied</em>. That is
+              Google&rsquo;s name for Blotter itself — the part that does the work. Seeing it
+              means the copy is arriving complete. If it were missing, nothing would run.
+            </p>
+            <Shot
+              src="/setup/copy-warning.png"
+              alt="Google's Copy document box, with a yellow note saying an Apps Script file and functionality will also be copied."
+              caption="Expected. The yellow note is Blotter coming along with the sheet."
+              width={429}
+              height={332}
+            />
+            <p>
+              The copy lands in your own Google Drive. It is yours, and nobody else can open it
+              unless you share it.
             </p>
           </Step>
 
-          <Step n="02" title="Open the Blotter menu">
+          <Step n={2} title="Open the Blotter menu in your copy">
             <p>
-              Reload the page and wait a few seconds. A new menu named{" "}
-              <strong className="font-semibold text-ink">Blotter</strong> appears in the
-              menu bar, to the right of <em>Help</em>. If it is not there after about ten
-              seconds, reload once more — it sometimes takes two.
+              In your new copy, look along the top menu bar. To the right of <B>Help</B> there
+              is a menu called <B>Blotter</B>. Open it and click{" "}
+              <B>Step 1: Set up this sheet</B>.
             </p>
+            <Shot
+              src="/setup/menu.png"
+              alt="The Blotter menu open in Google Sheets, showing Step 1: Set up this sheet."
+              caption="The Blotter menu sits to the right of Help."
+              width={893}
+              height={583}
+              wide
+            />
             <p>
-              Click{" "}
-              <strong className="font-semibold text-ink">
-                Blotter → Step 1: Set up this sheet
-              </strong>
-              . This is where the permission screens start.
+              If the menu is not there yet, wait a few seconds and reload the page. It appears
+              once the sheet has finished opening.
             </p>
-            <Shot src="/setup/menu.png" width={893} height={583}
-              caption="The Blotter menu, at the end of the menu bar" />
           </Step>
 
-          <Step n="03" title="The warning screen, and why it is fine">
-            <p>Google will show you something like this:</p>
+          <Step n={3} title="Google will warn you the app is not verified">
+            <p>
+              This is the screen that stops people. It looks severe, and it is worth
+              understanding rather than clicking past blind.
+            </p>
             <Screen>
               <p className="font-semibold">⚠ Google hasn&rsquo;t verified this app</p>
               <p className="mt-2">
-                The app is requesting access to sensitive info in your Google Account.
-                Until the developer (
-                <strong className="font-semibold">your own email address</strong>) verifies
-                this app with Google, you shouldn&rsquo;t use it.
+                The app is requesting access to sensitive info in your Google Account. Until
+                the developer (<B>your own email address</B>) verifies this app with Google,
+                you shouldn&rsquo;t use it.
               </p>
             </Screen>
             <p>
-              <strong className="font-semibold text-ink">
-                Read the developer name on that screen. It is yours.
-              </strong>{" "}
-              You made your own copy of this sheet a minute ago, so the script is now in
-              your account, and Google is warning you about yourself. It shows this for
-              anything a person installs into their own Google account.
+              <B>Read the address in the brackets. It is yours.</B> You made a copy into your
+              own Drive a minute ago, so as far as Google is concerned you now own this. The
+              screen is asking whether you trust something sitting in your own account. It is
+              not telling you Blotter failed a check.
             </p>
             <p>
-              It does not change what the script is allowed to do. That is decided by the
-              permissions on the next screen, and every one of them is read-only apart
-              from the spreadsheet you just copied.
+              Google shows this for anything running from a personal Google account that
+              hasn&rsquo;t been through its publisher review — including things people write
+              for themselves. That review is an annual, paid, third-party security audit.
+              Blotter has not been through it, and going through it would not remove this
+              screen anyway, because the copy running is yours rather than ours.
             </p>
             <p>
-              <strong className="font-semibold text-ink">
-                The buttons are not laid out in your favour, so read them carefully.
-              </strong>{" "}
-              <em>Back to safety</em> is the big obvious button and it cancels the whole
-              thing. What you want is <em>Advanced</em>, the small underlined link on the
-              far left. Click that, and then click{" "}
-              <strong className="font-semibold text-ink">Go to Blotter (unsafe)</strong>{" "}
-              at the bottom of the text that unfolds.
+              Click <B>Advanced</B> at the bottom left.
             </p>
-            <Shot src="/setup/warning.png" width={640} height={386}
-              caption="The warning. Advanced is the small link at the bottom left." />
-            <Shot src="/setup/warning-advanced.png" width={588} height={405}
-              caption="After clicking Advanced — Go to Blotter (unsafe) appears at the bottom" />
+            <Shot
+              src="/setup/warning.png"
+              alt="Google's unverified app warning, with the Advanced link at the bottom left outlined in green."
+              caption="Click Advanced."
+              width={525}
+              height={259}
+            />
+            <p>
+              The panel opens. Click <B>Go to Blotter (unsafe)</B>.
+            </p>
+            <Shot
+              src="/setup/warning-advanced.png"
+              alt="The expanded warning, with Go to Blotter (unsafe) outlined in green."
+              caption="Then Go to Blotter (unsafe)."
+              width={525}
+              height={371}
+            />
+            <p className="text-small leading-[1.5] text-ink-faint">
+              <em>Unsafe</em> is Google&rsquo;s standard wording for anything it has not
+              reviewed. It is not a judgement about what the app does.
+            </p>
           </Step>
 
-          <Step n="04" title="The permissions screen — click Select all">
+          <Step n={4} title="Give it permission — tick Select all">
             <p>
-              The next screen is headed{" "}
-              <strong className="font-semibold text-ink">
-                Select what Blotter can access
-              </strong>{" "}
-              and has five checkboxes on it.
+              Next comes a list of five things Blotter is asking to do, each with a checkbox,{" "}
+              <B>all of them empty</B>. Nothing on that screen tells you all five are
+              required.
             </p>
             <p>
-              <strong className="font-semibold text-ink">
-                Every box is empty, all five are required, and nothing on that screen
-                tells you either of those things.
-              </strong>{" "}
-              There is a <em>Select all</em> link above them. Use it. Ticking some of them
-              produces a Blotter that half-works in ways that are genuinely hard to work
-              out from the outside.
+              <B>Tick Select all, then click Continue.</B> Leave one off and Blotter fails
+              later, in a way that is very hard to work out.
             </p>
-            <p>Here is what each one is for, in Google&rsquo;s words:</p>
+            <Shot
+              src="/setup/permissions.png"
+              alt="Google's permission screen with all five checkboxes ticked."
+              caption="All five, via Select all."
+              width={489}
+              height={598}
+            />
+            <p>What each one is actually for:</p>
             <ul className="space-y-3">
-              {[
-                [
-                  "View your email messages and settings",
-                  "Reading your mail. Without it nothing works at all.",
-                ],
-                [
-                  "View and manage spreadsheets that this application has been installed in",
-                  "Writing to the sheet you just copied — and only that one. Blotter cannot see any other file in your Drive.",
-                ],
-                [
-                  "See and download any calendar that you can access",
-                  "Finding your calls and coffee chats. Without it, scheduled and completed calls stop working.",
-                ],
-                [
-                  "Connect to an external service",
-                  "Letting the sheet ask Blotter's server what each contact's status is.",
-                ],
-                [
-                  "Allow this application to run when you are not present",
-                  "The 15-minute updates. Without it you would have to run Blotter by hand every time.",
-                ],
-              ].map(([label, why]) => (
-                <li key={label} className="flex gap-3">
-                  <span
-                    aria-hidden="true"
-                    className="mt-[0.62em] h-[3px] w-[3px] shrink-0 rounded-full bg-ink-faint"
-                  />
-                  <span>
-                    <span className="font-medium text-ink">{label}</span>
-                    <br />
-                    {why}
-                  </span>
-                </li>
-              ))}
+              <Row label="Read your email.">
+                To see who you have written to and heard back from. As above: envelopes, not
+                contents.
+              </Row>
+              <Row label="Read your calendar.">
+                To spot that a call has been scheduled without you entering it.
+              </Row>
+              <Row label="See and edit this spreadsheet.">
+                To write the answers back into your tracker. This one file only.
+              </Row>
+              <Row label="Connect to an external service.">
+                To ask Blotter&rsquo;s server what the updates should be.
+              </Row>
+              <Row label="Run when you are not present.">
+                So it can refresh every fifteen minutes rather than only when you sit down.
+              </Row>
             </ul>
-            <p>
-              Three of the five are read-only. Blotter has no permission to send an email,
-              reply to one, delete anything, or create or cancel a calendar event — not as
-              a promise, but because those permissions were never asked for.
-            </p>
-            <p>
-              You may also see a line about not seeing links to Blotter&rsquo;s privacy
-              policy or terms. Google only shows those for apps it has reviewed, and it has
-              not reviewed a script you installed yourself. They are here:{" "}
-              <Link
-                href={POLICY_HREF}
-                className="font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900"
-              >
-                privacy policy
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="/terms"
-                className="font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900"
-              >
-                terms
-              </Link>
-              .
-            </p>
-            <p>Click <strong className="font-semibold text-ink">Allow</strong>.</p>
-            <Shot src="/setup/permissions.png" width={489} height={598}
-              caption="All five ticked, which is what Select all does" />
           </Step>
 
-          <Step n="05" title="Then open Start here, in the sheet">
+          <Step n={5} title="Tell it who you are">
             <p>
-              The windows close and you are back in your spreadsheet. Click{" "}
-              <strong className="font-semibold text-ink">
-                Blotter → Step 1: Set up this sheet
-              </strong>{" "}
-              once more — Google sometimes swallows the click that triggered the permission
-              flow — and the tabs appear along the bottom.
-            </p>
-            <p>
-              The first one is called{" "}
-              <strong className="font-semibold text-ink">Start here</strong> and it walks
-              you through the rest. It is four short steps, and{" "}
-              <strong className="font-semibold text-ink">
-                two of them matter more than they look:
-              </strong>
+              Your copy has a tab along the bottom called <B>Settings</B>. Two things there
+              have to be right, and both fail quietly rather than loudly:
             </p>
             <ul className="space-y-3">
-              <li className="flex gap-3">
-                <span
-                  aria-hidden="true"
-                  className="mt-[0.62em] h-[3px] w-[3px] shrink-0 rounded-full bg-ink-faint"
-                />
-                <span>
-                  <span className="font-medium text-ink">Your email addresses</span>, in
-                  the Settings tab, before you run anything. It is how Blotter tells
-                  &ldquo;you wrote&rdquo; from &ldquo;they wrote&rdquo;, and it refuses to
-                  run without them. If you run it first you get an error on your very first
-                  click, which looks like a broken install and is not.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span
-                  aria-hidden="true"
-                  className="mt-[0.62em] h-[3px] w-[3px] shrink-0 rounded-full bg-ink-faint"
-                />
-                <span>
-                  <span className="font-medium text-ink">Your time zone</span>, under{" "}
-                  <em>File → Settings</em>. A copied sheet keeps the time zone of whoever
-                  built it, and Blotter counts days from midnight in whatever that says. Get
-                  it wrong and the day counts are quietly off by one, in a way that looks
-                  completely normal.
-                </span>
-              </li>
+              <Row label="Your email addresses.">
+                Every address you send recruiting email from. This is how Blotter tells{" "}
+                <em>you wrote</em> from <em>they wrote</em>. Miss one — a university address,
+                say — and everything sent from it is read backwards. Blotter refuses to run
+                until this is filled in.
+              </Row>
+              <Row label="Your time zone.">
+                A copy keeps the time zone of whoever built the template. If yours differs,
+                every day count is off by one at the boundary, and it looks entirely normal
+                while being wrong.
+              </Row>
             </ul>
             <p>
-              Then add your contacts — a name and an email address each — and click{" "}
-              <strong className="font-semibold text-ink">
-                Blotter → Start automatic updates
-              </strong>
-              . That is the whole setup.
+              The <B>Start here</B> tab walks you through both.
             </p>
-            <p>
-              One small thing worth knowing: paste email addresses rather than typing them
-              where you can. A hyphen your keyboard autocorrects into a dash is not the
-              hyphen an email address uses, and Blotter will not be able to match it.
-            </p>
-            <Shot caption="the Start here tab" />
           </Step>
 
-          <Step n="06" title="If something looks wrong">
+          <Step n={6} title="Add people and switch it on">
             <p>
-              Three things account for most of it, and all three are visible in the sheet
-              rather than something you have to guess at.
+              On the <B>Contacts</B> tab, add the people you are networking with — a name and
+              a firm is enough to begin with. Then, from the <B>Blotter</B> menu:
             </p>
             <ul className="space-y-3">
-              {[
-                [
-                  "A row is stuck on Not emailed",
-                  "Blotter cannot read that email address — usually an autocorrected hyphen. Settings → Last run warnings names the row.",
-                ],
-                [
-                  "Nothing is updating",
-                  "Check Settings → Last successful run. If it is old, run Blotter → Step 2 by hand and read the message it gives you.",
-                ],
-                [
-                  "Every row looks wrong",
-                  "Check that Settings → “Pretend today is” is empty. It is a testing setting, and a date left in it makes every status answer a day that is not today.",
-                ],
-              ].map(([label, why]) => (
-                <li key={label} className="flex gap-3">
-                  <span
-                    aria-hidden="true"
-                    className="mt-[0.62em] h-[3px] w-[3px] shrink-0 rounded-full bg-ink-faint"
-                  />
-                  <span>
-                    <span className="font-medium text-ink">{label}</span>
-                    <br />
-                    {why}
-                  </span>
-                </li>
-              ))}
+              <Row label="Step 2: Run once now.">
+                Fills everything in from your existing email history, so you can see it
+                working straight away.
+              </Row>
+              <Row label="Start automatic updates.">
+                From then on it refreshes every fifteen minutes on its own. You can stop it
+                from the same menu whenever you like.
+              </Row>
             </ul>
-            <p>
-              If none of that is it, write to us. Your Settings tab has a{" "}
-              <strong className="font-semibold text-ink">Blotter ID</strong> in it — quote
-              that and we can look up what your sheet actually did, which is much faster
-              than describing it.
-            </p>
-            <p>
-              <Link
-                href="/contact"
-                className="font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900"
-              >
-                Send us a message
-              </Link>{" "}
-              or write to{" "}
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900"
-              >
-                {CONTACT_EMAIL}
-              </a>
-              .
-            </p>
           </Step>
         </div>
+
+        {/* ---------------------------------------------------- if it breaks */}
+        <section className="mt-16 border-t border-rule pt-10">
+          <h2 className="font-display text-[1.18rem] leading-[1.35] font-semibold tracking-[-0.012em] text-ink">
+            If something looks wrong
+          </h2>
+          <div className="mt-4 max-w-[68ch] space-y-4 text-body leading-[1.65] text-ink-muted">
+            <p>
+              The <B>Blotter</B> menu has <B>Check this sheet (diagnostics)</B>. It reports
+              what is connected and what is not, in plain language, and it is the fastest way
+              to find what is missing.
+            </p>
+            <p>
+              If that does not settle it, email{" "}
+              <a href={`mailto:${CONTACT_EMAIL}`} className={LINK}>
+                {CONTACT_EMAIL}
+              </a>{" "}
+              and paste in what the diagnostics said.
+            </p>
+            <p>
+              To stop Blotter entirely: choose <B>Stop automatic updates</B> from the menu, or
+              remove its access from your{" "}
+              <a href="https://myaccount.google.com/permissions" className={LINK}>
+                Google account permissions
+              </a>
+              . Deleting the spreadsheet removes it too. Nothing of yours is held anywhere
+              else.
+            </p>
+          </div>
+        </section>
       </main>
     </div>
   );
