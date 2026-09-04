@@ -53,6 +53,9 @@ function req(
 ): EngineRequest {
   return {
     version: 4,
+    key: "",
+    account: null,
+    courier_version: "test",
     now,
     student: { addresses: ["student@gmail.com", "student@utexas.edu"] },
     contacts,

