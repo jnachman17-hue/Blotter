@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { B, H1, H2, LINK, PROSE, Shell, WhatItSees } from "./shared";
+import { B, H1, H2, PROSE, Shell, WhatItSees } from "./shared";
+import { cn } from "@/lib/cn";
 
 /**
  * The chooser.
@@ -20,13 +21,27 @@ export const metadata: Metadata = {
     "Copy one sheet, give it permission to connect to your Google account, and your recruiting tracker keeps itself up to date.",
 };
 
-function Choice({ href, title, line }: { href: string; title: string; line: string }) {
+function Choice({ href, title, line, recommended }: { href: string; title: string; line: string; recommended?: boolean }) {
   return (
     <Link
       href={href}
-      className="group flex flex-col justify-between rounded-[10px] border-2 border-rule bg-white px-6 py-6 transition-colors duration-150 ease-out hover:border-navy-900 sm:px-7 sm:py-7"
+      className={cn(
+        "group flex flex-col justify-between rounded-[10px] border-2 bg-white px-6 py-6 transition-colors duration-150 ease-out sm:px-7 sm:py-7",
+        recommended
+          ? "border-navy-500 hover:border-navy-900"
+          : "border-rule hover:border-navy-900",
+      )}
     >
       <div>
+        {recommended && (
+          /* blotter-100 on blotter-700: the site's own accent, and the only
+             pair here that is not navy, so the badge reads as a mark rather
+             than as another button. navy-50 and navy-700 do not exist in
+             globals.css and rendered as nothing. */
+          <p className="mb-3 inline-flex items-center rounded-full bg-blotter-100 px-3 py-1 text-small font-medium text-blotter-700">
+            Simpler setup
+          </p>
+        )}
         <p className="font-display text-[1.35rem] leading-[1.2] font-bold tracking-[-0.015em] text-ink">
           {title}
         </p>
@@ -53,15 +68,15 @@ export default function SetupChooser() {
         <p>Setup takes two minutes, one time.</p>
       </div>
 
-      <p className="mt-6">
-        <a href="#choose" className={`text-body ${LINK}`}>
-          Skip to setup ↓
-        </a>
-      </p>
-
-      <WhatItSees />
-
-      <section className="mt-16">
+      {/*
+        The choice sits above "What Blotter can actually see" from 5 September
+        2026, on Jon's ruling. It is the action, and it was underneath a screen
+        of privacy detail: a reader had to scroll past a wall of reassurance
+        before they could do anything, which makes a two-minute setup read as a
+        decision that needs research. Choice first, detail underneath for
+        whoever wants it.
+      */}
+      <section className="mt-12">
         <H2 id="choose">Where is your recruiting email?</H2>
         <div className={`mt-4 space-y-4 ${PROSE}`}>
           <p>
@@ -69,8 +84,16 @@ export default function SetupChooser() {
             your recruiting email actually arrives.
           </p>
           <p>
-            <B>The setup is different for a university account and a personal one.</B> Pick
-            the one you use.
+            {/*
+              Honest rather than a flat preference. The choice is about which
+              mailbox holds the mail, and telling somebody to use a university
+              account their recruiting email is not in would break their
+              install. So the nudge is conditional, and it names the real
+              reason rather than just asserting one is better.
+            */}
+            <B>If you recruit from a university address, use that one.</B> Google recognises
+            university accounts and takes you straight through. A personal Gmail account gets
+            one extra screen that looks alarming and is not.
           </p>
         </div>
 
@@ -78,15 +101,19 @@ export default function SetupChooser() {
           <Choice
             href="/setup/university"
             title="University account"
-            line="A .edu address that runs on Google."
+            line="A .edu address that runs on Google. Four steps, no warnings."
+            recommended
           />
           <Choice
             href="/setup/personal"
             title="Personal Gmail account"
-            line="One extra step, and it is explained in there."
+            line="Five steps. One is a warning screen, explained in there."
           />
         </div>
       </section>
+
+      <WhatItSees />
+
     </Shell>
   );
 }
