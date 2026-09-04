@@ -217,3 +217,112 @@ for this document, but it is the question the pricing actually turns on.
 **Nothing between step 1 and step 4 changes what a student experiences.** That
 is deliberate: every piece can be proven in place before the one that can lock
 somebody out is switched on.
+
+---
+
+# AMENDED, September 3, 2026, after review
+
+**The review found four things wrong and one thing dangerous.** All accepted.
+The original text above stands as written so the corrections can be read against
+it.
+
+## A1. The hash is a pseudonym, not anonymisation, and §2's wording was wrong
+
+The salt lives in `Code.gs`, which **every student can read**. Anyone holding
+the table and the salt can ask *"is `jon@utexas.edu` in here?"* and get an
+answer — and student addresses are a small, generable space
+(`firstname.lastname@` × a hundred universities). **A hash is not one-way
+against a dictionary.**
+
+Salting on the server does not fix it: the courier would have to send the raw
+address. Apps Script has `computeDigest` and no bcrypt, and iterating SHA-256
+enough to matter would spend a run budget already at 85%.
+
+**The design survives. The claim does not.**
+
+- ❌ *"the server never learns who"*
+- ✅ **"Blotter's server stores a pseudonym derived from your Google account,
+  never the address itself"**
+
+**This project's entire privacy posture rests on claims that survive being
+checked.** One that does not would cost more than it buys.
+
+## A2. `last_seen_at` must not live in the engine's table
+
+The schema in §5 contradicted §5's own sentence. **If the engine writes
+`last_seen_at`, "the engine stores nothing" is not weakened, it is dead.**
+
+**Ruled: `/api/telemetry` owns last-seen. The engine reads and never writes.**
+
+And the honest note the review added: after this change a captured request is
+**linkable** — one hash across a season ties a person's whole networking history
+together, with Stripe holding the hash-to-human mapping. The engine still
+accumulates nothing, so the claim holds, but **it is carrying more weight than
+before and should be stated rather than leaned on.**
+
+## A3. ⚠ The empty-email hole, which is the dangerous one
+
+**`Session.getEffectiveUser().getEmail()` can return an empty string.** Not
+theoretical — `effectiveUserEmail_()` already carries a `try/catch` and an
+`|| ''` fallback, added when the decline path was built, because it happened.
+
+**Hash an empty string and every such install shares one hash. One key would
+unlock all of them.**
+
+**Ruled: an empty email means the field is not sent at all.** The server refuses
+to *bind* a key without a hash, and **still allows the run**. Absence must never
+be a value.
+
+**Verify before building anything: run the two-line Apps Script test on a
+consumer Gmail account and on a `.edu`.** The whole design rests on a value
+nobody has checked.
+
+## A4. Graduation is the normal case, not an exception
+
+§6 treated rebinding as something rare, handled by emailing Jon.
+
+**Every student's `.edu` is deprovisioned, on a schedule.** For a tool aimed at
+students that is the modal outcome. A Workspace rename does the same thing, and
+a shared sheet does it too — on a *manual* run `getEffectiveUser()` is whoever
+clicked, not the owner.
+
+### So binding becomes soft, not hard
+
+**Ruled, and this reverses §6.** On a hash mismatch the server **does not
+refuse**. It records the mismatch and flags the key for review.
+
+**The asymmetry decides it: locking out a paying customer who simply graduated
+is far worse than a shared key going unnoticed for a week.** Hard binding
+optimises against the cheaper problem.
+
+Sharing at scale still shows up — several hashes on one key, visible — and stays
+a manual decision rather than an automatic lockout.
+
+## A5. The privacy page changes at step 1, not step 4
+
+The moment the courier sends the hash, the engine receives a stable pseudonym —
+whether or not anything reads it. **`/privacy` must be updated with step 1**, or
+the site describes behaviour that is not true for the whole build.
+
+Also: **step 1 is a contract bump**, so it is the server-first-then-paste dance
+again. Not free.
+
+## A6. Step 3 must make binding observable
+
+Keys get bound before enforcement can verify them. If the hash is wrong for any
+reason in A3 or A4, **keys bind silently to bad identities and nobody finds out
+until step 4 locks someone out.**
+
+**Ruled: binding shows what it bound to, and Jon's manual unbind works before
+step 4, not after.**
+
+## A7. Smaller, all accepted
+
+- **The enforcement flag gets exactly one source**, confirmable with `curl`.
+  D27's lesson, applied before it costs the same hour twice
+- **No cron for grace periods.** Store `grace_until`, compute at read time. A
+  scheduled job is a second source of truth that drifts
+- **The Stripe webhook needs `request.text()`**, not `.json()` — signature
+  verification runs on the raw body
+- **Run budget is at 85%.** A database read per run is small and there is no
+  headroom to spend casually
