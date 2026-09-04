@@ -61,7 +61,6 @@ const EXPORTS = [
   'exceedsRecipientCap_', 'parsePretendText_', 'pretendNowIso_', 'declinedGuests_',
   'normaliseTyped_', 'unreadableAddressWarnings_', 'lastRowWithContact_',
   'failedRecipientsFrom_', 'isBounceSender_', 'installId_', 'telemetryPayload_', 'noticeFrom_',
-  'noticeStartColumn_',
   'MAX_THREAD_RECIPIENTS', 'NO_CLOCK', 'VALID_STATUSES', 'CONTRACT_VERSION',
   // The look. Colour tables and widths are data, so they are testable — and a
   // typo in a hex paints a cell black on somebody's real sheet.
@@ -71,6 +70,9 @@ const EXPORTS = [
   // Sorting: the two ranking functions are pure, and getting either subtly
   // wrong reorders somebody's whole tracker without erroring.
   'titleRank_', 'stateRank_', 'pad_', 'columnLetter_',
+  // The banner change. headerRow_ decides where every other row is, and the
+  // row number is the contract's join key, so it is tested against a fake sheet.
+  'headerRow_', 'firstDataRow_', 'resetHeaderRowCache_',
 ];
 const box = {};
 new Function('box', `${src}\nObject.assign(box, {${EXPORTS.join(', ')}});`)(box);
@@ -207,15 +209,38 @@ eq('nothing wrong, nothing said', box.unreadableAddressWarnings_([]), []);
  * holds a person instead.
  * ------------------------------------------------------------------ */
 
-const sheetOf = (names, emails, lastRow) => ({
-  sheet: {
-    getLastRow: () => lastRow,
-    getRange: (_row, col, height) => ({
-      getValues: () => (col === 1 ? names : emails).slice(0, height).map((v) => [v]),
-    }),
-  },
-  cols: { name: 1, email: 2 },
-});
+/* The stub gained getSheetId, getName, getMaxRows and getLastColumn when the
+   banner arrived: `lastRowWithContact_` now derives its window from
+   `headerRow_`, so it needs a sheet the search can look at. Row 1 holds the
+   headers here, which is the pre-banner layout — so these cases also prove the
+   old behaviour is unchanged. */
+let sheetOfId = 0;
+const sheetOf = (names, emails, lastRow) => {
+  const id = ++sheetOfId;
+  const grid = [['Name', 'Email']].concat(names.map((n, i) => [n, emails[i] ?? '']));
+  return {
+    sheet: {
+      getSheetId: () => id,
+      getName: () => 'Contacts',
+      getMaxRows: () => lastRow,
+      getLastColumn: () => 2,
+      getLastRow: () => lastRow,
+      getRange: (row, col, height, numCols) => ({
+        getValues: () => {
+          // The header search asks for a block of rows and every column.
+          if (numCols && numCols > 1) {
+            return grid.slice(row - 1, row - 1 + height)
+              .map((r) => Array.from({ length: numCols }, (_, i) => r[i] ?? ''));
+          }
+          // Everything else asks for one column, starting at the first data row.
+          const src = col === 1 ? names : emails;
+          return src.slice(row - 2, row - 2 + height).map((v) => [v ?? '']);
+        },
+      }),
+    },
+    cols: { name: 1, email: 2 },
+  };
+};
 
 eq('three contacts and 900 rows of checkboxes below them',
   box.lastRowWithContact_(sheetOf(['A', 'B', 'C', ...Array(900).fill('')],
@@ -594,18 +619,71 @@ eq('an unknown level falls back to info rather than vanishing',
    written there, getLastColumn() counts it, so the next run lands six columns
    further right and abandons the old message. It would have crept across the
    sheet one notice at a time, beginning with the first one that ever mattered. */
-eq('first placement: just past the last used column',
-  box.noticeStartColumn_(11, 11, 0), 12);
-eq('a student column past Closed is not landed on',
-  box.noticeStartColumn_(11, 14, 0), 15);
-eq('the second run does NOT drift right, even though the notice widened the sheet',
-  box.noticeStartColumn_(11, 17, 12), 12);
-eq('and the tenth run is still in the same place',
-  box.noticeStartColumn_(11, 17, 12), 12);
-eq('a remembered spot that is no longer past Closed is recomputed',
-  box.noticeStartColumn_(20, 20, 12), 21);
-eq('an empty sheet still lands past Closed',
-  box.noticeStartColumn_(11, 0, 0), 12);
+// ---------------------------------------------------------------------------
+// headerRow_ — the lynchpin of the banner change.
+//
+// Every position on Contacts and Found is derived from this one answer, and
+// the row number is the contract's join key. Get it wrong and one person's
+// answers land on another person's line, silently. So it is tested against a
+// fake sheet rather than trusted.
+// ---------------------------------------------------------------------------
+function fakeSheet(name, grid) {
+  let nextId = fakeSheet.n = (fakeSheet.n || 0) + 1;
+  return {
+    getSheetId: () => nextId,
+    getName: () => name,
+    getMaxRows: () => grid.length,
+    getLastColumn: () => Math.max(0, ...grid.map((r) => r.length)),
+    getRange: (row, col, numRows, numCols) => ({
+      getValues: () => grid.slice(row - 1, row - 1 + numRows)
+        .map((r) => Array.from({ length: numCols }, (_, i) => r[col - 1 + i] ?? '')),
+    }),
+  };
+}
+{
+  const H = ['Name', 'Title', 'Firm', 'Email', 'Status', 'Days', 'Last contact',
+             'Attempts', 'Next call', 'Last call', 'Closed'];
+
+  box.resetHeaderRowCache_();
+  const old = fakeSheet('Contacts', [H, ['Jamie', '', 'JPM', 'j@x.com']]);
+  eq('a pre-banner sheet keeps its headers on row 1', box.headerRow_(old), 1);
+  eq('and its data starts on row 2', box.firstDataRow_(old), 2);
+
+  box.resetHeaderRowCache_();
+  const banner = fakeSheet('Contacts', [['Blotter — all good.'], H, ['Jamie', '', 'JPM', 'j@x.com']]);
+  eq('a banner sheet finds its headers on row 2', box.headerRow_(banner), 2);
+  eq('and its data starts on row 3', box.firstDataRow_(banner), 3);
+
+  // The banner text must never itself look like a header row.
+  box.resetHeaderRowCache_();
+  const decoy = fakeSheet('Contacts', [['Your name and email go below'], H, ['Jamie']]);
+  eq('banner prose containing header-ish words does not fool the search',
+    box.headerRow_(decoy), 2);
+
+  box.resetHeaderRowCache_();
+  const found = fakeSheet('Found', [['Add?', 'Name', 'Email', 'First seen', 'Context']]);
+  eq('Found is recognised by its own anchor', box.headerRow_(found), 1);
+
+  box.resetHeaderRowCache_();
+  const foundBanner = fakeSheet('Found', [['Blotter'], ['Add?', 'Name', 'Email', 'First seen', 'Context']]);
+  eq('Found with a banner finds row 2', box.headerRow_(foundBanner), 2);
+
+  // The safe default matters more than the clever answer: a sheet we do not
+  // recognise must behave exactly as it did before the banner existed.
+  box.resetHeaderRowCache_();
+  const strange = fakeSheet('Contacts', [['nothing'], ['familiar'], ['here']]);
+  eq('an unrecognised sheet falls back to row 1', box.headerRow_(strange), 1);
+
+  box.resetHeaderRowCache_();
+  const empty = fakeSheet('Contacts', [[]]);
+  eq('an empty sheet falls back to row 1', box.headerRow_(empty), 1);
+
+  // A banner pushed further down still resolves, within the search depth.
+  box.resetHeaderRowCache_();
+  const deep = fakeSheet('Contacts', [['a'], ['b'], H, ['Jamie']]);
+  eq('headers on row 3 are still found', box.headerRow_(deep), 3);
+}
+
 
 eq('text is trimmed',
   box.noticeFrom_({ notice: { level: 'info', text: '  padded  ' } }).text, 'padded');
