@@ -847,3 +847,54 @@ tab in the sheet. Either build it or delete it.
 
 - [ ] **12.4 `NOTICE_TAB_COLOUR` is declared and never referenced.** Either
       colour the tab on a notice or delete it.
+
+
+---
+
+## 13. Jon's rulings, 4 September 2026
+
+- [x] **13.1 The pricing model is deferred, on purpose.** `entitled_until` on
+      `blotter_keys` carries it: null never expires (one-time), a date lapses
+      (season pass), a webhook moving the date forward is a subscription. The
+      entitlement check is the same sentence in all three, so the choice is a
+      Stripe price object rather than a schema change. Build for all three.
+
+- [x] **13.2 Free is temporary, and the terms now say so.** Jon's strategy is a
+      free period to build a population, then convert. My grandfathering
+      recommendation was wrong: it rested on a sentence in `/terms` that said
+      *"Using Blotter while it is free does not commit you to paying for it
+      later"*, which was meant to rule out back-charges and read as a promise of
+      perpetual free. The sentence was the fault, not the strategy. §08 now says
+      Blotter will not always be free, that the sheet says so before anything is
+      owed, that the free period is never billed, and that stopping costs
+      nothing. **There is no grandfathered cohort.**
+
+- [x] **13.3 The key binds on the engine call.** Not on telemetry.
+
+      Jon rejected the privacy argument, correctly: nothing is live, no student
+      is using it, and the privacy page can be rewritten to match whatever is
+      built. He asked for the decision on technical merit alone. It survives,
+      and the strongest reason had not been stated:
+
+      **Binding and checking must happen in the same request, or the first run
+      after a purchase can be refused.** The engine decides entitlement. If
+      binding happened in telemetry, then on the run right after a key is
+      presented the engine would see a key not yet bound to this install and
+      could refuse it, and telemetry would bind it a moment later. The student
+      would watch a paid key fail once for no reason they could see. One
+      request removes the race entirely.
+
+      Three lesser reasons stand: telemetry is opt-out and the Settings tab
+      invites students to disable it, so binding there means anyone who took
+      that invitation can pay and never activate; telemetry failures are
+      swallowed by design, and a binding failure is exactly the kind you want
+      to see; and the engine already carries the key and already reads it to
+      decide refusal, so it is the enforcement point already.
+
+      **Neither option changes the Google permission scope.** Both requests are
+      already made on every run and both already leave the sheet. Scope is not
+      a differentiator here.
+
+- [x] **13.4 The three tables are written.** `supabase/007-installs-and-keys.sql`.
+      Jon runs it in the Supabase SQL editor. Until then every telemetry request
+      answers `insert_failed` and no record of the free population exists.
