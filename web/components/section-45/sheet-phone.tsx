@@ -1,30 +1,23 @@
 /**
- * The Blotter tab, composed for a phone. Two treatments, both live.
+ * The Contacts tab, composed for a phone. Two treatments, both live.
  *
- * Authority: `09-page-argument-rework.md` §5, and `04-decision-log.md` session
- * 7. `05-SECTION-5` §12 governs what any smaller-screen treatment must
- * preserve: all ten field names, the LinkedIn-to-Status divider, and the
- * distinction between the existing fields and the Blotter-maintained layer.
+ * Authority: `09-page-argument-rework.md` §5, `04-decision-log.md` session 7,
+ * and `courier/Code.gs` for what is in the sheet. `05-SECTION-5` §12 governs
+ * what any smaller-screen treatment must preserve: every field name, the zone
+ * divider, and the distinction between the student's fields and Blotter's.
  *
  * ## Why scaling is not one of the options
  *
- * The desktop sheet is 1,221px natural in 13px Arial. Phone content width is
- * 350px at a 390 viewport, 320px at 360, 280px at 320. Scaling to fit is 0.287
- * and puts the type at 3.7px. §12 permits a deliberate horizontal crop or a
+ * The desktop sheet is 1,359px natural in 14px Arial. Phone content width is
+ * 350px at a 390 viewport, 320px at 360, 280px at 320. Scaling to fit is 0.26
+ * and puts the type at 3.6px. §12 permits a deliberate horizontal crop or a
  * controlled internal scroll and forbids scaling "until the text becomes
  * unreadable", so both treatments below do one of the permitted things.
  *
  * ## The trade the two treatments are trading
  *
- * `05-SECTION-5`'s amendment table holds the column order fixed, so `Status`
- * cannot be moved beside `Name`. The divider sits 683px in, 56% across the
- * sheet, and the only columns between `Name` and it are `Title`, `Firm`,
- * `Email` and `LinkedIn`. **Getting the divider on screen at rest costs exactly
- * those four**, and with them the spatial zone labels: after cropping, the
- * manual zone is 94px and cannot hold "You add these".
- *
- * `CROP` pays that and keeps a still frame that argues.
- * `SWIPE` refuses to pay it and gives up the still frame instead.
+ * `CROP` drops columns and stays a still frame. `SWIPE` keeps all eleven and
+ * gives up the still frame instead.
  *
  * Jon's, August 11, 2026, and the reason `SWIPE` exists at all: the swipe has to
  * *say* it is a swipe, and the gesture should drive the explanation rather than
@@ -41,10 +34,10 @@
 import { useLayoutEffect, useRef, useState } from "react";
 
 import { Fit } from "@/components/layout/fit";
-import { SheetWindow } from "@/components/sheet/sheet-window";
-import { StatusChip } from "@/components/sheet/status-chip";
+import { HiddenMark, SheetWindow } from "@/components/sheet/sheet-window";
+import { StatusCell } from "@/components/sheet/status-chip";
 import { cn } from "@/lib/cn";
-import { TRACKER_CONTACTS } from "@/lib/sheet-data";
+import { CONTACTS, type Contact } from "@/components/section-45/parts";
 
 export type PhoneSheetVariant = "crop" | "swipe";
 
@@ -56,14 +49,24 @@ const YOURS_SUB = "The contacts and context you choose";
 const MAINT_LABEL = "Blotter keeps these current";
 const MAINT_SUB = "Updated from Gmail and Calendar";
 
-/** Unchanged from `parts.tsx`. The cream is the ownership claim at rest. */
-const MAINTAINED_FILL = "#fdfaf2";
-
 const TABS = [
-  { label: "Contacts" },
-  { label: "Blotter", active: true },
-  { label: "Outstanding" },
+  { label: "Start here" },
+  { label: "Contacts", active: true },
+  { label: "Found" },
+  { label: "Settings" },
 ];
+
+/**
+ * A closed row is greyed and struck through, every cell of it. It is the one
+ * row state that is not a colour in the `Status` cell, so a treatment that
+ * dropped it would be dropping a behaviour rather than a column.
+ *
+ * Applied per cell rather than to the row, because `text-decoration` propagates
+ * into descendants and cannot be removed by one — put it on the row and the
+ * row-number gutter, which is Sheets' chrome rather than a cell, gets struck
+ * through too.
+ */
+const CLOSED_CELL = "text-ink-faint line-through";
 
 /* =========================================================== the crop ===== */
 
@@ -76,24 +79,44 @@ const GUTTER = 22;
 
 interface PhoneCol {
   header: string;
-  /** The real letter in the ten-column sheet. Order is fixed by spec. */
+  /** The real letter in the eleven-column sheet. */
   letter: string;
   w: number;
   maintained?: boolean;
   align?: "right";
 }
 
-/*
- * Fitted to content at 13px Arial rather than scaled down from desktop: `Name`
- * holds "Jerome Bowel" unwrapped, `Status` holds the "Call completed" chip,
- * `Next move` holds "Attend coffee chat", and `Days` holds its own header,
- * which is wider than any value in it.
+/**
+ * Four columns, sized to their own content at 13px Arial rather than scaled
+ * down from desktop, so nothing on a phone is a shrunken desktop cell.
+ *
+ * **Which four, and why the other seven go.** A 375px viewport leaves 335px
+ * inside the page gutters. `Name` has to stay or the maintained half is a
+ * column of anonymous cells. What is left buys three:
+ *
+ *   - `Status`, `Days` and `Attempts` are the three cells one event moves
+ *     together, which is the claim the whole page makes. Keeping the trio is
+ *     what lets a phone reader see a status change and a count change as one
+ *     thing rather than two facts in a list.
+ *   - `Title`, `Firm` and `Email` are the student's own and say nothing about
+ *     what Blotter does. They are the cheapest three to lose and the only three
+ *     the reader could have written down themselves.
+ *   - `Last contact` is the same fact as `Days` in the form nobody uses. A
+ *     student asks how long it has been, not what the date was.
+ *   - `Next call` and `Last call` both need a full date-and-time string —
+ *     `1/17 @ 2:00 PM` is 142px on the real sheet, or 42% of the viewport for
+ *     one cell that is empty on most rows.
+ *   - `Closed` is an empty checkbox until somebody ticks it. The struck-through
+ *     row says the same thing and costs no width.
+ *
+ * All eleven are still named, under the sheet, so §12's preservation clause
+ * holds.
  */
 const COLS: PhoneCol[] = [
-  { header: "Name", letter: "A", w: 94 },
-  { header: "Status", letter: "F", w: 112, maintained: true },
-  { header: "Next move", letter: "G", w: 120, maintained: true },
-  { header: "Days", letter: "I", w: 46, maintained: true, align: "right" },
+  { header: "Name", letter: "A", w: 102 },
+  { header: "Status", letter: "E", w: 96, maintained: true },
+  { header: "Days", letter: "F", w: 46, maintained: true, align: "right" },
+  { header: "Attempts", letter: "H", w: 74, maintained: true, align: "right" },
 ];
 
 const CROP_W = GUTTER + COLS.reduce((n, c) => n + c.w, 0);
@@ -101,43 +124,17 @@ const CROP_YOURS_W = COLS[0].w;
 const CROP_MAINT_W = CROP_W - GUTTER - CROP_YOURS_W;
 
 /** Boundaries in the cropped strip with columns collapsed behind them. */
-const HIDDEN_AFTER = new Set(["A", "G", "I"]);
+const HIDDEN_AFTER = new Set(["A", "F", "H"]);
 
 /**
- * The six columns the crop does not show, named so all ten survive §12.
+ * The seven columns the crop does not show, named so all eleven survive §12.
  *
- * **Unratified copy.** Logged in `08-desktop-changes-pending.md` §9. It states
- * no new claim: every field named is already in `05-SECTION-5` §6's fixed
- * column list, and "Also in your tracker" says only that they exist.
+ * **Unratified copy.** It states no new claim: every field named is in the
+ * Contacts headers `courier/Code.gs` writes, and "Also in your tracker" says
+ * only that they exist.
  */
 const HIDDEN_FIELDS =
-  "Also in your tracker: Title, Firm, Email, LinkedIn, Last contact, Call.";
-
-/**
- * Google Sheets' own hidden-column indicator: two arrowheads facing each other
- * across the boundary where columns were collapsed. Absolutely positioned so it
- * costs no layout width, which keeps the strip aligned with its grid.
- */
-function HiddenMark({ edge }: { edge?: boolean }) {
-  return (
-    <span
-      aria-hidden="true"
-      className={cn(
-        "pointer-events-none absolute top-1/2 z-10 flex -translate-y-1/2 items-center gap-[1px] text-ink-faint",
-        /* On the last column the boundary is the window's own edge, which
-           clips. Tucked inside instead. */
-        edge ? "right-[2px]" : "-right-[6px]",
-      )}
-    >
-      <svg width="4" height="7" viewBox="0 0 4 7" fill="currentColor">
-        <path d="M4 0 0 3.5 4 7z" />
-      </svg>
-      <svg width="4" height="7" viewBox="0 0 4 7" fill="currentColor">
-        <path d="M0 0l4 3.5L0 7z" />
-      </svg>
-    </span>
-  );
-}
+  "Also in your tracker: Title, Firm, Email, Last contact, Next call, Last call, Closed.";
 
 /**
  * Desktop's zone-label device at phone scale: a heading sized to its own zone
@@ -145,9 +142,9 @@ function HiddenMark({ edge }: { edge?: boolean }) {
  *
  * The first crop replaced this with two text lines beneath the sheet and Jon
  * caught it on August 11, 2026 — a key is not a claim. The labels are small
- * here because the manual zone is 94px, but they still *point at* their own
- * columns, which is the whole device. The subtitles do not fit at 94px and are
- * dropped rather than shrunk into illegibility.
+ * here because the manual zone is one column wide, but they still *point at*
+ * their own columns, which is the whole device. The subtitles do not fit and
+ * are dropped rather than shrunk into illegibility.
  */
 function CropZoneLabels() {
   return (
@@ -168,6 +165,12 @@ function CropZoneLabels() {
   );
 }
 
+function CropValue(c: Contact, header: string) {
+  if (header === "Name") return c.name;
+  if (header === "Days") return c.days;
+  return c.attempts;
+}
+
 function CropSheet() {
   return (
     <div>
@@ -175,14 +178,14 @@ function CropSheet() {
         <div style={{ width: CROP_W }}>
           <CropZoneLabels />
           <SheetWindow
-            selectedCell="F2"
+            selectedCell="E2"
             formulaValue="Replied"
             columnLetters={[]}
             tabs={TABS}
             menuCount={4}
             showSaveState={false}
           >
-            <div className="sheet-type text-[13px]">
+            <div className="sheet-type text-[13px] leading-[16px]">
               <div className="flex border-b border-sheet-grid bg-sheet-header text-[11px] text-ink-muted">
                 <div
                   className="shrink-0 border-r border-sheet-grid"
@@ -204,7 +207,7 @@ function CropSheet() {
 
               <div className="flex border-b border-sheet-grid font-semibold text-ink">
                 <div
-                  className="shrink-0 border-r border-sheet-grid bg-sheet-header py-2.5 text-center text-[11px] font-normal text-ink-muted"
+                  className="shrink-0 border-r border-sheet-grid bg-sheet-header py-[7px] text-center text-[11px] font-normal text-ink-muted"
                   style={{ width: GUTTER }}
                 >
                   1
@@ -213,7 +216,7 @@ function CropSheet() {
                   <div
                     key={c.header}
                     className={cn(
-                      "shrink-0 px-2 py-2.5 whitespace-nowrap",
+                      "shrink-0 px-1.5 py-[7px] whitespace-nowrap",
                       c.maintained ? "bg-blotter-100" : "bg-manual-100",
                       c.header === "Status" &&
                         "border-l-[3px] border-l-blotter-400",
@@ -226,43 +229,42 @@ function CropSheet() {
                 ))}
               </div>
 
-              {TRACKER_CONTACTS.map((c, r) => (
-                <div
-                  key={c.name}
-                  className="flex border-b border-sheet-grid last:border-b-0"
-                >
-                  <div
-                    className="shrink-0 border-r border-sheet-grid bg-sheet-header py-2.5 text-center text-[11px] text-ink-muted"
-                    style={{ width: GUTTER }}
-                  >
-                    {r + 2}
+              {CONTACTS.map((c, r) => {
+                const fade = c.closed && CLOSED_CELL;
+                return (
+                  <div key={c.name} className="flex border-b border-sheet-grid last:border-b-0">
+                    <div
+                      className="shrink-0 border-r border-sheet-grid bg-sheet-header py-[5px] text-center text-[11px] text-ink-muted"
+                      style={{ width: GUTTER }}
+                    >
+                      {r + 2}
+                    </div>
+                    {COLS.map((col) =>
+                      col.header === "Status" ? (
+                        <div
+                          key={col.header}
+                          className={cn("shrink-0 border-l-[3px] border-l-blotter-400", fade)}
+                          style={{ width: col.w }}
+                        >
+                          <StatusCell status={c.status} pad="py-[5px]" />
+                        </div>
+                      ) : (
+                        <div
+                          key={col.header}
+                          className={cn(
+                            "shrink-0 overflow-hidden px-1.5 py-[5px] whitespace-nowrap",
+                            col.align === "right" && "text-right",
+                            fade,
+                          )}
+                          style={{ width: col.w }}
+                        >
+                          {CropValue(c, col.header)}
+                        </div>
+                      ),
+                    )}
                   </div>
-                  <div
-                    className="shrink-0 px-2 py-2.5 font-medium whitespace-nowrap text-ink"
-                    style={{ width: COLS[0].w }}
-                  >
-                    {c.name}
-                  </div>
-                  <div
-                    className="shrink-0 border-l-[3px] border-l-blotter-400 px-1 py-2.5"
-                    style={{ width: COLS[1].w, background: MAINTAINED_FILL }}
-                  >
-                    <StatusChip status={c.status} />
-                  </div>
-                  <div
-                    className="shrink-0 px-2 py-2.5 whitespace-nowrap"
-                    style={{ width: COLS[2].w, background: MAINTAINED_FILL }}
-                  >
-                    {c.next}
-                  </div>
-                  <div
-                    className="shrink-0 px-2 py-2.5 text-right"
-                    style={{ width: COLS[3].w, background: MAINTAINED_FILL }}
-                  >
-                    {c.days}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </SheetWindow>
         </div>
@@ -277,62 +279,42 @@ function CropSheet() {
 /* ========================================================== the swipe ===== */
 
 /**
- * The ten columns, and the 8px that moved on August 11, 2026.
+ * All eleven columns at `CONTACTS_WIDTHS`, the widths `courier/Code.gs` sets.
  *
- * **These widths are a hand-kept copy of `parts.tsx`'s `YOURS` and
- * `MAINTAINED`.** Nothing propagates between the two, which is the same trap
- * `web/public/film/` sets against `social/`. `08-desktop-changes-pending.md`
- * §12's row-height defect was found on desktop and fixed there first; the phone
- * still had it, because this list is a second copy. **If either list changes,
- * change both.**
- *
- * `Email` 196 to 188 and `Call` 112 to 120, so `1/17 @ 2:00 PM` (94.1px) and
- * `Completed 1/16` (91.8px) stop wrapping David Salmon's and Ken Molise's rows to
- * 60px against 40.5px for every other row. `Email` was already truncating away
- * more slack than it gives up.
- *
- * `FULL_W` is unchanged at 1,221px, so the swipe's travel, the veil and every
- * scroll threshold are untouched. `SPLIT_X` moves 683 to 675 — the divider is
- * ratified as *visible*, not as sitting at a particular pixel, and both zone
- * labels still fit at their ratified size in 632px and 546px.
+ * **This list and `parts.tsx`'s are now one list** — both read the same widths
+ * from the same source and both draw the same seven contacts, imported rather
+ * than copied. The two used to be hand-kept duplicates with a comment begging
+ * whoever changed one to change the other.
  */
 const FULL_GUTTER = 43;
 const FULL_COLS = [
-  /* Name 112 -> 120 and Firm 132 -> 124 on August 12, 2026, mirroring
-     `parts.tsx`. Paired on purpose: the pair sums to zero, so `FULL_W`,
-     `YOURS_W` and `SPLIT_X` are all unchanged and the swipe's zone divider does
-     not move. See the note above `YOURS` in `parts.tsx` for why. */
-  { header: "Name", letter: "A", w: 120 },
-  { header: "Title", letter: "B", w: 116, italic: true },
-  { header: "Firm", letter: "C", w: 124 },
-  { header: "Email", letter: "D", w: 188 },
-  { header: "LinkedIn", letter: "E", w: 84 },
-  { header: "Status", letter: "F", w: 128, maintained: true },
-  { header: "Next move", letter: "G", w: 142, maintained: true },
-  { header: "Last contact", letter: "H", w: 104, maintained: true },
-  { header: "Days", letter: "I", w: 52, maintained: true, align: "right" },
-  { header: "Call", letter: "J", w: 120, maintained: true },
+  { header: "Name", letter: "A", w: 150 },
+  { header: "Title", letter: "B", w: 120, italic: true },
+  { header: "Firm", letter: "C", w: 150 },
+  { header: "Email", letter: "D", w: 190 },
+  { header: "Status", letter: "E", w: 132, maintained: true },
+  { header: "Days", letter: "F", w: 62, maintained: true, align: "right" },
+  { header: "Last contact", letter: "G", w: 108, maintained: true },
+  { header: "Attempts", letter: "H", w: 82, maintained: true, align: "right" },
+  { header: "Next call", letter: "I", w: 142, maintained: true },
+  { header: "Last call", letter: "J", w: 108, maintained: true },
+  { header: "Closed", letter: "K", w: 72, closed: true },
 ];
 const FULL_W = FULL_GUTTER + FULL_COLS.reduce((n, c) => n + c.w, 0);
-const YOURS_W = FULL_COLS.slice(0, 5).reduce((n, c) => n + c.w, 0);
-/** Where the divider sits in natural coordinates. */
+const YOURS_W = FULL_COLS.slice(0, 4).reduce((n, c) => n + c.w, 0);
+/** Where the first divider sits in natural coordinates. */
 const SPLIT_X = FULL_GUTTER + YOURS_W;
 
 /**
- * `Name` is frozen, and it keeps its own zone tint while frozen.
+ * `Name` is frozen, which is what `sheet.setFrozenColumns` does on the real
+ * sheet and what stops the maintained half being seven rows of anonymous cells.
  *
- * Freezing it is what real Sheets users do and it is what stops the maintained
- * half being five rows of anonymous cells — "Send thank-you" with no name
- * attached is not evidence of anything.
- *
- * The tint is the part that matters to the argument. A frozen manual column
- * sitting inside the cream "Blotter keeps these current" wash would say a
- * manual field is maintained, which is the one thing this section exists to
- * deny. So `Name` renders above both washes and carries the manual tint
- * permanently: wherever you swipe to, the column that stays with you is
- * visibly yours.
+ * It is white, like every other data row under the `bands` theme, so the fill
+ * here is doing one job only: a frozen column has to be opaque or the cells
+ * travelling underneath show through it. The heavier right border is the freeze
+ * boundary, which Sheets draws too.
  */
-const FROZEN_NAME_FILL = "#f6f8fb";
+const FROZEN_NAME_FILL = "#ffffff";
 
 /**
  * The label band does not move. That is the whole design.
@@ -360,17 +342,16 @@ const FROZEN_NAME_FILL = "#f6f8fb";
  * The band moves **out of the scroll container** and sits in the sheet's own
  * chrome, below the formula bar and above row 1, where it already appeared to
  * be. Nothing counteracts anything: the element is not in the scrolling
- * subtree, so it cannot lag it. Position is now static CSS with no JavaScript
- * in the path at all.
+ * subtree, so it cannot lag it.
  *
  * All that is left is a **crossfade on one threshold** — the divider passing
  * the middle of the window, which is the point at which the reader is looking
- * more at Blotter's columns than at their own. Discrete, so a transition is
- * finally the right tool for it.
+ * more at Blotter's columns than at their own.
  *
- * The cost, and it is small: the label no longer points at the columns it names
- * by sitting over them. The veil covers that — it takes the same zone's colour,
- * so the two agree about where the reader is.
+ * `Closed` sits past a second divider at the far right and does not get a third
+ * label. It is 72px at the end of a 1,359px sheet, so the window it is visible
+ * in is still mostly Blotter's columns, and a label that flickered back on the
+ * last 5% of the travel would be lying more often than it told the truth.
  */
 
 function ZoneLabel({
@@ -440,7 +421,6 @@ function ZoneBand({ zone }: { zone: "yours" | "maintained" }) {
   );
 }
 
-
 /**
  * The veil, and it is the whole swipe affordance.
  *
@@ -456,9 +436,7 @@ function ZoneBand({ zone }: { zone: "yours" | "maintained" }) {
  * the swipe beat the crop — nothing shrunk, nothing dropped, every field
  * legible. Veiling forward instead means a screenshot shows a sharp, readable
  * manual zone with an obviously unfinished right edge, which reads as *there is
- * more* rather than as *this is all there is*. That is a better still frame
- * than the flat wash it replaces, and it recovers a cost recorded against the
- * swipe in `09` §5.
+ * more* rather than as *this is all there is*.
  *
  * **It takes the colour of the zone it is covering**, so the veil announces
  * what is coming: grey while the manual columns run out, cream once the
@@ -505,11 +483,6 @@ function Veil({
     <div
       ref={veilRef}
       aria-hidden="true"
-      /*
-        Full height of the scroll region now. The label band used to live inside
-        it and had to be spared; the band is outside the scroller since
-        August 11, 2026, so the veil can cover everything it is over.
-      */
       className="pointer-events-none absolute inset-y-0 right-0 z-30 w-[64%]"
       style={{ opacity: show ? 1 : 0 }}
     >
@@ -548,12 +521,31 @@ function Veil({
   );
 }
 
+/** A Sheets checkbox, which is what `Closed` holds on the real sheet. */
+function Checkbox({ on }: { on: boolean }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={cn(
+        "inline-grid size-[12px] place-items-center rounded-[2px] align-[-1px]",
+        on ? "bg-[#5f6368]" : "border border-[#80868b]",
+      )}
+    >
+      {on && (
+        <svg width="8" height="6" viewBox="0 0 9 7" fill="none">
+          <path d="M1 3.6 3.3 6 8 1.2" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      )}
+    </span>
+  );
+}
+
 function SwipeSheet() {
   const scroller = useRef<HTMLDivElement>(null);
   const veil = useRef<HTMLDivElement>(null);
   const coach = useRef<HTMLSpanElement>(null);
 
-  /* Only the discrete facts live in React. See `place` above. */
+  /* Only the discrete facts live in React. */
   const [zone, setZone] = useState<"yours" | "maintained">("yours");
   const [scrollable, setScrollable] = useState(false);
   const furthest = useRef(0);
@@ -608,7 +600,7 @@ function SwipeSheet() {
 
   return (
     <SheetWindow
-      selectedCell="F2"
+      selectedCell="E2"
       formulaValue="Replied"
       columnLetters={[]}
       tabs={TABS}
@@ -633,11 +625,6 @@ function SwipeSheet() {
           focusable scroll container gets arrow-key scrolling from the browser
           for free, so the fix is a tab stop and a name rather than a key
           handler of our own.
-
-          `role="region"` with a label so a screen reader announces what the
-          thing is before the reader starts arrowing through a spreadsheet, and
-          `tabIndex={0}` so it is reachable at all. Phase 6 sweep,
-          August 11, 2026.
         */}
         <div
           ref={scroller}
@@ -649,7 +636,7 @@ function SwipeSheet() {
              snap points would fight a gesture whose whole job is continuous
              travel across the divider. */
         >
-          <div className="sheet-type text-[13px]" style={{ width: FULL_W }}>
+          <div className="sheet-type text-[13px] leading-[16px]" style={{ width: FULL_W }}>
             <div className="relative">
               {/* Letter strip, scrolling with the grid it labels. */}
               <div className="flex border-b border-sheet-grid bg-sheet-header text-[12px] text-ink-muted">
@@ -673,7 +660,7 @@ function SwipeSheet() {
 
               <div className="flex border-b border-sheet-grid font-semibold text-ink">
                 <div
-                  className="sticky left-0 z-20 shrink-0 border-r border-sheet-grid bg-sheet-header py-2.5 text-center text-[12px] font-normal text-ink-muted"
+                  className="sticky left-0 z-20 shrink-0 border-r border-sheet-grid bg-sheet-header py-[7px] text-center text-[12px] font-normal text-ink-muted"
                   style={{ width: FULL_GUTTER }}
                 >
                   1
@@ -682,10 +669,12 @@ function SwipeSheet() {
                   <div
                     key={c.header}
                     className={cn(
-                      "shrink-0 px-3 py-2.5",
+                      "shrink-0 px-2 py-[7px] whitespace-nowrap",
                       c.maintained ? "bg-blotter-100" : "bg-manual-100",
-                      c.header === "Status" &&
+                      (c.header === "Status" || c.closed) &&
                         "border-l-[3px] border-l-blotter-400",
+                      c.align === "right" && "text-right",
+                      c.closed && "text-center",
                       i === 0 && "sticky z-20 border-r border-sheet-grid",
                     )}
                     style={{ width: c.w, left: i === 0 ? FULL_GUTTER : undefined }}
@@ -695,21 +684,18 @@ function SwipeSheet() {
                 ))}
               </div>
 
-              {TRACKER_CONTACTS.map((c, r) => {
-                const fill = { background: MAINTAINED_FILL };
+              {CONTACTS.map((c, r) => {
+                const fade = c.closed && CLOSED_CELL;
                 return (
-                  <div
-                    key={c.name}
-                    className="flex border-b border-sheet-grid last:border-b-0"
-                  >
+                  <div key={c.name} className="flex border-b border-sheet-grid last:border-b-0">
                     <div
-                      className="sticky left-0 z-20 shrink-0 border-r border-sheet-grid bg-sheet-header py-2.5 text-center text-[12px] text-ink-muted"
+                      className="sticky left-0 z-20 shrink-0 border-r border-sheet-grid bg-sheet-header py-[5px] text-center text-[12px] text-ink-muted"
                       style={{ width: FULL_GUTTER }}
                     >
                       {r + 2}
                     </div>
                     <div
-                      className="sticky z-20 shrink-0 border-r border-sheet-grid px-3 py-2.5 font-medium text-ink"
+                      className={cn("sticky z-20 shrink-0 border-r border-sheet-border px-2 py-[5px]", fade || "text-ink")}
                       style={{
                         width: FULL_COLS[0].w,
                         left: FULL_GUTTER,
@@ -719,49 +705,46 @@ function SwipeSheet() {
                       {c.name}
                     </div>
                     <div
-                      className="shrink-0 px-3 py-2.5 text-ink-muted italic"
+                      className={cn("shrink-0 px-2 py-[5px] italic", fade || "text-ink-muted")}
                       style={{ width: FULL_COLS[1].w }}
                     >
                       {c.title}
                     </div>
-                    <div className="shrink-0 px-3 py-2.5" style={{ width: FULL_COLS[2].w }}>
+                    <div className={cn("shrink-0 px-2 py-[5px]", fade)} style={{ width: FULL_COLS[2].w }}>
                       {c.firm}
                     </div>
                     <div
-                      className="shrink-0 truncate px-3 py-2.5 text-ink-muted"
+                      className={cn("shrink-0 overflow-hidden px-2 py-[5px] whitespace-nowrap", fade || "text-ink-muted")}
                       style={{ width: FULL_COLS[3].w }}
                     >
                       {c.email}
                     </div>
-                    <div className="shrink-0 px-3 py-2.5" style={{ width: FULL_COLS[4].w }}>
-                      {/*
-                        Text, not an anchor. `08-desktop-changes-pending.md` §8
-                        records the five phantom `Here` links as a confirmed
-                        defect on both surfaces; no reason to author a sixth
-                        while that fix is queued.
-                      */}
-                      <span className="text-chip-replied-fg underline">Here</span>
-                    </div>
                     <div
-                      className="shrink-0 border-l-[3px] border-l-blotter-400 px-2 py-2.5"
-                      style={{ width: FULL_COLS[5].w, ...fill }}
+                      className={cn("shrink-0 border-l-[3px] border-l-blotter-400", fade)}
+                      style={{ width: FULL_COLS[4].w }}
                     >
-                      <StatusChip status={c.status} />
+                      <StatusCell status={c.status} pad="py-[5px]" />
                     </div>
-                    <div className="shrink-0 px-3 py-2.5" style={{ width: FULL_COLS[6].w, ...fill }}>
-                      {c.next}
-                    </div>
-                    <div className="shrink-0 px-3 py-2.5" style={{ width: FULL_COLS[7].w, ...fill }}>
-                      {c.last}
-                    </div>
-                    <div
-                      className="shrink-0 px-3 py-2.5 text-right"
-                      style={{ width: FULL_COLS[8].w, ...fill }}
-                    >
+                    <div className={cn("shrink-0 px-2 py-[5px] text-right", fade)} style={{ width: FULL_COLS[5].w }}>
                       {c.days}
                     </div>
-                    <div className="shrink-0 px-3 py-2.5" style={{ width: FULL_COLS[9].w, ...fill }}>
-                      {c.call}
+                    <div className={cn("shrink-0 px-2 py-[5px]", fade)} style={{ width: FULL_COLS[6].w }}>
+                      {c.lastContact}
+                    </div>
+                    <div className={cn("shrink-0 px-2 py-[5px] text-right", fade)} style={{ width: FULL_COLS[7].w }}>
+                      {c.attempts}
+                    </div>
+                    <div className={cn("shrink-0 px-2 py-[5px]", fade)} style={{ width: FULL_COLS[8].w }}>
+                      {c.nextCall}
+                    </div>
+                    <div className={cn("shrink-0 px-2 py-[5px]", fade)} style={{ width: FULL_COLS[9].w }}>
+                      {c.lastCall}
+                    </div>
+                    <div
+                      className="shrink-0 border-l-[3px] border-l-blotter-400 px-2 py-[5px] text-center"
+                      style={{ width: FULL_COLS[10].w }}
+                    >
+                      <Checkbox on={c.closed === true} />
                     </div>
                   </div>
                 );

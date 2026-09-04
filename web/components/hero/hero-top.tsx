@@ -91,7 +91,9 @@ function Headline({ center = false }: { center?: boolean }) {
     <h1
       className={cn(
         "font-display text-display leading-[1.06] font-semibold tracking-[-0.028em] text-ink",
-        center ? "mx-auto max-w-[620px] text-center" : "max-w-[620px]",
+        /* 760, from September 4, 2026: the headline that replaced "Recruiting truly
+           sucks" is longer, and at 620 it wrapped to four lines at 1440px. */
+        center ? "mx-auto max-w-[760px] text-center" : "max-w-[760px]",
       )}
     >
       <span className="block">A recruiting tracker that keeps itself current.</span>

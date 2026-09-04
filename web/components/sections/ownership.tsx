@@ -18,10 +18,11 @@
  *
  * **Cutting Section 3 alone would not have aligned the two surfaces.** Desktop's
  * `field-settle` carried two beats in one section — preservation with the
- * sheet, then the Outstanding view — where the phone has two separate sections.
- * Stopping at the cut would have given desktop four numbered blocks against the
- * phone's five, with desktop's `02` covering what the phone calls `02` and
- * `03`. So Section 4+5 split, and this file is the half that came out.
+ * sheet, then a second beat listing what the reader owed — where the phone has
+ * two separate sections. Stopping at the cut would have given desktop four
+ * numbered blocks against the phone's five, with desktop's `02` covering what
+ * the phone calls `02` and `03`. So Section 4+5 split, and this file is the
+ * half that came out. The other half has since been cut from the page.
  *
  * Splitting reverses Jon's own merge of August 5, 2026. The merge predates the
  * argument rework, and the phone had already un-merged them — this component's
@@ -92,7 +93,16 @@ import {
   type PhoneSheetVariant,
 } from "@/components/section-45/sheet-phone";
 import { SECTION_3_HEADLINE } from "@/components/sections/how-blotter-works";
-import { KEEP_H } from "@/components/sections/tracker-and-actions";
+
+/**
+ * The headline, ratified, and now owned here.
+ *
+ * It used to be imported from `sections/tracker-and-actions.tsx`, which was the
+ * other half of the merged Section 4+5 and is being removed. The string is
+ * unchanged; only the file it lives in moved, to the section that actually
+ * renders it.
+ */
+const KEEP_H = "Paste your contacts in. Stay in Google Sheets.";
 
 /**
  * `KEEP_SUB` with its first sentence removed. Written out rather than sliced so
@@ -121,11 +131,10 @@ export const KEEP_SUB_TRIMMED =
  * vertical relationship — claim, then the claim the picture actually proves —
  * while still using the two-column head this section has always had.
  *
- * No `flip`. Beat 2's mirrored head belongs to the Outstanding section now, and
- * mirroring exists to distinguish two beats inside one section. With the two
- * beats in separate sections carrying separate numerals and a hairline between
- * them, there is nothing left to distinguish and a right-aligned headline would
- * be decoration.
+ * No `flip`. Mirroring existed to distinguish two beats inside one section, and
+ * the second beat left this section and has since left the page. There is
+ * nothing to distinguish any more, so a right-aligned headline would be
+ * decoration.
  */
 function DesktopHead() {
   return (

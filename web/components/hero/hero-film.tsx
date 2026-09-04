@@ -42,6 +42,21 @@
  * a `display: none` subtree is never fetched, so desktop pays nothing for a
  * 292KB asset it does not show, while a phone fetches it immediately because it
  * is in the viewport.
+ *
+ * ## Both films are behind the sheet, as of September 3, 2026
+ *
+ * `blotter-film-c-4x5.html` and `blotter-film-web-hero.html` are hand-written
+ * static assets, and both still draw the tracker with `Next move`, `Call` and
+ * `LinkedIn` columns and with `No reply` and `Call completed` in the `Status`
+ * cell. Neither of those is a state the product has, and neither of those
+ * columns exists on the Contacts tab. The whole page around them has been
+ * rebuilt against `courier/Code.gs` — the eleven real columns, the eight real
+ * statuses, `Attempts`, the `Closed` checkbox — so the films are now the only
+ * surface on the site that disagrees with the product.
+ *
+ * They are outside this component and were outside the change that rebuilt
+ * everything else, so this is a note rather than a fix. `HeroVisualModule`,
+ * which the reduced-motion path below renders, is current.
  */
 
 import { useSyncExternalStore } from "react";

@@ -1,31 +1,197 @@
 /**
  * The hero spreadsheet-and-cues visual module.
  *
- * Authority: 01-HERO.md. One current sheet, three activity cues to its right,
- * one direct connector per cue landing on that contact's maintained block, and
- * two ownership underlines below the sheet. Section 12 forbids the stale rear
- * sheet, before-and-after labels, and the vertical engine rail that the
+ * Authority: 01-HERO.md for the composition, `courier/Code.gs` for what is in
+ * the sheet. One current sheet, three activity cues to its right, one direct
+ * connector per cue landing on the row it changed. Section 12 forbids the stale
+ * rear sheet, before-and-after labels, and the vertical engine rail that the
  * ratified PNG still draws between the cues and the sheet.
  *
- * The composition is a fixed 1322px desktop object, matching the section 3
- * allowance of roughly 1240px to 1360px of usable width. Geometry constants
- * below are measured from the approved SheetWindow at its 1006px hero width,
- * not guessed; the connectors depend on them, so they are asserted in one
- * place rather than scattered.
+ * The composition is a fixed 1322px desktop object, and `TOTAL_W` must stay
+ * 1322: `page-box.tsx` derives the page's own width from it.
  *
  * Nothing here animates. Section 13 requires the mechanism to read in a static
  * first-load screenshot.
  */
 
 import { SheetWindow } from "@/components/sheet/sheet-window";
-import { SheetGrid } from "@/components/sheet/sheet-grid";
-import { HERO_COLUMNS, HERO_ROWS, HERO_CUES } from "@/lib/sheet-data";
-import { ActivityCueCard } from "./activity-cue";
+import { SheetGrid, type SheetColumn, type SheetRow } from "@/components/sheet/sheet-grid";
+import { ActivityCueCard, type ActivityCue } from "./activity-cue";
+
+/* ------------------------------------------------------------- the sheet */
+
+/**
+ * Eight of the eleven Contacts columns, at the widths Code.gs actually sets.
+ *
+ * `Last call` and `Closed` are off the right edge, which is what a Sheets
+ * window does when the sheet is wider than the window, and `Email` is hidden,
+ * which is what a student does to a 190px column of addresses they never read.
+ * They are the three the hero can afford to lose: `Last call` says nothing
+ * until a call has happened, and `Closed` is an empty checkbox until somebody
+ * ticks it. Every cell the cues below move is on screen.
+ *
+ * Widths are `CONTACTS_WIDTHS` verbatim. They sum to 946, which with the 43px
+ * row gutter is the sheet's 989px.
+ */
+const HERO_COLUMNS: SheetColumn[] = [
+  { header: "Name", width: "w-[150px]" },
+  { header: "Title", width: "w-[120px]", kind: "italic" },
+  { header: "Firm", width: "w-[150px]" },
+  { header: "Status", width: "w-[132px]", kind: "status" },
+  { header: "Days", width: "w-[62px]", align: "right" },
+  { header: "Last contact", width: "w-[108px]" },
+  { header: "Attempts", width: "w-[82px]", align: "right" },
+  { header: "Next call", width: "w-[142px]" },
+];
+
+/** The first column Blotter writes. */
+const ZONE_SPLIT = 3;
+
+/**
+ * Five contacts on January 16, 2026, in the order `Blotter → Sort contacts → By
+ * what they are waiting on` leaves them: Replied, Sent, Sent, Call done, Call
+ * scheduled, longest-waiting first inside each group. That is why Jerome sits
+ * above Larry — three days against none.
+ *
+ * Every number obeys the engine. `Days` counts on `Sent`, `Replied` and
+ * `Call done` and shows a dash everywhere else. `Attempts` counts on `Sent`
+ * alone — on `Replied` it is zero by definition, and a scheduled call has
+ * nothing to count.
+ */
+const HERO_ROWS: SheetRow[] = [
+  {
+    cells: [
+      "Jamie Diamond",
+      "Associate",
+      "JPMorgan",
+      { status: "Replied" },
+      "0",
+      "1/16/26",
+      { dash: true },
+      null,
+    ],
+  },
+  {
+    cells: [
+      "Jerome Bowel",
+      "Analyst",
+      "Carlyle",
+      { status: "Sent" },
+      "3",
+      "1/13/26",
+      "1",
+      null,
+    ],
+  },
+  {
+    cells: [
+      "Larry Sync",
+      "Associate",
+      "BlackRock",
+      { status: "Sent" },
+      "0",
+      "1/16/26",
+      "2",
+      null,
+    ],
+  },
+  {
+    cells: [
+      "Ken Molise",
+      "Vice President",
+      "Moelis & Co",
+      { status: "Call done" },
+      "1",
+      "1/13/26",
+      { dash: true },
+      null,
+    ],
+  },
+  {
+    cells: [
+      "David Salmon",
+      "Analyst",
+      "Goldman Sachs",
+      { status: "Call scheduled" },
+      { dash: true },
+      "1/15/26",
+      { dash: true },
+      "1/17 @ 2:00 PM",
+    ],
+  },
+];
+
+/* ------------------------------------------------------------------- cues */
+
+/**
+ * Three things that happened, and the cells each one moved.
+ *
+ * The cues this replaces named states the product does not have: one read
+ * `No reply for 5 days` against a row whose status said `No reply`, which is
+ * not one of the eight, and none of the three said what the sheet did about it
+ * beyond changing a single word.
+ *
+ * Every cue here moves at least three columns off one event, because that is
+ * what the sheet does. A status is not the unit of work: a reply lands and the
+ * clock, the attempt count and the date all move with it.
+ *
+ * The timestamp line is gone. It was there when the card had nothing else to
+ * say; the sheet's own `Last contact` column carries the date, and the source
+ * mark carries where it came from.
+ *
+ * Cue order matches row order, so the three connectors never cross.
+ */
+const HERO_CUES: ActivityCue[] = [
+  {
+    source: "gmail",
+    event: "Jamie Diamond replied",
+    /* They wrote last, so the ball is yours, the clock resets, and the count of
+       times you have written since they wrote back drops to nothing. */
+    moved: [
+      { column: "Status", from: "Sent", to: "Replied" },
+      { column: "Days", from: "5", to: "0" },
+      { column: "Attempts", from: "2", to: "—" },
+    ],
+    targetRow: 0,
+  },
+  {
+    source: "gmail",
+    event: "Follow-up sent to Larry Sync",
+    /* The status does not move and that is the point of the column beside it:
+       `Sent` reads the same on a first email and a third. `Attempts` is the
+       only thing on the sheet that tells them apart. */
+    moved: [
+      { column: "Attempts", from: "1", to: "2" },
+      { column: "Days", from: "6", to: "0" },
+      { column: "Last contact", from: "1/10", to: "1/16" },
+    ],
+    targetRow: 2,
+  },
+  {
+    source: "calendar",
+    event: "Coffee chat with David Salmon",
+    /* `Days` was the one state counting forwards, so a scheduled call drops it
+       and `Next call` carries the date instead. */
+    moved: [
+      { column: "Status", from: "Sent", to: "Call scheduled" },
+      { column: "Next call", to: "1/17 @ 2:00 PM" },
+      { column: "Days", from: "1", to: "—" },
+    ],
+    targetRow: 4,
+  },
+];
 
 /* --------------------------------------------------------------- geometry */
 
-/** Sheet window width. Reproduces the ratified hero. */
-const SHEET_W = 1006;
+/** Row-number gutter width, from SheetWindow. */
+const GUTTER = 43;
+/** Name through Firm: 150 + 120 + 150. */
+const MANUAL_W = 420;
+/** Status through Next call: 132 + 62 + 108 + 82 + 142. */
+const MAINTAINED_W = 526;
+
+/** Sheet window width: the gutter plus the eight columns above. */
+const SHEET_W = GUTTER + MANUAL_W + MAINTAINED_W;
 /** Sheet window height at the five hero rows. Measured. */
 const SHEET_H = 432.5;
 /** Distance from the window top to the first pixel of the grid. Measured. */
@@ -33,26 +199,25 @@ const GRID_TOP = 127;
 /** Uniform grid row height, header included. Measured. */
 const ROW_H = 43.5;
 
-/** Row-number gutter width, from SheetWindow. */
-const GUTTER = 43;
-/** Name through Firm: 108 + 126 + 138. */
-const MANUAL_W = 372;
-/** Status through Call: 132 + 156 + 112 + 56 + 134. */
-const MAINTAINED_W = 590;
-
 /** Connector corridor between the sheet edge and the cue column. */
-const CORRIDOR = 80;
-const CUE_W = 236;
+const CORRIDOR = 60;
+/**
+ * Cue card width. It is what is left after the sheet and the corridor, and the
+ * sum is the ratified 1322 — which `page-box.tsx` reads, so it cannot move.
+ *
+ * The corridor gave up 20px to it. `Status Sent → Call scheduled` is the widest
+ * line any cue has to set, and at 253 it was a pixel over.
+ */
+const CUE_W = 273;
 export const TOTAL_W = SHEET_W + CORRIDOR + CUE_W; // 1322
 
 /**
  * Uniform scale applied to the whole module.
  *
  * Section 3 of 01-HERO fixes the composition's *proportions*, not its pixel
- * count: the reference dimensions are to be treated as relative rather than
- * inflexible. Scaling the module as one object therefore preserves every
- * ratified measurement exactly while letting the complete hero, copy included,
- * land inside a 13-inch MacBook Pro viewport of roughly 1440 by 780.
+ * count. Scaling the module as one object preserves every ratified measurement
+ * while letting the complete hero, copy included, land inside a 13-inch MacBook
+ * Pro viewport of roughly 1440 by 780.
  *
  * Authorised by Jon on August 5, 2026: scale down, hold the proportions.
  */
@@ -71,41 +236,25 @@ function rowCenterY(i: number) {
 }
 
 /**
- * Vertical centre of each cue card, measured from the window top.
+ * Each cue sits dead level with the row it changed.
  *
- * Section 9 asks each cue to sit as close to its target row as practical. The
- * cue rows are 1, 2 and 4 — Jamie Diamond, David Salmon and Larry Sync — so an
- * evenly pitched stack is impossible without a card coming to rest level with
- * Ken Molise or Jerome Bowel, which would imply a mapping that does not exist.
- * The stack is therefore deliberately uneven.
- *
- * Retuned on August 5, 2026 when Jon swapped the third cue from Alex Morgan to
- * Daniel Kim, moving its target up one row. The old third position, 358, sat
- * 35.25px away and would have read as pointing at the wrong contact.
- *
- * Those two are row 5 and row 4, renamed to Jerome Bowel and Larry Sync on
- * August 12, 2026. The geometry is unchanged; only the strings moved.
- *
- * Row centres are 192.25, 235.75, 279.25, 322.75 and 366.25. Against those,
- * every card still sits within 13px of its own target row and no closer than
- * 35px to any other, so the nearest row to a card is always the row it maps to:
- *
- *   180 -> Sarah  12.25 away, next nearest Marcus at 55.75
- *   243 -> Marcus  7.25 away, next nearest Priya at 36.25
- *   322 -> Daniel  0.75 away, next nearest Priya at 42.75, Alex at 44.25
+ * The old stack was deliberately uneven, because its three target rows were 1,
+ * 2 and 4 and an even pitch would have left a card level with a row it did not
+ * map to. These three target rows 0, 2 and 4, an even 87px apart against a card
+ * about 63px tall — so a cue can sit on its own row, no card is nearer to a row
+ * it does not map to, and each connector is a straight line rather than an S
+ * looking for an excuse.
  */
-const CUE_CENTER_Y = [180, 243, 322];
+const CUE_CENTER_Y = HERO_CUES.map((cue) => rowCenterY(cue.targetRow));
 
 /* ------------------------------------------------------------- connectors */
 
 /**
- * One connector per cue: out of the card's left edge, a shallow S through the
- * corridor, into the right boundary of that row's maintained block, closed by
- * a small endpoint node.
+ * One connector per cue: out of the card's left edge, through the corridor,
+ * into the right boundary of that row, closed by a small endpoint node.
  *
  * Section 9 forbids oversized arrowheads, animated particles, glowing tubes,
- * and a line spiderweb. The three routes never cross: the cards and their
- * target rows are in the same top-to-bottom order.
+ * and a line spiderweb.
  */
 function Connectors() {
   const cardEdge = SHEET_W + CORRIDOR; // left edge of the cue column
@@ -123,7 +272,7 @@ function Connectors() {
         const cy = CUE_CENTER_Y[i];
         const ry = rowCenterY(cue.targetRow);
         return (
-          <g key={cue.primary}>
+          <g key={cue.event}>
             <path
               d={`M ${cardEdge} ${cy} L ${cardEdge - 24} ${cy} C ${cardEdge - 44} ${cy} ${sheetEdge + 20} ${ry} ${sheetEdge + 16} ${ry} L ${sheetEdge} ${ry}`}
               fill="none"
@@ -223,13 +372,21 @@ export function HeroVisualModule({ labels = false }: { labels?: boolean } = {}) 
       <div className="relative" style={{ height: SHEET_H }}>
         <div className="absolute top-0 left-0" style={{ width: SHEET_W }}>
           <SheetWindow
-            selectedCell="D2"
+            selectedCell="E2"
             formulaValue="Replied"
-            columnLetters={["A", "B", "C", "D", "E", "F", "G", "H"]}
+            columnLetters={["A", "B", "C", "E", "F", "G", "H", "I"]}
             columnWidths={HERO_COLUMNS.map((c) => c.width ?? "flex-1")}
-            tabs={[{ label: "Contacts" }, { label: "Blotter", active: true }]}
+            /* D is `Email`, hidden. J and K run off the right edge, which is
+               what a window narrower than its sheet does and needs no mark. */
+            hiddenAfter={["C"]}
+            tabs={[
+              { label: "Start here" },
+              { label: "Contacts", active: true },
+              { label: "Found" },
+              { label: "Settings" },
+            ]}
           >
-            <SheetGrid columns={HERO_COLUMNS} rows={HERO_ROWS} zoneSplit={3} />
+            <SheetGrid columns={HERO_COLUMNS} rows={HERO_ROWS} zoneSplit={ZONE_SPLIT} />
           </SheetWindow>
         </div>
 
@@ -237,9 +394,9 @@ export function HeroVisualModule({ labels = false }: { labels?: boolean } = {}) 
 
         {HERO_CUES.map((cue, i) => (
           <div
-            key={cue.primary}
+            key={cue.event}
             className="absolute -translate-y-1/2"
-            style={{ left: SHEET_W + CORRIDOR, top: CUE_CENTER_Y[i] }}
+            style={{ left: SHEET_W + CORRIDOR, top: CUE_CENTER_Y[i], width: CUE_W }}
           >
             <ActivityCueCard cue={cue} />
           </div>
@@ -255,9 +412,8 @@ export function HeroVisualModule({ labels = false }: { labels?: boolean } = {}) 
         §11 requires them, so this is his override, and `06` carries it.
 
         The code stays because this module is now the hero's *settled* state —
-        what the film fades into and what reduced motion gets instead of the
-        film — and a caller that wants the ratified composition whole can still
-        ask for it.
+        what reduced motion gets instead of the film — and a caller that wants
+        the ratified composition whole can still ask for it.
       */}
       {labels && (
         <div
