@@ -24,7 +24,7 @@ var CONTRACT_VERSION = 4;
 
 // Which build of this script is running. Sent to the telemetry endpoint only,
 // so a count of installs can be split by version when something goes wrong.
-var COURIER_VERSION = '2026-09-04.3';
+var COURIER_VERSION = '2026-09-04.4';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -726,8 +726,19 @@ function instructionRows_() {
     R('note', 'You almost certainly track this somewhere already. Bring that list over. Name and Email are the two columns that matter, and Blotter only watches conversations with the people in this tab, so anyone missing here is invisible to it.'),
     R('note', 'From here on this is your tracker. Add new people here as you meet them, and paste addresses rather than typing them: a hyphen your keyboard autocorrects is not the hyphen an email address uses. Blotter also suggests people it sees in your threads, on the Found tab, so the list grows on its own once it is running.'),
     R('step', '4.  Blotter menu \u2192 Start automatic updates.'),
+    /*
+     * 260, not 220. The screenshot is served at 2042x820 so it stays sharp:
+     * `=IMAGE(url, 1)` fits it to the merged cell, which is 860 wide, so at
+     * this height it draws about 647 across with three times the pixels it
+     * needs. The first version was a 933px file drawn at 649 and looked soft
+     * on any high-resolution screen, which is a thing only a real sheet on a
+     * real laptop shows you.
+     *
+     * The menu also has one more item than it did, so the picture is taller
+     * than the old one whatever we do.
+     */
     R('slot', '[ screenshot: Blotter menu, Start automatic updates ]',
-      'https://blotterib.com/setup/menu-updates.png', 220),
+      'https://blotterib.com/setup/menu-updates.png', 260),
     R('note', 'Nothing changes the moment you add somebody. Blotter updates every 15 minutes. To fill the sheet in straight away, use Blotter menu \u2192 Step 2: Run once now.'),
     R('gap'),
 
@@ -817,6 +828,22 @@ function buildInstructions_(ss) {
   ss.moveActiveSheet(1);
   sheet.clear();
   sheet.clearFormats();
+  /*
+   * `sheet.clear()` empties cells and formats and **leaves over-the-grid
+   * images exactly where they were.** So any picture ever inserted into this
+   * tab, by an older build or by hand, survives every rebuild and floats above
+   * whatever text now occupies that spot.
+   *
+   * Found on 4 September 2026 on the master template: a hand-placed screenshot
+   * had been sitting under the in-cell one, invisible because the two lined up.
+   * Adding a single row to `instructionRows_` shifted the layout by one and the
+   * pair came apart, one of them landing across the step 3 wording.
+   *
+   * The comment on the `slot` renderer has always said this cleanup was here.
+   * It was not. It is now, and it makes Step 1 self-repairing for anyone whose
+   * sheet is already in that state.
+   */
+  sheet.getImages().forEach(function (image) { image.remove(); });
 
   var rows = instructionRowsInForce_();
   var values = rows.map(function (r) { return ['', r.a, r.b]; });
@@ -886,7 +913,8 @@ function formatInstructions_(sheet, rows) {
       // inserted one floats over the grid on an anchor and is orphaned the
       // moment anything above it changes height. It also means a re-run
       // replaces the picture instead of stacking a second copy on top of the
-      // first, which is what `getImages().remove()` exists to clean up after.
+      // first. Any floating image already on the tab is removed in
+      // `buildInstructions_` before this runs.
       //
       // The URL must be public and must not be on drive.google.com — Google's
       // own restriction — which is why these are served from blotterib.com.

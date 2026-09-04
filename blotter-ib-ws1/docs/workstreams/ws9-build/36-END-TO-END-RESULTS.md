@@ -1168,3 +1168,56 @@ stands. That is the correct trade.
 **Sequencing mattered.** Two sheets still had their timers running, and deleting
 their rows would simply have recreated them fifteen minutes later. Jon stopped
 both first; the rows were then removed and stayed removed.
+
+### 18.3 Two mistakes made shipping it, both mine
+
+Recorded because the second one cost Jon a wasted paste and the first would have
+wasted an afternoon.
+
+**The branch went to the wrong repository.** This working copy has three
+remotes. `git remote -v | head -2` truncated the list to one, and the work was
+pushed and merged into `Jon-sOrg/Blotter-Claude`, a fork of a different project
+with zero deployments. The repository that actually builds blotterib.com is
+`jnachman17-hue/Blotter-Claude`, which is what local `main` tracks all along.
+
+The "193 commits of divergence" reported at the time was the same error seen
+from the other side: two unrelated lineages compared as if they were one. **It
+was never a real condition of the repository.** Re-merged correctly as
+[#31](https://github.com/jnachman17-hue/Blotter-Claude/pull/31).
+
+**Then the production build failed and `2026-09-04.3` did not ship.**
+`app/api/engine/e2e.ts` lives under `app/`, so `next build` type-checks it, and
+three of its callbacks took their parameter implicitly. The build compiled
+cleanly and then failed on the type check.
+
+**The check that would have caught it was run against a tree that did not
+contain the file**, because the working copy had been moved back to `main`
+after the merge. It passed, and it proved nothing.
+
+The visible symptom was Jon's: he pasted from `/update`, and Apps Script saved
+instantly rather than pausing, which is what happens when the pasted text is
+identical to what is already there. `/update` was still handing out
+`2026-09-04.2`. **He was right, and the diagnosis he offered was the one I had
+given him, which was wrong.**
+
+Fixed in [#32](https://github.com/jnachman17-hue/Blotter-Claude/pull/32), typed
+against the contract's own `RowOut` and `FoundPerson` so the suite fails if the
+response shape ever moves, and verified with a full `next build` rather than
+`tsc` alone.
+
+**The lesson worth keeping: a green check on the wrong tree is worse than no
+check, because it stops you looking.** That is the same shape as defect 1, where
+the suite pinned the sheet timezone to the script's and so could never see the
+bug, and the same shape as §15.1, where six builds all reported one version
+string.
+
+### 18.4 Verified live
+
+```
+/api/script      2026-09-04.3, expects 2026-09-04.3, 85,280 bytes
+/Code.gs         2026-09-04.3
+/update offers   2026-09-04.3
+sha256           identical to web/public/Code.gs in this repository
+```
+
+The date fix and the rewritten `Start here` are both present in the served file.
