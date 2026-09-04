@@ -50,6 +50,34 @@ production. The courier fails safe in every direction — no `design_version`, a
 404, or an unreadable payload all fall back to the script's built-in look — so
 this is a pending deploy, not a fault.
 
+## September 4 — the sheet side is finished
+
+**Billing binds to the sheet, not the person.** The diagnostic reported
+`Google account readable: NO` on an ordinary personal Gmail before `.edu` was
+even tried, and the cause was the manifest: five scopes, none of which would
+give the script an email address. **There was never an address to read**, so the
+`.edu` test is closed and was never owed.
+
+Adding a sixth scope would have cost an extra line on Google's unverified-app
+screen plus a forced re-authorisation for everyone already installed — **the
+biggest point where a student abandons the install.** Keys bind to the install
+id instead, which was already being sent and survives a re-paste.
+
+**The website says what the product does.** The CASA and provider sentences are
+gone — verified, zero mentions on `/privacy`. Permissions are real, taken from
+the actual consent screen. *"Keep the sheet you already built"* is rewritten in
+all eleven places. Telemetry is disclosed. `/setup` and `/terms` exist, both
+`noindex`, and `/setup` exposes no template link until there is an empty master.
+
+**Two corrections the chats made to the conductor, both right:**
+
+- `04-ENGINE-RULES.md` §1 *does* name Financial Technology Partners. The
+  conductor said flatly that it never mentions a bank, having grepped for the
+  short name against a document that spells it in full
+- *"The engine has no database"* stopped being true mid-write once the engine
+  could read a billing key. The copy says **"writes nothing down"** instead —
+  still true, still strong
+
 ## Verified right now
 
 | Check | Result |
