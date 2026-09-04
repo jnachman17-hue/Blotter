@@ -93,17 +93,27 @@ it is already in the sheet; the rest is waiting.
 4. **Google's unverified-app warning** — for the setup page, not the sheet
 5. **The permissions screen with all five boxes**, for the same reason
 
-## 5. Four things nobody can write until they are tested on a live sheet
+## 5. The four live-sheet questions — CLOSED by Jon, September 3, 2026
 
-From `26-SHEET-RESILIENCE.md` §4. **These need Jon at a keyboard, not more
-reasoning:**
+**Jon: *"Not going to do those four things. So granular and no one would ever do
+them, we don't need to add that into Start here."*** Right on three of them —
+merged cells inside the data, student-added data validation, and Step 1 on a
+customised sheet are all things nobody does, and the last is covered by Jon's own
+use anyway.
 
-1. **Merged cells inside the data.** Merge two cells in `Days`, run, see what
-   happens
-2. **Step 1 on a heavily customised sheet.** Does it preserve what it should
-3. **The mid-run sort guard.** Start a run on a large sheet and sort by hand
-   immediately — the guard has never fired for real
-4. **Data validation a student adds themselves**
+**The fourth turned out to matter, for a reason neither of us had seen.** The
+mid-run guard compared **name and email exactly**, so a student fixing a typo in
+a name while a run happened to be in flight would have their run stopped. **The
+most likely moment for that is setup** — typing contacts in continuously while
+the timer fires every fifteen minutes. Not an edge case: day one.
+
+**Fixed rather than tested.** The guard now compares **email only**, which still
+catches everything it exists for — a sort or a drag moves the whole row, so the
+address goes with it — while ignoring the name edits people actually make. And
+the message stopped sounding like a disaster: it now says the run was skipped,
+nothing was written, the next one will pick it up, and nothing is lost.
+
+**Nothing from this section goes into `Start here`.**
 
 ## 6. The rule for this document
 
