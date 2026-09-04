@@ -24,7 +24,7 @@ var CONTRACT_VERSION = 4;
 
 // Which build of this script is running. Sent to the telemetry endpoint only,
 // so a count of installs can be split by version when something goes wrong.
-var COURIER_VERSION = '2026-09-04.2';
+var COURIER_VERSION = '2026-09-04.3';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -715,8 +715,16 @@ function instructionRows_() {
     R('note', 'Most people have one. Add more only if you send from several addresses that all arrive in this inbox, such as a university address you reply as. Blotter reads the mailbox of the account this sheet is in, so an address on a different Google account will not work. Miss an address you send from and every row on those conversations reads backwards.'),
     R('step', '2.  File \u2192 Settings \u2192 Time zone. Set it to where you live.'),
     R('note', 'Day counts turn over at midnight in whatever this says, and a copy keeps the time zone of whoever built it.'),
-    R('step', '3.  Contacts tab \u2192 add the people you are networking with.'),
-    R('note', 'Name and Email are the two that matter. Paste addresses rather than typing them where you can: a hyphen your keyboard autocorrects is not the hyphen an email address uses. Blotter only looks at conversations with the people in this tab, so an empty sheet finds nothing. That is correct, not a fault.'),
+    R('step', '3.  Contacts tab \u2192 paste in everyone you are already networking with.'),
+    // Jon, reading this cold during the end-to-end test on 4 September 2026:
+    // the old wording said "add the people you are networking with", which
+    // reads as "think of a few names". It never said the two things that
+    // actually matter — bring the list you already keep somewhere, and stop
+    // keeping the other one. A student who types three names concludes Blotter
+    // does not work; a student who keeps both trackers watches this one go
+    // stale.
+    R('note', 'You almost certainly track this somewhere already. Bring that list over. Name and Email are the two columns that matter, and Blotter only watches conversations with the people in this tab, so anyone missing here is invisible to it.'),
+    R('note', 'From here on this is your tracker. Add new people here as you meet them, and paste addresses rather than typing them: a hyphen your keyboard autocorrects is not the hyphen an email address uses. Blotter also suggests people it sees in your threads, on the Found tab, so the list grows on its own once it is running.'),
     R('step', '4.  Blotter menu \u2192 Start automatic updates.'),
     R('slot', '[ screenshot: Blotter menu, Start automatic updates ]',
       'https://blotterib.com/setup/menu-updates.png', 220),
@@ -2240,7 +2248,7 @@ function badPretendValue_(value) {
  * student's zone actually shows for that instant, and shift by the difference.
  * The second pass settles the DST boundary cases the first can land on.
  */
-function isoInStudentZone_(p) {
+function instantInStudentZone_(p) {
   var wanted = Date.UTC(p.y, p.mo - 1, p.d, p.h, p.mi, p.s);
   var guess = new Date(wanted);
   for (var i = 0; i < 2; i++) {
@@ -2250,7 +2258,11 @@ function isoInStudentZone_(p) {
     if (delta === 0) break;
     guess = new Date(guess.getTime() + delta);
   }
-  return toIso_(guess);
+  return guess;
+}
+
+function isoInStudentZone_(p) {
+  return toIso_(instantInStudentZone_(p));
 }
 
 /** A positive whole number from a settings cell, or the default. */
@@ -2884,7 +2896,7 @@ function asSheetDate_(value) {
   var text = String(value).trim();
   var bare = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text);
   /*
-   * NOON, not midnight, and this is a real bug rather than a nicety.
+   * NOON IN THE STUDENT'S OWN TIMEZONE, and both halves of that matter.
    *
    * `new Date(y, m, d)` builds midnight in the SCRIPT's timezone, which the
    * manifest fixes at America/Chicago for everybody. Sheets then renders the
@@ -2894,14 +2906,22 @@ function asSheetDate_(value) {
    * day, so every date read one day early.
    *
    * Found on 4 September 2026 by a fresh install on a Pacific sheet, where
-   * two emails sent that afternoon both showed the day before. It was wrong
-   * for every student west of Chicago and right for everyone east of it,
-   * which is exactly the kind of fault that survives testing in one place.
+   * two emails sent that afternoon both showed the day before.
    *
-   * Noon leaves twelve hours of slack in each direction, which covers every
-   * timezone a student could set.
+   * **Moving to noon fixed the west and left the east broken**, which is why
+   * the date is now built in the student's zone rather than the script's.
+   * Noon Chicago is 00:00 the next day in Bangkok and 05:00 in Auckland, so
+   * every sheet at UTC+7 or further east read every date one day LATE — the
+   * same fault as before, mirrored, and invisible from Chicago. Slack alone
+   * cannot close an eighteen-hour gap; only asking the student's own zone can.
+   *
+   * Noon within that zone is kept anyway, so an hour of DST drift on the day
+   * a clock changes still cannot move the date.
    */
-  if (bare) return new Date(Number(bare[1]), Number(bare[2]) - 1, Number(bare[3]), 12, 0, 0);
+  if (bare) {
+    return instantInStudentZone_(
+      { y: Number(bare[1]), mo: Number(bare[2]), d: Number(bare[3]), h: 12, mi: 0, s: 0 });
+  }
   if (/^\d{4}-\d{2}-\d{2}T/.test(text)) {
     var d = new Date(text);
     if (!isNaN(d.getTime())) return d;
