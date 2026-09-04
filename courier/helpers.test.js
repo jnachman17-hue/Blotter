@@ -70,6 +70,7 @@ const EXPORTS = [
   'safeCell_', 'statusStyle_', 'columnWidth_', 'numberFormat_', 'SETTING_KEY',
   'COURIER_VERSION', 'SCRIPT_URL',
   'instructionRows_', 'expectedSetup_', 'SETTING_INSTALL_ID', 'SETTING_HELP',
+  'HELP_EMAIL', 'HELP_URL',
   'COL_NAME', 'COL_TITLE', 'COL_FIRM', 'COL_EMAIL', 'COL_CLOSED',
   'BLOTTER_COLUMNS', 'FOUND_HEADERS',
   // Sorting: the two ranking functions are pure, and getting either subtly
@@ -899,7 +900,9 @@ function sheetWithHeaders(name, headerRowCells, extraRows = []) {
   eq('and that a formula in a Blotter column will not survive',
     /will not survive/i.test(text), true);
   eq('and names Step 1 as the repair', /Step 1: Set up this sheet/i.test(text), true);
-  eq('and gives a way to reach a human', text.includes('jnachman17@gmail.com'), true);
+  eq('and gives a way to reach a human', text.includes(box.HELP_EMAIL), true);
+  eq('which is the support address, not a person', box.HELP_EMAIL, 'blotterib@gmail.com');
+  eq('and the help page is one that exists', box.HELP_URL, 'https://blotterib.com/contact');
 }
 
 /* ------------------------------------------------------------------ *
@@ -989,12 +992,14 @@ eq('there is somewhere for a key to go', box.SETTING_KEY, 'Blotter key');
 eq('and Step 1 creates it', box.expectedSetup_().settings.includes(box.SETTING_KEY), true);
 
 /* ------------------------------------------------------------------ *
- * The served script must be the same bytes as this one.
+ * The served script must be exactly what publish.js builds from this one.
  *
- * `/Code.gs` is what the update notice sends students to. A copy that drifts
- * behind the repo would send them to an old script with nothing anywhere
- * saying so — a silent wrong answer, which is the failure this project keeps
- * choosing to make loud instead. `node courier/publish.js` fixes any drift.
+ * `/Code.gs` is what the update notice sends students to. It is built, not
+ * copied: comments stripped, a public header added (Jon, 3 September 2026).
+ * A served file that drifts behind the repo would send students to an old
+ * script with nothing anywhere saying so, a silent wrong answer, which is the
+ * failure this project keeps choosing to make loud instead.
+ * `node courier/publish.js` fixes any drift.
  * ------------------------------------------------------------------ */
 {
   const crypto = require('node:crypto');
@@ -1006,13 +1011,19 @@ eq('and Step 1 creates it', box.expectedSetup_().settings.includes(box.SETTING_K
     fails += 1;
     console.error('FAIL web/public/Code.gs is missing — run: node courier/publish.js');
   } else {
+    const { buildPublic, sameTokens, commentRanges } = require('./publish.js');
+    const built = buildPublic(src);
     const served = fs.readFileSync(servedPath, 'utf8');
-    eq('the served script is byte-for-byte this one', served === src, true);
+    eq('the served script is exactly what publish.js builds from this one', served === built, true);
+    eq('and it is this code, token for token, with only the comments gone', sameTokens(src, built), true);
+    eq('one comment survives: the public header', commentRanges(built).length, 1);
+    eq('nothing internal survives with it',
+      /blotter-ib-ws1|docs\/workstreams|jnachman|\bJon\b/.test(built), false);
 
-    const sha = crypto.createHash('sha256').update(src).digest('hex');
+    const sha = crypto.createHash('sha256').update(built).digest('hex');
     const manifest = fs.readFileSync(manifestPath, 'utf8');
     eq('the manifest records the right hash', manifest.includes(sha), true);
-    eq('and the right size', manifest.includes(String(Buffer.byteLength(src))), true);
+    eq('and the right size', manifest.includes(String(Buffer.byteLength(built))), true);
     eq('and the right version',
       manifest.includes(JSON.stringify(box.COURIER_VERSION)), true);
   }

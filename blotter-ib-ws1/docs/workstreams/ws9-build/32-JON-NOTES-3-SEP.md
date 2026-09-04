@@ -198,13 +198,13 @@ been handed off. That chat previously owned the film/animation work.
 
 ## 8. Already parked, still outstanding
 
-- [ ] **8.1** **Rewrite `Start here`** on the sheet, from
+- [x] **8.1** **Rewrite `Start here`** on the sheet, from
       `31-STUDENT-FACING-BACKLOG.md`. It becomes the real end of the set-up
       journey, so it carries more weight than before.
-- [ ] **8.2** **Add screenshots to `Start here`.** The courier already renders
+- [~] **8.2** **Add screenshots to `Start here`.** (menu shot is in; shots *of the sheet itself* need Jon, see §10) The courier already renders
       `=IMAGE(url)`, and the images are live on blotterib.com, so this is
       buildable from here.
-- [ ] **8.3** **The public `.gs` file.** Strip every comment but a plain-English
+- [x] **8.3** **The public `.gs` file.** Strip every comment but a plain-English
       header, remove all internal document references, remove Jon's name, use
       `blotterib@gmail.com`. Build it with `publish.js`; keep the internal source
       commented.

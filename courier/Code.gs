@@ -179,8 +179,8 @@ var SETTING_KEY = 'Blotter key';
 var PROP_DESIGN_VERSION = 'blotterDesignVersion';
 var PROP_DESIGN_PAYLOAD = 'blotterDesignPayload';
 var DESIGN_URL_DEFAULT = 'https://blotterib.com/api/design';
-var HELP_EMAIL = 'jnachman17@gmail.com';
-var HELP_URL = 'https://blotterib.com/help';
+var HELP_EMAIL = 'blotterib@gmail.com';
+var HELP_URL = 'https://blotterib.com/contact';
 
 // The current script, always. A static file that ships with every deploy, so
 // there is no publishing step to forget and the link cannot rot.
@@ -699,22 +699,26 @@ function instructionRows_() {
   var R = function (k, a, b, c) { return { k: k, a: a, b: b || '', c: c || 0 }; };
   return [
     R('title', 'Blotter'),
-    R('deck', 'You manage the relationships. Blotter maintains the moving parts.'),
+    R('deck', 'You manage the relationships. Blotter keeps the tracker current.'),
+    R('gap'),
+
+    R('h2', 'Before anything else'),
+    R('strong', 'Add people to the Contacts tab first. Blotter only reads conversations that already involve someone in Contacts. An empty sheet finds nothing, and that is correct, not a fault.'),
+    R('body', 'Name and Email are the two that matter. Paste addresses rather than typing them where you can: a hyphen your keyboard autocorrects is not the hyphen an email address uses.'),
     R('gap'),
 
     R('h2', 'The one thing to understand'),
-    R('strong', 'Blotter never edits your columns on the left — Name, Title, Firm, Email. You never have to touch the right — Status, Days, Last contact, Attempts, Next call, Last call.'),
+    R('strong', 'Blotter never edits your columns on the left: Name, Title, Firm, Email. You never have to touch the right: Status, Days, Last contact, Attempts, Next call, Last call.'),
     R('body', 'You type in who you are networking with. Blotter reads your Gmail and Calendar every 15 minutes and keeps the right-hand side current.'),
-    R('note', 'Add any columns you like on the left — LinkedIn, Notes, where you met, anything. Put them anywhere. Blotter finds its own columns by their headings, not by position, so your own columns can sit wherever suits you and it will not touch them.'),
+    R('note', 'Add any columns you like on the left. LinkedIn, Notes, where you met, anything, anywhere. Blotter finds its own columns by their headings, not by position, and it will not touch yours.'),
     R('gap'),
 
     R('h2', 'Set up steps'),
-    R('step', '1.  Settings tab → “Your email addresses”. Put in every address you send recruiting email from, separated by commas.'),
-    R('note', 'Most people have one and are done. Add more only if you send from several addresses that all arrive in this one inbox — a university address you reply as, or a second “send mail as” alias. Blotter can only read the inbox it is installed in, so a genuinely separate account will not work. Miss an address you actually send from and every row on those threads reads wrong.'),
-    R('step', '2.  File → Settings → Time zone → set it to where you live. Day counts turn over at midnight in whatever this says, and a copied sheet keeps the time zone of whoever built it.'),
-    R('step', '3.  Contacts tab → add the people you are networking with. Name and Email are the only two that matter.'),
+    R('step', '1.  Settings tab → “Your email addresses”. Every address you send recruiting email from, separated by commas.'),
+    R('note', 'Most people have one. Add more only if you send from several addresses that all arrive in this inbox, such as a university address you reply as. Blotter can only read the inbox it is installed in, so a separate Google account will not work. Miss an address you send from and every row on those threads reads backwards.'),
+    R('step', '2.  File → Settings → Time zone → where you live. Day counts turn over at midnight in whatever this says, and a copied sheet keeps the time zone of whoever built it.'),
+    R('step', '3.  Contacts tab → add the people you are networking with.'),
     R('step', '4.  Blotter menu → Start automatic updates. That is the whole setup.'),
-    R('note', 'Paste email addresses rather than typing them where you can. A hyphen your keyboard autocorrects is not the hyphen an email address uses, and Blotter will not be able to read it.'),
     R('slot', '[ screenshot: the Blotter menu open ]',
       'https://blotterib.com/setup/menu.png', 190),
     R('gap'),
@@ -724,54 +728,74 @@ function instructionRows_() {
     R('status', 'Sent', 'You wrote last. No response yet.'),
     R('status', 'Replied', 'They wrote last. The ball is yours.'),
     R('status', 'Call scheduled', 'There is a calendar event with them coming up.'),
-    R('status', 'Call done', 'The call happened and nobody has written an email since — usually means you owe a thank-you.'),
+    R('status', 'Call done', 'The call happened and nobody has written since. Usually means you owe a thank-you.'),
     R('status', 'Call cancelled', 'Someone declined the call invite. Clears as soon as either of you sends a new email.'),
     R('status', 'Bounced', 'That address does not work. Find another one.'),
-    R('status', 'Closed', 'You ticked Closed to signify the correspondence has naturally resolved — usually a coffee chat happened, you sent the thank-you, and nothing further is expected. Blotter leaves the row alone and fades it out of the way.'),
+    R('status', 'Closed', 'You ticked Closed because the correspondence has naturally resolved. Usually a coffee chat happened, you sent the thank-you, and nothing further is expected. Blotter leaves the row alone and fades it out of the way.'),
     R('gap'),
 
     R('h2', 'The two numbers'),
-    R('body', 'Days — how long it has been since the last thing that actually happened on that contact. Which thing depends on the state: on Sent it counts from the email you sent, on Replied from the one they sent, on Call done from the call itself.'),
-    R('body', 'Attempts — how many times you have written since they last wrote back. In other words, how many times you have bumped the thread.'),
-    R('note', 'Both show a dash where there is nothing to count. Blotter never tells you when to follow up: it shows you what is true and how long it has been true, and you decide.'),
+    R('body', 'Days: how long since the last thing that actually happened on that contact. On Sent it counts from the email you sent, on Replied from the one they sent, on Call done from the call itself.'),
+    R('body', 'Attempts: how many times you have written since they last wrote back.'),
+    R('note', 'Both show a dash where there is nothing to count.'),
+    R('gap'),
+
+    R('h2', 'Why Blotter does not tell you when to follow up'),
+    R('body', 'Because it would be wrong. In one real recruiting season, replies came back after 7, 11, 13 and 22 days, and the 22-day one led to four interview rounds. A follow-up rule would have chased that person more than two weeks before she answered. Blotter shows you what is true and how long it has been true, and you decide.'),
+    R('body', 'Blotter menu → Sort contacts → by what they are waiting on. That is the list of who you owe and who owes you, in order.'),
+    R('gap'),
+
+    R('h2', 'Things that look wrong and are not'),
+    R('status', 'Nothing found on day one', 'Add people first. Blotter only reads conversations that already involve someone in Contacts.'),
+    R('status', 'Something arrived, nothing changed', 'An out-of-office, an auto-reply or a calendar acceptance is not a reply. Blotter waits for a person.'),
+    R('status', 'A new contact is blank', 'Contacts you approve from Found are blank for one run. The server has not met them yet.'),
+    R('status', 'Stuck on Not emailed', 'Blotter cannot read that email address. Settings → Last run warnings names the row.'),
+    R('status', 'Nothing is updating', 'Settings → Last successful run. If it is old, run Blotter → Step 2 by hand and read the message.'),
+    R('status', 'Every row looks wrong', 'Settings → “Pretend today is” must be empty. It is a testing setting.'),
     R('gap'),
 
     R('h2', 'Sorting'),
-    R('body', 'Blotter menu → Sort contacts. Three ways: by what each contact is waiting on, by title from most junior, or grouped by firm.'),
+    R('body', 'Blotter menu → Sort contacts. By what each contact is waiting on, by title from most junior, or grouped by firm.'),
     R('note', 'Sorting moves whole rows and keeps everything you typed, including your own columns and any formulas in them.'),
     R('gap'),
 
     R('h2', 'The Found tab'),
-    R('body', 'When somebody new turns up in a conversation with one of your contacts — a colleague copied in, an assistant replying — Blotter puts them in Found rather than adding them to the Contacts tab.'),
+    R('body', 'When somebody new turns up in a conversation with one of your contacts, a colleague copied in or an assistant replying, Blotter puts them in Found rather than adding them to Contacts.'),
     R('step', 'Yes  →  they become a contact on the next run.'),
     R('step', 'No   →  never suggested again.'),
     R('warn', 'Do not delete a row marked Ignored. That row is the memory that you said no. Delete it and they come back.'),
     R('gap'),
 
     R('h2', 'Yours to change, and what to leave alone'),
-    R('body', 'It is your spreadsheet. Almost everything in it is yours to do what you like with, and Blotter is built to stay out of the way.'),
-    R('strong', 'Yours: add any columns you like, anywhere — LinkedIn, Notes, how you met. Colour them. Put formulas in them. Add rows, delete rows, sort however you want. Rename the file. Add your own tabs.'),
-    R('note', 'Blotter finds its columns by their headings, not by where they sit, so your own columns can go anywhere — including in between Blotter’s.'),
-    R('warn', 'Leave alone: the headings Blotter writes — Status, Days, Last contact, Attempts, Next call, Last call — and Name, Email and Closed. Rename or delete one and Blotter stops and tells you. Do not give one of your own columns a Blotter heading either; two columns called Days and it cannot tell which is which.'),
+    R('body', 'It is your spreadsheet. Almost everything in it is yours to do what you like with.'),
+    R('strong', 'Yours: add any columns you like, anywhere. Colour them. Put formulas in them. Add rows, delete rows, sort however you want. Rename the file. Add your own tabs.'),
+    R('warn', 'Leave alone: the headings Blotter writes, and Name, Email and Closed. Rename or delete one and Blotter stops and tells you. Do not give one of your own columns a Blotter heading either: two columns called Days and it cannot tell which is which.'),
     R('warn', 'A formula in one of Blotter’s columns will not survive. Those cells are rewritten every run. Put the formula in a column of your own and it is safe.'),
-    R('note', 'The Contacts, Found and Settings tabs need to keep their names. Rename one and Blotter cannot find it.'),
+    R('note', 'The Contacts, Found and Settings tabs need to keep their names. Colour you apply to Blotter’s own columns is reset by Step 1; colour your own columns instead.'),
     R('strong', 'If anything goes wrong: Blotter → Step 1: Set up this sheet. It rebuilds what is missing and does not touch your contacts.'),
     R('gap'),
 
-    R('h2', 'When something looks wrong'),
-    R('status', 'Stuck on Not emailed', 'Blotter cannot read that email address. Settings → Last run warnings names the row.'),
-    R('status', 'Nothing is updating', 'Check Settings → Last successful run. If it is old, run Blotter → Step 2 by hand and read the message.'),
-    R('status', 'Every row looks wrong', 'Check that Settings → “Pretend today is” is empty. It is a testing setting.'),
+    R('h2', 'Updates'),
+    R('body', 'When Blotter is updated, a notice appears at the top of Contacts. Updating replaces only the code. Your contacts, settings, Found decisions and timer all stay. Run Step 1 afterwards; that is what adds anything new.'),
+    R('gap'),
+
+    R('h2', 'What Blotter cannot see'),
+    R('body', 'Anything by phone, text, LinkedIn or in person. If a relationship moved off email, the row will not know. It reads the mailbox of the account this sheet is in, and no other.'),
     R('gap'),
 
     R('h2', 'What Blotter never does'),
     R('body', 'Never sends email. Never replies. Never edits or deletes anything in your inbox. Never creates or changes a calendar event.'),
-    R('strong', 'It only reads, and it only reads conversations that already involve someone in your Contacts tab.'),
+    R('strong', 'It only reads, and it only reads conversations that already involve someone in your Contacts tab. The text of an email never leaves your Google account.'),
+    R('gap'),
+
+    R('h2', 'If Blotter stops'),
+    R('body', 'Nothing is lost. This is an ordinary spreadsheet in your own Drive with everything in it. The Blotter columns simply stop updating. Blotter menu → Stop automatic updates turns it off; deleting the sheet removes it entirely.'),
+    R('note', 'The Blotter key row in Settings is not needed yet. Leave it empty.'),
     R('gap'),
 
     R('h2', 'Still stuck'),
     R('body', HELP_URL + '  ·  ' + HELP_EMAIL),
-    R('note', 'Quote the Blotter ID from the Settings tab — it says which sheet is yours without saying anything about you.')
+    R('note', 'Quote the Blotter ID from the Settings tab. It says which sheet is yours without saying anything about you.')
   ];
 }
 
