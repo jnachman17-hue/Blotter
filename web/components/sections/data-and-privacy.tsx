@@ -17,17 +17,26 @@
  *   the columns what each connection can and cannot do
  *
  * Then a footnote and a link. Everything else lives on `/privacy`: the four
- * steps in prose, the full permissions matrix, the broad-permission
- * explanation, retention, deletion, all nine commitments, the provider detail
- * and the seven privacy questions. That page is the section's real body. This
- * is its front door.
+ * steps in prose, the full permissions matrix, the five real Google scopes,
+ * retention, deletion, all nine commitments and the seven privacy questions.
+ * That page is the section's real body. This is its front door.
  *
- * §17 still governs and is the last thing to remember. The presentation is
- * settled; the claims are true of no implementation, because there is no
- * implementation. Unmatched-message routing, body non-retention, revocation,
- * deletion, the Google scopes and the provider's CASA status are all open gates
- * in `06-assumptions-and-open-questions.md`. The private preview may show this
- * copy. Public traffic may not, until each gate closes.
+ * ## The claim gates are closed, and the reason matters
+ *
+ * §17 used to govern here, and it said the presentation was settled but the
+ * claims were true of no implementation, because there was no implementation.
+ * Unmatched-message routing, body non-retention, revocation, deletion, the
+ * Google scopes and the provider's CASA status were all open gates that public
+ * traffic was not supposed to see.
+ *
+ * **Public traffic saw them anyway, for a month, and one of them was false.**
+ * `28-WEBSITE-AUDIT.md` is the account. The provider gate never closed because
+ * no provider was ever selected, and the sentence shipped regardless.
+ *
+ * So the gates are gone, replaced by something stronger: **every claim this
+ * section makes is now true of something built, and names where it can be
+ * checked.** `lib/privacy-copy.ts` carries the four files that hold the
+ * answers. Verify against those before changing a word here.
  */
 
 import Link from "next/link";
@@ -48,11 +57,24 @@ import {
   POLICY_LINK_LABEL,
   PRIVACY_OPENING,
   PRIVACY_TITLE,
-  PROVIDER_BODY,
+  HOSTING_BODY,
 } from "@/lib/privacy-copy";
 
-/** The provider's first sentence stays on the page; the rest is on `/privacy`. */
-const PROVIDER_LEAD = PROVIDER_BODY[0];
+/**
+ * The first sentence about where Blotter runs stays on the page; the rest is on
+ * `/privacy`.
+ *
+ * **This slot used to hold the connection-provider claim**, which said Blotter
+ * reached Google through a third party whose application had passed CASA. There
+ * is no third party, and `28-WEBSITE-AUDIT.md` §0 found that the sentence was
+ * contradicted by Google's own consent screen. Deleted on Jon's ruling,
+ * September 3, 2026.
+ *
+ * **The slot is kept rather than removed**, and that is deliberate: the desktop
+ * footnote row below is a two-column grid, and the honest answer to *who else is
+ * in this* is a claim worth making rather than a gap worth leaving.
+ */
+const HOSTING_LEAD = HOSTING_BODY[0];
 
 export function DataAndPrivacy() {
   return (
@@ -122,17 +144,24 @@ export function DataAndPrivacy() {
 
           The broad-permission disclosure, because §9 fixes it below the
           permissions material, §16 forbids weakening it and §18 bans hiding it —
-          it is the only place the page reconciles Google's broad consent screen
-          with the narrower processing claim. And the provider's first sentence,
-          which is the section's one claim about a third party. Both are set as
-          footnotes because that is their weight, not because they are fine print.
+          it is the only place the page reconciles Google's consent screen with
+          what Blotter actually does, and since September 3, 2026 it is also the
+          only place the page names the two permissions the table above has no
+          row for.
+
+          Beside it, where Blotter runs. **That slot used to carry the
+          connection-provider claim.** The answer to "who else is in this" is
+          worth a footnote whether or not there is anybody, and there is not.
+
+          Both are set as footnotes because that is their weight, not because
+          they are fine print.
         */}
         {/* Desktop: both footnotes side by side, exactly as ratified. */}
         <div className="mt-14 hidden border-t border-rule pt-7 desk:grid desk:grid-cols-2 desk:gap-x-16">
           <p className="text-small leading-[1.6] text-ink-read">
             <span className="font-semibold text-ink">{BROAD_HEADING}.</span> {BROAD_BODY}
           </p>
-          <p className="text-small leading-[1.6] text-ink-read">{PROVIDER_LEAD}</p>
+          <p className="text-small leading-[1.6] text-ink-read">{HOSTING_LEAD}</p>
         </div>
 
         {/*
@@ -142,7 +171,7 @@ export function DataAndPrivacy() {
           rather than in front of it.
         */}
         <div className="mt-12 desk:hidden">
-          <ConnectionFinePrint providerLead={PROVIDER_LEAD} />
+          <ConnectionFinePrint providerLead={HOSTING_LEAD} />
         </div>
 
         {/*

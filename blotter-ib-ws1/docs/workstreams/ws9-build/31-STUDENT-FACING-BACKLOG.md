@@ -83,6 +83,73 @@ it is already in the sheet; the rest is waiting.
 - What the banner will say, and that **the sheet freezes rather than losing
   anything** — every status and date already written stays exactly where it is
 
+### 3.6 From the website pass, September 3, 2026
+
+**Added by the copy-and-legal chat**, per §6. These come out of reading the site
+against the engine rules, and they are things a student will hit that no surface
+currently addresses.
+
+**The permission screens in §3.2 now have a home.** `/setup` was built today and
+carries all of it — the warning quoted, the developer-is-you fact, which button
+cancels, `Select all`, and what breaks without each of the five. That part of
+§3.2 is discharged for the website; it still cannot live in the sheet, because
+the student has no sheet yet.
+
+#### Things that look like Blotter failing, and are not
+
+- **Day one, on an empty sheet, finds nothing — correctly.** Jon hit this
+  himself, unprompted, in `17-INSTALL-OBSERVED.md` §4: *"I have sent 1 email in
+  last 365 days that shoulda probably populated in found."* It should not have,
+  and `0 searches` confirms Blotter never asked Gmail anything. **The first
+  thing a real student does is open an empty sheet and expect it to know
+  something.** One line at the top: add people first, because Blotter only reads
+  conversations that already involve someone in Contacts
+- **An auto-reply is not a reply, and a calendar acceptance is not a reply**
+  (`04-ENGINE-RULES.md` §6). A real out-of-office arrived **20 seconds** after
+  Jon's email from the contact's own address, and the row correctly did not
+  move. The first time a student sees something arrive and nothing change, they
+  will conclude it is broken
+- **Approved contacts are blank for one run** — already in §3.1, and it belongs
+  in the same group as these two
+
+#### The thing the website promised for a year and the product refuses to do
+
+- **Blotter will not tell you when to follow up, and a student may read that as
+  missing.** `Start here` states the fact ✅. **It does not say why**, and the
+  why is the most persuasive thing about it: replies in the real season came
+  back at 6.8, 11, 13.2 and **21.6** days, and the 21.6-day one turned into four
+  interview rounds. A five-day rule would have chased Jon about that contact
+  **sixteen days before she replied**
+- **There is no `Outstanding` view**, and anyone arriving from the old website
+  is looking for one — `Replies owed`, `Follow-ups due`, `Thank-you notes` are
+  all still on the live site today. **The real answer is
+  `Blotter → Sort contacts`**, sorted by what each contact is waiting on, and
+  nothing outside the sheet mentions it exists
+
+#### The limits, which are what make the rest believable
+
+- **Anything by phone, text, LinkedIn or in person is invisible**
+  (`04-ENGINE-RULES.md` §6). At least three consequential relationships in the
+  real 2024 season ran that way and one of them produced the job. A student who
+  thinks Blotter sees everything will trust a row that is wrong. Now stated in
+  `/terms` §6
+- **Blotter can only read the mailbox it is installed in.** Several *addresses*
+  arriving in one inbox are fine; a genuinely separate Google account is not,
+  and no version of this works across two. `Start here` step 1's note has it,
+  buried — and it is not hypothetical, since Jon's own season ran across two
+  accounts and the chain that produced his job crossed both
+
+#### The reassuring answers nobody has written down
+
+- **If Blotter stops, nothing is lost.** The spreadsheet is an ordinary file in
+  the student's own Drive with everything in it; the Blotter columns simply stop
+  updating. Nothing to export, nothing held. Now in `/terms` §7, and it is the
+  answer to a question asked *before* installing rather than after
+- **Privacy, in the sheet, in one line**, at the moment access is granted rather
+  than on a website: *Blotter reads only conversations that already involve
+  someone in your Contacts tab. The text of an email never leaves your Google
+  account.*
+
 ---
 
 ## 4. Screenshots Jon owes
@@ -92,6 +159,12 @@ it is already in the sheet; the rest is waiting.
 3. Settings, showing `Last successful run` and `Last run warnings`
 4. **Google's unverified-app warning** — for the setup page, not the sheet
 5. **The permissions screen with all five boxes**, for the same reason
+
+**4 and 5 now have slots waiting for them.** `/setup` was built on September 3,
+2026 with four marked slots: the `Blotter` menu open, the warning screen with
+`Advanced` visible, the permissions screen with `Select all` visible, and the
+`Start here` tab. They render as dashed placeholders rather than gaps, so the
+page can be reviewed before the pictures exist.
 
 ## 5. The four live-sheet questions — CLOSED by Jon, September 3, 2026
 

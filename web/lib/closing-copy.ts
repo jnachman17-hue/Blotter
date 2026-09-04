@@ -25,21 +25,42 @@ export const FAQ_TITLE = "Frequently asked questions";
 
 /** §5. Exact, in order. No eyebrow and no supporting paragraph above them. */
 export const PRODUCT_FAQ: FaqEntry[] = [
+  /*
+    Rewritten September 3, 2026. The question and the answer both changed, on
+    Jon's ruling that the site had been promising something the product cannot
+    do — see `28-WEBSITE-AUDIT.md` §1.8.
+
+    **The question changed because the old one now has an awkward answer.** "Do
+    I need to start with a new tracker?" is answered "yes, sort of", and a FAQ
+    that opens by wriggling is worse than one that answers a slightly different
+    question honestly. What the reader actually wants to know is whether they
+    have to do the work again.
+  */
   {
-    q: "Do I need to start with a new tracker?",
-    a: "No. Keep the Google Sheet and contacts you already built. Blotter creates a standardized recruiting view in a new tab, so you do not have to rebuild your contact record or re-enter every relationship.",
+    q: "Do I have to rebuild my tracker?",
+    a: "No, but it does move. Blotter is a Google Sheet you make your own copy of, so your contacts come across in a single paste rather than being retyped, and your own columns — LinkedIn, notes, where you met — can sit anywhere you like in it. Blotter finds its own columns by their headings and never touches yours.",
   },
   {
     q: "Can I use Blotter after recruiting has already started?",
-    a: "Yes. Blotter is designed to work with an existing tracker and contact record, whether you are beginning recruiting or already managing an active process.",
+    a: "Yes, and it is built for it. Paste in the people you are already talking to and Blotter reads back through the recent history of those conversations, so a relationship that started in October arrives with its real status rather than as a blank row.",
   },
   {
     q: "Does Blotter write emails or help with technical preparation?",
     a: "No. You choose who to contact and write every message yourself. Blotter does not generate outreach, teach technicals, or provide recruiting content. It maintains the logistics surrounding your process.",
   },
   {
+    /*
+      `next actions` deleted September 3, 2026. There is no `Next move` column
+      and Blotter never says what to do — `04-ENGINE-RULES.md` §4. The columns
+      it maintains are Status, Days, Last contact, Attempts, Next call and
+      Last call.
+
+      **The second half is new and it is the answer to the question people
+      actually ask next**, which the audit found the site had never addressed:
+      Blotter suggests the people it finds rather than adding them.
+    */
     q: "What happens when I add a new contact?",
-    a: "Add the contact and their email address to your tracker. Blotter can then use relevant Gmail and Calendar activity associated with that contact to maintain their status, timing, scheduled calls, and next actions.",
+    a: "Put their name and email address in the sheet. From the next run, Blotter keeps their status, how long it has been, how many times you have written, and any scheduled or completed calls. It also works the other way: when somebody new turns up in a conversation with one of your contacts, Blotter suggests them rather than adding them, and you say yes or no.",
   },
   {
     q: "Does Blotter work only for investment banking?",
@@ -101,6 +122,10 @@ export const CLOSING_HEADLINE = "Recruiting will still suck. You just won't lose
 
 export const CLOSING_SUPPORTING =
   "Blotter keeps the sheet current on its own, so the hours you were spending on admin go back to the people you are actually trying to reach.";
+/* Unchanged September 3, 2026: "the sheet" is the copy they made, so this one
+   was already true. Rendered nowhere today — §9's supporting line was dropped
+   when Jon cut the closing panel — and kept as the record of the ratified
+   string. */
 
 /**
  * Beneath the CTA, smaller and quieter.
@@ -109,4 +134,4 @@ export const CLOSING_SUPPORTING =
  * the page. It is the boundary statement, so it stays a list of refusals.
  */
 export const CLOSING_REASSURANCE =
-  "Keep your existing Google Sheet. No mass outreach. No technicals. No AI slop.";
+  "It is a Google Sheet. No mass outreach. No technicals. No AI slop.";

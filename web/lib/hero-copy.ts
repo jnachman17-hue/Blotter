@@ -39,5 +39,18 @@
  * `09-page-argument-rework.md` holds that layout may diverge between devices
  * and the argument may not.
  */
+/*
+  Rewritten September 3, 2026, on Jon's ruling after `28-WEBSITE-AUDIT.md`.
+
+  It said *"the Google Sheet you already use"*, and a student does not use it —
+  they copy Blotter's. `spreadsheets.currentonly` means the script can only ever
+  reach the sheet it lives inside, so attaching to a tracker somebody already
+  built is not a feature that is missing. It is structurally impossible under
+  this architecture and always will be.
+
+  **The replacement names the delivery**, which is the one thing the whole site
+  was vague about and the one thing a reader most wants to know: it is a Google
+  Sheet, not an app, not a login, not a thing to learn.
+*/
 export const HERO_SUPPORTING_SHORT =
-  "Blotter keeps the Google Sheet you already use current.";
+  "Blotter is a Google Sheet that keeps itself current.";

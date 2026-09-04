@@ -40,9 +40,20 @@ import { cn } from "@/lib/cn";
 
 /* ------------------------------------------------------------- exact copy */
 
-export const KEEP_H = "You already have a tracker. Keep it.";
+/*
+  Rewritten September 3, 2026 on Jon's ruling — *"You don't actually keep your
+  own sheet now."* `28-WEBSITE-AUDIT.md` §1.8 has the eleven places this claim
+  appeared and why every one of them was false.
+
+  The headline had to keep doing the same job: killing the switching-cost
+  objection before the reader raises it. **The objection was never really about
+  the file** — it is "I don't want to rebuild this and I don't want to learn a
+  new tool", and both halves still have a true answer. One paste, and it is
+  still Google Sheets.
+*/
+export const KEEP_H = "Paste your contacts in. Stay in Google Sheets.";
 export const KEEP_SUB =
-  "Keep the Google Sheet and contacts you already built. Blotter creates a clean view in a new tab and keeps the changing activity current from Gmail and Calendar.";
+  "Blotter is a Google Sheet you make your own copy of. Paste in the people you are networking with, add any columns you want, and Blotter keeps the right-hand side current from Gmail and Calendar. It never edits anything you typed.";
 
 const ACT_H = "Everything you still owe";
 const ACT_SUB =

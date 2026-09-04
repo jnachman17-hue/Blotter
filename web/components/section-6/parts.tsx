@@ -351,17 +351,22 @@ function ServiceStack() {
  * keyboard-operable, and `hiddenUntilFound` means find-in-page opens it. The
  * text is unshortened and in its ratified position.
  *
- * ## Why the provider sentence folds in with it
+ * ## Why the second sentence folds in with it
  *
- * The provider sentence — that the connection provider's Google application has
- * passed CASA — was left visible in the first build on the reasoning that a
- * claim about a third party should not be behind a tap. That was backwards.
+ * This slot used to hold the connection-provider claim, and the reasoning that
+ * put it behind a tap was: it was **the one unverified claim on the page**, no
+ * provider had been selected, so it was true of no actual arrangement, and
+ * being unverified argued for less prominence rather than more.
  *
- * It is **the one unverified claim on the page**: no provider has been
- * selected, so it is true of no actual arrangement, and this is the surface
- * about to take social traffic. Being unverified argues for less prominence,
- * not more. Both sentences are fine print about how the Google connection
- * works, and one row is where fine print belongs.
+ * **That reasoning was sound and the conclusion was wrong.** A claim nobody can
+ * verify does not belong behind a tap; it belongs nowhere. It was deleted on
+ * September 3, 2026 — `28-WEBSITE-AUDIT.md` §0 — and what sits here now is the
+ * true answer to the same question, which is that Blotter runs inside the
+ * student's own Google account and there is no third party at all.
+ *
+ * It still folds, for the original good reason: both sentences are fine print
+ * about how the Google connection works, and one row is where fine print
+ * belongs.
  *
  * Nothing leaves the page, which is what the handoff requires of the
  * broad-permission disclosure and what `06-SECTION-6` §18 means by not hiding
@@ -371,6 +376,8 @@ function ServiceStack() {
  * Desktop is unchanged — the two footnotes stay side by side.
  */
 export function ConnectionFinePrint({ providerLead }: { providerLead: string }) {
+  /* `providerLead` keeps its name so the prop contract does not churn; what it
+     now carries is `HOSTING_BODY[0]`, not a provider claim. */
   return (
     <Accordion.Root className="border-t border-rule desk:hidden">
       <Accordion.Item value="fine-print" className="border-b border-rule">

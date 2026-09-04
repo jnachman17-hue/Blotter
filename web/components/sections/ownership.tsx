@@ -101,9 +101,17 @@ import { KEEP_H } from "@/components/sections/tracker-and-actions";
  * Ratified original: *"Keep the Google Sheet and contacts you already built.
  * Blotter creates a standardized recruiting view in a new tab and keeps the
  * changing activity current from Gmail and Calendar."*
+ *
+ * **Rewritten September 3, 2026 with `KEEP_SUB`.** The trimming rule is
+ * unchanged and still applies: the headline now says "paste your contacts in",
+ * so the paragraph does not say it again — it starts at what Blotter is.
+ *
+ * The last sentence is new and it is the one the visual below actually proves:
+ * Blotter finds its own columns by their headings, so a student's own columns
+ * can sit anywhere and are never touched.
  */
 export const KEEP_SUB_TRIMMED =
-  "Blotter creates a clean view in a new tab and keeps the changing activity current from Gmail and Calendar.";
+  "It is a Google Sheet you make your own copy of. Add any columns you want, wherever you want them, and Blotter keeps the right-hand side current from Gmail and Calendar. It never edits anything you typed.";
 
 /**
  * The desktop head: headline and deck left, supporting paragraph right.
