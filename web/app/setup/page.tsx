@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { BlotterLockup } from "@/components/brand/blotter-mark";
@@ -115,19 +116,47 @@ function Step({
 }
 
 /**
- * A marked slot for one of Jon's screenshots.
+ * A screenshot, or a marked slot where one is still owed.
  *
- * Deliberately visible rather than a silent gap. `20-UI-BUILD-NOTES.md` used
- * the same device on the `Start here` tab, and it is the honest way to ship a
- * page whose pictures are somebody else's to take.
+ * Every shot here was taken from a **genuine fresh install** on an account that
+ * had never seen Blotter, which is the only way to photograph the consent
+ * screens at all — they never appear again once an account has approved.
+ *
+ * **The developer address in the warning shots is replaced with
+ * `youremail@gmail.com`, and that is not a privacy edit.** The whole point of
+ * that screen is that the developer Google is warning about is *the student*.
+ * A reader who sees somebody else's address learns the opposite of the lesson.
+ *
+ * **The boxes are green rather than red**, deliberately: a red box on a screen
+ * already headed *"Google hasn't verified this app"* reads as danger, when what
+ * the reader needs to be told is that this is the way through.
  */
-function Shot({ caption }: { caption: string }) {
+function Shot({ src, caption, width, height }: {
+  src?: string; caption: string; width?: number; height?: number;
+}) {
+  if (!src) {
+    return (
+      <div className="grid min-h-[104px] place-items-center rounded-[6px] border border-dashed border-rule bg-white px-6 py-5 text-center">
+        <p className="text-small leading-[1.5] text-ink-faint">
+          [ screenshot: {caption} ]
+        </p>
+      </div>
+    );
+  }
   return (
-    <div className="grid min-h-[104px] place-items-center rounded-[6px] border border-dashed border-rule bg-white px-6 py-5 text-center">
-      <p className="text-small leading-[1.5] text-ink-faint">
-        [ screenshot: {caption} ]
-      </p>
-    </div>
+    <figure className="overflow-hidden rounded-[6px] border border-rule bg-white">
+      <Image
+        src={src}
+        alt={caption}
+        width={width ?? 900}
+        height={height ?? 600}
+        className="h-auto w-full"
+        unoptimized
+      />
+      <figcaption className="border-t border-rule px-4 py-2 text-small leading-[1.5] text-ink-faint">
+        {caption}
+      </figcaption>
+    </figure>
   );
 }
 
@@ -241,7 +270,8 @@ export default function SetupPage() {
               </strong>
               . This is where the permission screens start.
             </p>
-            <Shot caption="the Blotter menu open in the menu bar" />
+            <Shot src="/setup/menu.png" width={893} height={583}
+              caption="The Blotter menu, at the end of the menu bar" />
           </Step>
 
           <Step n="03" title="The warning screen, and why it is fine">
@@ -278,7 +308,10 @@ export default function SetupPage() {
               <strong className="font-semibold text-ink">Go to Blotter (unsafe)</strong>{" "}
               at the bottom of the text that unfolds.
             </p>
-            <Shot caption="the unverified-app warning, with Advanced visible" />
+            <Shot src="/setup/warning.png" width={640} height={386}
+              caption="The warning. Advanced is the small link at the bottom left." />
+            <Shot src="/setup/warning-advanced.png" width={588} height={405}
+              caption="After clicking Advanced — Go to Blotter (unsafe) appears at the bottom" />
           </Step>
 
           <Step n="04" title="The permissions screen — click Select all">
@@ -360,7 +393,8 @@ export default function SetupPage() {
               .
             </p>
             <p>Click <strong className="font-semibold text-ink">Allow</strong>.</p>
-            <Shot caption="the five permissions, with Select all visible above them" />
+            <Shot src="/setup/permissions.png" width={489} height={598}
+              caption="All five ticked, which is what Select all does" />
           </Step>
 
           <Step n="05" title="Then open Start here, in the sheet">
