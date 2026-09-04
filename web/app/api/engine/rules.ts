@@ -735,6 +735,17 @@ export const DESIGN_VERSION = "2026-09-03.1";
 export const CURRENT_COURIER_VERSION = "2026-09-03";
 
 /**
+ * Where the current script actually lives.
+ *
+ * A **static file deployed with the app**, not a route that reads one. There is
+ * nothing secret in it — no keys, no tokens, and a copy already sits in every
+ * student's Apps Script editor — so serving it plainly is both safe and the
+ * only version that cannot go stale: it ships with every deploy, and there is
+ * no publishing step anybody can forget.
+ */
+export const SCRIPT_URL = "https://blotterib.com/Code.gs";
+
+/**
  * A gentle nudge when the script is behind, and silence otherwise.
  *
  * Deliberately `info`, never `blocked`: an old courier still works, and turning
@@ -745,10 +756,14 @@ function outdatedCourierNotice_(courierVersion: string): EngineResponse["notice"
   if (courierVersion === "" || courierVersion >= CURRENT_COURIER_VERSION) return null;
   return {
     level: "info",
+    /* Both versions, named. A student can then tell at a glance whether they
+       already have the current one — "Blotter → Check this sheet" reports
+       theirs — rather than re-pasting on the off-chance. */
     text:
-      "A newer version of Blotter is available. Yours still works — updating " +
-      "takes about a minute and brings the latest fixes.",
-    url: "https://blotterib.com/api/script",
+      "A newer version of Blotter is available: " + CURRENT_COURIER_VERSION +
+      ". This sheet is running " + courierVersion + ", which still works. " +
+      "Updating takes about a minute.",
+    url: SCRIPT_URL,
   };
 }
 

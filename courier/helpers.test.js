@@ -68,6 +68,7 @@ const EXPORTS = [
   'duplicateBlotterHeadings_', 'formulasInBlotterColumns_', 'overwrittenFormulaWarnings_',
   'rowsThatMoved_', 'accountHash_', 'sanitiseDesign_', 'safeColour_', 'safeNumber_',
   'safeCell_', 'statusStyle_', 'columnWidth_', 'numberFormat_', 'SETTING_KEY',
+  'COURIER_VERSION', 'SCRIPT_URL',
   'instructionRows_', 'expectedSetup_', 'SETTING_INSTALL_ID', 'SETTING_HELP',
   'COL_NAME', 'COL_TITLE', 'COL_FIRM', 'COL_EMAIL', 'COL_CLOSED',
   'BLOTTER_COLUMNS', 'FOUND_HEADERS',
@@ -1003,6 +1004,36 @@ eq('nor null', box.sanitiseDesign_(null), null);
 /* The key field exists, empty and harmless, from today. */
 eq('there is somewhere for a key to go', box.SETTING_KEY, 'Blotter key');
 eq('and Step 1 creates it', box.expectedSetup_().settings.includes(box.SETTING_KEY), true);
+
+/* ------------------------------------------------------------------ *
+ * The served script must be the same bytes as this one.
+ *
+ * `/Code.gs` is what the update notice sends students to. A copy that drifts
+ * behind the repo would send them to an old script with nothing anywhere
+ * saying so — a silent wrong answer, which is the failure this project keeps
+ * choosing to make loud instead. `node courier/publish.js` fixes any drift.
+ * ------------------------------------------------------------------ */
+{
+  const crypto = require('node:crypto');
+  const servedPath = path.join(__dirname, '..', 'web', 'public', 'Code.gs');
+  const manifestPath = path.join(__dirname, '..', 'web', 'app', 'api', 'script', 'manifest.ts');
+
+  checks += 1;
+  if (!fs.existsSync(servedPath)) {
+    fails += 1;
+    console.error('FAIL web/public/Code.gs is missing — run: node courier/publish.js');
+  } else {
+    const served = fs.readFileSync(servedPath, 'utf8');
+    eq('the served script is byte-for-byte this one', served === src, true);
+
+    const sha = crypto.createHash('sha256').update(src).digest('hex');
+    const manifest = fs.readFileSync(manifestPath, 'utf8');
+    eq('the manifest records the right hash', manifest.includes(sha), true);
+    eq('and the right size', manifest.includes(String(Buffer.byteLength(src))), true);
+    eq('and the right version',
+      manifest.includes(JSON.stringify(box.COURIER_VERSION)), true);
+  }
+}
 
 console.log(fails === 0
   ? `All ${checks} courier helper checks passed.`

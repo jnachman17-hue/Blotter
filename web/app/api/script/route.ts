@@ -1,84 +1,44 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
-
 import { NextResponse } from "next/server";
 
-import { supabaseAdmin, supabaseConfigured } from "@/lib/supabase-admin";
-import { CURRENT_COURIER_VERSION } from "../engine/rules";
+import { CURRENT_COURIER_VERSION, SCRIPT_URL } from "../engine/rules";
+import { SCRIPT_BYTES, SCRIPT_SHA256, SCRIPT_VERSION } from "./manifest";
 
 /**
- * One address that always has the current script behind it.
+ * What the current script is, so a student can tell whether they already have
+ * it before pasting anything.
  *
- * The server cannot push a new script into a spreadsheet — Apps Script does not
- * work that way. What it can do is notice an old one calling and point
- * somewhere reliable, which is what `/api/engine`'s update notice links to. A
- * link that goes stale is worse than no link, so this is the only place the
- * answer lives.
+ * **The script itself is a static file at `/Code.gs`**, committed under
+ * `web/public/` and deployed with everything else. That is deliberate and it
+ * replaced a worse design: an earlier version served it from the database,
+ * which meant a publish step somebody had to remember, and a forgotten publish
+ * pointed the update notice at nothing. **A file that ships with the deploy
+ * cannot go stale.**
  *
- * ⚠ **A constraint worth knowing about rather than hiding.** The repository is
- * private, so this cannot simply redirect to GitHub. Three sources are tried in
- * order, and the last one is honest rather than clever:
+ * Nothing in the script is secret — no keys, no tokens — and a copy already
+ * sits in every student's Apps Script editor, so serving it plainly costs
+ * nothing.
  *
- * 1. **From disk** — works in local development, where the repo is right there.
- * 2. **From Supabase** — a `blotter_script` row, which is how it works in
- *    production. Publishing there is a paste, and it means a script update
- *    needs no deploy at all.
- * 3. **Neither** — say so, with the version and where to ask. **Not a 404 and
- *    not a lie**: a student who followed this link deserves a sentence, and
- *    silence would send them back to a sheet that is telling them to update.
+ * This route reads no files. `courier/publish.js` copies the script and writes
+ * `manifest.ts` in one command, and `courier/helpers.test.js` fails if the two
+ * ever disagree, so what is reported here is what is served.
  */
 export const runtime = "nodejs";
 
-const FILENAME = "Code.gs";
-
-function asScript(body: string, source: string) {
-  return new NextResponse(body, {
-    status: 200,
-    headers: {
-      "content-type": "text/plain; charset=utf-8",
-      "content-disposition": `inline; filename="${FILENAME}"`,
-      "x-blotter-courier-version": CURRENT_COURIER_VERSION,
-      "x-blotter-source": source,
-      "cache-control": "public, max-age=300, s-maxage=300",
-    },
-  });
-}
-
 export async function GET() {
-  /* 1. The working copy, which is the truth in development. */
-  try {
-    const onDisk = path.join(process.cwd(), "..", "courier", FILENAME);
-    const body = await readFile(onDisk, "utf8");
-    if (body.trim().length > 0) return asScript(body, "disk");
-  } catch {
-    /* Not there in production, which is expected rather than wrong. */
-  }
-
-  /* 2. Published to Supabase, which is how production serves it. */
-  if (supabaseConfigured()) {
-    const supabase = supabaseAdmin();
-    if (supabase !== null) {
-      const { data, error } = await supabase
-        .from("blotter_script")
-        .select("body")
-        .eq("name", FILENAME)
-        .maybeSingle();
-      if (!error && data && typeof data.body === "string" && data.body.length > 0) {
-        return asScript(data.body, "supabase");
-      }
-    }
-  }
-
-  /* 3. Say what is true. */
   return NextResponse.json(
     {
-      courier_version: CURRENT_COURIER_VERSION,
-      script: "not_published",
-      what_to_do:
-        "The current script has not been published to this address yet. " +
-        "Email jnachman17@gmail.com and quote your Blotter ID from the " +
-        "Settings tab, and you will be sent it.",
+      courier_version: SCRIPT_VERSION,
+      /* The version the server expects. Equal to `courier_version` unless a
+         deploy is halfway done, and saying both is more useful than saying one. */
+      expected_by_server: CURRENT_COURIER_VERSION,
+      script_url: SCRIPT_URL,
+      sha256: SCRIPT_SHA256,
+      bytes: SCRIPT_BYTES,
+      how_to_update:
+        "Open the script link, select all, copy. In your sheet: Extensions → " +
+        "Apps Script, select all, delete, paste, save. Reload the sheet and run " +
+        "Blotter → Step 2. Blotter → Check this sheet shows the version you have.",
     },
-    { status: 200 },
+    { headers: { "cache-control": "public, max-age=300, s-maxage=300" } },
   );
 }

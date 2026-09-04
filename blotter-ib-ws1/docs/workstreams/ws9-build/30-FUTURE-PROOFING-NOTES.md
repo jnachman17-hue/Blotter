@@ -116,18 +116,30 @@ number formats, sort ranks, and the `Start here` rows. Conditional-format
 construction, merges and frozen panes stay in the script: they change rarely and
 are fiddlier to drive from data.
 
-### 2.4 The stable script URL — and a constraint worth naming
+### 2.4 The stable script URL — no publishing step, by design
 
-`GET /api/script` tries three sources in order: **the working copy on disk**
-(which is the truth in development), then **a `blotter_script` row in Supabase**,
-then an honest message saying it has not been published and where to ask.
+**`https://blotterib.com/Code.gs`** is a static file committed under
+`web/public/` and deployed with everything else.
 
-⚠ **The repository is private, so this cannot simply redirect to GitHub.** In
-production the Supabase row is the real answer, and publishing there is a paste
-rather than a deploy — which is arguably better, since a script update then
-needs no deploy at all. **Until Jon publishes it, the endpoint says so plainly
-rather than 404ing**, because a student who followed the update link deserves a
-sentence and not a dead end.
+**An earlier version of this served the script from the database**, which meant
+a publish step somebody had to remember — and a forgotten publish points the
+update notice at nothing. **A file that ships with the deploy cannot go stale.**
+Nothing in the script is secret (no keys, no tokens, and a copy already sits in
+every student's Apps Script editor), so serving it plainly costs nothing.
+
+**Drift is impossible to ship silently.** `node courier/publish.js` copies
+`courier/Code.gs` into `web/public/` and writes `manifest.ts` — version, sha256
+and byte count — in one command, and **`courier/helpers.test.js` fails if the
+served copy and the real one ever differ.** Verified by deliberately breaking
+it: appending one line to the served copy fails the suite, deleting it fails the
+suite, and `publish.js` repairs both.
+
+`GET /api/script` reports what is current — version, hash, size, the link and
+how to update — so a student can tell whether they already have it before
+pasting anything.
+
+**After any change to `courier/Code.gs`, run `node courier/publish.js`.** The
+test will tell you if you forget.
 
 ### 2.5 The update notice
 
