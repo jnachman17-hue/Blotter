@@ -146,20 +146,7 @@ var PROP_LAST_WORKED_MS = 'blotterLastWorkedMs';
 // It answers one question and no others: how many separate sheets are running.
 var PROP_INSTALL_ID = 'blotterInstallId';
 
-// Where the notice was put. Remembered, because the obvious way to find the
-// spot — "just past the last used column" — moves the moment a notice is
-// written into it: getLastColumn() then counts the notice itself, the next run
-// lands six columns further right, and the old message is left behind. It
-// would have crept across the sheet one notice at a time, starting with the
-// first one that ever mattered.
-var PROP_NOTICE_COL = 'blotterNoticeCol';
 
-// Whether a notice is currently on the sheet. Without this, clearing the space
-// costs about ten round trips to Google on EVERY run — unmerging, clearing
-// content, clearing a note, resetting three formats and the tab colour — to
-// tidy up after a message that has never been sent. There is nothing to clear
-// until there has been something to clear.
-var PROP_NOTICE_SHOWN = 'blotterNoticeShown';
 
 // Telemetry goes to its OWN endpoint, and that separation is the point rather
 // than a preference. The engine has no database, no logging and no file
@@ -338,7 +325,9 @@ function manualColumns_() { return [COL_NAME, COL_TITLE, COL_FIRM, COL_EMAIL]; }
 function formatContacts_(sheet) {
   var t = theme_();
   var maxRows = sheet.getMaxRows();
-  var body = maxRows - 1;
+  var hRow = headerRow_(sheet);
+  var first = hRow + 1;
+  var body = maxRows - hRow;
   if (body < 1) return;
 
   var col = {};
@@ -353,50 +342,50 @@ function formatContacts_(sheet) {
 
   // Header band. The two zones are tinted differently and that difference is
   // the whole idea: the left is yours, the right is Blotter's.
-  var header = sheet.getRange(1, 1, 1, lastCol);
+  var header = sheet.getRange(hRow, 1, 1, lastCol);
   header.setFontWeight('bold').setFontColor(INK);
-  sheet.setRowHeight(1, HEADER_ROW_HEIGHT);
-  paintColumns_(sheet, col, manualColumns_(), 1, 1, t.manualHeader);
-  paintColumns_(sheet, col, BLOTTER_COLUMNS, 1, 1, t.keptHeader);
+  sheet.setRowHeight(hRow, HEADER_ROW_HEIGHT);
+  paintColumns_(sheet, col, manualColumns_(), hRow, 1, t.manualHeader);
+  paintColumns_(sheet, col, BLOTTER_COLUMNS, hRow, 1, t.keptHeader);
   // Closed is the student's again, so it takes the student's tint. The sheet
   // reads yours, Blotter's, yours — which is what it actually is.
-  paintColumns_(sheet, col, [COL_CLOSED], 1, 1, t.manualHeader);
+  paintColumns_(sheet, col, [COL_CLOSED], hRow, 1, t.manualHeader);
 
   // Data rows. Under the hero theme these stay white by ratified instruction
   // (01-HERO section 8, amended August 5, 2026) and the header band alone
   // carries the zone; under the zoned theme both halves are filled all the way
   // down, as Section 02's tab draws them.
   if (t.manualRow) {
-    paintColumns_(sheet, col, manualColumns_(), 2, body, t.manualRow);
-    paintColumns_(sheet, col, [COL_CLOSED], 2, body, t.manualRow);
+    paintColumns_(sheet, col, manualColumns_(), first, body, t.manualRow);
+    paintColumns_(sheet, col, [COL_CLOSED], first, body, t.manualRow);
   }
-  if (t.keptRow) paintColumns_(sheet, col, BLOTTER_COLUMNS, 2, body, t.keptRow);
+  if (t.keptRow) paintColumns_(sheet, col, BLOTTER_COLUMNS, first, body, t.keptRow);
 
-  sheet.setRowHeights(2, body, BODY_ROW_HEIGHT);
+  sheet.setRowHeights(first, body, BODY_ROW_HEIGHT);
 
   // Title is italic and muted — the film's `.cell.ital`. It is context, not a
   // fact about the relationship, and it should not compete with the name.
   if (col[COL_TITLE] > 0) {
-    sheet.getRange(2, col[COL_TITLE], body, 1).setFontStyle('italic').setFontColor(INK_MUTED);
+    sheet.getRange(first, col[COL_TITLE], body, 1).setFontStyle('italic').setFontColor(INK_MUTED);
   }
-  if (col[COL_EMAIL] > 0) sheet.getRange(2, col[COL_EMAIL], body, 1).setFontColor(INK_MUTED);
+  if (col[COL_EMAIL] > 0) sheet.getRange(first, col[COL_EMAIL], body, 1).setFontColor(INK_MUTED);
 
   // Numbers right, dates formatted. Nothing here is monospaced: every figure
   // on every spreadsheet surface of the website is Arial, and it is the right
   // alignment — not the face — that makes a column of numbers line up.
   ['Days', 'Attempts'].forEach(function (h) {
-    if (col[h] > 0) sheet.getRange(2, col[h], body, 1).setHorizontalAlignment('right');
+    if (col[h] > 0) sheet.getRange(first, col[h], body, 1).setHorizontalAlignment('right');
   });
   ['Last contact', 'Last call'].forEach(function (h) {
-    if (col[h] > 0) sheet.getRange(2, col[h], body, 1).setNumberFormat('m/d/yy');
+    if (col[h] > 0) sheet.getRange(first, col[h], body, 1).setNumberFormat('m/d/yy');
   });
   // `1/17 @ 2:00 PM`, exactly as ENGINE-RULES section 9 draws it. Before this,
   // the cell showed `2026-09-03T14:00:00-07:00`.
   if (col['Next call'] > 0) {
-    sheet.getRange(2, col['Next call'], body, 1).setNumberFormat('m/d "@" h:mm AM/PM');
+    sheet.getRange(first, col['Next call'], body, 1).setNumberFormat('m/d "@" h:mm AM/PM');
   }
   if (col[COL_CLOSED] > 0) {
-    sheet.getRange(1, col[COL_CLOSED], maxRows, 1).setHorizontalAlignment('center');
+    sheet.getRange(hRow, col[COL_CLOSED], maxRows - hRow + 1, 1).setHorizontalAlignment('center');
   }
 
   // The zone rules. One where Blotter's half begins, one where the student's
@@ -404,7 +393,7 @@ function formatContacts_(sheet) {
   var style = dividerStyle_();
   if (col['Status'] > 0) {
     sheet.getRange(1, col['Status'], maxRows, 1)
-      .setBorder(null, true, null, null, null, null, t.dividerColour, style);
+      .setBorder(null, true, null, null, null, null, t.dividerColour, style);   // full height, banner included
   }
   if (col[COL_CLOSED] > 0) {
     sheet.getRange(1, col[COL_CLOSED], maxRows, 1)
@@ -415,9 +404,11 @@ function formatContacts_(sheet) {
   // structural borders and everything after is the documented remedy.
   SpreadsheetApp.flush();
 
-  applyStatusColours_(sheet, col['Status'], maxRows);
-  applyClosedRowFade_(sheet, col[COL_CLOSED], maxRows, lastCol);
-  sheet.setFrozenRows(1);
+  applyStatusColours_(sheet, col['Status'], maxRows, first);
+  applyClosedRowFade_(sheet, col[COL_CLOSED], maxRows, lastCol, first);
+  // Everything above the data is frozen: the banner and the headers both stay
+  // on screen, which is the entire point of putting the notice up there.
+  sheet.setFrozenRows(hRow);
   if (col[COL_NAME] > 0) sheet.setFrozenColumns(col[COL_NAME]);
 }
 
@@ -439,9 +430,9 @@ function paintColumns_(sheet, col, names, startRow, numRows, colour) {
  * invites a student to change a value Blotter will overwrite fifteen minutes
  * later. A square cell that is always right beats a pill that lies.
  */
-function applyStatusColours_(sheet, statusCol, maxRows) {
+function applyStatusColours_(sheet, statusCol, maxRows, first) {
   if (!statusCol || statusCol < 1) return;
-  var range = sheet.getRange(2, statusCol, maxRows - 1, 1);
+  var range = sheet.getRange(first, statusCol, maxRows - first + 1, 1);
 
   // Drop only our own rules, by target, so a student's own formatting survives.
   var keep = sheet.getConditionalFormatRules().filter(function (rule) {
@@ -477,14 +468,14 @@ function applyStatusColours_(sheet, statusCol, maxRows) {
  * so both live on this one rule, and it is pushed last so it sits over the
  * status colour on that row.
  */
-function applyClosedRowFade_(sheet, closedCol, maxRows, lastCol) {
+function applyClosedRowFade_(sheet, closedCol, maxRows, lastCol, first) {
   if (!closedCol || closedCol < 1) return;
   var letter = columnLetter_(closedCol);
-  var range = sheet.getRange(2, 1, maxRows - 1, lastCol);
+  var range = sheet.getRange(first, 1, maxRows - first + 1, lastCol);
   var rules = sheet.getConditionalFormatRules();
   rules.push(SpreadsheetApp.newConditionalFormatRule()
     // $ locks the column, the bare row stays relative to the range's first row.
-    .whenFormulaSatisfied('=$' + letter + '2=TRUE')
+    .whenFormulaSatisfied('=$' + letter + first + '=TRUE')
     .setFontColor(INK_FAINT)
     .setStrikethrough(true)
     .setRanges([range])
@@ -506,7 +497,9 @@ function columnLetter_(index) {
 
 function formatFound_(sheet) {
   var maxRows = sheet.getMaxRows();
-  var body = maxRows - 1;
+  var hRow = headerRow_(sheet);
+  var first = hRow + 1;
+  var body = maxRows - hRow;
   if (body < 1) return;
   var lastCol = Math.max(sheet.getLastColumn(), FOUND_HEADERS.length);
 
@@ -516,23 +509,23 @@ function formatFound_(sheet) {
   });
 
   sheet.getRange(1, 1, maxRows, lastCol).setFontFamily('Arial').setFontSize(10).setVerticalAlignment('middle');
-  sheet.getRange(1, 1, 1, lastCol).setFontWeight('bold').setFontColor(INK).setBackground(theme_().keptHeader);
-  sheet.setRowHeight(1, HEADER_ROW_HEIGHT);
-  sheet.setRowHeights(2, body, BODY_ROW_HEIGHT);
-  sheet.setFrozenRows(1);
+  sheet.getRange(hRow, 1, 1, lastCol).setFontWeight('bold').setFontColor(INK).setBackground(theme_().keptHeader);
+  sheet.setRowHeight(hRow, HEADER_ROW_HEIGHT);
+  sheet.setRowHeights(first, body, BODY_ROW_HEIGHT);
+  sheet.setFrozenRows(hRow);
 
   // Found is Blotter's suggestion and the student's decision, so the one column
   // they act in is the one that gets emphasis.
   var addCol = findColumn_(sheet, 'Add?');
   if (addCol > 0) {
-    sheet.getRange(2, addCol, body, 1).setHorizontalAlignment('center').setFontWeight('bold');
+    sheet.getRange(first, addCol, body, 1).setHorizontalAlignment('center').setFontWeight('bold');
   }
   ['Context'].forEach(function (h) {
     var c = findColumn_(sheet, h);
-    if (c > 0) sheet.getRange(2, c, body, 1).setWrap(true).setFontColor(INK_MUTED);
+    if (c > 0) sheet.getRange(first, c, body, 1).setWrap(true).setFontColor(INK_MUTED);
   });
   var seen = findColumn_(sheet, 'First seen');
-  if (seen > 0) sheet.getRange(2, seen, body, 1).setNumberFormat('m/d/yy').setFontColor(INK_MUTED);
+  if (seen > 0) sheet.getRange(first, seen, body, 1).setNumberFormat('m/d/yy').setFontColor(INK_MUTED);
 
   // Added reads settled, Ignored reads spent, Yes and No read as decisions
   // waiting to be acted on.
@@ -540,7 +533,7 @@ function formatFound_(sheet) {
     return !rule.getRanges().some(function (r) { return r.getColumn() === addCol; });
   });
   if (addCol > 0) {
-    var r = sheet.getRange(2, addCol, body, 1);
+    var r = sheet.getRange(first, addCol, body, 1);
     [['Yes', '#d7f0dd', '#1e6b34'], ['No', '#e8eaed', INK_MUTED],
      ['Added', '#f7f2e8', BLOTTER_LABEL], ['Ignored', '#f8f9fa', INK_FAINT]
     ].forEach(function (spec) {
@@ -849,13 +842,14 @@ function sortContacts_(mode) {
       days: findColumn_(sheet, 'Days'),
       closed: findColumn_(sheet, COL_CLOSED)
     };
+    var first = firstDataRow_(sheet);
     var lastRow = sheet.getLastRow();
-    if (lastRow < 3) return;   // nothing to reorder
+    if (lastRow < first + 1) return;   // fewer than two rows: nothing to reorder
 
     var lastCol = sheet.getLastColumn();
     var scratch = lastCol + 1;
-    var height = lastRow - 1;
-    var data = sheet.getRange(2, 1, height, lastCol).getValues();
+    var height = lastRow - first + 1;
+    var data = sheet.getRange(first, 1, height, lastCol).getValues();
 
     var keys = data.map(function (row) {
       var name = cols.name > 0 ? String(row[cols.name - 1]).trim() : '';
@@ -876,10 +870,12 @@ function sortContacts_(mode) {
       return [pad_(stateRank_(status)), pad_(stale), name.toLowerCase()];
     });
 
-    sheet.getRange(2, scratch, height, 1)
+    sheet.getRange(first, scratch, height, 1)
       .setValues(keys.map(function (k) { return [k.join('|')]; }));
+    // sheet.sort() skips frozen rows, and the banner and headers are both
+    // frozen — so this sorts exactly the data and never the chrome.
     sheet.sort(scratch, true);
-    sheet.getRange(2, scratch, height, 1).clearContent();
+    sheet.getRange(first, scratch, height, 1).clearContent();
 
     syncClosedCheckboxes_({ sheet: sheet, cols: cols });
     SpreadsheetApp.getUi().alert('Sorted by ' + {
@@ -898,6 +894,82 @@ function pad_(n) {
   while (s.length < 5) s = '0' + s;
   return s;
 }
+
+// ---------------------------------------------------------------------------
+// Where the headers are
+//
+// Contacts and Found gained a banner row above their headers on September 3,
+// 2026, which moved the headers from row 1 to row 2 and the data from row 2 to
+// row 3.
+//
+// **Nothing hardcodes either number.** The header row is FOUND, by looking for a
+// heading the sheet must have, and every other position is derived from it. Two
+// reasons, and the second is the important one:
+//
+//   - a sheet built before the banner still works, untouched, because the
+//     search finds its headers on row 1 and everything derives from that;
+//   - **the row number is the contract's join key.** The courier reads a
+//     contact from row N, the server answers about row N, and the courier
+//     writes row N. One place still assuming the old offset would put one
+//     person's answers on another person's line — silently, with no error and
+//     nothing visibly wrong. A number that is discovered cannot disagree with
+//     itself; two hardcoded numbers can.
+//
+// Cached per sheet for the life of a run, because this is asked constantly.
+// ---------------------------------------------------------------------------
+
+var HEADER_ROW_SEARCH_DEPTH = 4;
+var headerRowCache_ = {};
+
+/** A heading each tab must have, used to recognise its header row. */
+function headerAnchors_(sheetName) {
+  if (sheetName === TAB_FOUND) return ['Add?', 'Email'];
+  return [COL_NAME, COL_EMAIL, 'Status'];
+}
+
+/**
+ * The row the headers sit on. Defaults to 1, which is both the pre-banner
+ * layout and the safe answer if a sheet is in a state we do not recognise.
+ */
+function headerRow_(sheet) {
+  var key = sheet.getSheetId();
+  if (headerRowCache_[key]) return headerRowCache_[key];
+
+  var anchors = headerAnchors_(sheet.getName());
+  var wanted = {};
+  for (var a = 0; a < anchors.length; a++) wanted[anchors[a].toLowerCase()] = true;
+
+  var lastCol = sheet.getLastColumn();
+  var depth = Math.min(HEADER_ROW_SEARCH_DEPTH, sheet.getMaxRows());
+  var found = 1;   // the pre-banner layout, and the safe answer
+
+  if (lastCol > 0 && depth > 0) {
+    var grid = sheet.getRange(1, 1, depth, lastCol).getValues();
+    // A plain search with one exit. An earlier version tried to break out of
+    // both loops by assigning to the outer index, and ran off the end of the
+    // grid whenever the headers were on row 1 — because the guard it used to
+    // stop was "found !== 1", which is exactly the case it could not detect.
+    for (var r = 0; r < grid.length; r++) {
+      var row = grid[r] || [];
+      var hit = false;
+      for (var c = 0; c < row.length; c++) {
+        if (wanted[String(row[c]).trim().toLowerCase()]) { hit = true; break; }
+      }
+      if (hit) { found = r + 1; break; }
+    }
+  }
+  headerRowCache_[key] = found;
+  return found;
+}
+
+/** The first row that holds a contact. */
+function firstDataRow_(sheet) { return headerRow_(sheet) + 1; }
+
+/** How many rows below the headers the sheet has room for. */
+function dataHeight_(sheet) { return Math.max(0, sheet.getMaxRows() - headerRow_(sheet)); }
+
+/** Forget the cached header rows. Called after setup moves them. */
+function resetHeaderRowCache_() { headerRowCache_ = {}; }
 
 // ---------------------------------------------------------------------------
 // Menu
@@ -957,7 +1029,8 @@ function setupSheet() {
   ['Last contact'].forEach(function (name) {
     var c = findColumn_(contacts, name);
     if (c > 0 && contacts.getMaxRows() > 1) {
-      contacts.getRange(2, c, contacts.getMaxRows() - 1, 1).setNumberFormat('m/d/yy');
+      var cFirst = firstDataRow_(contacts);
+      contacts.getRange(cFirst, c, contacts.getMaxRows() - cFirst + 1, 1).setNumberFormat('m/d/yy');
     }
   });
 
@@ -977,7 +1050,8 @@ function setupSheet() {
       .setAllowInvalid(true)
       .setHelpText('Pick Yes to add this person to Contacts, or No to never see them again.')
       .build();
-    found.getRange(2, addCol, found.getMaxRows() - 1, 1).setDataValidation(rule);
+    var fFirst = firstDataRow_(found);
+    found.getRange(fFirst, addCol, found.getMaxRows() - fFirst + 1, 1).setDataValidation(rule);
   }
 
   // Settings: addresses, server URL, and the quiet last-run timestamp.
@@ -1001,6 +1075,12 @@ function setupSheet() {
     'this cell to switch it off.');
   ensureSettingRow_(settings, SETTING_PRETEND_TODAY, '', PRETEND_TODAY_HELP);
   settings.autoResizeColumn(1);
+
+  // The banner goes in before anything is measured or painted, because every
+  // other position on the sheet is derived from where the headers end up.
+  ensureBannerRow_(contacts);
+  ensureBannerRow_(found);
+  writeBanner_(contacts, null, restingBanner_());
 
   // The look, and the document that explains it. Both are rebuilt every time
   // Step 1 runs, which is also how a sheet made before an update catches up.
@@ -1098,8 +1178,9 @@ function prepareForHandover() {
   [TAB_CONTACTS, TAB_FOUND].forEach(function (name) {
     var sheet = ss.getSheetByName(name);
     if (!sheet) return;
+    var first = firstDataRow_(sheet);
     var last = sheet.getLastRow();
-    if (last > 1) sheet.getRange(2, 1, last - 1, sheet.getMaxColumns()).clear();
+    if (last >= first) sheet.getRange(first, 1, last - first + 1, sheet.getMaxColumns()).clear();
   });
   var settings = ss.getSheetByName(TAB_SETTINGS);
   if (settings) {
@@ -1143,69 +1224,78 @@ function prepareForHandover() {
  * fixed offset, because a student may have added their own columns after it —
  * `findColumn_` locates everything by header text precisely so they can.
  */
-function noticeStartColumn_(closedCol, lastColumn, stored) {
-  // A remembered spot is reused as long as it is still past `Closed`, so the
-  // notice stays where the student last saw it. Only the first placement — or
-  // one invalidated by the sheet's columns changing — is computed.
-  if (stored && stored > closedCol) return stored;
-  return Math.max(closedCol, lastColumn) + 1;
+/**
+ * The banner: row 1 of Contacts, merged across every column.
+ *
+ * **It moved here on September 3, 2026 because the old place was unreadable.**
+ * The notice used to sit in row 1 *past* the `Closed` column, which is off the
+ * right-hand edge of a laptop screen — Jon: *"you have to scroll all the way
+ * over to see this… you won't actually see it in standard view. So you might
+ * never notice when you get a message."*
+ *
+ * It has a resting state on purpose. A row that is blank until something is
+ * wrong teaches a student to ignore that part of the sheet; a row that always
+ * says something teaches them to read it, so the day it says something else
+ * they notice.
+ */
+/** What the banner says when there is nothing wrong. */
+function restingBanner_() {
+  var when = Utilities.formatDate(new Date(), studentTimeZone_(), 'h:mm a');
+  return 'Blotter — all good. Last updated ' + when + '.';
 }
 
-function noticeRange_(sheet) {
-  var props = PropertiesService.getScriptProperties();
-  var closedCol = findColumn_(sheet, COL_CLOSED);
-  var stored = Number(props.getProperty(PROP_NOTICE_COL) || 0);
-  var start = noticeStartColumn_(closedCol, sheet.getLastColumn(), stored);
-  if (start !== stored) props.setProperty(PROP_NOTICE_COL, String(start));
-  if (start + NOTICE_WIDTH - 1 > sheet.getMaxColumns()) {
-    sheet.insertColumnsAfter(sheet.getMaxColumns(),
-      start + NOTICE_WIDTH - 1 - sheet.getMaxColumns());
-  }
-  return sheet.getRange(1, start, 1, NOTICE_WIDTH);
+function bannerRange_(sheet) {
+  if (headerRow_(sheet) < 2) return null;   // no banner on this sheet yet
+  var lastCol = Math.max(1, sheet.getLastColumn());
+  return sheet.getRange(1, 1, 1, lastCol);
 }
 
 /**
- * Show the server's message, or clear the space when there is none.
+ * Make room for the banner. Returns true if a row was inserted.
  *
- * Called on every run including refused ones, so a notice that has been
- * withdrawn disappears rather than lingering as a message that is no longer
- * true.
+ * Only ever inserts when the headers are still on row 1, so running setup
+ * repeatedly cannot stack banners — and a sheet that already has one is left
+ * exactly as it is.
  */
-function writeNotice_(sheet, notice) {
-  var props = PropertiesService.getScriptProperties();
-  var showing = props.getProperty(PROP_NOTICE_SHOWN) === '1';
-  // The common case, by far: no notice now and none before. Clearing an empty
-  // space is ten round trips spent tidying up after nothing.
-  if (!notice && !showing) return false;
+function ensureBannerRow_(sheet) {
+  if (headerRow_(sheet) > 1) return false;
+  sheet.insertRowBefore(1);
+  resetHeaderRowCache_();
+  return true;
+}
 
-  var range = noticeRange_(sheet);
-  try { range.breakApart(); } catch (e) { /* not merged yet */ }
-  range.clearContent().clearNote();
-  range.setBackground(null).setFontColor(null).setFontWeight('normal');
+/**
+ * Write the banner. Called on every run, including refused ones.
+ *
+ * A refused run is the one case where the courier writes to the sheet at all
+ * (D27), and this is the only cell it touches.
+ */
+function writeBanner_(sheet, notice, restingText) {
+  var range = bannerRange_(sheet);
+  if (!range) return false;
 
-  if (!notice || !notice.text) {
-    try { sheet.setTabColor(null); } catch (e) { /* older sheets */ }
-    props.setProperty(PROP_NOTICE_SHOWN, '');
-    return false;
+  range.breakApart();
+  range = bannerRange_(sheet);
+  range.merge();
+
+  var style = notice && NOTICE_STYLES[notice.level] ? NOTICE_STYLES[notice.level] : null;
+  var text;
+  if (notice && notice.text) {
+    text = notice.text + (notice.url ? '   ' + notice.url : '');
+  } else {
+    text = restingText || 'Blotter';
   }
 
-  var level = NOTICE_STYLES[notice.level] ? notice.level : 'info';
-  var style = NOTICE_STYLES[level];
-  var text = String(notice.text);
-  if (notice.url) text += '   ' + notice.url;
-
-  range.merge();
   range.setValue(text)
-    .setBackground(style.fill)
-    .setFontColor(style.text)
-    .setFontWeight(level === 'blocked' ? 'bold' : 'normal')
+    .setFontFamily('Arial')
     .setFontSize(11)
-    .setVerticalAlignment('middle')
+    .setFontWeight(style ? 'bold' : 'normal')
+    .setFontColor(style ? style.fg : INK_MUTED)
+    .setBackground(style ? style.bg : '#ffffff')
     .setHorizontalAlignment('left')
-    .setWrap(true);
-  // Visible from any tab, not only this one.
-  try { sheet.setTabColor(NOTICE_TAB_COLOUR[level]); } catch (e) { /* older sheets */ }
-  props.setProperty(PROP_NOTICE_SHOWN, '1');
+    .setVerticalAlignment('middle')
+    .setWrap(false);
+  sheet.setRowHeight(1, style ? 34 : 26);
   return true;
 }
 
@@ -1287,22 +1377,24 @@ function syncClosedCheckboxes_(sheetState) {
 
   var lastRow = sheet.getLastRow();
   if (lastRow < 2) return;
-  var height = lastRow - 1;
+  var first = firstDataRow_(sheet);
+  var height = lastRow - first + 1;
+  if (height < 1) return;
 
-  var names = sheet.getRange(2, nameCol, height, 1).getValues();
-  var emails = sheet.getRange(2, emailCol, height, 1).getValues();
+  var names = sheet.getRange(first, nameCol, height, 1).getValues();
+  var emails = sheet.getRange(first, emailCol, height, 1).getValues();
 
   // One contiguous run of people, then everything below it. Two range writes
   // rather than a thousand: each setDataValidation call is a round trip.
   var lastPerson = 1;
   for (var i = 0; i < height; i++) {
     if (String(names[i][0]).trim() !== '' || String(emails[i][0]).trim() !== '') {
-      lastPerson = i + 2;
+      lastPerson = i + first;
     }
   }
 
   if (lastPerson >= 2) {
-    sheet.getRange(2, closedCol, lastPerson - 1, 1).insertCheckboxes();
+    sheet.getRange(first, closedCol, lastPerson - first + 1, 1).insertCheckboxes();
   }
   if (lastRow > lastPerson) {
     var blanks = sheet.getRange(lastPerson + 1, closedCol, lastRow - lastPerson, 1);
@@ -1313,7 +1405,8 @@ function syncClosedCheckboxes_(sheetState) {
 
 function ensureHeaders_(sheet, wanted) {
   var lastCol = sheet.getLastColumn();
-  var existing = lastCol > 0 ? sheet.getRange(1, 1, 1, lastCol).getValues()[0] : [];
+  var hRow = headerRow_(sheet);
+  var existing = lastCol > 0 ? sheet.getRange(hRow, 1, 1, lastCol).getValues()[0] : [];
   var have = {};
   existing.forEach(function (h) {
     if (h !== '') have[String(h).trim().toLowerCase()] = true;
@@ -1321,7 +1414,7 @@ function ensureHeaders_(sheet, wanted) {
   var toAdd = wanted.filter(function (h) { return !have[h.toLowerCase()]; });
   if (toAdd.length > 0) {
     var start = existing.filter(String).length > 0 ? lastCol + 1 : 1;
-    sheet.getRange(1, start, 1, toAdd.length).setValues([toAdd]);
+    sheet.getRange(hRow, start, 1, toAdd.length).setValues([toAdd]);
   }
 }
 
@@ -1479,7 +1572,7 @@ function courierPass_() {
       // with something to tell the student, tell them. Nothing else is
       // written, and the error still stops the run.
       if (e && e.blotterNotice) {
-        try { writeNotice_(sheetState.sheet, e.blotterNotice); } catch (ignored) {}
+        try { writeBanner_(sheetState.sheet, e.blotterNotice, null); } catch (ignored) {}
       }
       throw e;
     }
@@ -1490,7 +1583,7 @@ function courierPass_() {
     writePhaseBegun_ = true;
     // First, because it is the thing the student most needs to see and it must
     // land even if something below fails. Also clears a withdrawn notice.
-    writeNotice_(sheetState.sheet, notice);
+    writeBanner_(sheetState.sheet, notice, restingBanner_());
     writeBlotterColumns_(sheetState, response.rows);
     var added = addApprovedContacts_(ss, sheetState, foundState);
     syncClosedCheckboxes_(sheetState);
@@ -1727,7 +1820,8 @@ function readContacts_(ss) {
 
   var lastRow = sheet.getLastRow();
   var lastCol = sheet.getLastColumn();
-  var rows = lastRow > 1 ? sheet.getRange(2, 1, lastRow - 1, lastCol).getValues() : [];
+  var first = firstDataRow_(sheet);
+  var rows = lastRow >= first ? sheet.getRange(first, 1, lastRow - first + 1, lastCol).getValues() : [];
 
   var contacts = [];
   var allEmails = {};
@@ -1735,7 +1829,7 @@ function readContacts_(ss) {
   var unreadableAddresses = [];
 
   rows.forEach(function (row, i) {
-    var rowNumber = i + 2; // sheet row — the contract's join key
+    var rowNumber = i + first; // sheet row — the contract's join key
     var name = String(row[cols.name - 1]).trim();
     var firm = cols.firm > 0 ? String(row[cols.firm - 1]).trim() : '';
     var rawEmail = String(row[cols.email - 1] === null || row[cols.email - 1] === undefined
@@ -1813,14 +1907,15 @@ function readFoundTab_(ss) {
   }
 
   var lastRow = sheet.getLastRow();
-  var values = lastRow > 1 ? sheet.getRange(2, 1, lastRow - 1, sheet.getLastColumn()).getValues() : [];
+  var first = firstDataRow_(sheet);
+  var values = lastRow >= first ? sheet.getRange(first, 1, lastRow - first + 1, sheet.getLastColumn()).getValues() : [];
 
   var ignoredEmails = [];
   var approvals = []; // {rowNumber, name, email}
   var rejections = []; // rowNumbers marked No, to be rewritten as Ignored
   var emailsInFound = {};
   values.forEach(function (row, i) {
-    var rowNumber = i + 2;
+    var rowNumber = i + first;
     var mark = String(row[cols.add - 1]).trim().toLowerCase();
     var email = String(row[cols.email - 1]).trim();
     var name = String(row[cols.name - 1]).trim();
@@ -2203,13 +2298,15 @@ function lastRowWithContact_(sheetState) {
   var sheet = sheetState.sheet;
   var lastRow = sheet.getLastRow();
   if (lastRow < 2) return 1;
-  var names = sheet.getRange(2, sheetState.cols.name, lastRow - 1, 1).getValues();
-  var emails = sheet.getRange(2, sheetState.cols.email, lastRow - 1, 1).getValues();
+  var first = firstDataRow_(sheet);
+  if (lastRow < first) return headerRow_(sheet);
+  var names = sheet.getRange(first, sheetState.cols.name, lastRow - first + 1, 1).getValues();
+  var emails = sheet.getRange(first, sheetState.cols.email, lastRow - first + 1, 1).getValues();
   var last = 1;
   for (var i = 0; i < names.length; i++) {
     var hasName = String(names[i][0]).trim() !== '';
     var hasEmail = String(emails[i][0]).trim() !== '';
-    if (hasName || hasEmail) last = i + 2;
+    if (hasName || hasEmail) last = i + first;
   }
   return last;
 }
@@ -2294,7 +2391,7 @@ function asSheetDate_(value) {
 function findColumn_(sheet, headerName) {
   var lastCol = sheet.getLastColumn();
   if (lastCol < 1) return 0;
-  var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+  var headers = sheet.getRange(headerRow_(sheet), 1, 1, lastCol).getValues()[0];
   for (var i = 0; i < headers.length; i++) {
     if (String(headers[i]).trim().toLowerCase() === headerName.toLowerCase()) return i + 1;
   }
