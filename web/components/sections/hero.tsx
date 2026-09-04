@@ -97,7 +97,7 @@ export function Hero({
         aria-hidden="true"
         className="mt-[0.35em] h-[0.9em] w-[2px] shrink-0 bg-navy-500"
       />
-      The non-AI slop tracker that actually saves you time
+      A Google Sheet that automatically keeps your recruiting tracker current.
     </>
   );
 

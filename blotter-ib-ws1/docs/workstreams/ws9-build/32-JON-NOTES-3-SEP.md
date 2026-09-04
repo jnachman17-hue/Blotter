@@ -308,3 +308,7 @@ been handed off. That chat previously owned the film/animation work.
       it. Answered in chat: it can copy the master, but it cannot clear the
       contacts or replace the bound code, so three clicks stay with Jon. Not
       touched without his explicit yes.
+- [~] **11.7 The link-preview image** (`app/opengraph-image.tsx`): its alt text
+      and drawn headline carried "Recruiting truly sucks" and are fixed. Its
+      drawn sheet still shows the old columns (the agent's §11.5 note); redraw
+      it against the eleven real columns when the films are done.
