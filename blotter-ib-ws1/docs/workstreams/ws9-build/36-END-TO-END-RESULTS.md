@@ -1117,3 +1117,54 @@ only proof it took.
   into a capacity model.
 - Closed §4.2 and §4.3 of `26-SHEET-RESILIENCE.md`, and found the honest limit of
   the mid-run guard rather than assuming it had none.
+
+---
+
+## 18. What shipped, and what was cleaned up
+
+### 18.1 Shipped
+
+Merged as [#1](https://github.com/Jon-sOrg/Blotter-Claude/pull/1), version
+`2026-09-04.3`:
+
+- **Defect 1 fixed.** Bare dates built in the student's timezone, plus 95 checks
+  across nineteen timezones, verified to fail against both previous versions.
+- **`Start here` step 3 rewritten** (§8), with four checks locking the wording.
+- **`app/api/engine/e2e.ts`**, 38 checks against the rulebook, runnable in
+  process or against the deployed server.
+- **`app/api/design/selftest.ts`**, the §15.3 check. **Fails on purpose** while
+  defect 2 is unruled.
+
+**A note on the repository.** The local `main` and the fork's `main` have
+diverged by 193 commits, which predates this work and was not touched. **The
+fork's `main` is what deploys and it has everything.** An unpushed local commit
+of Jon's from 14:48 rode along inside the PR, so nothing was lost.
+
+### 18.2 The database, cleaned
+
+Test data removed on Jon's instruction, 4 September 2026. Dry-run first, exact
+ids named, and the destructive step run only after he confirmed the list.
+
+| Table | Before | After | What went |
+|---|---|---|---|
+| `leads` | 25 | **14** | 8 flagged `is_internal`, plus 3 of Jon's own funnel submissions from today |
+| `blotter_installs` | 8 | **1** | All 7 test installs from this session and before |
+| `blotter_keys` | 1 | **1** | Nothing. Kept deliberately |
+| `blotter_key_mismatches` | 0 | 0 | Nothing to remove |
+
+**The 14 leads kept are real students** from the Reddit round, several on `.edu`
+addresses. They were never in scope for deletion and were listed by name before
+anything ran.
+
+**The payment row was kept on purpose.** It records the $5 paid on a live card
+and refunded on 4 September, and `34-SWITCHING-ON-PAYMENTS.md` §5 says these
+rows are kept so a key that returns is recognised rather than looking unissued.
+It is also the only surviving evidence the money path was tested for real.
+
+**The one remaining install is pinned by it.** `blotter_keys.install_id` has a
+foreign key to `blotter_installs`, so `eacba921` cannot go while the payment row
+stands. That is the correct trade.
+
+**Sequencing mattered.** Two sheets still had their timers running, and deleting
+their rows would simply have recreated them fifteen minutes later. Jon stopped
+both first; the rows were then removed and stayed removed.
