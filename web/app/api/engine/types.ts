@@ -31,14 +31,18 @@ export interface EngineRequest {
    */
   key: string;
   /**
-   * A stable pseudonym for the Google account the script runs as, or `null`.
+   * Which sheet is asking. A random id minted once per spreadsheet.
    *
-   * **`null` when the courier could not read one, and never a hash of nothing**
-   * (amendment A3). Hashing an empty string would give every such install the
-   * same identity, and one key would unlock all of them. Absence is a state;
-   * it must not be a value.
+   * **A key belongs to a sheet, not to a person**, because Google gives this
+   * script no address for the account it runs as — the manifest asks for five
+   * scopes and none of them is a userinfo one. Adding the sixth would cost an
+   * extra line on the unverified-app consent screen and a forced
+   * re-authorisation for everybody already installed, and that screen is the
+   * biggest point at which a student abandons the install.
+   *
+   * Empty when an older script is asking, which is not an error.
    */
-  account: string | null;
+  install_id: string;
   /** Which build of the script is asking, so an old one can be told (§4.2). */
   courier_version: string;
   /** From the courier, never from the server's clock. ISO 8601 with timezone. */

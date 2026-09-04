@@ -39,21 +39,31 @@ function count(value: unknown, ceiling: number): number | null {
   return whole >= 0 && whole <= ceiling ? whole : null;
 }
 
-/** A UUID and nothing else, reused for the key/account pair below. */
 export interface KeyUse {
   key: string;
-  account_hash: string | null;
+  install_id: string;
 }
 
 /**
- * The key and account a run reported, if it reported any.
+ * The key a run reported, and which sheet reported it.
  *
  * **This lives on telemetry rather than the engine on purpose** (amendment
- * A2). Binding a key to an account is a write, and the engine's whole privacy
- * position is that it stores nothing — a claim that survives being checked
- * only if it stays literally true. Telemetry already writes, already receives
- * the install id, and is already fire-and-forget, so the recording belongs
- * here and the engine keeps to reading.
+ * A2). Binding is a write, and the engine's whole privacy position is that it
+ * stores nothing — a claim that survives being checked only if it stays
+ * literally true. Telemetry already writes, already receives the install id,
+ * and is already fire-and-forget, so the recording belongs here.
+ *
+ * **A key binds to a SHEET, not a person.** Google gives the script no address
+ * for the account it runs as, because the manifest asks for five scopes and
+ * none of them is a userinfo one — found by running the diagnostic on a real
+ * sheet rather than by reasoning about it. Adding the sixth scope would work
+ * and would cost an extra line on the unverified-app consent screen plus a
+ * forced re-authorisation for everyone already installed, and that screen is
+ * the single biggest point at which a student abandons the install.
+ *
+ * **What that costs, stated rather than glossed:** one person with two sheets
+ * and two people sharing a key look identical from here. Both produce a flag,
+ * and a human decides — which at this scale is the right place for it.
  */
 export function pickKeyUse(body: unknown): KeyUse | null {
   if (typeof body !== "object" || body === null || Array.isArray(body)) return null;
@@ -61,14 +71,9 @@ export function pickKeyUse(body: unknown): KeyUse | null {
   const key = typeof raw.key === "string" ? raw.key.trim() : "";
   if (key.length === 0 || key.length > 64) return null;
   if (!/^[A-Za-z0-9._-]+$/.test(key)) return null;
-  const hash = typeof raw.account === "string" ? raw.account.trim().toLowerCase() : "";
-  return {
-    key,
-    /* Absence stays absence all the way down (amendment A3). A hash of nothing
-       would be one identity shared by every install that could not read an
-       address, and one key would unlock all of them. */
-    account_hash: /^[0-9a-f]{64}$/.test(hash) ? hash : null,
-  };
+  const install = typeof raw.install_id === "string" ? raw.install_id.trim().toLowerCase() : "";
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(install)) return null;
+  return { key, install_id: install };
 }
 
 export interface InstallRow {

@@ -54,7 +54,7 @@ function req(
   return {
     version: 4,
     key: "",
-    account: null,
+    install_id: "test-install",
     courier_version: "test",
     now,
     student: { addresses: ["student@gmail.com", "student@utexas.edu"] },

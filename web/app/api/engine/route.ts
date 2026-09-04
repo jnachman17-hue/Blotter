@@ -43,7 +43,7 @@ import { supabaseAdmin, supabaseConfigured } from "@/lib/supabase-admin";
  * is an outage that locks every paying student out of their own spreadsheet,
  * which is far worse than a lapsed one getting a free afternoon.
  */
-async function refuse(key: string, account: string | null): Promise<NextResponse | null> {
+async function refuse(key: string): Promise<NextResponse | null> {
   if (!supabaseConfigured()) return null;
   const supabase = supabaseAdmin();
   if (supabase === null) return null;
@@ -52,7 +52,7 @@ async function refuse(key: string, account: string | null): Promise<NextResponse
   try {
     const { data, error } = await supabase
       .from("blotter_keys")
-      .select("status, account_hash, grace_until")
+      .select("status, grace_until")
       .eq("key", key)
       .maybeSingle();
     if (error) return null;
@@ -61,7 +61,7 @@ async function refuse(key: string, account: string | null): Promise<NextResponse
     return null;
   }
 
-  const verdict = verdictFor(key, account, record);
+  const verdict = verdictFor(key, record);
   if (verdict.allow) return null;
 
   return NextResponse.json(
@@ -103,7 +103,7 @@ export async function POST(request: Request) {
        account is a write and it lives on `/api/telemetry` instead, so the
        engine's "stores nothing" stays literally true (amendment A2). */
     if (enforcing()) {
-      const refusal = await refuse(parsed.key, parsed.account);
+      const refusal = await refuse(parsed.key);
       if (refusal !== null) return refusal;
     }
 

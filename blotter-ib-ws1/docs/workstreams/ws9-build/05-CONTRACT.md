@@ -167,7 +167,7 @@ answer is No.
 | `is_outbound` | Courier sets this: true when `from` is one of `student.addresses` |
 | `failed_recipients` | **Version 4.** The addresses a delivery-failure notice names. Empty on every other message. Replaces `body`, which no longer exists |
 | `key` | What the student pasted into `Settings → Blotter key`, or empty. Read by nothing until billing is switched on |
-| `account` | A pseudonym for the Google account the script runs as. **Omitted entirely when there is none — never a hash of an empty string**, because that would be one identity shared by every install that could not read an address |
+| `install_id` | Which sheet is asking. A random id minted once per spreadsheet. **A key belongs to a sheet, not to a person** — see below |
 | `courier_version` | Which build of the script is asking, so an old one can be told there is a newer one |
 | `ignored` | Addresses the student has already rejected in "found these". Never suggested again |
 | `version` | `4`, and only `4`. Anything else is refused with a 400 naming the fix |
@@ -315,6 +315,22 @@ knows from a response and leaves the rest alone. Neither rejects a stranger.
 
 **The test to apply is not "is this new" but "can an old reader be wrong
 without noticing".** If it can, bump. If it can only be *unaware*, do not.
+
+### The refinement, learned by applying the rule to a removal
+
+**`account` was removed on September 3 and the version did not move**, which
+looks like a contradiction of the table above. It is not, and the distinction
+is worth keeping.
+
+Removing a field forces a bump **because a reader gets nothing where it
+expected something**. But `account` was optional from the day it existed and
+**absence already had a defined, safe meaning**: no pseudonym sent meant "do not
+flag", and flagging never refused a run anyway. So a server still reading it
+receives `null`, behaves exactly as designed, and cannot be wrong.
+
+**The sharpened rule: removing a field is safe precisely when absence was
+already a state the reader handled correctly.** If a field's absence was never
+specified, removing it is a bump. If absence was always meaningful, it is not.
 
 **Version 4 gained three request fields and one response field under this rule
 and stayed at 4:** `key`, `account` and `courier_version` going out, and

@@ -1,4 +1,4 @@
-import { pickInstallRow } from "./payload";
+import { pickInstallRow, pickKeyUse } from "./payload";
 
 /**
  * The telemetry boundary, tested against the payload the courier really sends.
@@ -121,6 +121,31 @@ check("null", pickInstallRow(null, NOW), null);
    caller cannot make a broken install look healthy with a truthy string. */
 check("a truthy string is not success", pickInstallRow(courierPayload({ ok: "yes" }), NOW)?.ok, false);
 check("a missing ok is not success", pickInstallRow(courierPayload({ ok: undefined }), NOW)?.ok, false);
+
+/* A key binds to a SHEET. Google gives this script no address for the account
+   it runs as — five scopes, none of them a userinfo one — which the diagnostic
+   established on a live sheet rather than anybody reasoning about it. */
+{
+  const ID = "3f2a91c4-77b1-4d2e-9a63-0c5518ee7b04";
+  check("a key and the sheet that used it",
+    pickKeyUse({ key: "BLTR-2026-ABC", install_id: ID }),
+    { key: "BLTR-2026-ABC", install_id: ID });
+  check("no key, nothing to bind", pickKeyUse({ install_id: ID }), null);
+  check("an empty key is no key", pickKeyUse({ key: "  ", install_id: ID }), null);
+  check("a key with punctuation in it is refused",
+    pickKeyUse({ key: "k'; drop table--", install_id: ID }), null);
+  check("a very long key is refused",
+    pickKeyUse({ key: "x".repeat(65), install_id: ID }), null);
+  check("no install id, nothing to bind TO",
+    pickKeyUse({ key: "BLTR-2026-ABC" }), null);
+  check("an install id that is not a uuid is refused",
+    pickKeyUse({ key: "BLTR-2026-ABC", install_id: "student@example.com" }), null);
+  check("an email smuggled in as the id is refused",
+    pickKeyUse({ key: "BLTR-2026-ABC", install_id: "jamie@jpmorgan.com" }), null);
+  check("capitalisation in the id is normalised, not a second sheet",
+    pickKeyUse({ key: "k", install_id: ID.toUpperCase() })?.install_id, ID);
+  check("nothing at all", pickKeyUse(null), null);
+}
 
 console.log(
   failures === 0

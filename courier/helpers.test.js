@@ -66,7 +66,7 @@ const EXPORTS = [
   // typo in a hex paints a cell black on somebody's real sheet.
   'asSheetDate_', 'STATUS_STYLE', 'THEMES', 'CONTACTS_WIDTHS', 'FOUND_WIDTHS',
   'duplicateBlotterHeadings_', 'formulasInBlotterColumns_', 'overwrittenFormulaWarnings_',
-  'rowsThatMoved_', 'accountHash_', 'sanitiseDesign_', 'safeColour_', 'safeNumber_',
+  'rowsThatMoved_', 'sanitiseDesign_', 'safeColour_', 'safeNumber_',
   'safeCell_', 'statusStyle_', 'columnWidth_', 'numberFormat_', 'SETTING_KEY',
   'COURIER_VERSION', 'SCRIPT_URL',
   'instructionRows_', 'expectedSetup_', 'SETTING_INSTALL_ID', 'SETTING_HELP',
@@ -903,46 +903,29 @@ function sheetWithHeaders(name, headerRowCells, extraRows = []) {
 }
 
 /* ------------------------------------------------------------------ *
- * The account pseudonym, and the hole that had to be closed first.
+ * A key belongs to a SHEET, not a person.
  *
- * Amendment A3: Session.getEffectiveUser().getEmail() really can come back
- * empty. Hash that and every install in the same state shares one identity,
- * and a single key unlocks all of them. Absence is a state; it must never
- * become a value.
+ * The account pseudonym that used to live here is gone. Google gives this
+ * script no address for the account it runs as — the manifest asks for five
+ * scopes and none of them is a userinfo one — which the diagnostic established
+ * on a live sheet rather than anybody reasoning about it. Adding the sixth
+ * scope would have cost an extra line on the unverified-app consent screen and
+ * a forced re-authorisation for everyone installed, and that screen is where
+ * students already abandon the install.
+ *
+ * The install id was always the better answer: minted once per sheet, and it
+ * survives a re-paste because script properties belong to the script project
+ * rather than the code.
  * ------------------------------------------------------------------ */
 {
-  global.Utilities.computeDigest = (_alg, text) => {
-    // A stand-in that is deterministic and collides for equal inputs, which is
-    // all these assertions need. The real digest is Google's.
-    let h = 0;
-    for (let i = 0; i < text.length; i++) h = (h * 31 + text.charCodeAt(i)) >>> 0;
-    return Array.from({ length: 32 }, (_, i) => ((h >>> (i % 4 * 8)) & 0xff) - 128);
-  };
-  global.Utilities.DigestAlgorithm = { SHA_256: 'SHA_256' };
-  global.Utilities.Charset = { UTF_8: 'UTF_8' };
-
-  const withEmail = (email) => {
-    global.Session = { getEffectiveUser: () => ({ getEmail: () => email }) };
-    return new Function('box', `${src}\nObject.assign(box, {accountHash_});`);
-  };
-  const hashFor = (email) => {
-    const b = {};
-    withEmail(email)(b);
-    return b.accountHash_();
-  };
-
-  eq('an empty address produces NO hash at all', hashFor(''), null);
-  eq('whitespace is still nothing', hashFor('   '), null);
-  eq('and so is an address Apps Script could not read', hashFor(null), null);
-  eq('a real address produces a hash', typeof hashFor('jon@utexas.edu'), 'string');
-  eq('the same person hashes the same twice',
-    hashFor('jon@utexas.edu'), hashFor('jon@utexas.edu'));
-  eq('capitalisation is not a different person',
-    hashFor('Jon@UTexas.edu'), hashFor('jon@utexas.edu'));
-  eq('two people are two identities',
-    hashFor('jon@utexas.edu') !== hashFor('someone@else.edu'), true);
-  eq('and an empty one is not quietly the same as a real one',
-    hashFor('') === hashFor('jon@utexas.edu'), false);
+  eq('nothing hashes an account any more',
+    /accountHash_|ACCOUNT_SALT/.test(src), false);
+  // `effectiveUserEmail_` survives, and legitimately: the calendar decline path
+  // needs it to notice when the STUDENT declined their own invite. It is no
+  // longer anybody's identity.
+  eq('the request carries the sheet id instead', /install_id: installId_\(\)/.test(src), true);
+  eq('the manifest still asks for no userinfo scope, which is why',
+    fs.readFileSync(path.join(__dirname, 'appsscript.json'), 'utf8').includes('userinfo'), false);
 }
 
 /* ------------------------------------------------------------------ *

@@ -24,7 +24,51 @@ So billing needs one new thing on the wire, and everything else follows.
 
 ---
 
-## 2. Identity — the decision the rest hangs on
+## 2. Identity — SUPERSEDED September 3, 2026. Keys bind to a sheet.
+
+> ⚠ **Everything in this section below the line is kept because the reasoning
+> was sound and may matter again. It is no longer what is built.**
+>
+> **What changed: the evidence, not the argument.** The whole section assumed
+> `Session.getEffectiveUser().getEmail()` returns an address. **On a live sheet
+> it returns nothing** — and not because of the account type. `appsscript.json`
+> declares five scopes: `gmail.readonly`, `calendar.readonly`,
+> `spreadsheets.currentonly`, `script.external_request`, `script.scriptapp`.
+> **None of them is a userinfo scope, so there was never an address to read.**
+> It would have said the same on a `.edu`, and there is no point testing one.
+>
+> **Found by running it**, not by reasoning — the `Blotter → Check this sheet`
+> diagnostic existed precisely because amendment A3 could not be settled from
+> the code, and it paid for itself on its first use.
+>
+> **Jon's ruling: bind to the sheet, not the person.** Adding the sixth scope
+> would work, and would cost an extra line on Google's unverified-app consent
+> screen plus a forced re-authorisation for everybody already installed. **That
+> screen is already the single biggest point at which a student abandons the
+> install** (`17-INSTALL-OBSERVED.md` §2, defect one). Spending friction there
+> to make billing tidier is the wrong trade.
+>
+> **The install id already does the job.** Minted once per sheet, already sent
+> every run, and it survives a re-paste because script properties belong to the
+> script project rather than the code. Only a brand-new copy of the sheet
+> changes it — and since binding is soft, that produces one flag for Jon to
+> clear rather than a lockout.
+>
+> **What is lost, stated rather than glossed:** with a per-sheet identity, one
+> person with two sheets and two people sharing a key are indistinguishable.
+> Both produce a flag. Soft binding means a human decides either way, which at
+> this scale is the right place for that decision.
+>
+> **A3 was still the right call and is why nothing broke.** Because the field
+> was omitted rather than sent blank, no install ever silently shared an
+> identity with another. A hash of the empty string would have given every
+> install one identity and let one key unlock all of them.
+>
+> **A4's graduation reasoning no longer applies** — a sheet id does not
+> graduate — but it was correct, and it is kept below in case a userinfo scope
+> is ever added for some other reason.
+
+---
 
 ### Not the install id
 
