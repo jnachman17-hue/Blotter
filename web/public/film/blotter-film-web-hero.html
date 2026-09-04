@@ -302,11 +302,7 @@ body.bare .field{display:none}
   glance does not get read. The name column is `max-content`, so `Status` does
   not pay for `Last contact` in a card that has no `Last contact` in it.
 */
-.cmoved{margin-top:3px;display:grid;grid-template-columns:max-content 1fr;
-  column-gap:6px;font-size:11.5px;line-height:14px;color:var(--ink-muted)}
-.cmoved .val{white-space:nowrap}
-.cmoved .from{color:var(--ink-faint)}
-.cmoved .to{font-weight:500;color:var(--ink)}
+.cwhen{display:block;margin-top:2px;font-size:11.5px;line-height:14px;color:var(--ink-muted);white-space:nowrap}
 
 /* ======================================================== the connector ==== */
 /*
@@ -646,7 +642,7 @@ const ROWS = [
     status:"Sent", days:"6", last:"1/10/26", attempts:"1", next:"",
     to:{ days:"0", last:"1/16/26", attempts:"2" } },
 
-  { name:"Ken Molise", title:"Vice President", firm:"Moelis & Co",
+  { name:"Ken Molise", title:"Vice President", firm:"Moelis",
     status:"Call done", days:"1", last:"1/13/26", attempts:DASH, next:"" },
 
   /* Beat 3. `Days` was the one state counting forwards, so a booked call drops
@@ -669,18 +665,21 @@ const ROWS = [
 const CUES = [
   { id:"reply", row:0, source:"gmail",
     event:"Jamie Diamond replied",
+    when:"Jan 16 · 10:42 AM",
     moved:[ { column:"Status",   from:"Sent", to:"Replied" },
             { column:"Days",     from:"5",    to:"0" },
             { column:"Attempts", from:"2",    to:"—" } ] },
 
   { id:"followup", row:2, source:"gmail",
     event:"Follow-up sent to Larry Sync",
+    when:"Jan 16 · 9:15 AM",
     moved:[ { column:"Attempts",     from:"1",    to:"2" },
             { column:"Days",         from:"6",    to:"0" },
             { column:"Last contact", from:"1/10", to:"1/16" } ] },
 
   { id:"chat", row:4, source:"calendar",
     event:"Coffee chat with David Salmon",
+    when:"Jan 15 · 4:20 PM",
     moved:[ { column:"Status",    from:"Sent", to:"Call scheduled" },
             { column:"Next call",              to:"1/17 @ 2:00 PM" },
             { column:"Days",      from:"1",    to:"—" } ] },
@@ -804,17 +803,11 @@ const fbar = { va:$("fstack").querySelector(".va"), vb:$("fstack").querySelector
 (function cards(){
   $("cards").innerHTML = CUES.map(c => {
     const mark = c.source === "calendar" ? CAL_SVG : GMAIL_SVG;
-    const rows = c.moved.map(m =>
-        `<span>${m.column}</span>`
-      + `<span class="val">`
-      +   (m.from !== undefined ? `<span class="from">${m.from} → </span>` : "")
-      +   `<span class="to">${m.to}</span>`
-      + `</span>`).join("");
     return `<div class="card" id="card-${c.id}">`
       + `<span class="cmark">${mark}</span>`
       + `<span class="ctext">`
       +   `<span class="cevent">${c.event}</span>`
-      +   `<span class="cmoved">${rows}</span>`
+      +   `<span class="cwhen">${c.when}</span>`
       + `</span></div>`;
   }).join("");
 })();

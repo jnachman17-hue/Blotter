@@ -16,8 +16,6 @@
  * the connector points at has `Last contact` in it.
  */
 
-import { Fragment } from "react";
-
 import { CalendarMark, GmailMark } from "@/components/google-marks";
 
 export interface CellChange {
@@ -32,6 +30,14 @@ export interface ActivityCue {
   source: "gmail" | "calendar";
   /** What happened, in the reader's words rather than the engine's. */
   event: string;
+  /** When it happened, as a notification would say it: `Jan 16 · 10:42 AM`. */
+  when: string;
+  /**
+   * The cells the event moved. Kept as the record of what the row does; not
+   * drawn. A card that listed them was tried on September 3, 2026 and reverted
+   * on September 4 on Jon's ruling: the card is a notification, and the
+   * animation already shows the cells change. Listing them made it a changelog.
+   */
   moved: CellChange[];
   /** Zero-based index of the hero row this cue maps to. */
   targetRow: number;
@@ -47,27 +53,8 @@ export function ActivityCueCard({ cue }: { cue: ActivityCue }) {
         <div className="text-[13px] leading-[16px] font-semibold whitespace-nowrap text-ink">
           {cue.event}
         </div>
-        {/*
-          One change per line, column names in their own column.
-
-          Three changes set as running text wrapped mid-change, and a cue in the
-          margin that cannot be read at a glance does not get read. The name
-          column is `max-content` rather than a fixed width so each card spends
-          only what its own longest heading needs — `Status` does not pay for
-          `Last contact` in a card that has no `Last contact` in it.
-        */}
-        <div className="mt-[3px] grid grid-cols-[max-content_1fr] gap-x-1.5 text-[11.5px] leading-[14px] text-ink-muted">
-          {cue.moved.map((change) => (
-            <Fragment key={change.column}>
-              <span>{change.column}</span>
-              <span className="whitespace-nowrap">
-                {change.from !== undefined && (
-                  <span className="text-ink-faint">{change.from} → </span>
-                )}
-                <span className="font-medium text-ink">{change.to}</span>
-              </span>
-            </Fragment>
-          ))}
+        <div className="mt-[2px] text-[11.5px] leading-[14px] whitespace-nowrap text-ink-muted">
+          {cue.when}
         </div>
       </div>
     </div>

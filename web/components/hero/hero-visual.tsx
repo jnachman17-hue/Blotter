@@ -99,7 +99,7 @@ const HERO_ROWS: SheetRow[] = [
     cells: [
       "Ken Molise",
       "Vice President",
-      "Moelis & Co",
+      "Moelis",
       { status: "Call done" },
       "1",
       "1/13/26",
@@ -145,6 +145,7 @@ const HERO_CUES: ActivityCue[] = [
   {
     source: "gmail",
     event: "Jamie Diamond replied",
+    when: "Jan 16 · 10:42 AM",
     /* They wrote last, so the ball is yours, the clock resets, and the count of
        times you have written since they wrote back drops to nothing. */
     moved: [
@@ -157,6 +158,7 @@ const HERO_CUES: ActivityCue[] = [
   {
     source: "gmail",
     event: "Follow-up sent to Larry Sync",
+    when: "Jan 16 · 9:15 AM",
     /* The status does not move and that is the point of the column beside it:
        `Sent` reads the same on a first email and a third. `Attempts` is the
        only thing on the sheet that tells them apart. */
@@ -170,6 +172,7 @@ const HERO_CUES: ActivityCue[] = [
   {
     source: "calendar",
     event: "Coffee chat with David Salmon",
+    when: "Jan 15 · 4:20 PM",
     /* `Days` was the one state counting forwards, so a scheduled call drops it
        and `Next call` carries the date instead. */
     moved: [

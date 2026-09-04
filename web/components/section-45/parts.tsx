@@ -171,7 +171,7 @@ export const CONTACTS: Contact[] = [
     attempts: DASH, nextCall: "", lastCall: "",
   },
   {
-    name: "Ken Molise", title: "Vice President", firm: "Moelis & Co",
+    name: "Ken Molise", title: "Vice President", firm: "Moelis",
     email: "ken.molise@moelis.com",
     status: "Call done", days: "1", lastContact: "1/13/26",
     attempts: DASH, nextCall: "", lastCall: "1/15/26",
