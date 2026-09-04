@@ -27,18 +27,24 @@ export default function BillingDonePage() {
         <p>
           Your payment has gone through and Stripe has emailed you a receipt.
         </p>
+        {/*
+          "You named it before paying, so it is already attached to this
+          purchase" went on 4 September 2026. Jon, straight after paying:
+          it makes no sense. He was right. It explains our mechanism rather
+          than answering the only question a person has at that moment,
+          which is what happens next.
+        */}
         <p>
           <strong className="font-semibold text-ink">
-            There is nothing to paste into your sheet.
+            Your sheet starts updating again on its own.
           </strong>{" "}
-          You named it before paying, so it is already attached to this purchase. Your
-          tracker picks it up on its next run, within fifteen minutes, and you can carry on
-          in the meantime.
+          There is nothing to paste in and nothing else to set up. It picks this up on its
+          next run, within fifteen minutes.
         </p>
         <p>
-          To see it now, open the <strong className="font-semibold text-ink">Blotter</strong>{" "}
-          menu in your sheet and choose{" "}
-          <strong className="font-semibold text-ink">Step 2: Run once now</strong>.
+          To see it straight away, open the{" "}
+          <strong className="font-semibold text-ink">Blotter</strong> menu in your sheet and
+          choose <strong className="font-semibold text-ink">Step 2: Run once now</strong>.
         </p>
       </div>
 
