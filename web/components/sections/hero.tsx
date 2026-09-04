@@ -250,20 +250,6 @@ export function Hero({
                   full
                   className="desk:w-auto"
                 />
-                {/*
-                  Under the button, September 4, 2026. Jon: make it obvious
-                  this is free, that there is no catch, and that setup is
-                  short. Before this the word "free" appeared on the landing
-                  page exactly once, as the button's own label, which is the
-                  one place a reader discounts it.
-
-                  "About three minutes" is the whole journey. The setup pages
-                  say two for the numbered steps, which is the same claim
-                  measured from a later starting line.
-                */}
-                <p className="mt-3 text-small leading-[1.5] text-ink-muted">
-                  Free. No card, nothing to install. Setup takes about three minutes.
-                </p>
               </div>
 
               {/*

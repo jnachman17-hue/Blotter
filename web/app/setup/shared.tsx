@@ -58,9 +58,17 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <Link href="/" aria-label="Blotter, back to the home page" className="text-navy-900">
             <BlotterLockup />
           </Link>
-          <Link href={POLICY_HREF} className={`text-small ${LINK}`}>
-            Privacy
-          </Link>
+          {/* Both, from September 4, 2026. The terms were reachable from the
+              footer and the privacy page only, and never from the two pages a
+              student actually reads before granting access to their Gmail. */}
+          <div className="flex items-center gap-5">
+            <Link href={POLICY_HREF} className={`text-small ${LINK}`}>
+              Privacy
+            </Link>
+            <Link href="/terms" className={`text-small ${LINK}`}>
+              Terms
+            </Link>
+          </div>
         </div>
       </header>
       <main className="mx-auto max-w-[860px] px-5 pt-12 pb-24 sm:px-6 sm:pt-16">{children}</main>
