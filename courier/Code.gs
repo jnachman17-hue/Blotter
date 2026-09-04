@@ -1012,7 +1012,9 @@ function sortContacts_(mode) {
       var firm = cols.firm > 0 ? String(row[cols.firm - 1]).trim().toLowerCase() : '';
       var status = cols.status > 0 ? row[cols.status - 1] : '';
       // Longest-waiting first inside any group, which is the order
-      // ENGINE-RULES §4 asks for. A dash is not a number and sorts last.
+      // ENGINE-RULES §4 asks for. A dash is not a number; it becomes 0 and
+      // so sorts first within its group. Harmless: Days is a dash exactly
+      // where the status makes it one, so no group ever mixes the two.
       var days = cols.days > 0 ? Number(row[cols.days - 1]) : NaN;
       var stale = isNaN(days) ? 0 : 9999 - days;
 
