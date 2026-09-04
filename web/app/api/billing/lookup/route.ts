@@ -53,10 +53,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ known: false, reason: "not_configured" });
   }
 
+  /* A prefix is a RANGE, not a LIKE. `install_id` is a uuid column and
+     Postgres has no `~~` operator for uuid, so `like` errors outright
+     ("operator does not exist: uuid ~~ unknown"). The first eight hex
+     characters bound a contiguous span of uuids, and comparing uuids is
+     exactly what the primary key index is for. So this stays one indexed
+     lookup rather than a cast, a generated column, or a scan. */
   const q = supabase.from("blotter_installs").select("install_id, first_seen, last_seen");
   const { data: installs, error } = FULL.test(raw)
     ? await q.eq("install_id", raw)
-    : await q.like("install_id", `${raw}%`);
+    : await q
+        .gte("install_id", `${raw}-0000-0000-0000-000000000000`)
+        .lte("install_id", `${raw}-ffff-ffff-ffff-ffffffffffff`);
 
   if (error) return NextResponse.json({ known: false, reason: "lookup_failed" });
 
