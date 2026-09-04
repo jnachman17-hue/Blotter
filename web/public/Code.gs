@@ -43,7 +43,7 @@
 
 var CONTRACT_VERSION = 4;
 
-var COURIER_VERSION = '2026-09-04.2';
+var COURIER_VERSION = '2026-09-04.3';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -463,8 +463,10 @@ function instructionRows_() {
     R('note', 'Most people have one. Add more only if you send from several addresses that all arrive in this inbox, such as a university address you reply as. Blotter reads the mailbox of the account this sheet is in, so an address on a different Google account will not work. Miss an address you send from and every row on those conversations reads backwards.'),
     R('step', '2.  File \u2192 Settings \u2192 Time zone. Set it to where you live.'),
     R('note', 'Day counts turn over at midnight in whatever this says, and a copy keeps the time zone of whoever built it.'),
-    R('step', '3.  Contacts tab \u2192 add the people you are networking with.'),
-    R('note', 'Name and Email are the two that matter. Paste addresses rather than typing them where you can: a hyphen your keyboard autocorrects is not the hyphen an email address uses. Blotter only looks at conversations with the people in this tab, so an empty sheet finds nothing. That is correct, not a fault.'),
+    R('step', '3.  Contacts tab \u2192 paste in everyone you are already networking with.'),
+
+    R('note', 'You almost certainly track this somewhere already. Bring that list over. Name and Email are the two columns that matter, and Blotter only watches conversations with the people in this tab, so anyone missing here is invisible to it.'),
+    R('note', 'From here on this is your tracker. Add new people here as you meet them, and paste addresses rather than typing them: a hyphen your keyboard autocorrects is not the hyphen an email address uses. Blotter also suggests people it sees in your threads, on the Found tab, so the list grows on its own once it is running.'),
     R('step', '4.  Blotter menu \u2192 Start automatic updates.'),
     R('slot', '[ screenshot: Blotter menu, Start automatic updates ]',
       'https://blotterib.com/setup/menu-updates.png', 220),
@@ -1578,7 +1580,7 @@ function badPretendValue_(value) {
     'against today and look exactly like a working run.';
 }
 
-function isoInStudentZone_(p) {
+function instantInStudentZone_(p) {
   var wanted = Date.UTC(p.y, p.mo - 1, p.d, p.h, p.mi, p.s);
   var guess = new Date(wanted);
   for (var i = 0; i < 2; i++) {
@@ -1588,7 +1590,11 @@ function isoInStudentZone_(p) {
     if (delta === 0) break;
     guess = new Date(guess.getTime() + delta);
   }
-  return toIso_(guess);
+  return guess;
+}
+
+function isoInStudentZone_(p) {
+  return toIso_(instantInStudentZone_(p));
 }
 
 function positiveOrDefault_(value, defaultValue) {
@@ -2065,7 +2071,10 @@ function asSheetDate_(value) {
   var text = String(value).trim();
   var bare = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text);
 
-  if (bare) return new Date(Number(bare[1]), Number(bare[2]) - 1, Number(bare[3]), 12, 0, 0);
+  if (bare) {
+    return instantInStudentZone_(
+      { y: Number(bare[1]), mo: Number(bare[2]), d: Number(bare[3]), h: 12, mi: 0, s: 0 });
+  }
   if (/^\d{4}-\d{2}-\d{2}T/.test(text)) {
     var d = new Date(text);
     if (!isNaN(d.getTime())) return d;

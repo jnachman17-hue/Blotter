@@ -7,6 +7,6 @@
  * script ever disagree, so a stale entry here cannot survive a test run.
  */
 
-export const SCRIPT_VERSION = "2026-09-04.2";
-export const SCRIPT_SHA256 = "7f37ac5812bd77a5bc169e8ee4e5f6b5f05b24fbd3c1223cd7f4fe8d6d9ea9ed";
-export const SCRIPT_BYTES = 84878;
+export const SCRIPT_VERSION = "2026-09-04.3";
+export const SCRIPT_SHA256 = "5b353d65f1bd58a9a0c145a22e1d4f98920d5d59114ded2c50c740800b57e1ad";
+export const SCRIPT_BYTES = 85280;

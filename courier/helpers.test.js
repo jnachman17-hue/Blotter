@@ -394,10 +394,16 @@ const { asSheetDate_, STATUS_STYLE, THEMES, CONTACTS_WIDTHS, FOUND_WIDTHS,
   // the manifest's timezone and Sheets renders in the spreadsheet's, which the
   // student sets. Midnight has no slack to absorb the gap, so a Pacific sheet
   // rendered midnight Chicago as 10pm the day before and every date read one
-  // day early. Noon leaves twelve hours either way, which covers every
-  // timezone a student can choose.
-  ok('bare date sits at noon, so no timezone can move its day',
-     bare.getHours() === 12 && bare.getMinutes() === 0);
+  // day early.
+  //
+  // Noon alone was not enough. It cured the west and left the east reading a
+  // day late, because the gap between Chicago and Auckland is eighteen hours
+  // and slack cannot close it. The date is built in the student's own zone
+  // now, so the assertion is about what the STUDENT sees — which is the thing
+  // that was wrong both times. See "a bare date keeps its day in every
+  // timezone" below.
+  ok('bare date sits at noon in the sheet timezone',
+     formatDate(bare, TZ, 'yyyy-MM-dd HH:mm:ss') === '2026-09-02 12:00:00');
 
   const stamped = asSheetDate_('2026-09-03T14:00:00-07:00');
   ok('full timestamp is a Date', stamped instanceof Date);
@@ -418,6 +424,54 @@ const { asSheetDate_, STATUS_STYLE, THEMES, CONTACTS_WIDTHS, FOUND_WIDTHS,
     const d = asSheetDate_(iso);
     const parts = iso.split('-').map(Number);
     ok('round trip ' + iso, d.getFullYear() === parts[0] && d.getMonth() === parts[1] - 1 && d.getDate() === parts[2]);
+  });
+}
+
+// A bare date keeps its day in every timezone a student can set.
+//
+// This is the check the project has now paid for twice. The first version
+// built midnight in the script's zone and every sheet WEST of Chicago read a
+// day early. The second built noon in the script's zone, which fixed the west
+// and broke everything at UTC+7 or further EAST, where noon Chicago is already
+// tomorrow. Neither fault was visible from Chicago, and the suite pinned the
+// sheet timezone to Chicago, so neither fault was visible here either.
+//
+// Every case below fails against both of those versions.
+// ---------------------------------------------------------------------------
+{
+  /** A fresh sandbox whose spreadsheet timezone is `tz`. */
+  function boxFor(tz) {
+    const saved = global.SpreadsheetApp;
+    global.SpreadsheetApp = { getActiveSpreadsheet: () => ({ getSpreadsheetTimeZone: () => tz }) };
+    try {
+      const b = {};
+      new Function('box', `${src}\nObject.assign(box, {${EXPORTS.join(', ')}});`)(b);
+      // `studentTimeZone_` caches on first use, and every call below happens
+      // after the stub is put back. Prime it while the stub still says `tz`.
+      b.asSheetDate_('2000-01-01');
+      return b;
+    } finally {
+      global.SpreadsheetApp = saved;
+    }
+  }
+
+  const zones = [
+    'Pacific/Honolulu', 'America/Anchorage', 'America/Los_Angeles', 'America/Denver',
+    'America/Chicago', 'America/New_York', 'America/Sao_Paulo', 'Europe/London',
+    'Europe/Berlin', 'Africa/Johannesburg', 'Asia/Kolkata', 'Asia/Dhaka',
+    'Asia/Bangkok', 'Asia/Singapore', 'Asia/Tokyo', 'Australia/Sydney',
+    'Pacific/Auckland', 'Pacific/Kiritimati', 'Etc/UTC',
+  ];
+  // Midsummer and midwinter, so both sides of every DST rule are covered, plus
+  // the two days the American clocks actually move.
+  const dates = ['2026-01-06', '2026-03-08', '2026-07-04', '2026-11-01', '2026-12-31'];
+
+  zones.forEach((tz) => {
+    const asDate = boxFor(tz).asSheetDate_;
+    dates.forEach((iso) => {
+      const rendered = formatDate(asDate(iso), tz, 'yyyy-MM-dd HH:mm:ss');
+      ok(`${iso} still reads ${iso} on a sheet set to ${tz}`, rendered.slice(0, 10) === iso);
+    });
   });
 }
 
@@ -886,6 +940,54 @@ function sheetWithHeaders(name, headerRowCells, extraRows = []) {
 
   eq('a long scramble is capped at three examples',
     box.rowsThatMoved_(state(['x', 'y'], ['x@x.com', 'y@y.com']), 3, 4).length, 2);
+
+  // A contact with NO email address, dragged past one that has one.
+  //
+  // Jon hit exactly this during the live test on 4 September 2026: two of the
+  // four rows on the sheet had no address at all, and one of those was the row
+  // he dragged. The guard compares addresses, so the case worth proving is that
+  // an EMPTY address is still an identity — otherwise a student whose sheet
+  // holds a few not-yet-filled-in people has rows the guard cannot see.
+  const mixed = (namesNow, emailsNow) => ({
+    sheet: {
+      getRange: (row, col, height) => ({
+        getValues: () => (col === 1 ? namesNow : emailsNow)
+          .slice(0, height).map((v) => [v]),
+      }),
+    },
+    cols: { name: 1, email: 4 },
+    contacts: [
+      { row: 3, name: 'Ana Vice', emails: [] },
+      { row: 4, name: 'Sam Dealer', emails: ['jnachman17@gmail.com'] },
+    ],
+  });
+
+  eq('an addressless row sitting still is not a move',
+    box.rowsThatMoved_(mixed(['Ana Vice', 'Sam Dealer'], ['', 'jnachman17@gmail.com']), 3, 4), []);
+
+  const dragged = box.rowsThatMoved_(
+    mixed(['Sam Dealer', 'Ana Vice'], ['jnachman17@gmail.com', '']), 3, 4);
+  eq('an addressless row dragged past an addressed one is caught', dragged.length, 2);
+  eq('and it names the person who was there',
+    dragged[0].includes('row 3 was Ana Vice and is now Sam Dealer'), true);
+
+  // Two addressless rows swapping with each other genuinely cannot be seen,
+  // and that is the honest limit of an address-based guard. Recorded so it is
+  // a known boundary rather than a surprise: neither row has any mail to
+  // attribute, so both read `Not emailed` whichever line they sit on, and
+  // swapping them moves nothing that Blotter writes.
+  const twoBlank = {
+    sheet: { getRange: (row, col, height) => ({
+      getValues: () => (col === 1 ? ['Bo Junio', 'Ana Vice'] : ['', ''])
+        .slice(0, height).map((v) => [v]) }) },
+    cols: { name: 1, email: 4 },
+    contacts: [
+      { row: 3, name: 'Ana Vice', emails: [] },
+      { row: 4, name: 'Bo Junio', emails: [] },
+    ],
+  };
+  eq('two addressless rows swapping is invisible, and harmless',
+    box.rowsThatMoved_(twoBlank, 3, 4), []);
 }
 
 /* The support handle and the way out, both of which have to be in the SHEET —
@@ -903,6 +1005,18 @@ function sheetWithHeaders(name, headerRowCells, extraRows = []) {
     /add any columns you like, anywhere/i.test(text), true);
   eq('and that formulas in their own columns are safe',
     /put formulas in them/i.test(text), true);
+
+  // Step 3 is where a student either populates their tracker or gives up, and
+  // the old wording carried neither idea it needed. Raised by Jon reading it
+  // cold, 4 September 2026. Asserted so the copy cannot quietly regress.
+  eq('Start here tells the student to bring the list they already keep',
+    /you almost certainly track this somewhere already/i.test(text), true);
+  eq('and that this becomes their tracker from now on',
+    /from here on this is your tracker/i.test(text), true);
+  eq('and it still warns about autocorrected hyphens in addresses',
+    /hyphen your keyboard autocorrects/i.test(text), true);
+  eq('and it still points at the Found tab as how the list grows',
+    /found tab/i.test(text), true);
   eq('and which headings to leave alone', /Leave alone/i.test(text), true);
   eq('and that a formula in a Blotter column will not survive',
     /will not survive/i.test(text), true);

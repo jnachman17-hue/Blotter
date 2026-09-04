@@ -732,7 +732,7 @@ export const DESIGN_VERSION = "2026-09-04.1";
  * for exactly this — so nobody runs a stale script for months without knowing
  * (§4.2).
  */
-export const CURRENT_COURIER_VERSION = "2026-09-04.2";
+export const CURRENT_COURIER_VERSION = "2026-09-04.3";
 
 /**
  * Where the current script actually lives.
