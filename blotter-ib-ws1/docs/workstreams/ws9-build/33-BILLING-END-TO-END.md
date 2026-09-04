@@ -813,3 +813,37 @@ tab in the sheet. Either build it or delete it.
    recommendation in §3 avoids needing one. If Jon wants belt and braces on a
    paid student never losing their key, that is a Resend account and one route,
    and it is the only new dependency this design would otherwise add.
+
+
+---
+
+## 12. Found while verifying this document (4 September 2026)
+
+- [x] **12.1 The notice banner had no colours, and had not since it was written.**
+      `NOTICE_STYLES` declared `fill`/`text`; `writeBanner_` has always read
+      `style.bg` and `style.fg`. Every notice resolved to `undefined` on both,
+      so a notice rendered with no fill and no colour. On the refusal path the
+      write sits inside `catch (ignored)`, so a student whose access was
+      withdrawn could have seen nothing at all. Fixed to `bg`/`fg`, matching
+      `STATUS_STYLE`, and a test now fails if the keys ever diverge again.
+      **This is the channel the whole enforcement design depends on, and the
+      reason an email list matters less than it looks. It was broken.**
+
+- [ ] **12.2 The key binds through the wrong request, and so never binds.**
+      `pickKeyUse` reads `key` from the telemetry body, but `telemetryPayload_`
+      does not send one. The **engine** request does (`courier/Code.gs`, `key:
+      settings.blotterKey`), and the engine route already uses it for
+      `refuse(parsed.key)`.
+
+      **Recommendation: bind in the engine route, not in telemetry.** The engine
+      call is mandatory: without it the product does not work. Telemetry is
+      opt-out by design, and the Settings tab tells students they may clear it.
+      Binding a paid key through a channel a student is invited to switch off
+      means a paying customer can be unable to bind, with no message saying why.
+      Jon to rule before either is built on.
+
+- [ ] **12.3 `https://blotterib.com/billing` is a 404** and it is what the
+      blocked notice links to. It must exist before enforcement is switched on.
+
+- [ ] **12.4 `NOTICE_TAB_COLOUR` is declared and never referenced.** Either
+      colour the tab on a notice or delete it.

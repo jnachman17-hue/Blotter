@@ -54,10 +54,17 @@ var COL_CLOSED = 'Closed';
 // contract's join key. A banner row above the headers would move every data
 // row down one and break that key in eleven places.
 var NOTICE_WIDTH = 6;
+// `bg`/`fg`, not `fill`/`text`. They were `fill`/`text` from the day they were
+// written and `writeBanner_` has always read `style.bg` and `style.fg`, so
+// every notice resolved to undefined and reached setBackground and
+// setFontColor with nothing in it. A notice therefore rendered with no colour
+// at all, and on the refusal path, where the write sits inside catch (ignored),
+// a student whose access was withdrawn could have seen no banner whatsoever.
+// STATUS_STYLE has used bg/fg since the beginning; this now matches it.
 var NOTICE_STYLES = {
-  info:    { fill: '#e8f0fe', text: '#1a3d6d' },
-  warning: { fill: '#fdf0d5', text: '#7a4c00' },
-  blocked: { fill: '#fbe3e0', text: '#8c1d12' }
+  info:    { bg: '#e8f0fe', fg: '#1a3d6d' },
+  warning: { bg: '#fdf0d5', fg: '#7a4c00' },
+  blocked: { bg: '#fbe3e0', fg: '#8c1d12' }
 };
 var NOTICE_TAB_COLOUR = { info: '#4a7fd4', warning: '#d9a441', blocked: '#c0392b' };
 

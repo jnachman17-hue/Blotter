@@ -8,5 +8,5 @@
  */
 
 export const SCRIPT_VERSION = "2026-09-04";
-export const SCRIPT_SHA256 = "611e8f55465e988d568e2809f276965bbb88c717f7a68c893d6d33ac4f0e3d2c";
-export const SCRIPT_BYTES = 84876;
+export const SCRIPT_SHA256 = "1284206a79acd32c569d6e19547966b5a4e2c40dd73c4cbbfcde76032d2ec3c4";
+export const SCRIPT_BYTES = 84865;

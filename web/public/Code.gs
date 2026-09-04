@@ -59,10 +59,11 @@ var BLOTTER_COLUMNS = ['Status', 'Days', 'Last contact', 'Attempts', 'Next call'
 var COL_CLOSED = 'Closed';
 
 var NOTICE_WIDTH = 6;
+
 var NOTICE_STYLES = {
-  info:    { fill: '#e8f0fe', text: '#1a3d6d' },
-  warning: { fill: '#fdf0d5', text: '#7a4c00' },
-  blocked: { fill: '#fbe3e0', text: '#8c1d12' }
+  info:    { bg: '#e8f0fe', fg: '#1a3d6d' },
+  warning: { bg: '#fdf0d5', fg: '#7a4c00' },
+  blocked: { bg: '#fbe3e0', fg: '#8c1d12' }
 };
 var NOTICE_TAB_COLOUR = { info: '#4a7fd4', warning: '#d9a441', blocked: '#c0392b' };
 

@@ -64,7 +64,7 @@ const EXPORTS = [
   'MAX_THREAD_RECIPIENTS', 'NO_CLOCK', 'VALID_STATUSES', 'CONTRACT_VERSION',
   // The look. Colour tables and widths are data, so they are testable — and a
   // typo in a hex paints a cell black on somebody's real sheet.
-  'asSheetDate_', 'STATUS_STYLE', 'THEMES', 'CONTACTS_WIDTHS', 'FOUND_WIDTHS',
+  'asSheetDate_', 'STATUS_STYLE', 'NOTICE_STYLES', 'THEMES', 'CONTACTS_WIDTHS', 'FOUND_WIDTHS',
   'duplicateBlotterHeadings_', 'formulasInBlotterColumns_', 'overwrittenFormulaWarnings_',
   'rowsThatMoved_', 'sanitiseDesign_', 'safeColour_', 'safeNumber_',
   'safeCell_', 'statusStyle_', 'columnWidth_', 'numberFormat_', 'SETTING_KEY',
@@ -1025,6 +1025,17 @@ eq('and Step 1 creates it', box.expectedSetup_().settings.includes(box.SETTING_K
     eq('the served manifest matches the one we build from', mOut === mSrc, true);
     eq('the served manifest keeps spreadsheets.currentonly',
        mOut.indexOf('spreadsheets.currentonly') !== -1, true);
+
+    // Every notice style must carry the keys writeBanner_ actually reads.
+    // They did not for weeks: the table said fill/text, the writer said
+    // bg/fg, and a notice rendered with no colour on either.
+    const styles = box.NOTICE_STYLES;
+    const levels = Object.keys(styles);
+    eq('there are three notice levels', levels.length, 3);
+    levels.forEach((lv) => {
+      eq('notice style ' + lv + ' has bg and fg',
+         typeof styles[lv].bg === 'string' && typeof styles[lv].fg === 'string', true);
+    });
     eq('and it is this code, token for token, with only the comments gone', sameTokens(src, built), true);
     eq('one comment survives: the public header', commentRanges(built).length, 1);
     eq('nothing internal survives with it',
