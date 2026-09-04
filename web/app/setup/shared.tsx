@@ -29,8 +29,16 @@ import { POLICY_HREF } from "@/lib/privacy-copy";
  * while doing something else.
  */
 
-/** The public template a student copies. Null until an empty master exists. */
-export const TEMPLATE_URL: string | null = null;
+/**
+ * The public template a student copies.
+ *
+ * The `/copy` form rather than `/edit`: Google opens its Copy document dialog
+ * straight away, which is both one step fewer and the exact screen step 1
+ * screenshots. Shared as "anyone with the link, viewer", owned by
+ * blotterib@gmail.com, and empty of contacts.
+ */
+export const TEMPLATE_URL: string | null =
+  "https://docs.google.com/spreadsheets/d/1tYhEPPtHJhdc3W-Vbh2cSYtyYEFPaNJjDFMwuKj7cWU/copy";
 
 export const LINK =
   "font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900";
@@ -203,8 +211,8 @@ export function StepCopy({ n }: { n: number }) {
   return (
     <Step n={n} title="Make your own copy of the sheet" open>
       <p>
-        Open the template, then choose <B>File → Make a copy</B> from the menu at the top.
-        Give it any name you like and click <B>Make a copy</B>.
+        Open the template. Google shows you a <B>Copy document</B> box straight away. Give it
+        any name you like and click <B>Make a copy</B>.
       </p>
       <p>
         A yellow note appears in that box saying an{" "}

@@ -216,7 +216,7 @@ been handed off. That chat previously owned the film/animation work.
       header, remove all internal document references, remove Jon's name, use
       `blotterib@gmail.com`. Build it with `publish.js`; keep the internal source
       commented.
-- [J] **8.4** **Create the blank template** in Drive and publish its link. Needs
+- [x] **8.4** **Create the blank template** in Drive and publish its link. Needs
       a Google account; Jon has to do it, or explicitly authorise the Drive
       connector to try.
 - [ ] **8.5** **End-to-end test of everything** before launch. Every function,
@@ -339,3 +339,25 @@ been handed off. That chat previously owned the film/animation work.
       row so the film and the reduced-motion still are pixel-interchangeable; the
       real sheet is 30/26. `section-45/parts.tsx` keeps the real ratio. Jon to
       rule whether the hero should too.
+
+---
+
+## 14. The template exists (4 Sep 2026)
+
+- [x] **14.1** Built by Jon on a fresh sheet in **blotterib@gmail.com**, not from
+      either test sheet, so no real contact ever entered it. Shared as *anyone
+      with the link, viewer*. Contacts and Found empty, no addresses, no Blotter
+      ID, Step 1 only, never run.
+- [x] **14.2** `TEMPLATE_URL` is the `/copy` form, so Google opens its Copy
+      document dialog immediately. Step 1 of both setup flows is reworded to
+      match, and it is now the exact screen the step 1 screenshot shows.
+- [x] **14.3** `noindex` lifted from all three setup pages. It was conditional on
+      a template existing.
+- [x] **14.4** Jon's Start here edits folded into `instructionRows_`: "counts
+      days", the plain-English gloss on Attempts, and a note at step 4 saying
+      nothing changes for 15 minutes and Step 2 fills it in now.
+- [x] **14.5 "Why Blotter does not tell you when to follow up" deleted**, on
+      Jon's confirmation that he meant it. The argument survives in the public
+      `Code.gs` header under Limits.
+- [ ] **14.6** The template is one Step 1 behind the source. Jon pastes the
+      current `Code.gs` and runs Step 1 to pick up 14.4 and 14.5.

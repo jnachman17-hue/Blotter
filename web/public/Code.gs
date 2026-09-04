@@ -493,11 +493,6 @@ function instructionRows_() {
     R('note', 'Both show a dash where there is nothing to count.'),
     R('gap'),
 
-    R('h2', 'Why Blotter does not tell you when to follow up'),
-    R('body', 'Because it would be wrong. In one real recruiting season, replies came back after 7, 11, 13 and 22 days, and the 22-day one led to four interview rounds. A follow-up rule would have chased that person more than two weeks before she answered. Blotter shows you what is true and how long it has been true, and you decide.'),
-    R('body', 'Blotter menu \u2192 Sort contacts \u2192 by what they are waiting on. That is the list of who you owe and who owes you, in order.'),
-    R('gap'),
-
     R('h2', 'Things that look wrong and are not'),
     R('status', 'Nothing found on day one', 'Add people first. Blotter only looks at conversations with the people in Contacts.'),
     R('status', 'Something arrived, nothing changed', 'An out-of-office, an auto-reply or a calendar acceptance is not a reply. Blotter waits for a person.'),

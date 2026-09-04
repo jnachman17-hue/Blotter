@@ -31,7 +31,6 @@ export const metadata: Metadata = {
   title: "University account setup | Blotter",
   description:
     "Copy one sheet into your university Google account, give it permission, and your recruiting tracker keeps itself up to date.",
-  robots: { index: false, follow: false },
 };
 
 export default function UniversitySetup() {

@@ -18,7 +18,6 @@ export const metadata: Metadata = {
   title: "Set up Blotter | Blotter",
   description:
     "Copy one sheet, give it permission to connect to your Google account, and your recruiting tracker keeps itself up to date.",
-  robots: { index: false, follow: false },
 };
 
 function Choice({ href, title, line }: { href: string; title: string; line: string }) {

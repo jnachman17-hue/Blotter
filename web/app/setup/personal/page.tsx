@@ -32,7 +32,6 @@ export const metadata: Metadata = {
   title: "Personal Gmail setup | Blotter",
   description:
     "Copy one sheet into your Google Drive, give it permission, and your recruiting tracker keeps itself up to date.",
-  robots: { index: false, follow: false },
 };
 
 export default function PersonalSetup() {
