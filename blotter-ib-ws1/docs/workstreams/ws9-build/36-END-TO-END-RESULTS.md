@@ -1250,25 +1250,58 @@ Fixed: `buildInstructions_` now removes every image on the tab before
 rebuilding. **Step 1 repairs a sheet already in that state**, rather than only
 avoiding new ones.
 
-### 19.2 The picture Blotter draws has always been blurry
+### 19.2 The picture Blotter draws has always been blurry, and I made it worse
 
-This one was never caused by the extra row. It was only ever hidden by it.
+**Two wrong diagnoses before the right one. Recorded in full, because the
+pattern in them is the point.**
 
-The sharp image Jon had been looking at was the hand-placed one. The in-cell
-`=IMAGE()` underneath it had always been soft and nobody had seen it alone.
-`=IMAGE(url, 1)` draws at whatever size the cell gives it, and a 933x316 file
-drawn 649 across has nothing left over for a high-resolution screen.
+The sharp screenshot Jon had been looking at was a real image sitting on that
+tab, placed by hand. The `=IMAGE()` one underneath was always soft and nobody
+had seen it alone.
 
-**Jon retook it at 2042x820.** The green box was redrawn to match the original
-rather than eyeballed: the old annotation was measured at `#16a34a`, 3px stroke,
-4px corner radius, with 8px of padding left and top and about 10px right and
-bottom around the text. All of it scaled by the 2.18x difference between the two
-files and redrawn at the same proportions.
+**Then the fix in §19.1 deleted the sharp one.** `getImages().remove()` cured
+the duplicate by removing the good picture and leaving the bad one. Jon was
+right when he said this was my doing.
 
-The row goes from 220 to 260, because the menu has gained `Check this sheet
-(diagnostics)` since the first screenshot and the picture is genuinely taller.
-It now draws about 647 across, the same width as before, with **three times the
-pixels it needs**.
+**First wrong diagnosis: the source file.** I measured 933x316 drawn 649 across
+and concluded there were not enough pixels for a high-resolution screen. Jon
+retook the screenshot at 2042x820, I redrew the annotation to match, and **it
+was exactly as blurry.** That is what proved the source was never the problem.
+
+**The mechanism was.** `=IMAGE(url, 1)` is Google rasterising a picture to fit
+a cell, and it comes out soft however much detail the file carries. Four times
+the pixels changed nothing.
+
+**The fix attempted was to place the file rather than draw it.** `insertImage`
+puts the real image on the sheet at full resolution, which is what Jon's
+hand-placed one always was. **It did not work either. This is unresolved**, and
+Jon called it: *"I give up still so blurry but it's on 4.4 good enough."* Both original objections are handled: `buildInstructions_` clears
+every image before rebuilding, so a re-run cannot stack a second copy, and the
+image re-anchors on its own row each pass, so Step 1 repairs its position rather
+than orphaning it. It falls back to the in-cell form if the fetch fails, because
+a picture is never worth a failed setup.
+
+**The history, since memory was doing a lot of work in this argument:**
+
+| Version | Image code |
+|---|---|
+| `2026-09-03`, first with a picture | `=IMAGE()` |
+| `2026-09-04` through `2026-09-04.4` | `=IMAGE()` |
+| `4.4` | `insertImage()` |
+
+**Still open, and the next person should start here rather than where I did.**
+The one thing never checked is whether `insertImage` is running at all.
+`formatInstructions_` swallows a failure and falls back to the in-cell form with
+only a `console.error`, so a fetch that throws looks exactly like a fix that did
+not help. **Open the Apps Script execution log after a Step 1 and see whether
+the fallback fired.** That is a two-minute check and it splits the problem in
+half: either the image is being placed and Sheets is still rendering it soft, or
+it was never placed at all.
+
+**The lesson: I tested the input twice and the mechanism not at all.** Jon said
+plainly that it had not been blurry before and I answered by changing the file
+again, then by changing it a second time. The retake was wasted work and asking
+him for it was the mistake. He was right at the first telling.
 
 ### 19.3 What this says about the test
 
@@ -1279,3 +1312,80 @@ day of automated checking, by Jon, looking at his own sheet.
 
 That is the argument for this whole exercise, and it is worth writing down next
 to the 675 passing checks.
+
+---
+
+## 20. Where this ended
+
+**Live: `4.4`.** Confirmed on the master template by `Check this sheet`, and
+against `/api/script`, `/update` and a byte comparison of the served file.
+
+### 20.1 Shipped after the test itself
+
+| | |
+|---|---|
+| [#31](https://github.com/jnachman17-hue/Blotter-Claude/pull/31) | The date fix, `Start here` step 3, and the two new suites |
+| [#32](https://github.com/jnachman17-hue/Blotter-Claude/pull/32) | Three untyped callbacks that failed the production build |
+| [#33](https://github.com/jnachman17-hue/Blotter-Claude/pull/33) | The duplicate screenshot, and a retaken image |
+| [#34](https://github.com/jnachman17-hue/Blotter-Claude/pull/34) | Numbered versions, and placing the image rather than drawing it |
+
+### 20.2 Versions are numbers now
+
+`4.4`, not `2026-09-04.4`. Jon's call: a date does not read like a version.
+
+**The comparison had to change with it, and this is the part worth remembering.**
+It was a plain `>=` on strings, which worked only because dates sort correctly
+as text. Numbers do not: `"4.9" > "4.10"` is true as text and false as
+arithmetic, so **the update notice would have gone silent at 4.10** and nothing
+would have said why. It compares as numbers now and 4.10 is a test case.
+
+Anything that is not `major.minor` counts as behind, so every date-style build
+still in the wild is correctly told to update.
+
+### 20.3 `/update` could hand out a version that no longer existed
+
+The copy button used to copy a string rendered into the page, so a tab left open
+across a deploy kept serving the old script forever.
+
+**Jon hit this twice in one evening**, and the symptom is silent: Apps Script
+saves a paste identical to what is already there without pausing, so the only
+clue is the absence of a delay. Both times he diagnosed it correctly from that
+alone, and the second time he was told the wrong cause.
+
+The button now fetches `/Code.gs` at the moment it is clicked, says which
+version reached the clipboard, and warns when the page itself was behind.
+
+### 20.4 Open
+
+| | |
+|---|---|
+| **The blurry screenshot** | Unresolved. §19.2 says where to start, and it is not where I started |
+| Defect 2, the design drift | Two colours and a sort order. Guarded by a failing test, awaiting Jon's ruling |
+| Defects 3 and 5, the Gmail count | One field in telemetry, one column. The number is 43% of the daily limit on a real season |
+| Defect 4, multiple Google accounts | One line of website copy on `/update` |
+| `NOTICE_TAB_COLOUR` | Dead. Wire it up or delete it |
+| The "missing column" message | Offers the messier remedy first |
+
+### 20.5 The verdict stands
+
+**GO.** The blocker named in §17 is gone: the date fix is deployed and the
+master template carries `4.4`, confirmed by its own diagnostic.
+
+Nothing found after §17 changes the answer. The screenshot is a picture being
+soft on a help tab. Everything that decides whether a student's tracker is right
+was tested and passed, and the guarantees that matter are enforced by Google's
+own permission scopes rather than by this code.
+
+### 20.6 What the last hour was actually worth
+
+The four faults found after the automated suites went green — the duplicate
+image, the soft picture, the stale update tab, and a build that failed on a file
+the suites never compiled — **were all found by Jon, on his own screen, doing
+the thing a student would do.**
+
+None of them is reachable from a test. Three of them I diagnosed wrongly at
+least once, and in two cases Jon's first instinct was right and mine was not.
+675 automated checks did not surface one of them.
+
+That is the argument for making somebody sit and click through it before launch,
+and it is worth keeping next to the passing numbers.
