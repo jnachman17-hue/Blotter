@@ -308,7 +308,19 @@ export function FaqAndClose() {
                 {CONTACT_EMAIL}
               </a>
               <a href={POLICY_HREF} className={FOOTER_LINK}>
-                Privacy policy
+                Privacy
+              </a>
+              {/*
+                Added September 3, 2026. Terms did not exist until then —
+                `28-WEBSITE-AUDIT.md` §5.3 — and a footer that links a privacy
+                policy and no terms reads as an oversight rather than a choice.
+
+                `Privacy policy` shortens to `Privacy` so the two sit as a pair
+                and the row still fits on two lines at 390px, which is what the
+                wrap note above is protecting.
+              */}
+              <a href="/terms" className={FOOTER_LINK}>
+                Terms
               </a>
               <SocialLinks />
             </div>

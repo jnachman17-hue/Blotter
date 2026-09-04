@@ -390,9 +390,31 @@ export const OUTSTANDING_GROUPS: ActionGroup[] = [
 
 export const OUTSTANDING_TOTAL = OUTSTANDING_GROUPS.reduce((n, g) => n + g.count, 0);
 
-/** Exact reassurance copy, `05-SECTION-5` §4. */
+/**
+ * The three reassurance claims.
+ *
+ * `05-SECTION-5` §4 ratified these as exact copy and **two of the three were
+ * false**, which `28-WEBSITE-AUDIT.md` §1.8 found and Jon ruled on, September 3,
+ * 2026: *"You don't actually keep your own sheet now."*
+ *
+ * A student copies Blotter's template and puts their contacts into it. The
+ * script's only Drive permission is `spreadsheets.currentonly`, so it can reach
+ * the one sheet it lives in and nothing else — **attaching to a tracker somebody
+ * already built is not a missing feature, it is impossible under this
+ * architecture**, and no later version fixes it without asking every student for
+ * a much wider permission.
+ *
+ * | Was | Verdict |
+ * |---|---|
+ * | `Keep the tracker you already built` | **False.** They keep their columns, not their file |
+ * | `Don't re-enter every contact` | **False as written.** One paste rather than typing, but it is a move |
+ * | `Don't leave Google Sheets` | **True**, and it is the best thing about the product |
+ *
+ * The replacements are narrower and each one survives being checked. The third
+ * is untouched.
+ */
 export const REASSURANCE = [
-  "Keep the tracker you already built",
-  "Don't re-enter every contact",
+  "Paste in the list you already have",
+  "Your own columns, untouched",
   "Don't leave Google Sheets",
 ];

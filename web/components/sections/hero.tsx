@@ -210,9 +210,9 @@ export function Hero({
                 )}
               >
                 <span className={supporting === "short" ? "hidden desk:inline" : undefined}>
-                  Blotter updates the Google Sheet you already use by reading
-                  relevant recruiting activity from Gmail and Calendar, so you do
-                  not miss follow-ups, coffee chats, or next steps.
+                  Blotter is a Google Sheet that reads your Gmail and Calendar
+                  and keeps itself current — who replied, who has gone quiet,
+                  what is scheduled, and how long each has been true.
                 </span>
                 {supporting === "short" && (
                   <span className="desk:hidden">{HERO_SUPPORTING_SHORT}</span>

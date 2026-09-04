@@ -9,8 +9,15 @@ import "server-only";
  * import would hand every visitor full read and write access to the leads
  * table.
  *
- * Nothing else in the app may read `SUPABASE_SERVICE_ROLE_KEY`. The only
- * consumer is `app/api/lead/route.ts`.
+ * Nothing else in the app may read `SUPABASE_SERVICE_ROLE_KEY`. Its consumers
+ * are the server routes under `app/api/` that write to Supabase — today
+ * `lead`, `contact` and `telemetry`.
+ *
+ * **This comment named one consumer for a long time after there were three**,
+ * which `22-DISTRIBUTION-NOTES.md` §5.1 recorded as out of that chat's
+ * boundary and `28-WEBSITE-AUDIT.md` §1.16 picked up. Corrected September 3,
+ * 2026. It is deliberately a description rather than a list to maintain: the
+ * rule is the first sentence, and the examples are examples.
  *
  * Returns `null` when the environment is not configured, which is the normal
  * state before Jon provisions the project. Callers must treat storage as

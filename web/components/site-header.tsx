@@ -271,8 +271,32 @@ export function SiteHeaderBar({
         )}
         {/* Desktop always carries it: four placements are ratified there and a
             desktop reader can see the whole page at once. */}
-        <div className={mobileCta ? undefined : "hidden desk:block"}>
-          <CtaButton location="header" size="compact" />
+        {/*
+          The setup link, added September 3, 2026.
+
+          `27-BRIEF-WEBSITE-AUDIT.md` §5: *"a header link leads to a page that
+          walks through"* the install. This is that link.
+
+          **Desktop only, and quiet.** It is a door for somebody who has already
+          decided, not a second call to action — a phone bar has roughly 265px
+          once the lockup and the CTA are out, which is the same measurement
+          that kept the tagline off the phone. Below the breakpoint the footer
+          and the privacy page both reach `/setup`.
+
+          Set in the tagline's type rather than the CTA's so it reads as
+          navigation. It sits before the button because the button is the
+          primary and a secondary link after it reads as an afterthought.
+        */}
+        <div className="flex items-center gap-5">
+          <a
+            href="/setup"
+            className="hidden text-small font-medium text-navy-500 transition-colors duration-150 ease-out hover:text-navy-900 desk:block"
+          >
+            Set up
+          </a>
+          <div className={mobileCta ? undefined : "hidden desk:block"}>
+            <CtaButton location="header" size="compact" />
+          </div>
         </div>
       </div>
     </header>

@@ -86,11 +86,18 @@ export const PRICE_AMOUNT = "$9.99 / month";
 export const PRICE_BILLING =
   "Blotter opens Fall 2026. Billing starts when your access does. Cancel anytime.";
 export const PRICE_DESCRIPTION =
-  "A recruiting tracker that stays current from Gmail, Calendar, and Google Sheets.";
+  "A Google Sheet that keeps itself current from your Gmail and Calendar.";
+/*
+  Rewritten September 3, 2026 with the rest of the preservation claim
+  (`28-WEBSITE-AUDIT.md` §1.8). Row 1 promised something the product cannot do;
+  row 3 promised `next actions`, which is the `Next move` column that
+  `04-ENGINE-RULES.md` §4 cut. Row 2 was already true and gains the interval,
+  which is a real number and more persuasive than the word "automatic".
+*/
 export const PRICE_INCLUDED = [
-  "Keep your existing Google Sheet",
-  "Automatic recruiting-activity updates",
-  "Current relationship status and next actions",
+  "A Google Sheet you copy and keep",
+  "Updates on their own, every 15 minutes",
+  "Status, timing and scheduled calls, always current",
 ];
 
 /**
@@ -106,7 +113,7 @@ export const PRICE_INCLUDED = [
  * touches OAuth.
  */
 export const PRICE_DELIVERY =
-  "Nothing to install. You connect the Google account you recruit from, and Blotter works inside the Sheet you already use.";
+  "Nothing to download. You make your own copy of a Google Sheet, allow it to read your Gmail and Calendar, and it runs inside your own Google account from then on.";
 export const PRICE_CTA = "Continue to payment";
 export const BACK = "Back";
 
@@ -130,7 +137,7 @@ export const CHECKOUT_SUMMARY = [
   {
     label: "Description",
     value:
-      "Connects your Google account and keeps your existing recruiting Sheet current",
+      "A Google Sheet that reads your Gmail and Calendar and keeps itself current",
   },
   /*
     Both rows amended August 12, 2026, with `PRICE_BILLING`. They are the same
