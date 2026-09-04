@@ -137,6 +137,17 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        /*
+         * `.gs` is not a type Vercel knows, so it served the courier as
+         * application/octet-stream and every browser downloaded it. With
+         * `nosniff` set below, the browser cannot second-guess that either.
+         * A student told to update then had a file in Downloads and no
+         * instructions, which is exactly where Jon landed on 4 September 2026.
+         */
+        source: "/Code.gs",
+        headers: [{ key: "Content-Type", value: "text/plain; charset=utf-8" }],
+      },
+      {
         source: "/:path*",
         headers: [
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
