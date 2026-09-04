@@ -77,11 +77,18 @@ async function refuse(installId: string): Promise<NextResponse | null> {
         /* One line, no wrap, so it says the three things that matter and
            stops: what happened, that nothing was lost, and the one action.
            The billing page does the explaining; a banner that tries to
-           teach is a banner nobody finishes reading. */
+           teach is a banner nobody finishes reading.
+           
+           Length is a hard constraint, not a preference. The message shares
+           one un-wrapped row with the URL, and the room is the sheet's width
+           less the "Blotter" label: about 1,166px, or roughly 185 characters
+           of bold 11pt. The first draft came to 174 with the production URL,
+           which left 14 characters of margin and would have clipped on any
+           sheet whose columns had been narrowed. */
         text:
           verdict.reason === "no_key"
-            ? "Blotter is no longer free. Nothing in your sheet has changed. To start it updating again, copy your Blotter ID from the Settings tab and visit"
-            : "Blotter has stopped updating this sheet. Everything in it is untouched. To start it again, copy your Blotter ID from the Settings tab and visit",
+            ? "Blotter is no longer free. Nothing in your sheet has changed. To start it again, copy your Blotter ID from Settings and visit"
+            : "Blotter has stopped updating this sheet. Everything in it is untouched. Copy your Blotter ID from Settings and visit",
         /* Configurable so the cut-off can be rehearsed against a preview
            deployment. A banner pointing at a 404 is worse than no banner. */
         url: (process.env.BLOTTER_BILLING_URL ?? "https://blotterib.com/billing").trim(),
