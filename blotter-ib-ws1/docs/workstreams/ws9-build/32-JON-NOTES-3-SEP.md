@@ -149,10 +149,10 @@ own task, cannot be done from here.
 - [x] **5.2** The 620-emails animation goes with it. *"that's so arbitrary and
       people kinda know that's BS."* If section 01 is replaced at all, it should
       frame the problem without that animation.
-- [~] **5.3** **Section 02 needs a new UI.** (with the animation agent) The spreadsheet columns have
+- [x] **5.3** **Section 02 needs a new UI.** Rebuilt by the agent; now renders as 01. The spreadsheet columns have
       changed; it must reflect what the product actually looks like now.
 - [x] **5.4** **Remove the status chips** from section 02. They no longer exist.
-- [ ] **5.6** **The hero line goes.** Jon, later that night: *"get rid of all the
+- [x] **5.6** **The hero line goes.** Jon, later that night: *"get rid of all the
       marketing language on the landing page that's, like, recruiting truly
       sucks, you will lose track. Just get rid of that BS... It isn't BS anymore.
       We're going live to real banking orgs."* Replaced in `sections/hero.tsx`
@@ -284,3 +284,27 @@ been handed off. That chat previously owned the film/animation work.
       that never existed.
 - [ ] **11.6 `courier/Code.gs` ~993:** comment says a dash "sorts last"; the code
       sorts it first. Harmless today; fix the comment.
+
+---
+
+## 12. Jon's second round on the landing page (4 Sep, ~00:50)
+
+- [x] **12.1** Header tagline: *"A Google Sheet that automatically keeps your
+      recruiting tracker current."* His exact words. Applied in `site-header.tsx`
+      and `hero-top.tsx`.
+- [x] **12.2** The `Set up` text link beside the header button is gone. One call
+      to action.
+- [x] **12.3** Section numbering starts at 01.
+- [x] **12.4** Section 01 is headed **How it works**, subheaded *Your contacts on
+      the left. Blotter's columns on the right.* Body rewritten to say that in
+      one breath: contacts and any extra columns (notes, LinkedIn) on the left,
+      Blotter fills the right.
+- [x] **12.5** "How Blotter uses your data" rewritten in the setup pages'
+      register: reads the outside of an email, cannot read the text, server
+      cannot receive it, nothing about "opening conversations" or "leaving your
+      account" or a server that "refuses".
+- [x] **12.6** Permission table: Gmail says headers only; Sheets says update.
+- [ ] **12.7 The blank template.** Jon asked whether the Drive connector can make
+      it. Answered in chat: it can copy the master, but it cannot clear the
+      contacts or replace the bound code, so three clicks stay with Jon. Not
+      touched without his explicit yes.
