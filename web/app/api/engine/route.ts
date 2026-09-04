@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
-import { enforcing, verdictFor, type KeyRecord } from "../entitlement/enforcement";
+import { enforcing } from "../entitlement/enforcement";
+import { entitlementFor, type KeyRow } from "../entitlement/install";
 import { computeEngine } from "./rules";
 import { parseEngineRequest, RequestError } from "./validate";
 
@@ -43,25 +44,29 @@ import { supabaseAdmin, supabaseConfigured } from "@/lib/supabase-admin";
  * is an outage that locks every paying student out of their own spreadsheet,
  * which is far worse than a lapsed one getting a free afternoon.
  */
-async function refuse(key: string): Promise<NextResponse | null> {
+async function refuse(installId: string): Promise<NextResponse | null> {
   if (!supabaseConfigured()) return null;
   const supabase = supabaseAdmin();
   if (supabase === null) return null;
 
-  let record: KeyRecord | null = null;
+  /* A sheet with no id cannot be looked up, and refusing it would lock out
+     anyone whose Settings row had not been written yet. Let it through: this
+     is the same judgement as the unreachable-database case below. */
+  if (installId.trim() === "") return null;
+
+  let rows: KeyRow[] = [];
   try {
     const { data, error } = await supabase
       .from("blotter_keys")
-      .select("status, grace_until")
-      .eq("key", key)
-      .maybeSingle();
+      .select("key, install_id, entitled_until, revoked_at")
+      .eq("install_id", installId.trim().toLowerCase());
     if (error) return null;
-    record = (data as KeyRecord | null) ?? null;
+    rows = (data as KeyRow[] | null) ?? [];
   } catch {
     return null;
   }
 
-  const verdict = verdictFor(key, record);
+  const verdict = entitlementFor(rows);
   if (verdict.allow) return null;
 
   return NextResponse.json(
@@ -71,7 +76,7 @@ async function refuse(key: string): Promise<NextResponse | null> {
         level: "blocked",
         text:
           verdict.reason === "no_key"
-            ? "Blotter needs a key to keep updating this sheet. Your data is untouched."
+            ? "Blotter is no longer free. Your sheet and everything in it are untouched."
             : "Blotter has stopped updating this sheet. Your data is untouched and nothing has been deleted.",
         url: "https://blotterib.com/billing",
       },
@@ -99,11 +104,14 @@ export async function POST(request: Request) {
        state you can check with curl is the state in force. D27 was lost to a
        switch with two sources; this one has exactly one.
 
-       Note what does NOT happen here: no write, ever. Binding a key to an
-       account is a write and it lives on `/api/telemetry` instead, so the
-       engine's "stores nothing" stays literally true (amendment A2). */
+       Note what does NOT happen here: no write, ever (amendment A2). It used
+       to be true only because binding was pushed onto `/api/telemetry`. It is
+       now true because nothing binds at runtime at all: the student names
+       their sheet on the website before paying, so the key row is created
+       with its `install_id` already on it. The engine reads by that id and
+       never sees a key. */
     if (enforcing()) {
-      const refusal = await refuse(parsed.key);
+      const refusal = await refuse(parsed.install_id);
       if (refusal !== null) return refusal;
     }
 

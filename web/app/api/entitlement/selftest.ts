@@ -1,4 +1,5 @@
 import { verdictFor, type KeyRecord } from "./verdict";
+import { entitlementFor, type KeyRow } from "./install";
 
 /**
  * The entitlement decision, tested without a database.
@@ -49,6 +50,65 @@ check("grace expiring exactly now has expired",
 /* Refusing must never be something a bad row can cause by accident. */
 check("an unrecognised status is refused, not waved through",
   verdictFor("k", rec({ status: "nonsense" as KeyRecord["status"] }), NOW).allow, false);
+
+/* ---------------------------------------------------------------------- *
+ * entitlementFor: the verdict for a sheet, from the rows bound to it.
+ * ---------------------------------------------------------------------- */
+
+const row = (o: Partial<KeyRow> = {}): KeyRow => ({
+  key: "k",
+  install_id: "3a8444f2-4efe-45e6-822d-9a942e063b18",
+  entitled_until: "2026-12-31T00:00:00Z",
+  revoked_at: null,
+  ...o,
+});
+
+check("a sheet with no rows at all", entitlementFor([], NOW).reason, "no_key");
+check("a sheet with no rows is refused", entitlementFor([], NOW).allow, false);
+
+/* Null is a one-time purchase, and it must never read as expired. */
+check("a key with no expiry never expires",
+  entitlementFor([row({ entitled_until: null })], NOW).allow, true);
+check("and says so, so the banner can",
+  entitlementFor([row({ entitled_until: null })], NOW).reason, "never_expires");
+
+check("a key in date runs", entitlementFor([row()], NOW).allow, true);
+check("a key out of date does not",
+  entitlementFor([row({ entitled_until: "2026-01-01T00:00:00Z" })], NOW).allow, false);
+check("and is lapsed, not missing",
+  entitlementFor([row({ entitled_until: "2026-01-01T00:00:00Z" })], NOW).reason, "lapsed");
+
+/* Expiring exactly now has expired, the same way grace does above. */
+check("expiring exactly now has expired",
+  entitlementFor([row({ entitled_until: NOW.toISOString() })], NOW).allow, false);
+
+/* Revoked is not the same as never having had one: different sentence,
+   different link, and the reader can tell which happened to them. */
+check("a revoked key does not run",
+  entitlementFor([row({ revoked_at: "2026-08-01T00:00:00Z" })], NOW).allow, false);
+check("a revoked key reads as revoked",
+  entitlementFor([row({ revoked_at: "2026-08-01T00:00:00Z" })], NOW).reason, "revoked");
+
+/* A renewal is a second purchase, so more than one row is normal. */
+check("the furthest future wins",
+  entitlementFor([
+    row({ key: "old", entitled_until: "2026-01-01T00:00:00Z" }),
+    row({ key: "new", entitled_until: "2027-01-01T00:00:00Z" }),
+  ], NOW).allow, true);
+check("a live key beside a revoked one still runs",
+  entitlementFor([
+    row({ key: "dead", revoked_at: "2026-08-01T00:00:00Z" }),
+    row({ key: "live" }),
+  ], NOW).allow, true);
+check("never-expires beats any date",
+  entitlementFor([
+    row({ key: "dated", entitled_until: "2026-01-01T00:00:00Z" }),
+    row({ key: "forever", entitled_until: null }),
+  ], NOW).reason, "never_expires");
+
+/* A bad row must never grant access by accident. */
+check("an unparseable date is not an entitlement",
+  entitlementFor([row({ entitled_until: "not a date" })], NOW).allow, false);
 
 console.log(
   failures === 0
