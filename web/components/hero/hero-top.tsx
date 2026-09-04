@@ -96,7 +96,8 @@ function Headline({ center = false }: { center?: boolean }) {
         center ? "mx-auto max-w-[760px] text-center" : "max-w-[760px]",
       )}
     >
-      Network the way you already do and Blotter updates your tracker automatically.
+      <span className="block">Never touch your recruiting tracker again.</span>
+      <span className="block text-navy-400">Blotter updates it automatically.</span>
     </h1>
   );
 }

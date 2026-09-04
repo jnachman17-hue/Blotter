@@ -71,6 +71,7 @@ export const contentType = "image/png";
 /* Sampled from `globals.css`. Literal, because Satori resolves no CSS variables. */
 const INK = "#14181f";
 const INK_MUTED = "#5f6368";
+const NAVY_400 = "#647fa6";
 const NAVY_500 = "#40608c";
 const NAVY_900 = "#12233d";
 const FIELD_A = "#fbfcfe";
@@ -189,8 +190,8 @@ export default async function Image() {
 
         {/* The ratified headline, two tones, exactly as the page sets it. */}
         <div style={{ display: "flex", flexDirection: "column", marginTop: 26, fontFamily: "Display", fontSize: 46, lineHeight: 1.1, letterSpacing: "-0.028em" }}>
-          <div style={{ display: "flex", color: INK }}>Network the way you already do</div>
-          <div style={{ display: "flex", color: INK }}>and Blotter updates your tracker automatically.</div>
+          <div style={{ display: "flex", color: INK }}>Never touch your recruiting tracker again.</div>
+          <div style={{ display: "flex", color: NAVY_400 }}>Blotter updates it automatically.</div>
         </div>
 
         {/* The tracker, bleeding off the bottom edge. */}

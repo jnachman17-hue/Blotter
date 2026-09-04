@@ -161,7 +161,8 @@ export function Hero({
               which is cheaper than any decoration.
             */}
             <h1 className="font-display text-display leading-[1.06] font-semibold tracking-[-0.028em] text-ink">
-              Network the way you already do and Blotter updates your tracker automatically.
+              <span className="block">Never touch your recruiting tracker again.</span>
+              <span className="block text-navy-400">Blotter updates it automatically.</span>
             </h1>
 
             <div className="contents desk:block">

@@ -59,4 +59,4 @@
   out: what the student does, and what is done for them.
 */
 export const HERO_SUPPORTING_SHORT =
-  "It is a Google Sheet. You add the people you are networking with, and it fills in the rest from your Gmail and Calendar.";
+  "It is a Google Sheet that reads your Gmail and Calendar, so the only thing you add is the people you are networking with.";
