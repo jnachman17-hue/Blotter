@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { BillingLookup } from "./lookup-form";
+import { sellingEnabled } from "@/lib/stripe";
 import { Shell } from "@/app/setup/shared";
 
 /**
@@ -44,7 +45,10 @@ export default function BillingPage() {
         </p>
       </div>
 
-      <BillingLookup />
+      {/* `selling` is off unless BLOTTER_SELLING is "on". Until then the
+          lookup answers the question and nothing can be bought, which is the
+          state the whole page is written for. */}
+      <BillingLookup selling={sellingEnabled()} />
 
       <section className="mt-14 border-t border-rule pt-10">
         <h2 className="font-display text-[1.18rem] leading-[1.35] font-semibold tracking-[-0.012em] text-ink">

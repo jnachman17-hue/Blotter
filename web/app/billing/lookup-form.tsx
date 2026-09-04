@@ -40,10 +40,30 @@ function when(iso?: string): string {
   });
 }
 
-export function BillingLookup() {
+export function BillingLookup({ selling = false }: { selling?: boolean }) {
   const [value, setValue] = useState("");
   const [busy, setBusy] = useState(false);
+  const [buying, setBuying] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
+
+  /* Straight to Stripe. The sheet has already been proved to exist by the
+     lookup above, and the checkout route proves it again rather than trusting
+     this. */
+  async function buy(installId: string) {
+    setBuying(true);
+    try {
+      const res = await fetch("/api/billing/checkout", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ install_id: installId }),
+      });
+      const data = (await res.json()) as { url?: string };
+      if (data.url) window.location.assign(data.url);
+      else setBuying(false);
+    } catch {
+      setBuying(false);
+    }
+  }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -111,10 +131,22 @@ export function BillingLookup() {
                     : ", and does not expire."}
                 </p>
               ) : (
-                <p>
-                  Nothing is owed on it. Blotter is free right now, so every recognised
-                  sheet keeps running.
-                </p>
+                <>
+                  <p>
+                    Nothing is owed on it. Blotter is free right now, so every recognised
+                    sheet keeps running.
+                  </p>
+                  {selling && result.install_id && (
+                    <button
+                      type="button"
+                      disabled={buying}
+                      onClick={() => buy(result.install_id as string)}
+                      className="mt-2 inline-flex min-h-12 items-center rounded-full bg-navy-900 px-7 text-body font-medium text-white transition-colors duration-150 ease-out hover:bg-navy-700 disabled:opacity-40"
+                    >
+                      {buying ? "Opening Stripe" : "Pay for this sheet"}
+                    </button>
+                  )}
+                </>
               )}
             </div>
           )}
