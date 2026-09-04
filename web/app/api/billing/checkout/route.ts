@@ -74,9 +74,23 @@ export async function POST(request: Request) {
   const origin =
     request.headers.get("origin") ?? "https://blotterib.com";
 
+  /* The mode is read off the price, never configured separately. A recurring
+     price bought in `payment` mode charges once and never renews, and a
+     one-off price bought in `subscription` mode is rejected outright. Both are
+     the kind of mistake that is invisible until a renewal does not happen, so
+     the price is asked what it is. */
+  let recurring = false;
+  try {
+    const price = await client.prices.retrieve(priceId());
+    recurring = price.type === "recurring";
+  } catch (e) {
+    console.error("[checkout] could not read the price:", e);
+    return NextResponse.json({ error: "checkout_failed" }, { status: 502 });
+  }
+
   try {
     const session = await client.checkout.sessions.create({
-      mode: "payment",
+      mode: recurring ? "subscription" : "payment",
       line_items: [{ price: priceId(), quantity: 1 }],
       /* Both, deliberately. `client_reference_id` is what shows in the Stripe
          dashboard beside the payment, so a human looking at a charge can see
@@ -84,12 +98,21 @@ export async function POST(request: Request) {
          it survives on the objects the later events carry. */
       client_reference_id: installId,
       metadata: { install_id: installId },
-      payment_intent_data: {
-        metadata: { install_id: installId },
-        /* What appears on the card statement, so a Blotter charge is not
-           mistaken for something else on a shared account. */
-        statement_descriptor_suffix: "BLOTTER",
-      },
+      /* The id has to survive onto whatever object the later events carry.
+         For a one-off that is the payment intent, which a refund quotes; for a
+         subscription it is the subscription, which every renewal invoice
+         quotes. Stripe rejects the wrong one for the mode, so only the
+         matching block is sent. */
+      ...(recurring
+        ? { subscription_data: { metadata: { install_id: installId } } }
+        : {
+            payment_intent_data: {
+              metadata: { install_id: installId },
+              /* What appears on the card statement, so a Blotter charge is
+                 not mistaken for something else on a shared account. */
+              statement_descriptor_suffix: "BLOTTER",
+            },
+          }),
       success_url: `${origin}/billing/done?session={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/billing`,
     });

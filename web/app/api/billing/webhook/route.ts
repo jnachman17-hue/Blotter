@@ -21,12 +21,16 @@ import { supabaseAdmin, supabaseConfigured } from "@/lib/supabase-admin";
  * whole lifecycle of a one-time payment, and a refund that leaves a customer
  * with working access is money gone with nothing recovered.
  *
- * **Not handled: subscriptions.** No `invoice.paid`, no
- * `customer.subscription.deleted`, no dunning. `entitled_until` is shaped to
- * carry a subscription and nothing here moves it on renewal, so a
- * subscription price would sell once and lapse. If the pricing model changes
- * to a subscription, this file changes with it. Nothing about that is
- * implicit: a subscription price against this webhook would be a bug.
+ * **Subscriptions are handled too**, because the pricing model is not decided
+ * and a system that only works for one answer forces the answer. A renewal is
+ * `invoice.paid`, and all it does is push `entitled_until` out to the end of
+ * the period just paid for.
+ *
+ * That makes cancellation need no handler at all. A cancelled subscription
+ * simply stops sending invoices, so the last period end stands and the sheet
+ * lapses on the day it was already paid up to. A student who cancels keeps
+ * what they bought, which is both correct and the behaviour nobody has to
+ * remember to write.
  */
 
 /** A key a person can read aloud. No vowels, so it spells nothing by accident. */
@@ -82,6 +86,8 @@ async function onPurchase(session: Stripe.Checkout.Session): Promise<void> {
      purchase carries a session id; a refund carries only a payment intent. */
   const paymentIntent =
     typeof session.payment_intent === "string" ? session.payment_intent : null;
+  const subscription =
+    typeof session.subscription === "string" ? session.subscription : null;
 
   const { error } = await supabase.from("blotter_keys").insert({
     key: newKey(),
@@ -90,6 +96,7 @@ async function onPurchase(session: Stripe.Checkout.Session): Promise<void> {
     entitled_until: until,
     stripe_session_id: session.id,
     stripe_payment_intent: paymentIntent,
+    stripe_subscription_id: subscription,
     note: `checkout ${session.id}`,
   });
 
@@ -130,6 +137,58 @@ async function onWithdrawn(paymentIntent: string, why: string): Promise<void> {
   }
 }
 
+/**
+ * A renewal. The only thing it does is move the paid-up date forward.
+ *
+ * Idempotent because it sets an absolute date rather than adding time: the
+ * same invoice delivered twice writes the same value. Adding a month per
+ * delivery would hand a subscriber a free month for every Stripe retry.
+ */
+async function onRenewal(invoice: Stripe.Invoice): Promise<void> {
+  const sub = (invoice as unknown as { subscription?: string | null }).subscription;
+  const subscriptionId = typeof sub === "string" ? sub : null;
+  if (subscriptionId === null) return;
+
+  const supabase = supabaseAdmin();
+  if (supabase === null) return;
+
+  const client = stripe();
+  if (client === null) return;
+
+  /* The period end is read from Stripe rather than computed here. Ours would
+     drift from theirs the first time a proration, a coupon or a trial moved
+     the date, and theirs is the one the customer was actually charged for. */
+  let until: string | null = null;
+  try {
+    const s = await client.subscriptions.retrieve(subscriptionId);
+    const end = (s as unknown as { current_period_end?: number }).current_period_end;
+    if (typeof end === "number") until = new Date(end * 1000).toISOString();
+  } catch (e) {
+    console.error(`[webhook] could not read subscription ${subscriptionId}:`, e);
+    throw new Error("subscription read failed");
+  }
+  if (until === null) return;
+
+  const { data, error } = await supabase
+    .from("blotter_keys")
+    .update({ entitled_until: until })
+    .eq("stripe_subscription_id", subscriptionId)
+    .is("revoked_at", null)
+    .select("key");
+
+  if (error) {
+    console.error(`[webhook] could not extend ${subscriptionId}:`, error.message);
+    throw new Error("extend failed");
+  }
+  if ((data ?? []).length === 0) {
+    /* The first invoice of a new subscription can arrive before, or beside,
+       the checkout event that creates the row. Stripe will retry, and by then
+       the row exists, so this is a wait rather than a failure. */
+    console.log(`[webhook] no key yet for ${subscriptionId}, leaving it to the retry`);
+    throw new Error("no key yet");
+  }
+}
+
 export async function POST(request: Request) {
   if (!stripeConfigured() || webhookSecret() === "" || !supabaseConfigured()) {
     return NextResponse.json({ error: "not_configured" }, { status: 503 });
@@ -160,6 +219,10 @@ export async function POST(request: Request) {
       case "checkout.session.completed":
       case "checkout.session.async_payment_succeeded":
         await onPurchase(event.data.object as Stripe.Checkout.Session);
+        break;
+
+      case "invoice.paid":
+        await onRenewal(event.data.object as Stripe.Invoice);
         break;
 
       case "charge.refunded": {
