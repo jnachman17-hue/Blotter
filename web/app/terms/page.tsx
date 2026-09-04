@@ -287,10 +287,15 @@ export default function TermsPage() {
               are collected anywhere on this site.
             </p>
             <p>
-              If that changes, your sheet will say so before anything is owed. Blotter can
-              write a notice across the top of your Contacts tab, and a price is exactly
-              the kind of thing it is there for. Using Blotter while it is free does not
-              commit you to paying for it later.
+              Blotter will not always be free. When that changes, your sheet will say so
+              before anything is owed. Blotter writes a notice across the top of your
+              Contacts tab, and a price is exactly the kind of thing it is there for.
+            </p>
+            <p>
+              You will never be charged for the time Blotter was free, and nothing you
+              have already done will be billed for afterwards. If you do not want to pay,
+              stop using it. Your spreadsheet stays yours either way, with everything in
+              it.
             </p>
           </Article>
 
