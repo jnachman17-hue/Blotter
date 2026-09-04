@@ -696,7 +696,7 @@ var TAB_INSTRUCTIONS = 'Start here';
 
 /** One row of the document. `k` is its kind; `formatInstructions_` styles it. */
 function instructionRows_() {
-  var R = function (k, a, b) { return { k: k, a: a, b: b || '' }; };
+  var R = function (k, a, b, c) { return { k: k, a: a, b: b || '', c: c || 0 }; };
   return [
     R('title', 'Blotter'),
     R('deck', 'You manage the relationships. Blotter maintains the moving parts.'),
@@ -715,7 +715,8 @@ function instructionRows_() {
     R('step', '3.  Contacts tab → add the people you are networking with. Name and Email are the only two that matter.'),
     R('step', '4.  Blotter menu → Start automatic updates. That is the whole setup.'),
     R('note', 'Paste email addresses rather than typing them where you can. A hyphen your keyboard autocorrects is not the hyphen an email address uses, and Blotter will not be able to read it.'),
-    R('slot', '[ screenshot: the Blotter menu open ]'),
+    R('slot', '[ screenshot: the Blotter menu open ]',
+      'https://blotterib.com/setup/menu.png', 190),
     R('gap'),
 
     R('h2', 'What the statuses mean'),
@@ -745,7 +746,6 @@ function instructionRows_() {
     R('step', 'Yes  →  they become a contact on the next run.'),
     R('step', 'No   →  never suggested again.'),
     R('warn', 'Do not delete a row marked Ignored. That row is the memory that you said no. Delete it and they come back.'),
-    R('slot', '[ screenshot: the Found tab with the Yes/No dropdown open ]'),
     R('gap'),
 
     R('h2', 'Yours to change, and what to leave alone'),
@@ -843,10 +843,28 @@ function formatInstructions_(sheet, rows) {
       span.merge().setValue(r.a).setFontSize(11).setFontColor('#8a5a00').setBackground('#fbeacb').setWrap(true);
       sheet.setRowHeight(row, 52);
     } else if (r.k === 'slot') {
-      span.merge().setValue(r.a).setFontSize(10).setFontColor(INK_FAINT)
-        .setHorizontalAlignment('center').setBackground('#f8f9fa')
-        .setBorder(true, true, true, true, null, null, '#e8eaed', SpreadsheetApp.BorderStyle.DASHED);
-      sheet.setRowHeight(row, 40);
+      // A picture when there is one, and an honest empty frame when there is
+      // not. `r.b` carries the image URL.
+      //
+      // `=IMAGE()` rather than `insertImage()` on purpose: an in-cell image
+      // belongs to the cell, so it moves and scales with the row, whereas an
+      // inserted one floats over the grid on an anchor and is orphaned the
+      // moment anything above it changes height. It also means a re-run
+      // replaces the picture instead of stacking a second copy on top of the
+      // first, which is what `getImages().remove()` exists to clean up after.
+      //
+      // The URL must be public and must not be on drive.google.com — Google's
+      // own restriction — which is why these are served from blotterib.com.
+      if (r.b) {
+        span.merge();
+        sheet.getRange(row, 2).setFormula('=IMAGE("' + String(r.b).replace(/"/g, '') + '", 1)');
+        sheet.setRowHeight(row, r.c || 150);
+      } else {
+        span.merge().setValue(r.a).setFontSize(10).setFontColor(INK_FAINT)
+          .setHorizontalAlignment('center').setBackground('#f8f9fa')
+          .setBorder(true, true, true, true, null, null, '#e8eaed', SpreadsheetApp.BorderStyle.DASHED);
+        sheet.setRowHeight(row, 40);
+      }
     } else if (r.k === 'gap') {
       sheet.setRowHeight(row, 14);
     } else {

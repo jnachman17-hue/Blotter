@@ -193,3 +193,36 @@ nothing was written, the next one will pick it up, and nothing is lost.
 **Any chat that discovers something a student must know writes it here**, rather
 than only into its own notes. `Start here` is rewritten from this file, once,
 deliberately — **not patched every time somebody finds something.**
+
+---
+
+## Parked: the public `Code.gs` must stop being the internal one (Jon, 3 Sep 2026)
+
+Jon read the courier source for the first time and ruled that what ships to students
+is not what we work in. His words: *"This is not what's gonna go live to the public."*
+
+**Ruling**
+
+1. One header block at the top, in the plain-English register of the green banner:
+   what Blotter Courier is, how it works, the hard rules, what it can and cannot see,
+   and its limitations. This block stays.
+2. **Every other comment goes.** No exceptions. A student opening the file sees code.
+3. No internal references. `blotter-ib-ws1`, the contract docs, the engine rules and
+   the decision log are in a private repository — pointing a student at them is
+   pointing at a locked door. Cite nothing a reader cannot open.
+4. **Jon's name never appears.** No "Jon ruled", no "Jon noted this".
+5. Support address is `blotterib@gmail.com`, never Jon's personal address.
+
+**How to build it (not yet ratified)**
+
+Do *not* strip the source. The internal comments are the reason the file is
+maintainable, and they cost a student nothing if they never see them. Instead:
+
+- `courier/Code.gs` stays as it is — the file we work in.
+- `courier/publish.js` becomes a real build step: strip comments, prepend the public
+  header, write `web/public/Code.gs`.
+- The byte-for-byte test changes accordingly: it stops asserting the two files are
+  identical and starts asserting the served file is exactly what `publish.js` produces
+  from the current source. Same protection against drift, correct definition of drift.
+
+This must land before any student is given the file.
