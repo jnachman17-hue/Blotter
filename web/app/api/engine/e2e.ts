@@ -2,6 +2,7 @@
 // Default: in-process against web/app/api/engine. LIVE=1 hits the deployed server.
 import { computeEngine, CURRENT_COURIER_VERSION } from "./rules";
 import { parseEngineRequest, RequestError } from "./validate";
+import type { FoundPerson, RowOut } from "./types";
 
 const LIVE = process.env.LIVE === "1";
 const URL = process.env.ENGINE_URL || "https://blotterib.com/api/engine";
@@ -185,7 +186,7 @@ async function main() {
     msg({ date: "2026-08-20T09:00:20" + TZ, from: "jamie.diamond@jpmorgan.com", to: [ME],
       subject: "Automatic reply: Intro", is_outbound: false })])] }));
   check("Auto-reply stays Sent", r.rows[0].status, "Sent");
-  check("Auto-reply warned about", r.warnings.some(w => /automatic reply/i.test(w)), true);
+  check("Auto-reply warned about", r.warnings.some((w: string) => /automatic reply/i.test(w)), true);
 
   // Calendar acceptance is not a reply
   r = await run("calendar accept", req({ contacts: [contact()], threads: [thread([
@@ -215,7 +216,7 @@ async function main() {
     msg({ date: "2026-08-20T09:00:00" + TZ, to: ["a@f.com","b@f.com","c@f.com"] }),
     msg({ date: "2026-08-28T09:00:00" + TZ, from: "a@f.com", to: [ME], cc: [], is_outbound: false })])] }));
   check("Only the person who replied reads Replied",
-    r.rows.map(x => x.status), ["Replied", "Sent", "Sent"]);
+    r.rows.map((x: RowOut) => x.status), ["Replied", "Sent", "Sent"]);
 
   console.log("\n=== A CONTACT WITH NO EMAIL ADDRESS ===");
   // Owen Sherry: his call demonstrably happened and he has no address anywhere
@@ -238,7 +239,7 @@ async function main() {
   r = await run("found", req({ contacts: [contact()], threads: [thread([
     msg({ date: "2026-08-20T09:00:00" + TZ, cc: ["Liz Ream <liz.ream@jpmorgan.com>"] })])] }));
   check("A new address in a contact's thread is found",
-    r.found.map(f => [f.email, f.name]), [["liz.ream@jpmorgan.com", "Liz Ream"]]);
+    r.found.map((f: FoundPerson) => [f.email, f.name]), [["liz.ream@jpmorgan.com", "Liz Ream"]]);
 
   r = await run("ignored", req({ contacts: [contact()], ignored: ["liz.ream@jpmorgan.com"],
     threads: [thread([msg({ date: "2026-08-20T09:00:00" + TZ, cc: ["Liz Ream <liz.ream@jpmorgan.com>"] })])] }));
