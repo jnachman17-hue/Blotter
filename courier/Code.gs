@@ -733,8 +733,8 @@ function instructionRows_() {
     R('gap'),
 
     R('h2', 'The two numbers'),
-    R('body', 'Days: how long since the last thing that actually happened on that contact. On Sent it counts from the email you sent, on Replied from the one they sent, on Call done from the call itself.'),
-    R('body', 'Attempts: how many times you have written since they last wrote back.'),
+    R('body', 'Days: how long since the last thing that actually happened on that contact. On Sent it counts days from the email you sent, on Replied from the one they sent, on Call done from the call itself.'),
+    R('body', 'Attempts: how many times you have written since they last wrote back. In other words, how many times you have bumped your email.'),
     R('note', 'Both show a dash where there is nothing to count.'),
     R('gap'),
 
