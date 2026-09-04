@@ -154,6 +154,13 @@ var PROP_INSTALL_ID = 'blotterInstallId';
 // first one that ever mattered.
 var PROP_NOTICE_COL = 'blotterNoticeCol';
 
+// Whether a notice is currently on the sheet. Without this, clearing the space
+// costs about ten round trips to Google on EVERY run — unmerging, clearing
+// content, clearing a note, resetting three formats and the tab colour — to
+// tidy up after a message that has never been sent. There is nothing to clear
+// until there has been something to clear.
+var PROP_NOTICE_SHOWN = 'blotterNoticeShown';
+
 // Telemetry goes to its OWN endpoint, and that separation is the point rather
 // than a preference. The engine has no database, no logging and no file
 // writes, so "the engine stores nothing" is literally true — and it can be
@@ -1165,6 +1172,12 @@ function noticeRange_(sheet) {
  * true.
  */
 function writeNotice_(sheet, notice) {
+  var props = PropertiesService.getScriptProperties();
+  var showing = props.getProperty(PROP_NOTICE_SHOWN) === '1';
+  // The common case, by far: no notice now and none before. Clearing an empty
+  // space is ten round trips spent tidying up after nothing.
+  if (!notice && !showing) return false;
+
   var range = noticeRange_(sheet);
   try { range.breakApart(); } catch (e) { /* not merged yet */ }
   range.clearContent().clearNote();
@@ -1172,6 +1185,7 @@ function writeNotice_(sheet, notice) {
 
   if (!notice || !notice.text) {
     try { sheet.setTabColor(null); } catch (e) { /* older sheets */ }
+    props.setProperty(PROP_NOTICE_SHOWN, '');
     return false;
   }
 
@@ -1191,6 +1205,7 @@ function writeNotice_(sheet, notice) {
     .setWrap(true);
   // Visible from any tab, not only this one.
   try { sheet.setTabColor(NOTICE_TAB_COLOUR[level]); } catch (e) { /* older sheets */ }
+  props.setProperty(PROP_NOTICE_SHOWN, '1');
   return true;
 }
 

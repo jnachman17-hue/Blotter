@@ -228,22 +228,46 @@ time something wants to say something.
 
 ---
 
-### 5.5 The run got slower and it is not yet explained
+### 5.5 The run is slower, and it is now a trend rather than a reading
 
-Jon's live run reported **68 seconds**, against 44 measured after the calendar
-fix on September 2. **The budget is roughly 82 seconds** (`11-COURIER-NOTES.md`
-§3), so it is inside it — with less headroom than before.
+**44 seconds (Sept 2) → 68 → 71.** Three readings, one direction. The budget is
+roughly 82 seconds a run (`11-COURIER-NOTES.md` §3), so it is still inside —
+but the number that matters is the daily one: **65 worked runs × 71 s ≈ 4,600
+against 5,400 s/day. That is 85% of the trigger budget spent.**
 
-**No cause is claimed.** Three things changed in between and only one is mine:
-the whole UI build landed (a different chat), the sheet now has 67 contacts,
-and this build removed `getPlainBody()` from every non-bounce message — which
-should have made it **faster**, not slower. A single measurement is not a
-trend.
+**What was checked and ruled out.** The UI build's formatting —
+`formatContacts_`, `applyStatusColours_`, `applyClosedRowFade_`, the
+conditional-format rules — all lives in `setupSheet`, which runs on **Step 1
+only**, not on a pass. The per-run write phase is about 25 round trips and has
+not meaningfully grown.
 
-**Worth watching rather than chasing.** The number to read is
-`Settings → Last run took` over several runs; if it holds above 70, the next
-thing to look at is the per-run cost the UI build added to the write phase,
-since that is the part that grew.
+**What was found and fixed.** `writeNotice_` was spending roughly **ten round
+trips on every run tidying up after a message that has never been sent** —
+unmerging, clearing content, clearing a note, resetting three formats and the
+tab colour, on an empty range. It now reads one script property and returns
+when there is nothing to show and nothing to clear. Small, but it was pure
+waste and it was mine.
+
+**What is still unexplained, honestly.** That fix does not account for 27
+seconds. Two candidates remain and **neither can be profiled from outside Apps
+Script**:
+
+1. **The sheet is simply doing more.** It has 67 contacts now against 58 when
+   44 was measured, which is one extra Gmail search chunk
+   (`ADDRESSES_PER_SEARCH = 10`) plus every thread those contacts reach. Jon
+   also drove a full live test through this account, so there is genuinely more
+   mail than there was.
+2. **The look-back windows are still set for the archive test** — 1,100 days on
+   *both* mail and calendar, against a default of 365. On an account with three
+   years of personal calendar that is the dominant cost by a wide margin.
+
+**The decisive datum is two cells**, and it costs one glance:
+`Settings → Last run fetched` and `Gmail calls last run`. If the conversation
+and message counts have grown since the 44-second run, the time is legitimate
+work. If they have not, the cost is in the write phase and worth chasing.
+
+**The free lever, if it ever runs hot:** drop both look-backs to 365 once the
+2024 archive comparison is finished. A live student never touches them.
 
 ## 6. What the next chat must not trip over
 
