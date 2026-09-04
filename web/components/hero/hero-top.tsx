@@ -60,7 +60,7 @@ export type HeroTopVariant = "current" | "a" | "b" | "c" | "d" | "e" | "f" | "g"
 
 /** Ratified, `01-HERO`. */
 const EYEBROW =
-  "The non-AI slop tracker that actually saves you time";
+  "A Google Sheet that automatically keeps your recruiting tracker current.";
 
 function Eyebrow({ center = false }: { center?: boolean }) {
   return (
@@ -94,8 +94,8 @@ function Headline({ center = false }: { center?: boolean }) {
         center ? "mx-auto max-w-[620px] text-center" : "max-w-[620px]",
       )}
     >
-      <span className="block">Recruiting truly sucks.</span>
-      <span className="block text-navy-400">You will lose track.</span>
+      <span className="block">A recruiting tracker that keeps itself current.</span>
+      <span className="block text-navy-400">Who replied, who went quiet, who you owe.</span>
     </h1>
   );
 }

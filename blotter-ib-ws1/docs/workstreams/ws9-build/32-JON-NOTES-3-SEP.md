@@ -259,3 +259,28 @@ been handed off. That chat previously owned the film/animation work.
       tab, the Contacts tab, the Found tab. Only Jon can take these.
 - [J] **10.6 The blank template**, still. Every `/setup` flow ends at a button that
       does not exist yet.
+
+---
+
+## 11. From the animation agent's report (4 Sep, ~00:40)
+
+- [ ] **11.1 The hero animation itself is still stale.** What moves on the page
+      is two static films, `web/public/film/blotter-film-web-hero.html` (desktop)
+      and `blotter-film-c-4x5.html` (mobile). Both still draw `Next move`,
+      `Call`, `LinkedIn`, `No reply` and `Call completed`, with no `Attempts`
+      column. The agent's rebuilt React sheet and its three callouts only render
+      under reduced motion. Second agent pass needed with those two files in scope.
+- [x] **11.2 Section 02 (`ownership.tsx`) rebuilt** on the real eleven columns,
+      real widths, `bands` theme, no status chips, `Closed` checkbox, struck-through
+      closed row. Renders as `01` now.
+- [x] **11.3 Mobile sheet** keeps Name, Status, Days, Attempts at 375px; the other
+      seven are named in a line beneath. The swipe treatment keeps all eleven.
+- [ ] **11.4 The new hero headline wraps to four lines at 1440px** inside
+      `hero-top.tsx`'s `max-w-[620px]`, which was tuned to the old copy. Widen or
+      shorten.
+- [ ] **11.5 Stale elsewhere:** `lib/sheet-data.ts` (dead exports `TRACKER_CONTACTS`,
+      `HERO_CUES`), `section-3/day-timeline.tsx`, `app/opengraph-image.tsx`,
+      `app/review/sheet-mobile` all still carry the old columns and two statuses
+      that never existed.
+- [ ] **11.6 `courier/Code.gs` ~993:** comment says a dash "sorts last"; the code
+      sorts it first. Harmless today; fix the comment.

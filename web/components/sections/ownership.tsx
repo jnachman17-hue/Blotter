@@ -158,7 +158,7 @@ export function Ownership({
   return (
     <section className="field-rise pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
-        <SectionNumber n={2} />
+        <SectionNumber n={1} />
         <SectionEyebrow>{TRIAL_EYEBROWS.ownership}</SectionEyebrow>
 
         {/* ------------------------------------------------------ desktop */}

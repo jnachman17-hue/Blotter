@@ -571,7 +571,7 @@ export default function PrivacyPolicyPage() {
             stops believing everything around it. It is transcribed from
             `web/app/api/engine/types.ts`, which is the contract itself.
           */}
-          <Article n="06" title="What Blotter reads, and what leaves your account">
+          <Article n="06" title="What Blotter reads, and what it cannot">
             <p>
               Blotter follows conversations, not senders. A thread counts if any message
               in it has one of your contacts on the From, To or Cc line — which is what
