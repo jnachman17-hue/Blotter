@@ -202,7 +202,7 @@ eq('and the display-name path normalises too',
 eq('a garbled address names the row and quotes the cell',
   box.unreadableAddressWarnings_([{ row: 7, name: 'Jane Doe', cell: 'jane@acme,com' }]),
   ['Row 7 (Jane Doe): "jane@acme,com" is not an email address Blotter can read, ' +
-   'so the row will stay "Not emailed". Retyping it usually fixes it — autocorrect ' +
+   'so the row will stay "Not emailed". Retyping it usually fixes it. Autocorrect ' +
    'sometimes replaces a hyphen with a dash that looks identical.']);
 eq('an empty address cell says something different and true',
   box.unreadableAddressWarnings_([{ row: 3, name: 'Owen Sherry', cell: '' }]),
