@@ -957,8 +957,10 @@ function prepareForHandover() {
   });
   var settings = ss.getSheetByName(TAB_SETTINGS);
   if (settings) {
+
     [SETTING_ADDRESSES, SETTING_LAST_RUN, SETTING_WARNINGS, SETTING_RUN_TOOK,
-     SETTING_RUN_FETCHED, SETTING_GMAIL_CALLS, SETTING_PRETEND_TODAY
+     SETTING_RUN_FETCHED, SETTING_GMAIL_CALLS, SETTING_PRETEND_TODAY,
+     SETTING_INSTALL_ID, SETTING_KEY
     ].forEach(function (label) {
       var row = settingRow_(settings, label);
       if (row > 0) settings.getRange(row, 2).setValue('');

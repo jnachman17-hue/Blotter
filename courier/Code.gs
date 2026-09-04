@@ -1372,8 +1372,15 @@ function prepareForHandover() {
   });
   var settings = ss.getSheetByName(TAB_SETTINGS);
   if (settings) {
+    // SETTING_INSTALL_ID and SETTING_KEY are here because this sheet is about
+    // to become somebody else's. The id is minted per install and lives in
+    // script properties, which a copy does not inherit, so a new owner's first
+    // run writes their own. The cell, though, is ordinary sheet data and is
+    // copied like any other, so without this the template ships showing the
+    // previous owner's id until their first run overwrites it.
     [SETTING_ADDRESSES, SETTING_LAST_RUN, SETTING_WARNINGS, SETTING_RUN_TOOK,
-     SETTING_RUN_FETCHED, SETTING_GMAIL_CALLS, SETTING_PRETEND_TODAY
+     SETTING_RUN_FETCHED, SETTING_GMAIL_CALLS, SETTING_PRETEND_TODAY,
+     SETTING_INSTALL_ID, SETTING_KEY
     ].forEach(function (label) {
       var row = settingRow_(settings, label);
       if (row > 0) settings.getRange(row, 2).setValue('');
