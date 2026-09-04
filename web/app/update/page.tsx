@@ -51,7 +51,7 @@ export default async function UpdatePage() {
         </p>
       </div>
 
-      <CopyScript script={script} />
+      <CopyScript script={script} version={SCRIPT_VERSION} />
 
       <ol className="mt-10 max-w-[68ch] space-y-6 text-body leading-[1.65] text-ink-muted">
         <li className="flex gap-4">

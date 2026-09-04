@@ -1221,3 +1221,61 @@ sha256           identical to web/public/Code.gs in this repository
 ```
 
 The date fix and the rewritten `Start here` are both present in the served file.
+
+---
+
+## 19. Defect 6 — a floating image survives every rebuild, and the picture was always soft
+
+**Found by Jon on the master template**, immediately after `2026-09-04.3` added
+one row to `Start here`. Two faults, tangled together, and only the first was
+caused by this work.
+
+### 19.1 `sheet.clear()` does not remove over-the-grid images
+
+`buildInstructions_` (`courier/Code.gs:818`) rebuilds the tab with
+`sheet.clear()` and `sheet.clearFormats()`. Neither removes an image floating
+above the grid. **So any picture ever inserted into that tab outlives every
+Step 1, forever.**
+
+The master had one sitting directly on top of the in-cell screenshot, invisible
+because the two lined up exactly. The extra row shifted the layout by one and
+the pair came apart, one of them landing across the step 3 wording.
+
+**The comment on the `slot` renderer has claimed since it was written that
+`getImages().remove()` cleans this up.** It never existed anywhere in the file;
+`git log -S insertImage` confirms the code has never created a floating image
+either, so the one on the master was placed by hand.
+
+Fixed: `buildInstructions_` now removes every image on the tab before
+rebuilding. **Step 1 repairs a sheet already in that state**, rather than only
+avoiding new ones.
+
+### 19.2 The picture Blotter draws has always been blurry
+
+This one was never caused by the extra row. It was only ever hidden by it.
+
+The sharp image Jon had been looking at was the hand-placed one. The in-cell
+`=IMAGE()` underneath it had always been soft and nobody had seen it alone.
+`=IMAGE(url, 1)` draws at whatever size the cell gives it, and a 933x316 file
+drawn 649 across has nothing left over for a high-resolution screen.
+
+**Jon retook it at 2042x820.** The green box was redrawn to match the original
+rather than eyeballed: the old annotation was measured at `#16a34a`, 3px stroke,
+4px corner radius, with 8px of padding left and top and about 10px right and
+bottom around the text. All of it scaled by the 2.18x difference between the two
+files and redrawn at the same proportions.
+
+The row goes from 220 to 260, because the menu has gained `Check this sheet
+(diagnostics)` since the first screenshot and the picture is genuinely taller.
+It now draws about 647 across, the same width as before, with **three times the
+pixels it needs**.
+
+### 19.3 What this says about the test
+
+**Neither fault is reachable from a test suite.** One needs a sheet that has
+been edited by hand over weeks; the other needs a human looking at a real screen
+and saying "that is blurry". They were found in the last twenty minutes of a
+day of automated checking, by Jon, looking at his own sheet.
+
+That is the argument for this whole exercise, and it is worth writing down next
+to the 675 passing checks.

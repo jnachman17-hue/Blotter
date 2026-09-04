@@ -263,6 +263,22 @@ async function main() {
   const bodyRes = await post(withBody);
   check("A request carrying a body is refused", bodyRes.status, 400);
 
+  // Version comparison. Numbers, not text, which is the whole point of the
+  // scheme change: "4.9" > "4.10" as text and the notice would have gone quiet
+  // at 4.10 with nothing to show for it.
+  {
+    const behind = ["4.3", "4.0", "3.9", "2026-09-04.4", "2026-09-03", "1.0"];
+    for (const v of behind) {
+      const res = await run(`behind ${v}`, req({ contacts: [contact()], courier_version: v }));
+      check(`${v} is told to update`, res?.notice?.level, "info");
+    }
+    const notBehind = ["4.4", "4.5", "4.10", "5.0", "10.0"];
+    for (const v of notBehind) {
+      const res = await run(`current ${v}`, req({ contacts: [contact()], courier_version: v }));
+      check(`${v} is not told to update`, res?.notice, null);
+    }
+  }
+
   // The notice channel
   r = await run("old courier", req({ contacts: [contact()], courier_version: "2026-09-01" }));
   check("An old courier is told there is a newer one", r.notice?.level, "info");

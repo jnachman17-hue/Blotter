@@ -24,7 +24,7 @@ var CONTRACT_VERSION = 4;
 
 // Which build of this script is running. Sent to the telemetry endpoint only,
 // so a count of installs can be split by version when something goes wrong.
-var COURIER_VERSION = '2026-09-04.4';
+var COURIER_VERSION = '4.4';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -908,20 +908,50 @@ function formatInstructions_(sheet, rows) {
       // A picture when there is one, and an honest empty frame when there is
       // not. `r.b` carries the image URL.
       //
-      // `=IMAGE()` rather than `insertImage()` on purpose: an in-cell image
-      // belongs to the cell, so it moves and scales with the row, whereas an
-      // inserted one floats over the grid on an anchor and is orphaned the
-      // moment anything above it changes height. It also means a re-run
-      // replaces the picture instead of stacking a second copy on top of the
-      // first. Any floating image already on the tab is removed in
-      // `buildInstructions_` before this runs.
+      // **`insertImage()`, not `=IMAGE()`, and the reason is legibility.**
+      // An in-cell `=IMAGE()` is Google rasterising the picture to fit the
+      // cell, and it comes out soft on any high-resolution screen however many
+      // pixels the source has. Jon called it out twice on a real sheet; feeding
+      // it a file with four times the detail changed nothing, which is what
+      // proved the fault is the mechanism rather than the image.
+      //
+      // An inserted image is the file itself, drawn at whatever size it is
+      // given, so it stays sharp.
+      //
+      // The two things that argued against it are both handled. It used to
+      // stack a second copy on every re-run and be orphaned when the rows above
+      // it moved: `buildInstructions_` now clears every image before this runs,
+      // and this re-anchors on the row it belongs to each time, so Step 1
+      // repairs the position rather than compounding it.
       //
       // The URL must be public and must not be on drive.google.com — Google's
       // own restriction — which is why these are served from blotterib.com.
       if (r.b) {
         span.merge();
-        sheet.getRange(row, 2).setFormula('=IMAGE("' + String(r.b).replace(/"/g, '') + '", 1)');
-        sheet.setRowHeight(row, r.c || 150);
+        var slotHeight = r.c || 150;
+        sheet.setRowHeight(row, slotHeight);
+        var drawn = false;
+        try {
+          var blob = UrlFetchApp.fetch(String(r.b), { muteHttpExceptions: true }).getBlob();
+          var image = sheet.insertImage(blob, 2, row);
+          // Fit the height, keep the aspect ratio, and leave a little air so
+          // the picture is not jammed against the cell's edges.
+          var pad = 8;
+          var natural = image.getHeight() > 0 ? image.getWidth() / image.getHeight() : 3;
+          var drawH = slotHeight - pad * 2;
+          image.setHeight(drawH);
+          image.setWidth(Math.round(drawH * natural));
+          image.setAnchorCellXOffset(pad);
+          image.setAnchorCellYOffset(pad);
+          drawn = true;
+        } catch (e) {
+          // A picture is never worth a failed setup. Fall back to the in-cell
+          // form, which is soft but always works.
+          console.error('Could not place the instruction image: ' + e);
+        }
+        if (!drawn) {
+          sheet.getRange(row, 2).setFormula('=IMAGE("' + String(r.b).replace(/"/g, '') + '", 1)');
+        }
       } else {
         span.merge().setValue(r.a).setFontSize(10).setFontColor(INK_FAINT)
           .setHorizontalAlignment('center').setBackground('#f8f9fa')
