@@ -54,7 +54,14 @@ export async function POST(request: Request) {
      * rather than a deploy, and so forgetting to remove this code still
      * leaves it inert. **DELETE THIS BLOCK once the rehearsal is signed off.**
      * ------------------------------------------------------------------ */
-    const rehearsal = process.env.BLOTTER_TEST_NOTICE;
+    /* The switch is read from the URL first and the environment second.
+       The environment variable never took effect on Vercel — set, redeployed,
+       and still undefined at runtime — and rather than keep guessing at why,
+       the query string moves the control into the Settings tab where Jon can
+       change it without a deploy at all. `?notice=blocked` on the Server URL. */
+    const rehearsal =
+      new URL(request.url).searchParams.get("notice") ??
+      process.env.BLOTTER_TEST_NOTICE;
     if (rehearsal === "info" || rehearsal === "warning") {
       return NextResponse.json({
         ...computeEngine(parsed),
