@@ -43,7 +43,7 @@
 
 var CONTRACT_VERSION = 4;
 
-var COURIER_VERSION = '2026-09-04.3';
+var COURIER_VERSION = '2026-09-04.4';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -468,8 +468,9 @@ function instructionRows_() {
     R('note', 'You almost certainly track this somewhere already. Bring that list over. Name and Email are the two columns that matter, and Blotter only watches conversations with the people in this tab, so anyone missing here is invisible to it.'),
     R('note', 'From here on this is your tracker. Add new people here as you meet them, and paste addresses rather than typing them: a hyphen your keyboard autocorrects is not the hyphen an email address uses. Blotter also suggests people it sees in your threads, on the Found tab, so the list grows on its own once it is running.'),
     R('step', '4.  Blotter menu \u2192 Start automatic updates.'),
+
     R('slot', '[ screenshot: Blotter menu, Start automatic updates ]',
-      'https://blotterib.com/setup/menu-updates.png', 220),
+      'https://blotterib.com/setup/menu-updates.png', 260),
     R('note', 'Nothing changes the moment you add somebody. Blotter updates every 15 minutes. To fill the sheet in straight away, use Blotter menu \u2192 Step 2: Run once now.'),
     R('gap'),
 
@@ -559,6 +560,8 @@ function buildInstructions_(ss) {
   ss.moveActiveSheet(1);
   sheet.clear();
   sheet.clearFormats();
+
+  sheet.getImages().forEach(function (image) { image.remove(); });
 
   var rows = instructionRowsInForce_();
   var values = rows.map(function (r) { return ['', r.a, r.b]; });
