@@ -156,6 +156,20 @@ var PROP_INSTALL_ID = 'blotterInstallId';
 var TELEMETRY_URL_DEFAULT = 'https://blotterib.com/api/telemetry';
 var SETTING_TELEMETRY = 'Usage counting endpoint';
 
+// The support handle. `installId_()` has existed since telemetry was built and
+// the student has never been able to see it — so the one thing that identifies
+// their sheet when they write in for help was the one thing they could not
+// quote. Read-only: it is written every run, never read from the cell.
+var SETTING_INSTALL_ID = 'Your Blotter ID (quote this if you need help)';
+
+// Where to go when the sheet has stopped and the answer is not in it. In the
+// SHEET, not only on the website: a student whose tracker has gone quiet is
+// looking at the tracker, not hunting through a marketing site for a contact
+// form.
+var SETTING_HELP = 'Help';
+var HELP_EMAIL = 'jnachman17@gmail.com';
+var HELP_URL = 'https://blotterib.com/help';
+
 // True from the first sheet write of a pass until it finishes. The
 // write-nothing-on-failure promise only holds for throws before this point;
 // the first live run proved a write-phase throw leaves the sheet partly
@@ -683,6 +697,16 @@ function instructionRows_() {
     R('slot', '[ screenshot: the Found tab with the Yes/No dropdown open ]'),
     R('gap'),
 
+    R('h2', 'Yours to change, and what to leave alone'),
+    R('body', 'It is your spreadsheet. Almost everything in it is yours to do what you like with, and Blotter is built to stay out of the way.'),
+    R('strong', 'Yours: add any columns you like, anywhere — LinkedIn, Notes, how you met. Colour them. Put formulas in them. Add rows, delete rows, sort however you want. Rename the file. Add your own tabs.'),
+    R('note', 'Blotter finds its columns by their headings, not by where they sit, so your own columns can go anywhere — including in between Blotter’s.'),
+    R('warn', 'Leave alone: the headings Blotter writes — Status, Days, Last contact, Attempts, Next call, Last call — and Name, Email and Closed. Rename or delete one and Blotter stops and tells you. Do not give one of your own columns a Blotter heading either; two columns called Days and it cannot tell which is which.'),
+    R('warn', 'A formula in one of Blotter’s columns will not survive. Those cells are rewritten every run. Put the formula in a column of your own and it is safe.'),
+    R('note', 'The Contacts, Found and Settings tabs need to keep their names. Rename one and Blotter cannot find it.'),
+    R('strong', 'If anything goes wrong: Blotter → Step 1: Set up this sheet. It rebuilds what is missing and does not touch your contacts.'),
+    R('gap'),
+
     R('h2', 'When something looks wrong'),
     R('status', 'Stuck on Not emailed', 'Blotter cannot read that email address. Settings → Last run warnings names the row.'),
     R('status', 'Nothing is updating', 'Check Settings → Last successful run. If it is old, run Blotter → Step 2 by hand and read the message.'),
@@ -691,7 +715,12 @@ function instructionRows_() {
 
     R('h2', 'What Blotter never does'),
     R('body', 'Never sends email. Never replies. Never edits or deletes anything in your inbox. Never creates or changes a calendar event.'),
-    R('strong', 'It only reads, and it only reads conversations that already involve someone in your Contacts tab.')
+    R('strong', 'It only reads, and it only reads conversations that already involve someone in your Contacts tab.'),
+    R('gap'),
+
+    R('h2', 'Still stuck'),
+    R('body', HELP_URL + '  ·  ' + HELP_EMAIL),
+    R('note', 'Quote the Blotter ID from the Settings tab — it says which sheet is yours without saying anything about you.')
   ];
 }
 
@@ -972,18 +1001,23 @@ function headerRow_(sheet) {
 
   if (lastCol > 0 && depth > 0) {
     var grid = sheet.getRange(1, 1, depth, lastCol).getValues();
-    // A plain search with one exit. An earlier version tried to break out of
-    // both loops by assigning to the outer index, and ran off the end of the
-    // grid whenever the headers were on row 1 — because the guard it used to
-    // stop was "found !== 1", which is exactly the case it could not detect.
+    // The row with the MOST anchors on it, not the first row with any.
+    //
+    // A single hit is not evidence: a student who types "Status" on its own
+    // into a spare cell of the banner row would otherwise move the header row
+    // to 1, and every answer after that lands one row off — silently, on
+    // somebody else's line. A real header row carries all of them, so two is
+    // the threshold and the best score wins.
+    var best = 0;
     for (var r = 0; r < grid.length; r++) {
       var row = grid[r] || [];
-      var hit = false;
+      var score = 0;
       for (var c = 0; c < row.length; c++) {
-        if (wanted[String(row[c]).trim().toLowerCase()]) { hit = true; break; }
+        if (wanted[String(row[c]).trim().toLowerCase()]) score++;
       }
-      if (hit) { found = r + 1; break; }
+      if (score > best) { best = score; found = r + 1; }
     }
+    if (best < 2) found = 1;   // nothing convincing: the safe default
   }
   headerRowCache_[key] = found;
   return found;
@@ -1096,6 +1130,11 @@ function setupSheet() {
   ensureSettingRow_(settings, SETTING_RUN_TOOK, '');
   ensureSettingRow_(settings, SETTING_RUN_FETCHED, '');
   ensureSettingRow_(settings, SETTING_GMAIL_CALLS, '');
+  ensureSettingRow_(settings, SETTING_HELP, HELP_URL + '  ·  ' + HELP_EMAIL,
+    'Stuck, or something looks wrong? Start here. Quote your Blotter ID below.');
+  ensureSettingRow_(settings, SETTING_INSTALL_ID, '',
+    'Identifies this sheet and nothing about you. Blotter fills this in on its ' +
+    'first run — you never type it.');
   ensureSettingRow_(settings, SETTING_TELEMETRY, TELEMETRY_URL_DEFAULT,
     'Counts how many sheets are running. Sends a random id for this sheet and ' +
     'a number of contacts — never a name, address, subject or message. Clear ' +
@@ -1149,7 +1188,7 @@ function expectedSetup_() {
     settings: [SETTING_ADDRESSES, SETTING_SERVER, SETTING_LAST_RUN, SETTING_WARNINGS,
                SETTING_CAL_BACK, SETTING_CAL_FORWARD, SETTING_MAIL_BACK,
                SETTING_RUN_TOOK, SETTING_RUN_FETCHED, SETTING_GMAIL_CALLS,
-               SETTING_PRETEND_TODAY]
+               SETTING_HELP, SETTING_INSTALL_ID, SETTING_PRETEND_TODAY]
   };
 }
 
@@ -1645,6 +1684,7 @@ function courierPass_() {
     syncClosedCheckboxes_(sheetState);
     var suggested = writeFoundSuggestions_(ss, sheetState, foundState, response.found || []);
     writeSetting_(ss, SETTING_LAST_RUN, new Date());
+    writeSetting_(ss, SETTING_INSTALL_ID, installId_());
     // When the time machine is on, say so first and say so loudly. Every
     // number on this sheet is now an answer to a question about a day that is
     // not today, and nothing else about the sheet reveals that.
@@ -1654,7 +1694,19 @@ function courierPass_() {
         'Clear Settings → "' + SETTING_PRETEND_TODAY + '" and run again to go back to normal.'
       : '';
     var addressWarnings = unreadableAddressWarnings_(sheetState.unreadableAddresses);
-    var warningLines = addressWarnings.concat(response.warnings || []);
+    // `missingSetup_` was written for exactly this and had never been called by
+    // anything. A sheet built by an older script silently lacks whatever a
+    // later one added, which is every student on an update path.
+    var setupGaps = missingSetup_(ss);
+    var setupWarnings = setupGaps.length
+      ? ['This sheet is missing ' + setupGaps.join(', ') +
+         '. Run Blotter → Step 1: Set up this sheet — it adds what is missing ' +
+         'and does not touch your contacts.']
+      : [];
+    var warningLines = setupWarnings
+      .concat(overwrittenFormulaWarnings_(sheetState.overwrittenFormulas))
+      .concat(addressWarnings)
+      .concat(response.warnings || []);
     if (pretendWarning) warningLines.unshift(pretendWarning);
     writeSetting_(ss, SETTING_WARNINGS,
       warningLines.length ? safeCell_(warningLines.join(' | ')) : 'None');
@@ -1686,6 +1738,12 @@ function courierPass_() {
       (addressWarnings.length
         ? '\n\nCHECK THESE ROW(S) — Blotter could not read an email address:\n• ' +
           addressWarnings.join('\n• ')
+        : '') +
+      // Both of these are the student's own sheet changing under Blotter, so
+      // they belong in front of the person who just clicked Run.
+      (setupWarnings.length ? '\n\n' + setupWarnings.join('\n') : '') +
+      (sheetState.overwrittenFormulas && sheetState.overwrittenFormulas.length
+        ? '\n\n' + overwrittenFormulaWarnings_(sheetState.overwrittenFormulas).join('\n')
         : '');
   } catch (runError) {
     // A run that failed is still a run that happened. Counting it is what makes
@@ -1873,6 +1931,18 @@ function readContacts_(ss) {
   if (missing.length > 0) {
     throw new Error('The Contacts tab is missing column(s): ' + missing.join(', ') +
       '. Run Blotter → Step 1: Set up this sheet, or restore the header.');
+  }
+
+  // Two columns with the same Blotter heading is the worst shape this sheet
+  // can take, because it fails SILENTLY: `findColumn_` returns the leftmost,
+  // so a student whose own column is called "Status" or "Days" has Blotter
+  // quietly overwrite it every run and never says so. Stop instead.
+  var duplicated = duplicateBlotterHeadings_(sheet);
+  if (duplicated.length > 0) {
+    throw new Error('The Contacts tab has more than one column called ' +
+      duplicated.join(', ') + '. Blotter writes to the leftmost, which would ' +
+      'overwrite whichever one is yours. Rename your own column to something ' +
+      'else — anything that is not a Blotter heading — and run again.');
   }
 
   var lastRow = sheet.getLastRow();
@@ -2290,6 +2360,30 @@ function writeBlotterColumns_(sheetState, rows) {
     'Last call': function (r) { return asSheetDate_(r.last_call); }
   };
 
+  // Nobody can stop a student dragging rows around while a run is in flight —
+  // the menu sort takes the script lock, a hand on the mouse does not. But the
+  // row number is the contract's join key, so a sort landing between the read
+  // and the write would put every answer on the wrong person: Jamie's status
+  // on Alice's line, quietly, and no way to tell afterwards.
+  //
+  // So the identities are checked once more, immediately before writing. If a
+  // row is not the person it was when the request went out, nothing is written
+  // at all. A stopped run costs one quarter of an hour; a scrambled sheet
+  // costs trust in every cell.
+  var moved = rowsThatMoved_(sheetState, minRow, maxRow);
+  if (moved.length > 0) {
+    throw new Error('The rows moved while Blotter was working — ' + moved.join('; ') +
+      '. Nothing was written, because the answers would have landed on the ' +
+      'wrong people. Run Blotter → Step 2 again and it will be right.');
+  }
+
+  // One read, before anything is written, to find student formulas standing in
+  // cells Blotter is about to overwrite. `setValues` replaces a formula with a
+  // value and says nothing, so a student who builds a calculation in `Days`
+  // loses it on the next run and cannot tell what happened. Blotter still
+  // writes — the column is its own — but it now says so.
+  sheetState.overwrittenFormulas = formulasInBlotterColumns_(sheet, minRow, height);
+
   BLOTTER_COLUMNS.forEach(function (columnName) {
     var col = findColumn_(sheet, columnName);
     var existing = sheet.getRange(minRow, col, height, 1).getValues();
@@ -2454,6 +2548,109 @@ function findColumn_(sheet, headerName) {
     if (String(headers[i]).trim().toLowerCase() === headerName.toLowerCase()) return i + 1;
   }
   return 0;
+}
+
+/**
+ * Blotter headings that appear more than once on a tab.
+ *
+ * Only Blotter's own names matter here. Two columns of a student's called
+ * `Notes` is their business and works fine; two called `Days` is a cell being
+ * destroyed every quarter of an hour with nothing said.
+ */
+/**
+ * Rows whose occupant changed between the request going out and the answer
+ * coming back. Empty is the normal answer.
+ *
+ * Compares only what identifies a person — the name and the addresses — and
+ * only for rows that were actually sent. A row the student edited *into* a
+ * blank line while the run was out is not a mismatch, because that row carried
+ * no contact and got no answer.
+ */
+function rowsThatMoved_(sheetState, minRow, maxRow) {
+  var sheet = sheetState.sheet;
+  var height = maxRow - minRow + 1;
+  if (height < 1) return [];
+  var names = sheet.getRange(minRow, sheetState.cols.name, height, 1).getValues();
+  var emails = sheet.getRange(minRow, sheetState.cols.email, height, 1).getValues();
+
+  var moved = [];
+  sheetState.contacts.forEach(function (c) {
+    var i = c.row - minRow;
+    if (i < 0 || i >= height) return;
+    var nameNow = String(names[i][0]).trim();
+    var emailsNow = addressList_(emails[i][0]).join(',').toLowerCase();
+    var emailsThen = c.emails.join(',').toLowerCase();
+    if (nameNow !== c.name || emailsNow !== emailsThen) {
+      if (moved.length < 3) {
+        moved.push('row ' + c.row + ' was ' + (c.name || '(no name)') +
+          ' and is now ' + (nameNow || '(empty)'));
+      }
+    }
+  });
+  return moved;
+}
+
+/**
+ * Formulas sitting in columns Blotter owns, as `{row, column}` records.
+ *
+ * One `getFormulas()` over the whole block rather than one per column: this
+ * runs on every pass, and the run budget has no room for six extra round trips
+ * to report something that is usually empty.
+ */
+function formulasInBlotterColumns_(sheet, minRow, height) {
+  var lastCol = sheet.getLastColumn();
+  if (lastCol < 1 || height < 1) return [];
+  var wanted = {};
+  BLOTTER_COLUMNS.forEach(function (h) {
+    var c = findColumn_(sheet, h);
+    if (c > 0) wanted[c] = h;
+  });
+  var formulas = sheet.getRange(minRow, 1, height, lastCol).getFormulas();
+  var found = [];
+  for (var r = 0; r < formulas.length; r++) {
+    for (var c in wanted) {
+      var cell = formulas[r][Number(c) - 1];
+      if (cell && String(cell).charAt(0) === '=') {
+        found.push({ row: minRow + r, column: wanted[c] });
+      }
+    }
+  }
+  return found;
+}
+
+/** The sentence a student sees when Blotter is about to overwrite their work. */
+function overwrittenFormulaWarnings_(formulas) {
+  if (!formulas || formulas.length === 0) return [];
+  var shown = formulas.slice(0, 5).map(function (f) {
+    return 'row ' + f.row + ' (' + f.column + ')';
+  });
+  return ['Blotter replaced a formula you had written in a column it owns: ' +
+    shown.join(', ') +
+    (formulas.length > 5 ? ', and ' + (formulas.length - 5) + ' more' : '') +
+    '. Blotter rewrites those columns every run, so a formula there cannot ' +
+    'survive. Put it in a column of your own instead — add one anywhere and ' +
+    'Blotter will leave it alone.'];
+}
+
+function duplicateBlotterHeadings_(sheet) {
+  var owned = {};
+  [COL_NAME, COL_EMAIL, COL_CLOSED].concat(BLOTTER_COLUMNS).forEach(function (h) {
+    owned[h.toLowerCase()] = h;
+  });
+  var lastCol = sheet.getLastColumn();
+  if (lastCol < 1) return [];
+  var headers = sheet.getRange(headerRow_(sheet), 1, 1, lastCol).getValues()[0];
+  var seen = {};
+  var dupes = [];
+  headers.forEach(function (cell) {
+    var key = String(cell).trim().toLowerCase();
+    if (!owned[key]) return;
+    if (seen[key]) {
+      if (dupes.indexOf('"' + owned[key] + '"') === -1) dupes.push('"' + owned[key] + '"');
+    }
+    seen[key] = true;
+  });
+  return dupes;
 }
 
 function isTruthyCell_(value) {

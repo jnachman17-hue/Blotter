@@ -65,6 +65,9 @@ const EXPORTS = [
   // The look. Colour tables and widths are data, so they are testable — and a
   // typo in a hex paints a cell black on somebody's real sheet.
   'asSheetDate_', 'STATUS_STYLE', 'THEMES', 'CONTACTS_WIDTHS', 'FOUND_WIDTHS',
+  'duplicateBlotterHeadings_', 'formulasInBlotterColumns_', 'overwrittenFormulaWarnings_',
+  'rowsThatMoved_',
+  'instructionRows_', 'expectedSetup_', 'SETTING_INSTALL_ID', 'SETTING_HELP',
   'COL_NAME', 'COL_TITLE', 'COL_FIRM', 'COL_EMAIL', 'COL_CLOSED',
   'BLOTTER_COLUMNS', 'FOUND_HEADERS',
   // Sorting: the two ranking functions are pure, and getting either subtly
@@ -713,6 +716,188 @@ eq('text is trimmed',
   eq('undefined becomes an empty cell', safe(undefined), '');
   // A minus inside a sentence is not a leading minus.
   eq('a dash mid-sentence is fine', safe('call cancelled - reschedule'), 'call cancelled - reschedule');
+}
+
+/* ------------------------------------------------------------------ *
+ * What a student can do to their sheet without breaking it.
+ *
+ * "Can I add a LinkedIn column?" is roughly the first thing a real student
+ * does, and nobody had ever established what survives it. These are the cases
+ * where the failure would otherwise be SILENT — a wrong answer on somebody
+ * else's line, or work destroyed with nothing said.
+ * ------------------------------------------------------------------ */
+
+const HEADERS = ['Name', 'Title', 'Firm', 'Email', 'Status', 'Days', 'Last contact',
+                 'Attempts', 'Next call', 'Last call', 'Closed'];
+
+function sheetWithHeaders(name, headerRowCells, extraRows = []) {
+  return fakeSheet(name, [['Blotter — all good.'], headerRowCells, ...extraRows]);
+}
+
+/* A single anchor word typed into the banner used to move the header row to 1,
+   and every answer after that lands one row off, silently, on another
+   person's line. The row with the MOST anchors wins now. */
+{
+  box.resetHeaderRowCache_();
+  const stray = fakeSheet('Contacts', [['Status'], HEADERS, ['Jamie']]);
+  eq('one stray anchor word in the banner does not move the header row',
+    box.headerRow_(stray), 2);
+
+  box.resetHeaderRowCache_();
+  const twoStray = fakeSheet('Contacts', [['Name', 'Email'], HEADERS, ['Jamie']]);
+  eq('even two stray words lose to a real header row of three',
+    box.headerRow_(twoStray), 2);
+
+  box.resetHeaderRowCache_();
+  const nothing = fakeSheet('Contacts', [['just some notes'], ['nothing here'], ['Jamie']]);
+  eq('a sheet with no recognisable headers falls back to row 1, the safe answer',
+    box.headerRow_(nothing), 1);
+}
+
+/* A student column called Status is the worst shape the sheet can take,
+   because findColumn_ takes the leftmost and Blotter overwrites it every
+   quarter of an hour without a word. */
+{
+  box.resetHeaderRowCache_();
+  eq('an ordinary sheet has no duplicate headings',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', HEADERS)), []);
+
+  box.resetHeaderRowCache_();
+  eq('a student column of their own is fine',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', HEADERS.concat(['LinkedIn', 'Notes']))), []);
+
+  box.resetHeaderRowCache_();
+  eq('two columns of their own with the same name are their business',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', HEADERS.concat(['Notes', 'Notes']))), []);
+
+  box.resetHeaderRowCache_();
+  eq('but a second column called Status is caught',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', ['Status'].concat(HEADERS))), ['"Status"']);
+
+  box.resetHeaderRowCache_();
+  eq('capitalisation does not hide it',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', HEADERS.concat(['days']))), ['"Days"']);
+
+  box.resetHeaderRowCache_();
+  eq('a duplicated Name is caught too — it is Blotter\'s join, not decoration',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', HEADERS.concat(['Name']))), ['"Name"']);
+
+  box.resetHeaderRowCache_();
+  // Reported in the order the duplicates are met scanning left to right, which
+  // is the order they appear on screen.
+  eq('two problems are both named',
+    box.duplicateBlotterHeadings_(sheetWithHeaders('Contacts', HEADERS.concat(['Days', 'Status']))),
+    ['"Days"', '"Status"']);
+}
+
+/* A formula in a Blotter column is replaced by a value on the next run, and
+   setValues says nothing about it. Blotter still writes — the column is its
+   own — but the student is told. */
+{
+  const formulaSheet = (grid) => ({
+    getSheetId: () => 9001,
+    getName: () => 'Contacts',
+    getMaxRows: () => grid.length + 2,
+    getLastColumn: () => HEADERS.length,
+    getRange: (row, col, numRows, numCols) => ({
+      getValues: () => [HEADERS],
+      getFormulas: () => grid.slice(0, numRows)
+        .map((r) => Array.from({ length: numCols }, (_, i) => r[i] ?? '')),
+    }),
+  });
+
+  box.resetHeaderRowCache_();
+  const clean = formulaSheet([['', '', '', '', '', '', '', '', '', '', '']]);
+  eq('no formulas, nothing reported', box.formulasInBlotterColumns_(clean, 3, 1), []);
+
+  box.resetHeaderRowCache_();
+  // Column 6 is Days.
+  const inDays = formulaSheet([['', '', '', '', '', '=TODAY()-C3', '', '', '', '', '']]);
+  eq('a formula in Days is found, with its row and column',
+    box.formulasInBlotterColumns_(inDays, 3, 1), [{ row: 3, column: 'Days' }]);
+
+  box.resetHeaderRowCache_();
+  // Column 2 is Title — the student's own. Blotter never touches it.
+  const inTheirs = formulaSheet([['', '=UPPER(A3)', '', '', '', '', '', '', '', '', '']]);
+  eq('a formula in a column of their own is left entirely alone',
+    box.formulasInBlotterColumns_(inTheirs, 3, 1), []);
+
+  eq('nothing to say when nothing was overwritten',
+    box.overwrittenFormulaWarnings_([]), []);
+  const warned = box.overwrittenFormulaWarnings_([{ row: 7, column: 'Days' }]);
+  eq('the warning names the row and the column', warned[0].includes('row 7 (Days)'), true);
+  eq('and says where a formula CAN live', warned[0].includes('column of your own'), true);
+  const many = box.overwrittenFormulaWarnings_(
+    Array.from({ length: 9 }, (_, i) => ({ row: i + 3, column: 'Days' })));
+  eq('a long list is capped and counted honestly', many[0].includes('and 4 more'), true);
+}
+
+/* A student dragging rows while a run is in flight. The menu sort takes the
+   script lock; a hand on the mouse does not, and the row number is the join
+   key — so a sort landing between the read and the write puts Jamie's status
+   on Alice's line, silently. Checked again immediately before writing. */
+{
+  const state = (namesNow, emailsNow) => ({
+    sheet: {
+      getRange: (row, col, height) => ({
+        getValues: () => (col === 1 ? namesNow : emailsNow)
+          .slice(0, height).map((v) => [v]),
+      }),
+    },
+    cols: { name: 1, email: 4 },
+    contacts: [
+      { row: 3, name: 'Jamie Diamond', emails: ['jamie@jpmorgan.com'] },
+      { row: 4, name: 'Alice Watts', emails: ['alice@ms.com'] },
+    ],
+  });
+
+  eq('nothing moved, nothing said',
+    box.rowsThatMoved_(state(['Jamie Diamond', 'Alice Watts'],
+                             ['jamie@jpmorgan.com', 'alice@ms.com']), 3, 4), []);
+
+  const swapped = box.rowsThatMoved_(
+    state(['Alice Watts', 'Jamie Diamond'], ['alice@ms.com', 'jamie@jpmorgan.com']), 3, 4);
+  eq('a swap is caught', swapped.length, 2);
+  eq('and it says who was where',
+    swapped[0].includes('row 3 was Jamie Diamond and is now Alice Watts'), true);
+
+  eq('an address changed under the run is caught too',
+    box.rowsThatMoved_(state(['Jamie Diamond', 'Alice Watts'],
+                             ['jamie@newfirm.com', 'alice@ms.com']), 3, 4).length, 1);
+
+  eq('a row emptied under the run is caught',
+    box.rowsThatMoved_(state(['', 'Alice Watts'], ['', 'alice@ms.com']), 3, 4).length, 1);
+
+  // Capitalisation and spacing in an address are not a move — matching has
+  // always ignored both, and stopping a run over one would be a false alarm.
+  eq('capitalisation alone is not a move',
+    box.rowsThatMoved_(state(['Jamie Diamond', 'Alice Watts'],
+                             ['Jamie@JPMorgan.com', 'alice@ms.com']), 3, 4), []);
+
+  eq('a long scramble is capped at three examples',
+    box.rowsThatMoved_(state(['x', 'y'], ['x@x.com', 'y@y.com']), 3, 4).length, 2);
+}
+
+/* The support handle and the way out, both of which have to be in the SHEET —
+   a student whose tracker has stopped is looking at the tracker. */
+{
+  const setup = box.expectedSetup_();
+  eq('the Blotter ID is a setting Step 1 creates',
+    setup.settings.includes(box.SETTING_INSTALL_ID), true);
+  eq('and so is Help', setup.settings.includes(box.SETTING_HELP), true);
+  eq('the ID row says it is for support', /quote this if you need help/i.test(box.SETTING_INSTALL_ID), true);
+
+  const rows = box.instructionRows_();
+  const text = rows.map((r) => `${r.a} ${r.b}`).join(' ');
+  eq('Start here says the student may add columns anywhere',
+    /add any columns you like, anywhere/i.test(text), true);
+  eq('and that formulas in their own columns are safe',
+    /put formulas in them/i.test(text), true);
+  eq('and which headings to leave alone', /Leave alone/i.test(text), true);
+  eq('and that a formula in a Blotter column will not survive',
+    /will not survive/i.test(text), true);
+  eq('and names Step 1 as the repair', /Step 1: Set up this sheet/i.test(text), true);
+  eq('and gives a way to reach a human', text.includes('jnachman17@gmail.com'), true);
 }
 
 console.log(fails === 0
