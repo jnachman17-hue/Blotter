@@ -145,8 +145,8 @@
   Press `1` to see it. The vertical solve is tight enough to be worth writing
   down, and the field line under the sheet is what made it tight:
 
-      158 .  358   cue card             200 tall
-      358 .  452   the connector         94   <- one continuous line
+      158 .  286   cue card             128 tall (auto: event + time)
+      286 .  452   the connector        166   <- one continuous line
       452 . 1138   the sheet            686
      1156 . 1190   the field line        34   <- one line
 
@@ -271,7 +271,12 @@ body.bare .chrome{display:none}
   44px Gmail mark and a 41px Calendar one.
 */
 .card{
-  position:absolute;left:40px;top:158px;width:770px;height:200px;
+  /* Height is auto from September 4, 2026. It was a hard 200px, sized for the
+     three-line cell diff the card used to carry. The card went back to event
+     plus time on Jon's ruling and the height did not follow, leaving 72px of
+     white below the text. The desktop film measures its geometry off the DOM
+     and corrected itself; this one states it, so it had to be restated. */
+  position:absolute;left:40px;top:158px;width:770px;
   background:#fff;border:1px solid var(--sheet-border);border-radius:16px;
   box-shadow:0 2px 6px rgba(60,64,67,.14),0 16px 40px -14px rgba(60,64,67,.26);
   display:flex;align-items:flex-start;gap:24px;padding:18px 30px 18px 26px;
@@ -496,7 +501,7 @@ body.bare .chrome{display:none}
   <!-- ======================================================== connector -->
   <!-- Lands on the sheet's top edge at x 89, its first gridline. -->
   <div class="stemwrap" id="stemwrap">
-    <div class="stem" id="stem" style="top:358px;height:94px"></div>
+    <div class="stem" id="stem" style="top:286px;height:166px"></div>
     <div class="node" id="node" style="top:443px"></div>
   </div>
 
