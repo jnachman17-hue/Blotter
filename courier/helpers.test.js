@@ -390,7 +390,14 @@ const { asSheetDate_, STATUS_STYLE, THEMES, CONTACTS_WIDTHS, FOUND_WIDTHS,
   const bare = asSheetDate_('2026-09-02');
   ok('bare date is a Date', bare instanceof Date);
   ok('bare date keeps its own day, not UTC midnight', bare.getFullYear() === 2026 && bare.getMonth() === 8 && bare.getDate() === 2);
-  ok('bare date sits at local midnight', bare.getHours() === 0 && bare.getMinutes() === 0);
+  // Noon, and the reason is the whole point of this test. The script runs in
+  // the manifest's timezone and Sheets renders in the spreadsheet's, which the
+  // student sets. Midnight has no slack to absorb the gap, so a Pacific sheet
+  // rendered midnight Chicago as 10pm the day before and every date read one
+  // day early. Noon leaves twelve hours either way, which covers every
+  // timezone a student can choose.
+  ok('bare date sits at noon, so no timezone can move its day',
+     bare.getHours() === 12 && bare.getMinutes() === 0);
 
   const stamped = asSheetDate_('2026-09-03T14:00:00-07:00');
   ok('full timestamp is a Date', stamped instanceof Date);

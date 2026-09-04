@@ -2883,7 +2883,25 @@ function asSheetDate_(value) {
   if (value === null || value === undefined || value === '') return '';
   var text = String(value).trim();
   var bare = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text);
-  if (bare) return new Date(Number(bare[1]), Number(bare[2]) - 1, Number(bare[3]));
+  /*
+   * NOON, not midnight, and this is a real bug rather than a nicety.
+   *
+   * `new Date(y, m, d)` builds midnight in the SCRIPT's timezone, which the
+   * manifest fixes at America/Chicago for everybody. Sheets then renders the
+   * cell in the SPREADSHEET's timezone, which is whatever the student set.
+   * The two are not the same, and midnight has no room to absorb the gap: a
+   * sheet set to Los Angeles renders midnight Chicago as 10pm the previous
+   * day, so every date read one day early.
+   *
+   * Found on 4 September 2026 by a fresh install on a Pacific sheet, where
+   * two emails sent that afternoon both showed the day before. It was wrong
+   * for every student west of Chicago and right for everyone east of it,
+   * which is exactly the kind of fault that survives testing in one place.
+   *
+   * Noon leaves twelve hours of slack in each direction, which covers every
+   * timezone a student could set.
+   */
+  if (bare) return new Date(Number(bare[1]), Number(bare[2]) - 1, Number(bare[3]), 12, 0, 0);
   if (/^\d{4}-\d{2}-\d{2}T/.test(text)) {
     var d = new Date(text);
     if (!isNaN(d.getTime())) return d;

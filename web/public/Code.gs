@@ -2064,7 +2064,8 @@ function asSheetDate_(value) {
   if (value === null || value === undefined || value === '') return '';
   var text = String(value).trim();
   var bare = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text);
-  if (bare) return new Date(Number(bare[1]), Number(bare[2]) - 1, Number(bare[3]));
+
+  if (bare) return new Date(Number(bare[1]), Number(bare[2]) - 1, Number(bare[3]), 12, 0, 0);
   if (/^\d{4}-\d{2}-\d{2}T/.test(text)) {
     var d = new Date(text);
     if (!isNaN(d.getTime())) return d;
