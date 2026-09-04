@@ -440,3 +440,55 @@ each round in seconds; guessing did not.
   nobody. Real billing needs each sheet to identify itself and the server to
   decide per caller. The pieces exist — every run already sends an install id,
   and telemetry already records it — but the design is unwritten.
+
+---
+
+## D28. The banner row, and the header row stops being a number. September 3, 2026.
+
+**Built and confirmed working on a live sheet.**
+
+The notice used to sit in row 1 *past* the `Closed` column — off the right edge
+of a laptop screen. Jon: *"you have to scroll all the way over to see this… you
+might never notice when you get a message."* **The one channel that has to work
+on the day a student is cut off was the one thing nobody would see.**
+
+It now lives in a merged banner across row 1, frozen, **with a resting state** —
+`Blotter — all good. Last updated 2:45 PM.` A row that is blank until something
+is wrong teaches people to ignore that part of the sheet; a row that always says
+something teaches them to read it, so the day it says something else they
+notice.
+
+### Why this was deferred twice, and what changed
+
+It moves the headers to row 2 and the data to row 3, and **the row number is the
+contract's join key.** One place still assuming the old offset would put one
+person's answers on another person's line, silently.
+
+**So nothing hardcodes either number.** `headerRow_` *finds* the header row by
+looking for a heading the sheet must have, and all thirty-seven positions derive
+from it.
+
+- A sheet built before the banner **works untouched** — the search finds its
+  headers on row 1
+- **A number that is discovered cannot disagree with itself.** Two hardcoded
+  numbers can
+
+`grep "getRange(2,"` returns zero.
+
+### Two bugs, both caught rather than shipped
+
+**The tests caught one in the search loop itself.** It broke out of two loops by
+assigning to the outer index and ran off the end of the grid whenever the
+headers were on row 1 — because the guard it used to stop was `found !== 1`,
+**exactly the case it could not detect.**
+
+**The live sheet caught the other.** Step 1 threw *"You can't merge frozen and
+non-frozen columns"*: the `Name` column is frozen, and a full-width merge
+crosses that line. The banner now merges in two pieces around the freeze, and
+the frozen piece carries the word `Blotter` — **which makes it the version that
+survives scrolling rather than a compromise.** The banner is also written after
+`formatContacts_`, since that is what sets the freeze.
+
+**249 courier checks**, including a fake sheet pinning the search against a
+banner, no banner, an unrecognised sheet, an empty one, headers on row 3, and
+banner prose containing header-ish words.
