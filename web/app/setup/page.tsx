@@ -74,12 +74,24 @@ export default function SetupChooser() {
       <H1>Set up Blotter</H1>
 
       {/*
-        One line. It was three paragraphs and a jump link, which is what Jon
-        met the page with: *"I'm immediately hit with three paragraphs of text.
-        I don't even know where to look."* The choice is the page.
+        One line, and the instruction carries the weight. It was three
+        paragraphs and a jump link, which is what Jon met the page with:
+        *"I'm immediately hit with three paragraphs of text."* Then, once it
+        was one line, it was too quiet: *"That's not just a preference."*
+
+        He is right. Which account you choose is not taste, it is whether the
+        product works. Blotter reads the mailbox it is installed in and no
+        other, so somebody who picks the account their recruiting mail is not
+        in gets a tracker that finds nothing and concludes it is broken. So the
+        instruction is set in ink at reading size, the consequence is stated
+        immediately after it, and the timing note drops to the end where it
+        belongs.
       */}
-      <p className="mt-4 max-w-[62ch] text-lede leading-[1.6] text-ink-read">
-        Two minutes, once. Install it where your recruiting email arrives.
+      <p className="mt-5 max-w-[64ch] text-[1.1875rem] leading-[1.5] text-ink">
+        <B>Choose the account your recruiting email actually arrives in.</B>{" "}
+        <span className="text-ink-read">
+          Blotter reads that inbox and no other. Setup takes two minutes.
+        </span>
       </p>
 
       <div className="mt-9 grid gap-4 sm:grid-cols-2 sm:gap-6">
