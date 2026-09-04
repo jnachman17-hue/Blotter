@@ -6,9 +6,9 @@ Status: **Built and inert. Nothing a student experiences has changed.**
 
 | Check | Result |
 |---|---|
-| `node courier/helpers.test.js` | **326** (was 297) |
+| `node courier/helpers.test.js` | **326** |
 | `run-fixtures.ts` · engine `selftest.ts` | 40 · 133 |
-| `telemetry/selftest.ts` · **`entitlement/selftest.ts`** | 30 · **15, new** |
+| `telemetry/selftest.ts` · `entitlement/selftest.ts` | 40 · 10 |
 | `tsc`, `eslint --max-warnings 0`, `next build` | Clean |
 | Contract version | **Still 4** — and §3 is why that matters |
 
@@ -39,8 +39,8 @@ existing kind is free), a new menu item, and any bug in the mechanism itself.
 ### 2.1 Billing — the whole path exists and refuses nobody
 
 **What is already there:** a `Blotter key` row in Settings, sent on every run.
-An account pseudonym, sent when there is one. The `blotter_keys` lookup, the
-grace calculation, the 402 refusal and its `blocked` notice.
+The sheet's install id, sent with it. The `blotter_keys` lookup, the grace
+calculation, the 402 refusal and its `blocked` notice.
 
 **What makes it inert:** one environment variable.
 
@@ -73,7 +73,7 @@ Nothing is counted or refused until these exist. In the Supabase SQL editor:
 create table if not exists blotter_keys (
   key                    text primary key,
   status                 text not null default 'active',   -- active · grace · inactive
-  account_hash           text,                             -- null until first use
+  install_id             uuid,                             -- the sheet, bound on first use
   bound_at               timestamptz,
   grace_until            timestamptz,
   stripe_customer_id     text,
@@ -81,11 +81,14 @@ create table if not exists blotter_keys (
   created_at             timestamptz not null default now()
 );
 
+-- A second sheet turning up on one key. Flagged for a person, never refused:
+-- one student with a fresh copy of their own tracker looks exactly like two
+-- people sharing, and only a human can tell them apart.
 create table if not exists blotter_key_mismatches (
-  id         bigserial primary key,
-  key        text not null,
-  seen_hash  text not null,
-  seen_at    timestamptz not null default now()
+  id               bigserial primary key,
+  key              text not null,
+  seen_install_id  uuid not null,
+  seen_at          timestamptz not null default now()
 );
 
 -- Optional, and only for §2.4: publishing the script without a deploy.
@@ -169,34 +172,48 @@ force a bump. Adding does not.
 
 ---
 
-## 4. The one thing that must be verified by hand ⚠
+## 4. The thing that had to be verified by hand — done, and it changed the design
 
-**Amendment A3, and the design rests on it.**
+**It was run on a live sheet, and the answer was `Google account readable: NO`
+— on an ordinary gmail.com account.**
 
-`Session.getEffectiveUser().getEmail()` can return an empty string. It is not
-theoretical — `effectiveUserEmail_()` has carried a `try/catch` since the
-decline path was built, because it happened. **Hash an empty string and every
-install in that state shares one identity, and one key unlocks all of them.**
+**The cause is in the manifest, and it is not account-dependent.**
+`appsscript.json` declares five scopes — `gmail.readonly`, `calendar.readonly`,
+`spreadsheets.currentonly`, `script.external_request`, `script.scriptapp` — and
+**none of them is a userinfo scope.** There was never an address to read. A
+`.edu` would say exactly the same thing.
 
-**The code already refuses to do that.** `accountHash_()` returns `null` for an
-empty address and the field is omitted from the request entirely rather than
-sent blank. Eight tests pin it, including that an empty address is never quietly
-equal to a real one.
+> **Jon does not owe a `.edu` test.** That item is closed. There is nothing
+> left to verify by hand here.
 
-**What cannot be settled from here is whether it comes back empty in practice**,
-because that depends on the account type and the authorisation mode.
+**Jon's ruling: bind keys to the sheet, not the person.** Adding the sixth
+scope would work and would cost an extra line on Google's unverified-app
+consent screen plus a forced re-authorisation for everybody already installed.
+That screen is already where students abandon the install
+(`17-INSTALL-OBSERVED.md` §2, defect one), and spending friction there to make
+billing tidier is the wrong trade.
 
-**So there is now a button.** `Blotter → Check this sheet (diagnostics)` reports
-whether an address was readable, the account's domain, and the first few
-characters of the identifier. **It never shows the address**, so a screenshot is
-safe to send to anyone.
+**So the install id does the job.** Minted once per sheet, already sent every
+run, and it survives a re-paste because script properties belong to the script
+project rather than the code. Only a brand-new copy changes it — and binding is
+soft, so that is one flag to clear rather than a lockout.
 
-**Run it on a consumer Gmail account and on a `.edu`.** If either says
-`Google account readable: NO`, the identity design needs rethinking before
-billing is switched on — and it is far better to learn that now than from a
-student who cannot use what they paid for.
+**What that costs, stated rather than glossed:** one person with two sheets and
+two people sharing a key look identical. Both produce a flag; a human decides.
+At this scale that is the right place for the decision.
 
----
+### Two things worth keeping from how this went
+
+**A3 is why nothing broke.** The rule was that an unreadable address means the
+field is *omitted*, never sent as a hash of an empty string. Had it been sent
+blank, every install in that state would have shared one identity and one key
+would have unlocked all of them — **and it would have looked fine**, because a
+hash of `""` is a perfectly well-formed hash.
+
+**The diagnostic paid for itself on first use.** It was built because A3 could
+not be settled by reading code. It was run once and it moved the design. That
+is the argument for building the thing that answers a question you cannot
+reason your way to.
 
 ## 5. Security, since a courier that renders what it is told is a new surface
 
@@ -229,9 +246,15 @@ matters more than the paint, and a student's run must never fail over a colour.
   second reader recreates D27 exactly.
 - **The engine must never write.** Binding lives on telemetry for that reason,
   and moving it back would kill a claim that currently survives being checked.
-- **Absence must stay absence.** `accountHash_()` returning `null` means the
-  field is omitted; making it return `''` or a hash of `''` reopens the hole
-  A3 was written about.
+- **A key belongs to a sheet, not a person**, and the reason is a missing
+  OAuth scope rather than a preference. If a userinfo scope is ever added for
+  some other purpose, the superseded reasoning in `23-BILLING-ARCHITECTURE.md`
+  §2 becomes live again — including A4's graduation argument, which was correct
+  and is kept for that reason.
+- **Absence must stay absence.** It is the principle A3 was written about and
+  it outlived the field: a missing identifier is omitted, never sent as an
+  empty or hashed-empty value, because a well-formed hash of nothing looks
+  exactly like a real one and would have every such install sharing it.
 - **Adding a field is free; removing or reinterpreting one is not.** The table
   in `05-CONTRACT.md` is the reference.
 - **`verdict.ts` deliberately has no `server-only` import**, so it can be

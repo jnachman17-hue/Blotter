@@ -76,36 +76,34 @@ export async function POST(request: Request) {
     return NextResponse.json({ counted: false, reason: "insert_failed" });
   }
 
-  /* Binding, and it is SOFT (amendment A4). A hash that does not match the one
-     on record is recorded and left for a person to look at — never refused.
-     Every student's `.edu` is deprovisioned on a schedule, a Workspace rename
-     does the same, and on a manual run the effective user is whoever clicked
-     rather than the owner. A mismatch is far more likely to be a graduate than
-     a thief, and locking out somebody who is paying is much the worse mistake.
+  /* Binding a key to the sheet that first used it, and it is SOFT (amendment
+     A4). A second sheet on the same key is recorded and left for a person to
+     look at — never refused.
+
+     Soft because the two cases are indistinguishable from here: one student
+     who made a fresh copy of their own tracker looks exactly like two people
+     sharing a key. At this scale a human deciding is the right place for that,
+     and locking out somebody who is paying is much the worse mistake.
 
      Nothing here can fail a run: telemetry is fire-and-forget by design. */
   const use = pickKeyUse(body);
   if (use !== null) {
     const { data: existing } = await supabase
       .from("blotter_keys")
-      .select("account_hash")
+      .select("install_id")
       .eq("key", use.key)
       .maybeSingle();
 
     if (existing) {
-      if (existing.account_hash === null && use.account_hash !== null) {
+      if (!existing.install_id) {
         await supabase
           .from("blotter_keys")
-          .update({ account_hash: use.account_hash, bound_at: new Date().toISOString() })
+          .update({ install_id: use.install_id, bound_at: new Date().toISOString() })
           .eq("key", use.key);
-      } else if (
-        use.account_hash !== null &&
-        existing.account_hash !== null &&
-        existing.account_hash !== use.account_hash
-      ) {
+      } else if (existing.install_id !== use.install_id) {
         await supabase.from("blotter_key_mismatches").insert({
           key: use.key,
-          seen_hash: use.account_hash,
+          seen_install_id: use.install_id,
           seen_at: new Date().toISOString(),
         });
       }

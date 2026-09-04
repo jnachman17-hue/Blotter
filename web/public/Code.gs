@@ -174,14 +174,6 @@ var SETTING_HELP = 'Help';
 // grows. Sent on every run, read by nothing until enforcement is switched on.
 var SETTING_KEY = 'Blotter key';
 
-// Salt for the account pseudonym. It is in this file and therefore readable, so
-// be accurate about what it buys: addresses stay out of the database and casual
-// inspection reveals nothing, but a determined party holding both the table and
-// this salt could test a guessed address against it. It is a PSEUDONYM, not
-// anonymisation, and `/privacy` says exactly that rather than something
-// comfier.
-var ACCOUNT_SALT = 'blotter-account-v1';
-
 // What the courier last applied, so a design that has not changed costs one
 // string comparison instead of a ten-second re-format.
 var PROP_DESIGN_VERSION = 'blotterDesignVersion';
@@ -1644,36 +1636,6 @@ function refreshDesign_(designVersion, url) {
 }
 
 /**
- * A stable pseudonym for the Google account this script runs as, or **null**.
- *
- * **Null when there is no address to hash, and that is the whole point**
- * (amendment A3). `Session.getEffectiveUser().getEmail()` really can come back
- * empty — `effectiveUserEmail_()` has carried a try/catch since the decline
- * path was built because it happened. Hash an empty string and every install in
- * that state shares one identity, and a single key would unlock all of them.
- *
- * **Absence is a state. It must never become a value.** The caller omits the
- * field entirely rather than sending a hash of nothing.
- *
- * It is not the install id: a copied sheet mints a new install id, and copying
- * is how Blotter is distributed, so a student taking an updated template would
- * lose a subscription they were paying for. It is not the Settings addresses
- * either — those are typed, and an identity you can edit is not an identity.
- */
-function accountHash_() {
-  var email = String(effectiveUserEmail_() || '').trim().toLowerCase();
-  if (email === '') return null;
-  var bytes = Utilities.computeDigest(
-    Utilities.DigestAlgorithm.SHA_256, email + ACCOUNT_SALT, Utilities.Charset.UTF_8);
-  var hex = '';
-  for (var i = 0; i < bytes.length; i++) {
-    var b = (bytes[i] + 256) % 256;
-    hex += (b < 16 ? '0' : '') + b.toString(16);
-  }
-  return hex;
-}
-
-/**
  * This sheet's anonymous install id, minted once and kept forever.
  *
  * `Utilities.getUuid()` is random — it is derived from nothing about the
@@ -1863,22 +1825,20 @@ function metricsSuffix_() {
 }
 
 /**
- * What Blotter can and cannot see about this sheet, in one dialog.
+ * What Blotter knows about this sheet, in one dialog.
  *
- * **Written because of amendment A3, which cannot be settled by reasoning.**
- * `Session.getEffectiveUser().getEmail()` can come back empty, and the whole
- * account-identity design rests on it not doing so — but whether it is empty
- * depends on the account type and the authorisation mode, which no amount of
- * reading the code will tell you. It has to be run, on a consumer Gmail and on
- * a `.edu`, by somebody at a keyboard.
+ * **It earned its keep on the first run.** It was written to settle whether
+ * `Session.getEffectiveUser().getEmail()` comes back empty — a thing no amount
+ * of reading the code could answer — and the answer on a live sheet was NO,
+ * because the manifest never asked for a scope that would provide it. That
+ * finding is what moved billing from identifying a person to identifying a
+ * sheet.
  *
- * It reports whether an address was readable and never shows the address
- * itself, so a screenshot of this dialog is safe to send to anyone.
+ * Nothing here identifies anybody. The Blotter ID is a random number minted
+ * per sheet, so a screenshot is safe to send to anyone.
  */
 function checkThisSheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var email = String(effectiveUserEmail_() || '');
-  var hash = accountHash_();
   var gaps = missingSetup_(ss);
 
   var lines = [
@@ -1887,25 +1847,16 @@ function checkThisSheet() {
     'Newest script:  ' + SCRIPT_URL,
     'Contract version:  ' + CONTRACT_VERSION,
     '',
-    'Google account readable:  ' + (email === '' ? 'NO' : 'yes'),
-    'Account domain:  ' + (email.indexOf('@') === -1 ? '(none)' : email.split('@')[1]),
-    'Account identifier:  ' + (hash ? hash.slice(0, 12) + '…' : '(none — see below)'),
-    '',
     'Time zone:  ' + studentTimeZone_(),
     'Design applied:  ' +
       (PropertiesService.getScriptProperties().getProperty(PROP_DESIGN_VERSION) || '(the built-in one)'),
     'Setup:  ' + (gaps.length === 0 ? 'complete' : 'missing ' + gaps.join(', '))
   ];
 
-  if (email === '') {
-    lines.push('');
-    lines.push('Google did not give this script an address for the account it runs ' +
-      'as. Everything still works — Blotter simply sends nothing rather than ' +
-      'sending a blank, which is deliberate. Please send this screenshot to ' +
-      HELP_EMAIL + '.');
-  }
   lines.push('');
-  lines.push('Your email address is not shown here and is never sent anywhere.');
+  lines.push('The Blotter ID is what identifies this sheet. It is a random ' +
+    'number that says nothing about you — not your name, not your email ' +
+    'address, neither of which Blotter is ever given.');
 
   SpreadsheetApp.getUi().alert('Blotter — this sheet\n\n' + lines.join('\n'));
 }
@@ -1968,6 +1919,16 @@ function courierPass_() {
       // why this costs no version bump and nobody has to re-paste.
       key: settings.blotterKey,
       courier_version: COURIER_VERSION,
+      // A key belongs to a SHEET, not to a person. Ruled by Jon after the
+      // diagnostic found that Google gives this script no address at all —
+      // the manifest asks for five scopes and none of them is a userinfo one,
+      // so `getEffectiveUser().getEmail()` is correctly empty and always would
+      // have been. Adding the sixth scope would work and would cost an extra
+      // line on the unverified-app consent screen plus a forced
+      // re-authorisation for everyone already installed. That screen is the
+      // single biggest point where a student abandons the install; spending
+      // friction there to make billing tidier is the wrong trade.
+      install_id: installId_(),
       // The time machine (D17): only `now` moves. The Gmail search window and
       // the calendar fetch window above already ran on real time, deliberately
       // — the point is to age a real relationship, not to hide it.
@@ -1978,9 +1939,6 @@ function courierPass_() {
       events: events,
       ignored: foundState.ignoredEmails
     };
-    // Omitted entirely when there is nothing to hash. Never a hash of ''.
-    var account = accountHash_();
-    if (account) request.account = account;
     var response;
     try {
       response = postToServer_(settings.serverUrl, request);

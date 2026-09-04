@@ -24,47 +24,31 @@ function check(label: string, actual: unknown, expected: unknown): void {
 
 const NOW = new Date("2026-09-03T12:00:00Z");
 const rec = (o: Partial<KeyRecord> = {}): KeyRecord => ({
-  status: "active", account_hash: null, grace_until: null, ...o,
+  status: "active", grace_until: null, ...o,
 });
-const HASH_A = "a".repeat(64);
-const HASH_B = "b".repeat(64);
 
-/* The ordinary cases. */
-check("no key at all", verdictFor(null, HASH_A, null, NOW).allow, false);
-check("an empty key is no key", verdictFor("", HASH_A, null, NOW).reason, "no_key");
-check("a key nobody has heard of", verdictFor("k", HASH_A, null, NOW).reason, "unknown_key");
-check("an active key runs", verdictFor("k", HASH_A, rec(), NOW).allow, true);
-check("an inactive key does not", verdictFor("k", HASH_A, rec({ status: "inactive" }), NOW).allow, false);
+/* Allow or refuse, and nothing else. Which sheet a key belongs to, and what to
+   do when a second one turns up on it, is telemetry's job — because binding is
+   a write and the engine must not do those. */
+check("no key at all", verdictFor(null, null, NOW).allow, false);
+check("an empty key is no key", verdictFor("", null, NOW).reason, "no_key");
+check("a key nobody has heard of", verdictFor("k", null, NOW).reason, "unknown_key");
+check("an active key runs", verdictFor("k", rec(), NOW).allow, true);
+check("an inactive key does not", verdictFor("k", rec({ status: "inactive" }), NOW).allow, false);
 
 /* Grace is a comparison, never a scheduled job that flips a row (A7). */
 check("grace that has not expired still runs",
-  verdictFor("k", HASH_A, rec({ status: "grace", grace_until: "2026-09-10T00:00:00Z" }), NOW).allow, true);
+  verdictFor("k", rec({ status: "grace", grace_until: "2026-09-10T00:00:00Z" }), NOW).allow, true);
 check("grace that has expired does not",
-  verdictFor("k", HASH_A, rec({ status: "grace", grace_until: "2026-09-01T00:00:00Z" }), NOW).allow, false);
+  verdictFor("k", rec({ status: "grace", grace_until: "2026-09-01T00:00:00Z" }), NOW).allow, false);
 check("grace with no date is not grace",
-  verdictFor("k", HASH_A, rec({ status: "grace" }), NOW).allow, false);
+  verdictFor("k", rec({ status: "grace" }), NOW).allow, false);
+check("grace expiring exactly now has expired",
+  verdictFor("k", rec({ status: "grace", grace_until: NOW.toISOString() }), NOW).allow, false);
 
-/* Binding is SOFT, and this is the amendment that matters most (A4). Every
-   student's .edu is deprovisioned on a schedule; a Workspace rename does the
-   same; on a manual run the effective user is whoever clicked. A mismatch is
-   far more likely to be a graduate than a thief. */
-{
-  const v = verdictFor("k", HASH_B, rec({ account_hash: HASH_A }), NOW);
-  check("a mismatched account is NEVER refused", v.allow, true);
-  check("but it is flagged for a person to look at", v.mismatch, true);
-  check("and named as such", v.reason, "mismatch");
-}
-check("a matching account is not flagged",
-  verdictFor("k", HASH_A, rec({ account_hash: HASH_A }), NOW).mismatch, false);
-check("an unbound key is not a mismatch",
-  verdictFor("k", HASH_A, rec({ account_hash: null }), NOW).mismatch, false);
-
-/* Absence is a state, never a value (A3). A run that could not read an address
-   sends no hash at all, and that must not look like a mismatch — nor bind. */
-check("no hash sent is not a mismatch",
-  verdictFor("k", null, rec({ account_hash: HASH_A }), NOW).mismatch, false);
-check("and such a run still works",
-  verdictFor("k", null, rec({ account_hash: HASH_A }), NOW).allow, true);
+/* Refusing must never be something a bad row can cause by accident. */
+check("an unrecognised status is refused, not waved through",
+  verdictFor("k", rec({ status: "nonsense" as KeyRecord["status"] }), NOW).allow, false);
 
 console.log(
   failures === 0

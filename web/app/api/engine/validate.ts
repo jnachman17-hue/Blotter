@@ -182,9 +182,7 @@ export function parseEngineRequest(body: unknown): EngineRequest {
        predates these simply does not send them, and that is not an error.
        See "adding a field is not a version change" in `05-CONTRACT.md`. */
     key: optionalStr(body.key, "key").trim(),
-    account: typeof body.account === "string" && body.account.trim().length > 0
-      ? body.account.trim()
-      : null,
+    install_id: optionalStr(body.install_id, "install_id").trim(),
     courier_version: optionalStr(body.courier_version, "courier_version").trim(),
     now,
     student: { addresses },
