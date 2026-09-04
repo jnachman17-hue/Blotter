@@ -3,30 +3,33 @@ import Link from "next/link";
 
 import {
   B,
+  Crumb,
+  H1,
+  H2,
+  Help,
   LINK,
-  Screen,
+  PROSE,
   Shell,
   Shot,
   Step,
-  StepAddPeople,
   StepCopy,
   StepMenu,
   StepPermissions,
-  StepSettings,
+  StepStartHere,
   TemplateCta,
-  Troubleshooting,
 } from "../shared";
 
 /**
- * The personal-Gmail flow. Six steps, because of step 3.
+ * The personal-Gmail flow. Five steps, because of step 3.
  *
- * A personal account belongs to no Workspace domain, so nobody vouches for the
- * person running the copy and Google asks them directly, in its most alarming
- * register. The reassurance that actually works is that the developer Google
- * names is the reader themselves — they made the copy a minute earlier.
+ * A personal account belongs to no Workspace domain, so Google asks the person
+ * directly, in its most alarming register. Jon's ruling on the reassurance:
+ * say plainly that the screen is asking whether you trust Blotter to read your
+ * own account, and make it sound far less frightening than "as far as Google
+ * is concerned you own this now", which he found the opposite of reassuring.
  */
 export const metadata: Metadata = {
-  title: "Set up Blotter with a personal Gmail account | Blotter",
+  title: "Personal Gmail setup | Blotter",
   description:
     "Copy one sheet into your Google Drive, give it permission, and your recruiting tracker keeps itself up to date.",
   robots: { index: false, follow: false },
@@ -35,111 +38,93 @@ export const metadata: Metadata = {
 export default function PersonalSetup() {
   return (
     <Shell>
-      <p className="font-mono text-small text-ink-faint">
-        <Link href="/setup" className={LINK}>
-          Set up
-        </Link>{" "}
-        / personal Gmail
-      </p>
+      <Crumb>Personal Gmail</Crumb>
+      <H1>Personal Gmail setup</H1>
 
-      <h1 className="font-display mt-3 text-h2 leading-[1.14] font-bold tracking-[-0.02em] text-ink">
-        Set up with your personal Gmail
-      </h1>
-
-      <div className="mt-6 max-w-[68ch] space-y-4 text-body leading-[1.65] text-ink-muted">
+      <div className={`mt-5 space-y-4 ${PROSE}`}>
         <p>
-          Six steps, about five minutes. One of them is a warning screen from Google that looks
-          much worse than it is. <B>Step 3 explains it properly</B> — it is worth reading
-          rather than clicking through, because what it actually says is not what people
-          assume.
+          Five steps that take roughly five minutes. One of them is a warning screen from
+          Google that looks worse than it is. <B>Step 3 explains it.</B>
         </p>
-        <p className="text-small leading-[1.55] text-ink-faint">
-          Have a university email that runs on Google, and recruit from it? The{" "}
+        <p className="text-body text-ink-muted">
+          Recruit from a university address that runs on Google? The{" "}
           <Link href="/setup/university" className={LINK}>
-            university set-up
+            university setup
           </Link>{" "}
-          skips that screen entirely.
+          skips that screen.
         </p>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-8">
         <TemplateCta />
       </div>
 
-      <div className="mt-16">
-        <h2 className="font-display mb-2 text-[1.35rem] leading-[1.3] font-bold tracking-[-0.015em] text-ink">
-          The six steps
-        </h2>
-        <p className="mb-6 max-w-[68ch] text-body leading-[1.65] text-ink-muted">
-          Open each one as you get to it.
-        </p>
+      <div className="mt-14">
+        <H2>How to set up</H2>
 
-        <StepCopy n={1} account="your Gmail account" />
-        <StepMenu n={2} />
+        <div className="mt-6 border-t border-rule">
+          <StepCopy n={1} />
+          <StepMenu n={2} />
 
-        <Step n={3} title="Google warns you the app is not verified">
-          <p>This is the screen that stops people. Read it rather than clicking past it.</p>
-          <Screen>
-            <p className="font-semibold">⚠ Google hasn&rsquo;t verified this app</p>
-            <p className="mt-2">
-              The app is requesting access to sensitive info in your Google Account. Until the
-              developer (<B>your own email address</B>) verifies this app with Google, you
-              shouldn&rsquo;t use it.
-            </p>
-          </Screen>
-          <p>
-            <B>Read the address in the brackets. It is yours.</B> You made a copy into your own
-            Drive a minute ago, so as far as Google is concerned you now own this. The screen
-            is asking whether you trust something sitting in your own account. It is not
-            telling you Blotter failed a check.
-          </p>
-          <p>
-            Google skips this warning when the person who owns the copy and the person running
-            it belong to the same organisation — which is why students setting this up on a
-            university account never see it. A personal Gmail account belongs to no
-            organisation, so there is nobody to vouch for you and Google asks you directly
-            instead.
-          </p>
-          <p>
-            Click <B>Advanced</B> at the bottom left.
-          </p>
-          <Shot
-            src="/setup/warning.png"
-            alt="Google's unverified app warning, with the Advanced link at the bottom left outlined in green."
-            caption="Click Advanced."
-            width={525}
-            height={259}
-          />
-          <p>
-            The panel opens. Click <B>Go to Blotter (unsafe)</B>.
-          </p>
-          <Shot
-            src="/setup/warning-advanced.png"
-            alt="The expanded warning, with Go to Blotter (unsafe) outlined in green."
-            caption="Then Go to Blotter (unsafe)."
-            width={525}
-            height={371}
-          />
-          <p className="text-small leading-[1.5] text-ink-faint">
-            <em>Unsafe</em> is Google&rsquo;s standard wording for anything it has not reviewed.
-            It is not a judgement about what the app does.
-          </p>
-        </Step>
-
-        <StepPermissions
-          n={4}
-          lead={
+          <Step n={3} title="Google warns you the app is not verified">
             <p>
-              Next comes a list of five things Blotter is asking to do, each with a checkbox,{" "}
-              <B>all of them empty</B>. Nothing on that screen tells you all five are required.
+              Google shows a screen saying it hasn&rsquo;t verified this app. It looks alarming.
+              Here is what it means.
             </p>
-          }
-        />
-        <StepSettings n={5} />
-        <StepAddPeople n={6} />
+            <p>
+              <B>The email address in the brackets is yours.</B> The copy of Blotter you just
+              made lives in your Google account, and Google treats everything in your account
+              as yours.
+            </p>
+            <p>
+              The screen is asking whether you want to let Blotter read your own Google
+              account. Google shows it for any app that has not been through its app review,
+              a paid process Blotter has not done. It is a standard notice, not a judgement
+              about what Blotter does.
+            </p>
+            <p>
+              If you had a university email, this screen would not appear. Google trusts
+              universities automatically.
+            </p>
+            <p>
+              Click <B>Advanced</B> at the bottom left.
+            </p>
+            <Shot
+              src="/setup/warning.png"
+              alt="Google's unverified app warning, with the Advanced link at the bottom left outlined in green."
+              caption="Click Advanced."
+              width={525}
+              height={259}
+            />
+            <p>
+              The panel opens. Click <B>Go to Blotter (unsafe)</B>.
+            </p>
+            <Shot
+              src="/setup/warning-advanced.png"
+              alt="The expanded warning, with Go to Blotter (unsafe) outlined in green."
+              caption="Then Go to Blotter (unsafe)."
+              width={525}
+              height={371}
+            />
+            <p className="text-body text-ink-muted">
+              <em>Unsafe</em> is Google&rsquo;s standard word for anything it has not reviewed.
+            </p>
+          </Step>
+
+          <StepPermissions
+            n={4}
+            lead={
+              <p>
+                Next, Google asks what Blotter is allowed to do. The screen is headed{" "}
+                <B>Blotter wants access to your Google Account</B>.
+              </p>
+            }
+          />
+          <StepStartHere n={5} />
+        </div>
       </div>
 
-      <Troubleshooting />
+      <Help />
     </Shell>
   );
 }
