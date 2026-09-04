@@ -43,7 +43,7 @@
 
 var CONTRACT_VERSION = 4;
 
-var COURIER_VERSION = '2026-09-04';
+var COURIER_VERSION = '2026-09-04.2';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
