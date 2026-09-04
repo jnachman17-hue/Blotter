@@ -361,3 +361,26 @@ been handed off. That chat previously owned the film/animation work.
       `Code.gs` header under Limits.
 - [ ] **14.6** The template is one Step 1 behind the source. Jon pastes the
       current `Code.gs` and runs Step 1 to pick up 14.4 and 14.5.
+
+---
+
+## 15. Two faults found when Jon said "nothing changed" (4 Sep 2026)
+
+- [x] **15.1 `COURIER_VERSION` never moved.** It sat at `2026-09-03` through
+      every change of the last two days, so `Check this sheet (diagnostics)`
+      reported the same string whether a student had pasted the new file or not.
+      There was no way to tell a working paste from a failed one, which is
+      exactly the question Jon was asking. Bumped to `2026-09-04`, along with
+      `CURRENT_COURIER_VERSION`, so a stale sheet is told an update exists.
+      **Rule: bump the version whenever the served file changes.**
+- [x] **15.2 The served design was overriding the ratified colours.** Four
+      statuses came back from `/api/design` in the pre-`bands` palette (Replied
+      green, Call scheduled blue, Call done amber, Call cancelled grey) and the
+      column widths were the old set. The server wins over the pasted code by
+      design, so a real student sheet would have looked nothing like the films,
+      section 01, or the screenshots. Synced to `STATUS_STYLE` and
+      `CONTACTS_WIDTHS`, and `DESIGN_VERSION` bumped so live sheets refetch.
+- [ ] **15.3** Nothing tests that the served design agrees with the courier's
+      own fallback. These drifted silently for days. A check comparing
+      `/api/design` against `STATUS_STYLE` and `CONTACTS_WIDTHS` belongs in the
+      suite.

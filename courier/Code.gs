@@ -24,7 +24,7 @@ var CONTRACT_VERSION = 4;
 
 // Which build of this script is running. Sent to the telemetry endpoint only,
 // so a count of installs can be split by version when something goes wrong.
-var COURIER_VERSION = '2026-09-03';
+var COURIER_VERSION = '2026-09-04';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';

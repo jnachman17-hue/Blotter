@@ -722,7 +722,7 @@ class WarningBucket {
  * one it applied and does nothing while they match, which is what stops a
  * ten-second re-format running on every fifteen-minute pass.
  */
-export const DESIGN_VERSION = "2026-09-03.1";
+export const DESIGN_VERSION = "2026-09-04.1";
 
 /**
  * The build of the courier this server expects.
@@ -732,7 +732,7 @@ export const DESIGN_VERSION = "2026-09-03.1";
  * for exactly this — so nobody runs a stale script for months without knowing
  * (§4.2).
  */
-export const CURRENT_COURIER_VERSION = "2026-09-03";
+export const CURRENT_COURIER_VERSION = "2026-09-04";
 
 /**
  * Where the current script actually lives.
