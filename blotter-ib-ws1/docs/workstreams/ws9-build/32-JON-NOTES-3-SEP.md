@@ -19,7 +19,9 @@ own task, cannot be done from here.
 - [ ] **0.3 Less marketing, less jargon, less slop.** *"We have a real product,
       and we just want you to sign up."* The site shows what you need, it does
       not pitch.
-- [ ] **0.4 Everything friendly on mobile.** Including the setup pages. *"most
+- [~] **0.4 Everything friendly on mobile.** Verified at 375px with no horizontal
+      overflow: setup pages, landing page, funnel modal, privacy, terms; the phone
+      sheet crops to four columns. Open: the hero films (§11.1). Including the setup pages. *"most
       people will learn about this from their phone."*
 - [ ] **0.5 Better UI throughout.** Jon repeatedly: the current layouts are
       *"hard to read"*. Lean on the formatting/UI skills available. It does not
