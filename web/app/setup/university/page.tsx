@@ -74,6 +74,13 @@ export default function UniversitySetup() {
         <StepMenu n={2} />
         <StepPermissions
           n={3}
+          shot={{
+            src: "/setup/permissions-university.png",
+            alt: "Google's consent screen on a university account, headed Google Account with the address beneath, and all five permissions ticked.",
+            caption: "All five, via Select all. No warning screen before it.",
+            width: 460,
+            height: 646,
+          }}
           lead={
             <>
               <p>

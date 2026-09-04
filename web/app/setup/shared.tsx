@@ -222,7 +222,23 @@ export function StepMenu({ n }: { n: number }) {
   );
 }
 
-export function StepPermissions({ n, lead }: { n: number; lead: React.ReactNode }) {
+export function StepPermissions({
+  n,
+  lead,
+  shot,
+}: {
+  n: number;
+  lead: React.ReactNode;
+  /** The university flow shows its own consent screen, which looks different. */
+  shot?: { src: string; alt: string; caption: string; width: number; height: number };
+}) {
+  const s = shot ?? {
+    src: "/setup/permissions.png",
+    alt: "Google's permission screen with all five checkboxes ticked.",
+    caption: "All five, via Select all.",
+    width: 489,
+    height: 598,
+  };
   return (
     <Step n={n} title="Give it permission — tick Select all">
       {lead}
@@ -230,13 +246,7 @@ export function StepPermissions({ n, lead }: { n: number; lead: React.ReactNode 
         <B>Tick Select all, then click Continue.</B> Leave one off and Blotter fails later, in
         a way that is very hard to work out.
       </p>
-      <Shot
-        src="/setup/permissions.png"
-        alt="Google's permission screen with all five checkboxes ticked."
-        caption="All five, via Select all."
-        width={489}
-        height={598}
-      />
+      <Shot src={s.src} alt={s.alt} caption={s.caption} width={s.width} height={s.height} />
       <p>
         Google&rsquo;s wording is broad, because it is the same wording for every app that
         asks. What each one is for here:
