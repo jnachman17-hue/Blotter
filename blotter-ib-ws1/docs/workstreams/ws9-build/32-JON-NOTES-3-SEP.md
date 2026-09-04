@@ -152,6 +152,12 @@ own task, cannot be done from here.
 - [~] **5.3** **Section 02 needs a new UI.** (with the animation agent) The spreadsheet columns have
       changed; it must reflect what the product actually looks like now.
 - [x] **5.4** **Remove the status chips** from section 02. They no longer exist.
+- [ ] **5.6** **The hero line goes.** Jon, later that night: *"get rid of all the
+      marketing language on the landing page that's, like, recruiting truly
+      sucks, you will lose track. Just get rid of that BS... It isn't BS anymore.
+      We're going live to real banking orgs."* Replaced in `sections/hero.tsx`
+      and `closing-copy.ts`; `hero/hero-top.tsx` carries the same line and is
+      the animation agent's file, so it was relayed. The header tagline ("The non-AI slop tracker that actually saves you time") went under the same ruling, in `site-header.tsx` (done) and `hero/hero-top.tsx` (relayed).
 - [x] **5.5** **Section 03 is deleted entirely.** *"we don't have the what you
       owe / paid. We don't make that now."*
 

@@ -118,7 +118,12 @@ export const PRODUCT_FAQ: FaqEntry[] = [
   is also what keeps the claim credible at the exact moment the page asks for
   the click.
 */
-export const CLOSING_HEADLINE = "Recruiting will still suck. You just won't lose anyone.";
+/*
+  Replaced September 3, 2026, late. Jon: "get rid of all the marketing
+  language... It isn't BS anymore. We're going live to real banking orgs."
+  The line below states what the product does and nothing else.
+*/
+export const CLOSING_HEADLINE = "Your tracker stays current on its own.";
 
 export const CLOSING_SUPPORTING =
   "Blotter keeps the sheet current on its own, so the hours you were spending on admin go back to the people you are actually trying to reach.";
