@@ -88,10 +88,16 @@ export function BillingLookup({ selling = false }: { selling?: boolean }) {
       <form onSubmit={submit} noValidate className="max-w-[34rem]">
         <label className="block">
           <span className="text-small font-medium text-ink">Your Blotter ID</span>
+          <span className="mt-1 block text-small leading-[1.5] text-ink-faint">
+            The whole thing, or just the first eight characters.
+          </span>
           <input
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            placeholder="3a8444f2"
+            /* The full shape, so nobody thinks eight characters is the format
+               rather than a shortcut. It was a real install id from Jon's own
+               account, which also showed the wrong shape. */
+            placeholder="1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d"
             spellCheck={false}
             autoComplete="off"
             className="mt-2 block min-h-12 w-full rounded-lg border border-rule bg-white px-3.5 font-mono text-body text-ink outline-none transition-colors duration-150 ease-out focus:border-navy-500"
