@@ -31,6 +31,18 @@ const source = path.join(root, 'courier', 'Code.gs');
 const served = path.join(root, 'web', 'public', 'Code.gs');
 const manifest = path.join(root, 'web', 'app', 'api', 'script', 'manifest.ts');
 
+/*
+ * The Apps Script manifest, published beside the script.
+ *
+ * Without it a student pasting only `Code.gs` into a fresh project gets scopes
+ * Apps Script infers from the code, and it infers the broad
+ * `.../auth/spreadsheets` rather than `spreadsheets.currentonly`. The site
+ * promises Blotter cannot see any other file in the reader's Drive, and that
+ * promise is this one scope. So the manifest ships too.
+ */
+const appsscriptSource = path.join(root, 'courier', 'appsscript.json');
+const appsscriptServed = path.join(root, 'web', 'public', 'appsscript.json');
+
 /** Written for the student who opens the file. Nothing in it is for us. */
 const PUBLIC_HEADER = `/**
  * Blotter
@@ -130,7 +142,8 @@ function sameTokens(a, b) {
   return ta.length === tb.length && ta.every((t, i) => t === tb[i]);
 }
 
-module.exports = { buildPublic, stripComments, commentRanges, sameTokens, PUBLIC_HEADER };
+module.exports = { buildPublic, stripComments, commentRanges, sameTokens, PUBLIC_HEADER,
+  appsscriptSource, appsscriptServed };
 
 if (require.main === module) {
   const src = fs.readFileSync(source, 'utf8');
@@ -143,6 +156,7 @@ if (require.main === module) {
 
   fs.mkdirSync(path.dirname(served), { recursive: true });
   fs.writeFileSync(served, body);
+  fs.copyFileSync(appsscriptSource, appsscriptServed);
   fs.writeFileSync(
     manifest,
     `/**

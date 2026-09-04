@@ -1015,6 +1015,16 @@ eq('and Step 1 creates it', box.expectedSetup_().settings.includes(box.SETTING_K
     const built = buildPublic(src);
     const served = fs.readFileSync(servedPath, 'utf8');
     eq('the served script is exactly what publish.js builds from this one', served === built, true);
+
+    // The manifest is the other half of an install. A student pasting only the
+    // script gets scopes Apps Script guesses, and it guesses the broad
+    // spreadsheets scope rather than currentonly.
+    const { appsscriptSource, appsscriptServed } = require('./publish.js');
+    const mSrc = fs.readFileSync(appsscriptSource, 'utf8');
+    const mOut = fs.existsSync(appsscriptServed) ? fs.readFileSync(appsscriptServed, 'utf8') : '';
+    eq('the served manifest matches the one we build from', mOut === mSrc, true);
+    eq('the served manifest keeps spreadsheets.currentonly',
+       mOut.indexOf('spreadsheets.currentonly') !== -1, true);
     eq('and it is this code, token for token, with only the comments gone', sameTokens(src, built), true);
     eq('one comment survives: the public header', commentRanges(built).length, 1);
     eq('nothing internal survives with it',
