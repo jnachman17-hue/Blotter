@@ -1,6 +1,6 @@
 # WS9 — state of play
 
-**Last updated: September 3, 2026, by the conductor chat.**
+**Last updated: September 4, 2026, by the conductor chat.**
 
 **This file is the single orientation point.** Everything below was verified by
 running it, not taken from a chat's report.
@@ -19,6 +19,36 @@ are fixed. **What has never been tested is a real student**, and what the sheet
 looks like is the next piece of work.
 
 ---
+
+## Since September 3 — three things landed
+
+**The banner row.** The notice moved from off the right edge of the screen to a
+frozen bar across the top with a resting state. Nothing hardcodes where the
+header row is any more: `headerRow_` finds it, and all thirty-seven positions
+derive from that, so a pre-banner sheet still works untouched.
+
+**Sheet resilience.** Almost everything a student would actually do is already
+safe. **Four silent failures were found and fixed**, the sharpest being a manual
+drag-sort landing mid-run — the menu sort takes the lock, a hand does not, and
+the row number is the join key, so it could put one person's status on another
+person's line with nothing wrong-looking about the result.
+
+**Future-proofing, which is the big one.**
+
+- **The design lives on the server now.** Status colours, widths, date formats,
+  sort order and every word of `Start here` are data Blotter sends. Change them
+  in one file, deploy, and every sheet picks it up. **Nobody re-pastes.**
+- **Billing is fully built and refusing nobody.** Key box, account identity,
+  tables, refusal path — all behind one environment variable that is off, with
+  **exactly one source**, readable at `GET /api/entitlement`
+- **Both sides now ignore fields they do not recognise.** Adding something new
+  costs no version change and no re-paste. Proved on the spot: four new fields
+  went in and the version did not move
+
+⚠ **Neither `/api/design` nor `/api/entitlement` is deployed yet.** Both 404 in
+production. The courier fails safe in every direction — no `design_version`, a
+404, or an unreadable payload all fall back to the script's built-in look — so
+this is a pending deploy, not a fault.
 
 ## Verified right now
 
