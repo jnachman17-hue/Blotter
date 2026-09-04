@@ -2372,7 +2372,9 @@ function writeBlotterColumns_(sheetState, rows) {
   // costs trust in every cell.
   var moved = rowsThatMoved_(sheetState, minRow, maxRow);
   if (moved.length > 0) {
-    throw new Error('The rows moved while Blotter was working — ' + moved.join('; ') +
+    throw new Error('The sheet changed while Blotter was working, so this run ' +
+      'was skipped and nothing was written. The next run will pick it up — ' +
+      'nothing is lost. (' + moved.join('; ') + ')' +
       '. Nothing was written, because the answers would have landed on the ' +
       'wrong people. Run Blotter → Step 2 again and it will be right.');
   }
@@ -2577,10 +2579,22 @@ function rowsThatMoved_(sheetState, minRow, maxRow) {
   sheetState.contacts.forEach(function (c) {
     var i = c.row - minRow;
     if (i < 0 || i >= height) return;
+    // **Email only, deliberately, and the name is deliberately ignored.**
+    //
+    // A student fixing a typo in a name is a normal thing to do, and the most
+    // likely moment for it is setup — when they are typing contacts in
+    // continuously while the timer fires every fifteen minutes. Comparing
+    // names would stop a run for that, on day one, with a message about rows
+    // moving that would make no sense to them.
+    //
+    // Email still catches everything this guard exists for: a sort or a drag
+    // moves the whole row, so the address moves with it. What it stops
+    // catching is somebody swapping two people's names while leaving their
+    // addresses in place, which is not a thing that happens.
     var nameNow = String(names[i][0]).trim();
     var emailsNow = addressList_(emails[i][0]).join(',').toLowerCase();
     var emailsThen = c.emails.join(',').toLowerCase();
-    if (nameNow !== c.name || emailsNow !== emailsThen) {
+    if (emailsNow !== emailsThen) {
       if (moved.length < 3) {
         moved.push('row ' + c.row + ' was ' + (c.name || '(no name)') +
           ' and is now ' + (nameNow || '(empty)'));
