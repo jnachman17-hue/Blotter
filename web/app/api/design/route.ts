@@ -42,19 +42,19 @@ const DESIGN = {
     "Not emailed": { bg: "#ffffff", fg: "#80868b" },
     Bounced: { bg: "#fce8e6", fg: "#c5221f" },
     Sent: { bg: "#dfe3e8", fg: "#3c4043" },
-    Replied: { bg: "#e6f4ea", fg: "#137333" },
-    "Call scheduled": { bg: "#e8f0fe", fg: "#1967d2" },
-    "Call done": { bg: "#fef7e0", fg: "#b06000" },
-    "Call cancelled": { bg: "#f1f3f4", fg: "#5f6368" },
+    Replied: { bg: "#d7e7fb", fg: "#1a56a8" },
+    "Call scheduled": { bg: "#e5ddf7", fg: "#5b3fa8" },
+    "Call done": { bg: "#d7f0dd", fg: "#1e6b34" },
+    "Call cancelled": { bg: "#fbeacb", fg: "#8a5a00" },
     Closed: { bg: "#ffffff", fg: "#bdc1c6" },
   },
 
   /** Column widths, by heading. Headings the courier does not know are ignored. */
   widths: {
     contacts: {
-      Name: 160, Title: 150, Firm: 150, Email: 210, Status: 120, Days: 62,
-      "Last contact": 100, Attempts: 78, "Next call": 130, "Last call": 100,
-      Closed: 70,
+      Name: 150, Title: 120, Firm: 150, Email: 190, Status: 132, Days: 62,
+      "Last contact": 108, Attempts: 82, "Next call": 142, "Last call": 108,
+      Closed: 72,
     },
     found: { "Add?": 84, Name: 150, Email: 200, "First seen": 100, Context: 340 },
   },

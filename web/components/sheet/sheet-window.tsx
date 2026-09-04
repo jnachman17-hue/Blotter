@@ -33,6 +33,32 @@ function SheetsIcon() {
   );
 }
 
+/**
+ * Sheets' hidden-column indicator: two arrowheads facing each other across the
+ * boundary. Absolutely positioned so it costs no layout width and the strip
+ * stays aligned with the grid it labels.
+ */
+export function HiddenMark({ edge }: { edge?: boolean }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={cn(
+        "pointer-events-none absolute top-1/2 z-10 flex -translate-y-1/2 items-center gap-[1px] text-ink-faint",
+        /* On the last column the boundary is the window's own edge, which
+           clips. Tucked inside instead. */
+        edge ? "right-[2px]" : "-right-[6px]",
+      )}
+    >
+      <svg width="4" height="7" viewBox="0 0 4 7" fill="currentColor">
+        <path d="M4 0 0 3.5 4 7z" />
+      </svg>
+      <svg width="4" height="7" viewBox="0 0 4 7" fill="currentColor">
+        <path d="M0 0l4 3.5L0 7z" />
+      </svg>
+    </span>
+  );
+}
+
 const MENUS = [
   "File",
   "Edit",
@@ -82,6 +108,15 @@ export interface SheetWindowProps {
    */
   columnWidths?: (string | number | undefined)[];
   /**
+   * Column letters after which the sheet has columns hidden. Draws Sheets' own
+   * indicator — two arrowheads facing each other across the boundary.
+   *
+   * A gap in the letter strip with nothing to explain it reads as a rendering
+   * fault rather than as a hidden column, and the hero hides `Email` because it
+   * is 190px of the student's own data that no cue ever touches.
+   */
+  hiddenAfter?: string[];
+  /**
    * Bottom tab strip. Pass an empty array to omit the strip entirely, for a
    * surface that composes its own.
    */
@@ -103,6 +138,7 @@ export function SheetWindow({
   formulaValue,
   columnLetters,
   columnWidths,
+  hiddenAfter,
   tabs,
   menuCount = MENUS.length,
   showSaveState = true,
@@ -181,12 +217,13 @@ export function SheetWindow({
               <div
                 key={letter}
                 className={cn(
-                  "border-r border-sheet-grid py-1 text-center last:border-r-0",
+                  "relative border-r border-sheet-grid py-1 text-center last:border-r-0",
                   typeof w === "string" ? w : w === undefined ? "flex-1" : "shrink-0",
                 )}
                 style={typeof w === "number" ? { width: w } : undefined}
               >
                 {letter}
+                {hiddenAfter?.includes(letter) && <HiddenMark />}
               </div>
             );
           })}
@@ -195,9 +232,15 @@ export function SheetWindow({
 
       {children}
 
-      {/* Tab strip. Omitted entirely when the surface composes its own. */}
+      {/*
+        Tab strip. Omitted entirely when the surface composes its own.
+
+        It scrolls rather than wraps. Four tabs is what the product ships with,
+        and at phone width `Start here` broke across two lines and grew the
+        whole strip. Real Sheets scrolls its tab strip.
+      */}
       {tabs.length > 0 && (
-        <div className="flex items-center gap-1 border-t border-sheet-grid px-3 py-2 text-[13px]">
+        <div className="flex items-center gap-1 overflow-x-auto border-t border-sheet-grid px-3 py-2 text-[13px] whitespace-nowrap">
           <span aria-hidden="true" className="px-1.5 text-ink-muted">
             +
           </span>
@@ -208,7 +251,7 @@ export function SheetWindow({
             <span
               key={tab.label}
               className={cn(
-                "rounded px-3 py-1",
+                "shrink-0 rounded px-3 py-1",
                 tab.active
                   ? "bg-chip-replied-bg font-medium text-chip-replied-fg"
                   : "text-ink-muted",

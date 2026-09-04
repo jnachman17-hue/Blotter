@@ -64,7 +64,7 @@ import { ImageResponse } from "next/og";
  */
 
 export const alt =
-  "Blotter, the recruiting tracker for investment banking. Recruiting truly sucks. You will lose track.";
+  "Blotter, a Google Sheet that automatically keeps your recruiting tracker current.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -179,8 +179,8 @@ export default async function Image() {
 
         {/* The ratified headline, two tones, exactly as the page sets it. */}
         <div style={{ display: "flex", flexDirection: "column", marginTop: 26, fontFamily: "Display", fontSize: 46, lineHeight: 1.1, letterSpacing: "-0.028em" }}>
-          <div style={{ display: "flex", color: INK }}>Recruiting truly sucks.</div>
-          <div style={{ display: "flex", color: NAVY_400 }}>You will lose track.</div>
+          <div style={{ display: "flex", color: INK }}>A recruiting tracker that keeps itself current.</div>
+          <div style={{ display: "flex", color: NAVY_400 }}>Who replied, who went quiet, who you owe.</div>
         </div>
 
         {/* The tracker, bleeding off the bottom edge. */}

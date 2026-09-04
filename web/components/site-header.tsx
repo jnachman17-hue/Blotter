@@ -161,7 +161,7 @@ export type HeaderTaglineAlign = "left" | "center";
 
 /** Ratified, `01-HERO`. One copy, so the two placements cannot drift. */
 const TAGLINE =
-  "The non-AI slop tracker that actually saves you time";
+  "A Google Sheet that automatically keeps your recruiting tracker current.";
 
 const TAGLINE_TYPE =
   "text-eyebrow leading-none font-medium tracking-[0.1em] text-navy-500 uppercase whitespace-nowrap";
@@ -288,12 +288,8 @@ export function SiteHeaderBar({
           primary and a secondary link after it reads as an afterthought.
         */}
         <div className="flex items-center gap-5">
-          <a
-            href="/setup"
-            className="hidden text-small font-medium text-navy-500 transition-colors duration-150 ease-out hover:text-navy-900 desk:block"
-          >
-            Set up
-          </a>
+          {/* The `Set up` text link that sat here went on September 3, 2026.
+              Jon: one call to action in the header, the button. */}
           <div className={mobileCta ? undefined : "hidden desk:block"}>
             <CtaButton location="header" size="compact" />
           </div>

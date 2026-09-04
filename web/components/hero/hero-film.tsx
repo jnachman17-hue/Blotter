@@ -42,6 +42,28 @@
  * a `display: none` subtree is never fetched, so desktop pays nothing for a
  * 292KB asset it does not show, while a phone fetches it immediately because it
  * is in the viewport.
+ *
+ * ## Both films were rebuilt on the real sheet, September 4, 2026
+ *
+ * The note that stood here said the two films were the last surface on the site
+ * still drawing a product that does not exist: `Next move`, `Call` and
+ * `LinkedIn` columns, `No reply` and `Call completed` in the `Status` cell, and
+ * no `Attempts` column at all. That is fixed. Both are now built from
+ * `courier/Code.gs`: the real columns at `CONTACTS_WIDTHS`, the eight real
+ * statuses at their exact fills, the `bands` theme, and `Attempts`.
+ *
+ * They converge on `HERO_ROWS` in `hero-visual.tsx` cell for cell, and their
+ * three cue cards are `HERO_CUES` verbatim, so the film and the still a
+ * reduced-motion reader gets below tell one story rather than two.
+ *
+ * The three beats are a reply, a follow-up and a coffee chat. The middle one is
+ * the one that earns the column: a follow-up goes out, the `Status` cell does
+ * not move, and `Attempts` goes 1 to 2. A status alone cannot tell a first
+ * email from a third.
+ *
+ * `blotter-film-a-4x5.html` was not rebuilt. Nothing on the site embeds it now
+ * that `funnel/film-step.tsx` is gone, and its beats argue three cases the owner
+ * deleted. It carries a dated note at the top of the file saying so.
  */
 
 import { useSyncExternalStore } from "react";
@@ -59,11 +81,14 @@ const FILM_SRC = "/film/blotter-film-c-4x5.html?bare=1";
 /**
  * The still shown when a visitor asks for reduced motion.
  *
- * `9.0s` is inside the silence beat's hold, after its row has landed and while
+ * `9.0s` is inside the third beat's hold, after its row has landed and while
  * nothing is moving: all three rows are in their end state, which is the
- * ratified tracker. It is the one frame that carries the whole argument, which
- * is exactly what a static substitute has to do. The film exposes `?t=` as a
- * deterministic frame render, so this costs nothing.
+ * tracker `hero-visual.tsx` draws. It is the one frame that carries the whole
+ * argument, which is exactly what a static substitute has to do. The film
+ * exposes `?t=` as a deterministic frame render, so this costs nothing.
+ *
+ * The hold runs 7.90 to 9.60 after the September 4, 2026 rebuild, so 9.0 is
+ * still inside it. Verified rather than assumed.
  */
 const STILL_SRC = "/film/blotter-film-c-4x5.html?bare=1&t=9.0";
 
@@ -109,7 +134,7 @@ export function HeroFilm() {
              race each other for the same frame. */
           key={reduced ? "still" : "film"}
           src={reduced ? STILL_SRC : FILM_SRC}
-          title="A recruiting tracker updating itself: an email arrives, a meeting completes, and a contact goes quiet"
+          title="A recruiting tracker updating itself: a reply arrives, a follow-up goes out, and a coffee chat lands on the calendar"
           loading="lazy"
           scrolling="no"
           className="absolute left-0 w-full border-0"
@@ -158,12 +183,12 @@ const DESK_SRC = "/film/blotter-film-web-hero.html?bare=1";
  * opening state, and the embed was papering over that with a cross-fade. The
  * fix belonged one level down.
  *
- * `blotter-film-web-hero.html` now carries Film C's wipe: a pale bar travels up
+ * `blotter-film-web-hero.html` carries Film C's wipe: a pale bar travels up
  * through the grid and hands each row back **whole** as its centre passes, then
  * eight tenths of a second at rest before the cycle restarts. Verified
- * frame-exact — the rendered state at `t = 0` and at `t = DUR` is identical
- * property for property, so there is no seam to hide and nothing for this
- * component to do but mount it.
+ * frame-exact after the September 4, 2026 rebuild as well: the rendered state
+ * at `t = 0` and at `t = DUR` is identical property for property, so there is no
+ * seam to hide and nothing for this component to do but mount it.
  *
  * **Reduced motion still gets the static composition and no film at all.** An
  * indefinite loop is precisely what that preference exists to refuse, and the
@@ -189,7 +214,7 @@ export function HeroFilmDesk() {
         ) : (
           <iframe
             src={DESK_SRC}
-            title="A recruiting tracker updating itself: an email arrives, a meeting completes, and a contact goes quiet"
+            title="A recruiting tracker updating itself: a reply arrives, a follow-up goes out, and a coffee chat lands on the calendar"
             scrolling="no"
             className="absolute inset-0 h-full w-full border-0"
           />

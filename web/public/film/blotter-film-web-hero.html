@@ -6,200 +6,169 @@
 <title>Blotter — the web hero film (1322 x 432.5)</title>
 
 <!--
-  THE WEB HERO FILM. 1322 x 432.5, 11.50 seconds, plays once and HOLDS.
+  THE WEB HERO FILM. 1322 x 432.5, 13.00 seconds, seamless loop.
 
-  It replaces the static composition `web/components/hero/hero-visual.tsx` draws
-  as the hero of the desktop landing page. Self-contained: open with file://,
-  fonts inlined, no network. `?bare=1` strips the controls, `?t=11.5` renders
+  It is the hero of the desktop landing page. Self-contained: open with file://,
+  fonts inlined, no network. `?bare=1` strips the controls, `?t=10.5` renders
   one frame deterministically, `?sweep=in|out` picks the sweep direction.
 
   ---------------------------------------------------------------------------
-  WHAT IT IS
+  REBUILT ON THE REAL SHEET, 4 SEPTEMBER 2026
 
-  A recruiting tracker in a Google Sheet maintaining itself. Three pieces of
-  activity arrive one at a time — an email reply, a completed meeting, and then
-  nothing at all for five days — and each rewrites the right-hand half of one
-  row while the left-hand half is never touched.
+  The previous cut drew a product that does not exist. It had `Next move` and
+  `Call` columns, no `Attempts`, and it put `No reply` and `Call completed` in
+  the `Status` cell. None of those are real. `courier/Code.gs` is the authority
+  and this film is now built from it:
 
-  It sits directly under the ratified headline "Your networking keeps moving.
-  Your tracker does not." and answers that headline and nothing else. No intro
-  card, no end card, no wordmark, no closing line. EVERY FRAME IS PRODUCT.
+    columns   Name, Title, Firm, Email, Status, Days, Last contact, Attempts,
+              Next call, Last call, Closed. Widths are `CONTACTS_WIDTHS`.
+    statuses  Not emailed, Sent, Replied, Bounced, Call scheduled, Call done,
+              Call cancelled, Closed. Eight, and no others.
+    theme     `bands`. White data rows, a tinted header, and a 3px yellow rule
+              between the student's columns and Blotter's. A status is a filled
+              cell with coloured text. It is not a pill and it has no caret.
 
-  It does NOT loop and it does NOT wipe back. Film C's wipe returns every row
-  to its opening state so its loop seams frame-exactly; here the resting frame
-  would be the tracker before anything arrived, which is the worst possible
-  still under a headline about stale trackers. This film holds on its end state,
-  which is `HERO_ROWS` exactly, and that held frame is what the page serves as
-  its static hero.
+  The composition is `hero-visual.tsx` at rest, so the film and the static
+  version a reduced-motion reader gets are the same sheet, cell for cell. Eight
+  of the eleven columns are on screen: `Email` is hidden, the way a student
+  hides 190px of addresses they never read, and `Last call` and `Closed` sit off
+  the right edge, the way a Sheets window narrower than its sheet cuts off.
 
   ---------------------------------------------------------------------------
-  THE ELEVEN AND A HALF SECONDS
+  THE THIRTEEN SECONDS
 
      0.00 -  1.20  AT REST    The tracker before anything has arrived.
 
-     1.20 -  3.98  GMAIL      "Sarah Chen replied", Jan 16 10:42 AM. The cue
-                              plugs into row 2 and four cells move: Sent ->
-                              Replied, Next move fills to Reply to Sarah,
-                              1/13/26 -> 1/16/26, Days 3 -> 0. Then the cue and
-                              its line LEAVE.
+     1.20 -  3.98  A REPLY    Gmail. "Jamie Diamond replied". Row 2 moves:
+                              Status Sent to Replied, Days 5 to 0, Attempts 2
+                              to a dash, and Last contact catches up to 1/16.
+                              Then the cue and its line leave.
 
-     4.14 -  6.98  CALENDAR   "Coffee chat with Priya Shah", Jan 16 11:00 AM.
-                              Five cells: Call scheduled -> Call completed,
-                              Attend coffee chat -> Send thank-you, 1/15/26 ->
-                              1/16/26, Days 1 -> 0, and the scheduled call
-                              becomes Completed 1/16. The cue leaves.
+     4.14 -  6.98  A FOLLOW-UP  Gmail. "Follow-up sent to Larry Sync". Row 4
+                              moves and THE STATUS DOES NOT. It reads `Sent`
+                              before and `Sent` after. What moves is Attempts 1
+                              to 2, Days 6 to 0, Last contact 1/10 to 1/16.
+                              This beat is the reason the `Attempts` column
+                              exists, and it is the one a status alone cannot
+                              tell you.
 
-     7.14 - 11.50  SILENCE    "No reply for 5 days", Day 5 - No new activity,
-                              with the muted Gmail mark. NOTHING ARRIVES and the
-                              row moves anyway: Sent -> No reply, Next move
-                              fills to Bump thread, Days 4 -> 5 — while LAST
-                              CONTACT SITS AT 1/11/26 AND DOES NOT MOVE. Then
-                              1.66 measured seconds in which nothing on the
-                              canvas changes at all, and the film holds there
-                              with this cue, its line and its node still on
-                              screen.
+     7.14 - 11.50  A COFFEE CHAT  Calendar. "Coffee chat with David Salmon".
+                              Row 6: Status Sent to Call scheduled, Next call
+                              fills with 1/17 @ 2:00 PM, Days and Attempts both
+                              drop to a dash, because neither counts once a call
+                              is booked. Then 1.66 measured seconds in which
+                              nothing on the canvas changes at all.
 
-  Beat order builds. Two beats where activity arrives, then one where nothing
-  does and the tracker moves anyway. The third is the differentiator, so the
-  film ends on it and it gets the most time: 4.36s against 2.78 and 2.84.
+    11.50 - 12.20  WIPE       A pale bar travels up the grid and hands each row
+                              back whole as its centre passes.
 
-  ---------------------------------------------------------------------------
-  THE FROZEN CELL IS THE SILENCE BEAT
+    12.20 - 13.00  AT REST    Identical to 0.00. The seam is frame-exact.
 
-  On a phone the silence beat had to be argued with a counter alone, because
-  `Last contact` was not on screen. Here it is on screen, one column to the left
-  of `Days`, and you can watch Days climb to 5 while Last contact sits perfectly
-  still right beside it. A CELL VISIBLY NOT CHANGING IS THE EVIDENCE THAT
-  NOTHING ARRIVED.
+  Every value obeys `web/app/api/engine/rules.ts`. `Days` carries a number on
+  `Sent`, `Replied` and `Call done` and a dash everywhere else. `Attempts`
+  carries one on `Sent` alone: on `Replied` it is zero by definition, and a
+  booked call has nothing to count. So a row moving into `Replied` or into
+  `Call scheduled` loses its attempt count, and that is not a gap in the data.
 
-  It is frozen structurally rather than by timing: Daniel's row carries no
-  `to.last` value at all, so there is no second value in that cell for any
-  code path to reach. The sweep passes straight over it and it does not move.
-
-  Daniel opening on the grey `Sent` pill is Jon's override from an earlier Film
-  C cut, recorded in `social/FILM-C.md`. A row that already reads `No reply`
-  was already correct before the beat, so the beat would only increment a digit.
+  Beat order builds. A reply, which the reader could have spotted in their own
+  inbox. Then a follow-up, which no status on any tracker distinguishes from a
+  first email. Then the calendar, which is the second source. The middle beat is
+  the argument, and it is the only one where nothing in the `Status` cell moves.
 
   ---------------------------------------------------------------------------
   THE CUE PLUGS STRAIGHT INTO THE SHEET
 
   `01-HERO` section 12 removes the vertical Blotter engine, the central
-  processor box and the cue-to-engine-to-sheet flow from the hero, and section
-  9 forbids oversized arrowheads, animated particles, glowing tubes and a
+  processor box and the cue-to-engine-to-sheet flow from the hero, and section 9
+  forbids oversized arrowheads, animated particles, glowing tubes and a
   spiderweb of lines. Nothing sits between the cue and the sheet.
 
   Sections 7 and 9 give the device instead, and `hero-visual.tsx` draws it:
 
-      one direct connector per cue, landing on that row's maintained block,
-      closed by a small endpoint node.
+      one direct connector per cue, landing on the row it changed, closed by a
+      small endpoint node.
 
-  ONE FIXED SLOT. The cue card sits at x 1086, top level with the top of the
+  ONE FIXED SLOT. The cue card sits at x 1049, top level with the top of the
   sheet window, and every cue appears in that identical position. Cues do not
-  accumulate: cue one arrives, its line draws, its row updates, and the whole
-  cue and its line leave before cue two arrives.
-
-  An earlier design stacked the cards down the right at their rows' heights.
-  Priya and Daniel are adjacent rows 43.5px apart against a 50px card, so they
-  overlap; the current static hero curves its connectors specifically to solve
-  that collision. A fixed slot removes the problem instead of solving it, and
-  it is what buys the straight line below.
+  accumulate: a cue arrives, its line draws, its row updates, and the whole cue
+  and its line leave before the next one arrives. The static composition stacks
+  all three down the right instead, one per row; a film cannot, because three
+  cards on screen at once says they happened at once.
 
   ONE RIGHT ANGLE. The line leaves the underside of the card, drops straight
-  down at x 1109 — which is the centre of the card's source mark, so the
-  vertical needs no routing — turns once to the left, and runs into the target
-  row, closing on a round node at x 1006, the sheet's right edge. Only the
-  length of the vertical drop changes between cues. Mitred corner, no curve, no
+  down at the centre of the card's source mark, turns once to the left, and runs
+  into the target row, closing on a round node at the sheet's right edge. Only
+  the length of the drop changes between cues. Mitred corner, no curve, no
   second elbow, no arrowhead.
 
-  THE THIRD CUE STAYS. After Daniel's row updates, his card, its line and its
-  node remain and the film holds there. That is not an addition — render Film C
-  at t=9.0 and the silence cue is still present with every row settled.
+  ---------------------------------------------------------------------------
+  THE CARD SAYS WHICH CELLS MOVED
+
+  `activity-cue.tsx`, reproduced. The card carries what happened on one line and
+  then the cells it moved, one per line, column name in its own column. The
+  timestamp line it used to carry is gone: a timestamp says when Blotter noticed
+  and never says what Blotter did, and the whole claim here is that one event
+  moves several columns together. The date is not lost. The row the connector
+  points at has `Last contact` in it.
+
+  Every label names a real column and a real value. Nothing on a card describes
+  a state the product does not have.
 
   ---------------------------------------------------------------------------
   WHERE THE GEOMETRY CAME FROM
 
-  Every number below was measured off the LIVE rendering of `hero-visual.tsx`,
-  not computed from its constants, because the eight columns are flex items
-  that shrink by a pixel in total to fit a 1004px content box inside a 1006px
-  window. The arithmetic and the rendering therefore disagree by fractions of a
-  pixel, and the connectors and the sweep depend on the rendering.
+  Widths are `CONTACTS_WIDTHS` verbatim, and the canvas is `TOTAL_W` by
+  `SHEET_H` from `hero-visual.tsx`, which `page-box.tsx` reads. It cannot move.
 
-    sheet window        1006 x 432.5      grid top      127
+    sheet window        989 x 432.5       grid top      127
     row height          43.5              last row      42.5 (no bottom border)
     row centres         192.25  235.75  279.25  322.75  365.75
-    row gutter          43                manual zone   372 (108+126+138)
-    maintained zone     590 (132+156+112+56+134)
-    ownership split     x 415.539         maintained block ends x 1005
-    corridor            80                cue column    236, x 1086 to 1322
-    cue card            236 x 50          source mark centre  x 1109
-    node                x 1006, on the sheet's right edge
+    row gutter          43
+    yours               420 (150+120+150)
+    Blotter's           526 (132+62+108+82+142)
+    corridor            60                cue column    273, x 1049 to 1322
+    node                on the sheet's right edge
 
-  The split's rendered x is 415.539 rather than the 415 the arithmetic gives.
-  The sweep is driven from the measured value, so it starts under the 2px rule
-  the header band already draws and never enters the manual zone.
-
-  Alex Morgan's row centre is 365.75 rather than the 366.25 the row-centre
-  formula gives, because the last row drops its bottom border. He carries no
-  cue, so nothing depends on it.
+  Everything the sweep and the connectors depend on is MEASURED off the built
+  DOM rather than typed, because the eight columns are flex items that give back
+  a pixel or two to fit the sheet's content box, so the boundaries land on
+  fractions. `window.GEOMETRY` exposes what the film actually laid out at.
 
   ---------------------------------------------------------------------------
   THE SWEEP, AND THE A/B
 
-  When a cue lands, the changed cells fill with the Blotter yellow. Two rules
-  survive from Film C verbatim:
+  When a cue lands, the changed cells fill with the Blotter yellow. Two rules:
 
     1. THE SWEEP NEVER CROSSES THE OWNERSHIP SPLIT. Running a Blotter fill
        across `Name` would say Blotter writes the name, which is the one thing
        the ownership split exists to deny.
     2. THE SWEEP LEAVES NOTHING BEHIND. Once it has passed, the row carries no
-       badge, tint or marker. Blotter is claimed once and never by a mark on a
-       row.
-
-  The direction is Jon's to choose and both are built.
+       badge, tint or marker.
 
     ?sweep=in   (default)  the fill enters at the row's right edge, where the
                            line landed, runs right to left, and halts dead on
                            the ownership split.
-    ?sweep=out             Film C's direction. The fill starts at the split and
-                           runs left to right to the row's right edge.
+    ?sweep=out             the fill starts at the split and runs left to right.
 
-  `in` is the default because this film's line arrives from the RIGHT. Film C's
-  arrives from above, so its outward sweep does not contradict the arrival; here
-  an outward sweep would run back against the direction the information came
-  from, and the eye has to jump from the node to the far side of the sheet and
-  travel back. `in` is one uninterrupted gesture — down, left, into the row,
-  across — that arrests on the ownership rule. A fill that STOPS on a line reads
-  as a boundary more strongly than one that starts there, and the boundary is
-  the most important claim in this composition.
-
-  The honest argument for `out` is recorded in `social/FILM-WEB-HERO.md`: it
-  lands the cells in reading order. Press `s` to swap live.
-
-  ---------------------------------------------------------------------------
-  LINE WEIGHT
-
-  Film C strokes 8px with an 18px node at 0.30 scale. The static hero strokes
-  1.25px with an r2.75 node at 0.85. Both are right and the difference is
-  entirely scale. This film renders at 0.8502, so Film C's numbers would be
-  enormous and the hero's are too faint for something that draws itself.
-
-  2.5px stroke, r5 node, both in `--blotter-500`, with the sweep's leading edge
-  in `--blotter-700`. Tuned at the rendered 1124px width; the reasoning is in
-  `social/FILM-WEB-HERO.md`.
+  `in` is the default because this film's line arrives from the right, so the
+  fill runs with the information rather than against it, and a fill that STOPS
+  on a line reads as a boundary more strongly than one that starts there. Press
+  `s` to swap live.
 
   ---------------------------------------------------------------------------
   CLAIM SAFETY
 
   No price, no availability, no beta, no launch date, no cohort language. No
-  outreach is written or drafted: every `Next move` on screen is a prompt to the
-  user and no drafted message appears. Nothing depicts a sweep across an inbox.
-  No credential field appears at any size in any frame. No bank logo appears.
+  marketing line of any kind: the film draws no headline and no tagline, and
+  every frame is product. Nothing here writes or drafts outreach. The contacts
+  are the seven fictional ones in `section-45/parts.tsx`, five of them here, and
+  no real person and no bank logo appears.
 
   ---------------------------------------------------------------------------
   CONTROLS, not part of the film
 
-    space  play / pause        c  hide the controls, for recording
-    arrows step one frame      f  true 1322px size instead of fit-to-window
+    space  play / pause        c  hide the controls for recording
+    arrows step one frame      f  fit-to-window / true size
     r      restart             s  swap the sweep direction
 -->
 
@@ -239,15 +208,27 @@
   --manual-100:#edf2f8; --manual-row:#ffffff;
   --sheet-border:#dadce0; --sheet-grid:#e8eaed;
   --sheet-header:#f8f9fa; --sheet-chrome:#ffffff; --sheet-green:#0f9d58;
-  --chip-replied-bg:#d7e7fb;   --chip-replied-fg:#1a56a8;
-  --chip-scheduled-bg:#e5ddf7; --chip-scheduled-fg:#5b3fa8;
-  --chip-completed-bg:#d7f0dd; --chip-completed-fg:#1e6b34;
-  --chip-noreply-bg:#fbeacb;   --chip-noreply-fg:#8a5a00;
-  --chip-sent-bg:#e8eaed;      --chip-sent-fg:#5f6368;
+  --chip-replied-bg:#d7e7fb; --chip-replied-fg:#1a56a8;
 
   --sans:"Geist","Geist Fallback",ui-sans-serif,system-ui,sans-serif;
   --sheet-type:Arial,Helvetica,sans-serif;
 }
+
+/*
+  STATUS_STYLE, copied out of `courier/Code.gs`. Background then text.
+
+  Written as literals rather than as `chip-*` tokens for the reason
+  `status-chip.tsx` gives: `globals.css` is missing four of the eight, and half
+  a table in tokens with half in hex would be worse than either.
+*/
+.sfill[data-s="Not emailed"]   {background:#ffffff;color:#a4a8ac}
+.sfill[data-s="Bounced"]       {background:#fce8e6;color:#c5221f}
+.sfill[data-s="Sent"]          {background:#dfe3e8;color:#3c4043}
+.sfill[data-s="Replied"]       {background:#d7e7fb;color:#1a56a8}
+.sfill[data-s="Call scheduled"]{background:#e5ddf7;color:#5b3fa8}
+.sfill[data-s="Call done"]     {background:#d7f0dd;color:#1e6b34}
+.sfill[data-s="Call cancelled"]{background:#fbeacb;color:#8a5a00}
+.sfill[data-s="Closed"]        {background:#ffffff;color:#a4a8ac}
 
 /* -------------------------------------------------------------------- shell */
 /*
@@ -265,14 +246,10 @@ body{
 }
 
 /*
-  BARE IS TRANSPARENT, and that is the difference from Film C.
-
-  Film C is the mobile hero, inset in a rounded card with its own ring, so it
-  paints its own ground. This film replaces `HeroVisualModule`, which is a
+  BARE IS TRANSPARENT. This film replaces `HeroVisualModule`, which is a
   transparent object sitting directly on the page's `.field-open` gradient. A
   ground of its own would put a second field inside the page's field and make
-  the iframe's edges visible. Transparent means the film is indistinguishable
-  from the static composition it replaces.
+  the iframe's edges visible.
 */
 body.bare{background:transparent;gap:0;padding:0;display:block;overflow:visible}
 body.bare .chrome{display:none}
@@ -284,74 +261,57 @@ body.bare .stagehold{margin:0}
 /*
   THE CANVAS IS EXACTLY 1322 x 432.5, which is `TOTAL_W` by `SHEET_H`.
 
-  The stage does NOT clip. The sheet's ratified drop shadow, `0 8px 28px -8px`,
-  extends about 14px below the sheet's own box, and the sheet is the full height
-  of the canvas — so in the real page that shadow paints outside this box, onto
-  `.field-open`. Clipping it here would put the sheet on a hard edge. The film
-  paints it and lets the host decide; see `social/FILM-WEB-HERO.md` for the
-  bleed the iframe wants if the shadow is to survive intact.
+  The stage does NOT clip. The sheet's ratified drop shadow extends about 14px
+  below the sheet's own box, and the sheet is the full height of the canvas, so
+  in the real page that shadow paints outside this box onto `.field-open`.
+  `hero-film.tsx` gives the iframe 16px of headroom for it.
 */
 .stage{position:relative;width:1322px;height:432.5px;overflow:visible}
 
-/*
-  Standalone viewing only, and off in bare mode. This is NOT `.field-open`: the
-  page's two radial glows are anchored to the whole hero wrapper rather than to
-  this 432.5px slice, so reproducing them here would be wrong. It is a neutral
-  approximation of the ground the composition sits on, so the file is legible
-  when opened on its own.
-*/
+/* Standalone viewing only, and off in bare mode. A neutral approximation of the
+   ground the composition sits on, so the file is legible opened on its own. */
 .field{position:absolute;left:-60px;right:-60px;top:-90px;bottom:-90px;
   background:linear-gradient(180deg,#f8fafd 0%,#f2f6fb 100%);z-index:0}
 body.bare .field{display:none}
 
 /* ========================================================== the cue slot === */
 /*
-  ONE FIXED SLOT. `activity-cue.tsx`, reproduced to the pixel: 236px wide,
-  8px radius, `px-3 py-2`, a 13px/17px semibold primary line over an 11.5px/15px
-  timestamp, and the ratified two-layer shadow. It measures 236 x 50 on the live
-  page and it measures 236 x 50 here.
+  ONE FIXED SLOT. `activity-cue.tsx`, reproduced to the pixel: 273px wide, 8px
+  radius, `px-3 py-[6px]`, a 13px/16px semibold event line over a two-column
+  grid of changed cells at 11.5px/14px, and the ratified two-layer shadow.
 
-  Top at y 0, level with the top of the sheet window, per the brief. The 20px
-  mark column is fixed width so the connector's x cannot move between a 20px
-  Gmail mark and a 19px Calendar one.
+  Top at y 0, level with the top of the sheet window. The 20px mark column is
+  fixed width so the connector's x cannot move between a 20px Gmail mark and a
+  19px Calendar one.
 */
-.card{position:absolute;left:1086px;top:0;width:236px;z-index:6;
-  display:flex;align-items:center;gap:10px;
-  padding:8px 12px;border:1px solid var(--sheet-border);border-radius:8px;
+.card{position:absolute;left:1049px;top:0;width:273px;z-index:6;
+  display:flex;align-items:flex-start;gap:10px;
+  padding:6px 12px;border:1px solid var(--sheet-border);border-radius:8px;
   background:var(--sheet-chrome);
   box-shadow:0 1px 2px rgba(60,64,67,.12),0 4px 12px -6px rgba(60,64,67,.22);
   opacity:0;will-change:opacity,transform}
-.cmark{width:20px;flex:none;display:flex;align-items:center;justify-content:center}
+.cmark{width:20px;flex:none;margin-top:1px;display:flex;align-items:center;
+  justify-content:center}
 .cmark svg{display:block}
-/*
-  The muted Gmail mark, drawn exactly as `section-3/day-timeline.tsx` draws it:
-  opacity 40%, grayscale. The thread is a Gmail thread so the slot names it, and
-  the muting carries the fact that nothing arrived in it. A full-strength mark
-  would imply Gmail signalled something, and Gmail signalling nothing is the
-  entire point of that row. Not struck, not absent.
-
-  This is the opposite of `HERO_CUES`, deliberately: the static hero keeps
-  Daniel at full strength because muting there depends on Section 3's
-  `NO NEW ACTIVITY` stamp to be legible. This film carries that stamp, so the
-  Section 3 treatment is the correct one here.
-*/
-.cmark.muted{opacity:.40;filter:grayscale(1)}
 .ctext{min-width:0}
-.cprimary{display:block;font-size:13px;line-height:17px;font-weight:600;
+.cevent{display:block;font-size:13px;line-height:16px;font-weight:600;
   color:var(--ink);white-space:nowrap}
-.cstamp{display:block;font-size:11.5px;line-height:15px;
-  color:var(--ink-muted);white-space:nowrap}
+/*
+  One change per line, column names in their own column. Three changes set as
+  running text wrap mid-change, and a cue in the margin that cannot be read at a
+  glance does not get read. The name column is `max-content`, so `Status` does
+  not pay for `Last contact` in a card that has no `Last contact` in it.
+*/
+.cwhen{display:block;margin-top:2px;font-size:11.5px;line-height:14px;color:var(--ink-muted);white-space:nowrap}
 
 /* ======================================================== the connector ==== */
 /*
   One L per cue: down the corridor from the card's source mark, one right angle,
-  into the row, closed by a round node on the sheet's right edge. `overflow:
-  visible` so the node is never clipped by the svg box.
+  into the row, closed by a round node on the sheet's right edge.
 
-  `--blotter-500` rather than the static hero's `--blotter-400`, and the same
-  step Film C took for the same reason: `-400` is tuned to be a hairline the eye
-  finds only when it looks for it, which is right for a still and wrong for a
-  line that has to be watched arriving.
+  `--blotter-500` rather than the static hero's `--blotter-400`: `-400` is tuned
+  to be a hairline the eye finds only when it looks for it, which is right for a
+  still and wrong for a line that has to be watched arriving.
 */
 .wires{position:absolute;left:0;top:0;z-index:5;overflow:visible;
   pointer-events:none}
@@ -361,22 +321,15 @@ body.bare .field{display:none}
 
 /* ============================================================= the sheet == */
 /*
-  `sheet-window.tsx` and `sheet-grid.tsx`, reproduced. Arial rather than the
-  page font, exactly as `.sheet-type` pins it: `hero-reference-v1.png` is set in
-  Arial, so pinning it keeps the primitive faithful and insulated from page-theme
-  changes.
+  `sheet-window.tsx` and `sheet-grid.tsx`, reproduced. Arial rather than the page
+  font, exactly as `.sheet-type` pins it.
+
+  `font-size:16px` is the page's base, which is what `SheetWindow` inherits: it
+  declares no size of its own and only the grid body sets 15px. That distinction
+  is worth a quarter of a pixel and it is not academic, because the star beside
+  the title carries no size class either.
 */
-/*
-  `font-size:16px` is the page's base, which is what `SheetWindow` inherits —
-  it declares no size of its own and only `SheetGrid` sets `text-[15px]`. That
-  distinction is worth a quarter of a pixel and it is not academic: the star
-  beside the document title carries no size class either, so its line box is
-  16 x 1.5 = 24 rather than the title's 19 x 1.25 = 23.75, and the star is the
-  taller of the two. Scoping 19px to the container instead of to the title text
-  makes the whole sheet 432.25 tall and puts every row centre a quarter pixel
-  above where `hero-visual.tsx` asserts its connector endpoints.
-*/
-.sheet{position:absolute;left:0;top:0;width:1006px;z-index:2;
+.sheet{position:absolute;left:0;top:0;width:989px;z-index:2;
   font-family:var(--sheet-type);color:var(--ink);font-size:16px;
   background:var(--sheet-chrome);border:1px solid var(--sheet-border);
   border-radius:12px;overflow:hidden;
@@ -406,18 +359,11 @@ body.bare .field{display:none}
 /*
   The formula bar tracks the cell it points at.
 
-  `hero-visual.tsx` selects D2 with the bar reading `Replied`, which is Sarah
-  Chen's Status cell — the exact cell the first beat moves. Holding it static
-  would put `Replied` on screen for 2.4 seconds while the cell itself still
-  reads `Sent`: a frame that contradicts itself. So the bar flips on the same
-  instant the chip does, and the held final frame carries D2 / `Replied`,
-  identical to the ratified static hero it replaces.
-
-  Film C froze its bar at A2 / `Sarah Chen` instead, for two reasons that do not
-  apply here: a manual field cannot contradict a frame it is not part of, and it
-  is one fewer thing animating at the loop seam. This film has no seam, and at
-  1124px the bar is legible rather than shape-only. Reverting to A2 is two
-  values in `SHEET` below.
+  `hero-visual.tsx` selects E2 with the bar reading `Replied`, which is Jamie
+  Diamond's `Status` cell and the exact cell the first beat moves. Holding it
+  static would put `Replied` on screen while the cell itself still reads `Sent`:
+  a frame that contradicts itself. So the bar flips on the same instant the cell
+  does. E, not D, because D is `Email` and is hidden.
 */
 .fstack{position:relative;display:inline-block;min-width:70px;height:19.5px}
 .fstack .va,.fstack .vb{position:absolute;left:0;top:0;white-space:nowrap;
@@ -426,8 +372,17 @@ body.bare .field{display:none}
 .letters{display:flex;background:var(--sheet-header);
   border-bottom:1px solid var(--sheet-grid);font-size:12px;color:var(--ink-muted)}
 .letters .gut{width:43px;flex:none;border-right:1px solid var(--sheet-grid)}
-.letters .col{border-right:1px solid var(--sheet-grid);text-align:center;padding:4px 0}
+.letters .col{border-right:1px solid var(--sheet-grid);text-align:center;
+  padding:4px 0;position:relative}
 .letters .col:last-child{border-right:0}
+/*
+  Sheets' hidden-column indicator, from `sheet-window.tsx`: two arrowheads
+  facing each other across the boundary. `Email` is hidden, and a gap in the
+  letter strip with nothing to explain it reads as a rendering fault.
+*/
+.hmark{position:absolute;top:50%;right:-6px;transform:translateY(-50%);z-index:10;
+  display:flex;align-items:center;gap:1px;color:var(--ink-faint)}
+.hmark svg{display:block}
 
 .tabs{display:flex;align-items:center;gap:4px;padding:8px 12px;
   border-top:1px solid var(--sheet-grid);font-size:13px}
@@ -438,58 +393,77 @@ body.bare .field{display:none}
 
 /* the grid ---------------------------------------------------------------- */
 /*
-  The columns are flex items that DO shrink. Their nominal widths sum to 1005
-  against a 1004px content box, so the browser takes a pixel back across the
-  eight of them and every column boundary lands on a fraction. That is what the
-  live page renders, and reproducing the rendering rather than the arithmetic is
-  what keeps the split, the sweep and the connectors on the same geometry the
-  page has already been approved at.
+  The columns are flex items that DO shrink. `CONTACTS_WIDTHS` for these eight
+  sum to 946 against a 944px content box, so the browser takes a couple of
+  pixels back across them and every boundary lands on a fraction. That is what
+  the live page renders, and reproducing the rendering rather than the
+  arithmetic is what keeps the split, the sweep and the connectors together.
 */
 .grid{position:relative;font-size:15px}
 .row{display:flex;border-bottom:1px solid var(--sheet-grid);position:relative}
-.row:last-child{border-bottom:0}
+/*
+  `:last-child` cannot do this job: the wipe bar is appended to the grid after
+  the rows, so it, and not the last row, is the last child. The class is set in
+  the builder. `sheet-grid.tsx` drops the same border with `last:border-b-0`,
+  which is what makes the sheet exactly 432.5 tall.
+*/
+.row.endrow{border-bottom:0}
 .gut{width:43px;flex:none;border-right:1px solid var(--sheet-grid);
   background:var(--sheet-header);padding:10px 0;text-align:center;
   font-size:12px;color:var(--ink-muted)}
-.cell{padding:10px 12px;white-space:nowrap;overflow:hidden;position:relative;
+/*
+  Cells are `px-2`, not `px-3`. Sheets leaves about 3px each side, and at `px-3`
+  the real widths clip their own content: "Vice President" in a 120px `Title` is
+  the first to go.
+*/
+.cell{padding:10px 8px;white-space:nowrap;overflow:hidden;position:relative;
   background:var(--manual-row)}
 /*
   HEADER CELLS DO NOT CLIP, and that is `sheet-grid.tsx`'s behaviour rather than
-  an oversight here. `overflow-hidden` is on the data cells alone. It matters
-  for exactly one cell: `Days` is a 56px column carrying a 15px semibold header
-  against 24px of padding, so the word is wider than its box and overflows —
-  leftward, because the column is right-aligned, into `Last contact`'s padding,
-  where there is room. Clipping it instead eats the `D`.
+  an oversight. `overflow-hidden` is on the data cells alone. It matters for
+  `Attempts`, whose 15px semibold header is within a pixel or two of its own
+  82px column, and which is right-aligned, so any overflow goes left into
+  `Last contact`'s padding where there is room.
 */
-.hrow .cell{overflow:visible}
-.cell.chipcell{padding:10px 8px}
+.hrow .cell{overflow:visible;font-weight:600}
 .cell.num{text-align:right}
 .cell.ital{font-style:italic;color:var(--ink-muted)}
-/* The ratified zone boundary: Name, Title and Firm are yours; the five columns
-   to the right of this rule are the ones Blotter keeps current. */
-.cell.split{border-left:2px solid var(--sheet-border)}
-.hrow .cell{font-weight:600}
+/*
+  THE ZONE BOUNDARY. `bands` in `courier/Code.gs`: a 3px Blotter-yellow rule
+  between the columns the student fills and the ones Blotter writes, carried
+  through the header and every data row. Name, Title and Firm are yours.
+*/
+.cell.split{border-left:3px solid var(--blotter-400)}
 .hrow .manual{background:var(--manual-100)}
-/* 01-HERO section 8 as amended by Jon on August 5, 2026: the header band alone
-   carries the maintained zone. Data rows stay plain white. */
+/* The header band alone carries the maintained zone. Data rows stay white,
+   which is what `bands` paints and what a student's sheet looks like. */
 .hrow .kept{background:var(--blotter-100)}
-.dash{display:block;text-align:center;color:var(--ink-faint)}
+/* A dash is a value, not a blank, so it takes its column's own alignment. */
+.dash{color:var(--ink-faint)}
 
-.chip{display:inline-flex;align-items:center;gap:3px;border-radius:999px;
-  padding:3px 7px;font-size:12.5px;line-height:1;white-space:nowrap;
-  vertical-align:middle}
-.chip svg{flex:none;opacity:.6}
-.chip[data-s="Replied"]{background:var(--chip-replied-bg);color:var(--chip-replied-fg)}
-.chip[data-s="Call scheduled"]{background:var(--chip-scheduled-bg);color:var(--chip-scheduled-fg)}
-.chip[data-s="Call completed"]{background:var(--chip-completed-bg);color:var(--chip-completed-fg)}
-.chip[data-s="No reply"]{background:var(--chip-noreply-bg);color:var(--chip-noreply-fg)}
-.chip[data-s="Sent"]{background:var(--chip-sent-bg);color:var(--chip-sent-fg)}
+/*
+  THE STATUS CELL IS A FILLED CELL, not a pill.
+
+  `courier/Code.gs` writes the status as conditional formatting on a square
+  cell, a fill and a font colour, and says why the rounded Sheets dropdown was
+  rejected: Sheets picks the chip's text colour itself, so the exact `fg` of
+  each status is lost, and a dropdown on a Blotter-owned column invites a
+  student to change a value that gets overwritten fifteen minutes later. "A
+  square cell that is always right beats a pill that lies."
+
+  The fill is the whole cell, so the cell gives up its own padding and the fill
+  carries the row's instead.
+*/
+.cell.statuscell{padding:0}
+.sfill{display:block;padding:10px 4px;text-align:center;white-space:nowrap}
+.statuscell .stack{height:42.5px}
+.statuscell .va,.statuscell .vb{display:block;height:42.5px;align-items:stretch}
 
 /*
   A cell that changes holds both values stacked and REPLACES one with the other,
-  so the column geometry cannot shift on the frame the value lands. The two never
-  overlap: Film C's first build let them cross-fade and "Attend coffee chat"
-  sitting on top of "Send thank-you" is a smear rather than a transition.
+  so the column geometry cannot shift on the frame the value lands. The two
+  never overlap: a cross-fade puts one string on top of another, which is a
+  smear rather than a transition.
 */
 .stack{position:relative;display:block;height:22.5px}
 .va,.vb{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;
@@ -498,26 +472,21 @@ body.bare .field{display:none}
 
 /*
   THE SWEEP. The moment arriving along the row it changes. Transient, and it is
-  not a badge — nothing is left behind on the row once it has passed.
+  not a badge: nothing is left behind on the row once it has passed.
 
-  It spans the maintained block only, from the ownership split to the sheet's
-  right edge, and `left` and `width` are written from the measured column
-  geometry in the script rather than typed here, so a width change cannot
-  silently move it into the manual zone.
-
-  The leading edge is `--blotter-700` rather than `-500`: the wash is a 17% tint
-  and the edge is the part that has to read as a moving object, so wash and edge
-  are the same family two steps apart. `--blotter-100` is what the maintained
-  header band above it is already painted in, for the same reason.
+  It spans the Blotter block only, from the ownership rule to the sheet's right
+  edge, and `left` and `width` are written from the measured column geometry in
+  the script rather than typed here, so a width change cannot silently move it
+  into the student's zone.
 */
 .sweepwrap{position:absolute;top:0;bottom:0;overflow:hidden;pointer-events:none}
 /*
   The wipe bar. A pale band that travels up through the grid at the end of the
   cycle and hands each row back to its opening state as it passes.
 
-  Film C's device, ported. It is deliberately not the Blotter yellow: the yellow
-  means "Blotter maintains this", and this bar is the film resetting itself
-  rather than anything the product does. A soft neutral says housekeeping.
+  Deliberately not the Blotter yellow: the yellow means "Blotter maintains
+  this", and this bar is the film resetting itself rather than anything the
+  product does. A soft neutral says housekeeping.
 */
 .wipe{
   position:absolute; left:0; right:0; top:0; height:120px;
@@ -575,17 +544,20 @@ body.bare .field{display:none}
     </div>
 
     <div class="fbar">
-      <div class="fcell"><span id="fcellref">D2</span><span class="caret">&#9662;</span></div>
+      <div class="fcell"><span id="fcellref">E2</span><span class="caret">&#9662;</span></div>
       <div class="fval"><span class="fx">fx</span><span class="fstack" id="fstack"></span></div>
     </div>
 
     <div class="letters" id="letters"></div>
     <div class="grid" id="grid"></div>
 
+    <!-- The four tabs the product ships with. `Contacts` is the one on screen. -->
     <div class="tabs">
       <span class="sym">+</span><span class="sym">&#9776;</span>
-      <span class="tab">Contacts</span>
-      <span class="tab on">Blotter<span class="tcaret">&#9662;</span></span>
+      <span class="tab">Start here</span>
+      <span class="tab on">Contacts<span class="tcaret">&#9662;</span></span>
+      <span class="tab">Found</span>
+      <span class="tab">Settings</span>
     </div>
   </div>
 
@@ -601,12 +573,12 @@ body.bare .field{display:none}
 
 <div class="chrome">
   <button id="play">Pause</button>
-  <input type="range" id="scrub" min="0" max="11500" value="0" step="1">
-  <span class="t" id="clock">0.00 / 11.50</span>
-  <button id="btnG">Gmail</button>
-  <button id="btnC">Calendar</button>
-  <button id="btnS">Silence</button>
-  <button id="btnH">Hold</button>
+  <input type="range" id="scrub" min="0" max="13000" value="0" step="1">
+  <span class="t" id="clock">0.00 / 13.00</span>
+  <button id="btnG">Reply</button>
+  <button id="btnF">Follow-up</button>
+  <button id="btnC">Coffee chat</button>
+  <button id="btnH">Settled</button>
   <button id="btnSweep">Sweep: in</button>
   <button id="btnFit">True size</button>
   <span class="hint">space play &middot; arrows step &middot; s swap sweep &middot; c clean &middot; f true size &middot; r restart</span>
@@ -618,103 +590,104 @@ body.bare .field{display:none}
 /* =========================================================================
    CANONICAL DATA. Nothing here may be edited without a ruling.
 
-   The `to` values are the ratified end state and are `HERO_ROWS` in
-   `web/lib/sheet-data.ts` exactly, so the film converges on the hero sheet
-   rather than on something adjacent — which is what makes it structurally
-   unable to contradict the page it becomes the hero of.
+   Columns and widths are `CONTACTS_WIDTHS` in `courier/Code.gs`, in header
+   order. `Email` is hidden; `Last call` and `Closed` are off the right edge.
 
-   The opening values are Jon's, from the brief: Sarah at Sent / blank /
-   1/13/26 / 3, Priya at Call scheduled / Attend coffee chat / 1/15/26 / 1 /
-   1/16 @ 11:00 AM, Daniel at Sent / blank / 1/11/26 / 4.
+   The `to` values are `HERO_ROWS` in `hero-visual.tsx` exactly, so the film
+   converges on the composition a reduced-motion reader is served instead of it.
+   The opening values are those end states with the three events undone, and
+   every one of them obeys `web/app/api/engine/rules.ts`.
 
-   MARCUS LEE AND ALEX MORGAN NEVER MOVE. They are their ratified rows at every
-   frame and they are there so the sheet reads as a tracker rather than as a
-   three-row demonstration. Marcus holds a FUTURE scheduled call throughout,
-   which is deliberate: it shows the tracker carrying forward-looking state.
-   Two rows reading `Call scheduled` at the open is correct and intended — one
-   of them resolves during the film and the other does not.
-
-   Alex Morgan's `Next move` em dash is the single ratified exception to the
-   genuinely-blank rule, scoped to that one cell, reinstated by Jon on
-   August 5, 2026 and implemented as `{ dash: true }` in `sheet-grid.tsx`.
+   JEROME BOWEL AND KEN MOLISE NEVER MOVE. They are there so the sheet reads as
+   a tracker rather than as a three-row demonstration, and between them they put
+   a second `Sent` row and a `Call done` row on screen for the whole film.
    ========================================================================= */
 
 const COLS = [
-  { key:"name",   head:"Name",         w:120, kept:false },
-  { key:"title",  head:"Title",        w:114, kept:false, ital:true },
-  { key:"firm",   head:"Firm",         w:138, kept:false },
-  { key:"status", head:"Status",       w:132, kept:true, chip:true },
-  { key:"next",   head:"Next move",    w:156, kept:true },
-  { key:"last",   head:"Last contact", w:112, kept:true },
-  { key:"days",   head:"Days",         w:56,  kept:true, num:true },
-  { key:"call",   head:"Call",         w:134, kept:true },
+  { key:"name",     head:"Name",         w:150, kept:false },
+  { key:"title",    head:"Title",        w:120, kept:false, ital:true },
+  { key:"firm",     head:"Firm",         w:150, kept:false },
+  { key:"status",   head:"Status",       w:132, kept:true, status:true },
+  { key:"days",     head:"Days",         w:62,  kept:true, num:true },
+  { key:"last",     head:"Last contact", w:108, kept:true },
+  { key:"attempts", head:"Attempts",     w:82,  kept:true, num:true },
+  { key:"next",     head:"Next call",    w:142, kept:true },
 ];
-const LETTERS = ["A","B","C","D","E","F","G","H"];
+/* The real letters in the eleven-column sheet. D is `Email`, hidden. */
+const LETTERS = ["A","B","C","E","F","G","H","I"];
+const HIDDEN_AFTER = ["C"];
 const SPLIT_I = COLS.findIndex(c => c.kept);   /* 3 */
 
+/* An em dash, `NO_CLOCK` in Code.gs. Not a hyphen and not a blank: a blank cell
+   reads as "Blotter has not run", a dash reads as "there is nothing to count
+   here". A leading hyphen is also how you start a formula. */
+const DASH = { dash:true };
+
 const ROWS = [
+  /* Beat 1. They wrote back, so the clock resets and the count of times you
+     have written since they last wrote drops to nothing. `Last contact` moves
+     with it, because the reply IS the last contact. */
   { name:"Jamie Diamond", title:"Associate", firm:"JPMorgan",
-    status:"Sent", next:"", last:"1/13/26", days:"3", call:"",
-    to:{ status:"Replied", next:"Reply to Jamie", last:"1/16/26", days:"0" } },
-
-  { name:"David Salmon", title:"Analyst", firm:"Goldman Sachs",
-    status:"Call scheduled", next:"Attend coffee chat", last:"1/15/26",
-    days:"1", call:"1/17 @ 2:00 PM" },
-
-  { name:"Ken Molise", title:"Vice President", firm:"Moelis & Co",
-    status:"Call scheduled", next:"Attend coffee chat", last:"1/15/26",
-    days:"1", call:"1/16 @ 11:00 AM",
-    to:{ status:"Call completed", next:"Send thank-you", last:"1/16/26",
-         days:"0", call:"Completed 1/16" } },
-
-  /*
-     THE FROZEN CELL. `to` deliberately carries no `last`, so Daniel's
-     `Last contact` cell is built as plain static text and there is no second
-     value in it for any code path to reach. It reads 1/11/26 on every frame of
-     the film, including while `Days` climbs from 4 to 5 in the column beside
-     it. A cell visibly not changing is the evidence that nothing arrived.
-
-     Daniel opens at Days 4 against a last contact of 1/11/26 while the other
-     rows are consistent with a current date of 1/16/26. That one-day looseness
-     is inherited from Film C and deliberately kept: it is what lets Days
-     visibly climb while Last contact stays frozen. Do not reconcile it.
-  */
-  { name:"Larry Sync", title:"Associate", firm:"BlackRock",
-    status:"Sent", next:"", last:"1/11/26", days:"4", call:"",
-    to:{ status:"No reply", next:"Bump thread", days:"5" } },
+    status:"Sent", days:"5", last:"1/11/26", attempts:"2", next:"",
+    to:{ status:"Replied", days:"0", last:"1/16/26", attempts:DASH } },
 
   { name:"Jerome Bowel", title:"Analyst", firm:"Carlyle",
-    status:"Sent", next:{dash:true}, last:"1/16/26", days:"0", call:"" },
+    status:"Sent", days:"3", last:"1/13/26", attempts:"1", next:"" },
+
+  /* Beat 2, and the reason `Attempts` is a column. `to` deliberately carries no
+     `status`: that cell is built as static text and there is no second value in
+     it for any code path to reach, so it reads `Sent` on every frame of the
+     film while three cells beside it move. */
+  { name:"Larry Sync", title:"Associate", firm:"BlackRock",
+    status:"Sent", days:"6", last:"1/10/26", attempts:"1", next:"",
+    to:{ days:"0", last:"1/16/26", attempts:"2" } },
+
+  { name:"Ken Molise", title:"Vice President", firm:"Moelis",
+    status:"Call done", days:"1", last:"1/13/26", attempts:DASH, next:"" },
+
+  /* Beat 3. `Days` was the one state counting forwards, so a booked call drops
+     it and `Next call` carries the date instead. `Attempts` goes with it: the
+     count means something on `Sent` and nowhere else. */
+  { name:"David Salmon", title:"Analyst", firm:"Goldman Sachs",
+    status:"Sent", days:"1", last:"1/15/26", attempts:"1", next:"",
+    to:{ status:"Call scheduled", days:DASH, attempts:DASH,
+         next:"1/17 @ 2:00 PM" } },
 ];
 
 /*
-  The three cues, in this order, each in the one fixed slot.
+  The three cues, in this order, each in the one fixed slot. They are
+  `HERO_CUES` in `hero-visual.tsx`, verbatim, down to which cells each card
+  names, so the film and the static composition tell one story.
 
-  Beat 2 IS PRIYA, and that is an override rather than a mistake. `HERO_CUES` in
-  `sheet-data.ts` currently reads `Coffee chat with Marcus Lee` targeting row 1;
-  Jon ruled on August 11, 2026 that this film agrees with Film C, whose calendar
-  beat is Priya, and that the page data will be updated to match this film
-  afterwards.
-
-  Its stamp is `Jan 16 - 11:00 AM`, given explicitly in the brief. That is a
-  third value for this moment — `SECTION_3_MOMENTS` says 2:00 PM and `HERO_CUES`
-  says Jan 17 - 2:00 PM for Marcus — and it is the only one of the three that is
-  internally consistent, because Priya's opening `Call` cell reads
-  `1/16 @ 11:00 AM` and a 2:00 PM stamp would contradict it inside one frame.
+  One inbound, one outbound, one from Calendar. Cue order matches row order, so
+  the three connectors never cross.
 */
 const CUES = [
-  { id:"sarah",  row:0, source:"gmail",
-    primary:"Jamie Diamond replied",          stamp:"Jan 16 · 10:42 AM" },
-  { id:"priya",  row:2, source:"calendar",
-    primary:"Coffee chat with Ken Molise", stamp:"Jan 16 · 11:00 AM" },
-  { id:"daniel", row:3, source:"muted",
-    primary:"No reply for 5 days",         stamp:"Day 5 · No new activity" },
+  { id:"reply", row:0, source:"gmail",
+    event:"Jamie Diamond replied",
+    when:"Jan 16 · 10:42 AM",
+    moved:[ { column:"Status",   from:"Sent", to:"Replied" },
+            { column:"Days",     from:"5",    to:"0" },
+            { column:"Attempts", from:"2",    to:"—" } ] },
+
+  { id:"followup", row:2, source:"gmail",
+    event:"Follow-up sent to Larry Sync",
+    when:"Jan 16 · 9:15 AM",
+    moved:[ { column:"Attempts",     from:"1",    to:"2" },
+            { column:"Days",         from:"6",    to:"0" },
+            { column:"Last contact", from:"1/10", to:"1/16" } ] },
+
+  { id:"chat", row:4, source:"calendar",
+    event:"Coffee chat with David Salmon",
+    when:"Jan 15 · 4:20 PM",
+    moved:[ { column:"Status",    from:"Sent", to:"Call scheduled" },
+            { column:"Next call",              to:"1/17 @ 2:00 PM" },
+            { column:"Days",      from:"1",    to:"—" } ] },
 ];
 
-/* The selected cell and its two formula-bar values. D2 is Sarah Chen's Status
-   cell, which is what the first beat moves. Set both to the same string, and
-   `fcellref` to A2, to freeze the bar the way Film C does. */
-const SHEET = { ref:"D2", formulaFrom:"Sent", formulaTo:"Replied" };
+/* The selected cell and its two formula-bar values. E2 is Jamie Diamond's
+   `Status` cell, which is what the first beat moves. */
+const SHEET = { ref:"E2", formulaFrom:"Sent", formulaTo:"Replied" };
 
 /* =========================================================================
    MARKS, verbatim from web/components/google-marks.tsx
@@ -740,7 +713,11 @@ const CAL_SVG = '<svg width="19" height="19" viewBox="0 0 20 20" aria-hidden="tr
   + ' fill="#4285F4" font-family="Arial, Helvetica, sans-serif">31</text>'
   + '</g></svg>';
 
-const CARET = '<svg width="7" height="4.5" viewBox="0 0 8 5"><path d="M0 0h8L4 5z" fill="currentColor"/></svg>';
+/* `sheet-window.tsx`'s hidden-column indicator. */
+const HIDDEN_MARK = '<span class="hmark" aria-hidden="true">'
+  + '<svg width="4" height="7" viewBox="0 0 4 7" fill="currentColor"><path d="M4 0 0 3.5 4 7z"/></svg>'
+  + '<svg width="4" height="7" viewBox="0 0 4 7" fill="currentColor"><path d="M0 0l4 3.5L0 7z"/></svg>'
+  + '</span>';
 
 /* =========================================================================
    BUILD
@@ -749,19 +726,21 @@ const CARET = '<svg width="7" height="4.5" viewBox="0 0 8 5"><path d="M0 0h8L4 5
 const $ = id => document.getElementById(id);
 const params = new URLSearchParams(location.search);
 
-/* `?sweep=out` picks Film C's direction. Anything else, including nothing, is
-   `in`. See the header comment for why `in` is the default. */
+/* `?sweep=out` runs the fill left to right. Anything else, including nothing,
+   is `in`. See the header comment for why `in` is the default. */
 let sweepMode = params.get("sweep") === "out" ? "out" : "in";
 
 (function letters(){
   $("letters").innerHTML = '<div class="gut"></div>' + COLS.map((c,i) =>
-    `<div class="col" style="width:${c.w}px">${LETTERS[i]}</div>`).join("");
+    `<div class="col" style="width:${c.w}px">${LETTERS[i]}`
+    + (HIDDEN_AFTER.includes(LETTERS[i]) ? HIDDEN_MARK : "")
+    + `</div>`).join("");
 })();
 
 function valueHTML(col, v){
   if (v === "" || v === null || v === undefined) return "";
   if (v && v.dash) return '<span class="dash">—</span>';
-  if (col.chip) return `<span class="chip" data-s="${v}">${v}${CARET}</span>`;
+  if (col.status) return `<span class="sfill" data-s="${v}">${v}</span>`;
   return v;
 }
 
@@ -777,20 +756,20 @@ const sweepWraps = [];
   h.className = "row hrow";
   h.innerHTML = '<div class="gut">1</div>' + COLS.map((c,i) => {
     const cls = ["cell", c.kept ? "kept" : "manual", i===SPLIT_I ? "split" : "",
-                 c.num ? "num" : "", c.chip ? "chipcell" : ""].join(" ");
+                 c.num ? "num" : ""].join(" ");
     return `<div class="${cls}" style="width:${c.w}px">${c.head}</div>`;
   }).join("");
   el.appendChild(h);
 
   ROWS.forEach((r, ri) => {
     const row = document.createElement("div");
-    row.className = "row";
+    row.className = ri === ROWS.length - 1 ? "row endrow" : "row";
     const f = {};
     row.innerHTML = '<div class="gut">' + (ri+2) + '</div>' + COLS.map((c,i) => {
       const cls = ["cell", i===SPLIT_I ? "split" : "", c.num ? "num" : "",
-                   c.chip ? "chipcell" : "", c.ital ? "ital" : ""].join(" ");
-      /* A cell only becomes a stack if this row's `to` names it. Daniel's
-         `last` is absent from his `to`, so it is built as static text. */
+                   c.status ? "statuscell" : "", c.ital ? "ital" : ""].join(" ");
+      /* A cell only becomes a stack if this row's `to` names it. Larry Sync's
+         `status` is absent from his `to`, so it is built as static text. */
       const moves = r.to && r.to[c.key] !== undefined;
       const inner = moves
         ? `<span class="stack" data-k="${c.key}">`
@@ -824,12 +803,11 @@ const fbar = { va:$("fstack").querySelector(".va"), vb:$("fstack").querySelector
 (function cards(){
   $("cards").innerHTML = CUES.map(c => {
     const mark = c.source === "calendar" ? CAL_SVG : GMAIL_SVG;
-    const cls  = c.source === "muted" ? "cmark muted" : "cmark";
     return `<div class="card" id="card-${c.id}">`
-      + `<span class="${cls}">${mark}</span>`
+      + `<span class="cmark">${mark}</span>`
       + `<span class="ctext">`
-      +   `<span class="cprimary">${c.primary}</span>`
-      +   `<span class="cstamp">${c.stamp}</span>`
+      +   `<span class="cevent">${c.event}</span>`
+      +   `<span class="cwhen">${c.when}</span>`
       + `</span></div>`;
   }).join("");
 })();
@@ -838,11 +816,10 @@ const cardEls = CUES.map(c => $("card-" + c.id));
 /* =========================================================================
    MEASURED GEOMETRY
 
-   Read off the built DOM rather than typed, for the reason the header comment
-   gives: the eight columns shrink by a pixel in total to fit the sheet's
-   content box, so every boundary lands on a fraction and the arithmetic in the
-   build spec is half a pixel out. The connectors and the sweep are driven from
-   what is actually painted.
+   Read off the built DOM rather than typed: the eight columns shrink to fit the
+   sheet's content box, so every boundary lands on a fraction and the arithmetic
+   is a pixel or two out. The connectors and the sweep are driven from what is
+   actually painted.
    ========================================================================= */
 
 /*
@@ -850,9 +827,7 @@ const cardEls = CUES.map(c => $("card-" + c.id));
 
   The connector lives in the svg, which spans the STAGE. The sweep lives inside
   a row, whose origin is a pixel to the right of the stage's because the sheet
-  has a 1px border. Measuring the split against the stage and then writing it as
-  the sweep's `left` puts the wash a pixel clear of the very rule it is supposed
-  to begin on. So `pxIn` takes the element to measure against.
+  has a 1px border. So `pxIn` takes the element to measure against.
 
   Both divide out whatever scale the stage is currently under, so a measurement
   is a canvas measurement whether or not `fit()` has run yet.
@@ -866,11 +841,11 @@ const pxIn = (el, origin) => {
 };
 const px = el => pxIn(el, $("stage"));
 
-/* Row centres, in canvas coordinates — what the connector endpoints need. */
+/* Row centres, in canvas coordinates: what the connector endpoints need. */
 const ROW_MID = rowEls.map(el => { const b = px(el); return b.y + b.h / 2; });
 
-/* The ownership split and the right edge of the maintained block, measured off
-   the header row's own cells so the sweep can never drift from the rule, and in
+/* The ownership rule and the right edge of the Blotter block, measured off the
+   header row's own cells so the sweep can never drift from the rule, and in
    GRID coordinates because that is the space the sweep is positioned in. */
 const hdrRow   = $("grid").firstElementChild;
 const hdrCells = [...hdrRow.querySelectorAll(".cell")];
@@ -879,28 +854,30 @@ const KEPT_END = (() => { const b = pxIn(hdrCells[COLS.length-1], hdrRow);
                           return b.x + b.w; })();
 const SWEEP_W  = KEPT_END - SPLIT_X;
 
-/* The same two edges in canvas coordinates, for the record and for the
-   verification pass. The sweep must never go left of `SPLIT_CANVAS`. */
+/* The same edge in canvas coordinates, for the verification pass. The sweep
+   must never go left of this. */
 const SPLIT_CANVAS = px(hdrCells[SPLIT_I]).x;
 
-/* Where each maintained column's content sits inside the sweep, as an x offset
-   from the split. A value flips when the leading edge is 35% into its own
-   column, or 52% into `Days`, which is right-aligned and so has its content at
-   the far end. Same anchor in both sweep directions; only the progress that
-   reaches it is measured from the other side. */
+/* Where each Blotter column's content sits inside the sweep, as an x offset
+   from the rule. A value flips when the leading edge is 35% into its own
+   column, halfway into a centred `Status` fill, or 52% into a right-aligned
+   number, which has its content at the far end. Same anchor in both sweep
+   directions; only the progress that reaches it is measured from the other
+   side. */
 const FLIP_X = {};
 COLS.forEach(c => {
   if (!c.kept) return;
   const b = pxIn(hdrCells[COLS.indexOf(c)], hdrRow);
-  FLIP_X[c.key] = (b.x - SPLIT_X) + b.w * (c.num ? 0.52 : 0.35);
+  const anchor = c.status ? 0.50 : c.num ? 0.52 : 0.35;
+  FLIP_X[c.key] = (b.x - SPLIT_X) + b.w * anchor;
 });
 
 /* The connector. One L per cue: down the corridor at the centre of the card's
    source mark, one right angle, into the row, closed on the sheet's edge. */
-const CARD_BOTTOM = px(cardEls[0]).y + px(cardEls[0]).h;      /* 50 */
+const CARD_BOTTOM = px(cardEls[0]).y + px(cardEls[0]).h;
 const STEM_X      = (() => { const b = px(cardEls[0].firstElementChild);
-                             return b.x + b.w / 2; })();       /* 1109 */
-const SHEET_EDGE  = (() => { const b = px($("sheet")); return b.x + b.w; })(); /* 1006 */
+                             return b.x + b.w / 2; })();
+const SHEET_EDGE  = (() => { const b = px($("sheet")); return b.x + b.w; })(); /* 989 */
 
 const NODE_R = 5;
 
@@ -927,11 +904,11 @@ window.GEOMETRY = {
   splitCanvasX: SPLIT_CANVAS, splitGridX: SPLIT_X,
   keptEndGridX: KEPT_END, sweepW: SWEEP_W,
   rowMid: ROW_MID, cardBottom: CARD_BOTTOM, stemX: STEM_X,
-  sheetEdge: SHEET_EDGE, nodeR: NODE_R, flipX: FLIP_X, dur: 11.50,
+  sheetEdge: SHEET_EDGE, nodeR: NODE_R, flipX: FLIP_X, dur: 13.00,
 };
 
-/* The sweep spans the maintained block exactly, and which end it grows from is
-   the A/B. Applied on mode change rather than per frame. */
+/* The sweep spans the Blotter block exactly, and which end it grows from is the
+   A/B. Applied on mode change rather than per frame. */
 function applySweepMode(){
   sweepWraps.forEach(w => { w.style.left = SPLIT_X + "px"; w.style.width = SWEEP_W + "px"; });
   rowSweeps.forEach(s => {
@@ -953,21 +930,18 @@ applySweepMode();
 const DUR = 13.00;
 
 /*
-  THE WIPE, added August 11, 2026.
+  THE WIPE.
 
   The film used to play once and stop, and the embed cross-faded to the static
-  hero. Jon rejected that outright: *"It's either it's the film, and it goes to
+  hero. Jon rejected that outright: "It's either it's the film, and it goes to
   the static permanently, or it's the film, and it indefinitely loops. And I'm
-  in favor of it indefinitely looping like we do on mobile."*
+  in favor of it indefinitely looping like we do on mobile."
 
-  So this is Film C's device, ported rather than reinvented — `FILM-C.md` calls
-  it a pale sweep that runs back across the grid and returns the three rows to
-  their opening state. Here it travels up through the grid, and each row is
-  handed back **whole** at the instant the bar's centre reaches it, which is
-  what keeps a row from ever being half of one state and half of the other.
+  So the bar travels up through the grid, and each row is handed back WHOLE at
+  the instant the bar's centre reaches it, which is what keeps a row from ever
+  being half of one state and half of the other.
 
-  Both ends of the cycle are exactly zero, so the seam is frame-identical
-  rather than nearly so.
+  Both ends of the cycle are exactly zero, so the seam is frame-identical.
 
     9.84 - 11.50  STILL    nothing on the canvas changes. The beat.
    11.50 - 12.20  WIPE     the bar travels up; rows hand back as it passes.
@@ -996,39 +970,28 @@ const WIPE_TRAVEL = GRID_H + WIPE_H;
 const ROW_MID_LOCAL = rowEls.map(el => el.offsetTop + el.offsetHeight / 2);
 const wipeAt = r => (GRID_H + WIPE_H / 2 - ROW_MID_LOCAL[r]) / WIPE_TRAVEL;
 
-
 /*
   Per beat: the card arrives, the connector draws itself down the corridor and
-  closes on its node, a sweep runs the row that changes, and — for the first two
-  beats only — the whole cue and its line leave.
+  closes on its node, a sweep runs the row that changes, and, for the first two
+  beats, the whole cue and its line leave. The cards share one slot and must
+  never coexist, so every beat pays for its own exit.
 
-  Film C's rhythm is 2.40 / 2.28 / 3.84 with 1.60s of stillness at the end. Its
-  20-millisecond beat boundaries leave no room for an exit, which this film
-  needs because the cards share one slot and must not coexist. So each beat is
-  given the exit time it needs and the total runs longer: 2.78 / 2.84 / 4.36,
-  with the silence beat still comfortably the longest and its 1.60s of complete
-  stillness intact (1.66s measured).
-
-  `out` is absent from the third beat. That cue, its line and its node stay, and
-  the film holds there — which is what Film C already does at t=9.0.
+  `out` on the third beat runs with the wipe rather than before it, so the last
+  thing to go is the thing the beat is about.
 */
 const BEATS = [
-  { /* Gmail    */ card:[1.20,1.52], wire:[1.58,2.10], node:[2.06,2.26],
-                   sweep:[2.38,3.10], sweepOut:[3.10,3.34], out:[3.52,3.98] },
-  { /* Calendar */ card:[4.14,4.46], wire:[4.52,5.10], node:[5.06,5.26],
-                   sweep:[5.38,6.10], sweepOut:[6.10,6.34], out:[6.52,6.98] },
-  { /* Silence  */ card:[7.14,7.54], wire:[7.62,8.32], node:[8.28,8.52],
-                   sweep:[8.68,9.58], sweepOut:[9.58,9.84],
-                   /* Was `null` — the silence cue used to stay because the film
-                      held on it. It has to leave for the loop to seam, and it
-                      leaves with the wipe rather than before it, so the last
-                      thing to go is the thing the beat is about. */
-                   out:[11.50,11.90] },
+  { /* Reply       */ card:[1.20,1.52], wire:[1.58,2.10], node:[2.06,2.26],
+                      sweep:[2.38,3.10], sweepOut:[3.10,3.34], out:[3.52,3.98] },
+  { /* Follow-up   */ card:[4.14,4.46], wire:[4.52,5.10], node:[5.06,5.26],
+                      sweep:[5.38,6.10], sweepOut:[6.10,6.34], out:[6.52,6.98] },
+  { /* Coffee chat */ card:[7.14,7.54], wire:[7.62,8.32], node:[8.28,8.52],
+                      sweep:[8.68,9.58], sweepOut:[9.58,9.84],
+                      out:[11.50,11.90] },
 ];
 
 /* Everything after 9.84 is stillness: not one property on the canvas changes
-   between there and the hold. That is the beat, and it is why the film is
-   eleven and a half seconds rather than nine and a half. */
+   between there and the wipe. That is the beat, and it is why the film is
+   thirteen seconds rather than ten. */
 const STILL_FROM = 9.84;
 
 const cl = u => u < 0 ? 0 : u > 1 ? 1 : u;
@@ -1051,10 +1014,9 @@ const inOpacity  = m => ss((m - 0.52) / 0.48);
 
 function mix(t, beat, key){
   const B = BEATS[beat];
-  /* In `out` the edge starts at the split, so a column's progress is its
-     distance from the split. In `in` the edge starts at the sheet's right edge,
-     so it is the distance back from there. Same anchor, measured from the end
-     the edge actually comes from. */
+  /* In `out` the edge starts at the rule, so a column's progress is its
+     distance from the rule. In `in` the edge starts at the sheet's right edge,
+     so it is the distance back from there. */
   const u  = sweepMode === "out" ? FLIP_X[key] / SWEEP_W
                                  : (SWEEP_W - FLIP_X[key]) / SWEEP_W;
   const at = B.sweep[0] + (B.sweep[1] - B.sweep[0]) * u;
@@ -1145,9 +1107,6 @@ function render(t){
 
 /* =========================================================================
    DRIVER
-
-   The film plays once and holds. `t` is clamped at DUR rather than wrapped:
-   there is no loop and no seam to make frame-exact.
    ========================================================================= */
 
 let playing = true, t = 0, last = performance.now();
@@ -1184,16 +1143,12 @@ function fit(){
   /*
     A DEGENERATE VIEWPORT MUST NOT PRODUCE A NEGATIVE SCALE, and this is not a
     hypothetical. An iframe inside a `display:none` subtree reports `innerWidth`
-    and `innerHeight` of 0 — which is exactly the pattern `hero-film.tsx` uses to
-    keep the mobile film off desktop, `loading="lazy"` inside a `desk:hidden`
-    wrapper. `Math.min(1, 0/1322, -110/432.5)` is `-0.254`, and a negative scale
-    is a 180-degree rotation plus a mirror, not a small film. The frame would
-    then paint the composition upside-down and backwards until something
-    happened to fire a resize.
+    and `innerHeight` of 0, which is exactly the pattern `hero-film.tsx` uses to
+    keep the mobile film off desktop. A negative scale is a 180-degree rotation
+    plus a mirror, not a small film.
 
     So the last good scale is held until the viewport actually has a size, and
-    the resize that gives it one does the fitting. Caught by the verification
-    pass reading nonsense geometry out of a backgrounded tab.
+    the resize that gives it one does the fitting.
   */
   const k = trueSize ? 1
     : (availW > 0 && availH > 0)
@@ -1215,9 +1170,9 @@ function swapSweep(){
 $("btnFit").addEventListener("click", () => { trueSize = !trueSize; fit(); });
 $("btnSweep").addEventListener("click", swapSweep);
 $("btnG").addEventListener("click", () => window.renderAt(2.90));
-$("btnC").addEventListener("click", () => window.renderAt(5.90));
-$("btnS").addEventListener("click", () => window.renderAt(9.20));
-$("btnH").addEventListener("click", () => window.renderAt(DUR));
+$("btnF").addEventListener("click", () => window.renderAt(5.90));
+$("btnC").addEventListener("click", () => window.renderAt(9.20));
+$("btnH").addEventListener("click", () => window.renderAt(STILL_FROM + 0.6));
 
 addEventListener("keydown", e => {
   const step = 1 / 30;
@@ -1250,8 +1205,8 @@ window.renderAt = function (sec) {
 
     ?bare=1        strips the controls and the ground so the film sits in the
                    page as an asset rather than as a player
-    ?t=11.5        opens on one frame, deterministically. Any t from 9.84 to
-                   11.50 is the held frame; 11.5 is the canonical still.
+    ?t=10.5        opens on one frame, deterministically. Any t from 9.84 to
+                   11.50 is the settled tracker, which is `HERO_ROWS` exactly.
     ?sweep=in|out  the A/B, handled above
 
   All three compose.
@@ -1263,11 +1218,9 @@ fit();
 if (q !== null) {
   window.renderAt(+q);
 } else if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  /* A reader who has asked for reduced motion gets the held frame rather than
-     the film, even if the host forgot to serve them the still. `hero-film.tsx`
-     does this by swapping the src; this is the same answer from the other end,
-     and it costs nothing when the host has already handled it. */
-  window.renderAt(DUR);
+  /* A reader who has asked for reduced motion gets the settled frame rather
+     than the film, even if the host forgot to serve them the still. */
+  window.renderAt(10.50);
 }
 requestAnimationFrame(frame);
 </script>

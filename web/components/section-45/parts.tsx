@@ -24,119 +24,172 @@
 
 import { Fit } from "@/components/layout/fit";
 import { SheetWindow } from "@/components/sheet/sheet-window";
-import { StatusChip } from "@/components/sheet/status-chip";
+import { StatusCell, type ProductStatus } from "@/components/sheet/status-chip";
 import { cn } from "@/lib/cn";
 import {
   OUTSTANDING_GROUPS,
   OUTSTANDING_TOTAL,
   REASSURANCE,
-  TRACKER_CONTACTS,
 } from "@/lib/sheet-data";
 
 /* ------------------------------------------------------------------ geometry */
 
 /**
- * Column widths, and the 8px that moved on August 11, 2026.
+ * The Contacts tab, at the widths the product actually sets.
  *
- * `Email` was 196 and `Call` was 112. Two of the five `Blotter`-tab rows —
- * David Salmon and Ken Molise — measured 60px natural against 40.5px for the
- * other three, and they are the only two contacts with a `Call` value.
- * `1/17 @ 2:00 PM` needs 94.1px and `Completed 1/16` needs 91.8px at 13px
- * Arial, against 88px of text width inside a 112px column with 24px of padding.
- * Both wrapped to two lines. `Email` overflows on two rows as well but is
- * `truncate`d, so it clips rather than growing the row — which is what `Call`
- * should have been doing.
+ * `CONTACTS_WIDTHS` out of `courier/Code.gs`, verbatim and in header order. No
+ * scaling, no fitting to content, no fudge: this section's whole job is to be a
+ * picture of the sheet, so the sheet's own numbers are the numbers.
  *
- * A Google Sheets row does not grow to fit its content; it clips. Two
- * double-height rows in an otherwise uniform grid read as a rendering artefact
- * rather than as a spreadsheet, and this is the page's "reusable high-fidelity
- * Google Sheets window" (`WS4-SPEC.md:644`). `08-desktop-changes-pending.md`
- * §12 has the measurement.
+ * They sum to 1,316, which with the 43px row gutter makes the object 1,359px
+ * against the page box's 1,124. `Fit` scales the whole thing by 0.827, so the
+ * 14px type lands at about 11.6px on screen — a hair under what the ten
+ * invented columns used to render at, for three more columns and the real
+ * proportions.
  *
- * **`SHEET_W` is unchanged at 1,221px**, which is the reason this is safe:
- * `Email` gives up 8 of the 16.5px it was already truncating away, `Call` is
- * short by 6.1px and gains 8, and every ratified scale — hero 0.8502, Section 3
- * 0.9607, Sections 4 and 5 0.9206 — holds to the pixel. The zone split moves
- * from 683px to 675px, which is descriptive rather than ratified; both zone
- * labels still fit at their full size.
+ * **The order reads yours, Blotter's, yours.** `Closed` is a checkbox the
+ * student ticks, so it goes back to the manual tint on the far side of a second
+ * divider, exactly as Code.gs paints it.
  */
-/*
-  Name gained 8px and Firm gave up 8px on August 12, 2026, when the contacts
-  were renamed. **The two moves are one edit and must stay paired**: `YOURS_W`
-  feeds `SHEET_W` and `SPLIT_X`, so changing either width alone moves the
-  ownership boundary — the one line this section exists to draw.
-
-  Why it was needed. At 112 the Name cell's content box is 88px after `px-3`,
-  and `Jamie Diamond` needs 90.3px. It wrapped, and the row went to 55.2px
-  against 37.3px for every other row — the same defect as the two 60px rows
-  fixed in session 8, in the first row of the section. `Sarah Chen` fit at
-  ~64px, which is why nothing ever showed it.
-
-  Why Firm can afford it. Its widest value is `Goldman Sachs` at 85.1px, so at
-  124 it keeps about 15px of slack. Name at 120 gives a 96px content box against
-  90.3px needed.
-
-  **`sheet-phone.tsx`'s `FULL_COLS` is a hand-kept copy of these ten widths and
-  carries the same change.** Nothing propagates between them.
-*/
 const YOURS = [
-  { header: "Name", w: 120 },
-  { header: "Title", w: 116 },
-  { header: "Firm", w: 124 },
-  { header: "Email", w: 188 },
-  { header: "LinkedIn", w: 84 },
+  { header: "Name", w: 150 },
+  { header: "Title", w: 120 },
+  { header: "Firm", w: 150 },
+  { header: "Email", w: 190 },
 ];
 const MAINTAINED = [
-  { header: "Status", w: 128 },
-  { header: "Next move", w: 142 },
-  { header: "Last contact", w: 104 },
-  { header: "Days", w: 52 },
-  { header: "Call", w: 120 },
+  { header: "Status", w: 132 },
+  { header: "Days", w: 62 },
+  { header: "Last contact", w: 108 },
+  { header: "Attempts", w: 82 },
+  { header: "Next call", w: 142 },
+  { header: "Last call", w: 108 },
 ];
+const CLOSED = { header: "Closed", w: 72 };
+
 const GUTTER = 43;
 const YOURS_W = YOURS.reduce((n, c) => n + c.w, 0);
 const MAINT_W = MAINTAINED.reduce((n, c) => n + c.w, 0);
-const SHEET_W = GUTTER + YOURS_W + MAINT_W;
-const LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+const SHEET_W = GUTTER + YOURS_W + MAINT_W + CLOSED.w;
+const LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"];
 
 /**
- * The maintained fill.
- *
- * Carried down every maintained cell rather than stopping at the header band,
- * which is where the hero and Section 3 stop it. Ratified by Jon on August 5,
- * 2026: this section's job is the ownership split itself, and an area reads
- * faster than an edge. Dropped two shades from the first pass on his note that
- * it was too much in your face.
+ * Header 30, body 26, at 10pt Arial. Code.gs's `HEADER_ROW_HEIGHT` and
+ * `BODY_ROW_HEIGHT`, held as padding against a fixed 17px leading so the two
+ * keep their ratio at 14px.
  */
-const MAINTAINED_FILL = "#fdfaf2";
+const HEADER_PAD = "py-[7px]";
+const BODY_PAD = "py-[5px]";
 
 /**
- * The manual fill, added August 11, 2026 on Jon's note.
- *
- * Until now only the maintained half was a *zone*: cream in the header and
- * carried down every data cell. The manual half was a tinted header sitting on
- * five white rows, so below the header band the left side stopped existing as
- * a region and the split was asserted by one row rather than by two areas.
- *
- * Jon, seeing the banner variant: *"rows three through seven on the You add
- * side should be highlighted in a lighter gray than row two… a light gray fill
- * on all the cells on the left hand side below where the content is, but in a
- * lighter shade than up at top."*
- *
- * **The value is derived rather than picked.** The maintained side already
- * fixes the relationship between a zone's header and its body: `blotter-100`
- * (#f7f2e8) sits 8/13/23 below white, and `MAINTAINED_FILL` sits 2/5/13 below
- * it — about 45% of the header's distance from white. `manual-100` (#edf2f8)
- * is 18/13/7 below white, and 45% of that is 8/6/3, which is #f7f9fc.
- *
- * So the two zones now recede from their headers by the same proportion, in
- * their own hues. Matching the *ratio* rather than eyeballing a grey is what
- * keeps neither half looking heavier than the other.
+ * Cells are `px-2`. Sheets leaves about 3px each side, and at `px-3` the real
+ * column widths clip their own content — "Vice President" in a 120px `Title` is
+ * the first to go.
  */
-const MANUAL_FILL = "#f7f9fc";
+const CELL_X = "px-2";
 
-const TABS_BLOTTER = [{ label: "Contacts" }, { label: "Blotter", active: true }, { label: "Outstanding" }];
+/**
+ * **The data rows are white, in both zones.** The header band alone carries the
+ * tint, and the divider carries the split.
+ *
+ * This reverses the filled zones ratified on August 11, 2026. Jon ruled the
+ * `bands` theme on September 3, 2026 after seeing the filled version on a real
+ * sheet: *"I don't want the Blotter side to have the cell highlight colour in
+ * the background… however I do like the vertical bars you have that separate
+ * sections with colour."* `THEME = 'bands'` in `courier/Code.gs` is that
+ * ruling, and it is what a student's sheet looks like, so it is what this
+ * draws. The two derived fills that used to live here are gone with it.
+ */
+const TABS_BLOTTER = [
+  { label: "Start here" },
+  { label: "Contacts", active: true },
+  { label: "Found" },
+  { label: "Settings" },
+];
 const TABS_OUT = [{ label: "Contacts" }, { label: "Blotter" }, { label: "Outstanding", active: true }];
+
+/* --------------------------------------------------------------- the rows */
+
+/**
+ * `NO_CLOCK` from Code.gs. An em dash, not a hyphen, and not a blank: a blank
+ * cell reads as "Blotter has not run", a dash reads as "there is nothing to
+ * count here". A leading hyphen is how you start a formula, which is the other
+ * reason it is an em dash.
+ */
+export const DASH = "—";
+
+export interface Contact {
+  name: string;
+  title: string;
+  firm: string;
+  email: string;
+  status: ProductStatus;
+  /** Every Blotter cell is a string, because a dash is a real value. */
+  days: string;
+  lastContact: string;
+  attempts: string;
+  nextCall: string;
+  lastCall: string;
+  closed?: boolean;
+}
+
+/**
+ * Seven contacts on January 16, 2026, in the order `Blotter → Sort contacts →
+ * By what they are waiting on` leaves them: Replied, Sent, Sent, Bounced, Call
+ * done, Call scheduled, Closed, longest-waiting first inside each group.
+ *
+ * The numbers obey the engine rather than looking plausible. `Days` carries a
+ * count on `Sent`, `Replied` and `Call done` and a dash everywhere else, and
+ * `Attempts` carries one on `Sent` alone — on `Replied` it is zero by
+ * definition, and a bounced address is bounced whether it was guessed at once
+ * or three times. A closed row keeps everything it knew and loses only the
+ * clock.
+ */
+export const CONTACTS: Contact[] = [
+  {
+    name: "Jamie Diamond", title: "Associate", firm: "JPMorgan",
+    email: "jamie.diamond@jpmorgan.com",
+    status: "Replied", days: "0", lastContact: "1/16/26",
+    attempts: DASH, nextCall: "", lastCall: "",
+  },
+  {
+    name: "Jerome Bowel", title: "Analyst", firm: "Carlyle",
+    email: "jerome.bowel@carlyle.com",
+    status: "Sent", days: "3", lastContact: "1/13/26",
+    attempts: "1", nextCall: "", lastCall: "",
+  },
+  {
+    name: "Larry Sync", title: "Associate", firm: "BlackRock",
+    email: "larry.sync@blackrock.com",
+    status: "Sent", days: "0", lastContact: "1/16/26",
+    attempts: "2", nextCall: "", lastCall: "",
+  },
+  {
+    name: "Nathan Cole", title: "Analyst", firm: "Lazard",
+    email: "nathan.cole@lazard.com",
+    status: "Bounced", days: DASH, lastContact: "1/14/26",
+    attempts: DASH, nextCall: "", lastCall: "",
+  },
+  {
+    name: "Ken Molise", title: "Vice President", firm: "Moelis",
+    email: "ken.molise@moelis.com",
+    status: "Call done", days: "1", lastContact: "1/13/26",
+    attempts: DASH, nextCall: "", lastCall: "1/15/26",
+  },
+  {
+    name: "David Salmon", title: "Analyst", firm: "Goldman Sachs",
+    email: "david.salmon@gs.com",
+    status: "Call scheduled", days: DASH, lastContact: "1/15/26",
+    attempts: DASH, nextCall: "1/17 @ 2:00 PM", lastCall: "",
+  },
+  {
+    name: "Priya Raman", title: "Analyst", firm: "Evercore",
+    email: "priya.raman@evercore.com",
+    status: "Closed", days: DASH, lastContact: "1/9/26",
+    attempts: DASH, nextCall: "", lastCall: "1/8/26",
+    closed: true,
+  },
+];
 
 /* ------------------------------------------------------------------- helpers */
 
@@ -150,9 +203,9 @@ const TABS_OUT = [{ label: "Contacts" }, { label: "Blotter" }, { label: "Outstan
  */
 export { Fit };
 
-function Gut({ n }: { n: number }) {
+function Gut({ n, pad = "py-2" }: { n: number; pad?: string }) {
   return (
-    <div className="w-[43px] shrink-0 border-r border-sheet-grid bg-sheet-header py-2 text-center text-[12px] text-ink-muted">
+    <div className={cn("w-[43px] shrink-0 border-r border-sheet-grid bg-sheet-header text-center text-[12px] text-ink-muted", pad)}>
       {n}
     </div>
   );
@@ -277,7 +330,7 @@ export function ReassuranceStack() {
   );
 }
 
-/* ------------------------------------------------ beat 1 · the Blotter tab */
+/* ------------------------------------------------ beat 1 · the Contacts tab */
 
 /**
  * How this section names its two zones. Three treatments, August 11, 2026.
@@ -311,13 +364,20 @@ export function ReassuranceStack() {
  *
  * | | |
  * |---|---|
- * | `none` | No labels. The `blotter-100` header band, the 3px divider and the deck carry the split |
+ * | `none` | No labels. The header band, the 3px divider and the deck carry the split |
  * | `banner` | A merged banner row **inside** the sheet, directly above the column headers, filled with each zone's own colour |
  * | `banner-sub` | The same, keeping the two subtitles |
  * | `above` | The ratified treatment, kept so the review route can show what was replaced |
  */
 export type ZoneTreatment = "none" | "banner" | "banner-sub" | "above";
 
+/**
+ * `Closed` gets a third band with the manual tint and no words in it.
+ *
+ * 72px holds no label, and it does not need one: the second yellow rule says
+ * the sheet has crossed back over. Code.gs makes the same point in a comment —
+ * *"The sheet reads yours, Blotter's, yours — which is what it actually is."*
+ */
 function ZoneLabelsAbove() {
   return (
     <div className="mb-4 flex items-end" style={{ paddingLeft: GUTTER }}>
@@ -331,6 +391,9 @@ function ZoneLabelsAbove() {
         <p className="mt-1.5 text-[12.5px] text-blotter-700/75">Updated from Gmail and Calendar</p>
         <div className="mt-3 h-[10px] border-x-2 border-t-2 border-blotter-400" />
       </div>
+      <div style={{ width: CLOSED.w }}>
+        <div className="mt-3 h-[10px] border-x-2 border-t-2 border-ink-faint" />
+      </div>
     </div>
   );
 }
@@ -339,25 +402,24 @@ function ZoneLabelsAbove() {
  * The merged banner row.
  *
  * Two merged cells above the column headers, each filled with its own zone's
- * colour and carrying that zone's name. This is what a person actually does in
- * Sheets to label a column group, so it costs nothing in
- * `04-SECTION-4` §12's "recognisable Google Sheets context" — it adds to it.
+ * colour and carrying that zone's name, plus a third over `Closed`. This is
+ * what a person actually does in Sheets to label a column group, so it costs
+ * nothing in `04-SECTION-4` §12's "recognisable Google Sheets context" — it
+ * adds to it.
  *
  * It takes row number 1 and the headers become row 2, exactly as a real merged
- * banner would, which is why `BlotterTab` moves its selected cell to `F3`.
+ * banner would, which is why `BlotterTab` moves its selected cell to `E3`.
  *
- * The 3px `blotter-400` divider runs through the banner as well as the header
- * row, so the ownership boundary is now a single unbroken vertical from the top
- * of the grid to the bottom rather than starting one row down.
+ * Both 3px rules run through the banner as well as the header row, so each
+ * ownership boundary is a single unbroken vertical from the top of the grid to
+ * the bottom rather than starting one row down.
  */
 function ZoneBanner({ withSub }: { withSub: boolean }) {
+  const pad = withSub ? "py-2" : "py-2.5";
   return (
     <div className="flex border-b border-sheet-grid font-semibold">
       <Gut n={1} />
-      <div
-        className={cn("bg-manual-100 px-3", withSub ? "py-2" : "py-2.5")}
-        style={{ width: YOURS_W }}
-      >
+      <div className={cn("bg-manual-100 px-3", pad)} style={{ width: YOURS_W }}>
         <span className="font-display text-[15px] leading-tight font-bold tracking-[-0.01em] text-ink">
           You add these
         </span>
@@ -368,10 +430,7 @@ function ZoneBanner({ withSub }: { withSub: boolean }) {
         )}
       </div>
       <div
-        className={cn(
-          "border-l-[3px] border-l-blotter-400 bg-blotter-100 px-3",
-          withSub ? "py-2" : "py-2.5",
-        )}
+        className={cn("border-l-[3px] border-l-blotter-400 bg-blotter-100 px-3", pad)}
         style={{ width: MAINT_W }}
       >
         <span className="font-display text-[15px] leading-tight font-bold tracking-[-0.01em] text-blotter-700">
@@ -383,14 +442,45 @@ function ZoneBanner({ withSub }: { withSub: boolean }) {
           </span>
         )}
       </div>
+      <div
+        className={cn("border-l-[3px] border-l-blotter-400 bg-manual-100", pad)}
+        style={{ width: CLOSED.w }}
+      />
     </div>
+  );
+}
+
+/**
+ * The checkbox in the `Closed` column.
+ *
+ * A real Sheets checkbox, which is what Code.gs inserts there — not a tick
+ * glyph and not a word. Ticking it is the one thing a student does inside
+ * Blotter's half of the sheet, and it is the reason the column sits on the far
+ * side of a second divider.
+ */
+function Checkbox({ on }: { on: boolean }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={cn(
+        "inline-grid size-[13px] place-items-center rounded-[2px] align-[-2px]",
+        on ? "bg-[#5f6368]" : "border border-[#80868b]",
+      )}
+    >
+      {on && (
+        <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
+          <path d="M1 3.6 3.3 6 8 1.2" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      )}
+    </span>
   );
 }
 
 export function BlotterTab({ zones = "none" }: { zones?: ZoneTreatment }) {
   const banner = zones === "banner" || zones === "banner-sub";
   /* The banner takes row 1, so every row below it shifts by one and the
-     formula bar has to follow. Jamie Diamond's status is the ratified selection. */
+     formula bar has to follow. Jamie Diamond's status is the ratified
+     selection; `Status` is column E now that `LinkedIn` is gone. */
   const rowOffset = banner ? 1 : 0;
 
   return (
@@ -398,62 +488,79 @@ export function BlotterTab({ zones = "none" }: { zones?: ZoneTreatment }) {
       <div style={{ width: SHEET_W }}>
         {zones === "above" && <ZoneLabelsAbove />}
         <SheetWindow
-          selectedCell={banner ? "F3" : "F2"}
+          selectedCell={banner ? "E3" : "E2"}
           formulaValue="Replied"
           columnLetters={LETTERS}
-          columnWidths={[...YOURS, ...MAINTAINED].map((c) => c.w)}
+          columnWidths={[...YOURS, ...MAINTAINED, CLOSED].map((c) => c.w)}
           tabs={TABS_BLOTTER}
         >
-          <div className="sheet-type text-[13px]">
+          <div className="sheet-type text-[14px] leading-[17px]">
             {banner && <ZoneBanner withSub={zones === "banner-sub"} />}
+
             <div className="flex border-b border-sheet-grid font-semibold text-ink">
-              <Gut n={1 + rowOffset} />
+              <Gut n={1 + rowOffset} pad={HEADER_PAD} />
               {YOURS.map((c) => (
-                <div key={c.header} className="bg-manual-100 px-3 py-2.5" style={{ width: c.w }}>{c.header}</div>
+                <div key={c.header} className={cn("bg-manual-100", CELL_X, HEADER_PAD)} style={{ width: c.w }}>{c.header}</div>
               ))}
               {MAINTAINED.map((c, i) => (
                 <div
                   key={c.header}
-                  className={cn("bg-blotter-100 px-3 py-2.5", i === 0 && "border-l-[3px] border-l-blotter-400")}
+                  className={cn(
+                    "bg-blotter-100",
+                    CELL_X,
+                    HEADER_PAD,
+                    i === 0 && "border-l-[3px] border-l-blotter-400",
+                    (c.header === "Days" || c.header === "Attempts") && "text-right",
+                  )}
                   style={{ width: c.w }}
                 >
                   {c.header}
                 </div>
               ))}
-            </div>
-            {TRACKER_CONTACTS.map((c, r) => (
-              <div key={c.name} className="flex border-b border-sheet-grid last:border-b-0">
-                <Gut n={r + 2 + rowOffset} />
-                <div className="px-3 py-2.5 font-medium text-ink" style={{ width: YOURS[0].w, background: MANUAL_FILL }}>{c.name}</div>
-                <div className="px-3 py-2.5 text-ink-muted italic" style={{ width: YOURS[1].w, background: MANUAL_FILL }}>{c.title}</div>
-                <div className="px-3 py-2.5" style={{ width: YOURS[2].w, background: MANUAL_FILL }}>{c.firm}</div>
-                <div className="truncate px-3 py-2.5 text-ink-muted" style={{ width: YOURS[3].w, background: MANUAL_FILL }}>{c.email}</div>
-                <div className="px-3 py-2.5" style={{ width: YOURS[4].w, background: MANUAL_FILL }}>
-                  {/*
-                    Text, not an anchor. These are spreadsheet *content* in an
-                    illustrative asset, not navigation: five real anchors to
-                    linkedin.com sat in the tab order, a screen reader announced
-                    "link, Here" five times with no context, and they measured
-                    14x26 on desktop and 4x8 at 390 because the composition is
-                    scaled. `08-desktop-changes-pending.md` §8 confirmed the
-                    defect on both surfaces and queued the fix for this sweep.
-
-                    The blue and the underline stay, so the cell still reads as
-                    a spreadsheet hyperlink. **Zero visual delta on either
-                    surface** — which is why a shared file could be changed
-                    during a mobile-only stage.
-                  */}
-                  <span className="text-chip-replied-fg underline">Here</span>
-                </div>
-                <div className="border-l-[3px] border-l-blotter-400 px-2 py-2.5" style={{ width: MAINTAINED[0].w, background: MAINTAINED_FILL }}>
-                  <StatusChip status={c.status} />
-                </div>
-                <div className="px-3 py-2.5" style={{ width: MAINTAINED[1].w, background: MAINTAINED_FILL }}>{c.next}</div>
-                <div className="px-3 py-2.5" style={{ width: MAINTAINED[2].w, background: MAINTAINED_FILL }}>{c.last}</div>
-                <div className="px-3 py-2.5 text-right" style={{ width: MAINTAINED[3].w, background: MAINTAINED_FILL }}>{c.days}</div>
-                <div className="px-3 py-2.5" style={{ width: MAINTAINED[4].w, background: MAINTAINED_FILL }}>{c.call}</div>
+              <div
+                className={cn("border-l-[3px] border-l-blotter-400 bg-manual-100 text-center", CELL_X, HEADER_PAD)}
+                style={{ width: CLOSED.w }}
+              >
+                {CLOSED.header}
               </div>
-            ))}
+            </div>
+
+            {CONTACTS.map((c, r) => {
+              /* A closed row is greyed and struck through, every cell of it.
+                 The strike says the relationship is finished; the fade stops it
+                 competing with the rows that still want something.
+
+                 Per cell rather than on the row: `text-decoration` propagates
+                 into descendants and cannot be removed by one, so a strike on
+                 the row would cross out the row-number gutter, which is Sheets'
+                 chrome rather than a cell. */
+              const fade = c.closed && "text-ink-faint line-through";
+              return (
+                <div key={c.name} className="flex border-b border-sheet-grid last:border-b-0">
+                  <Gut n={r + 2 + rowOffset} pad={BODY_PAD} />
+                  <div className={cn(CELL_X, BODY_PAD, fade)} style={{ width: YOURS[0].w }}>{c.name}</div>
+                  <div className={cn("italic", fade || "text-ink-muted", CELL_X, BODY_PAD)} style={{ width: YOURS[1].w }}>{c.title}</div>
+                  <div className={cn(CELL_X, BODY_PAD, fade)} style={{ width: YOURS[2].w }}>{c.firm}</div>
+                  {/* Sheets clips an overlong cell rather than growing the row,
+                      and it clips without an ellipsis. */}
+                  <div className={cn("overflow-hidden whitespace-nowrap", fade || "text-ink-muted", CELL_X, BODY_PAD)} style={{ width: YOURS[3].w }}>{c.email}</div>
+                  <div className={cn("border-l-[3px] border-l-blotter-400", fade)} style={{ width: MAINTAINED[0].w }}>
+                    <StatusCell status={c.status} pad={BODY_PAD} />
+                  </div>
+                  <div className={cn("text-right", CELL_X, BODY_PAD, fade)} style={{ width: MAINTAINED[1].w }}>{c.days}</div>
+                  <div className={cn(CELL_X, BODY_PAD, fade)} style={{ width: MAINTAINED[2].w }}>{c.lastContact}</div>
+                  <div className={cn("text-right", CELL_X, BODY_PAD, fade)} style={{ width: MAINTAINED[3].w }}>{c.attempts}</div>
+                  <div className={cn(CELL_X, BODY_PAD, fade)} style={{ width: MAINTAINED[4].w }}>{c.nextCall}</div>
+                  <div className={cn(CELL_X, BODY_PAD, fade)} style={{ width: MAINTAINED[5].w }}>{c.lastCall}</div>
+                  <div
+                    className={cn("border-l-[3px] border-l-blotter-400 text-center", CELL_X, BODY_PAD)}
+                    style={{ width: CLOSED.w }}
+                  >
+                    <Checkbox on={c.closed === true} />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </SheetWindow>
       </div>

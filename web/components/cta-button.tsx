@@ -53,7 +53,16 @@ import { useFunnel } from "@/lib/funnel-store";
  * would confound label with position, and `cta_location` — the only placement
  * evidence this test has produced — would stop meaning anything.
  */
-export const CTA_LABEL = "Fix my tracker";
+/*
+ * ## `Set up free`, September 3, 2026
+ *
+ * Jon's ruling. The product exists now and the page stops pitching: the button
+ * says what happens when you press it. The funnel behind it keeps its first
+ * three screens, which collect the address, and then hands the visitor to
+ * `/setup`. Everything after those screens is gone. `Fix my tracker` is kept
+ * above as the record of the label it replaced and why that one was chosen.
+ */
+export const CTA_LABEL = "Set up free";
 
 /*
  * Shape rule for the page: interactive elements are pills, surfaces are 12px.

@@ -393,9 +393,8 @@ export default function PrivacyPolicyPage() {
             */}
             <p>
               <strong className="font-semibold text-ink">If you install Blotter</strong>{" "}
-              in a spreadsheet, that copy generates a random identifier — a string of
-              characters that identifies the sheet, generated from nothing about you —
-              and sends it to us each time it runs, together with the time of the run,
+              in a spreadsheet, that copy generates a random identifier, a string of
+              characters that identifies the sheet and nothing about you, and sends it to us each time it runs, together with the time of the run,
               how long it took, how many contacts were in the sheet, whether it
               succeeded, and which version of Blotter it is. That is the whole list. No
               name, no email address, no subject line, no message, no contact, and no
@@ -515,9 +514,9 @@ export default function PrivacyPolicyPage() {
                 Three of the five are read-only.
               </strong>{" "}
               Blotter has no permission to send an email, reply to one, change or delete
-              anything in your mailbox, or create, change or cancel a calendar event —
-              not as a promise, but because those permissions were never requested and
-              cannot be used without being granted.
+              anything in your mailbox, or create, change or cancel a calendar event. Not as
+              a promise, but because those permissions were never requested and cannot
+              be used without being granted.
             </p>
             <p>
               The Gmail permission is worded broadly because Google does not offer one
@@ -572,7 +571,7 @@ export default function PrivacyPolicyPage() {
             stops believing everything around it. It is transcribed from
             `web/app/api/engine/types.ts`, which is the contract itself.
           */}
-          <Article n="06" title="What Blotter reads, and what leaves your account">
+          <Article n="06" title="What Blotter reads, and what it cannot">
             <p>
               Blotter follows conversations, not senders. A thread counts if any message
               in it has one of your contacts on the From, To or Cc line — which is what
@@ -787,10 +786,12 @@ export default function PrivacyPolicyPage() {
               <strong className="font-semibold text-ink">
                 Google has not reviewed or verified Blotter
               </strong>
-              , and it will tell you so on the way in, on a screen headed &ldquo;Google
-              hasn&rsquo;t verified this app&rdquo;. That warning appears for anything a
-              person installs into their own Google account, and the developer it names
-              will be you, because the copy is yours.
+              . If you install it into a personal Gmail account, Google says so on the way
+              in, on a screen headed &ldquo;Google hasn&rsquo;t verified this app&rdquo;.
+              The developer it names is you, because the copy is yours. A university
+              account does not see that screen: Google waives it when the owner of the
+              copy and the person running it are in the same organisation, and you are
+              both.
             </p>
             <p>
               What carries the weight here is not a certificate. It is that there is very

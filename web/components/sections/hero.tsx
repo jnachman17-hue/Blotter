@@ -97,7 +97,7 @@ export function Hero({
         aria-hidden="true"
         className="mt-[0.35em] h-[0.9em] w-[2px] shrink-0 bg-navy-500"
       />
-      The non-AI slop tracker that actually saves you time
+      A Google Sheet that automatically keeps your recruiting tracker current.
     </>
   );
 
@@ -161,8 +161,8 @@ export function Hero({
               which is cheaper than any decoration.
             */}
             <h1 className="font-display text-display leading-[1.06] font-semibold tracking-[-0.028em] text-ink">
-              <span className="block">Recruiting truly sucks.</span>
-              <span className="block text-navy-400">You will lose track.</span>
+              <span className="block">A recruiting tracker that keeps itself current.</span>
+              <span className="block text-navy-400">Who replied, who went quiet, who you owe.</span>
             </h1>
 
             <div className="contents desk:block">

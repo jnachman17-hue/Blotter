@@ -44,10 +44,13 @@
  * becomes the merged ownership section and its beat 2 becomes the Outstanding
  * list. One out, one split, still five.
  */
+/*
+ * Three from September 3, 2026. "The scale of a recruiting cycle" and "Know
+ * exactly what needs your attention" were cut by Jon that day; see the note on
+ * `app/page.tsx`.
+ */
 export const NUMBERED_SECTIONS = [
-  "The scale of a recruiting cycle",
   "Keep the tracker you already built",
-  "Know exactly what needs your attention",
   "How Blotter uses your data",
   "Questions",
 ] as const;

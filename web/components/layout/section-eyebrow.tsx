@@ -58,6 +58,8 @@ export function SectionEyebrow({ children }: { children: React.ReactNode }) {
 /** UNRATIFIED. Written for the `all` comparison only. See the note above. */
 export const TRIAL_EYEBROWS = {
   ownership: "Your sheet, and the line between you and Blotter",
+  /* Rendered nowhere since September 3, 2026; the section was cut. Kept so
+     the retained `tracker-and-actions.tsx` still compiles for `/review/*`. */
   outstanding: "Everything you owe, in one place",
   privacy: "What Blotter reads, and what it will not do",
   faq: "Questions",

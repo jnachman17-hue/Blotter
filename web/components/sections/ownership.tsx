@@ -1,5 +1,5 @@
 /**
- * Section 02 — the merged ownership-and-preservation section, both surfaces.
+ * Section 01, the merged ownership-and-preservation section, both surfaces.
  *
  * Authority: `09-page-argument-rework.md` §4 and §8 rows 1, 2, 3 and 5.
  *
@@ -18,10 +18,11 @@
  *
  * **Cutting Section 3 alone would not have aligned the two surfaces.** Desktop's
  * `field-settle` carried two beats in one section — preservation with the
- * sheet, then the Outstanding view — where the phone has two separate sections.
- * Stopping at the cut would have given desktop four numbered blocks against the
- * phone's five, with desktop's `02` covering what the phone calls `02` and
- * `03`. So Section 4+5 split, and this file is the half that came out.
+ * sheet, then a second beat listing what the reader owed — where the phone has
+ * two separate sections. Stopping at the cut would have given desktop four
+ * numbered blocks against the phone's five, with desktop's `02` covering what
+ * the phone calls `02` and `03`. So Section 4+5 split, and this file is the
+ * half that came out. The other half has since been cut from the page.
  *
  * Splitting reverses Jon's own merge of August 5, 2026. The merge predates the
  * argument rework, and the phone had already un-merged them — this component's
@@ -91,8 +92,23 @@ import {
   SheetPhone,
   type PhoneSheetVariant,
 } from "@/components/section-45/sheet-phone";
-import { SECTION_3_HEADLINE } from "@/components/sections/how-blotter-works";
-import { KEEP_H } from "@/components/sections/tracker-and-actions";
+
+/**
+ * The headline, ratified, and now owned here.
+ *
+ * It used to be imported from `sections/tracker-and-actions.tsx`, which was the
+ * other half of the merged Section 4+5 and is being removed. The string is
+ * unchanged; only the file it lives in moved, to the section that actually
+ * renders it.
+ */
+/*
+ * Rewritten September 4, 2026 on Jon's ruling. The section is "how it works",
+ * said like a person: your contacts on the left, Blotter's columns on the
+ * right. The old headline and its "add any columns you want, wherever you
+ * want them" body read as unclear to him, and he was right.
+ */
+const KEEP_H = "How it works";
+const KEEP_SUB = "Your contacts on the left. Blotter’s columns on the right.";
 
 /**
  * `KEEP_SUB` with its first sentence removed. Written out rather than sliced so
@@ -111,7 +127,7 @@ import { KEEP_H } from "@/components/sections/tracker-and-actions";
  * can sit anywhere and are never touched.
  */
 export const KEEP_SUB_TRIMMED =
-  "It is a Google Sheet you make your own copy of. Add any columns you want, wherever you want them, and Blotter keeps the right-hand side current from Gmail and Calendar. It never edits anything you typed.";
+  "It is a Google Sheet you make your own copy of. Your contacts go on the left, and you can add any other columns you want there, like notes or LinkedIn. Blotter fills in the right-hand side from Gmail and Calendar, and never edits anything you typed.";
 
 /**
  * The desktop head: headline and deck left, supporting paragraph right.
@@ -121,11 +137,10 @@ export const KEEP_SUB_TRIMMED =
  * vertical relationship — claim, then the claim the picture actually proves —
  * while still using the two-column head this section has always had.
  *
- * No `flip`. Beat 2's mirrored head belongs to the Outstanding section now, and
- * mirroring exists to distinguish two beats inside one section. With the two
- * beats in separate sections carrying separate numerals and a hairline between
- * them, there is nothing left to distinguish and a right-aligned headline would
- * be decoration.
+ * No `flip`. Mirroring existed to distinguish two beats inside one section, and
+ * the second beat left this section and has since left the page. There is
+ * nothing to distinguish any more, so a right-aligned headline would be
+ * decoration.
  */
 function DesktopHead() {
   return (
@@ -135,7 +150,7 @@ function DesktopHead() {
           {KEEP_H}
         </h2>
         <p className="font-display mt-3 max-w-[30ch] text-[1.125rem] leading-[1.35] font-semibold tracking-[-0.015em] text-navy-900">
-          {SECTION_3_HEADLINE}
+          {KEEP_SUB}
         </p>
       </div>
       <p className="max-w-[52ch] min-w-0 flex-1 text-body leading-[1.62] text-ink-muted desk:pt-1">
@@ -146,11 +161,13 @@ function DesktopHead() {
 }
 
 export function Ownership({
-  variant = "swipe",
+  variant = "crop",
   zones = "banner-sub",
 }: {
-  /** Phone sheet treatment. `swipe` is ratified; the crop survives behind
-      `/review/sheet-mobile`, which is why the prop stays. */
+  /** Phone sheet treatment. `crop` from September 4, 2026, on Jon's ruling:
+      on a phone, drop columns rather than ask for a swipe. It keeps Name,
+      Status, Days and Attempts and names the rest beneath. `swipe` had been
+      the ratified default and survives for `/review/ownership`. */
   variant?: PhoneSheetVariant;
   /** Desktop zone-label treatment. `/review/ownership` compares all four. */
   zones?: ZoneTreatment;
@@ -158,7 +175,7 @@ export function Ownership({
   return (
     <section className="field-rise pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
-        <SectionNumber n={2} />
+        <SectionNumber n={1} />
         <SectionEyebrow>{TRIAL_EYEBROWS.ownership}</SectionEyebrow>
 
         {/* ------------------------------------------------------ desktop */}
@@ -185,7 +202,7 @@ export function Ownership({
             the visual below actually proves.
           */}
           <p className="font-display mt-3 max-w-[28ch] text-[1.0625rem] leading-[1.35] font-semibold tracking-[-0.015em] text-navy-900">
-            {SECTION_3_HEADLINE}
+            {KEEP_SUB}
           </p>
 
           <p className="mt-4 text-body leading-[1.62] text-ink-muted">

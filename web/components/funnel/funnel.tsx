@@ -34,9 +34,7 @@ import { Dialog } from "@base-ui/react/dialog";
 import { useEffect, useState } from "react";
 
 import { BlotterMark } from "@/components/brand/blotter-mark";
-import { FilmStep } from "@/components/funnel/film-step";
 import {
-  ApplePayMark,
   BackLink,
   Check,
   Choice,
@@ -46,39 +44,17 @@ import {
 } from "@/components/funnel/parts";
 import {
   BACK,
-  CHECKOUT_SUMMARY,
-  CHECKOUT_TITLE,
   CONTINUE,
-  DONE_BUTTON,
-  DONE_CHARGE,
-  DONE_CONFIRMATION,
-  DONE_EYEBROW,
-  DONE_SUPPORTING,
-  DONE_TITLE,
   EMAIL_EYEBROW,
   EMAIL_LABEL,
   EMAIL_SUPPORTING,
   EMAIL_TITLE,
-  PAY_CARD,
-  PRICE_AMOUNT,
-  PRICE_BILLING,
-  PRICE_CTA,
-  PRICE_DELIVERY,
-  PRICE_DESCRIPTION,
-  PRICE_INCLUDED,
-  PRICE_TITLE,
   Q1_TITLE,
   Q2_TITLE,
   TRACKS,
-  WAITLIST_BUTTON,
-  WAITLIST_CONFIRMATION,
-  WAITLIST_CTA,
-  WAITLIST_EYEBROW,
-  WAITLIST_SUPPORTING,
-  WAITLIST_TITLE,
   WINDOWS,
 } from "@/lib/funnel-copy";
-import { track, type PaymentMethod } from "@/lib/analytics";
+import { track } from "@/lib/analytics";
 import { saveLead } from "@/lib/lead-store";
 import { stageIndex, useFunnel } from "@/lib/funnel-store";
 import { cn } from "@/lib/cn";
@@ -188,7 +164,7 @@ function QuestionWindow() {
       recruiting_track_other: chosenTrack === "Other" ? trackOther.trim() : undefined,
       recruiting_window_other: chosen === "Other" ? windowOther.trim() : undefined,
     });
-    goTo("film");
+    goTo("email");
   }
 
   return (
@@ -258,7 +234,11 @@ function EmailStep() {
       furthest_stage_index: stageIndex(furthestStage),
     });
     track("email_submitted");
-    goTo("price");
+    /* The funnel ends here now. Jon, 3 September 2026: the three questions
+       stay because they collect the address; everything after them goes, and
+       the visitor is taken to the setup pages. A full navigation, so the modal
+       and its state simply cease rather than needing to be reset. */
+    window.location.assign("/setup");
   }
 
   return (
@@ -294,7 +274,7 @@ function EmailStep() {
           <Primary type="submit">{CONTINUE}</Primary>
         </div>
         <div className="mt-4">
-          <BackLink label={BACK} onClick={() => goTo("film")} />
+          <BackLink label={BACK} onClick={() => goTo("question_window")} />
         </div>
       </Column>
     </form>
@@ -315,228 +295,6 @@ function EmailStep() {
  * was what arrives when you pay. Everything else is WS4 verbatim, and no
  * availability signal may appear here.
  */
-function PriceStep() {
-  const goTo = useFunnel((s) => s.goTo);
-
-  useEffect(() => {
-    track("price_viewed", { price: 9.99, billing_period: "monthly" });
-  }, []);
-
-  function next() {
-    track("checkout_started", { price: 9.99, billing_period: "monthly" });
-    goTo("checkout");
-    syncLead(useFunnel.getState());
-  }
-
-  /* The second outcome. It is terminal — it does not lead to checkout, and a
-     visitor who takes it never fires `checkout_started`, which is what keeps
-     the two branches countable against each other. */
-  function joinWaitlist() {
-    track("waitlist_joined", { price: 9.99, billing_period: "monthly" });
-    goTo("waitlist");
-    /* No `syncLead` here on purpose: `WaitlistStep` writes on mount, the same
-       way `ConfirmedStep` does. `next()` above needs its own call because
-       `CheckoutStep` is not terminal and writes nothing. Calling both wrote the
-       row twice — verified in the browser, two POSTs to /api/lead for one
-       click. Harmless, since the route upserts on `visitor_id`, but it is a
-       wasted round trip on a screen the visitor is about to leave. */
-  }
-
-  return (
-    <Column>
-      <div className="flex items-center gap-2.5">
-        <BlotterMark size={22} />
-        <span className="font-display text-[1.0625rem] font-bold tracking-[-0.02em] text-ink">
-          {PRICE_TITLE}
-        </span>
-      </div>
-
-      <div className="mt-5 flex items-baseline gap-3">
-        <span className="font-display text-[2.5rem] leading-none font-bold tracking-[-0.03em] text-ink">
-          $9.99
-        </span>
-        <span className="text-body text-ink-muted">/ month</span>
-      </div>
-      <p className="mt-2.5 text-small text-ink-muted">{PRICE_BILLING}</p>
-
-      <div className="mt-6 rounded-xl border border-rule bg-white p-5">
-        <p className="text-small leading-[1.6] text-ink-read">{PRICE_DESCRIPTION}</p>
-        <ul className="mt-4 space-y-3 border-t border-rule pt-4">
-          {PRICE_INCLUDED.map((line) => (
-            <li key={line} className="flex gap-3 text-body leading-[1.45] text-ink">
-              <Check />
-              {line}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <p className="mt-4 text-small leading-[1.55] text-ink-muted">{PRICE_DELIVERY}</p>
-
-      <div className="mt-6">
-        <Primary onClick={next}>{PRICE_CTA}</Primary>
-      </div>
-
-      {/*
-        The waitlist is deliberately quieter than the primary and must stay
-        that way — see the note on `WAITLIST_CTA`. It is a text button, not a
-        second `Primary`: if the two ever read as equal choices the cheaper one
-        wins and the payment signal this funnel exists to measure collapses.
-
-        Underlined rather than colour-only so it is identifiable as a control
-        without a hover, and sized to clear the 44px target rule the footer
-        rebuild set for every tappable thing on a phone.
-      */}
-      <div className="mt-3 flex justify-center">
-        <button
-          type="button"
-          onClick={joinWaitlist}
-          className="min-h-11 px-3 text-small text-ink-muted underline underline-offset-4
-                     transition-colors duration-150 ease-out hover:text-ink"
-        >
-          {WAITLIST_CTA}
-        </button>
-      </div>
-
-      <div className="mt-4">
-        <BackLink label={BACK} onClick={() => goTo("email")} />
-      </div>
-      {/* `PRICE_AMOUNT` is the ratified single string; it is composed above so
-          the figure can carry display weight. Referenced so it stays in sync. */}
-      <span className="sr-only">{PRICE_AMOUNT}</span>
-    </Column>
-  );
-}
-
-function CheckoutStep() {
-  const { setPaymentMethod, goTo } = useFunnel();
-
-  /* No card fields and no money. Either button records the method and advances.
-     WS3 is explicit that both trigger the same canonical event. */
-  function pay(method: PaymentMethod) {
-    setPaymentMethod(method);
-    track("payment_option_clicked", {
-      payment_method: method,
-      price: 9.99,
-      billing_period: "monthly",
-    });
-    goTo("confirmed");
-    syncLead(useFunnel.getState());
-  }
-
-  return (
-    <Column>
-      <Title>{CHECKOUT_TITLE}</Title>
-
-      <dl className="mt-6 rounded-xl border border-rule bg-white p-5">
-        {CHECKOUT_SUMMARY.map((row, i) => (
-          <div
-            key={row.label}
-            className={cn(
-              "flex items-baseline justify-between gap-10",
-              i > 0 && "mt-3 border-t border-rule pt-3",
-            )}
-          >
-            <dt className="shrink-0 text-small text-ink-muted">{row.label}</dt>
-            <dd
-              className={cn(
-                "text-right",
-                row.label === "Due today"
-                  ? "font-display text-[1.0625rem] font-bold text-ink"
-                  : "text-small text-ink-read",
-              )}
-            >
-              {row.value}
-            </dd>
-          </div>
-        ))}
-      </dl>
-
-      <div className="mt-6 space-y-2.5">
-        <Primary onClick={() => pay("card")}>{PAY_CARD}</Primary>
-        <button
-          type="button"
-          onClick={() => pay("apple_pay")}
-          aria-label="Pay with Apple Pay"
-          className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-black px-6 text-white transition-[transform,opacity] duration-150 ease-out hover:opacity-90 active:scale-[0.98]"
-        >
-          <ApplePayMark />
-        </button>
-      </div>
-      <div className="mt-4">
-        <BackLink label={BACK} onClick={() => goTo("price")} />
-      </div>
-    </Column>
-  );
-}
-
-function ConfirmedStep() {
-  const close = useFunnel((s) => s.close);
-
-  useEffect(() => {
-    track("beta_spot_confirmed");
-    /* The last word on how far this visitor got. */
-    syncLead(useFunnel.getState());
-  }, []);
-
-  return (
-    <Column>
-      <Eyebrow>{DONE_EYEBROW}</Eyebrow>
-      <div className="mt-3">
-        <Title>{DONE_TITLE}</Title>
-      </div>
-      <p className="mt-4 text-body leading-[1.62] text-ink-read">{DONE_SUPPORTING}</p>
-      <p className="mt-4 text-body leading-[1.62] font-medium text-ink">{DONE_CHARGE}</p>
-      <p className="mt-2 text-body leading-[1.62] text-ink-read">{DONE_CONFIRMATION}</p>
-      <div className="mt-7">
-        <Primary onClick={close}>{DONE_BUTTON}</Primary>
-      </div>
-    </Column>
-  );
-}
-
-/**
- * The waitlist terminal state.
- *
- * Deliberately the same shape as `ConfirmedStep` — eyebrow, title, supporting
- * paragraph, one button — because these are two outcomes of one decision and a
- * visitor should not feel routed somewhere lesser. What differs is substance
- * rather than treatment.
- *
- * It does **not** carry `DONE_CHARGE`. "You have not been charged" answers a
- * question only someone who clicked pay has; here nothing was ever offered to
- * charge, so `WAITLIST_CONFIRMATION` says the equivalent honestly instead.
- *
- * `syncLead` runs for the same reason it does on the confirmed step: this is
- * the last word on how far this visitor got, and migration 002's trigger keeps
- * the higher rank if anything arrives out of order.
- */
-function WaitlistStep() {
-  const close = useFunnel((s) => s.close);
-
-  useEffect(() => {
-    syncLead(useFunnel.getState());
-  }, []);
-
-  return (
-    <Column>
-      <Eyebrow>{WAITLIST_EYEBROW}</Eyebrow>
-      <div className="mt-3">
-        <Title>{WAITLIST_TITLE}</Title>
-      </div>
-      <p className="mt-4 text-body leading-[1.62] text-ink-read">{WAITLIST_SUPPORTING}</p>
-      <p className="mt-4 text-body leading-[1.62] font-medium text-ink">
-        {WAITLIST_CONFIRMATION}
-      </p>
-      <div className="mt-7">
-        <Primary onClick={close}>{WAITLIST_BUTTON}</Primary>
-      </div>
-    </Column>
-  );
-}
-
-/* ------------------------------------------------------------------ the shell */
-
 export function Funnel() {
   const stage = useFunnel((s) => s.stage);
   const close = useFunnel((s) => s.close);
@@ -589,16 +347,11 @@ export function Funnel() {
           {/* Screen-reader name for the dialog. Kept in step with `CTA_LABEL`
               so the thing a blind visitor is told they opened matches the
               button they pressed. */}
-          <Dialog.Title className="sr-only">Fix my tracker</Dialog.Title>
+          <Dialog.Title className="sr-only">Set up free</Dialog.Title>
 
           {stage === "question_track" && <QuestionTrack />}
           {stage === "question_window" && <QuestionWindow />}
-          {stage === "film" && <FilmStep />}
           {stage === "email" && <EmailStep />}
-          {stage === "price" && <PriceStep />}
-          {stage === "checkout" && <CheckoutStep />}
-          {stage === "waitlist" && <WaitlistStep />}
-          {stage === "confirmed" && <ConfirmedStep />}
 
           <Dialog.Close
             aria-label="Close"

@@ -146,7 +146,7 @@ export default function TermsPage() {
               .
             </p>
             <p>
-              By copying the Blotter spreadsheet, authorising its script in your Google
+              By copying the Blotter spreadsheet, giving it permission in your Google
               account, or using this website, you agree to these terms. If you do not agree
               to them, do not install it.
             </p>
@@ -154,14 +154,14 @@ export default function TermsPage() {
 
           <Article n="02" title="What Blotter is">
             <p>
-              Blotter is a Google Sheet containing a script. You make your own copy of it
+              Blotter is a Google Sheet with code inside it. You make your own copy of it
               in your own Google account, and you grant that copy permission to read your
               Gmail and Calendar. It reads the conversations that involve the contacts you
               have put in the sheet, and writes each contact&rsquo;s status, timing and
               scheduled calls back into the same sheet.
             </p>
             <p>
-              The script sends facts about those conversations to a server we run, which
+              That code sends facts about those conversations to a server we run, which
               works out what each one means and sends the answer back. What crosses that
               connection, and what does not, is set out in full in our{" "}
               <Link
@@ -204,7 +204,7 @@ export default function TermsPage() {
             <p>
               Do not attempt to disrupt or overload our server, work around limits we set,
               or use Blotter to break the law or anyone else&rsquo;s rights. Do not
-              redistribute the script as your own product.
+              redistribute Blotter as your own product.
             </p>
             <p>
               You must be 18 or older to use Blotter.
@@ -279,7 +279,7 @@ export default function TermsPage() {
             <p>
               Blotter is provided as it is, without warranties of any kind, to the fullest
               extent the law allows. We do not warrant that it will be uninterrupted, free
-              of errors, or that what it reports will always be accurate — section 6 sets
+              of errors, or that what it reports will always be accurate. Section 6 sets
               out several situations in which it will not be.
             </p>
           </Article>
@@ -296,8 +296,8 @@ export default function TermsPage() {
             <p>
               Where liability can be limited, our total liability to you is limited to{" "}
               <Tbc>
-                the cap — conventionally the greater of amounts paid in the preceding
-                twelve months, or a small fixed sum; a lawyer should set this
+                the cap, conventionally the greater of amounts paid in the preceding
+                twelve months or a small fixed sum; a lawyer should set this
               </Tbc>
               .
             </p>

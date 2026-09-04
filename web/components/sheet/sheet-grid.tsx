@@ -1,33 +1,32 @@
 /**
  * Standard row-and-column grid body for SheetWindow.
  *
- * Serves the hero, the Section 3 crop, Section 5 preservation, and funnel
- * Frames 1 and 2. Section 4 Outstanding Actions uses a grouped body instead.
+ * Serves the hero and the `/review/sheet` primitive page. Section 02 and the
+ * phone sheet compose their own bodies, because both need the `Closed`
+ * checkbox column and the closed-row fade, which nothing else wants.
  *
- * Zone model (01-HERO sections 8 and 10, 05-SECTION-5 section 6):
- *   - columns before `zoneSplit` are student-maintained
- *   - columns from `zoneSplit` onward are Blotter-maintained and carry a
- *     continuous faint tint across headers and every data row
- *   - a legible vertical boundary sits at the split, stronger than a gridline
+ * Zone model, from `courier/Code.gs`'s `bands` theme, which is what a student's
+ * sheet actually looks like:
+ *   - columns before `zoneSplit` are the student's
+ *   - columns from `zoneSplit` onward are Blotter's
+ *   - the two zones are told apart by their header tint and by a 3px
+ *     Blotter-yellow rule at the split. Data rows stay white in both zones.
  *
- * Blank cells are genuinely blank. Never a dash, em dash, N/A, or placeholder
- * (01-HERO section 6; reaffirmed by Jon August 4, 2026 for Section 5).
- *
- * One ratified exception, instructed by Jon August 5, 2026: Jerome Bowel's hero
- * `Next move` carries the em dash exactly as the ratified PNG draws it, muted
- * and centred. That is the `{ dash: true }` cell and it is the only place it is
- * permitted. Section 5 and every other surface keep genuinely blank cells.
+ * A blank cell is genuinely blank. A dash is not blank: `Days` and `Attempts`
+ * write an em dash wherever there is no number to show, which is a real value
+ * meaning "nothing to count here" and is why `NO_CLOCK` exists in Code.gs.
+ * `Days` carries a number on `Sent`, `Replied` and `Call done` only, and
+ * `Attempts` on `Sent` alone.
  */
 
 import { cn } from "@/lib/cn";
-import { StatusChip, type Status } from "./status-chip";
+import { StatusCell, type Status } from "./status-chip";
 
 export interface SheetColumn {
   header: string;
   /** Tailwind width utility, e.g. `w-[180px]`. Omit to share remaining space. */
   width?: string;
   align?: "left" | "right";
-  /** Render the cell as a status chip rather than plain text. */
   kind?: "text" | "status" | "link" | "italic";
 }
 
@@ -36,9 +35,9 @@ export type SheetCell = string | { status: Status } | { dash: true } | null;
 export interface SheetRow {
   cells: SheetCell[];
   /**
-   * Stronger emphasis across this row's maintained block. Used for the three
-   * cue-linked hero rows (01-HERO section 10). Priya and Daniel keep only the
-   * baseline tint and must not be de-emphasised.
+   * Stronger emphasis across this row's maintained block. Carried in the data
+   * model but not drawn: Jon ruled on August 5, 2026 that the header band alone
+   * marks the zone, and `bands` in Code.gs holds to that.
    */
   emphasised?: boolean;
 }
@@ -48,9 +47,17 @@ interface SheetGridProps {
   rows: SheetRow[];
   /** Index of the first Blotter-maintained column. Omit for no zone split. */
   zoneSplit?: number;
-  /** Row number to start from in the gutter. Header occupies row 1. */
   className?: string;
 }
+
+/**
+ * Cells are `px-2`, not `px-3`.
+ *
+ * Sheets leaves about 3px each side of a cell, and the column widths here are
+ * Code.gs's own `CONTACTS_WIDTHS`. At `px-3` those widths clip their own
+ * content — "Vice President" in a 120px `Title` is the first to go.
+ */
+const CELL_X = "px-2";
 
 export function SheetGrid({
   columns,
@@ -73,12 +80,11 @@ export function SheetGrid({
             key={col.header}
             className={cn(
               "py-2.5 font-semibold text-ink whitespace-nowrap",
-              // Chip columns sit closer to the cell edge, as the reference does.
-              col.kind === "status" ? "px-2" : "px-3",
+              CELL_X,
               col.width ?? "flex-1",
               col.align === "right" && "text-right",
               maintained(i) ? "bg-blotter-100" : "bg-manual-100",
-              isSplit(i) && "border-l-2 border-l-sheet-border",
+              isSplit(i) && "border-l-[3px] border-l-blotter-400",
             )}
           >
             {col.header}
@@ -94,30 +100,17 @@ export function SheetGrid({
           </div>
           {columns.map((col, i) => {
             const cell = row.cells[i];
+            const status = col.kind === "status";
             return (
               <div
                 key={col.header}
                 className={cn(
-                  "py-2.5 whitespace-nowrap overflow-hidden",
-                  col.kind === "status" ? "px-2" : "px-3",
+                  "overflow-hidden whitespace-nowrap bg-manual-row",
+                  status ? "py-0" : cn("py-2.5", CELL_X),
                   col.width ?? "flex-1",
                   col.align === "right" && "text-right",
                   col.kind === "italic" && "italic text-ink-muted",
-                  /*
-                    Data rows carry no zone tint. Jon ruled August 5, 2026
-                    that the maintained zone is marked by the header band
-                    alone, matching hero-reference-v1.png, which samples
-                    #fafbfd across every data row.
-
-                    This supersedes 01-HERO sections 8 and 10, which called
-                    for a 5-8% baseline tint on all rows plus 10-14% emphasis
-                    on the three cue-linked rows. Revisit if the cue-to-row
-                    connectors alone prove too thin a signal once the full
-                    hero is assembled. `row.emphasised` is retained in the
-                    data model so that reversal is a one-line change.
-                  */
-                  "bg-manual-row",
-                  isSplit(i) && "border-l-2 border-l-sheet-border",
+                  isSplit(i) && "border-l-[3px] border-l-blotter-400",
                 )}
               >
                 {cell === null || cell === "" ? null : typeof cell === "string" ? (
@@ -127,9 +120,7 @@ export function SheetGrid({
                       *content* in an illustrative asset, not navigation, and a
                       real `href` put phantom destinations in the tab order and
                       made a screen reader announce "link, Here" with no
-                      context. `08-desktop-changes-pending.md` §8; fixed in the
-                      Phase 6 sweep, August 11, 2026, with zero visual delta on
-                      either surface.
+                      context.
                     */
                     <span className="text-chip-replied-fg underline">
                       {cell}
@@ -138,9 +129,10 @@ export function SheetGrid({
                     cell
                   )
                 ) : "dash" in cell ? (
-                  <span className="block text-center text-ink-faint">—</span>
+                  /* A value, so it takes the column's own alignment. */
+                  <span className="text-ink-faint">—</span>
                 ) : (
-                  <StatusChip status={cell.status} />
+                  <StatusCell status={cell.status} />
                 )}
               </div>
             );

@@ -365,7 +365,7 @@ else you want. Your sheet, your business.
 | Last contact | `1/16/26` |
 | Attempts | `2` |
 | Next call | `1/17 @ 2:00 PM` |
-| Last call | `Completed 1/16` |
+| Last call | `1/16/26` (a plain date; Jon, 4 Sep 2026) |
 
 **You set** — Blotter reads it and obeys: `Closed`.
 

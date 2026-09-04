@@ -26,7 +26,7 @@
  * |---|---|---|---|---|
  * | 1 | Sarah Chen | Jamie Diamond | JPMorgan | JPMorgan |
  * | 2 | Marcus Lee | David Salmon | Evercore | Goldman Sachs |
- * | 3 | Priya Shah | Ken Molise | Lazard | Moelis & Co |
+ * | 3 | Priya Shah | Ken Molise | Lazard | Moelis |
  * | 4 | Daniel Kim | Larry Sync | Morgan Stanley | BlackRock |
  * | 5 | Alex Morgan | Jerome Bowel | Centerview | Carlyle |
  *
@@ -103,7 +103,7 @@ export const HERO_ROWS: SheetRow[] = [
     cells: [
       "Ken Molise",
       "Vice President",
-      "Moelis & Co",
+      "Moelis",
       { status: "Call completed" },
       "Send thank-you",
       "1/16/26",
@@ -321,7 +321,7 @@ export interface TrackerContact {
 export const TRACKER_CONTACTS: TrackerContact[] = [
   { name: "Jamie Diamond", title: "Associate", firm: "JPMorgan", email: "jamie.diamond@jpmorgan.com", status: "Replied", next: "Reply to Jamie", last: "1/16/26", days: "0", call: null },
   { name: "David Salmon", title: "Analyst", firm: "Goldman Sachs", email: "david.salmon@gs.com", status: "Call scheduled", next: "Attend coffee chat", last: "1/15/26", days: "1", call: "1/17 @ 2:00 PM" },
-  { name: "Ken Molise", title: "Vice President", firm: "Moelis & Co", email: "ken.molise@moelis.com", status: "Call completed", next: "Send thank-you", last: "1/16/26", days: "0", call: "Completed 1/16" },
+  { name: "Ken Molise", title: "Vice President", firm: "Moelis", email: "ken.molise@moelis.com", status: "Call completed", next: "Send thank-you", last: "1/16/26", days: "0", call: "Completed 1/16" },
   { name: "Larry Sync", title: "Associate", firm: "BlackRock", email: "larry.sync@blackrock.com", status: "No reply", next: "Bump thread", last: "1/11/26", days: "5", call: null },
   { name: "Jerome Bowel", title: "Analyst", firm: "Carlyle", email: "jerome.bowel@carlyle.com", status: "Sent", next: null, last: "1/16/26", days: "0", call: null },
 ];

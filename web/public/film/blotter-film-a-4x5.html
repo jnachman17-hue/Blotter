@@ -6,6 +6,72 @@
 <title>Blotter — Film A, the launch post (4:5)</title>
 
 <!--
+  ===========================================================================
+  SUPERSEDED, 4 SEPTEMBER 2026. DO NOT SHIP A FRAME OF THIS FILM.
+  ===========================================================================
+
+  This film draws a product that does not exist, and the beats around the sheet
+  argue a case the owner has since deleted from the site. It was left in place
+  rather than rewritten because nothing on the site embeds it any more.
+
+  WHAT IS FALSE IN IT
+
+    The tracker has `Next move` and `Days` columns and no `Attempts` column.
+    `courier/Code.gs` writes Name, Title, Firm, Email, Status, Days, Last
+    contact, Attempts, Next call, Last call, Closed. There is no `Next move`.
+
+    The `Status` cell shows `No reply` and `Call completed`. Neither has ever
+    been a state. The eight are Not emailed, Sent, Replied, Bounced, Call
+    scheduled, Call done, Call cancelled, Closed.
+
+    Statuses are drawn as rounded dropdown pills. The product draws a filled
+    cell with coloured text, and `status-chip.tsx` records why the pill was
+    rejected.
+
+    The zone boundary is a grey rule with tinted data rows. The `bands` theme
+    paints white data rows and a 3px Blotter-yellow rule.
+
+  WHAT IS OFF-MESSAGE IN IT
+
+    The volume opening, 628 emails and 68 coffee chats. Jon, 3 September 2026:
+    "that's so arbitrary and people kinda know that's BS." Section 02 and its
+    animation were deleted from the page under that ruling.
+
+    The Outstanding Actions beat, 21 actions grouped 6 / 11 / 4. Jon: "we don't
+    have the what you owe / paid. We don't make that now." Section 03 was
+    deleted.
+
+    The end card, "Your networking keeps moving. Your tracker does not." Jon:
+    "get rid of all the marketing language on the landing page... We're going
+    live to real banking orgs."
+
+  WHERE IT IS STILL REFERENCED
+
+    `web/app/review/reddit-still/stills.ts` offers three frames of it as
+    candidate launch stills, and recommends one of them. That page is an
+    internal review page and is linked from nothing, but the recommendation is
+    live and it is a recommendation to publish a false picture of the product.
+    Outside the change that wrote this note. Flagged rather than edited.
+
+    `web/components/funnel/film-step.tsx`, which embedded this film in the
+    funnel, was deleted on 3 September 2026. `social/blotter-film-a-4x5.html`
+    is the master copy of this file and carries none of these corrections.
+
+  WHAT WOULD HAVE TO HAPPEN
+
+    Not a data swap. The sheet could be rebuilt in an afternoon, but the volume
+    beat, the silence beat and the closing card are three deleted arguments, and
+    the film is 21.5 seconds of them. It needs a brief, not a patch. The two
+    hero films, `blotter-film-web-hero.html` and `blotter-film-c-4x5.html`, were
+    rebuilt on the real sheet on 4 September 2026 and are the reference for what
+    the tracker looks like now.
+
+  Everything below this block is the film as it stood on 12 August 2026 and is
+  left untouched, including its own header comment, which is now describing a
+  product that has changed underneath it.
+
+  ---------------------------------------------------------------------------
+
   FILM A, the launch post. 4:5 master, 1080 x 1350, 17 seconds, seamless loop.
 
   Self-contained. Open with file://. Fonts inlined, so it works offline and the
@@ -858,7 +924,7 @@ const SPLIT = COLS.findIndex(c => c.kept);
 const ROWS = [
   { name:"Jamie Diamond", firm:"JPMorgan",      status:"Replied",        next:"Reply to Jamie",     days:"0" },
   { name:"David Salmon",  firm:"Goldman Sachs", status:"Call scheduled", next:"Attend coffee chat", days:"1" },
-  { name:"Ken Molise",    firm:"Moelis & Co",   status:"Call completed", next:"Send thank-you",     days:"0" },
+  { name:"Ken Molise",    firm:"Moelis",   status:"Call completed", next:"Send thank-you",     days:"0" },
   { name:"Larry Sync",    firm:"BlackRock",     status:"No reply",       next:"Bump thread",        days:"5" },
   /* Row 5's Next move keeps the em dash: ruled by Jon August 5, 2026 and the
      only cell anywhere permitted one. The row was Alex Morgan when that ruling

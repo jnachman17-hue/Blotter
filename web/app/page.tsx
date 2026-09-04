@@ -3,9 +3,7 @@ import { Suspense } from "react";
 import { SiteHeader, SiteHeaderBar } from "@/components/site-header";
 import { PageView } from "@/components/page-view";
 import { Hero } from "@/components/sections/hero";
-import { ScaleAndConsequence } from "@/components/sections/scale-and-consequence";
 import { Ownership } from "@/components/sections/ownership";
-import { TrackerAndActions } from "@/components/sections/tracker-and-actions";
 import { DataAndPrivacy } from "@/components/sections/data-and-privacy";
 import { FaqAndClose } from "@/components/sections/faq-and-close";
 import { Funnel } from "@/components/funnel/funnel";
@@ -13,13 +11,22 @@ import { Funnel } from "@/components/funnel/funnel";
 /**
  * Spreadsheet landing page.
  *
- * Section order is fixed by WS4-SPEC and LOVABLE-PROJECT-KNOWLEDGE:
+ * Section order, from September 3, 2026:
  *   1 Hero
- *   2 Scale and consequence          renders as `01`
- *   3 Keep the tracker you built     renders as `02`
- *   4 Outstanding actions            renders as `03`; CTA, cta_location = actions
- *   5 How Blotter uses your data     renders as `04`
- *   6 FAQ and final CTA              renders as `05`; CTA, cta_location = final
+ *   2 Keep the tracker you built     renders as `01`
+ *   3 How Blotter uses your data     renders as `02`
+ *   4 FAQ and final CTA              renders as `03`; CTA, cta_location = final
+ *
+ * Jon cut two sections that day. "Scale and consequence" (the 628 emails) went
+ * because the page no longer pitches: *"we have a real product, and we just
+ * want you to sign up."* "Everything you owe" went because the product does
+ * not make that view; the answer is `Blotter → Sort contacts`, in the sheet.
+ * Both component files are kept for now because `/review/*` still imports
+ * them; pruning is logged in `32-JON-NOTES-3-SEP.md`.
+ *
+ * The earlier order, for the record:
+ *   2 Scale and consequence          rendered as `01`
+ *   4 Outstanding actions            rendered as `03`; cta_location = actions
  *
  * **Section 3, "How Blotter works", was cut on August 11, 2026** and Section
  * 4+5's two beats became two sections. Both surfaces now render the same five
@@ -84,7 +91,6 @@ export default function Page() {
           <Hero top="g" />
         </main>
       </div>
-      <ScaleAndConsequence />
       {/*
         **The two surfaces now read the same list**, as of August 11, 2026:
 
@@ -102,7 +108,6 @@ export default function Page() {
         retires. Deleting the file would throw both away for no gain.
       */}
       <Ownership />
-      <TrackerAndActions />
       <DataAndPrivacy />
       <FaqAndClose />
       {/*
