@@ -713,6 +713,7 @@ function instructionRows_() {
     R('step', '4.  Blotter menu \u2192 Start automatic updates.'),
     R('slot', '[ screenshot: Blotter menu, Start automatic updates ]',
       'https://blotterib.com/setup/menu-updates.png', 220),
+    R('note', 'Nothing changes the moment you add somebody. Blotter updates every 15 minutes. To fill the sheet in straight away, use Blotter menu \u2192 Step 2: Run once now.'),
     R('gap'),
 
     R('h2', 'The one thing to understand'),
