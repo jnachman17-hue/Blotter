@@ -40,7 +40,13 @@ function when(iso?: string): string {
   });
 }
 
-export function BillingLookup({ selling = false }: { selling?: boolean }) {
+export function BillingLookup({
+  selling = false,
+  enforcing = false,
+}: {
+  selling?: boolean;
+  enforcing?: boolean;
+}) {
   const [value, setValue] = useState("");
   const [busy, setBusy] = useState(false);
   const [buying, setBuying] = useState(false);
@@ -138,10 +144,19 @@ export function BillingLookup({ selling = false }: { selling?: boolean }) {
                 </p>
               ) : (
                 <>
-                  <p>
-                    Nothing is owed on it. Blotter is free right now, so every recognised
-                    sheet keeps running.
-                  </p>
+                  {enforcing ? (
+                    <p>
+                      <strong className="font-semibold">This sheet has stopped updating.</strong>{" "}
+                      Everything in it is untouched. Pay once below and it starts again on its
+                      next run, within fifteen minutes. There is nothing to paste back into
+                      the sheet.
+                    </p>
+                  ) : (
+                    <p>
+                      Nothing is owed on it. Blotter is free right now, so every recognised
+                      sheet keeps running.
+                    </p>
+                  )}
                   {selling && result.install_id && (
                     <button
                       type="button"

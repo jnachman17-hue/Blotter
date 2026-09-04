@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { BillingLookup } from "./lookup-form";
 import { sellingEnabled } from "@/lib/stripe";
+import { enforcing } from "@/app/api/entitlement/enforcement";
 import { Shell } from "@/app/setup/shared";
 
 /**
@@ -34,11 +35,19 @@ export default function BillingPage() {
       </h1>
 
       <div className="mt-6 max-w-[68ch] space-y-4 text-body leading-[1.65] text-ink-muted">
-        <p>
-          <strong className="font-semibold text-ink">Blotter is free right now.</strong> No
-          payment has been taken from anyone, and there is nothing to buy on this page yet.
-          When that changes, your sheet will tell you before anything is owed.
-        </p>
+        {enforcing() ? (
+          <p>
+            <strong className="font-semibold text-ink">Blotter is no longer free.</strong>{" "}
+            Sheets without a payment have stopped updating. Nothing in them has been changed
+            or deleted, and everything you typed is still there.
+          </p>
+        ) : (
+          <p>
+            <strong className="font-semibold text-ink">Blotter is free right now.</strong> No
+            payment has been taken from anyone, and there is nothing to buy on this page yet.
+            When that changes, your sheet will tell you before anything is owed.
+          </p>
+        )}
         <p>
           If you have been sent here, it is to check one thing: whether this sheet is
           recognised, and whether it is paid for.
@@ -48,7 +57,7 @@ export default function BillingPage() {
       {/* `selling` is off unless BLOTTER_SELLING is "on". Until then the
           lookup answers the question and nothing can be bought, which is the
           state the whole page is written for. */}
-      <BillingLookup selling={sellingEnabled()} />
+      <BillingLookup selling={sellingEnabled()} enforcing={enforcing()} />
 
       <section className="mt-14 border-t border-rule pt-10">
         <h2 className="font-display text-[1.18rem] leading-[1.35] font-semibold tracking-[-0.012em] text-ink">

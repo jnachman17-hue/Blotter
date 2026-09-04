@@ -74,11 +74,17 @@ async function refuse(installId: string): Promise<NextResponse | null> {
       error: "This Blotter sheet is not currently active.",
       notice: {
         level: "blocked",
+        /* One line, no wrap, so it says the three things that matter and
+           stops: what happened, that nothing was lost, and the one action.
+           The billing page does the explaining; a banner that tries to
+           teach is a banner nobody finishes reading. */
         text:
           verdict.reason === "no_key"
-            ? "Blotter is no longer free. Your sheet and everything in it are untouched."
-            : "Blotter has stopped updating this sheet. Your data is untouched and nothing has been deleted.",
-        url: "https://blotterib.com/billing",
+            ? "Blotter is no longer free. Nothing in your sheet has changed. To start it updating again, copy your Blotter ID from the Settings tab and visit"
+            : "Blotter has stopped updating this sheet. Everything in it is untouched. To start it again, copy your Blotter ID from the Settings tab and visit",
+        /* Configurable so the cut-off can be rehearsed against a preview
+           deployment. A banner pointing at a 404 is worse than no banner. */
+        url: (process.env.BLOTTER_BILLING_URL ?? "https://blotterib.com/billing").trim(),
       },
     },
     { status: 402 },
