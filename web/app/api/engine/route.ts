@@ -54,14 +54,14 @@ export async function POST(request: Request) {
      * rather than a deploy, and so forgetting to remove this code still
      * leaves it inert. **DELETE THIS BLOCK once the rehearsal is signed off.**
      * ------------------------------------------------------------------ */
-    /* The switch is read from the URL first and the environment second.
-       The environment variable never took effect on Vercel — set, redeployed,
-       and still undefined at runtime — and rather than keep guessing at why,
-       the query string moves the control into the Settings tab where Jon can
-       change it without a deploy at all. `?notice=blocked` on the Server URL. */
-    const rehearsal =
-      new URL(request.url).searchParams.get("notice") ??
-      process.env.BLOTTER_TEST_NOTICE;
+    /* The URL and nothing else. `?notice=blocked` on the Server URL.
+     *
+     * An environment-variable fallback lived here for one commit and caused
+     * the exact failure it was added to prevent: BLOTTER_TEST_NOTICE was still
+     * set in Vercel from an earlier attempt, so removing the query string fell
+     * through to it and the sheet stayed blocked. **A switch with two sources
+     * is a switch you cannot turn off by looking at one of them.** */
+    const rehearsal = new URL(request.url).searchParams.get("notice");
     if (rehearsal === "info" || rehearsal === "warning") {
       return NextResponse.json({
         ...computeEngine(parsed),
