@@ -388,3 +388,55 @@ protections against the same class of fault.
 The mark is currently set outside the `if` that guards the append, so the sheet
 reports an action it did not take. **A sheet that lies is worse than one that
 fails loudly.**
+
+---
+
+## D27. The notice channel is proven, and it is how billing will work. September 3, 2026.
+
+**Rehearsed on a live sheet and signed off by Jon.** Three rounds against the
+real server and the real courier, with a temporary switch on `/api/engine` that
+has since been removed.
+
+| Round | Sent | Result |
+|---|---|---|
+| 1 | `info` on a successful run | Notice appeared, sheet updated normally |
+| 2 | `blocked` on a **402 refusal** | **Notice written, nothing else touched, sheet not updated** |
+| 3 | nothing | Notice cleared, sheet updated normally |
+
+**Round 2 is the one that matters** and Jon's own words are the record of it:
+*"Your sheet was not updated. It is also shown at the top of the Contacts tab."*
+Server refuses, courier writes the notice **and only the notice**, the student
+is told why in plain words with a link, and their data is untouched. **That is
+the mechanism a paid Blotter will run on, and it now has evidence behind it.**
+
+### Three failures, none of them in the code being tested
+
+Worth recording, because the pattern repeated and cost the best part of an hour.
+
+1. **`BLOTTER_TEST_NOTICE` never reached the runtime.** Set in Vercel,
+   redeployed twice, and `process.env` still read undefined. The endpoint
+   answered 200 with a null notice — so round 1's message vanished and nothing
+   replaced it, which looked exactly like a courier bug and was not.
+2. **The switch moved to the query string** to get it out of Vercel's hands.
+3. **An environment-variable fallback then caused the failure it was added to
+   prevent.** The stale Vercel value finally took effect on a later build, so
+   removing the query string fell through to it and the sheet stayed blocked.
+
+**The lesson is general and cheap to remember: a switch with two sources is a
+switch you cannot turn off by looking at one of them.** The conductor added that
+fallback for safety and it produced the only self-inflicted failure of the three.
+
+**Verify against the live server before blaming the sheet.** One `curl` settled
+each round in seconds; guessing did not.
+
+### Still open, and both are Jon's
+
+- **The notice is in the wrong place.** Row 1 past `Closed` is off-screen on a
+  laptop, and *"a message you have to scroll to find is a message you won't
+  see."* It belongs top-left with a resting state. **That needs the banner row**
+  — deferred twice now because it moves the contract's join key, and the reason
+  to stop deferring it.
+- **Blocking is global, not per account.** The switch blocked everyone or
+  nobody. Real billing needs each sheet to identify itself and the server to
+  decide per caller. The pieces exist — every run already sends an install id,
+  and telemetry already records it — but the design is unwritten.
