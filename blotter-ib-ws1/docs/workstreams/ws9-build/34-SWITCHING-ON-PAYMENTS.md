@@ -77,7 +77,7 @@ In Vercel, **Production** as well as Preview:
 | `STRIPE_PRICE_ID` | `price_…` | Already set. Change it if the price changes. |
 | `STRIPE_WEBHOOK_SECRET` | `whsec_…` | Already set. Unchanged if §3.2 was an edit. |
 | `BLOTTER_ENTITLEMENT_DAYS` | `forever` | Empty or `forever` means the key never expires. A number of days makes it a season pass. Ignored for subscriptions, where Stripe's period end governs. |
-| `BLOTTER_SELLING` | `on` | Shows the buy button on `/billing`. |
+| `BLOTTER_SELLING` | `on` | Shows the buy button on `/billing`. **Already on in production since 4 September 2026.** Jon left it after the live test: the page is unlinked and `noindex`, and reaching it means guessing the URL, already holding a Blotter ID, and choosing to pay for something the same page says is free. Nothing to do here. |
 | `BLOTTER_ENFORCE` | `on` | **The actual switch.** Sheets without a key stop updating. |
 
 Two variables exist only for rehearsals and should stay unset in production:
