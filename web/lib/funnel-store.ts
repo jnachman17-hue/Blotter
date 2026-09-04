@@ -130,10 +130,15 @@ export const useFunnel = create<FunnelState>((set) => ({
   open: (from) =>
     set((s) => ({
       ctaLocation: s.ctaLocation ?? from,
-      stage: "question_track",
+      /* Opens on `email` from September 4, 2026. Jon cut the two questions
+         before it: the recruiting track and the window produced answers he
+         would never act on, and they sat between a reader who had already
+         decided and the thing they decided to do. The stage list keeps its
+         old entries so `stageIndex` still matches rows already in the table. */
+      stage: "email",
       furthestStage:
-        stageIndex("question_track") > stageIndex(s.furthestStage)
-          ? "question_track"
+        stageIndex("email") > stageIndex(s.furthestStage)
+          ? "email"
           : s.furthestStage,
     })),
 

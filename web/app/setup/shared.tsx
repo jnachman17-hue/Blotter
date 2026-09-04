@@ -58,9 +58,17 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <Link href="/" aria-label="Blotter, back to the home page" className="text-navy-900">
             <BlotterLockup />
           </Link>
-          <Link href={POLICY_HREF} className={`text-small ${LINK}`}>
-            Privacy
-          </Link>
+          {/* Both, from September 4, 2026. The terms were reachable from the
+              footer and the privacy page only, and never from the two pages a
+              student actually reads before granting access to their Gmail. */}
+          <div className="flex items-center gap-5">
+            <Link href={POLICY_HREF} className={`text-small ${LINK}`}>
+              Privacy
+            </Link>
+            <Link href="/terms" className={`text-small ${LINK}`}>
+              Terms
+            </Link>
+          </div>
         </div>
       </header>
       <main className="mx-auto max-w-[860px] px-5 pt-12 pb-24 sm:px-6 sm:pt-16">{children}</main>
@@ -186,9 +194,15 @@ export function Note({ children }: { children: React.ReactNode }) {
 
 export function TemplateCta() {
   if (TEMPLATE_URL) {
+    /* A new tab, from 4 September 2026. Jon, walking the flow cold: the link
+       replaced the setup page with the spreadsheet, so the instructions he was
+       halfway through were gone and he had to find the site again. The steps
+       have to stay open beside the sheet. */
     return (
       <a
         href={TEMPLATE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
         className="inline-flex min-h-12 items-center rounded-full bg-navy-900 px-7 text-body font-medium text-white transition-colors duration-150 ease-out hover:bg-navy-700"
       >
         Open the Blotter template
@@ -247,6 +261,13 @@ export function StepMenu({ n }: { n: number }) {
         height={583}
         wide
       />
+      <p>
+        <B>A yellow bar may appear across the top first</B>, saying some formulas are
+        trying to send and receive data from external parties, with an{" "}
+        <B>Allow access</B> button. Click it. That is the picture on the{" "}
+        <B>Start here</B> tab loading from blotterib.com, and Google asks before any
+        sheet fetches anything from outside itself.
+      </p>
       <p>
         If the menu is not there, wait a few seconds and reload the page. If it is still
         missing, make the copy again. A copy occasionally arrives without Blotter attached,

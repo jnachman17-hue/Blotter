@@ -43,7 +43,7 @@
 
 var CONTRACT_VERSION = 4;
 
-var COURIER_VERSION = '2026-09-04';
+var COURIER_VERSION = '2026-09-04.2';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -59,10 +59,11 @@ var BLOTTER_COLUMNS = ['Status', 'Days', 'Last contact', 'Attempts', 'Next call'
 var COL_CLOSED = 'Closed';
 
 var NOTICE_WIDTH = 6;
+
 var NOTICE_STYLES = {
-  info:    { fill: '#e8f0fe', text: '#1a3d6d' },
-  warning: { fill: '#fdf0d5', text: '#7a4c00' },
-  blocked: { fill: '#fbe3e0', text: '#8c1d12' }
+  info:    { bg: '#e8f0fe', fg: '#1a3d6d' },
+  warning: { bg: '#fdf0d5', fg: '#7a4c00' },
+  blocked: { bg: '#fbe3e0', fg: '#8c1d12' }
 };
 var NOTICE_TAB_COLOUR = { info: '#4a7fd4', warning: '#d9a441', blocked: '#c0392b' };
 
@@ -2063,7 +2064,8 @@ function asSheetDate_(value) {
   if (value === null || value === undefined || value === '') return '';
   var text = String(value).trim();
   var bare = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text);
-  if (bare) return new Date(Number(bare[1]), Number(bare[2]) - 1, Number(bare[3]));
+
+  if (bare) return new Date(Number(bare[1]), Number(bare[2]) - 1, Number(bare[3]), 12, 0, 0);
   if (/^\d{4}-\d{2}-\d{2}T/.test(text)) {
     var d = new Date(text);
     if (!isNaN(d.getTime())) return d;

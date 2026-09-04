@@ -155,8 +155,12 @@ export const CONTACTS: Contact[] = [
   {
     name: "Jerome Bowel", title: "Analyst", firm: "Carlyle",
     email: "jerome.bowel@carlyle.com",
-    status: "Sent", days: "3", lastContact: "1/13/26",
-    attempts: "1", nextCall: "", lastCall: "",
+    /* Not emailed from September 4, 2026, on Jon's ruling. The sheet opened on
+       four Sents and a Call done, which showed neither the starting state
+       every tracker begins in nor the dash rule. Jerome is the only contact no
+       cue touches, so he can hold a state that never moves. */
+    status: "Not emailed", days: "—", lastContact: "",
+    attempts: "—", nextCall: "", lastCall: "",
   },
   {
     name: "Larry Sync", title: "Associate", firm: "BlackRock",

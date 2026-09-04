@@ -52,5 +52,11 @@
   was vague about and the one thing a reader most wants to know: it is a Google
   Sheet, not an app, not a login, not a thing to learn.
 */
+/*
+  Rewritten September 4, 2026. It said "Blotter is a Google Sheet that keeps
+  itself current", which repeated the headline's own words and told a reader
+  nothing the headline had not. This says the one thing the headline leaves
+  out: what the student does, and what is done for them.
+*/
 export const HERO_SUPPORTING_SHORT =
-  "Blotter is a Google Sheet that keeps itself current.";
+  "It is a Google Sheet. You add the people you are networking with, and it fills in the rest from your Gmail and Calendar.";

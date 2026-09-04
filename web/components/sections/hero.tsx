@@ -161,8 +161,7 @@ export function Hero({
               which is cheaper than any decoration.
             */}
             <h1 className="font-display text-display leading-[1.06] font-semibold tracking-[-0.028em] text-ink">
-              <span className="block">A recruiting tracker that keeps itself current.</span>
-              <span className="block text-navy-400">Who replied, who went quiet, who you owe.</span>
+              Network the way you already do and Blotter updates your tracker automatically.
             </h1>
 
             <div className="contents desk:block">
@@ -330,8 +329,7 @@ export function Hero({
                 Built by{" "}
                 <span className="font-medium text-ink">
                   someone who actually went through IB recruitment
-                </span>{" "}
-                (and hated it).
+                </span>
               </p>
             </div>
           </div>

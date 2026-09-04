@@ -64,14 +64,13 @@ import { ImageResponse } from "next/og";
  */
 
 export const alt =
-  "Blotter, a Google Sheet that automatically keeps your recruiting tracker current.";
+  "Blotter, a Google Sheet that updates your recruiting tracker automatically.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /* Sampled from `globals.css`. Literal, because Satori resolves no CSS variables. */
 const INK = "#14181f";
 const INK_MUTED = "#5f6368";
-const NAVY_400 = "#647fa6";
 const NAVY_500 = "#40608c";
 const NAVY_900 = "#12233d";
 const FIELD_A = "#fbfcfe";
@@ -97,7 +96,7 @@ const SHEET_BORDER = "#dadce0";
  */
 const ROWS = [
   { name: "Jamie Diamond", status: "Replied", bg: "#d7e7fb", fg: "#1a56a8", days: "0", attempts: "—" },
-  { name: "Jerome Bowel", status: "Sent", bg: "#dfe3e8", fg: "#3c4043", days: "3", attempts: "1" },
+  { name: "Jerome Bowel", status: "Not emailed", bg: "#ffffff", fg: "#80868b", days: "—", attempts: "—" },
   { name: "Larry Sync", status: "Sent", bg: "#dfe3e8", fg: "#3c4043", days: "0", attempts: "2" },
   { name: "Ken Molise", status: "Call done", bg: "#d7f0dd", fg: "#1e6b34", days: "1", attempts: "—" },
   { name: "David Salmon", status: "Call scheduled", bg: "#e5ddf7", fg: "#5b3fa8", days: "—", attempts: "—" },
@@ -190,8 +189,8 @@ export default async function Image() {
 
         {/* The ratified headline, two tones, exactly as the page sets it. */}
         <div style={{ display: "flex", flexDirection: "column", marginTop: 26, fontFamily: "Display", fontSize: 46, lineHeight: 1.1, letterSpacing: "-0.028em" }}>
-          <div style={{ display: "flex", color: INK }}>A recruiting tracker that keeps itself current.</div>
-          <div style={{ display: "flex", color: NAVY_400 }}>Who replied, who went quiet, who you owe.</div>
+          <div style={{ display: "flex", color: INK }}>Network the way you already do</div>
+          <div style={{ display: "flex", color: INK }}>and Blotter updates your tracker automatically.</div>
         </div>
 
         {/* The tracker, bleeding off the bottom edge. */}

@@ -223,7 +223,7 @@ been handed off. That chat previously owned the film/animation work.
       every edge case. Much has changed.
 - [ ] **8.6** **Analytics and Supabase**: confirm the database captures what is
       actually needed.
-- [ ] **8.7** **Payments**: re-test, confirm accounts can be assigned payments
+- [x] **8.7** **Payments**: re-test, confirm accounts can be assigned payments
       and cut off individually.
 - [ ] **8.8** **Three legal facts for `/terms`**: entity, liability cap,
       governing law. Still unanswered.
@@ -384,3 +384,45 @@ been handed off. That chat previously owned the film/animation work.
       own fallback. These drifted silently for days. A check comparing
       `/api/design` against `STATUS_STYLE` and `CONTACTS_WIDTHS` belongs in the
       suite.
+
+---
+
+## 16. Payments, tested with real money (4 September 2026)
+
+The whole lifecycle was run end to end on a fresh Google account that had never
+seen Blotter, with a live card:
+
+install → sheet reports in → enforcement on → run refused, nothing written →
+red banner in the sheet → billing page → $5 paid → key issued and bound →
+tracker resumes → refunded → access withdrawn.
+
+Every step was checked in the database rather than read off a screen.
+
+**The switch-on checklist is `34-SWITCHING-ON-PAYMENTS.md`.** It is the only
+document needed on the day; nothing has to be worked out again.
+
+Found and fixed during the run:
+
+- [x] **16.1** Checkout showed **Un-Claude**, because Stripe branding is
+      account-wide with no per-product override. A separate Stripe account for
+      Blotter was the only fix. Recommending one shared account was wrong, and
+      the reason I missed it was that checkout branding never entered the
+      argument.
+- [x] **16.2** Every date read a day early on any sheet west of Chicago. Bare
+      dates were built at midnight in the script's timezone and rendered in the
+      spreadsheet's. Noon now, which leaves twelve hours of slack.
+- [x] **16.3** The banner's link was cut off. It shares one un-wrapped row with
+      the message, and the first draft fitted by about fourteen characters.
+- [x] **16.4** The update notice linked at `/Code.gs`, which downloads a file
+      and explains nothing. `/Code.gs` now serves as text, and the notice points
+      at `/update`: three steps and a button that copies the script.
+- [x] **16.5** The template link replaced the setup page instead of opening a
+      new tab, so the instructions vanished mid-install.
+- [x] **16.6** Google's yellow **Allow access** bar appears before the Blotter
+      menu, caused by the screenshot Start here now loads from blotterib.com.
+      Undocumented until Jon hit it.
+- [x] **16.7** The thank-you page explained the binding mechanism rather than
+      answering what happens next.
+- [ ] **16.8** The master template still carries the code from before all of
+      this. **Anyone copying it today gets the date bug.** Paste the current
+      `Code.gs` and run Step 1. Version `2026-09-04.2` confirms it took.

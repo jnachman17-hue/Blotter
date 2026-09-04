@@ -96,8 +96,7 @@ function Headline({ center = false }: { center?: boolean }) {
         center ? "mx-auto max-w-[760px] text-center" : "max-w-[760px]",
       )}
     >
-      <span className="block">A recruiting tracker that keeps itself current.</span>
-      <span className="block text-navy-400">Who replied, who went quiet, who you owe.</span>
+      Network the way you already do and Blotter updates your tracker automatically.
     </h1>
   );
 }
@@ -124,8 +123,7 @@ export function AuthorityLine({ className }: { className?: string }) {
       Built by{" "}
       <span className="font-medium text-ink">
         someone who actually went through IB recruitment
-      </span>{" "}
-      (and hated it).
+      </span>
     </p>
   );
 }
@@ -355,6 +353,19 @@ function VariantG() {
       </div>
       <div className="mt-7">
         <CtaButton location="hero" />
+        {/*
+          Under the button, September 4, 2026. Jon: make it obvious this is
+          free, that there is no catch, and that setup is short. Before this
+          the word "free" appeared on the landing page exactly once, as the
+          button's own label, which is the one place a reader discounts it.
+
+          "About three minutes" is the whole journey. The setup pages say two
+          for the numbered steps, which is the same claim measured from a
+          later starting line.
+        */}
+        <p className="mt-3 text-small leading-[1.5] text-ink-muted">
+          Free. No card, nothing to install. Setup takes about three minutes.
+        </p>
       </div>
     </div>
   );

@@ -732,7 +732,7 @@ export const DESIGN_VERSION = "2026-09-04.1";
  * for exactly this — so nobody runs a stale script for months without knowing
  * (§4.2).
  */
-export const CURRENT_COURIER_VERSION = "2026-09-04";
+export const CURRENT_COURIER_VERSION = "2026-09-04.2";
 
 /**
  * Where the current script actually lives.
@@ -744,6 +744,17 @@ export const CURRENT_COURIER_VERSION = "2026-09-04";
  * no publishing step anybody can forget.
  */
 export const SCRIPT_URL = "https://blotterib.com/Code.gs";
+
+/*
+ * Where the update notice sends a student, and it is not the file.
+ *
+ * It used to be SCRIPT_URL. Clicking that downloads a .gs into Downloads and
+ * says nothing about what to do with it, which is no use to somebody who has
+ * just been told an update exists. This page has the three steps and a button
+ * that copies the code.
+ */
+export const UPDATE_URL =
+  (process.env.BLOTTER_UPDATE_URL ?? "https://blotterib.com/update").trim();
 
 /**
  * A gentle nudge when the script is behind, and silence otherwise.
@@ -763,7 +774,7 @@ function outdatedCourierNotice_(courierVersion: string): EngineResponse["notice"
       "A newer version of Blotter is available: " + CURRENT_COURIER_VERSION +
       ". This sheet is running " + courierVersion + ", which still works. " +
       "Updating takes about a minute.",
-    url: SCRIPT_URL,
+    url: UPDATE_URL,
   };
 }
 

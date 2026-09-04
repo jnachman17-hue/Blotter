@@ -44,6 +44,7 @@ import {
 } from "@/components/funnel/parts";
 import {
   BACK,
+  SKIP,
   CONTINUE,
   EMAIL_EYEBROW,
   EMAIL_LABEL,
@@ -273,8 +274,11 @@ function EmailStep() {
         <div className="mt-7">
           <Primary type="submit">{CONTINUE}</Primary>
         </div>
+        {/* Skip, not Back. The funnel opens here now, so there is nowhere
+            behind it, and an address nobody wants to give should never stand
+            between a reader and the thing they came to do. */}
         <div className="mt-4">
-          <BackLink label={BACK} onClick={() => goTo("question_window")} />
+          <BackLink label={SKIP} onClick={() => window.location.assign("/setup")} />
         </div>
       </Column>
     </form>
