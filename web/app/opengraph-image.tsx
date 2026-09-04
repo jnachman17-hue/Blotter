@@ -64,14 +64,13 @@ import { ImageResponse } from "next/og";
  */
 
 export const alt =
-  "Blotter, a Google Sheet that keeps your recruiting tracker up to date for you.";
+  "Blotter, a Google Sheet that updates your recruiting tracker automatically.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /* Sampled from `globals.css`. Literal, because Satori resolves no CSS variables. */
 const INK = "#14181f";
 const INK_MUTED = "#5f6368";
-const NAVY_400 = "#647fa6";
 const NAVY_500 = "#40608c";
 const NAVY_900 = "#12233d";
 const FIELD_A = "#fbfcfe";
@@ -190,8 +189,8 @@ export default async function Image() {
 
         {/* The ratified headline, two tones, exactly as the page sets it. */}
         <div style={{ display: "flex", flexDirection: "column", marginTop: 26, fontFamily: "Display", fontSize: 46, lineHeight: 1.1, letterSpacing: "-0.028em" }}>
-          <div style={{ display: "flex", color: INK }}>Recruit the way you already do.</div>
-          <div style={{ display: "flex", color: NAVY_400 }}>Blotter keeps the tracker up to date.</div>
+          <div style={{ display: "flex", color: INK }}>Network the way you already do</div>
+          <div style={{ display: "flex", color: INK }}>and Blotter updates your tracker automatically.</div>
         </div>
 
         {/* The tracker, bleeding off the bottom edge. */}
