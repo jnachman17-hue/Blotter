@@ -40,7 +40,7 @@ export default function UniversitySetup() {
       <Crumb>University account</Crumb>
       <H1>University account setup</H1>
 
-      <p className={`mt-5 ${PROSE}`}>Four steps that take roughly five minutes.</p>
+      <p className={`mt-5 ${PROSE}`}>Four steps that take about two minutes.</p>
 
       <div className="mt-8">
         <TemplateCta />

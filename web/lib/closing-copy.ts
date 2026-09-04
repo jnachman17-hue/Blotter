@@ -38,7 +38,7 @@ export const PRODUCT_FAQ: FaqEntry[] = [
   */
   {
     q: "Do I have to rebuild my tracker?",
-    a: "No, but it does move. Blotter is a Google Sheet you make your own copy of, so your contacts come across in a single paste rather than being retyped, and your own columns — LinkedIn, notes, where you met — can sit anywhere you like in it. Blotter finds its own columns by their headings and never touches yours.",
+    a: "No, but it does move. Blotter is a Google Sheet you make your own copy of, so your contacts come across in a single paste rather than being retyped. Your own columns, like LinkedIn, notes or where you met, can sit anywhere you like in it. Blotter finds its own columns by their headings and never touches yours.",
   },
   {
     q: "Can I use Blotter after recruiting has already started?",

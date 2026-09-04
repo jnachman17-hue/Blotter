@@ -36,7 +36,7 @@ own task, cannot be done from here.
       Google account"**.
 - [x] **1.2** Then: **"From then on it tracks your recruiting conversations and
       keeps the tracker current."** Full stop. *"That's all you need."*
-- [x] **1.3** **"Setup takes five minutes, one time."** Not "Five minutes, once"
+- [x] **1.3** **"Setup takes two minutes, one time."** (amended by Jon later that night: *"it literally only takes one to two minutes. Just say two minutes for both."*) Not "Five minutes, once"
       — *"there's no context."*
 - [x] **1.4** *"What Blotter can actually see"* takes too much space and pushes
       the actual set-up below the fold. Add a **"Skip to setup ↓"** jump link.
@@ -131,28 +131,28 @@ own task, cannot be done from here.
 
 ## 4. Landing page — CTA and funnel
 
-- [ ] **4.1** **`Fix my tracker` goes away.** The new call to action is
+- [x] **4.1** **`Fix my tracker` goes away.** The new call to action is
       **`Set up free`** (or similar wording).
-- [ ] **4.2** Keep a **three-question funnel** before hand-off, because it
+- [x] **4.2** Keep a **three-question funnel** before hand-off, because it
       collects emails: (a) recruiting for investment banking, (b) which
       recruiting window, (c) your recruiting email address.
-- [ ] **4.3** Wire those three to analytics.
-- [ ] **4.4** **Delete every other step in the existing funnel.**
-- [ ] **4.5** The funnel ends by sending the person to the set-up pages.
+- [x] **4.3** Wire those three to analytics.
+- [x] **4.4** **Delete every other step in the existing funnel.**
+- [x] **4.5** The funnel ends by sending the person to the set-up pages.
 
 ---
 
 ## 5. Landing page — sections
 
-- [ ] **5.1** **Delete section 01** ("your Google Sheet won't keep up").
+- [x] **5.1** **Delete section 01** ("your Google Sheet won't keep up").
       *"We're not really marketing. We have a real product."*
-- [ ] **5.2** The 620-emails animation goes with it. *"that's so arbitrary and
+- [x] **5.2** The 620-emails animation goes with it. *"that's so arbitrary and
       people kinda know that's BS."* If section 01 is replaced at all, it should
       frame the problem without that animation.
-- [ ] **5.3** **Section 02 needs a new UI.** The spreadsheet columns have
+- [~] **5.3** **Section 02 needs a new UI.** (with the animation agent) The spreadsheet columns have
       changed; it must reflect what the product actually looks like now.
-- [ ] **5.4** **Remove the status chips** from section 02. They no longer exist.
-- [ ] **5.5** **Section 03 is deleted entirely.** *"we don't have the what you
+- [x] **5.4** **Remove the status chips** from section 02. They no longer exist.
+- [x] **5.5** **Section 03 is deleted entirely.** *"we don't have the what you
       owe / paid. We don't make that now."*
 
 ---
@@ -185,14 +185,14 @@ been handed off. That chat previously owned the film/animation work.
 
 ## 7. Site-wide copy pass
 
-- [ ] **7.1** Read and correct **how it works** and **how we use your data** —
+- [x] **7.1** Read and correct **how it works** and **how we use your data** —
       accurate, friendly, not scary, few em dashes, matching how we actually
       phrase things now.
-- [ ] **7.2** **FAQ:** check every answer still matches the product. Keep Jon's
+- [x] **7.2** **FAQ:** check every answer still matches the product. Keep Jon's
       jokes. Fix anything outdated.
-- [ ] **7.3** The whole site must describe **what Blotter is now, not what it
+- [x] **7.3** The whole site must describe **what Blotter is now, not what it
       was**.
-- [ ] **7.4** Privacy and terms re-read for the same accuracy and tone.
+- [x] **7.4** Privacy and terms re-read for the same accuracy and tone.
 
 ---
 
@@ -228,3 +228,28 @@ been handed off. That chat previously owned the film/animation work.
   university, so we're just gonna have to accept as is."* No further testing
   planned; the university page carries a fallback note for anyone whose school
   differs.
+
+---
+
+## 10. Follow-ups opened by the night pass (3 to 4 Sep 2026)
+
+- [ ] **10.1 Prune the dead section files.** `scale-and-consequence.tsx`,
+      `tracker-and-actions.tsx`, `section-2/*`, `section-45/outstanding-phone.tsx`
+      are unrendered but kept because `app/review/{hero,page-refresh,sheet-mobile,voice}`
+      import them. Decide whether those review pages still earn their keep, then
+      delete both together.
+- [ ] **10.2 `ownership.tsx` must render `<SectionNumber n={1} />`.** It is the
+      animation agent's file, so the change was relayed rather than made. Until
+      its work merges, the preview shows two sections numbered 02.
+- [ ] **10.3 Analytics for the hand-off.** The funnel now ends by navigating to
+      `/setup` after `email_submitted`. No new event was added, because the nine
+      names are a frozen contract. If Jon wants the hand-off counted separately,
+      that is a one-line addition and a deliberate change to the contract.
+- [ ] **10.4 `FUNNEL_STAGES` keeps its dead entries on purpose.** `film`, `price`,
+      `waitlist`, `checkout`, `confirmed` are unreachable but stay in the array so
+      `furthest_stage_index` values already stored in Supabase keep their meaning.
+      Removing them is a migration, not a tidy-up.
+- [J] **10.5 Screenshots of the sheet itself** for `Start here`: the Settings
+      tab, the Contacts tab, the Found tab. Only Jon can take these.
+- [J] **10.6 The blank template**, still. Every `/setup` flow ends at a button that
+      does not exist yet.

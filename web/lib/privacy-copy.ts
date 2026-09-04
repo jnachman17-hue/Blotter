@@ -78,7 +78,7 @@ export const PRIVACY_OPENING =
  * reading happens inside the student's own Google account.
  */
 export const CANDID_CLAIM =
-  "Blotter runs inside your own Google account, and it only ever opens conversations that already involve someone in your tracker. Everything else in your inbox is never read. And the text of an email never leaves your account — Blotter’s server does not receive it, and refuses the request if one is ever sent.";
+  "Blotter runs inside your own Google account, and it only ever opens conversations that already involve someone in your tracker. Everything else in your inbox is never read. And the text of an email never leaves your account. Blotter’s server does not receive it, and refuses the request if one is ever sent.";
 
 /* ------------------------------------------------ 3. four-step processing rows */
 
@@ -106,22 +106,22 @@ export const PROCESSING_STEPS: ProcessingStep[] = [
   {
     n: "01",
     title: "It runs inside your Google account",
-    body: "Blotter is a script that lives in your own copy of the spreadsheet and runs on your Google account’s own permission. There is no Blotter account, and Blotter never holds a login or a password for your Google account.",
+    body: "Blotter lives inside your own copy of the spreadsheet and runs on your Google account’s own permission. There is no Blotter account, and Blotter never holds a login or a password for your Google account.",
   },
   {
     n: "02",
     title: "It only opens conversations involving your contacts",
-    body: "Every 15 minutes it looks for threads that already contain someone from your Contacts tab. A conversation with none of them in it is never opened — not because a filter rejects it, but because it was never something Blotter was following.",
+    body: "Every 15 minutes it looks for threads that already contain someone from your Contacts tab. A conversation with none of them in it is never opened. Not because a filter rejects it, but because it was never something Blotter was following.",
   },
   {
     n: "03",
     title: "Facts leave your account. Text does not",
-    body: "To work out what each conversation means, Blotter sends a short list of facts to its own server: who wrote, who it was addressed to, when, the subject line, and the titles and times of calendar events with your contacts. The body of an email is never sent, and the server refuses any request that tries to include one.",
+    body: "To work out what each conversation means, Blotter sends a short list of facts to its own server: who wrote, who it was addressed to, when, the subject line, and the title, time and guests of calendar events with your contacts. The body of an email is never sent, and the server refuses any request that tries to include one.",
   },
   {
     n: "04",
     title: "The answer goes into your sheet, and nowhere else",
-    body: "The server works out each contact’s status and returns it. It writes nothing down — not the facts it was given, not the answer it sent back — so it has forgotten the question by the time you read the answer. The result lives in your spreadsheet, in your Drive.",
+    body: "The server works out each contact’s status and returns it. It writes nothing down, not the facts it was given and not the answer it sent back, so it has forgotten the question by the time you read the answer. The result lives in your spreadsheet, in your Drive.",
   },
 ];
 
@@ -192,7 +192,7 @@ export const PERMISSIONS: ServicePermission[] = [
   {
     service: "Google Sheets",
     can: [
-      "Read and update the one spreadsheet it lives in — the copy you made.",
+      "Read and update the one spreadsheet it lives in, the copy you made.",
     ],
     cannot: [
       "See that any other file in your Drive exists.",
@@ -223,7 +223,7 @@ export const PERMISSION_COLUMNS = ["Service", "Can do", "Cannot do"] as const;
  * the script can only ever reach the sheet it is inside.
  */
 export const SHEETS_SCOPE_NOTE =
-  "Limited to this one spreadsheet — the copy you made. Blotter cannot see that any other file in your Drive exists.";
+  "Limited to this one spreadsheet, the copy you made. Blotter cannot see that any other file in your Drive exists.";
 
 /* --------------------------------------------- 5. broad Google-permission notice */
 
@@ -254,7 +254,7 @@ export const SHEETS_SCOPE_NOTE =
 export const BROAD_HEADING = "What Google’s permission screen will say";
 
 export const BROAD_BODY =
-  "Google words the Gmail permission broadly, because it does not offer one limited to the people in your tracker. What makes the limit real is not a promise about processing: the reading happens inside your own Google account, and the only thing that ever leaves it is a short list of facts about conversations your contacts are already part of. Google will also ask for two things that are not services — permission to contact Blotter’s server, and permission to run while you are away, which is what keeps the sheet current every 15 minutes. All five are required, none is ticked by default, and nothing on that screen tells you so.";
+  "Google words the Gmail permission broadly, because it does not offer one limited to the people in your tracker. What makes the limit real is not a promise about processing: the reading happens inside your own Google account, and the only thing that ever leaves it is a short list of facts about conversations your contacts are already part of. Google will also ask for two things that are not services: permission to contact Blotter’s server, and permission to run while you are away, which is what keeps the sheet current every 15 minutes. All five are required, none is ticked by default, and nothing on that screen tells you so.";
 
 /* ------------------------------------------------------- 6. what Blotter keeps */
 
@@ -280,7 +280,7 @@ export const KEEPS_HEADING = "What Blotter keeps";
  * claim. See `KEEPS_COUNTS`.
  */
 export const KEEPS_BODY = [
-  "Nothing about your mail. The part of Blotter that works out each contact’s status writes nothing down at all—not the facts it was given, and not the answer it returned. It cannot show you your own history, because it does not have one.",
+  "Nothing about your mail. The part of Blotter that works out each contact’s status writes nothing down at all, not the facts it was given and not the answer it returned. It cannot show you your own history, because it does not have one.",
   "The recruiting information lives in one place, which is your own spreadsheet, in your own Google Drive.",
 ];
 
@@ -298,7 +298,7 @@ export const KEEPS_BODY = [
  * describes the boundary rather than the tables.
  */
 export const KEEPS_COUNTS =
-  "One thing is counted, and it is worth naming. Each copy of the sheet generates a random id — a string of characters that identifies the sheet and nothing about you — and sends it with the time of each run and how many contacts were in it, so that a broken version can be noticed before people have to write in about it. No name, address, subject line or message ever goes with it.";
+  "One thing is counted, and it is worth naming. Each copy of the sheet generates a random id, a string of characters that identifies the sheet and nothing about you, and sends it with the time of each run and how many contacts were in it, so that a broken version can be noticed before people have to write in about it. No name, address, subject line or message ever goes with it.";
 
 export const KEEPS_CALENDAR =
   "Calendar events are read to find calls and coffee chats with your contacts. Blotter never writes to your calendar, and cannot: the permission it asks for is read-only.";
@@ -403,7 +403,7 @@ export const DELETION_STATEMENT =
 export const HOSTING_HEADING = "Where Blotter runs";
 
 export const HOSTING_BODY = [
-  "There is no third party in the middle. Blotter is a script inside your own copy of a Google Sheet, running on your own Google account’s permission, and Google will tell you as much on the way in — it shows an “unverified app” warning and names the developer, and the developer it names is you.",
+  "There is no third party in the middle. Blotter runs inside your own copy of a Google Sheet, on your own Google account’s permission. If you install it into a personal Gmail account, Google says as much on the way in: it shows an “unverified app” warning and names the developer, and the developer it names is you. A university account does not see that screen, because Google trusts universities automatically.",
   "Blotter’s own server does one job: it is sent facts about conversations involving your contacts, it works out what each one means, and it sends the answer back. It holds no login for your Google account and no copy of your mail.",
 ];
 
@@ -437,7 +437,7 @@ export const PRIVACY_FAQ: FaqEntry[] = [
   },
   {
     q: "Does Blotter read my personal email?",
-    a: "No. It only ever opens conversations that already contain someone from your Contacts tab. Everything else is not filtered out after being read — it is never opened, because it was never something Blotter was following.",
+    a: "No. It only ever opens conversations that already contain someone from your Contacts tab. Everything else is not filtered out after being read. It is never opened, because it was never something Blotter was following.",
   },
   {
     q: "Does Blotter store my emails?",
@@ -453,7 +453,7 @@ export const PRIVACY_FAQ: FaqEntry[] = [
   },
   {
     q: "Why does Google warn me that this app is not verified?",
-    a: "Because it is your own copy of a script, in your own account. Read the developer name on that screen — it is your email address. Google shows this warning for anything a person installs into their own Google account themselves, and it does not change what the script is allowed to do. That is fixed by the permissions on the next screen, and every one of them is read-only apart from the spreadsheet you just copied.",
+    a: "Only a personal Gmail account sees it. A university account goes straight to the permissions, because Google trusts universities automatically. On a personal account, the email address in the brackets is yours: the copy of Blotter you just made lives in your Google account, and Google treats everything in your account as yours. The screen is asking whether you want to let Blotter read your own account. It does not change what Blotter is allowed to do. That is fixed by the permissions on the next screen, and every one of them is read-only apart from the spreadsheet you just copied.",
   },
   {
     q: "What if I want to stop using it?",

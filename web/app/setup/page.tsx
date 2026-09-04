@@ -51,7 +51,7 @@ export default function SetupChooser() {
           your Google account. From then on it tracks your recruiting conversations and keeps
           the tracker current.
         </p>
-        <p>Setup takes five minutes, one time.</p>
+        <p>Setup takes two minutes, one time.</p>
       </div>
 
       <p className="mt-6">

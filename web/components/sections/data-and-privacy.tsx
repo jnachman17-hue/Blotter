@@ -80,7 +80,7 @@ export function DataAndPrivacy() {
   return (
     <section id="privacy" className="field-document pt-14 pb-16 desk:pt-24 desk:pb-28">
       <PageBox>
-        <SectionNumber n={4} />
+        <SectionNumber n={2} />
         <SectionEyebrow>{TRIAL_EYEBROWS.privacy}</SectionEyebrow>
         {/*
           Head. The page's established two-column opening — headline left,

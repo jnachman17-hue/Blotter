@@ -43,7 +43,7 @@ export default function PersonalSetup() {
 
       <div className={`mt-5 space-y-4 ${PROSE}`}>
         <p>
-          Five steps that take roughly five minutes. One of them is a warning screen from
+          Five steps that take about two minutes. One of them is a warning screen from
           Google that looks worse than it is. <B>Step 3 explains it.</B>
         </p>
         <p className="text-body text-ink-muted">

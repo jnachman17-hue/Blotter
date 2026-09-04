@@ -141,7 +141,7 @@ export function FaqAndClose() {
     <>
       <section id="faq" className="field-close pt-14 pb-16 desk:pt-24 desk:pb-24">
         <PageBox>
-        <SectionNumber n={5} />
+        <SectionNumber n={3} />
           {/*
             §4 allows the title and nothing else above the rows: no eyebrow, no
             supporting paragraph, no introductory copy.
