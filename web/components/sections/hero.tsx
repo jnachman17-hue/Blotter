@@ -161,8 +161,8 @@ export function Hero({
               which is cheaper than any decoration.
             */}
             <h1 className="font-display text-display leading-[1.06] font-semibold tracking-[-0.028em] text-ink">
-              <span className="block">A recruiting tracker that keeps itself current.</span>
-              <span className="block text-navy-400">Who replied, who went quiet, who you owe.</span>
+              <span className="block">Recruit the way you already do.</span>
+              <span className="block text-navy-400">Blotter keeps the tracker up to date.</span>
             </h1>
 
             <div className="contents desk:block">
@@ -250,6 +250,20 @@ export function Hero({
                   full
                   className="desk:w-auto"
                 />
+                {/*
+                  Under the button, September 4, 2026. Jon: make it obvious
+                  this is free, that there is no catch, and that setup is
+                  short. Before this the word "free" appeared on the landing
+                  page exactly once, as the button's own label, which is the
+                  one place a reader discounts it.
+
+                  "About three minutes" is the whole journey. The setup pages
+                  say two for the numbered steps, which is the same claim
+                  measured from a later starting line.
+                */}
+                <p className="mt-3 text-small leading-[1.5] text-ink-muted">
+                  Free. No card, nothing to install. Setup takes about three minutes.
+                </p>
               </div>
 
               {/*

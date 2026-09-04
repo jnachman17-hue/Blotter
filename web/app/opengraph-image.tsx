@@ -64,7 +64,7 @@ import { ImageResponse } from "next/og";
  */
 
 export const alt =
-  "Blotter, a Google Sheet that automatically keeps your recruiting tracker current.";
+  "Blotter, a Google Sheet that keeps your recruiting tracker up to date for you.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -97,7 +97,7 @@ const SHEET_BORDER = "#dadce0";
  */
 const ROWS = [
   { name: "Jamie Diamond", status: "Replied", bg: "#d7e7fb", fg: "#1a56a8", days: "0", attempts: "—" },
-  { name: "Jerome Bowel", status: "Sent", bg: "#dfe3e8", fg: "#3c4043", days: "3", attempts: "1" },
+  { name: "Jerome Bowel", status: "Not emailed", bg: "#ffffff", fg: "#80868b", days: "—", attempts: "—" },
   { name: "Larry Sync", status: "Sent", bg: "#dfe3e8", fg: "#3c4043", days: "0", attempts: "2" },
   { name: "Ken Molise", status: "Call done", bg: "#d7f0dd", fg: "#1e6b34", days: "1", attempts: "—" },
   { name: "David Salmon", status: "Call scheduled", bg: "#e5ddf7", fg: "#5b3fa8", days: "—", attempts: "—" },
@@ -190,8 +190,8 @@ export default async function Image() {
 
         {/* The ratified headline, two tones, exactly as the page sets it. */}
         <div style={{ display: "flex", flexDirection: "column", marginTop: 26, fontFamily: "Display", fontSize: 46, lineHeight: 1.1, letterSpacing: "-0.028em" }}>
-          <div style={{ display: "flex", color: INK }}>A recruiting tracker that keeps itself current.</div>
-          <div style={{ display: "flex", color: NAVY_400 }}>Who replied, who went quiet, who you owe.</div>
+          <div style={{ display: "flex", color: INK }}>Recruit the way you already do.</div>
+          <div style={{ display: "flex", color: NAVY_400 }}>Blotter keeps the tracker up to date.</div>
         </div>
 
         {/* The tracker, bleeding off the bottom edge. */}

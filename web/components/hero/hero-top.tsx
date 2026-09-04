@@ -96,8 +96,8 @@ function Headline({ center = false }: { center?: boolean }) {
         center ? "mx-auto max-w-[760px] text-center" : "max-w-[760px]",
       )}
     >
-      <span className="block">A recruiting tracker that keeps itself current.</span>
-      <span className="block text-navy-400">Who replied, who went quiet, who you owe.</span>
+      <span className="block">Recruit the way you already do.</span>
+      <span className="block text-navy-400">Blotter keeps the tracker up to date.</span>
     </h1>
   );
 }

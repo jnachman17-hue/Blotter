@@ -44,12 +44,15 @@ export const CONTINUE = "Continue";
 
 /* ---------------------------------------------------------- the email step */
 
-export const EMAIL_EYEBROW = "One last thing";
-export const EMAIL_TITLE = "Your recruiting email.";
+/* "One last thing" from September 4, 2026 became the only thing: the two
+   questions before it are gone. */
+export const EMAIL_EYEBROW = "Before you start";
+export const EMAIL_TITLE = "Where do you recruit from?";
 export const EMAIL_SUPPORTING =
-  "The address you recruit from. Then we take you to the setup page, and Blotter is yours in about two minutes.";
+  "So we can tell you if something breaks, or if Blotter ever stops being free. It is the only thing we ask for, and you can skip it.";
 export const EMAIL_LABEL = "Recruiting email";
 
 /* ---------------------------------------------------------- the price step */
 
 export const BACK = "Back";
+export const SKIP = "Skip and set up";
