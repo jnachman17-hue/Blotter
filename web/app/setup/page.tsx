@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { B, H1, H2, PROSE, Shell, WhatItSees } from "./shared";
+import { B, H1, Shell, WhatItSees } from "./shared";
 import { cn } from "@/lib/cn";
 
 /**
@@ -21,99 +21,89 @@ export const metadata: Metadata = {
     "Copy one sheet, give it permission to connect to your Google account, and your recruiting tracker keeps itself up to date.",
 };
 
-function Choice({ href, title, line, recommended }: { href: string; title: string; line: string; recommended?: boolean }) {
+function Choice({
+  href,
+  title,
+  line,
+  steps,
+  recommended,
+}: {
+  href: string;
+  title: string;
+  line: string;
+  steps: string;
+  recommended?: boolean;
+}) {
   return (
     <Link
       href={href}
       className={cn(
-        "group flex flex-col justify-between rounded-[10px] border-2 bg-white px-6 py-6 transition-colors duration-150 ease-out sm:px-7 sm:py-7",
-        recommended
-          ? "border-navy-500 hover:border-navy-900"
-          : "border-rule hover:border-navy-900",
+        "group flex flex-col justify-between rounded-[10px] border-2 bg-white px-6 py-7 transition-colors duration-150 ease-out sm:px-8 sm:py-8",
+        recommended ? "border-navy-500 hover:border-navy-900" : "border-rule hover:border-navy-900",
       )}
     >
       <div>
-        {recommended && (
-          /* blotter-100 on blotter-700: the site's own accent, and the only
-             pair here that is not navy, so the badge reads as a mark rather
-             than as another button. navy-50 and navy-700 do not exist in
-             globals.css and rendered as nothing. */
-          <p className="mb-3 inline-flex items-center rounded-full bg-blotter-100 px-3 py-1 text-small font-medium text-blotter-700">
-            Simpler setup
-          </p>
-        )}
-        <p className="font-display text-[1.35rem] leading-[1.2] font-bold tracking-[-0.015em] text-ink">
+        <p className="font-display text-[1.5rem] leading-[1.15] font-bold tracking-[-0.015em] text-ink">
           {title}
         </p>
-        <p className="mt-3 text-lede leading-[1.55] text-ink-read">{line}</p>
+        <p className="mt-2.5 text-lede leading-[1.5] text-ink-read">{line}</p>
+        <p className="mt-4 text-body font-medium text-ink-muted">{steps}</p>
       </div>
-      <span className="mt-6 inline-flex min-h-11 w-fit items-center rounded-full bg-navy-900 px-6 text-body font-medium text-white transition-colors duration-150 ease-out group-hover:bg-navy-700">
-        Set up →
-      </span>
+
+      {/*
+        The badge sits BESIDE the button, not above the title. Putting it at the
+        top pushed this card's heading down and left it out of line with the one
+        next to it, which Jon saw immediately. Here it fills space that was
+        empty and both headings and both buttons stay level.
+      */}
+      <div className="mt-8 flex items-center gap-4">
+        <span className="inline-flex min-h-11 items-center rounded-full bg-navy-900 px-6 text-body font-medium text-white transition-colors duration-150 ease-out group-hover:bg-navy-700">
+          Set up →
+        </span>
+        {recommended && (
+          <span className="text-small font-medium text-navy-500">Simpler setup</span>
+        )}
+      </div>
     </Link>
   );
 }
 
 export default function SetupChooser() {
   return (
-    <Shell>
+    <Shell wide>
       <H1>Set up Blotter</H1>
 
-      <div className={`mt-6 space-y-4 ${PROSE}`}>
-        <p>
-          You copy one spreadsheet into your Google Drive and give it permission to connect to
-          your Google account. From then on it tracks your recruiting conversations and keeps
-          the tracker current.
-        </p>
-        <p>Setup takes two minutes, one time.</p>
+      {/*
+        One line. It was three paragraphs and a jump link, which is what Jon
+        met the page with: *"I'm immediately hit with three paragraphs of text.
+        I don't even know where to look."* The choice is the page.
+      */}
+      <p className="mt-4 max-w-[62ch] text-lede leading-[1.6] text-ink-read">
+        Two minutes, once. Install it where your recruiting email arrives.
+      </p>
+
+      <div className="mt-9 grid gap-4 sm:grid-cols-2 sm:gap-6">
+        <Choice
+          href="/setup/university"
+          title="University account"
+          line="A .edu address that runs on Google."
+          steps="Four steps, no warnings."
+          recommended
+        />
+        <Choice
+          href="/setup/personal"
+          title="Personal Gmail"
+          line="Any @gmail.com address."
+          steps="Five steps. One is a warning screen, explained inside."
+        />
       </div>
 
-      {/*
-        The choice sits above "What Blotter can actually see" from 5 September
-        2026, on Jon's ruling. It is the action, and it was underneath a screen
-        of privacy detail: a reader had to scroll past a wall of reassurance
-        before they could do anything, which makes a two-minute setup read as a
-        decision that needs research. Choice first, detail underneath for
-        whoever wants it.
-      */}
-      <section className="mt-12">
-        <H2 id="choose">Where is your recruiting email?</H2>
-        <div className={`mt-4 space-y-4 ${PROSE}`}>
-          <p>
-            Blotter reads the mailbox of the account you recruit from, so install it where
-            your recruiting email actually arrives.
-          </p>
-          <p>
-            {/*
-              Honest rather than a flat preference. The choice is about which
-              mailbox holds the mail, and telling somebody to use a university
-              account their recruiting email is not in would break their
-              install. So the nudge is conditional, and it names the real
-              reason rather than just asserting one is better.
-            */}
-            <B>If you recruit from a university address, use that one.</B> Google recognises
-            university accounts and takes you straight through. A personal Gmail account gets
-            one extra screen that looks alarming and is not.
-          </p>
-        </div>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-5">
-          <Choice
-            href="/setup/university"
-            title="University account"
-            line="A .edu address that runs on Google. Four steps, no warnings."
-            recommended
-          />
-          <Choice
-            href="/setup/personal"
-            title="Personal Gmail account"
-            line="Five steps. One is a warning screen, explained in there."
-          />
-        </div>
-      </section>
+      <p className="mt-6 max-w-[70ch] text-body leading-[1.6] text-ink-muted">
+        <B>Recruit from a university address? Use it.</B> Google takes those accounts straight
+        through. A personal account meets one extra screen that looks alarming and is not.
+      </p>
 
       <WhatItSees />
-
     </Shell>
   );
 }

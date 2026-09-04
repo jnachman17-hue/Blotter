@@ -50,11 +50,21 @@ export function B({ children }: { children: React.ReactNode }) {
   return <strong className="font-semibold text-ink">{children}</strong>;
 }
 
-export function Shell({ children }: { children: React.ReactNode }) {
+export function Shell({
+  children,
+  wide,
+}: {
+  children: React.ReactNode;
+  /* The chooser only. A page whose job is a side-by-side decision should not be
+     bound to a reading measure; the flow pages still are, because they are
+     read. */
+  wide?: boolean;
+}) {
+  const measure = wide ? "max-w-[1080px]" : "max-w-[860px]";
   return (
     <div className="min-h-screen bg-surface-quiet">
       <header className="border-b border-rule bg-white">
-        <div className="mx-auto flex h-[60px] max-w-[860px] items-center justify-between px-5 sm:px-6">
+        <div className={`mx-auto flex h-[60px] ${measure} items-center justify-between px-5 sm:px-6`}>
           <Link href="/" aria-label="Blotter, back to the home page" className="text-navy-900">
             <BlotterLockup />
           </Link>
@@ -71,7 +81,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-[860px] px-5 pt-12 pb-24 sm:px-6 sm:pt-16">{children}</main>
+      <main className={`mx-auto ${measure} px-5 pt-12 pb-24 sm:px-6 sm:pt-16`}>{children}</main>
     </div>
   );
 }
@@ -369,58 +379,104 @@ export function Help() {
 
 /* ------------------------------------------------------------ trust panel */
 
-function Fact({ title, children }: { title: string; children: React.ReactNode }) {
+/*
+ * Four icons at 24px on a 1.4 stroke, matching `section-6/step-icons.tsx`, so
+ * the site has one drawn hand rather than two.
+ */
+const ICON = {
+  width: 22,
+  height: 22,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.4,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  "aria-hidden": true,
+};
+
+const Envelope = () => (
+  <svg {...ICON}>
+    <rect x="3" y="5.5" width="18" height="13" rx="1.75" />
+    <path d="m3.6 6.4 8.4 5.9 8.4-5.9" />
+  </svg>
+);
+const Calendar = () => (
+  <svg {...ICON}>
+    <rect x="3.5" y="5" width="17" height="15" rx="1.75" />
+    <path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" />
+  </svg>
+);
+const OneSheet = () => (
+  <svg {...ICON}>
+    <path d="M6 3.5h7.5L18.5 8.5V20A1.5 1.5 0 0 1 17 21.5H6A1.5 1.5 0 0 1 4.5 20V5A1.5 1.5 0 0 1 6 3.5Z" />
+    <path d="M13.25 3.6V8.5h4.9M8 13h8M8 16.5h5" />
+  </svg>
+);
+const NeverSends = () => (
+  <svg {...ICON}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="m6.4 6.4 11.2 11.2" />
+  </svg>
+);
+
+function Fact({
+  icon,
+  title,
+  children,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="border-l-[3px] border-navy-500 pl-5">
-      <p className="font-display text-[1.05rem] leading-[1.35] font-semibold text-ink">{title}</p>
-      <p className="mt-2 text-body leading-[1.65] text-ink-read">{children}</p>
+    <div>
+      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-quiet text-navy-500">
+        {icon}
+      </span>
+      <p className="mt-3 font-display text-[1rem] leading-[1.3] font-semibold text-ink">
+        {title}
+      </p>
+      <p className="mt-1.5 text-body leading-[1.55] text-ink-read">{children}</p>
     </div>
   );
 }
 
-/** The trust panel. It is why somebody carries on. */
+/*
+ * Compressed on 5 September 2026. It was four prose facts plus two more
+ * paragraphs, and it pushed the actual choice off the screen. Jon: *"I should
+ * look at this and know exactly what I need to do in five seconds of reading."*
+ * Same four claims, none softened, in a quarter of the height.
+ */
 export function WhatItSees() {
   return (
-    <section className="mt-12 rounded-[10px] border border-rule bg-white px-6 py-7 sm:px-8 sm:py-8">
-      <H2>What Blotter can actually see</H2>
+    <section className="mt-14 border-t border-rule pt-10">
+      <H2>What Blotter can see</H2>
 
-      <div className="mt-7 grid gap-7 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-8">
-        <Fact title="The outside of your emails, not the inside.">
-          Who sent it, who it went to, when, and the subject line. The things printed on an
-          envelope. It cannot read the text or content of your emails.
+      <div className="mt-7 grid gap-8 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-4">
+        <Fact icon={<Envelope />} title="The outside of your emails">
+          Who wrote, who it went to, when, and the subject. It cannot read what you wrote.
         </Fact>
-        <Fact title="Your calendar.">
-          Event titles, times and who was invited, so it can tell a call has been booked
-          without you typing it in.
+        <Fact icon={<Calendar />} title="Your calendar">
+          Titles, times and guests, so a booked call appears without you typing it.
         </Fact>
-        <Fact title="One spreadsheet: the copy you make.">
-          The permission is for that single file. Blotter cannot open anything else in your
-          Drive.
+        <Fact icon={<OneSheet />} title="This one spreadsheet">
+          Nothing else in your Drive. The permission is for that single file.
         </Fact>
-        <Fact title="What it never does.">
-          Send an email, reply to one, delete anything, or change your calendar. It has no
-          ability to.
+        <Fact icon={<NeverSends />} title="It never sends or deletes">
+          No email, no reply, no calendar change. It has no ability to.
         </Fact>
       </div>
 
-      <div className="mt-8 border-t border-rule pt-7">
-        <p className="font-display text-[1.05rem] leading-[1.35] font-semibold text-ink">
-          Where it all goes.
-        </p>
-        <p className="mt-2 max-w-[62ch] text-body leading-[1.65] text-ink-read">
-          Blotter&rsquo;s server receives those envelope details, works out the status, and
-          sends it back. Your tracker stays in your Google Drive, under your account, and the
-          answers are written straight into it. We do not have a copy of your sheet.
-        </p>
-      </div>
-
-      <p className="mt-6 text-small leading-[1.5] text-ink-muted">
-        The full details are in the{" "}
+      <p className="mt-8 max-w-[70ch] text-small leading-[1.6] text-ink-muted">
+        The server works out each status and sends it back to your sheet. We do not have a
+        copy of it.{" "}
         <Link href={POLICY_HREF} className={LINK}>
-          privacy policy
+          The full details are in the privacy policy
         </Link>
         .
       </p>
     </section>
   );
 }
+
