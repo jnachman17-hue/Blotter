@@ -43,7 +43,7 @@
 
 var CONTRACT_VERSION = 4;
 
-var COURIER_VERSION = '2026-09-04.4';
+var COURIER_VERSION = '4.4';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -615,8 +615,28 @@ function formatInstructions_(sheet, rows) {
 
       if (r.b) {
         span.merge();
-        sheet.getRange(row, 2).setFormula('=IMAGE("' + String(r.b).replace(/"/g, '') + '", 1)');
-        sheet.setRowHeight(row, r.c || 150);
+        var slotHeight = r.c || 150;
+        sheet.setRowHeight(row, slotHeight);
+        var drawn = false;
+        try {
+          var blob = UrlFetchApp.fetch(String(r.b), { muteHttpExceptions: true }).getBlob();
+          var image = sheet.insertImage(blob, 2, row);
+
+          var pad = 8;
+          var natural = image.getHeight() > 0 ? image.getWidth() / image.getHeight() : 3;
+          var drawH = slotHeight - pad * 2;
+          image.setHeight(drawH);
+          image.setWidth(Math.round(drawH * natural));
+          image.setAnchorCellXOffset(pad);
+          image.setAnchorCellYOffset(pad);
+          drawn = true;
+        } catch (e) {
+
+          console.error('Could not place the instruction image: ' + e);
+        }
+        if (!drawn) {
+          sheet.getRange(row, 2).setFormula('=IMAGE("' + String(r.b).replace(/"/g, '') + '", 1)');
+        }
       } else {
         span.merge().setValue(r.a).setFontSize(10).setFontColor(INK_FAINT)
           .setHorizontalAlignment('center').setBackground('#f8f9fa')

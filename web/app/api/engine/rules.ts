@@ -732,7 +732,7 @@ export const DESIGN_VERSION = "2026-09-04.1";
  * for exactly this — so nobody runs a stale script for months without knowing
  * (§4.2).
  */
-export const CURRENT_COURIER_VERSION = "2026-09-04.4";
+export const CURRENT_COURIER_VERSION = "4.4";
 
 /**
  * Where the current script actually lives.
@@ -763,8 +763,38 @@ export const UPDATE_URL =
  * a version difference into a stopped sheet would be using the loudest tool in
  * the box for the mildest problem.
  */
+/**
+ * `major.minor`, or null for anything that is not one.
+ *
+ * Null is the important case. Versions used to be dates (`2026-09-04.4`), and
+ * sheets carrying one are still out there. They parse as null and are treated
+ * as behind every numbered version, which is exactly right: every date-style
+ * build predates the first numbered one.
+ */
+function parseCourierVersion(v: string): [number, number] | null {
+  const m = /^(\d+)\.(\d+)$/.exec(v.trim());
+  return m === null ? null : [Number(m[1]), Number(m[2])];
+}
+
+/**
+ * Is this courier behind the current one?
+ *
+ * **Compared as numbers, not as text**, and that is the whole reason this
+ * function exists. Dates sorted correctly as strings, which is why the old
+ * comparison was a single `>=`. Numbers do not: `"4.9" > "4.10"` is true as
+ * text and false as arithmetic, so the version after 4.9 would have silently
+ * stopped telling anybody to update.
+ */
+function courierIsBehind(courierVersion: string): boolean {
+  const current = parseCourierVersion(CURRENT_COURIER_VERSION);
+  if (current === null) return false;
+  const theirs = parseCourierVersion(courierVersion);
+  if (theirs === null) return true;
+  return theirs[0] !== current[0] ? theirs[0] < current[0] : theirs[1] < current[1];
+}
+
 function outdatedCourierNotice_(courierVersion: string): EngineResponse["notice"] {
-  if (courierVersion === "" || courierVersion >= CURRENT_COURIER_VERSION) return null;
+  if (courierVersion === "" || !courierIsBehind(courierVersion)) return null;
   return {
     level: "info",
     /* Both versions, named. A student can then tell at a glance whether they
