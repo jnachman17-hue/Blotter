@@ -226,3 +226,49 @@ maintainable, and they cost a student nothing if they never see them. Instead:
   from the current source. Same protection against drift, correct definition of drift.
 
 This must land before any student is given the file.
+
+---
+
+## Tested: the unverified-app warning does not appear on a university account (3 Sep 2026)
+
+Run by Jon on `jnachman@utexas.edu`, a Google Workspace for Education account,
+copying the sheet and running `Step 1: Set up this sheet`.
+
+**Result: no warning.** No "Google hasn't verified this app", no `Advanced`, no
+`Go to Blotter (unsafe)`. Straight to the ordinary consent screen — *"Blotter
+wants access to your Google Account"*, the account named, five checkboxes.
+
+This confirms the documented rule in Google's Apps Script client-verification
+guide: *"Verification isn't required for Google Apps Script projects whose owner
+and users belong to the same Google Workspace domain or customer."* A student who
+copies the sheet owns the copy and is also the one running it, so the exemption
+applies to them trivially. A personal `@gmail.com` account belongs to no domain,
+which is why the same install on Jon's personal account showed the full warning.
+
+**What this changes**
+
+- The warning is an artefact of testing on a personal account. It is not the
+  experience of the market Blotter sells to.
+- Paying for Google's verification was already established as no help here — the
+  copy running is the student's, not ours. This finding removes the remaining
+  reason to consider it, and with it the argument for the Marketplace add-on
+  route, for Nylas, and for anything else bought to remove a screen most users
+  never reach.
+- `/setup` was built around the warning. Step 3 becomes conditional.
+
+**What it does not establish**
+
+- One university. Each Workspace domain sets its own policy, and some block
+  third-party Gmail access outright. UT does not, and UT does not block Apps
+  Script either — both ran. Other schools are unknown until tested.
+- Students on personal Gmail still meet the full warning. The page must keep
+  explaining it, just not lead with it.
+
+**Incidental**
+
+The first copy into the UT account arrived **without the bound code** — the
+Apps Script editor opened an empty `myFunction()`, and no Blotter menu appeared,
+despite the copy dialog showing the yellow "Apps Script file and functionality
+will also be copied" note. Making the copy a second time worked. Cause unknown,
+not reproduced. It is silent and it looks exactly like a broken install, so
+`/setup` step 2 now says to copy again if the menu is missing.
