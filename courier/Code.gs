@@ -1080,12 +1080,15 @@ function setupSheet() {
   // other position on the sheet is derived from where the headers end up.
   ensureBannerRow_(contacts);
   ensureBannerRow_(found);
-  writeBanner_(contacts, null, restingBanner_());
 
   // The look, and the document that explains it. Both are rebuilt every time
   // Step 1 runs, which is also how a sheet made before an update catches up.
   formatContacts_(contacts);
   formatFound_(found);
+
+  // After formatting, never before: formatContacts_ sets the frozen columns,
+  // and the banner has to be merged around wherever that boundary lands.
+  writeBanner_(contacts, null, restingBanner_());
   formatSettings_(settings);
   buildInstructions_(ss);
 
@@ -1251,6 +1254,30 @@ function bannerRange_(sheet) {
 }
 
 /**
+ * The banner is merged in two pieces, not one, and it has to be.
+ *
+ * **Sheets refuses to merge across a frozen column boundary** — "You can't
+ * merge frozen and non-frozen columns" — and the Name column is frozen so a
+ * student can scroll right without losing track of who a row is about.
+ *
+ * So the frozen columns get one merge and the rest get another, styled
+ * identically so it reads as a single bar. The message goes in the wider
+ * right-hand piece; the frozen piece carries the word `Blotter`, which is what
+ * stays on screen if the student scrolls sideways.
+ */
+function bannerPieces_(sheet) {
+  if (headerRow_(sheet) < 2) return null;
+  var lastCol = Math.max(1, sheet.getLastColumn());
+  var frozen = Math.min(sheet.getFrozenColumns(), lastCol);
+  if (frozen < 1) return { label: null, message: sheet.getRange(1, 1, 1, lastCol) };
+  if (frozen >= lastCol) return { label: null, message: sheet.getRange(1, 1, 1, lastCol) };
+  return {
+    label: sheet.getRange(1, 1, 1, frozen),
+    message: sheet.getRange(1, frozen + 1, 1, lastCol - frozen)
+  };
+}
+
+/**
  * Make room for the banner. Returns true if a row was inserted.
  *
  * Only ever inserts when the headers are still on row 1, so running setup
@@ -1271,30 +1298,32 @@ function ensureBannerRow_(sheet) {
  * (D27), and this is the only cell it touches.
  */
 function writeBanner_(sheet, notice, restingText) {
-  var range = bannerRange_(sheet);
-  if (!range) return false;
-
-  range.breakApart();
-  range = bannerRange_(sheet);
-  range.merge();
+  var pieces = bannerPieces_(sheet);
+  if (!pieces) return false;
 
   var style = notice && NOTICE_STYLES[notice.level] ? NOTICE_STYLES[notice.level] : null;
-  var text;
-  if (notice && notice.text) {
-    text = notice.text + (notice.url ? '   ' + notice.url : '');
-  } else {
-    text = restingText || 'Blotter';
-  }
+  var bg = style ? style.bg : '#ffffff';
+  var fg = style ? style.fg : INK_MUTED;
+  var text = notice && notice.text
+    ? notice.text + (notice.url ? '   ' + notice.url : '')
+    : (restingText || 'Blotter');
 
-  range.setValue(text)
-    .setFontFamily('Arial')
-    .setFontSize(11)
-    .setFontWeight(style ? 'bold' : 'normal')
-    .setFontColor(style ? style.fg : INK_MUTED)
-    .setBackground(style ? style.bg : '#ffffff')
-    .setHorizontalAlignment('left')
-    .setVerticalAlignment('middle')
-    .setWrap(false);
+  var dress = function (range, value, bold) {
+    range.breakApart();
+    range.merge();
+    range.setValue(value)
+      .setFontFamily('Arial')
+      .setFontSize(11)
+      .setFontWeight(bold ? 'bold' : 'normal')
+      .setFontColor(fg)
+      .setBackground(bg)
+      .setHorizontalAlignment('left')
+      .setVerticalAlignment('middle')
+      .setWrap(false);
+  };
+
+  if (pieces.label) dress(pieces.label, 'Blotter', true);
+  dress(pieces.message, text, !!style);
   sheet.setRowHeight(1, style ? 34 : 26);
   return true;
 }
