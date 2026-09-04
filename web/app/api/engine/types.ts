@@ -22,6 +22,25 @@ export type ContractVersion = 4;
 
 export interface EngineRequest {
   version: ContractVersion;
+  /**
+   * What the student pasted into `Settings → Blotter key`, or empty.
+   *
+   * Sent on every request from the day the field exists, long before anything
+   * reads it. That is the point: switching billing on later must not mean
+   * asking everybody who already has a copy to paste a new script.
+   */
+  key: string;
+  /**
+   * A stable pseudonym for the Google account the script runs as, or `null`.
+   *
+   * **`null` when the courier could not read one, and never a hash of nothing**
+   * (amendment A3). Hashing an empty string would give every such install the
+   * same identity, and one key would unlock all of them. Absence is a state;
+   * it must not be a value.
+   */
+  account: string | null;
+  /** Which build of the script is asking, so an old one can be told (§4.2). */
+  courier_version: string;
   /** From the courier, never from the server's clock. ISO 8601 with timezone. */
   now: string;
   student: { addresses: string[] };
@@ -190,6 +209,16 @@ export interface EngineResponse {
   found: FoundPerson[];
   /** Things the student should know that are not errors. */
   warnings: string[];
+  /**
+   * A short label for the current design. The courier keeps the last one it
+   * applied and compares; **same means do nothing at all.**
+   *
+   * That comparison is what makes server-side design affordable. A full
+   * re-format is 125+ round trips to Google and ten to fifteen seconds, on a
+   * run budget already at 85% — so it must never happen on an ordinary pass,
+   * only when this string changes.
+   */
+  design_version?: string;
   /**
    * A message for the student, or absent. The engine emits none today — it is
    * stateless and has nothing to base one on — and the field exists so that

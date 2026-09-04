@@ -166,6 +166,9 @@ answer is No.
 | `closed` | Read from the student's `Closed` column |
 | `is_outbound` | Courier sets this: true when `from` is one of `student.addresses` |
 | `failed_recipients` | **Version 4.** The addresses a delivery-failure notice names. Empty on every other message. Replaces `body`, which no longer exists |
+| `key` | What the student pasted into `Settings → Blotter key`, or empty. Read by nothing until billing is switched on |
+| `account` | A pseudonym for the Google account the script runs as. **Omitted entirely when there is none — never a hash of an empty string**, because that would be one identity shared by every install that could not read an address |
+| `courier_version` | Which build of the script is asking, so an old one can be told there is a newer one |
 | `ignored` | Addresses the student has already rejected in "found these". Never suggested again |
 | `version` | `4`, and only `4`. Anything else is refused with a 400 naming the fix |
 | any address | May be bare (`a@b.com`) or named (`A B <a@b.com>`). Matching uses the address and ignores capitalisation; the name is only ever used to name a found person |
@@ -242,6 +245,7 @@ shows lying — all of that stays on the server.
 | `found[].name` | The display name the header carried, or **`null`**. **Never derived from the address** (rules §8, decision D4) — a real name or nothing |
 | `warnings` | Things the student should know but that are not errors — an event that matched nobody, an address seen in two capitalisations |
 | `notice` | **Version 4.** A message from the server to the student, or absent. `level` is `info`, `warning` or `blocked`; `url` may be `null` |
+| `design_version` | A short label for the current design. **The courier keeps the last one it applied and does nothing while they match** — a full re-format is ten to fifteen seconds and must never run on an ordinary pass. Different, and it fetches `GET /api/design` |
 
 ### Where `days` and `attempts` carry a number (version 3, D24)
 
@@ -288,6 +292,38 @@ The courier may write a quiet timestamp of its last successful run. Nothing else
 
 ---
 
+## Adding a field is not a version change
+
+**This is the rule that decides what every future idea costs**, and it is worth
+more than any single field below.
+
+**Both sides ignore what they do not recognise.** The server reads the fields it
+knows from a request and leaves the rest alone; the courier reads the fields it
+knows from a response and leaves the rest alone. Neither rejects a stranger.
+
+**So most additions need no version bump and nobody re-pastes anything:**
+
+| Change | Version bump? | Why |
+|---|---|---|
+| **Add a request field** | **No** | An older server ignores it |
+| **Add a response field** | **No** | An older courier ignores it |
+| **Stop sending an optional field** | **No** | Absent already had to mean something |
+| **Remove a field something reads** | **Yes** | A reader would silently get nothing |
+| **Change what a field means** | **Yes** | The worst kind, because nothing looks wrong |
+| **Change a type** — a number that may now be null | **Yes** | Version 3 did exactly this |
+| **Refuse something previously accepted** | **Yes** | Version 4 did exactly this, for `body` |
+
+**The test to apply is not "is this new" but "can an old reader be wrong
+without noticing".** If it can, bump. If it can only be *unaware*, do not.
+
+**Version 4 gained three request fields and one response field under this rule
+and stayed at 4:** `key`, `account` and `courier_version` going out, and
+`design_version` coming back. A student who never updates their script keeps
+working exactly as before — they simply do not get the new things. **That is
+what this rule buys, and it is why it was written down before it was needed.**
+
+---
+
 ## Changing this file
 
 Any change is a change to two codebases at once. **It requires Jon's ruling and
@@ -315,6 +351,21 @@ failure rule — the notice cell only — and it is commented as one in `Code.gs
 **The engine emits no notice today.** It is stateless and has nothing to base
 one on. The pipe is built now because the moment a hundred students hold a
 copy, adding it means asking a hundred people to re-paste a script.
+
+---
+
+## The other endpoints, and why each is separate
+
+| Route | For | Why not part of `/api/engine` |
+|---|---|---|
+| `POST /api/telemetry` | Counting installs; binding a key to an account | **Writes.** The engine must not, or "the engine stores nothing" stops being true |
+| `GET /api/design` | Colours, widths, copy | Changes monthly, not per run. Carrying it every run would put a payload on the tightest budget in the system |
+| `GET /api/entitlement` | What the enforcement switch is set to | So it can be checked with `curl` rather than believed |
+| `GET /api/script` | The current script | So the update notice has somewhere to point that never goes stale |
+
+**Binding a key to an account lives on telemetry, not the engine, and that is
+deliberate.** Binding is a write. The engine reads whether a key is valid and
+writes nothing at all, which is what keeps its claim checkable.
 
 ---
 

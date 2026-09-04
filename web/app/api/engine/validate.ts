@@ -19,6 +19,13 @@ import type { ContactIn, EngineRequest, EventIn, MessageIn, ThreadIn } from "./t
  *
  * Everything that carries meaning — the version, `now`, timestamps, `row`,
  * `is_outbound`, `closed`, addresses — must be present and well-formed.
+ *
+ * **Fields this file does not recognise are ignored, never rejected.** That is
+ * deliberate and it is what makes the next change cheap: a courier can start
+ * sending something new before any server knows what it is, and an old courier
+ * can leave out something new without failing. The only field ever rejected by
+ * name is `body`, and that is a promise being kept rather than a shape being
+ * policed.
  */
 
 /** ISO 8601 with an explicit timezone. Always. No exceptions (the contract's words). */
@@ -171,6 +178,14 @@ export function parseEngineRequest(body: unknown): EngineRequest {
 
   return {
     version: body.version,
+    /* Optional on the wire and required in the type: an older courier that
+       predates these simply does not send them, and that is not an error.
+       See "adding a field is not a version change" in `05-CONTRACT.md`. */
+    key: optionalStr(body.key, "key").trim(),
+    account: typeof body.account === "string" && body.account.trim().length > 0
+      ? body.account.trim()
+      : null,
+    courier_version: optionalStr(body.courier_version, "courier_version").trim(),
     now,
     student: { addresses },
     contacts: list(body.contacts, "contacts", contact),

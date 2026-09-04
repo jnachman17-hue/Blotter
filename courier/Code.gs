@@ -167,6 +167,26 @@ var SETTING_INSTALL_ID = 'Your Blotter ID (quote this if you need help)';
 // looking at the tracker, not hunting through a marketing site for a contact
 // form.
 var SETTING_HELP = 'Help';
+
+// Where a paid key goes, empty and harmless from the day it exists. Blotter is
+// free; the reason this is here now is that adding it later means asking
+// everybody who already holds a copy to paste a new script, and that bill only
+// grows. Sent on every run, read by nothing until enforcement is switched on.
+var SETTING_KEY = 'Blotter key';
+
+// Salt for the account pseudonym. It is in this file and therefore readable, so
+// be accurate about what it buys: addresses stay out of the database and casual
+// inspection reveals nothing, but a determined party holding both the table and
+// this salt could test a guessed address against it. It is a PSEUDONYM, not
+// anonymisation, and `/privacy` says exactly that rather than something
+// comfier.
+var ACCOUNT_SALT = 'blotter-account-v1';
+
+// What the courier last applied, so a design that has not changed costs one
+// string comparison instead of a ten-second re-format.
+var PROP_DESIGN_VERSION = 'blotterDesignVersion';
+var PROP_DESIGN_PAYLOAD = 'blotterDesignPayload';
+var DESIGN_URL_DEFAULT = 'https://blotterib.com/api/design';
 var HELP_EMAIL = 'jnachman17@gmail.com';
 var HELP_URL = 'https://blotterib.com/help';
 
@@ -263,6 +283,38 @@ var THEMES = {
 
 function theme_() { return THEMES[THEME] || THEMES.zoned; }
 
+/* The four readers below are the whole seam. Everything that draws the sheet
+   goes through them, so a server design reaches every one of them at once and
+   the built-in tables stay as the fallback when nothing has been sent. */
+
+/** The colours for a status chip. */
+function statusStyle_(status) {
+  var sent = design_().status_style;
+  if (sent && sent[status]) return sent[status];
+  return STATUS_STYLE[status] || null;
+}
+
+/** A column's width on a tab, or null to leave it alone. */
+function columnWidth_(tab, heading) {
+  var sent = design_().widths;
+  if (sent && sent[tab] && sent[tab][heading] !== undefined) return sent[tab][heading];
+  var defaults = tab === 'found' ? FOUND_WIDTHS : CONTACTS_WIDTHS;
+  return defaults[heading] === undefined ? null : defaults[heading];
+}
+
+/** How a date column reads. */
+function numberFormat_(heading, fallback) {
+  var sent = design_().number_formats;
+  if (sent && sent[heading]) return sent[heading];
+  return fallback;
+}
+
+/** The rows of the `Start here` tab. */
+function instructionRowsInForce_() {
+  var sent = design_().instructions;
+  return (sent && sent.length) ? sent : instructionRows_();
+}
+
 /**
  * The divider weight as a real BorderStyle.
  *
@@ -347,7 +399,8 @@ function formatContacts_(sheet) {
   var col = {};
   manualColumns_().concat(BLOTTER_COLUMNS).concat([COL_CLOSED]).forEach(function (h) {
     col[h] = findColumn_(sheet, h);
-    if (col[h] > 0 && CONTACTS_WIDTHS[h]) sheet.setColumnWidth(col[h], CONTACTS_WIDTHS[h]);
+    var w = columnWidth_('contacts', h);
+    if (col[h] > 0 && w) sheet.setColumnWidth(col[h], w);
   });
 
   var lastCol = sheet.getLastColumn();
@@ -391,12 +444,13 @@ function formatContacts_(sheet) {
     if (col[h] > 0) sheet.getRange(first, col[h], body, 1).setHorizontalAlignment('right');
   });
   ['Last contact', 'Last call'].forEach(function (h) {
-    if (col[h] > 0) sheet.getRange(first, col[h], body, 1).setNumberFormat('m/d/yy');
+    if (col[h] > 0) sheet.getRange(first, col[h], body, 1).setNumberFormat(numberFormat_(h, 'm/d/yy'));
   });
   // `1/17 @ 2:00 PM`, exactly as ENGINE-RULES section 9 draws it. Before this,
   // the cell showed `2026-09-03T14:00:00-07:00`.
   if (col['Next call'] > 0) {
-    sheet.getRange(first, col['Next call'], body, 1).setNumberFormat('m/d "@" h:mm AM/PM');
+    sheet.getRange(first, col['Next call'], body, 1)
+      .setNumberFormat(numberFormat_('Next call', 'm/d "@" h:mm AM/PM'));
   }
   if (col[COL_CLOSED] > 0) {
     sheet.getRange(hRow, col[COL_CLOSED], maxRows - hRow + 1, 1).setHorizontalAlignment('center');
@@ -456,7 +510,7 @@ function applyStatusColours_(sheet, statusCol, maxRows, first) {
   });
 
   VALID_STATUSES.forEach(function (status) {
-    var style = STATUS_STYLE[status];
+    var style = statusStyle_(status);
     if (!style) return;
     keep.push(SpreadsheetApp.newConditionalFormatRule()
       .whenTextEqualTo(status)
@@ -546,7 +600,8 @@ function formatFound_(sheet) {
 
   FOUND_HEADERS.forEach(function (h) {
     var c = findColumn_(sheet, h);
-    if (c > 0 && FOUND_WIDTHS[h]) sheet.setColumnWidth(c, FOUND_WIDTHS[h]);
+    var fw = columnWidth_('found', h);
+    if (c > 0 && fw) sheet.setColumnWidth(c, fw);
   });
 
   sheet.getRange(1, 1, maxRows, lastCol).setFontFamily('Arial').setFontSize(10).setVerticalAlignment('middle');
@@ -732,7 +787,7 @@ function buildInstructions_(ss) {
   sheet.clear();
   sheet.clearFormats();
 
-  var rows = instructionRows_();
+  var rows = instructionRowsInForce_();
   var values = rows.map(function (r) { return ['', r.a, r.b]; });
   sheet.getRange(1, 1, values.length, 3).setValues(values);
 
@@ -777,7 +832,7 @@ function formatInstructions_(sheet, rows) {
     } else if (r.k === 'status') {
       // A live chip in its real colours, so the legend can never drift from
       // the sheet it explains.
-      var style = STATUS_STYLE[r.a] || { bg: '#f8f9fa', fg: INK_MUTED };
+      var style = statusStyle_(r.a) || { bg: '#f8f9fa', fg: INK_MUTED };
       label.setValue(r.a).setBackground(style.bg).setFontColor(style.fg)
         .setFontSize(10).setHorizontalAlignment('center').setFontWeight('bold');
       text.setValue(r.b).setFontSize(11).setFontColor(INK).setWrap(true);
@@ -858,6 +913,8 @@ function titleRank_(title) {
  * second on the grounds that a thank-you is outstanding. Jon preferred his.
  */
 function stateRank_(status) {
+  var sent = design_().state_rank;
+  if (sent && sent[status] !== undefined) return sent[status];
   var order = {
     'Replied': 10,          // they wrote last
     'Sent': 20,             // you wrote last
@@ -1045,6 +1102,8 @@ function onOpen() {
     .addItem('Start automatic updates (every 15 min)', 'startAutomaticUpdates')
     .addItem('Stop automatic updates', 'stopAutomaticUpdates')
     .addSeparator()
+    .addItem('Check this sheet (diagnostics)', 'checkThisSheet')
+    .addSeparator()
     .addSubMenu(SpreadsheetApp.getUi().createMenu('Sort contacts')
       .addItem('By what they are waiting on', 'sortContactsByState')
       .addItem('By title (analyst first)', 'sortContactsByTitle')
@@ -1058,6 +1117,23 @@ function onOpen() {
 // Setup — builds the template tabs. Idempotent: it only adds what is missing
 // and never overwrites anything already in the sheet.
 // ---------------------------------------------------------------------------
+
+/**
+ * Re-paint the parts a server design can reach.
+ *
+ * Deliberately not `setupSheet()`. Setup also creates tabs, adds settings rows
+ * and rewrites checkbox validation — far more than a colour change asked for,
+ * and running all of it because a hex value moved would be using a sledgehammer
+ * every time somebody retunes a shade.
+ */
+function applyDesign_(ss) {
+  resetHeaderRowCache_();
+  var contacts = ss.getSheetByName(TAB_CONTACTS);
+  if (contacts) formatContacts_(contacts);
+  var found = ss.getSheetByName(TAB_FOUND);
+  if (found) formatFound_(found);
+  buildInstructions_(ss);
+}
 
 function setupSheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -1130,6 +1206,9 @@ function setupSheet() {
   ensureSettingRow_(settings, SETTING_RUN_TOOK, '');
   ensureSettingRow_(settings, SETTING_RUN_FETCHED, '');
   ensureSettingRow_(settings, SETTING_GMAIL_CALLS, '');
+  ensureSettingRow_(settings, SETTING_KEY, '',
+    'Blotter is free — leave this empty. If that ever changes you will be told ' +
+    'here in the sheet, and this is where the key would go.');
   ensureSettingRow_(settings, SETTING_HELP, HELP_URL + '  ·  ' + HELP_EMAIL,
     'Stuck, or something looks wrong? Start here. Quote your Blotter ID below.');
   ensureSettingRow_(settings, SETTING_INSTALL_ID, '',
@@ -1188,7 +1267,7 @@ function expectedSetup_() {
     settings: [SETTING_ADDRESSES, SETTING_SERVER, SETTING_LAST_RUN, SETTING_WARNINGS,
                SETTING_CAL_BACK, SETTING_CAL_FORWARD, SETTING_MAIL_BACK,
                SETTING_RUN_TOOK, SETTING_RUN_FETCHED, SETTING_GMAIL_CALLS,
-               SETTING_HELP, SETTING_INSTALL_ID, SETTING_PRETEND_TODAY]
+               SETTING_KEY, SETTING_HELP, SETTING_INSTALL_ID, SETTING_PRETEND_TODAY]
   };
 }
 
@@ -1407,6 +1486,189 @@ function noticeFrom_(response) {
   };
 }
 
+/* --------------------------------------------------------------------------
+ * The design, as data
+ *
+ * Colours, widths and words used to live only in this file, so changing one
+ * meant asking every student holding a copy to paste a new script. Now the
+ * server can send them — but only when they have actually changed, because a
+ * full re-format is 125+ round trips and ten to fifteen seconds, on a run
+ * budget already at 85%. It must never happen on an ordinary pass.
+ * -------------------------------------------------------------------------- */
+
+/** A colour, or nothing. Anything that is not plainly a hex colour is dropped. */
+function safeColour_(value) {
+  var text = String(value === null || value === undefined ? '' : value).trim();
+  return /^#[0-9a-fA-F]{6}$/.test(text) ? text : null;
+}
+
+/** A whole number inside sane bounds, or null. A width of 90,000 is not a width. */
+function safeNumber_(value, low, high) {
+  var n = Number(value);
+  if (!isFinite(n)) return null;
+  n = Math.round(n);
+  return n >= low && n <= high ? n : null;
+}
+
+/**
+ * A design payload reduced to what the courier is willing to act on.
+ *
+ * **An allow-list, and every value is checked rather than trusted.** A courier
+ * that renders whatever it is told is a courier that can be told to write
+ * anything into somebody's spreadsheet, so: colours must look like colours,
+ * numbers are bounded, strings go through `safeCell_` so a leading `=` can
+ * never become a live formula, and the payload is capped.
+ *
+ * **It cannot say which columns are Blotter's.** The headings are the contract
+ * between the student's half of the sheet and Blotter's — a payload able to
+ * rename them could point Blotter at a column of theirs and overwrite it. Only
+ * headings this script already knows are even looked up.
+ */
+function sanitiseDesign_(raw) {
+  if (!raw || typeof raw !== 'object') return null;
+  var out = { version: String(raw.version || '').slice(0, 64) };
+
+  if (raw.status_style && typeof raw.status_style === 'object') {
+    var styles = {};
+    VALID_STATUSES.forEach(function (status) {
+      var given = raw.status_style[status];
+      if (!given) return;
+      var bg = safeColour_(given.bg);
+      var fg = safeColour_(given.fg);
+      if (bg && fg) styles[status] = { bg: bg, fg: fg };
+    });
+    if (Object.keys(styles).length > 0) out.status_style = styles;
+  }
+
+  var knownWidths = function (given, defaults) {
+    if (!given || typeof given !== 'object') return null;
+    var widths = {};
+    Object.keys(defaults).forEach(function (heading) {
+      var w = safeNumber_(given[heading], 24, 600);
+      if (w !== null) widths[heading] = w;
+    });
+    return Object.keys(widths).length > 0 ? widths : null;
+  };
+  var contacts = raw.widths ? knownWidths(raw.widths.contacts, CONTACTS_WIDTHS) : null;
+  var found = raw.widths ? knownWidths(raw.widths.found, FOUND_WIDTHS) : null;
+  if (contacts || found) out.widths = { contacts: contacts, found: found };
+
+  if (raw.number_formats && typeof raw.number_formats === 'object') {
+    var formats = {};
+    ['Last contact', 'Last call', 'Next call'].forEach(function (heading) {
+      var f = raw.number_formats[heading];
+      if (typeof f === 'string' && f.length > 0 && f.length <= 64) formats[heading] = f;
+    });
+    if (Object.keys(formats).length > 0) out.number_formats = formats;
+  }
+
+  if (raw.state_rank && typeof raw.state_rank === 'object') {
+    var ranks = {};
+    VALID_STATUSES.forEach(function (status) {
+      var r = safeNumber_(raw.state_rank[status], 0, 999);
+      if (r !== null) ranks[status] = r;
+    });
+    if (Object.keys(ranks).length > 0) out.state_rank = ranks;
+  }
+
+  if (Object.prototype.toString.call(raw.instructions) === '[object Array]') {
+    var rows = [];
+    raw.instructions.slice(0, 200).forEach(function (r) {
+      if (!r || typeof r.kind !== 'string') return;
+      // A fixed vocabulary. The courier knows how to draw these and nothing
+      // else, so a new KIND of thing still needs a new script — new instances
+      // of a known kind are free, which is where all the leverage is.
+      if (INSTRUCTION_KINDS.indexOf(r.kind) === -1) return;
+      rows.push({
+        k: r.kind,
+        a: safeCell_(String(r.a === undefined ? '' : r.a).slice(0, 1000)),
+        b: safeCell_(String(r.b === undefined ? '' : r.b).slice(0, 1000))
+      });
+    });
+    if (rows.length > 0) out.instructions = rows;
+  }
+
+  return out;
+}
+
+/** Every row kind `formatInstructions_` knows how to draw. */
+var INSTRUCTION_KINDS = ['title', 'deck', 'h2', 'body', 'strong', 'note', 'warn',
+                         'step', 'status', 'slot', 'gap'];
+
+var designCache_ = null;
+
+/** The design in force: whatever the server last sent, else this script's own. */
+function design_() {
+  if (designCache_ !== null) return designCache_;
+  try {
+    var stored = PropertiesService.getScriptProperties().getProperty(PROP_DESIGN_PAYLOAD);
+    designCache_ = stored ? (JSON.parse(stored) || {}) : {};
+  } catch (e) {
+    designCache_ = {};   // unreadable is the same as absent: fall back to built-in
+  }
+  return designCache_;
+}
+
+/**
+ * Fetch and store a new design, but only when the server says it has changed.
+ *
+ * Returns true when something was applied, which is the caller's signal that
+ * the sheet needs re-formatting. **Any failure here is swallowed**: a design
+ * that cannot be fetched must never stop a student's tracker updating.
+ */
+function refreshDesign_(designVersion, url) {
+  if (!designVersion) return false;
+  var props = PropertiesService.getScriptProperties();
+  if (props.getProperty(PROP_DESIGN_VERSION) === designVersion) return false;
+
+  try {
+    var res = UrlFetchApp.fetch(url || DESIGN_URL_DEFAULT, {
+      method: 'get', muteHttpExceptions: true, followRedirects: true
+    });
+    if (res.getResponseCode() !== 200) return false;
+    var text = res.getContentText();
+    if (text.length > 200000) return false;         // a design is small; this is not
+    var clean = sanitiseDesign_(JSON.parse(text));
+    if (!clean) return false;
+    props.setProperty(PROP_DESIGN_PAYLOAD, JSON.stringify(clean));
+    props.setProperty(PROP_DESIGN_VERSION, designVersion);
+    designCache_ = clean;
+    return true;
+  } catch (e) {
+    return false;   // the tracker matters more than the paint
+  }
+}
+
+/**
+ * A stable pseudonym for the Google account this script runs as, or **null**.
+ *
+ * **Null when there is no address to hash, and that is the whole point**
+ * (amendment A3). `Session.getEffectiveUser().getEmail()` really can come back
+ * empty — `effectiveUserEmail_()` has carried a try/catch since the decline
+ * path was built because it happened. Hash an empty string and every install in
+ * that state shares one identity, and a single key would unlock all of them.
+ *
+ * **Absence is a state. It must never become a value.** The caller omits the
+ * field entirely rather than sending a hash of nothing.
+ *
+ * It is not the install id: a copied sheet mints a new install id, and copying
+ * is how Blotter is distributed, so a student taking an updated template would
+ * lose a subscription they were paying for. It is not the Settings addresses
+ * either — those are typed, and an identity you can edit is not an identity.
+ */
+function accountHash_() {
+  var email = String(effectiveUserEmail_() || '').trim().toLowerCase();
+  if (email === '') return null;
+  var bytes = Utilities.computeDigest(
+    Utilities.DigestAlgorithm.SHA_256, email + ACCOUNT_SALT, Utilities.Charset.UTF_8);
+  var hex = '';
+  for (var i = 0; i < bytes.length; i++) {
+    var b = (bytes[i] + 256) % 256;
+    hex += (b < 16 ? '0' : '') + b.toString(16);
+  }
+  return hex;
+}
+
 /**
  * This sheet's anonymous install id, minted once and kept forever.
  *
@@ -1596,6 +1858,53 @@ function metricsSuffix_() {
     (runMetrics_.searches + runMetrics_.threadFetches) + ' Gmail calls';
 }
 
+/**
+ * What Blotter can and cannot see about this sheet, in one dialog.
+ *
+ * **Written because of amendment A3, which cannot be settled by reasoning.**
+ * `Session.getEffectiveUser().getEmail()` can come back empty, and the whole
+ * account-identity design rests on it not doing so — but whether it is empty
+ * depends on the account type and the authorisation mode, which no amount of
+ * reading the code will tell you. It has to be run, on a consumer Gmail and on
+ * a `.edu`, by somebody at a keyboard.
+ *
+ * It reports whether an address was readable and never shows the address
+ * itself, so a screenshot of this dialog is safe to send to anyone.
+ */
+function checkThisSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var email = String(effectiveUserEmail_() || '');
+  var hash = accountHash_();
+  var gaps = missingSetup_(ss);
+
+  var lines = [
+    'Blotter ID:  ' + installId_(),
+    'Script version:  ' + COURIER_VERSION,
+    'Contract version:  ' + CONTRACT_VERSION,
+    '',
+    'Google account readable:  ' + (email === '' ? 'NO' : 'yes'),
+    'Account domain:  ' + (email.indexOf('@') === -1 ? '(none)' : email.split('@')[1]),
+    'Account identifier:  ' + (hash ? hash.slice(0, 12) + '…' : '(none — see below)'),
+    '',
+    'Time zone:  ' + studentTimeZone_(),
+    'Design applied:  ' +
+      (PropertiesService.getScriptProperties().getProperty(PROP_DESIGN_VERSION) || '(the built-in one)'),
+    'Setup:  ' + (gaps.length === 0 ? 'complete' : 'missing ' + gaps.join(', '))
+  ];
+
+  if (email === '') {
+    lines.push('');
+    lines.push('Google did not give this script an address for the account it runs ' +
+      'as. Everything still works — Blotter simply sends nothing rather than ' +
+      'sending a blank, which is deliberate. Please send this screenshot to ' +
+      HELP_EMAIL + '.');
+  }
+  lines.push('');
+  lines.push('Your email address is not shown here and is never sent anywhere.');
+
+  SpreadsheetApp.getUi().alert('Blotter — this sheet\n\n' + lines.join('\n'));
+}
+
 function startAutomaticUpdates() {
   deleteCourierTriggers_();
   ScriptApp.newTrigger('runCourier').timeBased().everyMinutes(15).create();
@@ -1649,6 +1958,11 @@ function courierPass_() {
     // --- Ask the server what it all means ---
     var request = {
       version: CONTRACT_VERSION,
+      // Sent from today, read by nothing until billing is switched on. An
+      // older server ignores fields it does not recognise, which is exactly
+      // why this costs no version bump and nobody has to re-paste.
+      key: settings.blotterKey,
+      courier_version: COURIER_VERSION,
       // The time machine (D17): only `now` moves. The Gmail search window and
       // the calendar fetch window above already ran on real time, deliberately
       // — the point is to age a real relationship, not to hide it.
@@ -1659,6 +1973,9 @@ function courierPass_() {
       events: events,
       ignored: foundState.ignoredEmails
     };
+    // Omitted entirely when there is nothing to hash. Never a hash of ''.
+    var account = accountHash_();
+    if (account) request.account = account;
     var response;
     try {
       response = postToServer_(settings.serverUrl, request);
@@ -1685,6 +2002,19 @@ function courierPass_() {
     var suggested = writeFoundSuggestions_(ss, sheetState, foundState, response.found || []);
     writeSetting_(ss, SETTING_LAST_RUN, new Date());
     writeSetting_(ss, SETTING_INSTALL_ID, installId_());
+
+    // The design gate. Same version as last time — the overwhelmingly common
+    // case — costs one string comparison and nothing else. Only a genuinely
+    // new design pays for the re-format, which is what keeps a ten-second job
+    // off an ordinary fifteen-minute pass.
+    if (refreshDesign_(response.design_version, settings.designUrl)) {
+      try {
+        applyDesign_(ss);
+      } catch (e) {
+        // A design that will not paint must never cost a student their run.
+        console.error('Design refresh failed, sheet left as it was: ' + e);
+      }
+    }
     // When the time machine is on, say so first and say so loudly. Every
     // number on this sheet is now an answer to a question about a day that is
     // not today, and nothing else about the sheet reveals that.
@@ -1797,7 +2127,9 @@ function readSettings_(ss) {
     // Blank switches counting off entirely, and that is a supported choice
     // rather than a bug: the run does not depend on it.
     telemetryUrl: String(byLabel[SETTING_TELEMETRY] === undefined ? TELEMETRY_URL_DEFAULT
-      : byLabel[SETTING_TELEMETRY]).trim()
+      : byLabel[SETTING_TELEMETRY]).trim(),
+    designUrl: DESIGN_URL_DEFAULT,
+    blotterKey: String(byLabel[SETTING_KEY] === undefined ? '' : byLabel[SETTING_KEY]).trim()
   };
 }
 
