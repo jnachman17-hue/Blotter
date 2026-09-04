@@ -161,11 +161,13 @@ function DesktopHead() {
 }
 
 export function Ownership({
-  variant = "swipe",
+  variant = "crop",
   zones = "banner-sub",
 }: {
-  /** Phone sheet treatment. `swipe` is ratified; the crop survives behind
-      `/review/sheet-mobile`, which is why the prop stays. */
+  /** Phone sheet treatment. `crop` from September 4, 2026, on Jon's ruling:
+      on a phone, drop columns rather than ask for a swipe. It keeps Name,
+      Status, Days and Attempts and names the rest beneath. `swipe` had been
+      the ratified default and survives for `/review/ownership`. */
   variant?: PhoneSheetVariant;
   /** Desktop zone-label treatment. `/review/ownership` compares all four. */
   zones?: ZoneTreatment;

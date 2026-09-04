@@ -274,7 +274,8 @@ been handed off. That chat previously owned the film/animation work.
       real widths, `bands` theme, no status chips, `Closed` checkbox, struck-through
       closed row. Renders as `01` now.
 - [x] **11.3 Mobile sheet** keeps Name, Status, Days, Attempts at 375px; the other
-      seven are named in a line beneath. The swipe treatment keeps all eleven.
+      seven are named in a line beneath. Made the default on 4 Sep (it had shipped
+      behind the swipe treatment); this supersedes the earlier `swipe` ratification.
 - [ ] **11.4 The new hero headline wraps to four lines at 1440px** inside
       `hero-top.tsx`'s `max-w-[620px]`, which was tuned to the old copy. Widen or
       shorten.
