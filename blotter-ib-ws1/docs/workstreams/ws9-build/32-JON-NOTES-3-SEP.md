@@ -266,7 +266,7 @@ been handed off. That chat previously owned the film/animation work.
 
 ## 11. From the animation agent's report (4 Sep, ~00:40)
 
-- [ ] **11.1 The hero animation itself is still stale.** What moves on the page
+- [x] **11.1 The hero animation itself is still stale.** (Rebuilt 4 Sep by a second agent; see §13.) What moves on the page
       is two static films, `web/public/film/blotter-film-web-hero.html` (desktop)
       and `blotter-film-c-4x5.html` (mobile). Both still draw `Next move`,
       `Call`, `LinkedIn`, `No reply` and `Call completed`, with no `Attempts`
@@ -315,3 +315,27 @@ been handed off. That chat previously owned the film/animation work.
       and drawn headline carried "Recruiting truly sucks" and are fixed. Its
       drawn sheet still shows the old columns (the agent's §11.5 note); redraw
       it against the eleven real columns when the films are done.
+
+---
+
+## 13. From the film agent's report (4 Sep, ~01:30)
+
+- [x] **13.1** Desktop hero film and mobile hero film rebuilt on the real eleven
+      columns, real widths, `bands` theme, filled status cells, the same three
+      events and seven contacts as the React sheet. Loop seams frame-identical.
+- [x] **13.2** The mobile film uses the four-column crop (Name, Status, Days,
+      Attempts) with the "Also in your tracker" line beneath.
+- [ ] **13.3 `blotter-film-a-4x5.html` is superseded, not rebuilt.** Its only
+      embed (the funnel's film step) was deleted; three of its five beats argue
+      the cases Jon cut (628 emails, Outstanding, the end card). Marked DO NOT
+      SHIP at the top of the file. Delete it, or re-author from a brief.
+- [ ] **13.4 `web/app/review/reddit-still/stills.ts` recommends Film A frames as
+      launch stills.** Those frames show `Next move`, `No reply`, `Call completed`.
+      Do not use them. Retime or remove that page.
+- [ ] **13.5 `social/` holds the master copies of all three films** plus
+      `FILM-C.md` and `FILM-WEB-HERO.md`. They now describe films that no longer
+      exist. Copy the rebuilt films back over the masters and rewrite the two specs.
+- [ ] **13.6 Row heights.** The films and `hero-visual.tsx` use a uniform 43.5px
+      row so the film and the reduced-motion still are pixel-interchangeable; the
+      real sheet is 30/26. `section-45/parts.tsx` keeps the real ratio. Jon to
+      rule whether the hero should too.
