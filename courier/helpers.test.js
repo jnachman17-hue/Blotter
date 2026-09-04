@@ -61,6 +61,7 @@ const EXPORTS = [
   'exceedsRecipientCap_', 'parsePretendText_', 'pretendNowIso_', 'declinedGuests_',
   'normaliseTyped_', 'unreadableAddressWarnings_', 'lastRowWithContact_',
   'failedRecipientsFrom_', 'isBounceSender_', 'installId_', 'telemetryPayload_', 'noticeFrom_',
+  'noticeStartColumn_',
   'MAX_THREAD_RECIPIENTS', 'NO_CLOCK', 'VALID_STATUSES', 'CONTRACT_VERSION',
   // The look. Colour tables and widths are data, so they are testable — and a
   // typo in a hex paints a cell black on somebody's real sheet.
@@ -588,6 +589,24 @@ eq('a blocked notice — the one that must survive a refused run',
   { level: 'blocked', text: 'Your trial has ended.', url: '' });
 eq('an unknown level falls back to info rather than vanishing',
   box.noticeFrom_({ notice: { level: 'catastrophe', text: 'Something.' } }).level, 'info');
+/* Where the notice sits, and why it is remembered rather than recomputed.
+   "Just past the last used column" reads well and is wrong: once a notice is
+   written there, getLastColumn() counts it, so the next run lands six columns
+   further right and abandons the old message. It would have crept across the
+   sheet one notice at a time, beginning with the first one that ever mattered. */
+eq('first placement: just past the last used column',
+  box.noticeStartColumn_(11, 11, 0), 12);
+eq('a student column past Closed is not landed on',
+  box.noticeStartColumn_(11, 14, 0), 15);
+eq('the second run does NOT drift right, even though the notice widened the sheet',
+  box.noticeStartColumn_(11, 17, 12), 12);
+eq('and the tenth run is still in the same place',
+  box.noticeStartColumn_(11, 17, 12), 12);
+eq('a remembered spot that is no longer past Closed is recomputed',
+  box.noticeStartColumn_(20, 20, 12), 21);
+eq('an empty sheet still lands past Closed',
+  box.noticeStartColumn_(11, 0, 0), 12);
+
 eq('text is trimmed',
   box.noticeFrom_({ notice: { level: 'info', text: '  padded  ' } }).text, 'padded');
 

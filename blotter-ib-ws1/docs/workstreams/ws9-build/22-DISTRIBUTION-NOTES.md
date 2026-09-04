@@ -201,7 +201,25 @@ is*. **If they ever diverge, the failure is benign** — the engine would
 classify a bounce with an empty failed list, which `bounceFor` already handles
 through its same-thread adjacency fallback. Worth knowing, not worth coupling.
 
-### 5.3 Nothing about the notice is exercised end to end yet
+### 5.3 The notice would have crept across the sheet, one notice at a time
+
+**Found after the fact, and it had never fired because no notice has ever been
+sent.** `noticeRange_` placed the cell at "just past the last used column",
+which reads well and is wrong: **once a notice is written there,
+`getLastColumn()` counts it.** The next run would land six columns further
+right, insert six more columns, and leave the previous message stranded behind
+it.
+
+It would have gone wrong on the **first real notice**, which is the one that
+matters most — the billing message that must work. Now the column is
+remembered in a script property and reused while it is still past `Closed`,
+and six tests pin that a second, third and tenth run all stay put.
+
+**The general shape is worth keeping:** a position derived from "the end of
+what exists" is unstable the moment the thing being placed becomes part of what
+exists.
+
+### 5.4 Nothing about the notice is exercised end to end yet
 
 The courier's rendering is unit-tested for every level including empty, and the
 refused-run path is wired and commented. **But no server has ever sent one**,
@@ -209,6 +227,23 @@ because the engine has nothing to base one on. The first real test is the first
 time something wants to say something.
 
 ---
+
+### 5.5 The run got slower and it is not yet explained
+
+Jon's live run reported **68 seconds**, against 44 measured after the calendar
+fix on September 2. **The budget is roughly 82 seconds** (`11-COURIER-NOTES.md`
+§3), so it is inside it — with less headroom than before.
+
+**No cause is claimed.** Three things changed in between and only one is mine:
+the whole UI build landed (a different chat), the sheet now has 67 contacts,
+and this build removed `getPlainBody()` from every non-bounce message — which
+should have made it **faster**, not slower. A single measurement is not a
+trend.
+
+**Worth watching rather than chasing.** The number to read is
+`Settings → Last run took` over several runs; if it holds above 70, the next
+thing to look at is the per-run cost the UI build added to the write phase,
+since that is the part that grew.
 
 ## 6. What the next chat must not trip over
 
@@ -222,8 +257,10 @@ time something wants to say something.
   Adding a field to either is the moment to stop and ask whether it belongs.
 - **The notice cell is the one thing a failed run may write.** Nothing else may
   join it there without re-opening the write-nothing-on-failure rule.
-- **The notice lives past the last used column, not at a fixed offset.** A
-  student's own columns move it; hardcoding a position will land on one.
+- **The notice's column is remembered, not recomputed.** Deriving it from
+  `getLastColumn()` is what made it creep, because the notice becomes part of
+  what that measures. A student's own columns still push the *first* placement
+  along; hardcoding an offset would land on one.
 - **Do not add a banner row above the headers.** It moves every data row down
   one and the row number is the contract's join key in eleven places.
 - **`build_fixtures.py` now mirrors the courier's extraction.** If one changes,

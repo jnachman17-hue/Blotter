@@ -146,6 +146,14 @@ var PROP_LAST_WORKED_MS = 'blotterLastWorkedMs';
 // It answers one question and no others: how many separate sheets are running.
 var PROP_INSTALL_ID = 'blotterInstallId';
 
+// Where the notice was put. Remembered, because the obvious way to find the
+// spot — "just past the last used column" — moves the moment a notice is
+// written into it: getLastColumn() then counts the notice itself, the next run
+// lands six columns further right, and the old message is left behind. It
+// would have crept across the sheet one notice at a time, starting with the
+// first one that ever mattered.
+var PROP_NOTICE_COL = 'blotterNoticeCol';
+
 // Telemetry goes to its OWN endpoint, and that separation is the point rather
 // than a preference. The engine has no database, no logging and no file
 // writes, so "the engine stores nothing" is literally true — and it can be
@@ -1128,9 +1136,20 @@ function prepareForHandover() {
  * fixed offset, because a student may have added their own columns after it —
  * `findColumn_` locates everything by header text precisely so they can.
  */
+function noticeStartColumn_(closedCol, lastColumn, stored) {
+  // A remembered spot is reused as long as it is still past `Closed`, so the
+  // notice stays where the student last saw it. Only the first placement — or
+  // one invalidated by the sheet's columns changing — is computed.
+  if (stored && stored > closedCol) return stored;
+  return Math.max(closedCol, lastColumn) + 1;
+}
+
 function noticeRange_(sheet) {
+  var props = PropertiesService.getScriptProperties();
   var closedCol = findColumn_(sheet, COL_CLOSED);
-  var start = Math.max(closedCol, sheet.getLastColumn()) + 1;
+  var stored = Number(props.getProperty(PROP_NOTICE_COL) || 0);
+  var start = noticeStartColumn_(closedCol, sheet.getLastColumn(), stored);
+  if (start !== stored) props.setProperty(PROP_NOTICE_COL, String(start));
   if (start + NOTICE_WIDTH - 1 > sheet.getMaxColumns()) {
     sheet.insertColumnsAfter(sheet.getMaxColumns(),
       start + NOTICE_WIDTH - 1 - sheet.getMaxColumns());
