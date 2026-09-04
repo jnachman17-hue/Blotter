@@ -30,9 +30,9 @@ import { ImageResponse } from "next/og";
  *
  * The fix is not to shrink the eight-column sheet. It is the crop Film C
  * ratified for exactly this constraint: `FILM-C.md` drops to four columns
- * because eight put the type under 6px on a phone. `Name`, `Status`,
- * `Next move`, `Days` is the set that survives, and it is the set that carries
- * the argument — a name you own beside three fields that maintain themselves.
+ * because eleven put the type under 6px on a phone. `Name`, `Status`, `Days`,
+ * `Attempts` is the set that survives, and it is the set that carries the
+ * argument: a name you own beside three fields that maintain themselves.
  *
  * So this card is the hero, compressed: brand, headline, and the tracker
  * bleeding off the bottom edge. The bleed is deliberate. A sheet that runs past
@@ -83,16 +83,27 @@ const MAINTAINED_FILL = "#fdfaf2";
 const SHEET_GRID = "#e8eaed";
 const SHEET_BORDER = "#dadce0";
 
-/** The four ratified contacts the crop shows, in `sheet-data.ts` order. */
+/*
+ * The five contacts, in the state the hero films leave them.
+ *
+ * Rebuilt September 4, 2026. This card was the last public surface still
+ * drawing a product that does not exist: a `Next move` column, and `Call
+ * completed` and `No reply` in the status cell, neither of which has ever been
+ * one of the eight statuses. It is what a banker sees when the link is pasted
+ * into Slack or iMessage, so it was also the worst place for it.
+ *
+ * Columns are the phone crop, which is the ratified way to show this sheet in
+ * a space too small for eleven: Name, Status, Days, Attempts.
+ */
 const ROWS = [
-  { name: "Jamie Diamond", status: "Replied", bg: "#d7e7fb", fg: "#1a56a8", next: "Reply to Jamie", days: "0" },
-  { name: "David Salmon", status: "Call scheduled", bg: "#e5ddf7", fg: "#5b3fa8", next: "Attend coffee chat", days: "1" },
-  { name: "Ken Molise", status: "Call completed", bg: "#d7f0dd", fg: "#1e6b34", next: "Send thank-you", days: "0" },
-  { name: "Larry Sync", status: "No reply", bg: "#fbeacb", fg: "#8a5a00", next: "Bump thread", days: "5" },
-  { name: "Jerome Bowel", status: "Sent", bg: "#e8eaed", fg: "#5f6368", next: "", days: "0" },
+  { name: "Jamie Diamond", status: "Replied", bg: "#d7e7fb", fg: "#1a56a8", days: "0", attempts: "—" },
+  { name: "Jerome Bowel", status: "Sent", bg: "#dfe3e8", fg: "#3c4043", days: "3", attempts: "1" },
+  { name: "Larry Sync", status: "Sent", bg: "#dfe3e8", fg: "#3c4043", days: "0", attempts: "2" },
+  { name: "Ken Molise", status: "Call done", bg: "#d7f0dd", fg: "#1e6b34", days: "1", attempts: "—" },
+  { name: "David Salmon", status: "Call scheduled", bg: "#e5ddf7", fg: "#5b3fa8", days: "—", attempts: "—" },
 ];
 
-const COL = { name: 300, status: 250, next: 340 };
+const COL = { name: 360, status: 260, days: 150 };
 const ROW_H = 52;
 
 async function font(file: string) {
@@ -208,8 +219,8 @@ export default async function Image() {
             <Cell w={COL.name} bg={MANUAL_100} bold>Name</Cell>
             <div style={{ display: "flex", flexGrow: 1, borderLeft: `3px solid ${BLOTTER_400}` }}>
               <Cell w={COL.status} bg={BLOTTER_100} bold>Status</Cell>
-              <Cell w={COL.next} bg={BLOTTER_100} bold>Next move</Cell>
-              <Cell bg={BLOTTER_100} bold right grow>Days</Cell>
+              <Cell w={COL.days} bg={BLOTTER_100} bold right>Days</Cell>
+              <Cell bg={BLOTTER_100} bold right grow>Attempts</Cell>
             </div>
           </div>
 
@@ -223,17 +234,17 @@ export default async function Image() {
                     width: COL.status,
                     height: ROW_H,
                     alignItems: "center",
-                    padding: "0 18px",
                     background: MAINTAINED_FILL,
                     borderRight: `1px solid ${SHEET_GRID}`,
                   }}
                 >
-                  <div style={{ display: "flex", alignItems: "center", height: 32, padding: "0 14px", borderRadius: 16, background: r.bg, fontFamily: "Body", fontSize: 19, color: r.fg }}>
+                  {/* A filled cell, not a chip. The sheet has never drawn a pill. */}
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: ROW_H, background: r.bg, fontFamily: "Body", fontSize: 19, color: r.fg }}>
                     {r.status}
                   </div>
                 </div>
-                <Cell w={COL.next} bg={MAINTAINED_FILL} color={INK_MUTED}>{r.next}</Cell>
-                <Cell bg={MAINTAINED_FILL} color={INK_MUTED} right grow>{r.days}</Cell>
+                <Cell w={COL.days} bg={MAINTAINED_FILL} color={INK_MUTED} right>{r.days}</Cell>
+                <Cell bg={MAINTAINED_FILL} color={INK_MUTED} right grow>{r.attempts}</Cell>
               </div>
             </div>
           ))}
