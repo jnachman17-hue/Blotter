@@ -187,7 +187,7 @@ export default async function StatusPage() {
         <footer className="mt-16 max-w-[64ch] border-t border-rule pt-8">
           <div className="space-y-4 text-small leading-[1.6] text-ink-muted">
             <p>
-              <Link href="/audit#r2-5" className={LINK}>
+              <Link href="/audit#holds" className={LINK}>
                 This is row 2.5 on the audit page.
               </Link>{" "}
               It is the row you take on our word.

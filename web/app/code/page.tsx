@@ -193,7 +193,7 @@ export default async function CodePage({
 
       {/* ------------------------------------------------- the foot */}
       <p className="mt-16 border-t border-rule pt-8 text-small leading-[1.55] text-ink-muted">
-        <Link href="/audit#r2-2" className={LINK}>
+        <Link href="/audit#check" className={LINK}>
           Back to the audit page, row 2.2
         </Link>
       </p>

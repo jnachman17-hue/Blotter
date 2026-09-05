@@ -66,14 +66,14 @@ export const ROUNDS: Round[] = [
   {
     n: 2,
     when: "5 September 2026, afternoon",
-    who: "Four independent AI reviews",
+    who: "Four AI reviews we ran ourselves, on Claude",
     reviews: 4,
     note: "Run with the exact package the audit page puts on your clipboard, each given only what a stranger gets. Four separate sessions on two models, each asked in a different way. All four led with the same finding.",
   },
   {
     n: 3,
     when: "5 September 2026, evening",
-    who: "Two more, one told to re-check the fixes without trusting them",
+    who: "Two more AI reviews on Claude, one told to re-check the fixes without trusting them",
     reviews: 2,
     note: "The review told to re-check the fixes found the worst thing in the whole day. Neither of the earlier rounds had raised it. Two of its findings, 3.5 and 3.6, raised 2.6 and 2.9 again and are recorded there, which is why the numbers skip.",
   },

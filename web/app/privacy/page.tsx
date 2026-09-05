@@ -680,7 +680,7 @@ export default function PrivacyPolicyPage() {
             <p>
               Each of these can be checked.{" "}
               <Link
-                href="/audit#claims"
+                href="/audit#package"
                 className="font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900"
               >
                 The audit page shows how.

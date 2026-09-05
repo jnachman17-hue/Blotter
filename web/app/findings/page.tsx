@@ -81,32 +81,32 @@ function Figures() {
 const LIMITS: { text: string; href: string; where: string }[] = [
   {
     text: "The Gmail permission is your whole mailbox. No narrower one allows searching.",
-    href: "/audit#r2-3",
+    href: "/audit#package",
     where: "Row 2.3",
   },
   {
     text: "Whole conversations are read, so anyone copied in has their name, address and the subject line read too.",
-    href: "/audit#r2-3",
+    href: "/audit#package",
     where: "Row 2.3",
   },
   {
     text: "Subject lines reach our server.",
-    href: "/audit#r2-3",
+    href: "/audit#package",
     where: "Row 2.3",
   },
   {
     text: "The text of the Start here tab can be rewritten from our side.",
-    href: "/audit#ends",
+    href: "/audit#limit",
     where: "Section 05",
   },
   {
     text: "Nobody has paid for an audit. The reviews are ours and whoever reads the code next, and Google has not verified the app.",
-    href: "/audit#ends",
+    href: "/audit#limit",
     where: "Section 05",
   },
   {
     text: "What the server does cannot be proved from the code.",
-    href: "/audit#r2-5",
+    href: "/audit#holds",
     where: "Row 2.5",
   },
 ];
