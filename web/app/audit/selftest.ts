@@ -1,23 +1,14 @@
-import { readFileSync } from "node:fs";
-import path from "node:path";
-
 import { claimsText } from "@/lib/audit-prompt";
-import { FINDINGS, ROUNDS, tally } from "@/lib/findings";
-import { SCENES, captionsBlock } from "@/lib/run-scenes";
+import { FINDINGS, ROUNDS, reviewCount, tally, versionSpan } from "@/lib/findings";
 
 /**
- * What the audit page draws has to be true of the code it draws.
+ * The numbers and sentences the "Your data" page rests on.
  *
- * The drawing on `/audit` names, under every scene, the functions in
- * `Code.gs` it is showing. A caption that names a function that no longer
- * exists is the drawing lying about the code, quietly, to the one reader who
- * goes and looks. So every name is checked against the published script.
- *
- * The other checks pin the sentences the honesty of the page rests on: the
- * server scene says "We say" and "cannot prove" in every version; the bounce
- * scene says addresses, plural (finding 2.9); the captions ride along in the
- * package a student pastes into an AI; and the figures on the page come from
- * the same function the findings page uses, so they cannot disagree.
+ * The page tells three findings as a story, prints figures from `tally()`,
+ * and copies a package whose claims come from `privacy-copy.ts`. These checks
+ * pin the things that would quietly go wrong: a story finding that no longer
+ * exists, a tally that does not add up, an em dash creeping into the log, a
+ * package that lost its claims.
  *
  * Run with: `npx tsx web/app/audit/selftest.ts`
  */
@@ -35,35 +26,14 @@ function check(label: string, actual: unknown, expected: unknown): void {
   }
 }
 
-/* ------------------------------------------------ scenes name real code */
+/* ------------------------------------------------ the story the page tells */
 {
-  const published = readFileSync(path.join(__dirname, "..", "..", "public", "Code.gs"), "utf8");
-  for (const scene of SCENES) {
-    for (const fn of scene.fns) {
-      check(`scene ${scene.n} names a real function: ${fn}`, published.includes(`function ${fn}(`), true);
-    }
-    check(`scene ${scene.n} caption is 26 words or fewer`, scene.caption.split(/\s+/).length <= 26, true);
-    check(`scene ${scene.n} has a positive duration`, scene.seconds > 0, true);
+  for (const id of ["1.1", "2.4", "3.1"]) {
+    const f = FINDINGS.find((x) => x.id === id);
+    check(`story finding ${id} exists`, Boolean(f), true);
+    check(`story finding ${id} was fixed in code`, f?.verdict, "code");
+    check(`story finding ${id} names a version`, Boolean(f?.version), true);
   }
-  check("seven scenes", SCENES.length, 7);
-  check("scenes are numbered in order", SCENES.map((s) => s.n), [1, 2, 3, 4, 5, 6, 7]);
-}
-
-/* ------------------------------------------------ the honesty sentences */
-{
-  const server = SCENES[6].caption;
-  check("the server scene says 'We say'", server.includes("We say"), true);
-  check("and that the code cannot prove it", server.includes("cannot prove"), true);
-  check("the bounce scene says addresses, plural", /addresses/.test(SCENES[3].caption), true);
-  check("no caption draws the inside of the server", SCENES.every((s) => !/inside the server|server (deletes|discards|forgets)/i.test(s.caption)), true);
-  check("no caption uses an em dash", SCENES.every((s) => !s.caption.includes("—")), true);
-}
-
-/* ------------------------------------------------ the package carries them */
-{
-  const text = claimsText();
-  check("the captions block is in the package", text.includes(captionsBlock()), true);
-  check("under its own heading", text.includes("drawing says"), true);
 }
 
 /* ------------------------------------------------ the figures cannot drift */
@@ -75,7 +45,17 @@ function check(label: string, actual: unknown, expected: unknown): void {
   check("finding ids are unique", new Set(FINDINGS.map((f) => f.id)).size, FINDINGS.length);
   check("every finding belongs to a round", FINDINGS.every((f) => ROUNDS.some((r) => r.n === f.round)), true);
   check("every finding says what was done", FINDINGS.every((f) => f.done.trim().length > 0), true);
+  check("review count is the sum of the rounds", reviewCount(), ROUNDS.reduce((s, r) => s + r.reviews, 0));
+  check("the version span is ordered", versionSpan().from <= versionSpan().to, true);
   check("no finding uses an em dash", FINDINGS.every((f) => !`${f.title}${f.detail}${f.done}`.includes("—")), true);
+}
+
+/* ------------------------------------------------ the package carries the claims */
+{
+  const text = claimsText();
+  check("the package carries the main claim", text.includes("--- The main claim ---"), true);
+  check("and the permissions", text.includes("--- What the site says each permission can and cannot do ---"), true);
+  check("and the questions", text.includes("--- Questions the site answers ---"), true);
 }
 
 /* ---------------------------------------------------------------- */

@@ -51,7 +51,6 @@ import {
   PROCESSING_STEPS,
   SHEETS_SCOPE_NOTE,
 } from "./privacy-copy";
-import { captionsBlock } from "./run-scenes";
 
 /**
  * What a student pastes.
@@ -140,11 +139,6 @@ export function claimsText(): string {
 
   lines.push("--- Questions the site answers ---", "");
   for (const f of PRIVACY_FAQ) lines.push(`Q: ${f.q}`, `A: ${f.a}`, "");
-
-  // The drawing on /audit makes claims too, one caption per scene. They ride
-  // along so the AI checks the picture against the code as well as the prose.
-  lines.push("--- What the audit page's drawing says, scene by scene ---", "");
-  lines.push(captionsBlock(), "");
 
   return lines.join("\n");
 }

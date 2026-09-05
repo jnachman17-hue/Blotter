@@ -725,7 +725,16 @@ body {
  * quiet ground as the inner pages, and the sheet is the only colour.
  */
 .field-open {
-  background: var(--color-surface-quiet);
+  /* Cream at the top, easing into the cool tone section 2 opens with, so the
+     handoff between the two is a fade rather than a seam. Jon, 5 September
+     2026: "slightly cleaner gradient between top section cream and second
+     section blue." */
+  background: linear-gradient(
+    180deg,
+    var(--color-surface-quiet) 0%,
+    var(--color-surface-quiet) 70%,
+    var(--field-b) 100%
+  );
 }
 
 .field-deep {

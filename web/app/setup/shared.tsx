@@ -59,12 +59,11 @@ export function B({ children }: { children: React.ReactNode }) {
  * page called "check us" is for.
  */
 export const NAV = [
-  /* The order is the reader's questions: see it, check it, see what checking
-     found, see what we hold, keep it current, then the legal record. */
-  { href: "/audit", label: "Audit" },
-  { href: "/code", label: "Code" },
-  { href: "/findings", label: "Findings" },
-  { href: "/status", label: "Status" },
+  /* Four, since 5 September 2026. The code, status and findings pages still
+     exist and are reached from the "Your data" page under a single
+     technical-details link; a tab row that named them read as a developer
+     console to the students it was for. */
+  { href: "/audit", label: "Your data" },
   { href: "/update", label: "Update" },
   { href: POLICY_HREF, label: "Privacy" },
   { href: "/terms", label: "Terms" },
