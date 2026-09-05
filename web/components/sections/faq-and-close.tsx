@@ -34,7 +34,6 @@
 import { BlotterLockup } from "@/components/brand/blotter-mark";
 import { CtaButton } from "@/components/cta-button";
 import { DisclosureList } from "@/components/disclosure";
-import { RefusalPanel } from "@/components/section-3/boundary-block";
 import { PageBox } from "@/components/layout/page-box";
 import { SectionNumber } from "@/components/layout/section-number";
 import { SectionEyebrow, TRIAL_EYEBROWS } from "@/components/layout/section-eyebrow";
@@ -206,7 +205,8 @@ export function FaqAndClose() {
             surfaces disagree about how many sections this page has.
           */}
           <div className="mt-14 desk:mt-20">
-            <RefusalPanel />
+            {/* The three "No ..." badges left the page on 5 September 2026.
+                Jon's brief: less marketing, fewer callouts. */}
           </div>
         </PageBox>
       </section>

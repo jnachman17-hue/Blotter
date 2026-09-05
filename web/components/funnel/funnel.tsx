@@ -351,7 +351,7 @@ export function Funnel() {
           {/* Screen-reader name for the dialog. Kept in step with `CTA_LABEL`
               so the thing a blind visitor is told they opened matches the
               button they pressed. */}
-          <Dialog.Title className="sr-only">Set up free</Dialog.Title>
+          <Dialog.Title className="sr-only">Set up</Dialog.Title>
 
           {stage === "question_track" && <QuestionTrack />}
           {stage === "question_window" && <QuestionWindow />}

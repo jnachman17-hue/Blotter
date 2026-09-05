@@ -86,7 +86,7 @@
 import { SectionNumber } from "@/components/layout/section-number";
 import { SectionEyebrow, TRIAL_EYEBROWS } from "@/components/layout/section-eyebrow";
 import { PageBox } from "@/components/layout/page-box";
-import { BlotterTab, Reassurance, ReassuranceStack } from "@/components/section-45/parts";
+import { BlotterTab } from "@/components/section-45/parts";
 import type { ZoneTreatment } from "@/components/section-45/parts";
 import {
   SheetPhone,
@@ -182,7 +182,8 @@ export function Ownership({
         <div className="hidden desk:block">
           <DesktopHead />
           <div className="mt-7">
-            <Reassurance />
+            {/* The three icon chips left on 5 September 2026: the sheet
+                below makes the same three points without badges. */}
           </div>
           <div className="mt-10">
             <BlotterTab zones={zones} />
@@ -210,7 +211,7 @@ export function Ownership({
           </p>
 
           <div className="mt-7">
-            <ReassuranceStack />
+            {/* Phone chips left with the desktop ones, 5 September 2026. */}
           </div>
 
           <div className="mt-9">

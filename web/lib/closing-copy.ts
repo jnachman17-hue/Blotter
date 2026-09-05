@@ -88,14 +88,6 @@ export const PRODUCT_FAQ: FaqEntry[] = [
     q: "Who is this built for?",
     a: "Anyone recruiting in finance. Especially anyone with a deep personal commitment to maximizing shareholder value.",
   },
-  {
-    q: "Will AI take my analyst role?",
-    a: "Probably.",
-  },
-  {
-    q: "Am I cooked in this job market?",
-    a: "Yes. So is everyone. The ones who aren't are the ones who answered their emails.",
-  },
 ];
 
 /* --------------------------------------------------------- the closing block */

@@ -169,7 +169,9 @@ const TAGLINE_TYPE =
 export function SiteHeaderBar({
   mobileCta = true,
   mode = "full",
-  tagline = "persist",
+  /* "off" since 5 September 2026: a caps tagline in the bar reads as an ad.
+     The lockup and one button are the whole header now. */
+  tagline = "off",
   taglineAlign = "left",
 }: {
   mobileCta?: boolean;

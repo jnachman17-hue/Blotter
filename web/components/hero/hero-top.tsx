@@ -96,8 +96,9 @@ function Headline({ center = false }: { center?: boolean }) {
         center ? "mx-auto max-w-[760px] text-center" : "max-w-[760px]",
       )}
     >
-      <span className="block">Never touch your recruiting tracker again.</span>
-      <span className="block text-navy-400">Blotter updates it automatically.</span>
+      {/* One line, one colour. The two-tone contrast read as a pitch; Jon's
+          5 September 2026 brief is peer to peer and plain. */}
+      <span className="block">A recruiting tracker that keeps itself current.</span>
     </h1>
   );
 }
@@ -121,10 +122,11 @@ export function AuthorityLine({ className }: { className?: string }) {
         aria-hidden="true"
         className="mr-3 inline-block h-px w-3 align-middle bg-ink-faint"
       />
-      Built by{" "}
+      Made by{" "}
       <span className="font-medium text-ink">
-        someone who actually went through IB recruitment
+        someone who went through IB recruiting at UT Austin
       </span>
+      , for the next class.
     </p>
   );
 }
@@ -365,7 +367,7 @@ function VariantG() {
           later starting line.
         */}
         <p className="mt-3 text-small leading-[1.5] text-ink-muted">
-          Free. No card, nothing to install. Setup takes about three minutes.
+          Free. Setup takes about three minutes.
         </p>
       </div>
     </div>
