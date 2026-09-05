@@ -178,7 +178,10 @@ export default function TermsPage() {
             </p>
             <p>
               It reads the outside of your emails: who wrote, who it went to, when, and
-              the subject line. It cannot read the text of an email. Those details go to a
+              the subject line. It cannot read the text of an email you or anyone else
+              wrote. The one exception is an automated delivery-failure notice from
+              Google’s mail system, which it opens inside your account to find which
+              address bounced; only that address travels. Those details go to a
               server we run, which works out where each conversation stands and sends the
               answer back. The full list of what crosses that connection is in our{" "}
               <Link href={POLICY_HREF} className={LINK}>

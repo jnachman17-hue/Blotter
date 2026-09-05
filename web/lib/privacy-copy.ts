@@ -78,7 +78,7 @@ export const PRIVACY_OPENING =
  * reading happens inside the student's own Google account.
  */
 export const CANDID_CLAIM =
-  "Blotter reads the outside of your emails, not the inside: who wrote, who it went to, when, and the subject line. It cannot read the text of an email, and Blotter’s server cannot receive it. It runs inside your own Google account, and it only looks at conversations with the people in your Contacts tab.";
+  "Blotter reads the outside of your emails, not the inside: who wrote, who it went to, when, and the subject line. It cannot read the text of an email, and Blotter’s server cannot receive it. There is one exception, and it is a machine rather than a person: when Google’s mail system returns an automated delivery-failure notice, Blotter opens that notice inside your own account to find which address bounced. Only the address travels. It runs inside your own Google account, and it only looks at conversations with the people in your Contacts tab.";
 
 /* ------------------------------------------------ 3. four-step processing rows */
 
