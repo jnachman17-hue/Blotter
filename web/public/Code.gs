@@ -43,7 +43,7 @@
 
 var CONTRACT_VERSION = 4;
 
-var COURIER_VERSION = '4.4';
+var COURIER_VERSION = '4.5';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -344,6 +344,10 @@ function applyClosedRowFade_(sheet, closedCol, maxRows, lastCol, first) {
     .setRanges([range])
     .build());
   sheet.setConditionalFormatRules(rules);
+}
+
+function safeServerCell_(value) {
+  return typeof value === 'string' ? safeCell_(value) : value;
 }
 
 function safeCell_(value) {
@@ -1398,7 +1402,9 @@ function courierPass_() {
 
     var threads = fetchThreads_(sheetState.allContactEmails, settings.mailDaysBack);
     markOutbound_(threads, settings.addresses);
-    var events = fetchEvents_(settings.calendarDaysBack, settings.calendarDaysForward);
+    var events = fetchEvents_(settings.calendarDaysBack, settings.calendarDaysForward,
+                              sheetState.allContactEmails,
+                              sheetState.contacts.map(function (c) { return c.name; }));
 
     var request = {
       version: CONTRACT_VERSION,
@@ -1850,23 +1856,54 @@ function markOutbound_(threads, studentAddresses) {
   });
 }
 
-function fetchEvents_(daysBack, daysForward) {
+function fetchEvents_(daysBack, daysForward, contactEmails, contactNames) {
   var now = new Date();
   var from = new Date(now.getTime() - daysBack * 24 * 60 * 60 * 1000);
   var to = new Date(now.getTime() + daysForward * 24 * 60 * 60 * 1000);
-  return CalendarApp.getDefaultCalendar().getEvents(from, to).map(function (e) {
-    var creators = e.getCreators();
+
+  var wanted = {};
+  (contactEmails || []).forEach(function (a) {
+    var one = bareAddress_(a);
+    if (one) wanted[one] = true;
+  });
+  var firstNames = {};
+  (contactNames || []).forEach(function (n) {
+    var first = eventWords_(n)[0];
+    if (first) firstNames[first] = true;
+  });
+
+  var kept = [];
+  CalendarApp.getDefaultCalendar().getEvents(from, to).forEach(function (e) {
+    var title = e.getTitle() || '';
     var guests = e.getGuestList(true);
-    return {
+
+    var mine = guests.some(function (g) {
+      return wanted[bareAddress_(g.getEmail())] === true;
+    });
+    if (!mine) {
+      mine = eventWords_(title).some(function (w) { return firstNames[w] === true; });
+    }
+
+    if (!mine) return;
+
+    var creators = e.getCreators();
+    kept.push({
       id: e.getId(),
-      title: e.getTitle() || '',
+      title: title,
       start: toIso_(e.getStartTime()),
       end: toIso_(e.getEndTime()),
       attendees: guests.map(function (g) { return g.getEmail(); }),
 
       declined: guests.length === 0 ? [] : declinedGuests_(e, guests),
       organizer: creators && creators.length ? creators[0] : ''
-    };
+    });
+  });
+  return kept;
+}
+
+function eventWords_(text) {
+  return String(text || '').toLowerCase().split(/[^a-z0-9]+/).filter(function (w) {
+    return w.length > 0;
   });
 }
 
@@ -1975,12 +2012,12 @@ function writeBlotterColumns_(sheetState, rows) {
   var perColumn = {
     'Status': function (r) { return r.status; },
 
-    'Days': function (r) { return r.days === null || r.days === undefined ? NO_CLOCK : r.days; },
-    'Last contact': function (r) { return asSheetDate_(r.last_contact); },
+    'Days': function (r) { return safeServerCell_(r.days === null || r.days === undefined ? NO_CLOCK : r.days); },
+    'Last contact': function (r) { return safeServerCell_(asSheetDate_(r.last_contact)); },
 
-    'Attempts': function (r) { return r.attempts === null || r.attempts === undefined ? NO_CLOCK : r.attempts; },
-    'Next call': function (r) { return asSheetDate_(r.next_call); },
-    'Last call': function (r) { return asSheetDate_(r.last_call); }
+    'Attempts': function (r) { return safeServerCell_(r.attempts === null || r.attempts === undefined ? NO_CLOCK : r.attempts); },
+    'Next call': function (r) { return safeServerCell_(asSheetDate_(r.next_call)); },
+    'Last call': function (r) { return safeServerCell_(asSheetDate_(r.last_call)); }
   };
 
   var moved = rowsThatMoved_(sheetState, minRow, maxRow);

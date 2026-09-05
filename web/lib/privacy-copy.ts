@@ -116,7 +116,7 @@ export const PROCESSING_STEPS: ProcessingStep[] = [
   {
     n: "03",
     title: "Blotter reads facts, not text",
-    body: "To work out where each conversation stands, Blotter’s server is sent who wrote, who it went to, when, the subject line, and the title, time and guests of calendar events with your contacts. The body of an email is never sent.",
+    body: "To work out where each conversation stands, Blotter’s server is sent who wrote, who it went to, when, the subject line, and the title, time and guests of calendar events with your contacts. It is also sent the name, firm and email of each person in your Contacts tab, and the email addresses of anyone you rejected on the Found tab, so it does not suggest them again. The body of an email is never sent.",
   },
   {
     n: "04",

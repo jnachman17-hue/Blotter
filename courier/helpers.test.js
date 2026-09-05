@@ -67,7 +67,7 @@ const EXPORTS = [
   'asSheetDate_', 'STATUS_STYLE', 'NOTICE_STYLES', 'THEMES', 'CONTACTS_WIDTHS', 'FOUND_WIDTHS',
   'duplicateBlotterHeadings_', 'formulasInBlotterColumns_', 'overwrittenFormulaWarnings_',
   'rowsThatMoved_', 'sanitiseDesign_', 'safeColour_', 'safeNumber_',
-  'safeCell_', 'statusStyle_', 'columnWidth_', 'numberFormat_', 'SETTING_KEY',
+  'safeCell_', 'safeServerCell_', 'eventWords_', 'statusStyle_', 'columnWidth_', 'numberFormat_', 'SETTING_KEY',
   'COURIER_VERSION', 'SCRIPT_URL',
   'instructionRows_', 'expectedSetup_', 'SETTING_INSTALL_ID', 'SETTING_HELP',
   'HELP_EMAIL', 'HELP_URL',
@@ -1169,6 +1169,32 @@ eq('and Step 1 creates it', box.expectedSetup_().settings.includes(box.SETTING_K
     eq('and the right version',
       manifest.includes(JSON.stringify(box.COURIER_VERSION)), true);
   }
+}
+
+/* ---------------------------------------------------------------------- *
+ * safeServerCell_ — the guard on values the server chose.
+ *
+ * It has to stop a leading `=` without changing the type, because a Date that
+ * becomes a string loses its number format and `Next call` stops reading
+ * `1/17 @ 2:00 PM`.
+ * ---------------------------------------------------------------------- */
+{
+  const { safeServerCell_, eventWords_ } = box;
+  const d = new Date(2026, 8, 4, 12);
+  ok('a Date passes through as a Date', safeServerCell_(d) instanceof Date);
+  ok('and is the same instant', safeServerCell_(d).getTime() === d.getTime());
+  ok('a number stays a number', typeof safeServerCell_(5) === 'number');
+  ok('zero stays a number', typeof safeServerCell_(0) === 'number');
+  ok('a dash stays a dash', safeServerCell_('\u2014') === '\u2014');
+  ok('a formula string is neutralised', safeServerCell_('=IMPORTXML("x","y")').charAt(0) === "'");
+  ok('a plus is neutralised too', safeServerCell_('+1').charAt(0) === "'");
+
+  // eventWords_ must split exactly as the server's words() does, or the
+  // calendar filter would drop events the server would have matched.
+  eq('splits on punctuation like the server', eventWords_('Coffee chat: David Salmon!').join(','),
+     'coffee,chat,david,salmon');
+  eq('lowercases', eventWords_('CALL With JAMIE').join(','), 'call,with,jamie');
+  eq('empty text gives nothing', eventWords_('').length, 0);
 }
 
 console.log(fails === 0

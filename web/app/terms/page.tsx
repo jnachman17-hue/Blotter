@@ -143,7 +143,7 @@ export default function TermsPage() {
         <div className="mt-8 border-l-2 border-blotter-400 bg-white py-5 pr-8 pl-6">
           <p className="text-body leading-[1.62] text-ink">
             <strong className="font-semibold">
-              Blotter is built and working, and it is not yet open to other people.
+              Blotter is free and open to anyone.
             </strong>{" "}
             Nothing is sold and there is no account to create. These terms are written
             now rather than later because Google&rsquo;s permission screen cannot show

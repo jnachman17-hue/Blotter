@@ -13,7 +13,8 @@
  *   - It never opens an attachment.
  *   - It writes only to this one spreadsheet, and only to Blotter's own
  *     columns and tabs — never to a cell the student wrote.
- *   - On any failure it writes nothing at all. A stale sheet is recoverable;
+ *   - A failure before writing starts leaves the sheet untouched. Once writing
+ *     has begun it can stop partway, and the next run rewrites it;
  *     a half-written one is not.
  *
  * The contract this speaks is
@@ -24,7 +25,7 @@ var CONTRACT_VERSION = 4;
 
 // Which build of this script is running. Sent to the telemetry endpoint only,
 // so a count of installs can be split by version when something goes wrong.
-var COURIER_VERSION = '4.4';
+var COURIER_VERSION = '4.5';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -575,6 +576,22 @@ function applyClosedRowFade_(sheet, closedCol, maxRows, lastCol, first) {
  * Applied to everything the server can put on a sheet: the banner, the Found
  * name, email and context, and the warnings line.
  */
+/**
+ * The same guard for a value the SERVER chose, and it must not change the type.
+ *
+ * `safeCell_` stringifies, which is right for text and wrong for everything
+ * else: a Date would arrive in the sheet as text and lose its number format,
+ * and `Next call` would stop reading `1/17 @ 2:00 PM`. Only a string can carry
+ * a leading `=`, so only a string needs guarding.
+ *
+ * Added 5 September 2026, after an independent review of the published code
+ * pointed out that five server-chosen values reached `setValues()` unchecked.
+ * `Status` was already whitelisted; these were not.
+ */
+function safeServerCell_(value) {
+  return typeof value === 'string' ? safeCell_(value) : value;
+}
+
 function safeCell_(value) {
   if (value === null || value === undefined) return '';
   var text = String(value);
@@ -2029,7 +2046,9 @@ function courierPass_() {
     // --- Fetch (read-only) ---
     var threads = fetchThreads_(sheetState.allContactEmails, settings.mailDaysBack);
     markOutbound_(threads, settings.addresses);
-    var events = fetchEvents_(settings.calendarDaysBack, settings.calendarDaysForward);
+    var events = fetchEvents_(settings.calendarDaysBack, settings.calendarDaysForward,
+                              sheetState.allContactEmails,
+                              sheetState.contacts.map(function (c) { return c.name; }));
 
     // --- Ask the server what it all means ---
     var request = {
@@ -2605,26 +2624,86 @@ function markOutbound_(threads, studentAddresses) {
  * and to whom, is the server's judgment (§7) — the title-match rule means the
  * courier must not pre-filter by attendee.
  */
-function fetchEvents_(daysBack, daysForward) {
+/**
+ * Every event in the window that could belong to a contact, and no others.
+ *
+ * ## Why this filters at all
+ *
+ * It used to send the whole default calendar: every title, every guest list,
+ * 365 days back and 180 forward. The server matched what it wanted and threw
+ * the rest away, which is fine for the server and no use at all to a student,
+ * because their doctor's appointment, their therapy and their dinner plans had
+ * already left their account by then.
+ *
+ * An independent review of the published code found this on 5 September 2026,
+ * and it was right: the site said the server receives events *with your
+ * contacts*, and it received all of them. The claim was false and the fix
+ * belongs here rather than in the wording.
+ *
+ * ## Why the test is deliberately looser than the server's
+ *
+ * The server matches an event two ways (`matchEvent` in `rules.ts`): by
+ * attendee address, or by a contact's first name in the title **together with
+ * their firm**. This asks only for the address or the first name, and drops
+ * the firm requirement.
+ *
+ * That is on purpose. A looser test can only ever send more than the server
+ * would use, never less, so nothing the server would have matched can be
+ * filtered out here. Getting that backwards would silently stop `Call
+ * scheduled` working for events a student typed by hand, which is exactly the
+ * case Jon described: a call he arranged by phone, with a name in the title
+ * and nobody invited.
+ */
+function fetchEvents_(daysBack, daysForward, contactEmails, contactNames) {
   var now = new Date();
   var from = new Date(now.getTime() - daysBack * 24 * 60 * 60 * 1000);
   var to = new Date(now.getTime() + daysForward * 24 * 60 * 60 * 1000);
-  return CalendarApp.getDefaultCalendar().getEvents(from, to).map(function (e) {
-    var creators = e.getCreators();
+
+  var wanted = {};
+  (contactEmails || []).forEach(function (a) {
+    var one = bareAddress_(a);
+    if (one) wanted[one] = true;
+  });
+  var firstNames = {};
+  (contactNames || []).forEach(function (n) {
+    var first = eventWords_(n)[0];
+    if (first) firstNames[first] = true;
+  });
+
+  var kept = [];
+  CalendarApp.getDefaultCalendar().getEvents(from, to).forEach(function (e) {
+    var title = e.getTitle() || '';
     var guests = e.getGuestList(true); // one call: each one is an API hit
-    return {
+
+    var mine = guests.some(function (g) {
+      return wanted[bareAddress_(g.getEmail())] === true;
+    });
+    if (!mine) {
+      mine = eventWords_(title).some(function (w) { return firstNames[w] === true; });
+    }
+    // Nothing about an unmatched event leaves this account, not even its title.
+    if (!mine) return;
+
+    var creators = e.getCreators();
+    kept.push({
       id: e.getId(),
-      title: e.getTitle() || '',
+      title: title,
       start: toIso_(e.getStartTime()),
       end: toIso_(e.getEndTime()),
       attendees: guests.map(function (g) { return g.getEmail(); }),
-      // An event nobody was invited to cannot have been declined — there is no
-      // invitation to decline — so the whole question is skipped. That matters
-      // for speed, not tidiness: a student's real calendar is mostly solo
-      // events, and this window can hold thousands of them.
+      // An event nobody was invited to cannot have been declined, so the whole
+      // question is skipped. That matters for speed, not tidiness.
       declined: guests.length === 0 ? [] : declinedGuests_(e, guests),
       organizer: creators && creators.length ? creators[0] : ''
-    };
+    });
+  });
+  return kept;
+}
+
+/** Lowercase words, exactly as the server's `words()` splits them. */
+function eventWords_(text) {
+  return String(text || '').toLowerCase().split(/[^a-z0-9]+/).filter(function (w) {
+    return w.length > 0;
   });
 }
 
@@ -2769,14 +2848,14 @@ function writeBlotterColumns_(sheetState, rows) {
     // A dash, not a blank: ENGINE-RULES §4 gives a clockless row a dash, and a
     // blank cell reads as "Blotter has not run yet" instead of "there is no
     // clock here". A closed row keeps every other fact it had.
-    'Days': function (r) { return r.days === null || r.days === undefined ? NO_CLOCK : r.days; },
-    'Last contact': function (r) { return asSheetDate_(r.last_contact); },
+    'Days': function (r) { return safeServerCell_(r.days === null || r.days === undefined ? NO_CLOCK : r.days); },
+    'Last contact': function (r) { return safeServerCell_(asSheetDate_(r.last_contact)); },
     // A dash, for the same reason Days uses one (D24): the server decides where
     // a number means something and sends null everywhere else. The courier
     // renders that and makes no judgment about which states deserve a count.
-    'Attempts': function (r) { return r.attempts === null || r.attempts === undefined ? NO_CLOCK : r.attempts; },
-    'Next call': function (r) { return asSheetDate_(r.next_call); },
-    'Last call': function (r) { return asSheetDate_(r.last_call); }
+    'Attempts': function (r) { return safeServerCell_(r.attempts === null || r.attempts === undefined ? NO_CLOCK : r.attempts); },
+    'Next call': function (r) { return safeServerCell_(asSheetDate_(r.next_call)); },
+    'Last call': function (r) { return safeServerCell_(asSheetDate_(r.last_call)); }
   };
 
   // Nobody can stop a student dragging rows around while a run is in flight —
