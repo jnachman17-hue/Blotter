@@ -23,8 +23,9 @@
  *   It never sends, replies to, labels, archives or deletes an email. It
  *   never creates or changes a calendar event. It never opens an attachment.
  *   It writes only to this spreadsheet, and only to Blotter's own columns and
- *   tabs, never to a cell you typed in. If anything goes wrong during a run
- *   it writes nothing at all.
+ *   tabs, never to a cell you typed in. If a run fails before it starts
+ *   writing, your sheet is left untouched; if it fails partway through, the
+ *   next run rewrites what it missed.
  *
  * What leaves your account
  *   The envelope details above, and your calendar events, go to Blotter's
