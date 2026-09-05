@@ -50,34 +50,72 @@ export function B({ children }: { children: React.ReactNode }) {
   return <strong className="font-semibold text-ink">{children}</strong>;
 }
 
+/**
+ * Every page a student may want to reach directly, in the order they meet them.
+ *
+ * Audit, Code and Update joined Privacy and Terms on September 5, 2026, on
+ * Jon's ruling. The two verification pages existed and were reachable only from
+ * a link somebody had to already know about, which is the opposite of what a
+ * page called "check us" is for.
+ */
+export const NAV = [
+  /* The order is the reader's questions: see it, check it, see what checking
+     found, see what we hold, keep it current, then the legal record. */
+  { href: "/audit", label: "Audit" },
+  { href: "/code", label: "Code" },
+  { href: "/findings", label: "Findings" },
+  { href: "/status", label: "Status" },
+  { href: "/update", label: "Update" },
+  { href: POLICY_HREF, label: "Privacy" },
+  { href: "/terms", label: "Terms" },
+] as const;
+
 export function Shell({
   children,
   wide,
+  here,
 }: {
   children: React.ReactNode;
   /* The chooser only. A page whose job is a side-by-side decision should not be
      bound to a reading measure; the flow pages still are, because they are
      read. */
   wide?: boolean;
+  /** The nav entry this page is, so it is marked rather than linked to itself. */
+  here?: string;
 }) {
   const measure = wide ? "max-w-[1080px]" : "max-w-[860px]";
   return (
     <div className="min-h-screen bg-surface-quiet">
       <header className="border-b border-rule bg-white">
-        <div className={`mx-auto flex h-[60px] ${measure} items-center justify-between px-5 sm:px-6`}>
+        <div className={`mx-auto ${measure} px-5 sm:px-6`}>
+          {/*
+            Wraps rather than scrolls. Five destinations and a lockup do not fit
+            one 375px row, and a nav that scrolls sideways hides the items past
+            the edge from exactly the reader who most needs to find them.
+          */}
+          <div className="flex min-h-[60px] flex-wrap items-center justify-between gap-x-6 gap-y-1 py-3 sm:py-0">
           <Link href="/" aria-label="Blotter, back to the home page" className="text-navy-900">
             <BlotterLockup />
           </Link>
           {/* Both, from September 4, 2026. The terms were reachable from the
               footer and the privacy page only, and never from the two pages a
               student actually reads before granting access to their Gmail. */}
-          <div className="flex items-center gap-5">
-            <Link href={POLICY_HREF} className={`text-small ${LINK}`}>
-              Privacy
-            </Link>
-            <Link href="/terms" className={`text-small ${LINK}`}>
-              Terms
-            </Link>
+          <nav className="flex flex-wrap items-center gap-x-5 gap-y-1">
+            {NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={here === item.href ? "page" : undefined}
+                className={
+                  here === item.href
+                    ? "text-small font-semibold text-ink"
+                    : `text-small ${LINK}`
+                }
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
           </div>
         </div>
       </header>

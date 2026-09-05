@@ -7,6 +7,7 @@
  * script ever disagree, so a stale entry here cannot survive a test run.
  */
 
-export const SCRIPT_VERSION = "4.5";
-export const SCRIPT_SHA256 = "bbd9d03312be26376253663df63aa834fa05692882c0a611cc7408b46ad3515a";
-export const SCRIPT_BYTES = 87240;
+export const SCRIPT_VERSION = "4.8";
+export const SCRIPT_SHA256 = "ef89de0007f2a99b7f4b722f9df21b32f303f3f3f3e52403cc56d8e32e16cf19";
+export const SCRIPT_BYTES = 91057;
+export const SCRIPT_SENDS_TO = "https://blotterib.com/api/engine";

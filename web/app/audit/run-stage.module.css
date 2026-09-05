@@ -1,0 +1,533 @@
+/*
+ * One run of the script, drawn. Every rule here is either a resting state a
+ * scene leaves behind, or the short transition into it. The React component
+ * decides which scene's resting states apply (`data-scene`, plus the classes
+ * it computes per element); this file only knows how each one arrives.
+ *
+ * Motion only ever runs while `data-live="true"`: playing, not reduced, not a
+ * frozen filmstrip frame. Everything else is a still, which is also what the
+ * server renders, so nothing is empty before hydration.
+ *
+ * Colours are the site's own tokens via the custom properties Tailwind v4
+ * exposes from `@theme`.
+ */
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.stageOrder { order: 1; }
+.captionOrder { order: 2; }
+@media (max-width: 639px) {
+  /* Caption above the drawing on a phone, so the words are never below the
+     fold while the server scenes play. */
+  .stageOrder { order: 2; }
+  .captionOrder { order: 1; }
+}
+
+/* ------------------------------------------------------------- the stage */
+
+.stage {
+  display: grid;
+  grid-template-columns: 1fr 72px 176px;
+  align-items: stretch;
+  --tx: 64px;
+  --ty: 0px;
+}
+@media (max-width: 639px) {
+  .stage {
+    grid-template-columns: 1fr;
+    --tx: 0px;
+    --ty: 44px;
+  }
+}
+
+.stage[data-static="true"] *,
+.stage[data-reduced="true"] * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* --------------------------------------------------- the student's account */
+
+.account {
+  border: 1.5px solid var(--color-navy-900);
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px 16px 16px;
+}
+.accountHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.accountTitle { font-size: 13.5px; font-weight: 600; color: var(--color-navy-900); }
+.accountSub { font-size: 12px; color: var(--color-ink-muted); }
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+@media (max-width: 639px) { .panels { grid-template-columns: 1fr; } }
+
+.panel {
+  position: relative;
+  border: 1px solid var(--color-rule);
+  border-radius: 8px;
+  background: var(--color-surface-quiet);
+  padding: 10px 12px 12px;
+  min-height: 180px;
+}
+.sheetPanel {
+  grid-column: 1 / -1;
+  border-color: var(--color-blotter-400);
+  background: var(--color-blotter-100);
+  min-height: 0;
+}
+.panelHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-height: 22px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+.panelHead .grow { flex: 1; }
+
+/* name tags that arrive in Gmail's header when the search starts */
+.tag {
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 1px solid var(--color-navy-500);
+  color: var(--color-navy-500);
+  background: #fff;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+.tagOn { opacity: 1; transform: none; }
+.stage[data-live="true"][data-scene="2"] .tagOn {
+  transition-delay: calc(var(--i) * 250ms + 300ms);
+}
+
+/* the sheet's names underline while they are being searched for */
+.searching { text-decoration: underline; text-decoration-color: var(--color-navy-500); text-underline-offset: 3px; }
+
+/* envelopes */
+.envelopes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+  transition: opacity 0.3s;
+}
+.envelopesDim { opacity: 0.15; }
+.env {
+  height: 30px;
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.6s, box-shadow 0.6s, border-color 0.6s;
+}
+.env::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 40%;
+  background: var(--color-surface-quiet);
+  border-bottom: 1px solid var(--color-rule);
+}
+.envFaded { opacity: 0.25; }
+.envMatch {
+  border-color: var(--color-navy-500);
+  box-shadow: inset 0 0 0 1px var(--color-navy-500);
+}
+.stage[data-live="true"][data-scene="2"] .env { transition-delay: 1.1s; }
+
+/* the message card, unfolded from a matched envelope */
+.card {
+  position: absolute;
+  inset: 8px;
+  background: #fff;
+  border: 1px solid var(--color-rule);
+  border-radius: 8px;
+  padding: 9px 11px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--color-ink);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.3s, transform 0.5s ease-out;
+  pointer-events: none;
+  z-index: 2;
+}
+.cardOn { opacity: 1; transform: none; }
+.line {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 0.2s;
+}
+.lineLit { border-bottom-color: var(--color-navy-500); }
+.stage[data-live="true"][data-scene="3"] .lineLit {
+  transition-delay: calc(var(--i) * 120ms + 600ms);
+}
+.k {
+  flex: none;
+  width: 54px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-ink-muted);
+}
+.ccNote { font-size: 12px; color: var(--color-blotter-700); }
+.body {
+  position: relative;
+  margin-top: 6px;
+  height: 30px;
+  border-radius: 4px;
+  background-image: repeating-linear-gradient(45deg, var(--color-ink-faint) 0 1px, transparent 1px 6px);
+  opacity: 0.45;
+}
+.bodyLabel {
+  position: absolute;
+  right: 6px;
+  bottom: 3px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-ink-muted);
+  background: #fff;
+  padding: 0 3px;
+}
+
+/* the delivery-failure notice, the one message that is opened */
+.bounce {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  width: auto;
+  background: #fff;
+  border: 1px solid var(--color-rule);
+  border-radius: 8px;
+  padding: 7px 10px 8px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--color-ink);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s, transform 0.4s ease-out;
+  z-index: 3;
+}
+.bounceOn { opacity: 1; transform: none; }
+.bounceFrom { font-weight: 500; }
+.bounceLine { height: 4px; border-radius: 2px; background: var(--color-rule); margin: 5px 0; }
+.opened {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-ink-muted);
+}
+.slip {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--color-navy-900);
+  background: var(--color-blotter-100);
+  border: 1px solid var(--color-blotter-400);
+  padding: 0 5px;
+  border-radius: 3px;
+}
+.stage[data-live="true"][data-scene="4"] .slip { animation: slip 1.1s ease-in 1.8s both; }
+@keyframes slip {
+  0% { transform: none; opacity: 1; }
+  100% { transform: translateY(48px); opacity: 0; }
+}
+
+/* "stays here", under the hatched body, while the packet leaves */
+.stays {
+  position: absolute;
+  left: 12px;
+  bottom: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-ink-muted);
+  opacity: 0;
+  z-index: 3;
+}
+.staysStatic { opacity: 1; }
+.stage[data-live="true"][data-scene="6"] .stays { animation: blink 1.6s ease 1.4s both; }
+@keyframes blink {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* calendar */
+.cal {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+.evt {
+  height: 22px;
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+  background: #fff;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 0 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--color-ink-muted);
+  transition: opacity 0.6s, background 0.4s, border-color 0.4s;
+}
+.evtFaded { opacity: 0.25; }
+.evtMatch {
+  grid-column: span 2;
+  background: var(--color-blotter-100);
+  border-color: var(--color-navy-500);
+  color: var(--color-ink);
+}
+.stage[data-live="true"][data-scene="5"] .evt { transition-delay: 400ms; }
+.u { border-bottom: 1.5px solid transparent; transition: border-color 0.2s; }
+.uLit { border-bottom-color: var(--color-navy-500); }
+.stage[data-live="true"][data-scene="5"] .uLit {
+  transition-delay: calc(var(--i) * 200ms + 900ms);
+}
+
+/* the sheet */
+.rows {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1fr 108px 40px;
+  gap: 4px 8px;
+  align-items: center;
+  font-size: 11.5px;
+}
+.rowsHead {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-blotter-700);
+}
+.name { color: var(--color-ink); }
+.firm { color: var(--color-ink-muted); }
+.cell {
+  height: 20px;
+  border-radius: 4px;
+  background: #fff;
+  border: 1px solid var(--color-rule);
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+}
+.chip {
+  font-size: 10.5px;
+  line-height: 1.5;
+  padding: 0 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.chipOn { opacity: 1; }
+.stage[data-live="true"][data-scene="7"] .chipOn {
+  animation: chipIn 0.35s ease-out both;
+  animation-delay: calc(2.7s + var(--i) * 200ms);
+}
+@keyframes chipIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+.replied { background: var(--color-chip-replied-bg); color: var(--color-chip-replied-fg); }
+.scheduled { background: var(--color-chip-scheduled-bg); color: var(--color-chip-scheduled-fg); }
+.noreply { background: var(--color-chip-noreply-bg); color: var(--color-chip-noreply-fg); }
+.days {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-ink);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.daysOn { opacity: 1; }
+.stage[data-live="true"][data-scene="7"] .daysOn { transition-delay: 3.4s; }
+
+.clock { width: 22px; height: 22px; }
+.hand {
+  transform-origin: 11px 11px;
+  transform: rotate(0deg);
+  transition: transform 2s ease-out;
+}
+.handOn { transform: rotate(90deg); }
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-blotter-400);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.dotOn { opacity: 1; }
+.stage[data-live="true"][data-scene="1"] .dotOn { animation: pulse 0.8s ease-in-out 0.9s; }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+}
+
+/* the legend under the stage */
+.legend {
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.legendOn { opacity: 1; }
+.stage[data-live="true"][data-scene="7"] ~ .legendOn,
+.stage[data-live="true"][data-scene="7"] .legendOn { transition-delay: 5s; }
+
+/* ------------------------------------------------------------- the lane */
+
+.lane {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+}
+@media (max-width: 639px) {
+  .lane { flex-direction: row; height: 52px; gap: 44px; }
+}
+.hArrow { display: block; }
+.vArrow { display: none; }
+@media (max-width: 639px) {
+  .hArrow { display: none; }
+  .vArrow { display: block; }
+}
+
+.packet,
+.ret {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: 1px solid var(--color-rule);
+  border-radius: 8px;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  opacity: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+.packet { width: 156px; }
+.ret { width: 118px; }
+.pchip {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  line-height: 1.5;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--color-surface-quiet);
+  border: 1px solid var(--color-rule);
+  color: var(--color-ink);
+  opacity: 0;
+}
+.packetStatic,
+.retStatic { opacity: 1; }
+.packetStatic .pchip,
+.retStatic .chip { opacity: 1; }
+.stage[data-live="true"][data-scene="6"] .packet {
+  opacity: 1;
+  animation: travel 1.3s ease-in-out 1.4s both;
+}
+.stage[data-live="true"][data-scene="6"] .pchip {
+  animation: chipIn 0.2s ease-out both;
+  animation-delay: calc(var(--i) * 150ms + 100ms);
+}
+@keyframes travel {
+  0% { transform: translate(-50%, -50%); opacity: 1; }
+  82% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))); opacity: 0; }
+}
+.stage[data-live="true"][data-scene="7"] .ret { animation: back 1.4s ease-in-out 1.2s both; }
+.stage[data-live="true"][data-scene="7"] .ret .chip { opacity: 1; }
+@keyframes back {
+  0% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))); opacity: 0; }
+  18% { opacity: 1; }
+  88% { transform: translate(-50%, -50%); opacity: 1; }
+  100% { transform: translate(-50%, -50%); opacity: 0; }
+}
+
+/* ------------------------------------------------------------ the server */
+
+.server {
+  border: 1.5px dashed var(--color-ink-faint);
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  transition: border-color 0.3s;
+}
+.serverOn { border-color: var(--color-ink-muted); }
+.serverName {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-ink);
+  word-break: break-all;
+}
+.serverSub { font-size: 12px; color: var(--color-ink-muted); transition: color 0.3s; }
+.serverOn .serverSub { color: var(--color-ink); }
+
+/* ------------------------------------------------------------ controls */
+
+.dots { display: flex; gap: 6px; align-items: center; }
+.dotBtn {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+.dotBtn::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  border: 1px solid var(--color-ink-muted);
+  background: #fff;
+}
+.dotBtnOn::before {
+  background: var(--color-blotter-400);
+}
+
+/* ------------------------------------------------------------ filmstrip */
+
+.film { display: none; }
+.filmOn { display: block; }
+@media print {
+  .liveOnly { display: none !important; }
+  .film { display: block !important; }
+}

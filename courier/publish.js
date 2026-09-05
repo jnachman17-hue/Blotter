@@ -51,11 +51,12 @@ const PUBLIC_HEADER = `/**
  * inside your own Google account, and only for this one sheet.
  *
  * What it does
- *   Every fifteen minutes it looks at your Gmail and Google Calendar, works
- *   out where each conversation in your Contacts tab stands, and writes that
- *   into Blotter's own columns: Status, Days, Last contact, Attempts, Next
- *   call and Last call. The judgment about what a status should be is made
- *   on Blotter's server. This file collects the facts and writes the answer.
+ *   Every fifteen minutes through the day, and every two hours overnight, it
+ *   looks at your Gmail and Google Calendar, works out where each conversation
+ *   in your Contacts tab stands, and writes that into Blotter's own columns:
+ *   Status, Days, Last contact, Attempts, Next call and Last call. The
+ *   judgment about what a status should be is made on Blotter's server. This
+ *   file collects the facts and writes the answer.
  *
  * What it can see
  *   The outside of your emails: who sent them, who they went to, when, and
@@ -68,10 +69,12 @@ const PUBLIC_HEADER = `/**
  * What it never does
  *   It never sends, replies to, labels, archives or deletes an email. It
  *   never creates or changes a calendar event. It never opens an attachment.
- *   It writes only to this spreadsheet, and only to Blotter's own columns and
- *   tabs, never to a cell you typed in. If a run fails before it starts
- *   writing, your sheet is left untouched; if it fails partway through, the
- *   next run rewrites what it missed.
+ *   It writes only to this spreadsheet, and it never changes something you
+ *   typed: it fills Blotter's own columns, and it adds a new row when you
+ *   tick Add? on the Found tab. Setting up the sheet also sets the font and
+ *   the row heights throughout, including your own columns. If a run fails
+ *   before it starts writing, your sheet is left untouched; if it fails
+ *   partway through, the next run rewrites what it missed.
  *
  * What leaves your account
  *   The envelope details above, and your calendar events, go to Blotter's
@@ -150,6 +153,11 @@ if (require.main === module) {
   const src = fs.readFileSync(source, 'utf8');
   const version = (src.match(/var COURIER_VERSION = '([^']+)'/) || [])[1];
   if (!version) throw new Error('COURIER_VERSION not found in Code.gs');
+  // Where a stock sheet posts. Published beside the version so a student can
+  // hold `Blotter → Check this sheet` up against the site and see the same
+  // things: the version, and where it sends.
+  const sendsTo = (src.match(/var SERVER_URL_DEFAULT = '([^']+)'/) || [])[1];
+  if (!sendsTo) throw new Error('SERVER_URL_DEFAULT not found in Code.gs');
 
   const body = buildPublic(src);
   if (!sameTokens(src, body)) throw new Error('stripping comments changed the code; refusing to publish');
@@ -172,6 +180,7 @@ if (require.main === module) {
 export const SCRIPT_VERSION = ${JSON.stringify(version)};
 export const SCRIPT_SHA256 = ${JSON.stringify(sha)};
 export const SCRIPT_BYTES = ${Buffer.byteLength(body)};
+export const SCRIPT_SENDS_TO = ${JSON.stringify(sendsTo)};
 `,
   );
   console.log(`published Code.gs  version ${version}  ${Buffer.byteLength(body)} bytes (source ${Buffer.byteLength(src)})  sha256 ${sha.slice(0, 12)}…`);

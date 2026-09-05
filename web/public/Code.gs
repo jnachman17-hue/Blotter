@@ -5,11 +5,12 @@
  * inside your own Google account, and only for this one sheet.
  *
  * What it does
- *   Every fifteen minutes it looks at your Gmail and Google Calendar, works
- *   out where each conversation in your Contacts tab stands, and writes that
- *   into Blotter's own columns: Status, Days, Last contact, Attempts, Next
- *   call and Last call. The judgment about what a status should be is made
- *   on Blotter's server. This file collects the facts and writes the answer.
+ *   Every fifteen minutes through the day, and every two hours overnight, it
+ *   looks at your Gmail and Google Calendar, works out where each conversation
+ *   in your Contacts tab stands, and writes that into Blotter's own columns:
+ *   Status, Days, Last contact, Attempts, Next call and Last call. The
+ *   judgment about what a status should be is made on Blotter's server. This
+ *   file collects the facts and writes the answer.
  *
  * What it can see
  *   The outside of your emails: who sent them, who they went to, when, and
@@ -22,10 +23,12 @@
  * What it never does
  *   It never sends, replies to, labels, archives or deletes an email. It
  *   never creates or changes a calendar event. It never opens an attachment.
- *   It writes only to this spreadsheet, and only to Blotter's own columns and
- *   tabs, never to a cell you typed in. If a run fails before it starts
- *   writing, your sheet is left untouched; if it fails partway through, the
- *   next run rewrites what it missed.
+ *   It writes only to this spreadsheet, and it never changes something you
+ *   typed: it fills Blotter's own columns, and it adds a new row when you
+ *   tick Add? on the Found tab. Setting up the sheet also sets the font and
+ *   the row heights throughout, including your own columns. If a run fails
+ *   before it starts writing, your sheet is left untouched; if it fails
+ *   partway through, the next run rewrites what it missed.
  *
  * What leaves your account
  *   The envelope details above, and your calendar events, go to Blotter's
@@ -44,7 +47,7 @@
 
 var CONTRACT_VERSION = 4;
 
-var COURIER_VERSION = '4.5';
+var COURIER_VERSION = '4.8';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -336,15 +339,23 @@ function applyClosedRowFade_(sheet, closedCol, maxRows, lastCol, first) {
   if (!closedCol || closedCol < 1) return;
   var letter = columnLetter_(closedCol);
   var range = sheet.getRange(first, 1, maxRows - first + 1, lastCol);
-  var rules = sheet.getConditionalFormatRules();
-  rules.push(SpreadsheetApp.newConditionalFormatRule()
+
+  var ours = new RegExp('^=\\$' + letter + '\\d+=TRUE$');
+  var keep = sheet.getConditionalFormatRules().filter(function (rule) {
+    var condition = rule.getBooleanCondition();
+    if (!condition) return true;
+    var values = condition.getCriteriaValues() || [];
+    return !(values.length > 0 && ours.test(String(values[0])));
+  });
+
+  keep.push(SpreadsheetApp.newConditionalFormatRule()
 
     .whenFormulaSatisfied('=$' + letter + first + '=TRUE')
     .setFontColor(INK_FAINT)
     .setStrikethrough(true)
     .setRanges([range])
     .build());
-  sheet.setConditionalFormatRules(rules);
+  sheet.setConditionalFormatRules(keep);
 }
 
 function safeServerCell_(value) {
@@ -1210,8 +1221,36 @@ function telemetryPayload_(contactCount, seconds, ok) {
   };
 }
 
+function onBlotterHost_(url) {
+  return /^https:\/\/(www\.)?blotterib\.com(\/|$)/i.test(String(url || '').trim());
+}
+
+function telemetryUrlFrom_(byLabel) {
+  var given = byLabel[SETTING_TELEMETRY];
+  return String(given === undefined ? TELEMETRY_URL_DEFAULT : given).trim();
+}
+
+function telemetryUrlSetting_(ss) {
+  var byLabel = settingsByLabel_(ss);
+  return byLabel === null ? TELEMETRY_URL_DEFAULT : telemetryUrlFrom_(byLabel);
+}
+
+function settingsByLabel_(ss) {
+  try {
+    var sheet = ss.getSheetByName(TAB_SETTINGS);
+    if (!sheet) return null;
+    var byLabel = {};
+    sheet.getDataRange().getValues().forEach(function (row) {
+      byLabel[String(row[0]).trim()] = row.length > 1 ? row[1] : '';
+    });
+    return byLabel;
+  } catch (e) {
+    return null;
+  }
+}
+
 function sendTelemetry_(url, payload) {
-  if (!url) return;
+  if (!onBlotterHost_(url)) return;
   try {
     UrlFetchApp.fetch(url, {
       method: 'post',
@@ -1342,22 +1381,36 @@ function checkThisSheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var gaps = missingSetup_(ss);
 
+  var byLabel = settingsByLabel_(ss);
+  var serverUrl = byLabel === null ? '' : String(byLabel[SETTING_SERVER] || '').trim();
+
   var lines = [
     'Blotter ID:  ' + installId_(),
     'Script version:  ' + COURIER_VERSION,
     'Newest script:  ' + SCRIPT_URL,
     'Contract version:  ' + CONTRACT_VERSION,
     '',
+    'Sends to:  ' + (serverUrl || '(not set)'),
     'Time zone:  ' + studentTimeZone_(),
     'Design applied:  ' +
       (PropertiesService.getScriptProperties().getProperty(PROP_DESIGN_VERSION) || '(the built-in one)'),
     'Setup:  ' + (gaps.length === 0 ? 'complete' : 'missing ' + gaps.join(', '))
   ];
 
+  if (serverUrl && !onBlotterHost_(serverUrl)) {
+    lines.push('');
+    lines.push('This sheet is not sending to blotterib.com. If you did not ' +
+      'change that yourself, stop and email ' + HELP_EMAIL + '.');
+  }
+
   lines.push('');
-  lines.push('The Blotter ID is what identifies this sheet. It is a random ' +
-    'number that says nothing about you. Not your name, not your email ' +
-    'address, neither of which Blotter is ever given.');
+  lines.push('The Blotter ID is a random number. It is not made from your ' +
+    'name, your email address, or anything else about you. It only tells ' +
+    'one sheet apart from another.');
+  lines.push('');
+  lines.push('Blotter does have the email addresses you typed into Settings. ' +
+    'It needs them to know which emails are the ones you sent. It never has ' +
+    'your password.');
 
   SpreadsheetApp.getUi().alert('Blotter: this sheet\n\n' + lines.join('\n'));
 }
@@ -1390,6 +1443,8 @@ function courierPass_() {
   if (!lock.tryLock(0)) {
     throw new Error('Another Blotter run is already in progress. Nothing was changed.');
   }
+
+  var telemetryUrl = '';
   try {
     runMetrics_ = { startedMs: new Date().getTime(), searches: 0, threadFetches: 0, threads: 0, messages: 0, skipped: 0 };
     writePhaseBegun_ = false;
@@ -1397,6 +1452,8 @@ function courierPass_() {
       .setProperty(PROP_LAST_WORKED_MS, String(runMetrics_.startedMs));
 
     var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+    telemetryUrl = telemetryUrlSetting_(ss);
     var settings = readSettings_(ss);
     var sheetState = readContacts_(ss);
     var foundState = readFoundTab_(ss);
@@ -1404,8 +1461,7 @@ function courierPass_() {
     var threads = fetchThreads_(sheetState.allContactEmails, settings.mailDaysBack);
     markOutbound_(threads, settings.addresses);
     var events = fetchEvents_(settings.calendarDaysBack, settings.calendarDaysForward,
-                              sheetState.allContactEmails,
-                              sheetState.contacts.map(function (c) { return c.name; }));
+                              sheetState.allContactEmails, sheetState.contacts);
 
     var request = {
       version: CONTRACT_VERSION,
@@ -1509,7 +1565,7 @@ function courierPass_() {
 
     try {
       var failedSeconds = Math.round((new Date().getTime() - runMetrics_.startedMs) / 1000);
-      sendTelemetry_(TELEMETRY_URL_DEFAULT, telemetryPayload_(0, failedSeconds, false));
+      sendTelemetry_(telemetryUrl, telemetryPayload_(0, failedSeconds, false));
     } catch (ignored) {}
     throw runError;
   } finally {
@@ -1547,8 +1603,7 @@ function readSettings_(ss) {
 
     pretendNow: pretendNowIso_(byLabel[SETTING_PRETEND_TODAY]),
 
-    telemetryUrl: String(byLabel[SETTING_TELEMETRY] === undefined ? TELEMETRY_URL_DEFAULT
-      : byLabel[SETTING_TELEMETRY]).trim(),
+    telemetryUrl: telemetryUrlFrom_(byLabel),
     designUrl: DESIGN_URL_DEFAULT,
     blotterKey: String(byLabel[SETTING_KEY] === undefined ? '' : byLabel[SETTING_KEY]).trim()
   };
@@ -1857,7 +1912,7 @@ function markOutbound_(threads, studentAddresses) {
   });
 }
 
-function fetchEvents_(daysBack, daysForward, contactEmails, contactNames) {
+function fetchEvents_(daysBack, daysForward, contactEmails, contacts) {
   var now = new Date();
   var from = new Date(now.getTime() - daysBack * 24 * 60 * 60 * 1000);
   var to = new Date(now.getTime() + daysForward * 24 * 60 * 60 * 1000);
@@ -1867,10 +1922,11 @@ function fetchEvents_(daysBack, daysForward, contactEmails, contactNames) {
     var one = bareAddress_(a);
     if (one) wanted[one] = true;
   });
-  var firstNames = {};
-  (contactNames || []).forEach(function (n) {
-    var first = eventWords_(n)[0];
-    if (first) firstNames[first] = true;
+
+  var people = [];
+  (contacts || []).forEach(function (c) {
+    var first = eventWords_(c && c.name)[0];
+    if (first) people.push({ first: first, firm: (c && c.firm) || '' });
   });
 
   var kept = [];
@@ -1882,7 +1938,11 @@ function fetchEvents_(daysBack, daysForward, contactEmails, contactNames) {
       return wanted[bareAddress_(g.getEmail())] === true;
     });
     if (!mine) {
-      mine = eventWords_(title).some(function (w) { return firstNames[w] === true; });
+      var titleSet = {};
+      eventWords_(title).forEach(function (w) { titleSet[w] = true; });
+      mine = people.some(function (p) {
+        return titleSet[p.first] === true && firmInTitle_(p.firm, title);
+      });
     }
 
     if (!mine) return;
@@ -1900,6 +1960,52 @@ function fetchEvents_(daysBack, daysForward, contactEmails, contactNames) {
     });
   });
   return kept;
+}
+
+var GENERIC_FIRM_WORDS = {
+  'and': true, 'of': true, 'the': true, 'co': true, 'inc': true, 'llc': true,
+  'lp': true, 'llp': true, 'plc': true, 'group': true, 'partners': true,
+  'capital': true, 'bank': true, 'bankers': true, 'banking': true,
+  'investment': true, 'investments': true, 'securities': true,
+  'advisors': true, 'advisory': true, 'advisers': true, 'company': true,
+  'management': true, 'markets': true, 'corp': true, 'corporation': true,
+  'holdings': true
+};
+
+function firmInTitle_(firm, title) {
+  var firmWords = eventWords_(firm);
+  var titleWords = eventWords_(title);
+  if (firmWords.length === 0 || titleWords.length === 0) return false;
+
+  var titleSet = {};
+  titleWords.forEach(function (w) { titleSet[w] = true; });
+
+  for (var i = 0; i + firmWords.length <= titleWords.length; i++) {
+    var all = true;
+    for (var j = 0; j < firmWords.length; j++) {
+      if (titleWords[i + j] !== firmWords[j]) { all = false; break; }
+    }
+    if (all) return true;
+  }
+
+  var distinctive = firmWords.filter(function (w) {
+    return GENERIC_FIRM_WORDS[w] !== true && w.length >= 2;
+  });
+  if (distinctive.some(function (w) { return titleSet[w] === true; })) return true;
+
+  if (firmWords.length >= 2) {
+    var initials = firmWords.map(function (w) { return w.charAt(0); }).join('');
+    if (initials.length >= 2 && initials.length <= 4 && titleSet[initials] === true) return true;
+  }
+
+  return distinctive.some(function (firmWord) {
+    return titleWords.some(function (titleWord) {
+      return (titleWord.length >= 3 && firmWord.length > titleWord.length &&
+              firmWord.indexOf(titleWord) === 0) ||
+             (firmWord.length >= 3 && titleWord.length > firmWord.length &&
+              titleWord.indexOf(firmWord) === 0);
+    });
+  });
 }
 
 function eventWords_(text) {
@@ -2050,13 +2156,17 @@ function addApprovedContacts_(ss, sheetState, foundState) {
   var skipped = 0;
   foundState.approvals.forEach(function (a) {
     if (!sheetState.emailsInSheet[a.email.toLowerCase()]) {
-      var newRow = [];
-      for (var i = 0; i < sheetState.lastCol; i++) newRow.push('');
-      newRow[sheetState.cols.name - 1] = a.name;
-      newRow[sheetState.cols.email - 1] = a.email;
 
       var target = lastRowWithContact_(sheetState) + 1;
-      sheetState.sheet.getRange(target, 1, 1, sheetState.lastCol).setValues([newRow]);
+
+      var sheet = sheetState.sheet;
+      sheet.getRange(target, sheetState.cols.name).setValue(safeCell_(a.name));
+      sheet.getRange(target, sheetState.cols.email).setValue(safeCell_(a.email));
+
+      BLOTTER_COLUMNS.forEach(function (heading) {
+        var c = findColumn_(sheet, heading);
+        if (c > 0) sheet.getRange(target, c).clearContent();
+      });
       sheetState.emailsInSheet[a.email.toLowerCase()] = true;
       added++;
       foundState.sheet.getRange(a.rowNumber, foundState.cols.add).setValue('Added');
