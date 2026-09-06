@@ -148,7 +148,7 @@ export function Hero({
               which is cheaper than any decoration.
             */}
             <h1 className="font-display text-display leading-[1.06] font-semibold tracking-[-0.028em] text-ink">
-              <span className="block">A recruiting tracker that keeps itself current.</span>
+              <span className="block">A networking tracker that keeps itself current.</span>
             </h1>
 
             <div className="contents desk:block">
@@ -196,9 +196,11 @@ export function Hero({
                 )}
               >
                 <span className={supporting === "short" ? "hidden desk:inline" : undefined}>
-                  Blotter is a Google Sheet that reads your Gmail and Calendar
-                  and keeps itself current — who replied, who has gone quiet,
-                  what is scheduled, and how long each has been true.
+                  Blotter is an intelligent Google Sheet that becomes your networking
+                  tracker. You add the people you are reaching out to, and a program
+                  inside the sheet reads your Gmail and Calendar for those names and
+                  keeps every status current: who replied, who has gone quiet, what is
+                  scheduled, and how long each has been true.
                 </span>
                 {supporting === "short" && (
                   <span className="desk:hidden">{HERO_SUPPORTING_SHORT}</span>
@@ -315,9 +317,8 @@ export function Hero({
                 />
                 Made by{" "}
                 <span className="font-medium text-ink">
-                  someone who went through IB recruiting at UT Austin
+                  someone who went through IB recruitment
                 </span>
-                , for the next class.
               </p>
             </div>
           </div>

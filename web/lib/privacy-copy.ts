@@ -77,8 +77,28 @@ export const PRIVACY_OPENING =
  * stronger and simpler: the server never gets the text at all**, because the
  * reading happens inside the student's own Google account.
  */
-export const CANDID_CLAIM =
-  "Blotter reads the outside of your emails, not the inside: who wrote, who it went to, when, and the subject line. It cannot read the text of an email, and Blotter’s server cannot receive it. There is one exception, and it is a machine rather than a person: when a mail system sends back an automated delivery-failure notice, Blotter opens that notice inside your own account to find which address bounced. Only the addresses it finds travel, never the text. It runs inside your own Google account, and it only looks at conversations with the people in your Contacts tab.";
+/**
+ * Split into two on 6 September 2026, on Jon's ruling. The landing page renders
+ * `CANDID_CLAIM_SHORT`; `/privacy` and the audit package render both halves, so
+ * the exception is still disclosed in full where the detail belongs.
+ *
+ * *"We don't need to publicly address this minor nuance in plain text on the
+ * landing page. This is already covered in privacy."*
+ *
+ * **The wording of the short half was changed with the split, not just
+ * truncated.** Dropping the exception from behind "it cannot read the text of
+ * an email" would have left an absolute the code does not keep: the script does
+ * open one kind of message. The short half says what it reads rather than what
+ * it cannot, which is true on its own and needs no exception beside it.
+ */
+export const CANDID_CLAIM_SHORT =
+  "Blotter reads the outside of your emails, not the inside: who wrote, who it went to, when, and the subject line. The text of an email is not sent to Blotter’s server. It runs inside your own Google account, and it only looks at conversations with the people in your Contacts tab.";
+
+/** The exception, in full. `/privacy` and the audit package only. */
+export const CANDID_CLAIM_EXCEPTION =
+  "There is one exception, and it is a machine rather than a person: when a mail system sends back an automated delivery-failure notice, Blotter opens that notice inside your own account to find which address bounced. Only the addresses it finds travel, never the text.";
+
+export const CANDID_CLAIM = `${CANDID_CLAIM_SHORT} ${CANDID_CLAIM_EXCEPTION}`;
 
 /* ------------------------------------------------ 3. four-step processing rows */
 

@@ -98,7 +98,7 @@ function Headline({ center = false }: { center?: boolean }) {
     >
       {/* One line, one colour. The two-tone contrast read as a pitch; Jon's
           5 September 2026 brief is peer to peer and plain. */}
-      <span className="block">A recruiting tracker that keeps itself current.</span>
+      <span className="block">A networking tracker that keeps itself current.</span>
     </h1>
   );
 }
@@ -124,9 +124,8 @@ export function AuthorityLine({ className }: { className?: string }) {
       />
       Made by{" "}
       <span className="font-medium text-ink">
-        someone who went through IB recruiting at UT Austin
+        someone who went through IB recruitment
       </span>
-      , for the next class.
     </p>
   );
 }
@@ -367,7 +366,7 @@ function VariantG() {
           later starting line.
         */}
         <p className="mt-3 text-small leading-[1.5] text-ink-muted">
-          Free. Setup takes about three minutes.
+          Free. No downloads or installs. Takes &lt; 3 min.
         </p>
       </div>
     </div>

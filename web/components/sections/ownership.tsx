@@ -108,7 +108,7 @@ import {
  * want them" body read as unclear to him, and he was right.
  */
 const KEEP_H = "How it works";
-const KEEP_SUB = "Your contacts on the left. Blotter’s columns on the right.";
+const KEEP_SUB = "You add the names. Blotter watches for them and fills in the rest.";
 
 /**
  * `KEEP_SUB` with its first sentence removed. Written out rather than sliced so
@@ -127,7 +127,7 @@ const KEEP_SUB = "Your contacts on the left. Blotter’s columns on the right.";
  * can sit anywhere and are never touched.
  */
 export const KEEP_SUB_TRIMMED =
-  "It is a Google Sheet you make your own copy of. Your contacts go on the left, and you can add any other columns you want there, like notes or LinkedIn. Blotter fills in the right-hand side from Gmail and Calendar, and never edits anything you typed.";
+  "You copy the Blotter sheet into your own Drive and that copy becomes your tracker. Paste in the people you are networking with, or add them as your outreach grows. All it needs is a name and an email, and that list is how Blotter knows who to look for, so it never goes near the rest of your inbox. A small program inside the sheet runs on your own Google login every 15 minutes. It finds the threads and calendar events those people are on, works out where each relationship stands, and writes it into the right-hand columns. It never changes anything you typed.";
 
 /**
  * The desktop head: headline and deck left, supporting paragraph right.

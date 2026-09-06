@@ -48,7 +48,7 @@ import {
   ServicePermissions,
 } from "@/components/section-6/parts";
 import {
-  CANDID_CLAIM,
+  CANDID_CLAIM_SHORT,
   POLICY_HREF,
   POLICY_LINK_LABEL,
   PRIVACY_OPENING,
@@ -120,7 +120,7 @@ export function DataAndPrivacy() {
           thing between the head and the flow, which is the emphasis.
         */}
         <p className="mt-14 max-w-[78ch] text-[1.1875rem] leading-[1.6] text-ink">
-          {CANDID_CLAIM}
+          {CANDID_CLAIM_SHORT}
         </p>
 
         {/* The flow. No panel: it sits on the section ground. */}
