@@ -161,13 +161,21 @@ function DesktopHead() {
 }
 
 export function Ownership({
-  variant = "crop",
+  variant = "swipe",
   zones = "banner-sub",
 }: {
-  /** Phone sheet treatment. `crop` from September 4, 2026, on Jon's ruling:
-      on a phone, drop columns rather than ask for a swipe. It keeps Name,
-      Status, Days and Attempts and names the rest beneath. `swipe` had been
-      the ratified default and survives for `/review/ownership`. */
+  /** Phone sheet treatment.
+   *
+   * `swipe` was the ratified default. It became `crop` on September 4, 2026 on
+   * Jon's ruling: on a phone, drop columns rather than ask for a swipe, keeping
+   * Name, Status, Days and Attempts and naming the rest beneath.
+   *
+   * **Back to `swipe` on September 6, 2026**, on Jon's own reversal after
+   * looking at the phone: *"it was an actual spreadsheet that you scrolled on
+   * your mobile phone. You could see all the columns. Why isn't that there?"*
+   * The crop tells a reader the other seven columns exist; the swipe shows them
+   * their own tracker with the real widths, which is the thing the section is
+   * arguing. `crop` survives for `/review/ownership`. */
   variant?: PhoneSheetVariant;
   /** Desktop zone-label treatment. `/review/ownership` compares all four. */
   zones?: ZoneTreatment;
