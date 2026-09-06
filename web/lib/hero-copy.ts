@@ -59,4 +59,4 @@
   out: what the student does, and what is done for them.
 */
 export const HERO_SUPPORTING_SHORT =
-  "An intelligent Google Sheet that becomes your networking tracker. You add the people you are reaching out to, and it reads your Gmail and Calendar for those names to keep every status current.";
+  "Blotter is an intelligent Google Sheet that becomes your networking tracker. You add the people you are reaching out to, and it reads your Gmail and Calendar for those names to keep every status current.";

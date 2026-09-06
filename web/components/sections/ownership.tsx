@@ -127,7 +127,7 @@ const KEEP_SUB = "You add the names. Blotter watches for them and fills in the r
  * can sit anywhere and are never touched.
  */
 export const KEEP_SUB_TRIMMED =
-  "You copy the Blotter sheet into your own Drive and that copy becomes your tracker. Paste in the people you are networking with, or add them as your outreach grows. All it needs is a name and an email, and that list is how Blotter knows who to look for, so it never goes near the rest of your inbox. A small program inside the sheet runs on your own Google login every 15 minutes. It finds the threads and calendar events those people are on, works out where each relationship stands, and writes it into the right-hand columns. It never changes anything you typed.";
+  "The Blotter sheet comes with its program already built in. You copy it into your own Drive and that copy becomes your tracker. Paste in the people you are networking with, or add them as your outreach grows. The program runs on your own Google account, scanning for updates every 15 minutes. It finds the threads and calendar events those people are on, works out where each relationship stands, and writes it into the right-hand columns. It never changes anything you typed.";
 
 /**
  * The desktop head: headline and deck left, supporting paragraph right.
