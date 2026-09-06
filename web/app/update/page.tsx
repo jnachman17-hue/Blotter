@@ -25,7 +25,9 @@ import { CopyScript } from "./copy-script";
 export const metadata: Metadata = {
   title: "Update Blotter | Blotter",
   description: "Update the Blotter code in your spreadsheet. About a minute.",
-  robots: { index: false, follow: false },
+  /* Indexable from September 6, 2026. It is linked from the site footer now,
+     so a student who lost the link in their sheet can find it, and a noindex
+     page in a footer is a page search will not offer them. */
 };
 
 export default async function UpdatePage() {

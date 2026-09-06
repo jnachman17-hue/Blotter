@@ -307,6 +307,19 @@ export function FaqAndClose() {
               <a href={`mailto:${CONTACT_EMAIL}`} className={FOOTER_LINK}>
                 {CONTACT_EMAIL}
               </a>
+              {/*
+                Added September 6, 2026, on Jon's ruling. `/update` was
+                reachable only from the notice inside a student's own sheet, so
+                anybody who lost that link had no way back to it. `/audit` was
+                worse: the trust page the whole site rests on was not linked
+                from the landing page at all.
+              */}
+              <a href="/audit" className={FOOTER_LINK}>
+                Your data
+              </a>
+              <a href="/update" className={FOOTER_LINK}>
+                Update
+              </a>
               <a href={POLICY_HREF} className={FOOTER_LINK}>
                 Privacy
               </a>
