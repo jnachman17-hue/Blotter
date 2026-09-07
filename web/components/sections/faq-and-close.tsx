@@ -308,15 +308,17 @@ export function FaqAndClose() {
                 {CONTACT_EMAIL}
               </a>
               {/*
-                Added September 6, 2026, on Jon's ruling. `/update` was
+                `/update` added September 6, 2026, on Jon's ruling: it was
                 reachable only from the notice inside a student's own sheet, so
-                anybody who lost that link had no way back to it. `/audit` was
-                worse: the trust page the whole site rests on was not linked
-                from the landing page at all.
+                anybody who lost that link had no way back to it.
+
+                A `/audit` link sat here for about an hour the same day and
+                came straight back out, also on his ruling: that page is being
+                rebuilt and he does not want it findable until it is. **Put it
+                back when it is.** The trust page is not linked from the
+                landing page at all until then, which is a real gap and a
+                deliberate one.
               */}
-              <a href="/audit" className={FOOTER_LINK}>
-                Your data
-              </a>
               <a href="/update" className={FOOTER_LINK}>
                 Update
               </a>
