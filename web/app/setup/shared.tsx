@@ -62,11 +62,9 @@ export const NAV = [
   /* Demo first, from 19 September 2026: the video is the fastest answer to
      "what is this", so it leads the row. */
   { href: "/demo", label: "Demo" },
-  /* Four, since 5 September 2026. The code, status and findings pages still
-     exist and are reached from the "Your data" page under a single
-     technical-details link; a tab row that named them read as a developer
-     console to the students it was for. */
-  { href: "/audit", label: "Your data" },
+  /* "Your data" (/audit) came out of this row on 19 September 2026, on Jon's
+     ruling: the trust pages are not to be promoted until he has reviewed them.
+     The pages still exist at their URLs. */
   { href: "/update", label: "Update" },
   { href: POLICY_HREF, label: "Privacy" },
   { href: "/terms", label: "Terms" },
