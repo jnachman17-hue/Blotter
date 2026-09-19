@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { H1, LINK, PROSE, Shell } from "@/app/setup/shared";
+import { H1, LINK, Shell } from "@/app/setup/shared";
 import { CONTACT_EMAIL } from "@/lib/contact";
 
 /**
@@ -27,22 +27,14 @@ export const metadata: Metadata = {
 export default function DemoPage() {
   return (
     <Shell here="/demo" wide>
-      <p className="text-small text-ink-muted">About seven minutes</p>
-      <H1>Watch the demo</H1>
-
-      <div className={`mt-5 space-y-4 ${PROSE}`}>
-        <p>
-          Blotter set up from nothing and run for real: copying the sheet, adding contacts,
-          the permission screen, and every status filling in from a real inbox and a real
-          calendar. The people in it are made up. The emails and calendar events are not.
-        </p>
-      </div>
+      {/* Just the title. Jon, 19 September 2026: the video says the rest. */}
+      <H1>Demo video</H1>
 
       {/*
         16:9 at the page's full measure. The player is the page; nothing else on
         it should compete, so there is no sidebar and no second column.
       */}
-      <div className="mt-8 overflow-hidden rounded-[12px] bg-black shadow-sm">
+      <div className="mt-6 overflow-hidden rounded-[12px] bg-black shadow-sm">
         <iframe
           className="aspect-video w-full"
           src={EMBED_URL}
