@@ -295,6 +295,10 @@ export function FaqAndClose() {
               copy 19 characters at 13.5px.
             */}
             <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-2 desk:justify-start">
+              {/* The demo video, 19 September 2026. */}
+              <a href="/demo" className={FOOTER_LINK}>
+                Demo
+              </a>
               <a
                 href="/contact"
                 /* 44px target on a phone without a box around it: the padding
