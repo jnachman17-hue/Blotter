@@ -169,7 +169,9 @@ const TAGLINE_TYPE =
 export function SiteHeaderBar({
   mobileCta = true,
   mode = "full",
-  tagline = "persist",
+  /* "off" since 5 September 2026: a caps tagline in the bar reads as an ad.
+     The lockup and one button are the whole header now. */
+  tagline = "off",
   taglineAlign = "left",
 }: {
   mobileCta?: boolean;
@@ -290,6 +292,22 @@ export function SiteHeaderBar({
         <div className="flex items-center gap-5">
           {/* The `Set up` text link that sat here went on September 3, 2026.
               Jon: one call to action in the header, the button. */}
+          {/*
+            `Demo`, 19 September 2026, on Jon's ruling: a tab for the demo
+            video. It is navigation, not a second call to action, so it is set
+            in the tagline's type and sits before the button. Desktop only, for
+            the same 265px reason the tagline never went on the phone; the
+            footer carries it there.
+          */}
+          <a
+            href="/demo"
+            className={cn(
+              TAGLINE_TYPE,
+              "hidden min-h-11 items-center transition-colors duration-150 ease-out hover:text-navy-900 desk:flex",
+            )}
+          >
+            Demo
+          </a>
           <div className={mobileCta ? undefined : "hidden desk:block"}>
             <CtaButton location="header" size="compact" />
           </div>

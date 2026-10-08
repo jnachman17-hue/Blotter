@@ -86,7 +86,7 @@
 import { SectionNumber } from "@/components/layout/section-number";
 import { SectionEyebrow, TRIAL_EYEBROWS } from "@/components/layout/section-eyebrow";
 import { PageBox } from "@/components/layout/page-box";
-import { BlotterTab, Reassurance, ReassuranceStack } from "@/components/section-45/parts";
+import { BlotterTab } from "@/components/section-45/parts";
 import type { ZoneTreatment } from "@/components/section-45/parts";
 import {
   SheetPhone,
@@ -108,7 +108,7 @@ import {
  * want them" body read as unclear to him, and he was right.
  */
 const KEEP_H = "How it works";
-const KEEP_SUB = "Your contacts on the left. Blotter’s columns on the right.";
+const KEEP_SUB = "You add the names. Blotter watches for them and fills in the rest.";
 
 /**
  * `KEEP_SUB` with its first sentence removed. Written out rather than sliced so
@@ -127,7 +127,7 @@ const KEEP_SUB = "Your contacts on the left. Blotter’s columns on the right.";
  * can sit anywhere and are never touched.
  */
 export const KEEP_SUB_TRIMMED =
-  "It is a Google Sheet you make your own copy of. Your contacts go on the left, and you can add any other columns you want there, like notes or LinkedIn. Blotter fills in the right-hand side from Gmail and Calendar, and never edits anything you typed.";
+  "The Blotter sheet comes with its program already built in. You copy it into your own Drive and that copy becomes your tracker. Paste in the people you are networking with, or add them as your outreach grows. The program runs on your own Google account, scanning for updates every 15 minutes. It finds the threads and calendar events those people are on, works out where each relationship stands, and writes it into the right-hand columns. It never changes anything you typed.";
 
 /**
  * The desktop head: headline and deck left, supporting paragraph right.
@@ -161,13 +161,21 @@ function DesktopHead() {
 }
 
 export function Ownership({
-  variant = "crop",
+  variant = "swipe",
   zones = "banner-sub",
 }: {
-  /** Phone sheet treatment. `crop` from September 4, 2026, on Jon's ruling:
-      on a phone, drop columns rather than ask for a swipe. It keeps Name,
-      Status, Days and Attempts and names the rest beneath. `swipe` had been
-      the ratified default and survives for `/review/ownership`. */
+  /** Phone sheet treatment.
+   *
+   * `swipe` was the ratified default. It became `crop` on September 4, 2026 on
+   * Jon's ruling: on a phone, drop columns rather than ask for a swipe, keeping
+   * Name, Status, Days and Attempts and naming the rest beneath.
+   *
+   * **Back to `swipe` on September 6, 2026**, on Jon's own reversal after
+   * looking at the phone: *"it was an actual spreadsheet that you scrolled on
+   * your mobile phone. You could see all the columns. Why isn't that there?"*
+   * The crop tells a reader the other seven columns exist; the swipe shows them
+   * their own tracker with the real widths, which is the thing the section is
+   * arguing. `crop` survives for `/review/ownership`. */
   variant?: PhoneSheetVariant;
   /** Desktop zone-label treatment. `/review/ownership` compares all four. */
   zones?: ZoneTreatment;
@@ -182,7 +190,8 @@ export function Ownership({
         <div className="hidden desk:block">
           <DesktopHead />
           <div className="mt-7">
-            <Reassurance />
+            {/* The three icon chips left on 5 September 2026: the sheet
+                below makes the same three points without badges. */}
           </div>
           <div className="mt-10">
             <BlotterTab zones={zones} />
@@ -210,7 +219,7 @@ export function Ownership({
           </p>
 
           <div className="mt-7">
-            <ReassuranceStack />
+            {/* Phone chips left with the desktop ones, 5 September 2026. */}
           </div>
 
           <div className="mt-9">

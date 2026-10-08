@@ -62,7 +62,7 @@ import { useFunnel } from "@/lib/funnel-store";
  * `/setup`. Everything after those screens is gone. `Fix my tracker` is kept
  * above as the record of the label it replaced and why that one was chosen.
  */
-export const CTA_LABEL = "Set up free";
+export const CTA_LABEL = "Set up";
 
 /*
  * Shape rule for the page: interactive elements are pills, surfaces are 12px.

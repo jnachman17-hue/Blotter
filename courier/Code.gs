@@ -25,7 +25,7 @@ var CONTRACT_VERSION = 4;
 
 // Which build of this script is running. Sent to the telemetry endpoint only,
 // so a count of installs can be split by version when something goes wrong.
-var COURIER_VERSION = '4.5';
+var COURIER_VERSION = '4.8';
 var SERVER_URL_DEFAULT = 'https://blotterib.com/api/engine';
 
 var TAB_CONTACTS = 'Contacts';
@@ -544,15 +544,36 @@ function applyClosedRowFade_(sheet, closedCol, maxRows, lastCol, first) {
   if (!closedCol || closedCol < 1) return;
   var letter = columnLetter_(closedCol);
   var range = sheet.getRange(first, 1, maxRows - first + 1, lastCol);
-  var rules = sheet.getConditionalFormatRules();
-  rules.push(SpreadsheetApp.newConditionalFormatRule()
+
+  // **Drop the ones already there before adding another.** `applyStatusColours_`
+  // has always done this and this function never did, so every Step 1 and every
+  // design refresh left a fresh identical rule behind and removed none. An
+  // independent review of the published code found it on 5 September 2026. A
+  // sheet that had been set up a dozen times carried a dozen copies of the same
+  // rule across its full width, which is slow to evaluate and eventually meets
+  // Google's own limit on how many rules a sheet may hold.
+  //
+  // Matched on the formula rather than the range, because the range is the
+  // whole sheet and tells our rule apart from nothing. Any row number is
+  // matched so that rules left over from a sheet whose header sat somewhere
+  // else are cleaned up too, and the column letter is pinned so the only rules
+  // this can remove are ones about the Closed column.
+  var ours = new RegExp('^=\\$' + letter + '\\d+=TRUE$');
+  var keep = sheet.getConditionalFormatRules().filter(function (rule) {
+    var condition = rule.getBooleanCondition();
+    if (!condition) return true;             // a gradient rule is never ours
+    var values = condition.getCriteriaValues() || [];
+    return !(values.length > 0 && ours.test(String(values[0])));
+  });
+
+  keep.push(SpreadsheetApp.newConditionalFormatRule()
     // $ locks the column, the bare row stays relative to the range's first row.
     .whenFormulaSatisfied('=$' + letter + first + '=TRUE')
     .setFontColor(INK_FAINT)
     .setStrikethrough(true)
     .setRanges([range])
     .build());
-  sheet.setConditionalFormatRules(rules);
+  sheet.setConditionalFormatRules(keep);
 }
 
 /**
@@ -1810,11 +1831,91 @@ function telemetryPayload_(contactCount, seconds, ok) {
 }
 
 /**
+ * Where counting is sent, from the Settings values already in hand.
+ *
+ * An absent row means an older sheet that has never been set up, and defaults.
+ * A **blank** row means the student cleared it, and the help text beside that
+ * cell promises exactly what that does: *"Clear this cell to switch it off."*
+ * So blank returns blank, and `sendTelemetry_` returns without sending.
+ *
+ * One function because there are two callers and the promise has to mean the
+ * same thing to both. An independent review on 5 September 2026 found that it
+ * did not: the failure path posted to `TELEMETRY_URL_DEFAULT` directly, so
+ * clearing the cell switched off the successful runs and left the failed ones
+ * reporting forever. A published off switch that only half works is worse than
+ * no off switch, because the student has been told otherwise.
+ */
+/**
+ * True for an https address on Blotter's own host, and nothing else.
+ *
+ * Host exactly, followed by a slash or the end of the string, so
+ * `https://blotterib.com.example.com/collect` fails: after `com` the next
+ * character has to be `/`.
+ *
+ * It exists because two independent reviews on 5 September 2026 made the same
+ * point about the same thing — that where this script posts is decided by a
+ * cell in a spreadsheet — and one of them put it exactly right: *"the trust
+ * boundary isn't just the author, it's whatever string is currently in that
+ * cell."* Blotter is handed round by copying a sheet, so that is not a
+ * theoretical objection.
+ *
+ * Used on the counting endpoint, which nobody has any reason to point
+ * elsewhere. The main endpoint is a separate decision and is Jon's.
+ */
+function onBlotterHost_(url) {
+  return /^https:\/\/(www\.)?blotterib\.com(\/|$)/i.test(String(url || '').trim());
+}
+
+function telemetryUrlFrom_(byLabel) {
+  var given = byLabel[SETTING_TELEMETRY];
+  return String(given === undefined ? TELEMETRY_URL_DEFAULT : given).trim();
+}
+
+/**
+ * The same answer, read defensively and early.
+ *
+ * The failure path needs it **before** `readSettings_` has run, because
+ * `readSettings_` is itself one of the things that throws — a missing Settings
+ * tab, or no address in it, are among the most common ways a run dies, and
+ * those are exactly the broken installs worth counting. So this reads the one
+ * cell it needs and never throws: an unreadable sheet cannot have had the cell
+ * cleared, so it defaults.
+ */
+function telemetryUrlSetting_(ss) {
+  var byLabel = settingsByLabel_(ss);
+  return byLabel === null ? TELEMETRY_URL_DEFAULT : telemetryUrlFrom_(byLabel);
+}
+
+/**
+ * The Settings tab as a plain label-to-value map, or null if it cannot be
+ * read. **Never throws**, which is the point: both callers need an answer on
+ * paths where `readSettings_` has already failed or has not run yet.
+ */
+function settingsByLabel_(ss) {
+  try {
+    var sheet = ss.getSheetByName(TAB_SETTINGS);
+    if (!sheet) return null;
+    var byLabel = {};
+    sheet.getDataRange().getValues().forEach(function (row) {
+      byLabel[String(row[0]).trim()] = row.length > 1 ? row[1] : '';
+    });
+    return byLabel;
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
  * Fire and forget, and the forgetting is deliberate: a dead counter must never
  * stop a student's sheet from updating. Every failure path here is swallowed.
+ *
+ * **A blank url sends nothing**, and that is the student's off switch rather
+ * than an oversight. Anything that is not an https address on Blotter's own
+ * host sends nothing either: this posts without asking anybody, so where it
+ * posts is not a place a stray value in a spreadsheet cell gets to decide.
  */
 function sendTelemetry_(url, payload) {
-  if (!url) return;
+  if (!onBlotterHost_(url)) return;
   try {
     UrlFetchApp.fetch(url, {
       method: 'post',
@@ -1978,22 +2079,40 @@ function checkThisSheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var gaps = missingSetup_(ss);
 
+  // Where this sheet posts, because until 5 September 2026 nothing anywhere
+  // said. Two reviews made the same point: the destination is an ordinary
+  // cell, and a student who never looks at Settings has no way to know it was
+  // ever changed. Jon ruled: show it rather than pin it.
+  var byLabel = settingsByLabel_(ss);
+  var serverUrl = byLabel === null ? '' : String(byLabel[SETTING_SERVER] || '').trim();
+
   var lines = [
     'Blotter ID:  ' + installId_(),
     'Script version:  ' + COURIER_VERSION,
     'Newest script:  ' + SCRIPT_URL,
     'Contract version:  ' + CONTRACT_VERSION,
     '',
+    'Sends to:  ' + (serverUrl || '(not set)'),
     'Time zone:  ' + studentTimeZone_(),
     'Design applied:  ' +
       (PropertiesService.getScriptProperties().getProperty(PROP_DESIGN_VERSION) || '(the built-in one)'),
     'Setup:  ' + (gaps.length === 0 ? 'complete' : 'missing ' + gaps.join(', '))
   ];
 
+  if (serverUrl && !onBlotterHost_(serverUrl)) {
+    lines.push('');
+    lines.push('This sheet is not sending to blotterib.com. If you did not ' +
+      'change that yourself, stop and email ' + HELP_EMAIL + '.');
+  }
+
   lines.push('');
-  lines.push('The Blotter ID is what identifies this sheet. It is a random ' +
-    'number that says nothing about you. Not your name, not your email ' +
-    'address, neither of which Blotter is ever given.');
+  lines.push('The Blotter ID is a random number. It is not made from your ' +
+    'name, your email address, or anything else about you. It only tells ' +
+    'one sheet apart from another.');
+  lines.push('');
+  lines.push('Blotter does have the email addresses you typed into Settings. ' +
+    'It needs them to know which emails are the ones you sent. It never has ' +
+    'your password.');
 
   SpreadsheetApp.getUi().alert('Blotter: this sheet\n\n' + lines.join('\n'));
 }
@@ -2032,6 +2151,17 @@ function courierPass_() {
   if (!lock.tryLock(0)) {
     throw new Error('Another Blotter run is already in progress. Nothing was changed.');
   }
+  // Resolved as soon as the sheet is in hand, so the failure path below can
+  // obey the same off switch the successful path obeys.
+  //
+  // **It starts empty, which means off.** A second review made the point that
+  // starting it at the default fails open: a throw between here and the line
+  // that resolves it would post a run the student may have switched off. That
+  // window is small and the cost of closing it is smaller — the only runs it
+  // gives up are ones that died before the spreadsheet could be opened at all,
+  // and `telemetryUrlSetting_` already defaults every case where a sheet was
+  // readable and the cell was simply never there.
+  var telemetryUrl = '';
   try {
     runMetrics_ = { startedMs: new Date().getTime(), searches: 0, threadFetches: 0, threads: 0, messages: 0, skipped: 0 };
     writePhaseBegun_ = false;
@@ -2039,6 +2169,9 @@ function courierPass_() {
       .setProperty(PROP_LAST_WORKED_MS, String(runMetrics_.startedMs));
 
     var ss = SpreadsheetApp.getActiveSpreadsheet();
+    // Before anything that can throw, because the catch below needs it and
+    // `readSettings_` is one of the likeliest throws there is.
+    telemetryUrl = telemetryUrlSetting_(ss);
     var settings = readSettings_(ss);
     var sheetState = readContacts_(ss);
     var foundState = readFoundTab_(ss);
@@ -2047,8 +2180,7 @@ function courierPass_() {
     var threads = fetchThreads_(sheetState.allContactEmails, settings.mailDaysBack);
     markOutbound_(threads, settings.addresses);
     var events = fetchEvents_(settings.calendarDaysBack, settings.calendarDaysForward,
-                              sheetState.allContactEmails,
-                              sheetState.contacts.map(function (c) { return c.name; }));
+                              sheetState.allContactEmails, sheetState.contacts);
 
     // --- Ask the server what it all means ---
     var request = {
@@ -2183,7 +2315,7 @@ function courierPass_() {
     // cannot affect the outcome — the error is rethrown untouched.
     try {
       var failedSeconds = Math.round((new Date().getTime() - runMetrics_.startedMs) / 1000);
-      sendTelemetry_(TELEMETRY_URL_DEFAULT, telemetryPayload_(0, failedSeconds, false));
+      sendTelemetry_(telemetryUrl, telemetryPayload_(0, failedSeconds, false));
     } catch (ignored) {}
     throw runError;
   } finally {
@@ -2228,8 +2360,7 @@ function readSettings_(ss) {
     pretendNow: pretendNowIso_(byLabel[SETTING_PRETEND_TODAY]),
     // Blank switches counting off entirely, and that is a supported choice
     // rather than a bug: the run does not depend on it.
-    telemetryUrl: String(byLabel[SETTING_TELEMETRY] === undefined ? TELEMETRY_URL_DEFAULT
-      : byLabel[SETTING_TELEMETRY]).trim(),
+    telemetryUrl: telemetryUrlFrom_(byLabel),
     designUrl: DESIGN_URL_DEFAULT,
     blotterKey: String(byLabel[SETTING_KEY] === undefined ? '' : byLabel[SETTING_KEY]).trim()
   };
@@ -2620,12 +2751,8 @@ function markOutbound_(threads, studentAddresses) {
 }
 
 /**
- * All events on the default calendar inside the window. Which events matter,
- * and to whom, is the server's judgment (§7) — the title-match rule means the
- * courier must not pre-filter by attendee.
- */
-/**
- * Every event in the window that could belong to a contact, and no others.
+ * Every event in the window that the server could match to a contact, and no
+ * others.
  *
  * ## Why this filters at all
  *
@@ -2640,21 +2767,32 @@ function markOutbound_(threads, studentAddresses) {
  * contacts*, and it received all of them. The claim was false and the fix
  * belongs here rather than in the wording.
  *
- * ## Why the test is deliberately looser than the server's
+ * ## Why the test is now exactly the server's, and was not at first
  *
- * The server matches an event two ways (`matchEvent` in `rules.ts`): by
- * attendee address, or by a contact's first name in the title **together with
- * their firm**. This asks only for the address or the first name, and drops
- * the firm requirement.
+ * The first fix asked only for an attendee address **or** a contact's first
+ * name in the title, dropping the firm the server also requires. That was
+ * deliberate: a looser test can only ever send more than the server uses and
+ * never less, and getting it backwards would silently stop `Call scheduled`
+ * working for an event a student typed by hand.
  *
- * That is on purpose. A looser test can only ever send more than the server
- * would use, never less, so nothing the server would have matched can be
- * filtered out here. Getting that backwards would silently stop `Call
- * scheduled` working for events a student typed by hand, which is exactly the
- * case Jon described: a call he arranged by phone, with a name in the title
- * and nobody invited.
+ * **Six independent reviews later, four of them led with the same objection**,
+ * and they were right that the margin was in the wrong place. Track a contact
+ * called Sam and `Dinner with Sam` left the account — full guest list,
+ * organiser and all — for the server to throw away on arrival. Ordinary first
+ * names are ordinary words. Jon ruled on 5 September 2026: match the server
+ * exactly.
+ *
+ * **The safety property is unchanged and is now equality rather than a
+ * margin.** `matchEvent` in `rules.ts` matches by attendee address, or by a
+ * contact's first name in the title together with their firm; this asks the
+ * same two questions with the same two functions. Nothing the server would
+ * have used can be filtered out here, because the test is the same test.
+ *
+ * That equality is the whole safety argument, so it is not left to good
+ * intentions: `selftest.ts` runs this file's `firmInTitle_` and the server's
+ * `firmInTitle` over the same cases and fails if they ever disagree.
  */
-function fetchEvents_(daysBack, daysForward, contactEmails, contactNames) {
+function fetchEvents_(daysBack, daysForward, contactEmails, contacts) {
   var now = new Date();
   var from = new Date(now.getTime() - daysBack * 24 * 60 * 60 * 1000);
   var to = new Date(now.getTime() + daysForward * 24 * 60 * 60 * 1000);
@@ -2664,10 +2802,13 @@ function fetchEvents_(daysBack, daysForward, contactEmails, contactNames) {
     var one = bareAddress_(a);
     if (one) wanted[one] = true;
   });
-  var firstNames = {};
-  (contactNames || []).forEach(function (n) {
-    var first = eventWords_(n)[0];
-    if (first) firstNames[first] = true;
+  // First name and firm together, per contact, because the server's title
+  // test needs both from the same person. A map of first names would match
+  // one contact's name against another's firm.
+  var people = [];
+  (contacts || []).forEach(function (c) {
+    var first = eventWords_(c && c.name)[0];
+    if (first) people.push({ first: first, firm: (c && c.firm) || '' });
   });
 
   var kept = [];
@@ -2679,7 +2820,11 @@ function fetchEvents_(daysBack, daysForward, contactEmails, contactNames) {
       return wanted[bareAddress_(g.getEmail())] === true;
     });
     if (!mine) {
-      mine = eventWords_(title).some(function (w) { return firstNames[w] === true; });
+      var titleSet = {};
+      eventWords_(title).forEach(function (w) { titleSet[w] = true; });
+      mine = people.some(function (p) {
+        return titleSet[p.first] === true && firmInTitle_(p.firm, title);
+      });
     }
     // Nothing about an unmatched event leaves this account, not even its title.
     if (!mine) return;
@@ -2698,6 +2843,72 @@ function fetchEvents_(daysBack, daysForward, contactEmails, contactNames) {
     });
   });
   return kept;
+}
+
+/**
+ * Firm words the server does not treat as distinctive. Ported from
+ * `GENERIC_FIRM_WORDS` in `rules.ts` and kept in the same order.
+ */
+var GENERIC_FIRM_WORDS = {
+  'and': true, 'of': true, 'the': true, 'co': true, 'inc': true, 'llc': true,
+  'lp': true, 'llp': true, 'plc': true, 'group': true, 'partners': true,
+  'capital': true, 'bank': true, 'bankers': true, 'banking': true,
+  'investment': true, 'investments': true, 'securities': true,
+  'advisors': true, 'advisory': true, 'advisers': true, 'company': true,
+  'management': true, 'markets': true, 'corp': true, 'corporation': true,
+  'holdings': true
+};
+
+/**
+ * Does an event title name this firm? **A port of `firmInTitle` in `rules.ts`,
+ * and it has to stay one.**
+ *
+ * The four tests are the server's, in the server's order: the whole firm name
+ * in order, a distinctive firm word, the firm's initials as a word, or a
+ * three-letter-plus prefix either way. Each is grounded in a real title from
+ * the 2024 season and the reasoning is in `rules.ts`; it is not repeated here,
+ * because two copies of a rule need one explanation and one of them has to be
+ * the original.
+ *
+ * `selftest.ts` runs both implementations over the same cases and fails if
+ * they ever disagree. That test is the only thing making this copy safe, so if
+ * you are reading this because you are about to change one of them, change
+ * both.
+ */
+function firmInTitle_(firm, title) {
+  var firmWords = eventWords_(firm);
+  var titleWords = eventWords_(title);
+  if (firmWords.length === 0 || titleWords.length === 0) return false;
+
+  var titleSet = {};
+  titleWords.forEach(function (w) { titleSet[w] = true; });
+
+  for (var i = 0; i + firmWords.length <= titleWords.length; i++) {
+    var all = true;
+    for (var j = 0; j < firmWords.length; j++) {
+      if (titleWords[i + j] !== firmWords[j]) { all = false; break; }
+    }
+    if (all) return true;
+  }
+
+  var distinctive = firmWords.filter(function (w) {
+    return GENERIC_FIRM_WORDS[w] !== true && w.length >= 2;
+  });
+  if (distinctive.some(function (w) { return titleSet[w] === true; })) return true;
+
+  if (firmWords.length >= 2) {
+    var initials = firmWords.map(function (w) { return w.charAt(0); }).join('');
+    if (initials.length >= 2 && initials.length <= 4 && titleSet[initials] === true) return true;
+  }
+
+  return distinctive.some(function (firmWord) {
+    return titleWords.some(function (titleWord) {
+      return (titleWord.length >= 3 && firmWord.length > titleWord.length &&
+              firmWord.indexOf(titleWord) === 0) ||
+             (firmWord.length >= 3 && titleWord.length > firmWord.length &&
+              titleWord.indexOf(firmWord) === 0);
+    });
+  });
 }
 
 /** Lowercase words, exactly as the server's `words()` splits them. */
@@ -2910,17 +3121,48 @@ function addApprovedContacts_(ss, sheetState, foundState) {
   var skipped = 0;
   foundState.approvals.forEach(function (a) {
     if (!sheetState.emailsInSheet[a.email.toLowerCase()]) {
-      var newRow = [];
-      for (var i = 0; i < sheetState.lastCol; i++) newRow.push('');
-      newRow[sheetState.cols.name - 1] = a.name;
-      newRow[sheetState.cols.email - 1] = a.email;
       // NOT appendRow. `getLastRow()` counts a column of unchecked checkboxes
       // as content — an unticked box stores FALSE — so on the first live
       // install an approved contact landed at row 996, nine hundred rows below
       // the data, and the student saw "Added" with nothing added. Append after
       // the last row that actually holds a person.
       var target = lastRowWithContact_(sheetState) + 1;
-      sheetState.sheet.getRange(target, 1, 1, sheetState.lastCol).setValues([newRow]);
+
+      // **Cell by cell, not a whole row.** This used to write a full-width
+      // array of empty strings with the name and email dropped into it, which
+      // blanked every other column on that row. `lastRowWithContact_` looks
+      // only at Name and Email, so "the first free row" is only free of those
+      // two — a student keeping notes in a column of their own, below their
+      // last contact, had them silently wiped the moment they ticked Add?.
+      // Found by an independent review on 5 September 2026. The site tells
+      // them to add whatever columns they like and that Blotter will not touch
+      // them, so this was the sheet breaking a promise the sheet had made.
+      //
+      // **`safeCell_` again here, and this is the important part.** The Found
+      // tab already guarded these when the server sent them, and that guard is
+      // lost on the way back: a leading apostrophe is Sheets' own "this is
+      // text" marker, not part of the value, so `getValues()` in
+      // `readFoundTab_` hands back the bare `=IMPORTXML(...)` and writing it
+      // unguarded here makes it live.
+      //
+      // The chain is reachable by a stranger, which is why it is not a
+      // theoretical tidy-up. A Found suggestion's name is the display name off
+      // an email header (`rules.ts` §8), and a display name is chosen by
+      // whoever sent the message. So: send mail into any thread that involves
+      // one of the student's contacts, put a formula in the From name, wait to
+      // be suggested, and the student ticking Add? runs it in their own
+      // account against the contact list Blotter is built never to store.
+      // Found by an independent review on 5 September 2026.
+      var sheet = sheetState.sheet;
+      sheet.getRange(target, sheetState.cols.name).setValue(safeCell_(a.name));
+      sheet.getRange(target, sheetState.cols.email).setValue(safeCell_(a.email));
+      // Blotter's own columns on a reused row can still hold what a deleted
+      // contact left there, and this row will not be rewritten until the next
+      // run. Clear those, and nothing else.
+      BLOTTER_COLUMNS.forEach(function (heading) {
+        var c = findColumn_(sheet, heading);
+        if (c > 0) sheet.getRange(target, c).clearContent();
+      });
       sheetState.emailsInSheet[a.email.toLowerCase()] = true;
       added++;
       foundState.sheet.getRange(a.rowNumber, foundState.cols.add).setValue('Added');

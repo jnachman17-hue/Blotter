@@ -77,8 +77,28 @@ export const PRIVACY_OPENING =
  * stronger and simpler: the server never gets the text at all**, because the
  * reading happens inside the student's own Google account.
  */
-export const CANDID_CLAIM =
-  "Blotter reads the outside of your emails, not the inside: who wrote, who it went to, when, and the subject line. It cannot read the text of an email, and Blotter’s server cannot receive it. There is one exception, and it is a machine rather than a person: when Google’s mail system returns an automated delivery-failure notice, Blotter opens that notice inside your own account to find which address bounced. Only the address travels. It runs inside your own Google account, and it only looks at conversations with the people in your Contacts tab.";
+/**
+ * Split into two on 6 September 2026, on Jon's ruling. The landing page renders
+ * `CANDID_CLAIM_SHORT`; `/privacy` and the audit package render both halves, so
+ * the exception is still disclosed in full where the detail belongs.
+ *
+ * *"We don't need to publicly address this minor nuance in plain text on the
+ * landing page. This is already covered in privacy."*
+ *
+ * **The wording of the short half was changed with the split, not just
+ * truncated.** Dropping the exception from behind "it cannot read the text of
+ * an email" would have left an absolute the code does not keep: the script does
+ * open one kind of message. The short half says what it reads rather than what
+ * it cannot, which is true on its own and needs no exception beside it.
+ */
+export const CANDID_CLAIM_SHORT =
+  "Blotter reads the outside of your emails, not the inside: who wrote, who it went to, when, and the subject line. The text of an email is not sent to Blotter’s server. It runs inside your own Google account, and it only looks at conversations with the people in your Contacts tab.";
+
+/** The exception, in full. `/privacy` and the audit package only. */
+export const CANDID_CLAIM_EXCEPTION =
+  "There is one exception, and it is a machine rather than a person: when a mail system sends back an automated delivery-failure notice, Blotter opens that notice inside your own account to find which address bounced. Only the addresses it finds travel, never the text.";
+
+export const CANDID_CLAIM = `${CANDID_CLAIM_SHORT} ${CANDID_CLAIM_EXCEPTION}`;
 
 /* ------------------------------------------------ 3. four-step processing rows */
 
@@ -111,12 +131,12 @@ export const PROCESSING_STEPS: ProcessingStep[] = [
   {
     n: "02",
     title: "It only looks at conversations with your contacts",
-    body: "Every 15 minutes it checks for conversations with the people in your Contacts tab. A thread that does not involve one of them is never touched.",
+    body: "Every 15 minutes through the day, and every two hours overnight, it checks for conversations with the people in your Contacts tab. A conversation that does not involve one of them is never opened. One that does is read whole, so anyone else copied into it has their address and the subject line read as well.",
   },
   {
     n: "03",
     title: "Blotter reads facts, not text",
-    body: "To work out where each conversation stands, Blotter’s server is sent who wrote, who it went to, when, the subject line, and the title, time and guests of calendar events with your contacts. It is also sent the name, firm and email of each person in your Contacts tab, and the email addresses of anyone you rejected on the Found tab, so it does not suggest them again. The body of an email is never sent.",
+    body: "To work out where each conversation stands, Blotter’s server is sent, for each email in a conversation with one of your contacts: who wrote it, everyone it went to, when, and the subject line. Names as well as addresses, where the email carried a name. For a calendar event: the title, the times, everyone invited, who declined and who set it up. From your Contacts tab: each person’s name, firm and email, whether you have ticked Closed, and which row they are on. It is also sent your own email addresses, the addresses of anyone you rejected on the Found tab, this sheet’s random id, and Google’s own reference numbers for the conversations it read. The body of an email is never sent.",
   },
   {
     n: "04",
@@ -282,7 +302,7 @@ export const KEEPS_HEADING = "What Blotter keeps";
  */
 export const KEEPS_BODY = [
   "Nothing about your mail. The part of Blotter that works out each contact’s status keeps no record of the facts it was given or the answer it sent back.",
-  "Your recruiting information lives in one place: your own spreadsheet, in your own Google Drive.",
+  "Your recruiting information is kept in one place: your own spreadsheet, in your own Google Drive. The facts above go to the server to be worked out and are not kept there.",
 ];
 
 /**
@@ -347,7 +367,7 @@ export const COMMITMENTS = [
   "Blotter cannot see that any other file in your Drive exists",
   "Blotter does not sell your data",
   "Blotter’s server cannot receive the text of an email",
-  "Blotter never touches a conversation that does not involve one of your contacts",
+  "Blotter never opens a conversation that does not involve one of your contacts",
   "You can remove Blotter’s access from your Google account at any time",
   "Delete the spreadsheet and nothing of yours is left anywhere",
 ];
@@ -404,7 +424,7 @@ export const DELETION_STATEMENT =
 export const HOSTING_HEADING = "Where Blotter runs";
 
 export const HOSTING_BODY = [
-  "There is no third party in the middle. Blotter runs inside your own copy of a Google Sheet, on your own Google account’s permission. On a personal Gmail account, Google says so on the way in: it shows an unverified-app screen and names you as the developer, because the copy is yours. A university account does not see that screen.",
+  "There is nobody else in this but Blotter. No connection provider, no data broker, no other company handling your mail on the way through. Blotter runs inside your own copy of a Google Sheet, on your own Google account’s permission. On a personal Gmail account, Google says so on the way in: it shows an unverified-app screen and names you as the developer, because the copy is yours. A university account does not see that screen.",
   "Blotter’s own server does one job. It is sent the facts about conversations with your contacts, works out where each one stands, and sends the answer back. It holds no login for your Google account and no copy of your mail.",
 ];
 
@@ -434,7 +454,7 @@ export interface FaqEntry {
 export const PRIVACY_FAQ: FaqEntry[] = [
   {
     q: "Why does Google ask for such broad Gmail access?",
-    a: "Because Google uses the same wording for every app that asks, and does not offer a permission that means only the people in this spreadsheet. What Blotter does with it is narrow: it reads who wrote, who it went to, when, and the subject line, for conversations with your contacts. It cannot read the text.",
+    a: "Because Google uses the same wording for every app that asks, and does not offer a permission that means only the people in this spreadsheet. There is a narrower Gmail permission that would hand over headers only, and Blotter cannot use it: it forbids searching, and searching for your contacts is the whole mechanism. What Blotter does with it is narrow: it reads who wrote, who it went to, when, and the subject line, for conversations with your contacts. It cannot read the text.",
   },
   {
     q: "Does Blotter read my personal email?",
@@ -454,7 +474,7 @@ export const PRIVACY_FAQ: FaqEntry[] = [
   },
   {
     q: "Why does Google warn me that this app is not verified?",
-    a: "Only a personal Gmail account sees it. A university account goes straight to the permissions, because Google trusts universities automatically. On a personal account, the email address in the brackets is yours: the copy of Blotter you just made lives in your Google account, and Google treats everything in your account as yours. The screen is asking whether you want to let Blotter read your own account. It does not change what Blotter is allowed to do. That is fixed by the permissions on the next screen, and every one of them is read-only apart from the spreadsheet you just copied.",
+    a: "Only a personal Gmail account sees it. A university account goes straight to the permissions, because Google trusts universities automatically. On a personal account, the email address in the brackets is yours: the copy of Blotter you just made lives in your Google account, and Google treats everything in your account as yours. The screen is asking whether you want to let Blotter read your own account. It does not change what Blotter is allowed to do. That is fixed by the permissions on the next screen. Three of them are read-only, one is the spreadsheet you just copied, and the last two are not about your data at all: one lets Blotter reach its own server, and one lets it run while you are away.",
   },
   {
     q: "What if I want to stop using it?",

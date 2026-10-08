@@ -45,19 +45,14 @@ import { PageBox } from "@/components/layout/page-box";
 import { SectionNumber } from "@/components/layout/section-number";
 import { SectionEyebrow, TRIAL_EYEBROWS } from "@/components/layout/section-eyebrow";
 import {
-  ConnectionFinePrint,
-  ProcessingFlow,
   ServicePermissions,
 } from "@/components/section-6/parts";
 import {
-  BROAD_BODY,
-  BROAD_HEADING,
-  CANDID_CLAIM,
+  CANDID_CLAIM_SHORT,
   POLICY_HREF,
   POLICY_LINK_LABEL,
   PRIVACY_OPENING,
   PRIVACY_TITLE,
-  HOSTING_BODY,
 } from "@/lib/privacy-copy";
 
 /**
@@ -74,7 +69,6 @@ import {
  * footnote row below is a two-column grid, and the honest answer to *who else is
  * in this* is a claim worth making rather than a gap worth leaving.
  */
-const HOSTING_LEAD = HOSTING_BODY[0];
 
 export function DataAndPrivacy() {
   return (
@@ -126,13 +120,14 @@ export function DataAndPrivacy() {
           thing between the head and the flow, which is the emphasis.
         */}
         <p className="mt-14 max-w-[78ch] text-[1.1875rem] leading-[1.6] text-ink">
-          {CANDID_CLAIM}
+          {CANDID_CLAIM_SHORT}
         </p>
 
         {/* The flow. No panel: it sits on the section ground. */}
-        <div className="mt-14">
-          <ProcessingFlow />
-        </div>
+        {/* The four-step flow and the two footnotes left this section on
+            5 September 2026: they repeat /privacy, and the landing page now
+            says the claim, shows what each connection can and cannot do, and
+            links to the policy for the rest. */}
 
         {/* What each connection can and cannot do. */}
         <div className="mt-20">
@@ -156,23 +151,6 @@ export function DataAndPrivacy() {
           Both are set as footnotes because that is their weight, not because
           they are fine print.
         */}
-        {/* Desktop: both footnotes side by side, exactly as ratified. */}
-        <div className="mt-14 hidden border-t border-rule pt-7 desk:grid desk:grid-cols-2 desk:gap-x-16">
-          <p className="text-small leading-[1.6] text-ink-read">
-            <span className="font-semibold text-ink">{BROAD_HEADING}.</span> {BROAD_BODY}
-          </p>
-          <p className="text-small leading-[1.6] text-ink-read">{HOSTING_LEAD}</p>
-        </div>
-
-        {/*
-          Mobile: both footnotes fold into one row of fine print about the
-          Google connection. Nothing leaves the page — see `ConnectionFinePrint`
-          for why the provider sentence in particular belongs behind the tap
-          rather than in front of it.
-        */}
-        <div className="mt-12 desk:hidden">
-          <ConnectionFinePrint providerLead={HOSTING_LEAD} />
-        </div>
 
         {/*
           The link, and it is now load-bearing rather than courtesy: the page

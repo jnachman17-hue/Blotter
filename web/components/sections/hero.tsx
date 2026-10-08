@@ -91,16 +91,6 @@ export function Hero({
    */
   heroCta?: boolean;
 }) {
-  const eyebrowLine = (
-    <>
-      <span
-        aria-hidden="true"
-        className="mt-[0.35em] h-[0.9em] w-[2px] shrink-0 bg-navy-500"
-      />
-      A Google Sheet that automatically keeps your recruiting tracker current.
-    </>
-  );
-
 /*
   DESKTOP VERTICAL TRIM, August 11, 2026, and it is a stopgap.
 
@@ -138,11 +128,8 @@ export function Hero({
         <div className={top === "current" ? undefined : "desk:hidden"}>
           {/* Eyebrow, on the shared left edge. Desktop always renders it here;
               on a phone `eyebrow` may move it below the film or drop it. */}
-          <p
-            className="flex items-start gap-3 pt-6 desk:hidden text-eyebrow leading-[1.5] font-medium tracking-[0.1em] text-navy-500 uppercase"
-          >
-            {eyebrowLine}
-          </p>
+          {/* The caps eyebrow left the phone hero on 5 September 2026, with
+              the header tagline: same sentence, same reason. */}
 
           {/*
             One column on a phone, the ratified two-column split from the
@@ -161,8 +148,7 @@ export function Hero({
               which is cheaper than any decoration.
             */}
             <h1 className="font-display text-display leading-[1.06] font-semibold tracking-[-0.028em] text-ink">
-              <span className="block">Never touch your recruiting tracker again.</span>
-              <span className="block text-navy-400">Blotter updates it automatically.</span>
+              <span className="block">A networking tracker that keeps itself current.</span>
             </h1>
 
             <div className="contents desk:block">
@@ -210,9 +196,11 @@ export function Hero({
                 )}
               >
                 <span className={supporting === "short" ? "hidden desk:inline" : undefined}>
-                  Blotter is a Google Sheet that reads your Gmail and Calendar
-                  and keeps itself current — who replied, who has gone quiet,
-                  what is scheduled, and how long each has been true.
+                  Blotter is an intelligent Google Sheet that becomes your networking
+                  tracker. You add the people you are reaching out to, and a program
+                  inside the sheet reads your Gmail and Calendar for those names and
+                  keeps every status current: who replied, who has gone quiet, what is
+                  scheduled, and how long each has been true.
                 </span>
                 {supporting === "short" && (
                   <span className="desk:hidden">{HERO_SUPPORTING_SHORT}</span>
@@ -327,9 +315,9 @@ export function Hero({
                   aria-hidden="true"
                   className="mr-2.5 inline-block h-px w-3 align-middle bg-ink-faint desk:mr-3"
                 />
-                Built by{" "}
+                Made by{" "}
                 <span className="font-medium text-ink">
-                  someone who actually went through IB recruitment
+                  someone who went through IB recruitment
                 </span>
               </p>
             </div>

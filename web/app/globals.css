@@ -718,29 +718,27 @@ body {
   }
 }
 
+/*
+ * Flat since 5 September 2026. The two radial glows and the tinted gradient
+ * were the loudest thing on the page, and Jon's brief for the rework is
+ * serious, plain, less colour. The hero and section 2 now sit on the same
+ * quiet ground as the inner pages, and the sheet is the only colour.
+ */
 .field-open {
-  background:
-    radial-gradient(
-      1280px 700px at 0% -10%,
-      #cfe0f6 0%,
-      rgba(207, 224, 246, 0) 62%
-    ),
-    radial-gradient(
-      1160px 640px at 100% -12%,
-      #fbeac6 0%,
-      rgba(251, 234, 198, 0) 64%
-    ),
-    linear-gradient(180deg, var(--field-a) 0%, var(--field-b) 100%);
-}
-
-/* Section 2: cooler and deeper. Picks up exactly where the hero left off. */
-.field-deep {
+  /* Cream at the top, easing into the cool tone section 2 opens with, so the
+     handoff between the two is a fade rather than a seam. Jon, 5 September
+     2026: "slightly cleaner gradient between top section cream and second
+     section blue." */
   background: linear-gradient(
     180deg,
-    var(--field-b) 0%,
-    var(--field-c) 58%,
+    var(--color-surface-quiet) 0%,
+    var(--color-surface-quiet) 70%,
     var(--field-b) 100%
   );
+}
+
+.field-deep {
+  background: #ffffff;
 }
 
 /*

@@ -171,14 +171,17 @@ const SCOPES = [
 function Article({
   n,
   title,
+  id,
   children,
 }: {
   n: string;
   title: string;
+  /** An anchor, where another page needs to point at this article. */
+  id?: string;
   children: React.ReactNode;
 }) {
   return (
-    <section className="border-t border-rule pt-8">
+    <section id={id} className="border-t border-rule pt-8">
       <h2 className="font-display flex gap-4 text-[1.25rem] leading-[1.35] font-semibold tracking-[-0.012em] text-ink">
         <span className="font-mono text-small font-normal text-ink-faint tabular-nums">
           {n}
@@ -328,7 +331,7 @@ export default function PrivacyPolicyPage() {
 
             **Keep this accurate.** If collection changes, change this first.
           */}
-          <Article n="03" title="What happens today">
+          <Article n="03" title="What happens today" id="telemetry">
             <p>
               Blotter is still being built. The connection to Gmail, Calendar and Google
               Sheets described in the rest of this policy is not active, and nothing has
@@ -460,7 +463,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </Article>
 
-          <Article n="05" title="What we access in your Google account">
+          <Article n="05" title="What we access in your Google account" id="permissions">
             <p>
               The permissions Blotter requests, and the limits on each, are the following.
             </p>
@@ -674,6 +677,15 @@ export default function PrivacyPolicyPage() {
           </Article>
 
           <Article n="09" title="What we do not do">
+            <p>
+              Each of these can be checked.{" "}
+              <Link
+                href="/audit#package"
+                className="font-medium text-navy-500 underline underline-offset-4 transition-colors duration-150 ease-out hover:text-navy-900"
+              >
+                The audit page shows how.
+              </Link>
+            </p>
             <List items={COMMITMENTS} />
           </Article>
 

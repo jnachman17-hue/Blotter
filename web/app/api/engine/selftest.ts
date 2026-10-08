@@ -1,4 +1,7 @@
 import { computeEngine, firmInTitle } from "./rules";
+
+import { REQUEST } from "@/lib/contract-shapes";
+import { compareScripts, normaliseLines } from "@/lib/verify-copy";
 import { parseEngineRequest, RequestError } from "./validate";
 import type { ContactIn, EngineRequest, EventIn, MessageIn, RowOut, ThreadIn } from "./types";
 
@@ -1128,6 +1131,187 @@ check("firm: Citi does not match Houlihan", firmInTitle("Citi", "Danny - Jonatha
   check("absent lists become empty lists", parsed.threads[0].messages[0].cc, []);
   check("absent firm becomes empty text", parsed.contacts[0].firm, "");
   check("absent events tolerated", parsed.events, []);
+}
+
+/* ------------------------------------------------------------------ *
+ * The courier's copy of the calendar rule
+ *
+ * `fetchEvents_` decides which calendar events leave the student's account,
+ * and since 5 September 2026 it decides it with the same test this file's
+ * `firmInTitle` runs. That is the entire safety argument for filtering in the
+ * courier at all: **the courier cannot drop an event the server would have
+ * used, because it asks the same question.**
+ *
+ * Two implementations of one rule in two languages is a thing that drifts.
+ * This is what stops it. `courier/Code.gs` is loaded the way
+ * `helpers.test.js` loads it and the two functions are run over the same
+ * cases, including every shape the server's four tests are built for.
+ *
+ * If this fails, do not fix it by loosening the courier. Work out which
+ * implementation is wrong and make them agree again.
+ * ------------------------------------------------------------------ */
+{
+  const fs = require("node:fs") as typeof import("node:fs");
+  const nodePath = require("node:path") as typeof import("node:path");
+
+  const src = fs.readFileSync(
+    nodePath.join(__dirname, "..", "..", "..", "..", "courier", "Code.gs"),
+    "utf8",
+  );
+  const box: Record<string, (a: string, b: string) => boolean> = {};
+  new Function("box", `${src}
+Object.assign(box, { firmInTitle_, eventWords_ });`)(box);
+  const courierFirmInTitle = box.firmInTitle_;
+
+  const firms = [
+    "J.P. Morgan", "Morgan Stanley", "Houlihan Lokey", "Raymond James",
+    "Intrepid Financial Partners", "Citi", "Goldman Sachs & Co.",
+    "Evercore", "Blackstone Group LP", "The Blackstone team", "",
+    "Bank of America", "Investment Banking Group", "JPMorgan", "RBC Capital Markets",
+  ];
+  const titles = [
+    "Carson - Jonathan JPM IB Call", "Coffee chat: David Salmon",
+    "Dinner with Sam", "Sam", "call with Houlihan", "RJ intro",
+    "Morgan Stanley superday", "JPM", "jpmorgan chase catch up",
+    "the group", "capital markets 101", "Citi coffee", "evercore",
+    "Blackstone", "1:1 w/ Raymond", "", "lunch", "GS networking call",
+    "BofA info session", "RBC — first round",
+  ];
+
+  let compared = 0;
+  let disagreements = 0;
+  for (const firm of firms) {
+    for (const title of titles) {
+      compared += 1;
+      if (courierFirmInTitle(firm, title) !== firmInTitle(firm, title)) {
+        disagreements += 1;
+        console.error(
+          `FAIL firmInTitle disagrees on firm=${JSON.stringify(firm)} title=${JSON.stringify(title)}\n` +
+            `  courier ${courierFirmInTitle(firm, title)}  server ${firmInTitle(firm, title)}`,
+        );
+      }
+    }
+  }
+  check(`courier and server agree on all ${compared} firm/title pairs`, disagreements, 0);
+
+  // The cases the rule exists for, asserted outright rather than only compared,
+  // so a change that breaks both implementations the same way is still caught.
+  check("firm named in full", firmInTitle("Morgan Stanley", "Morgan Stanley superday"), true);
+  check("distinctive word alone", firmInTitle("Houlihan Lokey", "call with Houlihan"), true);
+  check("initials as a word", firmInTitle("Raymond James", "RJ intro"), true);
+  check("prefix either way", firmInTitle("JPMorgan", "JPM"), true);
+  check("a generic word is not enough", firmInTitle("The Blackstone team", "the group"), false);
+  check("an unrelated title does not match", firmInTitle("Evercore", "Dinner with Sam"), false);
+  check("no firm never matches", firmInTitle("", "Dinner with Sam"), false);
+}
+
+/* ------------------------------------------------------------------ *
+ * The published shape of a request
+ *
+ * `/status` publishes what the server receives, field by field, from
+ * `lib/contract-shapes.ts`. That page says "this, and nothing else", so a
+ * field the server accepts and the page does not list makes the page a lie.
+ * A full request is parsed here and every key that survives parsing has to
+ * have a row in the published shape.
+ * ------------------------------------------------------------------ */
+{
+  const published = new Set(REQUEST.flatMap((shape) => shape.fields.map((f) => f.name)));
+  const full = parseEngineRequest({
+    version: 4,
+    key: "k",
+    install_id: "i",
+    courier_version: "4.8",
+    now: "2026-09-05T12:00:00Z",
+    student: { addresses: ["s@x.com"] },
+    contacts: [{ row: 2, name: "Jane Doe", firm: "Evercore", emails: ["j@x.com"], closed: false }],
+    threads: [
+      {
+        thread_id: "t1",
+        messages: [
+          {
+            id: "m1",
+            date: "2026-09-01T10:00:00Z",
+            from: "j@x.com",
+            to: ["s@x.com"],
+            cc: [],
+            subject: "Hi",
+            failed_recipients: [],
+            is_outbound: false,
+          },
+        ],
+      },
+    ],
+    events: [
+      {
+        id: "e1",
+        title: "Call",
+        start: "2026-09-02T10:00:00Z",
+        end: "2026-09-02T10:30:00Z",
+        attendees: ["j@x.com"],
+        declined: [],
+        organizer: "s@x.com",
+      },
+    ],
+    ignored: ["z@x.com"],
+  });
+
+  const unlisted: string[] = [];
+  const walk = (value: unknown, path: string[]) => {
+    if (Array.isArray(value)) {
+      value.forEach((v) => walk(v, path));
+      return;
+    }
+    if (value !== null && typeof value === "object") {
+      for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+        if (!published.has(k)) unlisted.push([...path, k].join("."));
+        walk(v, [...path, k]);
+      }
+    }
+  };
+  walk(full, []);
+  /* `student` and `contacts` are section names rather than fields; they head
+     their own blocks on the page. Everything under them must be listed. */
+  const sections = new Set(["student", "contacts", "threads", "messages", "events", "ignored"]);
+  check(
+    "every accepted request field is published on /status",
+    unlisted.filter((p) => !sections.has(p.split(".").pop() ?? "")),
+    [],
+  );
+}
+
+/* ------------------------------------------------------------------ *
+ * The paste-to-verify check
+ *
+ * It must never tell an honest student their copy differs because of
+ * something a clipboard did on the way. Those are the cases here.
+ * ------------------------------------------------------------------ */
+{
+  const ours = "var COURIER_VERSION = '4.8';\nfunction a() {\n  return 1;\n}\n";
+  check("identical text is identical", compareScripts(ours, ours).identical, true);
+  check(
+    "windows line endings do not count",
+    compareScripts(ours.replace(/\n/g, "\r\n"), ours).identical,
+    true,
+  );
+  check(
+    "trailing spaces do not count",
+    compareScripts(ours.replace(/\n/g, "   \n"), ours).identical,
+    true,
+  );
+  check("a missing final newline does not count", compareScripts(ours.trimEnd(), ours).identical, true);
+  check("leading blank lines do not count", compareScripts("\n\n" + ours, ours).identical, true);
+  check("a byte-order mark does not count", compareScripts("\uFEFF" + ours, ours).identical, true);
+
+  const theirs = ours.replace("'4.8'", "'4.5'").replace("return 1", "return 2");
+  const diff = compareScripts(theirs, ours);
+  check("a real difference is found", diff.identical, false);
+  check("and reported at its first line", diff.firstDifference?.line, 1);
+  check("with both sides quoted", diff.firstDifference?.theirs, "var COURIER_VERSION = '4.5';");
+  check("and counted", diff.differingLines, 2);
+  check("their version is read", diff.theirsVersion, "4.5");
+  check("ours too", diff.oursVersion, "4.8");
+  check("an extra line at the end is a difference", compareScripts(ours + "x();\n", ours).identical, false);
+  check("normalising keeps inner blank lines", normaliseLines("a\n\nb").length, 3);
 }
 
 /* ---------------------------------------------------------------- */

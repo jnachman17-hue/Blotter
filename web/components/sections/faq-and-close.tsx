@@ -34,7 +34,6 @@
 import { BlotterLockup } from "@/components/brand/blotter-mark";
 import { CtaButton } from "@/components/cta-button";
 import { DisclosureList } from "@/components/disclosure";
-import { RefusalPanel } from "@/components/section-3/boundary-block";
 import { PageBox } from "@/components/layout/page-box";
 import { SectionNumber } from "@/components/layout/section-number";
 import { SectionEyebrow, TRIAL_EYEBROWS } from "@/components/layout/section-eyebrow";
@@ -206,7 +205,8 @@ export function FaqAndClose() {
             surfaces disagree about how many sections this page has.
           */}
           <div className="mt-14 desk:mt-20">
-            <RefusalPanel />
+            {/* The three "No ..." badges left the page on 5 September 2026.
+                Jon's brief: less marketing, fewer callouts. */}
           </div>
         </PageBox>
       </section>
@@ -295,6 +295,10 @@ export function FaqAndClose() {
               copy 19 characters at 13.5px.
             */}
             <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-2 desk:justify-start">
+              {/* The demo video, 19 September 2026. */}
+              <a href="/demo" className={FOOTER_LINK}>
+                Demo
+              </a>
               <a
                 href="/contact"
                 /* 44px target on a phone without a box around it: the padding
@@ -306,6 +310,21 @@ export function FaqAndClose() {
               </a>
               <a href={`mailto:${CONTACT_EMAIL}`} className={FOOTER_LINK}>
                 {CONTACT_EMAIL}
+              </a>
+              {/*
+                `/update` added September 6, 2026, on Jon's ruling: it was
+                reachable only from the notice inside a student's own sheet, so
+                anybody who lost that link had no way back to it.
+
+                A `/audit` link sat here for about an hour the same day and
+                came straight back out, also on his ruling: that page is being
+                rebuilt and he does not want it findable until it is. **Put it
+                back when it is.** The trust page is not linked from the
+                landing page at all until then, which is a real gap and a
+                deliberate one.
+              */}
+              <a href="/update" className={FOOTER_LINK}>
+                Update
               </a>
               <a href={POLICY_HREF} className={FOOTER_LINK}>
                 Privacy
