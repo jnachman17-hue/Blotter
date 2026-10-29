@@ -196,11 +196,7 @@ export function Hero({
                 )}
               >
                 <span className={supporting === "short" ? "hidden desk:inline" : undefined}>
-                  Blotter is an intelligent Google Sheet that becomes your networking
-                  tracker. You add the people you are reaching out to, and a program
-                  inside the sheet reads your Gmail and Calendar for those names and
-                  keeps every status current: who replied, who has gone quiet, what is
-                  scheduled, and how long each has been true.
+                  {HERO_SUPPORTING_SHORT}
                 </span>
                 {supporting === "short" && (
                   <span className="desk:hidden">{HERO_SUPPORTING_SHORT}</span>

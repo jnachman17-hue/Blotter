@@ -58,5 +58,9 @@
   nothing the headline had not. This says the one thing the headline leaves
   out: what the student does, and what is done for them.
 */
+/*
+  Rewritten October 29, 2026, in Jon's words. Leads with what Blotter is and who
+  it is for, then how it works. The same line now runs on desktop and phone.
+*/
 export const HERO_SUPPORTING_SHORT =
-  "Blotter is an intelligent Google Sheet that becomes your networking tracker. You add the people you are reaching out to, and it reads your Gmail and Calendar for those names to keep every status current.";
+  "Blotter is an automated networking tracker for finance recruiting. It’s a Google Sheet that syncs with your Gmail and Calendar to update itself.";
